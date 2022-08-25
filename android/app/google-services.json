@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "968729161576",
+    "firebase_url": "https://safer-place-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "safer-place",
+    "storage_bucket": "safer-place.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968729161576:android:6aa055a175743e282470dd",
+        "android_client_info": {
+          "package_name": "com.saferplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968729161576-qr0aediabf4hgpa6o8tvijv0bu4t4h8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACjUPhE46lG6cNPb8wj90GEalg7-rW7xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968729161576-qr0aediabf4hgpa6o8tvijv0bu4t4h8f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "968729161576-akc557qn4io9ukoe7f47uu933fno0m24.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.saferplace"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
