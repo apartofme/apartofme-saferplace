@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>968729161576-akc557qn4io9ukoe7f47uu933fno0m24.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.968729161576-akc557qn4io9ukoe7f47uu933fno0m24</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBl34yjvZx9C0kITYwcdI3_uF9vLoxjuJA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>968729161576</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.saferplace</string>
+	<key>PROJECT_ID</key>
+	<string>safer-place</string>
+	<key>STORAGE_BUCKET</key>
+	<string>safer-place.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:968729161576:ios:fb76c024a78ab5932470dd</string>
+	<key>DATABASE_URL</key>
+	<string>https://safer-place-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
