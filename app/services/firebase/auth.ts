@@ -1,5 +1,4 @@
 import auth from '@react-native-firebase/auth';
-import _ from 'lodash';
 
 import { parseFairbaseError } from '../../utils';
 import { IFirebaseAuthError, IFirebaseAuthResponse } from './types';
