@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth';
 
-import { parseFairbaseError } from '../../utils';
+import { parseFirebaseError } from '../../utils';
 import { IFirebaseAuthError, IFirebaseAuthResponse } from './types';
 
 export const firebaseRegisterUser = async (email: string, password: string) => {
@@ -13,7 +13,7 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
       await auth().createUserWithEmailAndPassword(email, password)
     ).user;
   } catch (error) {
-    registerUserResponse.error = parseFairbaseError(
+    registerUserResponse.error = parseFirebaseError(
       (error as IFirebaseAuthError).code,
     );
   }
@@ -30,7 +30,7 @@ export const firebaseLoginUser = async (email: string, password: string) => {
       await auth().signInWithEmailAndPassword(email, password)
     ).user;
   } catch (error) {
-    loginUserResponse.error = parseFairbaseError(
+    loginUserResponse.error = parseFirebaseError(
       (error as IFirebaseAuthError).code,
     );
   }

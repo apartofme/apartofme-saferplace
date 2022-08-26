@@ -10,6 +10,6 @@ export type Nullable<T> = T | null;
  Parse firebase error for example: auth/email-already-exists
  and conversion to auth.email_already_exists for use in localization
 */
-export const parseFairbaseError = (error: string) => {
+export const parseFirebaseError = (error: string) => {
   return error.split('/').join('.').split('-').join('_');
 };
