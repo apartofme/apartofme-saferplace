@@ -14,7 +14,7 @@ export const styles = StyleSheet.create<IExtendedTextAreaStyles>({
   input: {
     flex: 1,
     textAlignVertical: 'top',
-    //* Fix andriod paddimgs
+    //* Fix andriod paddings
     paddingHorizontal: 0,
     paddingVertical: 0,
   },
