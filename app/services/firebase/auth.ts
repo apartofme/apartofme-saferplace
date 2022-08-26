@@ -9,15 +9,11 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
     user: null,
     error: null,
   };
-
   try {
-    const response = await auth().createUserWithEmailAndPassword(
-      email,
-      password,
-    );
-    registerUserResponse.user = _.cloneDeep(response.user);
+    registerUserResponse.user = (
+      await auth().createUserWithEmailAndPassword(email, password)
+    ).user;
   } catch (error) {
-    console.log(typeof error);
     registerUserResponse.error = parseFairbaseError(
       (error as IFirebaseAuthError).code,
     );
@@ -31,8 +27,9 @@ export const firebaseLoginUser = async (email: string, password: string) => {
     error: null,
   };
   try {
-    const response = await auth().signInWithEmailAndPassword(email, password);
-    loginUserResponse.user = _.cloneDeep(response.user);
+    loginUserResponse.user = (
+      await auth().signInWithEmailAndPassword(email, password)
+    ).user;
   } catch (error) {
     loginUserResponse.error = parseFairbaseError(
       (error as IFirebaseAuthError).code,
