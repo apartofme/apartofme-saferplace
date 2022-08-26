@@ -2,40 +2,45 @@ import auth from '@react-native-firebase/auth';
 import _ from 'lodash';
 
 import { parseFairbaseError } from '../../utils';
-import { IFirebaseAuthResponse } from './types';
+import { IFirebaseAuthError, IFirebaseAuthResponse } from './types';
 
-export const registerUser = async (email: string, password: string) => {
+export const firebaseRegisterUser = async (email: string, password: string) => {
   const registerUserResponse: IFirebaseAuthResponse = {
     user: null,
     error: null,
   };
-  await auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(result => {
-      registerUserResponse.user = _.cloneDeep(result.user);
-    })
-    .catch(error => {
-      registerUserResponse.error = parseFairbaseError(error.code);
-    });
+
+  try {
+    const response = await auth().createUserWithEmailAndPassword(
+      email,
+      password,
+    );
+    registerUserResponse.user = _.cloneDeep(response.user);
+  } catch (error) {
+    console.log(typeof error);
+    registerUserResponse.error = parseFairbaseError(
+      (error as IFirebaseAuthError).code,
+    );
+  }
   return registerUserResponse;
 };
 
-export const loginUser = async (email: string, password: string) => {
+export const firebaseLoginUser = async (email: string, password: string) => {
   const loginUserResponse: IFirebaseAuthResponse = {
     user: null,
     error: null,
   };
-  await auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(result => {
-      loginUserResponse.user = _.cloneDeep(result.user);
-    })
-    .catch(error => {
-      loginUserResponse.error = parseFairbaseError(error.code);
-    });
+  try {
+    const response = await auth().signInWithEmailAndPassword(email, password);
+    loginUserResponse.user = _.cloneDeep(response.user);
+  } catch (error) {
+    loginUserResponse.error = parseFairbaseError(
+      (error as IFirebaseAuthError).code,
+    );
+  }
   return loginUserResponse;
 };
 
-export const logout = async () => {
+export const firebaseLogout = async () => {
   await auth().signOut();
 };

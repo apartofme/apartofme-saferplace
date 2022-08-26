@@ -1,10 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IAuthUserActionPayload } from '../types';
+import {
+  IAuthUserActionPayload,
+  IAuthUserSuccessActionPayload,
+} from '../types';
 import { IUser } from '../../models/IUser';
+import { Nullable } from '../../utils';
 
 interface IUserState {
-  user: IUser;
+  user: Nullable<IUser>;
 }
 
 export const INITIAL_STATE: IUserState = {
@@ -17,13 +21,16 @@ export const userSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     loginUser(state, action: IAuthUserActionPayload) {},
-    loginUserSuccess(state, { payload: user }: PayloadAction<IUser>) {
+    loginUserSuccess(state, { payload: user }: IAuthUserSuccessActionPayload) {
       state.user = user;
     },
     loginUserError(state, action: PayloadAction<string>) {},
 
     registerUser(state, action: IAuthUserActionPayload) {},
-    registerUserSuccess(state, { payload: user }: PayloadAction<IUser>) {
+    registerUserSuccess(
+      state,
+      { payload: user }: IAuthUserSuccessActionPayload,
+    ) {
       state.user = user;
     },
     registerUserError(state, action: PayloadAction<string>) {},

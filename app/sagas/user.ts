@@ -2,14 +2,18 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { userSlice } from '../redux/slices';
 import { IAuthUserActionPayload } from '../redux/types';
-import { loginUser, logout, registerUser } from '../services/firebase';
+import {
+  firebaseLoginUser,
+  firebaseLogout,
+  firebaseRegisterUser,
+} from '../services/firebase';
 import { IFirebaseAuthResponse } from '../services/firebase/types';
 
 function* watchLoginUser({
   payload: { email, password },
 }: IAuthUserActionPayload) {
   const loginUserResponse: IFirebaseAuthResponse = yield call(
-    loginUser,
+    firebaseLoginUser,
     email,
     password,
   );
@@ -26,7 +30,7 @@ function* watchRegisterUser({
   payload: { email, password },
 }: IAuthUserActionPayload) {
   const registerUserResponse: IFirebaseAuthResponse = yield call(
-    registerUser,
+    firebaseRegisterUser,
     email,
     password,
   );
@@ -38,7 +42,7 @@ function* watchRegisterUser({
 }
 
 function* watchLogout() {
-  logout();
+  yield call(firebaseLogout);
   // TODO: uncomment when AuthStack will be done
   // yield call(StaticNavigator.reset, 'AuthStack');
 }

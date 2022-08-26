@@ -5,3 +5,7 @@ export interface IFirebaseAuthResponse {
   user: Nullable<IUser>;
   error: Nullable<string>;
 }
+
+export interface IFirebaseAuthError {
+  code: string;
+}
