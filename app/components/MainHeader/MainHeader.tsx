@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ExtendedText } from '../ExtendedText';
@@ -8,15 +8,23 @@ import { styles } from './MainHeader.styles';
 
 export const MainHeader: React.FC<IMainHeaderProps> = ({
   title,
-  rightElement,
-  leftElement,
+  rightIcon,
+  leftIcon,
 }) => {
   return (
     <SafeAreaView edges={['top']}>
       <View style={styles.container}>
-        {leftElement ?? <View style={styles.emptyContainer} />}
+        {leftIcon ? (
+          <Image source={leftIcon} />
+        ) : (
+          <View style={styles.emptyContainer} />
+        )}
         {title && <ExtendedText>{title}</ExtendedText>}
-        {rightElement ?? <View style={styles.emptyContainer} />}
+        {rightIcon ? (
+          <Image source={rightIcon} />
+        ) : (
+          <View style={styles.emptyContainer} />
+        )}
       </View>
     </SafeAreaView>
   );

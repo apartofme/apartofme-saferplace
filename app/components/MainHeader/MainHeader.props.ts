@@ -1,5 +1,7 @@
+import { ImageSourcePropType } from 'react-native';
+
 export interface IMainHeaderProps {
   title?: string;
-  rightElement?: React.ReactElement;
-  leftElement?: React.ReactElement;
+  rightIcon?: ImageSourcePropType;
+  leftIcon?: ImageSourcePropType;
 }
