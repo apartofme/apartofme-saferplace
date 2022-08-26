@@ -1,17 +1,11 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { IApiRegisterSuccessResponse } from '../../services/api/apiResponse.types';
 
-export type IRegisterUserActionPayload = PayloadAction<{
-  name: string;
-  email: string;
-  phone: string;
-  password: string;
-  confirmPassword: string;
-}>;
+import { IUser } from '../../models/IUser';
+import { Nullable } from '../../utils';
 
-export type IRegisterUserSuccessAction = IApiRegisterSuccessResponse;
-
-export type ILoginUserActionPayload = PayloadAction<{
+export type IAuthUserActionPayload = PayloadAction<{
   email: string;
   password: string;
 }>;
+
+export type IAuthUserSuccessActionPayload = PayloadAction<Nullable<IUser>>;

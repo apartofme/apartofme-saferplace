@@ -1,65 +1,54 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { userSlice } from '../redux/slices';
+import { IAuthUserActionPayload } from '../redux/types';
 import {
-  ILoginUserActionPayload,
-  IRegisterUserActionPayload,
-} from '../redux/types';
-import { apiInstance } from '../services/api';
-import {
-  IApiLoginUserPayload,
-  IApiRegisterUserPayload,
-} from '../services/api/apiPayload.types';
-import {
-  LoginUserResponse,
-  RegisterUserResponse,
-} from '../services/api/apiResponse.types';
-import { StaticNavigator } from '../services/navigator';
+  firebaseLoginUser,
+  firebaseLogout,
+  firebaseRegisterUser,
+} from '../services/firebase';
+import { IFirebaseAuthResponse } from '../services/firebase/types';
 
 function* watchLoginUser({
   payload: { email, password },
-}: ILoginUserActionPayload) {
-  const params: IApiLoginUserPayload = {
+}: IAuthUserActionPayload) {
+  const loginUserResponse: IFirebaseAuthResponse = yield call(
+    firebaseLoginUser,
     email,
     password,
-  };
-  const response: LoginUserResponse = yield call(apiInstance.loginUser, params);
-
-  if (response.ok && response.data) {
-    yield put(userSlice.actions.loginUserSuccess(response.data));
-
-    StaticNavigator.navigateTo('MainTabs');
+  );
+  if (!loginUserResponse.error) {
+    yield put(userSlice.actions.loginUserSuccess(loginUserResponse.user));
+    // TODO: uncomment when MainStack will be done
+    // StaticNavigator.navigateTo('MainStack');
   } else {
-    // TODO: error from backend side
-    yield put(userSlice.actions.loginUserError('Login error'));
+    yield put(userSlice.actions.loginUserError(loginUserResponse.error));
   }
 }
 
 function* watchRegisterUser({
-  payload: { name, email, phone, password, confirmPassword },
-}: IRegisterUserActionPayload) {
-  const params: IApiRegisterUserPayload = {
-    name,
+  payload: { email, password },
+}: IAuthUserActionPayload) {
+  const registerUserResponse: IFirebaseAuthResponse = yield call(
+    firebaseRegisterUser,
     email,
-    phone,
     password,
-    password_confirmation: confirmPassword,
-  };
-
-  const response: RegisterUserResponse = yield call(
-    apiInstance.registerUser,
-    params,
   );
-  if (response.ok && response.data) {
-    yield put(userSlice.actions.registerUserSuccess(response.data));
-    StaticNavigator.navigateTo('Login');
+  if (!registerUserResponse.error) {
+    yield put(userSlice.actions.registerUserSuccess(registerUserResponse.user));
   } else {
-    // TODO: error from backend side
-    yield put(userSlice.actions.registerUserError('Register error'));
+    yield put(userSlice.actions.registerUserError(registerUserResponse.error));
   }
+}
+
+function* watchLogout() {
+  yield call(firebaseLogout);
+  // TODO: uncomment when AuthStack will be done
+  // yield call(StaticNavigator.reset, 'AuthStack');
 }
 
 export function* userSaga() {
   yield takeLatest(userSlice.actions.loginUser, watchLoginUser);
   yield takeLatest(userSlice.actions.registerUser, watchRegisterUser);
+  yield takeLatest(userSlice.actions.logout, watchLogout);
 }
