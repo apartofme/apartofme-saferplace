@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
@@ -10,16 +10,30 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
   titleStyle,
   style,
   preset = 'default',
+  disabled,
   ...rest
 }) => {
-  const styles = [presets[preset], style];
-  const titleStyles = [additionalStyles.defaultTitle, titleStyle];
+  const styles = useMemo(
+    () => [
+      presets[preset],
+      disabled && additionalStyles[`${preset}Disabled`],
+      style,
+    ],
+    [preset, disabled, style],
+  );
+
+  const titleStyles = useMemo(
+    () => [
+      additionalStyles[`${preset}Title`],
+      disabled && additionalStyles[`${preset}DisabledTitle`],
+      titleStyle,
+    ],
+    [preset, disabled, titleStyle],
+  );
 
   return (
     <TouchableOpacity {...rest} style={styles}>
-      <ExtendedText preset="default" style={titleStyles}>
-        {title}
-      </ExtendedText>
+      <ExtendedText style={titleStyles}>{title}</ExtendedText>
     </TouchableOpacity>
   );
 };
