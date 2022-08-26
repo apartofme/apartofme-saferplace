@@ -9,9 +9,14 @@ interface IExtendedTextAreaStyles {
 export const styles = StyleSheet.create<IExtendedTextAreaStyles>({
   inputContainer: {
     flex: 1,
+    backgroundColor: 'red',
   },
   input: {
     flex: 1,
+    textAlignVertical: 'top',
+    //* Fix andriod paddimgs
+    paddingHorizontal: 0,
+    paddingVertical: 0,
   },
   imageContainer: {
     flexDirection: 'row',
