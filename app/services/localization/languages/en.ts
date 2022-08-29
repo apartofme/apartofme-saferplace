@@ -20,6 +20,12 @@ export const en = {
     my_last_bids: 'My last 24/7 bids',
     my_watchlist: 'My watchlist',
   },
+  errors: {
+    auth: {
+      invalid_email: 'That email address is invalid!',
+      email_already_in_use: 'That email address is already in use!',
+    },
+  },
 };
 
 export type Localization = typeof en;

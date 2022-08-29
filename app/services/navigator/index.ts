@@ -1,5 +1,8 @@
 import React from 'react';
-import { NavigationContainerRef } from '@react-navigation/native';
+import {
+  CommonActions,
+  NavigationContainerRef,
+} from '@react-navigation/native';
 import { StackActions } from '@react-navigation/native';
 import { Action } from 'redux';
 
@@ -28,6 +31,16 @@ export class StaticNavigator {
   static getCurretRoute() {
     if (navigationRef?.current) {
       return navigationRef.current.getCurrentRoute();
+    }
+  }
+  static reset(routeName: string) {
+    if (navigationRef?.current) {
+      const resetAction: CommonActions.Action = CommonActions.reset({
+        index: 0,
+        routes: [{ name: routeName }],
+      });
+
+      return navigationRef.current.dispatch(resetAction);
     }
   }
 }
