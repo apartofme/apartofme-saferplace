@@ -2,8 +2,8 @@ import analytics from '@react-native-firebase/analytics';
 
 import { FirebaseAnalyticsEventsType } from './types';
 
-export const trackButtonPress = (key: string) => {
+export const trackButtonPress = (buttonName: string) => {
   analytics().logEvent(FirebaseAnalyticsEventsType.ButtonPress, {
-    button_name: key,
+    button_name: buttonName,
   });
 };
