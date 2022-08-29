@@ -9,3 +9,7 @@ export interface IFirebaseAuthResponse {
 export interface IFirebaseAuthError {
   code: string;
 }
+
+export enum FirebaseAnalyticsEventsType {
+  ButtonPress = 'buttonPress',
+}
