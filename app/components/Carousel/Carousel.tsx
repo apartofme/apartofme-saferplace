@@ -14,7 +14,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   renderCarouselItem,
   data,
 }) => {
-  // const progressValue = useSharedValue<number>(0);
+  const progressValue = useSharedValue<number>(0);
 
   // const onProgressChange = useCallback(
   //   (item, absoluteProgress) => (progressValue.value = absoluteProgress),
