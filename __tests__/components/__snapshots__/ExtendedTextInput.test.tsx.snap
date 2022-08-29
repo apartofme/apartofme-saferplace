@@ -27,6 +27,8 @@ exports[`UI: ExtendedTextInput should match snapshot 1`] = `
       Array [
         Object {
           "borderBottomWidth": 1,
+          "paddingHorizontal": 0,
+          "paddingVertical": 0,
         },
         Object {
           "backgroundColor": "yellow",
@@ -94,6 +96,8 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
           Array [
             Object {
               "borderBottomWidth": 1,
+              "paddingHorizontal": 0,
+              "paddingVertical": 0,
             },
             Object {
               "backgroundColor": "yellow",
