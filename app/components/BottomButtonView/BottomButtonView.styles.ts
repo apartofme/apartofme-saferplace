@@ -1,12 +1,11 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
-export interface IRadioButtonStyles {
+export interface IBottomButtonViewStyles {
   container: ViewStyle;
 }
 
-export const styles = StyleSheet.create<IRadioButtonStyles>({
+export const styles = StyleSheet.create<IBottomButtonViewStyles>({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
   },
 });

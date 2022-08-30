@@ -8,13 +8,13 @@ import { styles } from './BottomButtonView.styles';
 
 export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
   children,
-  onPress,
-  title,
+  onSubmit,
+  buttonTitle,
 }) => {
   return (
     <View style={styles.container}>
       <View style={generalStyles.flex}>{children}</View>
-      <ExtendedButton title={title} onPress={onPress} />
+      <ExtendedButton title={buttonTitle} onPress={onSubmit} />
     </View>
   );
 };
