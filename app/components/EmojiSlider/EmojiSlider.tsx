@@ -8,7 +8,7 @@ import { styles } from './EmojiSlider.styles';
 export const EmojiSlider: React.FC = ({}) => {
   const [sliderValue, setSliderValue] = useState(0);
 
-  const correctColor = useCallback(() => {
+  const getEmojiImage = useCallback(() => {
     switch (sliderValue) {
       case 0:
         return styles.grayBackground;
@@ -27,7 +27,7 @@ export const EmojiSlider: React.FC = ({}) => {
 
   return (
     <View style={generalStyles.centered}>
-      <View style={[styles.indicator, correctColor()]} />
+      <View style={[styles.indicator, getEmojiImage()]} />
 
       <CommunitySlider
         style={styles.slider}
