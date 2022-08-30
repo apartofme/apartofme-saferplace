@@ -1,0 +1,1 @@
+export { BottomButtonView } from './BottomButtonView';
