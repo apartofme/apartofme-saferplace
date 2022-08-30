@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { View } from 'react-native';
-// import ReanimatedCarousel from 'react-native-reanimated-carousel';
+import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
 
 import { WINDOW_WIDTH } from '../../constants/window';
@@ -16,37 +16,37 @@ export const Carousel: React.FC<ICarouselProps> = ({
 }) => {
   const progressValue = useSharedValue<number>(0);
 
-  // const onProgressChange = useCallback(
-  //   (item, absoluteProgress) => (progressValue.value = absoluteProgress),
-  //   [progressValue],
-  // );
+  const onProgressChange = useCallback(
+    (item, absoluteProgress) => (progressValue.value = absoluteProgress),
+    [progressValue],
+  );
 
-  // const renderProgressBar = useCallback(() => {
-  //   return (
-  //     <View style={generalStyles.row}>
-  //       {_.map(data, (item, index) => (
-  //         <PogressBarItem
-  //           index={index}
-  //           length={data.length}
-  //           key={index}
-  //           animValue={progressValue}
-  //         />
-  //       ))}
-  //     </View>
-  //   );
-  // }, [data, progressValue]);
+  const renderProgressBar = useCallback(() => {
+    return (
+      <View style={generalStyles.row}>
+        {_.map(data, (item, index) => (
+          <PogressBarItem
+            index={index}
+            length={data.length}
+            key={index}
+            animValue={progressValue}
+          />
+        ))}
+      </View>
+    );
+  }, [data, progressValue]);
 
   return (
     <View style={styles.container}>
-      {/* <ReanimatedCarousel
+      <ReanimatedCarousel
         loop={false}
         width={WINDOW_WIDTH}
         data={data}
         renderItem={renderCarouselItem}
         style={generalStyles.flex}
         onProgressChange={onProgressChange}
-      /> */}
-      {/* <View style={generalStyles.aiCenter}>{renderProgressBar()}</View> */}
+      />
+      <View style={generalStyles.aiCenter}>{renderProgressBar()}</View>
     </View>
   );
 };
