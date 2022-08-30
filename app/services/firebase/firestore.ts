@@ -5,7 +5,7 @@ import { getDeviceToken } from './notifications';
 
 export const firestoreSaveDeviceToken = async () => {
   const userId = getCurrentUser();
-  const token = getDeviceToken();
+  const token = await getDeviceToken();
 
   await firestore()
     .collection('users')
