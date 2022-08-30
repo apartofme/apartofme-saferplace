@@ -19,11 +19,13 @@
     "test"
   ],
   "dependencies": {
+    "@notifee/react-native": "^5.6.0",
     "@react-native-community/async-storage": "^1.12.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/analytics": "^15.4.0",
     "@react-native-firebase/app": "^15.4.0",
     "@react-native-firebase/auth": "^15.4.0",
+    "@react-native-firebase/firestore": "^15.4.0",
     "@react-native-firebase/messaging": "^15.4.0",
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.14.5",
@@ -54,6 +56,7 @@
     "@types/lodash": "^4.14.177",
     "@types/react": "^17.0.33",
     "@types/react-native": "^0.66.1",
+    "@types/react-native-push-notification": "^8.1.1",
     "@types/react-redux": "^7.1.9",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
