@@ -6,8 +6,10 @@ import { Provider } from 'react-redux';
 import RootNavigator from './app/navigation/rootNavigator';
 import { persistor, store } from './app/redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { initPushNotifications } from './app/services/firebase';
 
 enableScreens();
+initPushNotifications();
 
 const App: React.FC = () => (
   <Provider store={store}>

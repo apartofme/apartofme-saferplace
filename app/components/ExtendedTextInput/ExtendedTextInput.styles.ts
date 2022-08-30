@@ -10,6 +10,9 @@ export const styles = StyleSheet.create<IExtendedTextInputStyles>({
   label: {},
   input: {
     borderBottomWidth: 1,
+    //* Fix for android
+    paddingHorizontal: 0,
+    paddingVertical: 0,
   },
   error: {},
 });
