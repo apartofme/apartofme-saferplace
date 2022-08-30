@@ -12,7 +12,6 @@ import {
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { userSlice } from '../../redux/slices';
 import { generalStyles } from '../../utils/styles';
-import { TEST_PASSWORD, TEST_USERNAME } from './HomeScreen.dummy';
 import { IHomeScreenProps } from './HomeScreen.props';
 import { styles } from './HomeScreen.styles';
 
@@ -21,18 +20,17 @@ export const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
   const user = useAppSelector(state => state.user.user);
 
   const dispatch = useAppDispatch();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const onTestDispatchAction = useCallback(() => {
     dispatch(
       userSlice.actions.loginUser({
-        email: TEST_USERNAME,
-        password: TEST_PASSWORD,
+        email,
+        password,
       }),
     );
-  }, [dispatch]);
+  }, [dispatch, email, password]);
 
   const goToReanimatedPage = useCallback(() => {
     navigation.navigate('Reanimated');
