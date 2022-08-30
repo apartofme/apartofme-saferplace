@@ -6,3 +6,8 @@ export interface ICarouselItem {
   title: string;
   subTitle: string;
 }
+
+export enum CarouselType {
+  ImageSubTitle = 'imageSubTitle',
+  ImageTitleSubTitle = 'imageTitleSubTitle',
+}
