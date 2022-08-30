@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import CommunitySlider from '@react-native-community/slider';
 
@@ -33,8 +33,8 @@ export const EmojiSlider: React.FC = ({}) => {
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
-        onValueChange={setSliderValue}
-        step={1}
+        onValueChange={value => setSliderValue(Math.floor(value))}
+        step={0}
       />
     </View>
   );
