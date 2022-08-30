@@ -3,7 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import { getCurrentUser } from './auth';
 import { getDeviceToken } from './notifications';
 
-export const saveTokenToDatabase = async () => {
+export const firestoreSaveDeviceToken = async () => {
   const userId = getCurrentUser();
   const token = getDeviceToken();
 

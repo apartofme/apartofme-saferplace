@@ -33,7 +33,6 @@ const onMessageHandler = async (
   remoteMessage: FirebaseMessagingTypes.RemoteMessage,
 ) => {
   const { notification } = remoteMessage;
-  console.log(notification);
   await onDisplayNotification(
     notification as FirebaseMessagingTypes.Notification,
   );

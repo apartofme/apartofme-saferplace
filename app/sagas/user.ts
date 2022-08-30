@@ -6,7 +6,7 @@ import {
   firebaseLoginUser,
   firebaseLogout,
   firebaseRegisterUser,
-  saveTokenToDatabase,
+  firestoreSaveDeviceToken,
   IFirebaseAuthResponse,
 } from '../services/firebase';
 
@@ -20,7 +20,7 @@ function* watchLoginUser({
   );
   if (!loginUserResponse.error) {
     yield put(userSlice.actions.loginUserSuccess(loginUserResponse.user));
-    yield call(saveTokenToDatabase);
+    yield call(firestoreSaveDeviceToken);
     // TODO: uncomment when MainStack will be done
     // StaticNavigator.navigateTo('MainStack');
   } else {
