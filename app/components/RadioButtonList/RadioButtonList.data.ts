@@ -1,4 +1,4 @@
-export interface IRadioButtonItem {
+export interface IRadioButtonListItem {
   id: string;
   title: string;
   isActive: boolean;

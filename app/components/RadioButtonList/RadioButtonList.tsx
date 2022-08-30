@@ -2,32 +2,36 @@ import _ from 'lodash';
 import React, { useCallback, useState } from 'react';
 import { FlatList, View } from 'react-native';
 
+import { useSpecificKeyExtractor } from '../../hooks';
+import { generalStyles } from '../../utils/styles';
 import { RadioButton } from '../RadioButton/RadioButton';
-import { IRadioButtonItem, RadioButtonListType } from './RadioButtonList.data';
+import {
+  IRadioButtonListItem,
+  RadioButtonListType,
+} from './RadioButtonList.data';
 import { IRadioButtonListProps } from './RadioButtonList.props';
-import { styles } from './RadioButtonList.styles';
 
 export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
   data,
   type,
 }) => {
-  const [selectedItem, setSelectedItem] = useState<string>();
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   const renderItem = useCallback(
-    ({ item }: { item: IRadioButtonItem }) => {
-      const onPressSelectedItem = () => {
-        setSelectedItem(item.title);
-      };
-      const onPressSelectedItems = () => {
-        const deleteType = _.find<string>(
-          selectedItems,
-          deleteItem => deleteItem === item.title,
-        );
-        if (deleteType) {
-          setSelectedItems(_.without<string>(selectedItems, deleteType));
+    ({ item }: { item: IRadioButtonListItem }) => {
+      const onSelectedPress = () => {
+        if (type === RadioButtonListType.Single) {
+          setSelectedItems([item.title]);
         } else {
-          setSelectedItems([...selectedItems, item.title]);
+          const deleteType = _.find(
+            selectedItems,
+            deleteItem => deleteItem === item.title,
+          );
+          if (deleteType) {
+            setSelectedItems(_.without(selectedItems, deleteType));
+          } else {
+            setSelectedItems([...selectedItems, item.title]);
+          }
         }
       };
       return (
@@ -35,23 +39,28 @@ export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
           title={item.title}
           isActive={
             type === RadioButtonListType.Single
-              ? selectedItem === item.title
+              ? selectedItems[0] === item.title
               : !!_.find(selectedItems, findItem => findItem === item.title)
           }
-          onPress={
-            type === RadioButtonListType.Single
-              ? onPressSelectedItem
-              : onPressSelectedItems
-          }
+          onPress={onSelectedPress}
         />
       );
     },
-    [setSelectedItem, selectedItem, selectedItems, setSelectedItems, type],
+    [selectedItems, setSelectedItems, type],
+  );
+
+  const keyExtractor = useSpecificKeyExtractor<IRadioButtonListItem>(
+    'post-thread-list-child-key',
+    'id',
   );
 
   return (
-    <View style={styles.container}>
-      <FlatList data={data} renderItem={renderItem} />
+    <View style={generalStyles.flex}>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+      />
     </View>
   );
 };

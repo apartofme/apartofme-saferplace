@@ -1,6 +1,9 @@
-import { IRadioButtonItem, RadioButtonListType } from './RadioButtonList.data';
+import {
+  IRadioButtonListItem,
+  RadioButtonListType,
+} from './RadioButtonList.data';
 
 export interface IRadioButtonListProps {
-  data: IRadioButtonItem[];
+  data: IRadioButtonListItem[];
   type: RadioButtonListType;
 }
