@@ -15,6 +15,7 @@ export const PogressBarItem: React.FC<IPogressBarItemProps> = ({
   index,
   length,
 }) => {
+  // This function provides transition animation of point progress across all points
   const animationStyle = useAnimatedStyle(() => {
     let inputRange = [index - 1, index, index + 1];
     let outputRange = [-DOT_WIDTH, 0, DOT_WIDTH];
