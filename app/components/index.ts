@@ -1,3 +1,4 @@
+export * from './EmojiSlider';
 export * from './ExtendedButton';
 export * from './ExtendedText';
 export * from './ExtendedTextInput';
