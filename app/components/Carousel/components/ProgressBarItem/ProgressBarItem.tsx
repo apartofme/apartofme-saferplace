@@ -6,11 +6,11 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
-import { DOT_WIDTH } from './PogressBarItem.data';
-import { IPogressBarItemProps } from './PogressBarItem.props';
-import { styles } from './PogressBarItem.styles';
+import { DOT_WIDTH } from './ProgressBarItem.data';
+import { IProgressBarItemProps } from './ProgressBarItem.props';
+import { styles } from './ProgressBarItem.styles';
 
-export const PogressBarItem: React.FC<IPogressBarItemProps> = ({
+export const ProgressBarItem: React.FC<IProgressBarItemProps> = ({
   animValue,
   index,
   length,

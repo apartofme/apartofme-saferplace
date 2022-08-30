@@ -8,7 +8,7 @@ import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
 import { ICarouselProps } from './Carousel.props';
 import { styles } from './Carousel.styles';
-import { ImageTitleSubTitle, PogressBarItem } from './components';
+import { ImageTitleSubTitle, ProgressBarItem } from './components';
 import { CarouselType, ICarouselItem } from './Carousel.data';
 
 export const Carousel: React.FC<ICarouselProps> = ({ preset, data }) => {
@@ -23,7 +23,7 @@ export const Carousel: React.FC<ICarouselProps> = ({ preset, data }) => {
     return (
       <View style={generalStyles.row}>
         {_.map(data, (item, index) => (
-          <PogressBarItem
+          <ProgressBarItem
             index={index}
             length={data.length}
             key={index}

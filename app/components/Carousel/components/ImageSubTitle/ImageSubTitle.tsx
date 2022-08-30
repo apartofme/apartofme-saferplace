@@ -8,7 +8,7 @@ export const ImageSubTitle: React.FC<IImageSubTitleProps> = ({ data }) => {
   return (
     <View>
       <ExtendedText>{data.subTitle}</ExtendedText>
-      <Image source={data.image} />
+      {data.image && <Image source={data.image} />}
     </View>
   );
 };

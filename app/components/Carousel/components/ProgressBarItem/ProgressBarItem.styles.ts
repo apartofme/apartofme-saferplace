@@ -1,11 +1,11 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
-export interface ICarouselStyles {
+export interface IProgressBarItemStyles {
   container: ViewStyle;
   contentContainer: ViewStyle;
 }
 
-export const styles = StyleSheet.create<ICarouselStyles>({
+export const styles = StyleSheet.create<IProgressBarItemStyles>({
   // TODO: change for correct styles
   container: {
     backgroundColor: 'gray',
