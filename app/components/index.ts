@@ -9,3 +9,4 @@ export * from './MainHeader';
 export * from './MultilineTextInput';
 export * from './RadioButton';
 export * from './RadioButtonList';
+export * from './Timer';

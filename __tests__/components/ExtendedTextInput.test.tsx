@@ -2,7 +2,10 @@ import 'react-native';
 import React from 'react';
 import testRenderer from 'react-test-renderer';
 
-import { ExtendedTextInput, ExtendedTextInputType } from '../../app/components';
+import {
+  ExtendedTextInput,
+  ExtendedTextInputType,
+} from '../../app/components/ExtendedTextInput';
 
 test('UI: ExtendedTextInput should match snapshot', () => {
   // Default ExtendedTextInput case
