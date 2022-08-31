@@ -15,12 +15,21 @@ import {
 } from './components';
 import { CarouselType, ICarouselItem } from './Carousel.data';
 
-export const Carousel: React.FC<ICarouselProps> = ({ preset, data }) => {
+export const Carousel: React.FC<ICarouselProps> = ({
+  preset,
+  data,
+  setIndex,
+}) => {
   const progressValue = useSharedValue<number>(0);
 
   const onProgressChange = useCallback(
-    (item, absoluteProgress) => (progressValue.value = absoluteProgress),
-    [progressValue],
+    (item, absoluteProgress) => {
+      progressValue.value = absoluteProgress;
+      if (setIndex) {
+        setIndex(progressValue.value);
+      }
+    },
+    [progressValue, setIndex],
   );
 
   const renderProgressBar = useCallback(() => {
