@@ -2,7 +2,7 @@ export const en = {
   buttons: {
     confirm: 'Confirm',
     enter: 'Enter',
-    next: 'NEXT',
+    next: 'Next',
     login: 'Login',
     register: 'Register',
     skip: 'Skip',
@@ -13,7 +13,7 @@ export const en = {
     show_all: 'Show All',
     attend: 'Attend',
     bid_now: 'Bid Now',
-    ready: 'I’M READY',
+    ready: 'I’m ready',
   },
   screens: {
     onboarding: {
@@ -29,7 +29,7 @@ export const en = {
         subTitle:
           'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
       },
-      charmsIntroducing: {
+      charms_introducing: {
         carousel: {
           first: {
             title: 'Charms',

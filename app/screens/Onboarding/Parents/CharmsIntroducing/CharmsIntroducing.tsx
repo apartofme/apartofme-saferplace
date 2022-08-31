@@ -21,15 +21,17 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
 
-    const [index, setIndex] = useState<number>(0);
+    const [currentPosition, setCurrenPosition] = useState<number>(0);
 
     return (
       // TODO: remove noop to real function
       <SafeAreaView style={[generalStyles.whFlex]}>
         <BottomButtonView
           buttonTitle={t(
-            index > ABSOLUTE_PROGRESS_VALUE ? 'buttons.ready' : 'buttons.next',
-          )}
+            currentPosition > ABSOLUTE_PROGRESS_VALUE
+              ? 'buttons.ready'
+              : 'buttons.next',
+          ).toUpperCase()}
           onSubmit={_.noop}>
           <MainHeader
             leftIcon={IMAGES.WHITE_BACK_ARROW}
@@ -38,7 +40,7 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
           <Carousel
             data={CHARMS_CAROUSEL}
             preset={CarouselType.ImageTitleSubTitle}
-            setIndex={setIndex}
+            setCurrenPosition={setCurrenPosition}
           />
         </BottomButtonView>
       </SafeAreaView>
