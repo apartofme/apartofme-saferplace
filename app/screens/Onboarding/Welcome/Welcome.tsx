@@ -7,7 +7,7 @@ import { BottomButtonView, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IWelcomeScreenProps } from './Welcome.props';
 
-export const WelcomeScreen: React.FC<IWelcomeScreenProps> = ({}) => {
+export const WelcomeScreen: React.FC<IWelcomeScreenProps> = () => {
   const { t } = useTranslation();
 
   return (
