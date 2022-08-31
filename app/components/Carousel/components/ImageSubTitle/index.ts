@@ -1,0 +1,1 @@
+export { ImageSubTitle } from './ImageSubTitle';

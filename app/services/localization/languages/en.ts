@@ -1,5 +1,6 @@
 export const en = {
   buttons: {
+    enter: 'Enter',
     next: 'Next',
     login: 'Login',
     register: 'Register',
@@ -11,6 +12,15 @@ export const en = {
     show_all: 'Show All',
     attend: 'Attend',
     bid_now: 'Bid Now',
+  },
+  screens: {
+    onboarding: {
+      welcome_to_a: 'welcome to a',
+      if_you_have_arrived_here:
+        'If you have arrived here, then I know you and your family have been through some really tough times.',
+      i_am_so_sorry_that:
+        'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
+    },
   },
   labels: {
     balance: 'Account balance',
