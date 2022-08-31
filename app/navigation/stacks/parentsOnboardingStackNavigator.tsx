@@ -1,7 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
-import { LanguageSelectionScreen, WelcomeScreen, AcknowledgementScreen } from '../../screens';
+import {
+  LanguageSelectionScreen,
+  WelcomeScreen,
+  AcknowledgementScreen,
+} from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentsOnboardingStackParams = {
