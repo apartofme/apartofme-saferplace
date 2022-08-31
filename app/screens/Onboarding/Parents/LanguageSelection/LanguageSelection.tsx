@@ -15,13 +15,16 @@ import { LANGUAGES } from './LanguageSelection.data';
 import { ILanguageSelectionScreenProps } from './LanguageSelection.props';
 
 export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
-  ({}) => {
+  ({ navigation }) => {
     const { t } = useTranslation();
 
     return (
       <SafeAreaView style={generalStyles.whFlex}>
-        <MainHeader leftIcon={IMAGES.LOGO} />
         <BottomButtonView buttonTitle={t('buttons.confim')} onSubmit={_.noop}>
+          <MainHeader
+            leftIcon={IMAGES.WHITE_BACK_ARROM}
+            onLeftIconPress={navigation.goBack}
+          />
           <RadioButtonList data={LANGUAGES} type={RadioButtonListType.Single} />
         </BottomButtonView>
       </SafeAreaView>
