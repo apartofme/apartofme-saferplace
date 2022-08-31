@@ -6,6 +6,7 @@ export * from './ExtendedText';
 export * from './ExtendedTextInput';
 export * from './MainHeader';
 export * from './MultilineTextInput';
+export * from './PhotoPicker';
 export * from './RadioButtonList';
 export * from './RadioButton';
 export * from './Timer';
