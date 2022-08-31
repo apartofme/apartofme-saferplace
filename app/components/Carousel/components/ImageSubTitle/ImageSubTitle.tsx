@@ -9,7 +9,7 @@ export const ImageSubTitle: React.FC<IImageSubTitleProps> = ({ data }) => {
   const { t } = useTranslation();
   return (
     <View>
-      {data.subTitle && <ExtendedText>{t(data.subTitle)}</ExtendedText>}
+      {data.subTitleID && <ExtendedText>{t(data.subTitleID)}</ExtendedText>}
       {data.image && <Image source={data.image} />}
     </View>
   );

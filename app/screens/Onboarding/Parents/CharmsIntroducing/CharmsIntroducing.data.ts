@@ -6,20 +6,20 @@ export const CHARMS_CAROUSEL: ICarouselItem[] = [
   {
     id: '1',
     image: IMAGES.WHITE_PENCIL,
-    title: 'screens.onboarding.charms_introducing.carousel.first.title',
-    subTitle: 'screens.onboarding.charms_introducing.carousel.first.subTitle',
+    titleID: 'screens.onboarding.charms_introducing.first.title',
+    subTitleID: 'screens.onboarding.charms_introducing.first.subTitle',
   },
   {
     id: '2',
     image: IMAGES.WHITE_PENCIL,
-    title: 'screens.onboarding.charms_introducing.carousel.second.title',
-    subTitle: 'screens.onboarding.charms_introducing.carousel.second.subTitle',
+    titleID: 'screens.onboarding.charms_introducing.second.title',
+    subTitleID: 'screens.onboarding.charms_introducing.second.subTitle',
   },
   {
     id: '3',
     image: IMAGES.WHITE_PENCIL,
-    title: 'screens.onboarding.charms_introducing.carousel.third.title',
-    subTitle: 'screens.onboarding.charms_introducing.carousel.third.subTitle',
+    titleID: 'screens.onboarding.charms_introducing.third.title',
+    subTitleID: 'screens.onboarding.charms_introducing.third.subTitle',
   },
 ];
 

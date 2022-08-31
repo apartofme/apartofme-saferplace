@@ -12,8 +12,8 @@ export const ImageTitleSubTitle: React.FC<IImageTitleSubTitleProps> = ({
   return (
     <View>
       {data.image && <Image source={data.image} />}
-      {data.title && <ExtendedText>{t(data.title)}</ExtendedText>}
-      {data.subTitle && <ExtendedText>{t(data.subTitle)}</ExtendedText>}
+      {data.titleID && <ExtendedText>{t(data.titleID)}</ExtendedText>}
+      {data.subTitleID && <ExtendedText>{t(data.subTitleID)}</ExtendedText>}
     </View>
   );
 };

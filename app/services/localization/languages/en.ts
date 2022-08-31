@@ -30,22 +30,20 @@ export const en = {
           'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
       },
       charms_introducing: {
-        carousel: {
-          first: {
-            title: 'Charms',
-            subTitle:
-              'To advance through the app, you and your child will complete special exercises together, called Charms.',
-          },
-          second: {
-            title: 'Charms',
-            subTitle:
-              'These are fun and simple actions to perform which will help you connect with each other and grow together.',
-          },
-          third: {
-            title: 'A Charm for you',
-            subTitle:
-              'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
-          },
+        first: {
+          title: 'Charms',
+          subTitle:
+            'To advance through the app, you and your child will complete special exercises together, called Charms.',
+        },
+        second: {
+          title: 'Charms',
+          subTitle:
+            'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+        },
+        third: {
+          title: 'A Charm for you',
+          subTitle:
+            'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
         },
       },
     },

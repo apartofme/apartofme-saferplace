@@ -18,18 +18,18 @@ import { CarouselType, ICarouselItem } from './Carousel.data';
 export const Carousel: React.FC<ICarouselProps> = ({
   preset,
   data,
-  setCurrenPosition,
+  setCurrentPossition,
 }) => {
   const progressValue = useSharedValue<number>(0);
 
   const onProgressChange = useCallback(
     (item, absoluteProgress) => {
       progressValue.value = absoluteProgress;
-      if (setCurrenPosition) {
-        setCurrenPosition(progressValue.value);
+      if (setCurrentPossition) {
+        setCurrentPossition(progressValue.value);
       }
     },
-    [progressValue, setCurrenPosition],
+    [progressValue, setCurrentPossition],
   );
 
   const renderProgressBar = useCallback(() => {
