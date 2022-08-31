@@ -2,7 +2,7 @@ import 'react-native';
 import React from 'react';
 import testRenderer from 'react-test-renderer';
 
-import { ExtendedText } from '../../app/components';
+import { ExtendedText } from '../../app/components/ExtendedText';
 
 test('UI: ExtendedText should match snapshot', () => {
   // No preset prop
