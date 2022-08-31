@@ -1,0 +1,1 @@
+export { EmojiSlider } from './EmojiSlider';
