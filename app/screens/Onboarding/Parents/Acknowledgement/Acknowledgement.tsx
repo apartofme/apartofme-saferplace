@@ -15,10 +15,10 @@ export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> =
       <SafeAreaView style={generalStyles.whFlex}>
         <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={_.noop}>
           <ExtendedText>
-            {t('screens.onboarding.if_you_have_arrived_here')}
+            {t('screens.onboarding.acknowledgement.title')}
           </ExtendedText>
           <ExtendedText>
-            {t('screens.onboarding.i_am_so_sorry_that')}
+            {t('screens.onboarding.acknowledgement.subTitle')}
           </ExtendedText>
         </BottomButtonView>
       </SafeAreaView>

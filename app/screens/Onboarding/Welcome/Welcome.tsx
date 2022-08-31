@@ -20,7 +20,7 @@ export const WelcomeScreen: React.FC<IWelcomeScreenProps> = ({
       <BottomButtonView
         buttonTitle={t('buttons.enter')}
         onSubmit={goToLanguageSelection}>
-        <ExtendedText>{t('screens.onboarding.welcome_to_a')}</ExtendedText>
+        <ExtendedText>{t('screens.onboarding.welcome.title')}</ExtendedText>
       </BottomButtonView>
     </SafeAreaView>
   );

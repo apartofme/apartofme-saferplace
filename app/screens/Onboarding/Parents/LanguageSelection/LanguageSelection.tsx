@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native';
 import { IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
+  ExtendedText,
   MainHeader,
   RadioButtonList,
   RadioButtonListType,
@@ -41,6 +42,9 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
             leftIcon={IMAGES.WHITE_BACK_ARROW}
             onLeftIconPress={navigation.goBack}
           />
+          <ExtendedText>
+            {t('screens.onboarding.languageSelection.title')}
+          </ExtendedText>
           <RadioButtonList
             data={LANGUAGES}
             type={RadioButtonListType.Single}
