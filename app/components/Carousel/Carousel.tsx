@@ -29,6 +29,7 @@ export const Carousel: React.FC<ICarouselProps> = ({ preset, data }) => {
         {_.map(data, (item, index) => (
           <ProgressBarItem
             index={index}
+            key={index}
             length={data.length}
             animValue={progressValue}
           />
