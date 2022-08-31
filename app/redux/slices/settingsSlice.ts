@@ -11,7 +11,7 @@ const INITIAL_STATE: ISettingsState = {
 };
 
 export const settingsSlice = createSlice({
-  name: 'user',
+  name: 'settings',
   initialState: INITIAL_STATE,
   reducers: {
     setLanguage(state, { payload: { language } }: ISettingsActionPayload) {
