@@ -1,5 +1,6 @@
 export const en = {
   buttons: {
+    confirm: 'Confirm',
     next: 'Next',
     login: 'Login',
     register: 'Register',
