@@ -19,6 +19,11 @@ export const en = {
       welcome_to_a: 'welcome to a',
     },
   },
+  languages: {
+    english: 'English',
+    ukrainian: 'Ukrainian',
+    russian: 'Russian',
+  },
   labels: {
     balance: 'Account balance',
     balance_availible: '{{currency}} {{value}} availible',
