@@ -18,12 +18,12 @@ const Stack = createNativeStackNavigator<RootParams>();
 const RootNavigator = () => (
   <NavigationContainer ref={navigationRef}>
     <Stack.Navigator screenOptions={GLOBAL_NAVIGATION_STACK_OPTIONS}>
+      <Stack.Screen name="Initial" component={InitialScreen} />
+      <Stack.Screen name="HomeStack" component={HomeStackNavigator} />
       <Stack.Screen
         name="ParentsOnboardingStack"
         component={ParentsOnboardingStackNavigator}
       />
-      <Stack.Screen name="Initial" component={InitialScreen} />
-      <Stack.Screen name="HomeStack" component={HomeStackNavigator} />
     </Stack.Navigator>
   </NavigationContainer>
 );
