@@ -1,6 +1,4 @@
-// common interfaces below
-// TODO: delete when project starts
-export interface IExampleInterface {
+export interface ISpeech {
   id: string;
-  value: number;
+  text: string;
 }

@@ -1,7 +1,9 @@
 import { ImageSourcePropType } from 'react-native';
 
+import { ISpeech } from '../../utils/types';
+
 export interface IDialogViewProps {
   backgroundImage: ImageSourcePropType;
-  text: string;
-  onButtonPress: () => void;
+  dialog: ISpeech[];
+  onSubmit: () => void;
 }
