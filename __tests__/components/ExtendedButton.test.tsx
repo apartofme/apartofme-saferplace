@@ -2,7 +2,7 @@ import 'react-native';
 import React from 'react';
 import testRenderer from 'react-test-renderer';
 
-import { ExtendedButton } from '../../app/components';
+import { ExtendedButton } from '../../app/components/ExtendedButton';
 
 test('UI: ExtendedButton should match snapshot', () => {
   const actualExtendedButton = testRenderer
