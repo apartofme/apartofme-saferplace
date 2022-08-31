@@ -1,6 +1,7 @@
 export const en = {
   buttons: {
     confirm: 'Confirm',
+    enter: 'Enter',
     next: 'Next',
     login: 'Login',
     register: 'Register',
@@ -12,6 +13,11 @@ export const en = {
     show_all: 'Show All',
     attend: 'Attend',
     bid_now: 'Bid Now',
+  },
+  screens: {
+    onboarding: {
+      welcome_to_a: 'welcome to a',
+    },
   },
   labels: {
     balance: 'Account balance',
