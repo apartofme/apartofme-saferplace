@@ -6,5 +6,5 @@ import {
 export interface IRadioButtonListProps {
   data: IRadioButtonListItem[];
   type: RadioButtonListType;
-  setSelected: (item: string[]) => void;
+  setSelected: (items: string[]) => void;
 }
