@@ -1,4 +1,5 @@
 export * from './BottomButtonView';
+export * from './Carousel';
 export * from './EmojiSlider';
 export * from './ExtendedButton';
 export * from './ExtendedText';
