@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 
+import { getKeyFromLocalizationString } from '../../utils';
 import { generalStyles } from '../../utils/styles';
 import { ExtendedText } from '../ExtendedText';
 import { IDialogViewProps } from './DialogView.props';
@@ -34,7 +35,8 @@ export const DialogView: React.FC<IDialogViewProps> = ({
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>
       <View>
-        <ExtendedText key={getCurrentSpeech().id}>
+        <ExtendedText
+          key={getKeyFromLocalizationString(getCurrentSpeech().text)}>
           {t(getCurrentSpeech().text)}
         </ExtendedText>
       </View>

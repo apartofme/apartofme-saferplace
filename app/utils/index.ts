@@ -13,3 +13,7 @@ export type Nullable<T> = T | null;
 export const parseFirebaseError = (error: string) => {
   return error.split('/').join('.').split('-').join('_');
 };
+
+export const getKeyFromLocalizationString = (localizationString: string) => {
+  return localizationString.split('.').join('-');
+};
