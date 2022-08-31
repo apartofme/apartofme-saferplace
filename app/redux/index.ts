@@ -18,10 +18,11 @@ import reactotron from '../services/reactotron';
 import rootSaga from '../sagas';
 
 // Reducers
-import { appSlice, userSlice } from './slices';
+import { appSlice, settingsSlice, userSlice } from './slices';
 
 export const rootReducer = combineReducers({
   app: appSlice.reducer,
+  settings: settingsSlice.reducer,
   user: userSlice.reducer,
 });
 
