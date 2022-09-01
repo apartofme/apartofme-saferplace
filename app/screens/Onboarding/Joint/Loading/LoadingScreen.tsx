@@ -39,6 +39,7 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = () => {
 
   return (
     <SafeAreaView style={generalStyles.flex}>
+      {/*// TODO: change _.noop to a real function*/}
       <BottomButtonView
         buttonTitle={t('buttons.we_ready').toUpperCase()}
         onSubmit={_.noop}>
