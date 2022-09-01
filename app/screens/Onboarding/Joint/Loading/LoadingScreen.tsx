@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native';
 import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
 import { ILoadingScreenProps } from './LoadingScreen.props';
-import { SpeechList } from './LoadingScreen.data';
+import { SPEECH_LIST } from './LoadingScreen.data';
 import _ from 'lodash';
 
 export const LoadingScreen: React.FC<ILoadingScreenProps> = () => {
@@ -19,7 +19,7 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = () => {
   }, [currentSpeechIdx]);
 
   const getCurrentSpeech = useCallback(() => {
-    return SpeechList[currentSpeechIdx];
+    return SPEECH_LIST[currentSpeechIdx];
   }, [currentSpeechIdx]);
 
   useEffect(() => {

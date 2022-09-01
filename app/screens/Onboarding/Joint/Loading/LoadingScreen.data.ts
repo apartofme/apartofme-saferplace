@@ -3,7 +3,7 @@ interface ISpeechListItem {
   subTitleId: string;
 }
 
-export const SpeechList: ISpeechListItem[] = [
+export const SPEECH_LIST: ISpeechListItem[] = [
   {
     titleId: 'screens.onboarding.joint.loading.first.title',
     subTitleId: 'screens.onboarding.joint.loading.first.subTitle',
