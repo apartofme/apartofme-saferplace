@@ -1,0 +1,1 @@
+export { SignUpCredentialsScreen } from './SignUpCredentials';

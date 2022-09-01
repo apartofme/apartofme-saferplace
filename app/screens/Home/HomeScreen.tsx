@@ -1,39 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { View, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { IMAGES } from '../../assets';
-import {
-  ExtendedButton,
-  ExtendedText,
-  ExtendedTextInput,
-  ExtendedTextInputType,
-} from '../../components';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { userSlice } from '../../redux/slices';
+import { styles } from './HomeScreen.styles';
 import { generalStyles } from '../../utils/styles';
 import { IHomeScreenProps } from './HomeScreen.props';
-import { styles } from './HomeScreen.styles';
+import { ExtendedButton, ExtendedText } from '../../components';
 
 export const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const user = useAppSelector(state => state.user.user);
-
-  const dispatch = useAppDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onTestDispatchAction = useCallback(() => {
-    dispatch(
-      userSlice.actions.loginUser({
-        email,
-        password,
-      }),
-    );
-  }, [dispatch, email, password]);
-
-  const goToReanimatedPage = useCallback(() => {
-    navigation.navigate('Reanimated');
+  const goToParentsOnboardingStack = useCallback(() => {
+    navigation.navigate('ParentsOnboardingStack');
   }, [navigation]);
 
   return (
@@ -47,29 +24,9 @@ export const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
           The Best React Native Boilerplate
         </ExtendedText>
 
-        <View style={styles.formContainer}>
-          <ExtendedTextInput
-            type={ExtendedTextInputType.Email}
-            label="Email"
-            value={email}
-            onChangeText={setEmail}
-          />
-          <ExtendedTextInput
-            type={ExtendedTextInputType.PasswordToggle}
-            label="Password"
-            value={password}
-            onChangeText={setPassword}
-          />
-        </View>
-
         <ExtendedButton
-          onPress={onTestDispatchAction}
-          title="Dispatch action!"
-          titleStyle={styles.dispatchTestButtonText}
-        />
-        <ExtendedButton
-          onPress={goToReanimatedPage}
-          title="Go to Reanimated"
+          onPress={goToParentsOnboardingStack}
+          title="Go to parents onboarding"
           titleStyle={styles.dispatchTestButtonText}
         />
       </View>
