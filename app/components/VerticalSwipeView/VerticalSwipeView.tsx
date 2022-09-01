@@ -2,7 +2,6 @@ import React, { useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, ScrollView, View } from 'react-native';
 
-import { IMAGES } from '../../assets';
 import { generalStyles } from '../../utils/styles';
 import { ExtendedButton } from '../ExtendedButton';
 import { IVerticalSwipeViewProps } from './VerticalSwipeView.props';
@@ -11,6 +10,7 @@ import { styles } from './VerticalSwipeView.styles';
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   renderTopElement,
   renderBottomElement,
+  backgroundImage,
 }) => {
   const { t } = useTranslation();
 
@@ -26,7 +26,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
 
   return (
     <View style={generalStyles.flex}>
-      <ImageBackground source={IMAGES.LOGO} style={generalStyles.flex}>
+      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
         <ScrollView
           scrollEnabled={false}
           ref={scrollViewRef}
