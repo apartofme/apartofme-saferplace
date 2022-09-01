@@ -85,6 +85,14 @@ export const en = {
         },
       },
     },
+    menu: {
+      main_menu: {
+        header: 'Menu',
+        title: 'What would you like to do today?',
+        parents_guide: 'Parents guide',
+        logout: 'Logout',
+      },
+    },
   },
   languages: {
     english: 'English',
