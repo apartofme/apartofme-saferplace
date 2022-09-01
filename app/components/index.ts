@@ -11,3 +11,4 @@ export * from './RadioButtonList';
 export * from './RadioButton';
 export * from './RadioButtonList';
 export * from './Timer';
+export * from './VerticalSwipeView';
