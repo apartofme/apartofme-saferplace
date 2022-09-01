@@ -1,0 +1,1 @@
+export { SignUpAvatarScreen } from './SignUpAvatar';
