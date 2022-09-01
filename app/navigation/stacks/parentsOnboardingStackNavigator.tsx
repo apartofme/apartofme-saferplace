@@ -8,7 +8,6 @@ import {
   WelcomeScreen,
   SignUpNicknameScreen,
   SignUpAvatarScreen,
-  AcknowledgementScreen,
   CharmsIntroducingScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
@@ -33,7 +32,8 @@ export const ParentsOnboardingStackNavigator = () => (
       component={LanguageSelectionScreen}
     />
     <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
-    <Stack.Screen name="CharmsIntroducing"
+    <Stack.Screen
+      name="CharmsIntroducing"
       component={CharmsIntroducingScreen}
     />
     <Stack.Screen
