@@ -46,6 +46,24 @@ export const en = {
             'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
         },
       },
+      sidekick_intro: {
+        firstPhrase: 'Who is this, who has found their way into my forest?',
+        secondPhrase:
+          'Travellers? But where have you come from, and where are you going?',
+        thirdPhrase: 'It doesn`t matter. You`re here now.',
+        fourthPhrase:
+          'You look worried. Especially the big one. But there is nothing to fear.',
+        fifthPhrase: 'I forgot... how rude. Just a moment...',
+        sixthPhrase:
+          'There. That`s better. I forget that you humans can`t see me, sometimes.',
+        seventhPhrase:
+          'I like to give every visitor to my forest a personal greeting.\nBut first I need to know what to call you...',
+        eighthPhrase: 'If there is anything that I or my faithful assistant...',
+        ninthPhrase:
+          '...can do for you, please let me know. It is my job to care for everything in this forest: from the trees to the people passing through.',
+        tenthPhrase:
+          'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
+      },
     },
   },
   languages: {
