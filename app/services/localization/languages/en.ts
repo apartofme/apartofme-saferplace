@@ -47,6 +47,14 @@ export const en = {
         },
       },
     },
+    menu: {
+      main_menu: {
+        header: 'Menu',
+        title: 'What would you like to do today?',
+        parents_guide: 'Parents guide',
+        logout: 'Logout',
+      },
+    },
   },
   languages: {
     english: 'English',
@@ -54,6 +62,7 @@ export const en = {
     russian: 'Russian',
   },
   labels: {
+    menu: 'Menu',
     balance: 'Account balance',
     balance_availible: '{{currency}} {{value}} availible',
     balance_hold: '{{currency}} {{value}} on hold',
