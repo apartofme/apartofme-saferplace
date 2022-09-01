@@ -1,3 +1,3 @@
 export * from './homeStackNavigator';
-export * from './JointOnboardingStackNavigator';
+export * from './jointOnboardingStackNavigator';
 export * from './parentsOnboardingStackNavigator';
