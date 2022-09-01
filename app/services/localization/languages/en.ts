@@ -8,7 +8,6 @@ export const en = {
     skip: 'Skip',
     privacy_policy: 'Privacy Policy',
     terms_conditions: 'Terms & Conditions',
-    add_photo: '<- Add an optional profile photo',
 
     // Dummy
     forgot_password: 'Forgot the password?',
@@ -40,16 +39,16 @@ export const en = {
       },
       sign_up_credentials: {
         title: 'Create an account',
-        subtitle: 'Already have an account?',
+        subTitle: 'Already have an account?',
         footer: 'By creating on account you agreeing to our',
       },
       sign_up_nickname: {
         title: 'What should we call you?',
-        subtitle: '',
+        subTitle: '',
       },
       sign_up_avatar: {
         title: 'Select your avatar',
-        subtitle: '',
+        subTitle: '',
         charms_introducing: {
           first: {
             title: 'Charms',

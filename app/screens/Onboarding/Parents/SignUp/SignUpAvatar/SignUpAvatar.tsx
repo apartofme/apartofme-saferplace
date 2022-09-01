@@ -1,16 +1,13 @@
 import { SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import React, { useCallback, useState } from 'react';
-import { ImageOrVideo } from 'react-native-image-crop-picker';
 
 import {
   BottomButtonView,
   ExtendedText,
   MainHeader,
-  PhotoPicker,
 } from '../../../../../components';
 import { IMAGES } from '../../../../../assets';
-import { Nullable } from '../../../../../utils';
 import { useAppDispatch } from '../../../../../hooks';
 import { generalStyles } from '../../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.props';
@@ -22,7 +19,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const [avatar, setAvatar] = useState<Nullable<ImageOrVideo>>(null);
+  const [avatar, setAvatar] = useState(null);
 
   const onSubmitButtonPress = useCallback(() => {
     dispatch(cacheSlice.actions.saveSignUpData({ avatar }));
@@ -45,7 +42,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
         <ExtendedText>
           {t('screens.onboarding.sign_up_avatar.subtitle')}
         </ExtendedText>
-        <PhotoPicker setSelectedImage={setAvatar} selectedImage={avatar} />
+        {/* // TODO: add carousel */}
       </BottomButtonView>
     </SafeAreaView>
   );

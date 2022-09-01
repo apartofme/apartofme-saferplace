@@ -1095,15 +1095,6 @@ PODS:
     - RNFBApp
   - RNGestureHandler (1.10.3):
     - React-Core
-  - RNImageCropPicker (0.38.0):
-    - React-Core
-    - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.38.0)
-    - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.38.0):
-    - React-Core
-    - React-RCTImage
-    - TOCropViewController
   - RNNotifee (5.6.0):
     - React-Core
     - RNNotifee/NotifeeCore (= 5.6.0)
@@ -1141,7 +1132,6 @@ PODS:
     - React-Core
   - RNSVG (13.1.0):
     - React-Core
-  - TOCropViewController (2.6.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -1186,7 +1176,6 @@ DEPENDENCIES:
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - "RNNotifee (from `../node_modules/@notifee/react-native`)"
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -1218,7 +1207,6 @@ SPEC REPOS:
     - Libuv-gRPC
     - nanopb
     - PromisesObjC
-    - TOCropViewController
 
 EXTERNAL SOURCES:
   boost:
@@ -1299,8 +1287,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNImageCropPicker:
-    :path: "../node_modules/react-native-image-crop-picker"
   RNNotifee:
     :path: "../node_modules/@notifee/react-native"
   RNReanimated:
@@ -1375,12 +1361,10 @@ SPEC CHECKSUMS:
   RNFBFirestore: 2cb253150931f1a22642ee3f0f1e3ebf34efb021
   RNFBMessaging: 3df81ace965865da6ce0be05b70726aeb84465f5
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
-  RNImageCropPicker: ffbba608264885c241cbf3a8f78eb7aeeb978241
   RNNotifee: 8ee6ddabfc44b16600b978983162e0d4db20ce19
   RNReanimated: da3860204e5660c0dd66739936732197d359d753
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
   RNSVG: 1153e8eeb34c788841016c517dba9f57f20b762f
-  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   Yoga: 2b4a01651f42a32f82e6cef3830a3ba48088237f
 
 PODFILE CHECKSUM: a0b6c17365a03994fec41a65f0dc905cd86af255
