@@ -18,6 +18,7 @@ export const en = {
     show_all: 'Show All',
     attend: 'Attend',
     bid_now: 'Bid Now',
+    ready: 'I’m ready',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -49,6 +50,22 @@ export const en = {
       sign_up_avatar: {
         title: 'Select your avatar',
         subtitle: '',
+      charms_introducing: {
+        first: {
+          title: 'Charms',
+          subTitle:
+            'To advance through the app, you and your child will complete special exercises together, called Charms.',
+        },
+        second: {
+          title: 'Charms',
+          subTitle:
+            'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+        },
+        third: {
+          title: 'A Charm for you',
+          subTitle:
+            'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
+        },
       },
     },
   },
