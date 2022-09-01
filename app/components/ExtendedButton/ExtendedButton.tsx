@@ -32,7 +32,7 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
   );
 
   return (
-    <TouchableOpacity {...rest} style={styles}>
+    <TouchableOpacity {...rest} style={styles} disabled={disabled}>
       <ExtendedText style={titleStyles}>{title}</ExtendedText>
     </TouchableOpacity>
   );

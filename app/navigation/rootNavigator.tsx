@@ -6,6 +6,7 @@ import {
   HomeStackNavigator,
   JointOnboardingStackNavigator,
   ParentsOnboardingStackNavigator,
+  MenuStackNavigator,
 } from './stacks';
 import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
@@ -16,6 +17,7 @@ export type RootParams = {
   HomeStack: undefined;
   ParentsOnboardingStack: undefined;
   JointOnboardingStack: undefined;
+  MenuStack: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootParams>();
@@ -33,6 +35,7 @@ const RootNavigator = () => (
         name="JointOnboardingStack"
         component={JointOnboardingStackNavigator}
       />
+      <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
     </Stack.Navigator>
   </NavigationContainer>
 );
