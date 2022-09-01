@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react';
-import { TouchableOpacity, Image, View } from 'react-native';
-import ImageCropPicker, { ImageOrVideo } from 'react-native-image-crop-picker';
-import { ActionSheet } from 'react-native-cross-actionsheet';
 import _ from 'lodash';
+import React, { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity, Image, View } from 'react-native';
+import { ActionSheet } from 'react-native-cross-actionsheet';
+import ImageCropPicker, { ImageOrVideo } from 'react-native-image-crop-picker';
 
 import { ExtendedText } from '../ExtendedText';
 import { styles } from './PhotoPicker.styles';
@@ -13,6 +14,8 @@ export const PhotoPicker: React.FC<IPhotoPickerProps> = ({
   selectedImage,
   setSelectedImage,
 }) => {
+  const { t } = useTranslation();
+
   const onSelectImage = useCallback(
     (image: ImageOrVideo | null) => {
       setSelectedImage(image);
@@ -28,15 +31,16 @@ export const PhotoPicker: React.FC<IPhotoPickerProps> = ({
     ImageCropPicker.openPicker(PICKER_OPTIONS).then(onSelectImage);
   }, [onSelectImage]);
 
+  // TODO: change _.noop to real function
   const onImagePickerPress = useCallback(() => {
     ActionSheet.options({
       options: [
-        { text: 'Take Photo', onPress: takePhotoFromCamera },
-        { text: 'Choose Photo Library', onPress: takePhotoFromLibrary },
+        { text: t('labels.take_photo'), onPress: takePhotoFromCamera },
+        { text: t('labels.choose_library'), onPress: takePhotoFromLibrary },
       ],
       cancel: { onPress: _.noop },
     });
-  }, [takePhotoFromCamera, takePhotoFromLibrary]);
+  }, [t, takePhotoFromCamera, takePhotoFromLibrary]);
 
   const onDeletePress = useCallback(() => {
     onSelectImage(null);
@@ -64,7 +68,7 @@ export const PhotoPicker: React.FC<IPhotoPickerProps> = ({
         </View>
       ) : (
         <View style={styles.titleContainer}>
-          <ExtendedText>{'<- Add an optional profile photo'}</ExtendedText>
+          <ExtendedText>{t('buttons.add_photo')}</ExtendedText>
         </View>
       )}
     </View>

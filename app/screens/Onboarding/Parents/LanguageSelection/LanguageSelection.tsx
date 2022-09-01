@@ -43,7 +43,7 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
             onLeftIconPress={navigation.goBack}
           />
           <ExtendedText>
-            {t('screens.onboarding.languageSelection.title')}
+            {t('screens.onboarding.language_selection.title')}
           </ExtendedText>
           <RadioButtonList
             data={LANGUAGES}
