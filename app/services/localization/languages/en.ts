@@ -14,6 +14,7 @@ export const en = {
     attend: 'Attend',
     bid_now: 'Bid Now',
     ready: 'I’m ready',
+    we_ready: 'We’re ready',
   },
   screens: {
     onboarding: {
@@ -44,6 +45,20 @@ export const en = {
           title: 'A Charm for you',
           subTitle:
             'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
+        },
+      },
+      joint: {
+        loading: {
+          first: {
+            title: 'Loading Forest....',
+            subTitle:
+              'You can now introduce your child to A Safer Place. You can do this whenever is best for both of you.',
+          },
+          second: {
+            title: 'Funny random loading thing...',
+            subTitle:
+              "We suggest telling your child that you've got something magical to play with together. Whenever they are comfortable and curious, you can begin.",
+          },
         },
       },
     },
