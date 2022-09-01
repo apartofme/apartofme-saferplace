@@ -9,6 +9,7 @@ import {
   SignUpNicknameScreen,
   SignUpAvatarScreen,
   CharmsIntroducingScreen,
+  OnboardingCarouselScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -20,12 +21,17 @@ export type ParentsOnboardingStackParams = {
   SignUpNickname: undefined;
   SignUpAvatar: undefined;
   CharmsIntroducing: undefined;
+  OnboardingCarousel: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParentsOnboardingStackParams>();
 
 export const ParentsOnboardingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
+    <Stack.Screen
+      name="OnboardingCarousel"
+      component={OnboardingCarouselScreen}
+    />
     <Stack.Screen name="Welcome" component={WelcomeScreen} />
     <Stack.Screen
       name="LanguageSelection"
