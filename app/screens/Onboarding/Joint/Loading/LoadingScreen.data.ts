@@ -8,7 +8,7 @@ interface ISpeechListItem {
   subtitleKey: string;
 }
 
-export const SPEECH_LIST: ISpeechListItem[] = [
+export const SPEECH_LIST: ReadonlyArray<ISpeechListItem> = [
   {
     titleKey: 'screens.onboarding.joint.loading.first.title',
     subtitleKey: 'screens.onboarding.joint.loading.first.subtitle',
