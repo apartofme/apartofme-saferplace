@@ -28,10 +28,6 @@ const Stack = createNativeStackNavigator<ParentsOnboardingStackParams>();
 
 export const ParentsOnboardingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
-    <Stack.Screen
-      name="OnboardingCarousel"
-      component={OnboardingCarouselScreen}
-    />
     <Stack.Screen name="Welcome" component={WelcomeScreen} />
     <Stack.Screen
       name="LanguageSelection"
@@ -39,8 +35,8 @@ export const ParentsOnboardingStackNavigator = () => (
     />
     <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
     <Stack.Screen
-      name="CharmsIntroducing"
-      component={CharmsIntroducingScreen}
+      name="OnboardingCarousel"
+      component={OnboardingCarouselScreen}
     />
     <Stack.Screen
       name="SignUpCredentials"
@@ -48,5 +44,9 @@ export const ParentsOnboardingStackNavigator = () => (
     />
     <Stack.Screen name="SignUpNickname" component={SignUpNicknameScreen} />
     <Stack.Screen name="SignUpAvatar" component={SignUpAvatarScreen} />
+    <Stack.Screen
+      name="CharmsIntroducing"
+      component={CharmsIntroducingScreen}
+    />
   </Stack.Navigator>
 );

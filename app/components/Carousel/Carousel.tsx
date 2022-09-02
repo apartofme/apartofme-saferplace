@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
-import { View } from 'react-native';
+import { ImageSourcePropType, View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
 
@@ -11,6 +11,7 @@ import { styles } from './Carousel.styles';
 import {
   ImageSubTitle,
   ImageTitleSubTitle,
+  OnlyImage,
   ProgressBarItem,
 } from './components';
 import { CarouselType, ICarouselItem } from './Carousel.data';
@@ -19,8 +20,9 @@ export const Carousel: React.FC<ICarouselProps> = ({
   preset,
   data,
   setCurrentPossition,
+  setImage,
 }) => {
-  const progressValue = useSharedValue<number>(0);
+  const progressValue = useSharedValue(0);
 
   const onProgressChange = useCallback(
     (item, absoluteProgress) => {
@@ -30,6 +32,16 @@ export const Carousel: React.FC<ICarouselProps> = ({
       }
     },
     [progressValue, setCurrentPossition],
+  );
+
+  const onSnapToItem = useCallback(
+    index => {
+      const currentPosition = Math.floor(index);
+      if (setImage && data[currentPosition].image) {
+        setImage(data[currentPosition].image as ImageSourcePropType);
+      }
+    },
+    [data, setImage],
   );
 
   const renderProgressBar = useCallback(() => {
@@ -54,6 +66,8 @@ export const Carousel: React.FC<ICarouselProps> = ({
           return <ImageTitleSubTitle data={item} />;
         case CarouselType.ImageSubTitle:
           return <ImageSubTitle data={item} />;
+        case CarouselType.OnlyImage:
+          return <OnlyImage data={item} />;
         default:
           return <View />;
       }
@@ -67,9 +81,12 @@ export const Carousel: React.FC<ICarouselProps> = ({
         loop={false}
         width={WINDOW_WIDTH}
         data={data}
+        //* Set undefind for default mode
+        mode={preset === CarouselType.OnlyImage ? 'parallax' : undefined}
         renderItem={renderCarouselItem}
         style={generalStyles.flex}
         onProgressChange={onProgressChange}
+        onSnapToItem={onSnapToItem}
       />
       <View style={generalStyles.aiCenter}>{renderProgressBar()}</View>
     </View>

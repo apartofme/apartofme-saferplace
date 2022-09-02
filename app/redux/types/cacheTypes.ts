@@ -1,9 +1,10 @@
+import { ImageSourcePropType } from 'react-native';
+
 export interface ISignUpData {
   email?: string;
   password?: string;
   nickname?: string;
-  // TODO: types
-  avatar?: null;
+  avatar?: ImageSourcePropType;
 }
 
 export interface ISignUpDataPayload {
