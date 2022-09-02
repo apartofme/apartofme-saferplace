@@ -1,15 +1,15 @@
 interface ISpeechListItem {
-  titleId: string;
-  subTitleId: string;
+  title: string;
+  subtitle: string;
 }
 
 export const SPEECH_LIST: ISpeechListItem[] = [
   {
-    titleId: 'screens.onboarding.joint.loading.first.title',
-    subTitleId: 'screens.onboarding.joint.loading.first.subTitle',
+    title: 'screens.onboarding.joint.loading.first.title',
+    subtitle: 'screens.onboarding.joint.loading.first.subTitle',
   },
   {
-    titleId: 'screens.onboarding.joint.loading.second.title',
-    subTitleId: 'screens.onboarding.joint.loading.second.subTitle',
+    title: 'screens.onboarding.joint.loading.second.title',
+    subtitle: 'screens.onboarding.joint.loading.second.subTitle',
   },
 ];
