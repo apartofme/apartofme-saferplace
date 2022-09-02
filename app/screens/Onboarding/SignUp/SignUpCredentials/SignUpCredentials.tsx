@@ -7,11 +7,11 @@ import {
   ExtendedText,
   ExtendedTextInput,
   MainHeader,
-} from '../../../../../components';
-import { IMAGES } from '../../../../../assets';
-import { useAppDispatch } from '../../../../../hooks';
-import { cacheSlice } from '../../../../../redux/slices';
-import { generalStyles } from '../../../../../utils/styles';
+} from '../../../../components';
+import { IMAGES } from '../../../../assets';
+import { useAppDispatch } from '../../../../hooks';
+import { cacheSlice } from '../../../../redux/slices';
+import { generalStyles } from '../../../../utils/styles';
 import { ISignUpCredentialsScreenProps } from './SignUpCredentials.props';
 
 export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
@@ -23,7 +23,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     const [password, setPassword] = useState('');
 
     const onSignUpPress = useCallback(() => {
-      dispatch(cacheSlice.actions.saveSignUpData({ email, password }));
+      dispatch(cacheSlice.actions.saveSignUpDataParent({ email, password }));
       navigation.navigate('SignUpNickname');
     }, [dispatch, email, navigation, password]);
 

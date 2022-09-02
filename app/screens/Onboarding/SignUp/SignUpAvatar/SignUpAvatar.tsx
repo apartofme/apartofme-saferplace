@@ -6,25 +6,32 @@ import {
   BottomButtonView,
   ExtendedText,
   MainHeader,
-} from '../../../../../components';
-import { IMAGES } from '../../../../../assets';
-import { useAppDispatch } from '../../../../../hooks';
-import { generalStyles } from '../../../../../utils/styles';
+} from '../../../../components';
+import { IMAGES } from '../../../../assets';
+import { useAppDispatch } from '../../../../hooks';
+import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.props';
-import { cacheSlice, userSlice } from '../../../../../redux/slices';
+import { cacheSlice, userSlice } from '../../../../redux/slices';
 
 export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   navigation,
+  route,
 }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
+  const isChild = route.params?.isChild;
+
   const [avatar, setAvatar] = useState(null);
 
   const onSubmitButtonPress = useCallback(() => {
-    dispatch(cacheSlice.actions.saveSignUpData({ avatar }));
-    dispatch(userSlice.actions.registerUser());
-  }, [avatar, dispatch]);
+    if (isChild) {
+      dispatch(cacheSlice.actions.saveSignUpDataChild({ avatar }));
+    } else {
+      dispatch(cacheSlice.actions.saveSignUpDataParent({ avatar }));
+      dispatch(userSlice.actions.registerUser());
+    }
+  }, [avatar, dispatch, isChild]);
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>

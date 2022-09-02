@@ -6,6 +6,12 @@ export interface ISignUpData {
   avatar?: null;
 }
 
+export type IShortSignUpData = Pick<ISignUpData, 'avatar' | 'nickname'>;
+
 export interface ISignUpDataPayload {
   payload: Partial<ISignUpData>;
+}
+
+export interface IShortSignUpDataPayload {
+  payload: Partial<IShortSignUpData>;
 }
