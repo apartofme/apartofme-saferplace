@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, ScrollView, View } from 'react-native';
 
@@ -15,17 +15,21 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   aboutSubtitleKey,
   image,
 }) => {
+  const [isTopPosition, setIsTopPosition] = useState(true);
+
   const { t } = useTranslation();
 
   const scrollViewRef = useRef<ScrollView>(null);
 
-  const onDownPress = useCallback(() => {
-    scrollViewRef.current?.scrollToEnd();
-  }, []);
-
-  const onUpPress = useCallback(() => {
-    scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true });
-  }, []);
+  const setScrollPosition = useCallback(() => {
+    if (isTopPosition) {
+      scrollViewRef.current?.scrollToEnd();
+      setIsTopPosition(false);
+    } else {
+      scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true });
+      setIsTopPosition(true);
+    }
+  }, [isTopPosition]);
 
   return (
     <View style={generalStyles.flex}>
@@ -37,16 +41,16 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
           <View style={styles.topContentContainer}>
             <ExtendedText>{t(titleKey)}</ExtendedText>
             <ExtendedText>{t(subtitleKey)}</ExtendedText>
-            <ExtendedButton title={t('buttons.ready')} onPress={onDownPress} />
+            <ExtendedButton title={t('buttons.ready')} />
             <ExtendedButton
               title={t('components.VerticalSwipeView.to_bottom')}
-              onPress={onDownPress}
+              onPress={setScrollPosition}
             />
           </View>
           <View style={styles.bottomContentContainer}>
             <ExtendedButton
               title={t('components.VerticalSwipeView.to_top')}
-              onPress={onUpPress}
+              onPress={setScrollPosition}
             />
             <ExtendedText>{t(aboutTitleKey)}</ExtendedText>
             <ExtendedText>{t(aboutSubtitleKey)}</ExtendedText>
