@@ -2,7 +2,7 @@ import { IMAGES } from '../../../../assets';
 import { ICarouselItem } from '../../../../components';
 
 // TODO: change image for correct
-export const CHARMS_CAROUSEL: ICarouselItem[] = [
+export const CHARMS_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   {
     id: '1',
     image: IMAGES.WHITE_PENCIL,

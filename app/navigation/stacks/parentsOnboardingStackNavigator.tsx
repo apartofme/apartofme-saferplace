@@ -5,7 +5,7 @@ import {
   SignUpCredentialsScreen,
   AcknowledgementScreen,
   LanguageSelectionScreen,
-  WelcomeScreen,
+  WelcomeParentScreen,
   SignUpNicknameScreen,
   SignUpAvatarScreen,
   CharmsIntroducingScreen,
@@ -14,7 +14,7 @@ import {
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentsOnboardingStackParams = {
-  Welcome: undefined;
+  WelcomeParent: undefined;
   LanguageSelection: undefined;
   Acknowledgement: undefined;
   SignUpCredentials: undefined;
@@ -28,7 +28,11 @@ const Stack = createNativeStackNavigator<ParentsOnboardingStackParams>();
 
 export const ParentsOnboardingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
-    <Stack.Screen name="Welcome" component={WelcomeScreen} />
+    <Stack.Screen
+      name="OnboardingCarousel"
+      component={OnboardingCarouselScreen}
+    />
+    <Stack.Screen name="WelcomeParent" component={WelcomeParentScreen} />
     <Stack.Screen
       name="LanguageSelection"
       component={LanguageSelectionScreen}
