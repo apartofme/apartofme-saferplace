@@ -4,17 +4,17 @@ export const NEXT_SPEECH = 50;
 export const TICK_VALUE = 50;
 
 interface ISpeechListItem {
-  title: string;
-  subtitle: string;
+  titleKey: string;
+  subtitleKey: string;
 }
 
 export const SPEECH_LIST: ISpeechListItem[] = [
   {
-    title: 'screens.onboarding.joint.loading.first.title',
-    subtitle: 'screens.onboarding.joint.loading.first.subtitle',
+    titleKey: 'screens.onboarding.joint.loading.first.title',
+    subtitleKey: 'screens.onboarding.joint.loading.first.subtitle',
   },
   {
-    title: 'screens.onboarding.joint.loading.second.title',
-    subtitle: 'screens.onboarding.joint.loading.second.subtitle',
+    titleKey: 'screens.onboarding.joint.loading.second.title',
+    subtitleKey: 'screens.onboarding.joint.loading.second.subtitle',
   },
 ];

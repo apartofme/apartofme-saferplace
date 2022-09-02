@@ -52,8 +52,8 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = () => {
         buttonTitle={t('buttons.we_ready').toUpperCase()}
         onSubmit={_.noop}>
         <Timer value={currentLoaderValue} />
-        <ExtendedText>{t(currentSpeech.title)}</ExtendedText>
-        <ExtendedText>{t(currentSpeech.subtitle)}</ExtendedText>
+        <ExtendedText>{t(currentSpeech.titleKey)}</ExtendedText>
+        <ExtendedText>{t(currentSpeech.subtitleKey)}</ExtendedText>
       </BottomButtonView>
     </SafeAreaView>
   );
