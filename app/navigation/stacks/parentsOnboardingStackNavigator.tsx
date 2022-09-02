@@ -39,10 +39,6 @@ export const ParentsOnboardingStackNavigator = () => (
     />
     <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
     <Stack.Screen
-      name="OnboardingCarousel"
-      component={OnboardingCarouselScreen}
-    />
-    <Stack.Screen
       name="SignUpCredentials"
       component={SignUpCredentialsScreen}
     />
