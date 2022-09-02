@@ -1,0 +1,1 @@
+export { WelcomeChildScreen } from './WelcomeChild';

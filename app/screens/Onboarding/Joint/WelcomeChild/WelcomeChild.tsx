@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { BottomButtonView, ExtendedText } from '../../../components';
-import { generalStyles } from '../../../utils/styles';
-import { IWelcomeScreenProps } from './Welcome.props';
+import { BottomButtonView, ExtendedText } from '../../../../components';
+import { generalStyles } from '../../../../utils/styles';
+import { IWelcomeChildScreenProps } from './WelcomeChild.props';
 
-export const WelcomeScreen: React.FC<IWelcomeScreenProps> = ({
+export const WelcomeChildScreen: React.FC<IWelcomeChildScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
