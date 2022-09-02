@@ -14,7 +14,9 @@ import {
   TICK_VALUE,
 } from './LoadingScreen.data';
 
-export const LoadingScreen: React.FC<ILoadingScreenProps> = () => {
+export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
+  navigation,
+}) => {
   const { t } = useTranslation();
 
   const [currentSpeechIdx, setCurrentSpeechIdx] = useState(0);
@@ -28,6 +30,10 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = () => {
   const goToNextSpeech = useCallback(() => {
     setCurrentSpeechIdx(currentSpeechIdx + 1);
   }, [currentSpeechIdx]);
+
+  const onSubmitPress = useCallback(() => {
+    navigation.navigate('Welcome');
+  }, [navigation]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,10 +53,9 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = () => {
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      {/*// TODO: change _.noop to a real function*/}
       <BottomButtonView
         buttonTitle={t('buttons.we_ready').toUpperCase()}
-        onSubmit={_.noop}>
+        onSubmit={onSubmitPress}>
         <Timer value={currentLoaderValue} />
         <ExtendedText>{t(currentSpeech.titleKey)}</ExtendedText>
         <ExtendedText>{t(currentSpeech.subtitleKey)}</ExtendedText>
