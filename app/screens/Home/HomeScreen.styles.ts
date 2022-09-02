@@ -8,6 +8,7 @@ interface IHomeScreenStyles {
   logo: ImageStyle;
   formContainer: ViewStyle;
   description: TextStyle;
+  testButton: ViewStyle;
   dispatchTestButtonContainer: ViewStyle;
   dispatchTestButtonText: TextStyle;
 }
@@ -39,6 +40,9 @@ export const styles = StyleSheet.create<IHomeScreenStyles>({
     marginVertical: 16,
   },
 
+  testButton: {
+    marginVertical: 5,
+  },
   dispatchTestButtonContainer: {
     backgroundColor: COLORS.BLACK,
     padding: 16,

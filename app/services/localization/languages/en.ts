@@ -18,6 +18,7 @@ export const en = {
     attend: 'Attend',
     bid_now: 'Bid Now',
     ready: 'I’m ready',
+    we_ready: 'We’re ready',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -83,6 +84,38 @@ export const en = {
           subTitle:
             'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
         },
+      },
+      joint: {
+        loading: {
+          first: {
+            title: 'Loading Forest....',
+            subtitle:
+              'You can now introduce your child to A Safer Place. You can do this whenever is best for both of you.',
+          },
+          second: {
+            title: 'Funny random loading thing...',
+            subtitle:
+              "We suggest telling your child that you've got something magical to play with together. Whenever they are comfortable and curious, you can begin.",
+          },
+        },
+      },
+      sidekick_intro: {
+        firstPhrase: 'Who is this, who has found their way into my forest?',
+        secondPhrase:
+          'Travellers? But where have you come from, and where are you going?',
+        thirdPhrase: 'It doesn`t matter. You`re here now.',
+        fourthPhrase:
+          'You look worried. Especially the big one. But there is nothing to fear.',
+        fifthPhrase: 'I forgot... how rude. Just a moment...',
+        sixthPhrase:
+          'There. That`s better. I forget that you humans can`t see me, sometimes.',
+        seventhPhrase:
+          'I like to give every visitor to my forest a personal greeting.\nBut first I need to know what to call you...',
+        eighthPhrase: 'If there is anything that I or my faithful assistant...',
+        ninthPhrase:
+          '...can do for you, please let me know. It is my job to care for everything in this forest: from the trees to the people passing through.',
+        tenthPhrase:
+          'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
       },
     },
     menu: {
