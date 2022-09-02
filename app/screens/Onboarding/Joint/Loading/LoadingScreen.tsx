@@ -20,15 +20,14 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = () => {
   const [currentSpeechIdx, setCurrentSpeechIdx] = useState(0);
   const [currentLoaderValue, setCurrentLoaderValue] = useState(0);
 
+  const currentSpeech = useMemo(
+    () => SPEECH_LIST[currentSpeechIdx],
+    [currentSpeechIdx],
+  );
+
   const goToNextSpeech = useCallback(() => {
     setCurrentSpeechIdx(currentSpeechIdx + 1);
   }, [currentSpeechIdx]);
-
-  const getCurrentSpeech = useCallback(() => {
-    return SPEECH_LIST[currentSpeechIdx];
-  }, [currentSpeechIdx]);
-
-  const currentSpeech = useMemo(() => getCurrentSpeech(), [getCurrentSpeech]);
 
   useEffect(() => {
     const interval = setInterval(() => {
