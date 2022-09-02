@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { userSlice } from '../redux/slices';
 import { IAuthUserActionPayload } from '../redux/types';
@@ -28,9 +28,8 @@ function* watchLoginUser({
   }
 }
 
-function* watchRegisterUser({
-  payload: { email, password },
-}: IAuthUserActionPayload) {
+function* watchRegisterUser() {
+  const { email, password } = yield select(state => state.cache.auth);
   const registerUserResponse: IFirebaseAuthResponse = yield call(
     firebaseRegisterUser,
     email,

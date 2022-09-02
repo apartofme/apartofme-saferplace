@@ -4,8 +4,12 @@ export const en = {
     enter: 'Enter',
     next: 'Next',
     login: 'Login',
-    register: 'Register',
+    signup: 'Sign up',
     skip: 'Skip',
+    privacy_policy: 'Privacy Policy',
+    terms_conditions: 'Terms & Conditions',
+
+    // Dummy
     forgot_password: 'Forgot the password?',
     get_started: 'Get Started',
     deposit: 'Top Up Deposit',
@@ -14,13 +18,18 @@ export const en = {
     attend: 'Attend',
     bid_now: 'Bid Now',
     ready: 'I’m ready',
+    we_ready: 'We’re ready',
+  },
+  placeholders: {
+    enter_email: 'Enter your email address',
+    create_password: 'Create a password',
   },
   screens: {
     onboarding: {
       welcome: {
         title: 'welcome to a',
       },
-      languageSelection: {
+      language_selection: {
         title: 'What Language would you like to use?',
       },
       acknowledgement: {
@@ -29,21 +38,65 @@ export const en = {
         subTitle:
           'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
       },
-      charms_introducing: {
+      sign_up_credentials: {
+        title: 'Create an account',
+        subTitle: 'Already have an account?',
+        footer: 'By creating on account you agreeing to our',
+      },
+      sign_up_nickname: {
+        title: 'What should we call you?',
+        subTitle: '',
+      },
+      sign_up_avatar: {
+        title: 'Select your avatar',
+        subTitle: '',
+        charms_introducing: {
+          first: {
+            title: 'Charms',
+            subTitle:
+              'To advance through the app, you and your child will complete special exercises together, called Charms.',
+          },
+          second: {
+            title: 'Charms',
+            subTitle:
+              'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+          },
+          third: {
+            title: 'A Charm for you',
+            subTitle:
+              'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
+          },
+        },
+      },
+      onboard_carousel: {
         first: {
-          title: 'Charms',
+          title: 'A Safer Place',
           subTitle:
-            'To advance through the app, you and your child will complete special exercises together, called Charms.',
+            'This app has been created to help you and your child understand the difficult things that you have been through together.',
         },
         second: {
-          title: 'Charms',
+          title: 'Snappy Title here',
           subTitle:
-            'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+            'It mixes magical storytelling and proven therapy techniques to keep you both motivated and engaged.',
         },
         third: {
-          title: 'A Charm for you',
+          title: 'A Better Future',
           subTitle:
-            'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
+            'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
+        },
+      },
+      joint: {
+        loading: {
+          first: {
+            title: 'Loading Forest....',
+            subtitle:
+              'You can now introduce your child to A Safer Place. You can do this whenever is best for both of you.',
+          },
+          second: {
+            title: 'Funny random loading thing...',
+            subtitle:
+              "We suggest telling your child that you've got something magical to play with together. Whenever they are comfortable and curious, you can begin.",
+          },
         },
       },
       sidekick_intro: {
@@ -65,6 +118,14 @@ export const en = {
           'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
       },
     },
+    menu: {
+      main_menu: {
+        header: 'Menu',
+        title: 'What would you like to do today?',
+        parents_guide: 'Parents guide',
+        logout: 'Logout',
+      },
+    },
   },
   languages: {
     english: 'English',
@@ -72,6 +133,11 @@ export const en = {
     russian: 'Russian',
   },
   labels: {
+    and: 'and',
+    take_photo: 'Take Photo',
+    choose_library: 'Choose photo from library',
+
+    // Dummy
     balance: 'Account balance',
     balance_availible: '{{currency}} {{value}} availible',
     balance_hold: '{{currency}} {{value}} on hold',

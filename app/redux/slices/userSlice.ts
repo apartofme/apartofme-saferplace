@@ -4,8 +4,8 @@ import {
   IAuthUserActionPayload,
   IAuthUserSuccessActionPayload,
 } from '../types';
-import { IUser } from '../../models/IUser';
 import { Nullable } from '../../utils';
+import { IUser } from '../../models/IUser';
 
 interface IUserState {
   user: Nullable<IUser>;
@@ -26,7 +26,7 @@ export const userSlice = createSlice({
     },
     loginUserError(state, action: PayloadAction<string>) {},
 
-    registerUser(state, action: IAuthUserActionPayload) {},
+    registerUser() {},
     registerUserSuccess(
       state,
       { payload: user }: IAuthUserSuccessActionPayload,
