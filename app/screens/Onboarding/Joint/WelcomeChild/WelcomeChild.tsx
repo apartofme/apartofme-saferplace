@@ -11,15 +11,15 @@ export const WelcomeChildScreen: React.FC<IWelcomeChildScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const goToLanguageSelection = useCallback(() => {
-    navigation.navigate('LanguageSelection');
+  const goToSidekickIntro = useCallback(() => {
+    navigation.navigate('SidekickIntro');
   }, [navigation]);
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <BottomButtonView
         buttonTitle={t('buttons.enter')}
-        onSubmit={goToLanguageSelection}>
+        onSubmit={goToSidekickIntro}>
         <ExtendedText>{t('screens.onboarding.welcome.title')}</ExtendedText>
       </BottomButtonView>
     </SafeAreaView>
