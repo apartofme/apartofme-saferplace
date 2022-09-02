@@ -18,6 +18,7 @@ export const en = {
     attend: 'Attend',
     bid_now: 'Bid Now',
     ready: 'I’m ready',
+    we_ready: 'We’re ready',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -82,6 +83,20 @@ export const en = {
           title: 'A Better Future',
           subTitle:
             'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
+        },
+      },
+      joint: {
+        loading: {
+          first: {
+            title: 'Loading Forest....',
+            subtitle:
+              'You can now introduce your child to A Safer Place. You can do this whenever is best for both of you.',
+          },
+          second: {
+            title: 'Funny random loading thing...',
+            subtitle:
+              "We suggest telling your child that you've got something magical to play with together. Whenever they are comfortable and curious, you can begin.",
+          },
         },
       },
     },

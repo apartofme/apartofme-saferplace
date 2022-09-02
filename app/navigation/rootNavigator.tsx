@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import {
   HomeStackNavigator,
+  JointOnboardingStackNavigator,
   ParentsOnboardingStackNavigator,
   MenuStackNavigator,
 } from './stacks';
@@ -15,6 +16,7 @@ export type RootParams = {
   Initial: undefined;
   HomeStack: undefined;
   ParentsOnboardingStack: undefined;
+  JointOnboardingStack: undefined;
   MenuStack: undefined;
 };
 
@@ -28,6 +30,10 @@ const RootNavigator = () => (
       <Stack.Screen
         name="ParentsOnboardingStack"
         component={ParentsOnboardingStackNavigator}
+      />
+      <Stack.Screen
+        name="JointOnboardingStack"
+        component={JointOnboardingStackNavigator}
       />
       <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
     </Stack.Navigator>
