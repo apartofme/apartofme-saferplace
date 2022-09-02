@@ -125,6 +125,23 @@ export const en = {
         parents_guide: 'Parents guide',
         logout: 'Logout',
       },
+      parents_guide: {
+        questions: {
+          section_first: {
+            title: 'Section 1',
+            question_first: 'question first',
+            question_second: 'question second',
+            question_third: 'question third',
+          },
+
+          section_second: {
+            title: 'Section 2',
+            question_first: 'question first',
+            question_second: 'question second',
+            question_third: 'question third',
+          },
+        },
+      },
     },
   },
   languages: {

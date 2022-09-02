@@ -13,6 +13,10 @@ export const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
     navigation.navigate('ParentsOnboardingStack');
   }, [navigation]);
 
+  const goToMenuStack = useCallback(() => {
+    navigation.navigate('MenuStack');
+  }, [navigation]);
+
   const goToJointOnboardingStack = useCallback(() => {
     navigation.navigate('JointOnboardingStack');
   }, [navigation]);
@@ -38,6 +42,11 @@ export const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
           onPress={goToJointOnboardingStack}
           title="Go to joint onboarding"
           style={styles.testButton}
+          titleStyle={styles.dispatchTestButtonText}
+        />
+        <ExtendedButton
+          onPress={goToMenuStack}
+          title="Go to menu"
           titleStyle={styles.dispatchTestButtonText}
         />
       </View>
