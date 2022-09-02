@@ -30,8 +30,8 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
     setCurrentSpeechIdx(currentSpeechIdx + 1);
   }, [currentSpeechIdx]);
 
-  const onSubmitPress = useCallback(() => {
-    navigation.navigate('Welcome');
+  const onSubmit = useCallback(() => {
+    navigation.navigate('WelcomeChild');
   }, [navigation]);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
     <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
         buttonTitle={t('buttons.we_ready').toUpperCase()}
-        onSubmit={onSubmitPress}>
+        onSubmit={onSubmit}>
         <Timer value={currentLoaderValue} />
         <ExtendedText>{t(currentSpeech.titleKey)}</ExtendedText>
         <ExtendedText>{t(currentSpeech.subtitleKey)}</ExtendedText>
