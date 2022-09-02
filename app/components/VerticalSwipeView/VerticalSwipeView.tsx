@@ -4,13 +4,16 @@ import { ImageBackground, ScrollView, View } from 'react-native';
 
 import { generalStyles } from '../../utils/styles';
 import { ExtendedButton } from '../ExtendedButton';
+import { ExtendedText } from '../ExtendedText';
 import { IVerticalSwipeViewProps } from './VerticalSwipeView.props';
 import { styles } from './VerticalSwipeView.styles';
 
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
-  renderTopElement,
-  renderBottomElement,
-  backgroundImage,
+  titleKey,
+  subtitleKey,
+  aboutTitleKey,
+  aboutSubtitleKey,
+  image,
 }) => {
   const { t } = useTranslation();
 
@@ -26,18 +29,27 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
 
   return (
     <View style={generalStyles.flex}>
-      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
+      <ImageBackground source={image} style={generalStyles.flex}>
         <ScrollView
           scrollEnabled={false}
           ref={scrollViewRef}
           style={styles.scrollView}>
           <View style={styles.topContentContainer}>
-            {renderTopElement && renderTopElement()}
-            <ExtendedButton title={t('some')} onPress={onDownPress} />
+            <ExtendedText>{t(titleKey)}</ExtendedText>
+            <ExtendedText>{t(subtitleKey)}</ExtendedText>
+            <ExtendedButton title={t('buttons.ready')} onPress={onDownPress} />
+            <ExtendedButton
+              title={t('components.VerticalSwipeView.to_bottom')}
+              onPress={onDownPress}
+            />
           </View>
           <View style={styles.bottomContentContainer}>
-            {renderBottomElement && renderBottomElement()}
-            <ExtendedButton title={t('some')} onPress={onUpPress} />
+            <ExtendedButton
+              title={t('components.VerticalSwipeView.to_top')}
+              onPress={onUpPress}
+            />
+            <ExtendedText>{t(aboutTitleKey)}</ExtendedText>
+            <ExtendedText>{t(aboutSubtitleKey)}</ExtendedText>
           </View>
         </ScrollView>
       </ImageBackground>

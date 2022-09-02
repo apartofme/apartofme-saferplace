@@ -1,7 +1,9 @@
 import { ImageSourcePropType } from 'react-native';
 
 export interface IVerticalSwipeViewProps {
-  renderTopElement: () => JSX.Element;
-  renderBottomElement: () => JSX.Element;
-  backgroundImage: ImageSourcePropType;
+  titleKey: string;
+  subtitleKey: string;
+  aboutTitleKey: string;
+  aboutSubtitleKey: string;
+  image: ImageSourcePropType;
 }
