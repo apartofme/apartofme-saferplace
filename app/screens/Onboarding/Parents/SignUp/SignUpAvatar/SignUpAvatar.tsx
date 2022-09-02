@@ -14,7 +14,7 @@ import { useAppDispatch } from '../../../../../hooks';
 import { generalStyles } from '../../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.props';
 import { cacheSlice, userSlice } from '../../../../../redux/slices';
-import { SING_UP_CAROUSEL_DATA } from './SignUpAvatar.data';
+import { SING_UP_CAROUSEL } from './SignUpAvatar.data';
 
 export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   navigation,
@@ -22,7 +22,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const [avatar, setAvatar] = useState(SING_UP_CAROUSEL_DATA[0].image);
+  const [avatar, setAvatar] = useState(SING_UP_CAROUSEL[0].image);
 
   const onSubmitButtonPress = useCallback(() => {
     dispatch(cacheSlice.actions.saveSignUpData({ avatar }));
@@ -47,7 +47,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
           {t('screens.onboarding.sign_up_avatar.subtitle')}
         </ExtendedText>
         <Carousel
-          data={SING_UP_CAROUSEL_DATA}
+          data={SING_UP_CAROUSEL}
           preset={CarouselType.OnlyImage}
           setImage={setAvatar}
         />

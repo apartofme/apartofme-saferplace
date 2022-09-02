@@ -15,15 +15,13 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
   ({ navigation }) => {
     const { t } = useTranslation();
 
-    const onNextPress = useCallback(() => {
+    const onSubmit = useCallback(() => {
       navigation.navigate('SignUpCredentials');
     }, [navigation]);
 
     return (
       <SafeAreaView style={generalStyles.whFlex}>
-        <BottomButtonView
-          buttonTitle={t('buttons.next')}
-          onSubmit={onNextPress}>
+        <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
           <Carousel
             data={CHARMS_CAROUSEL}
             preset={CarouselType.ImageTitleSubTitle}

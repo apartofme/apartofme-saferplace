@@ -25,7 +25,7 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
 
     const { t } = useTranslation();
 
-    const onConfirm = useCallback(() => {
+    const onSubmit = useCallback(() => {
       i18n.changeLanguage(selectedLanguage[0]);
       disptach(
         settingsSlice.actions.setLanguage({ language: selectedLanguage[0] }),
@@ -37,7 +37,7 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
       <SafeAreaView style={generalStyles.whFlex}>
         <BottomButtonView
           buttonTitle={t('buttons.confirm')}
-          onSubmit={onConfirm}
+          onSubmit={onSubmit}
           isDisabledButton={!selectedLanguage.length}>
           <MainHeader
             leftIcon={IMAGES.WHITE_BACK_ARROW}
