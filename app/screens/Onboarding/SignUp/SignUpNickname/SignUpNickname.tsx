@@ -20,7 +20,7 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const isChild = route.params.isChild;
+  const isChild = route.params?.isChild;
 
   const [nickname, setNickname] = useState('');
 
@@ -30,7 +30,7 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
     } else {
       dispatch(cacheSlice.actions.saveSignUpDataParent({ nickname }));
     }
-    navigation.navigate('SignUpAvatar', { isChild });
+    navigation.navigate('SignUpAvatar');
   }, [dispatch, isChild, navigation, nickname]);
 
   return (

@@ -20,7 +20,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const isChild = route.params.isChild;
+  const isChild = route.params?.isChild;
 
   const [avatar, setAvatar] = useState(null);
 

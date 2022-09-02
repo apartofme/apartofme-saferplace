@@ -24,7 +24,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
 
     const onSignUpPress = useCallback(() => {
       dispatch(cacheSlice.actions.saveSignUpDataParent({ email, password }));
-      navigation.navigate('SignUpNickname', { isChild: false });
+      navigation.navigate('SignUpNickname');
     }, [dispatch, email, navigation, password]);
 
     return (
