@@ -89,12 +89,12 @@ export const en = {
         loading: {
           first: {
             title: 'Loading Forest....',
-            subTitle:
+            subtitle:
               'You can now introduce your child to A Safer Place. You can do this whenever is best for both of you.',
           },
           second: {
             title: 'Funny random loading thing...',
-            subTitle:
+            subtitle:
               "We suggest telling your child that you've got something magical to play with together. Whenever they are comfortable and curious, you can begin.",
           },
         },
