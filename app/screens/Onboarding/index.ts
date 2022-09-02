@@ -1,4 +1,4 @@
 export * from './Joint';
 export * from './Parents';
 export * from './SignUp';
-export * from './Welcome';
+export * from './WelcomeParent';

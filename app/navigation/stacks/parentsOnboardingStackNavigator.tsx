@@ -5,7 +5,7 @@ import {
   SignUpCredentialsScreen,
   AcknowledgementScreen,
   LanguageSelectionScreen,
-  WelcomeScreen,
+  WelcomeParentScreen,
   SignUpNicknameScreen,
   SignUpAvatarScreen,
   CharmsIntroducingScreen,
@@ -14,7 +14,7 @@ import {
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentsOnboardingStackParams = {
-  Welcome: undefined;
+  WelcomeParent: undefined;
   LanguageSelection: undefined;
   Acknowledgement: undefined;
   SignUpCredentials: undefined;
@@ -32,7 +32,7 @@ export const ParentsOnboardingStackNavigator = () => (
       name="OnboardingCarousel"
       component={OnboardingCarouselScreen}
     />
-    <Stack.Screen name="Welcome" component={WelcomeScreen} />
+    <Stack.Screen name="WelcomeParent" component={WelcomeParentScreen} />
     <Stack.Screen
       name="LanguageSelection"
       component={LanguageSelectionScreen}
