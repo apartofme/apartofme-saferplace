@@ -18,8 +18,8 @@ export type ParentsOnboardingStackParams = {
   LanguageSelection: undefined;
   Acknowledgement: undefined;
   SignUpCredentials: undefined;
-  SignUpNickname: undefined;
-  SignUpAvatar: undefined;
+  SignUpNickname: { isChild: boolean };
+  SignUpAvatar: { isChild: boolean };
   CharmsIntroducing: undefined;
   OnboardingCarousel: undefined;
 };

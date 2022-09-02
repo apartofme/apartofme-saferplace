@@ -65,7 +65,7 @@ sagaMiddleware.run(rootSaga);
 export const persistor = persistStore(store);
 
 // Unсomment this line to clear the cache
-// persistor.purge();
+//persistor.purge();
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = typeof store;

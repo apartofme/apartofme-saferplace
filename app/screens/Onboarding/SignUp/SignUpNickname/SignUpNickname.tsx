@@ -7,25 +7,31 @@ import {
   ExtendedText,
   ExtendedTextInput,
   MainHeader,
-} from '../../../../../components';
-import { IMAGES } from '../../../../../assets';
-import { useAppDispatch } from '../../../../../hooks';
-import { cacheSlice } from '../../../../../redux/slices';
-import { generalStyles } from '../../../../../utils/styles';
+} from '../../../../components';
+import { IMAGES } from '../../../../assets';
+import { useAppDispatch } from '../../../../hooks';
+import { cacheSlice } from '../../../../redux/slices';
+import { generalStyles } from '../../../../utils/styles';
 import { ISignUpNicknameScreenProps } from './SignUpNickname.props';
 
 export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   navigation,
+  route,
 }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const isChild = route.params.isChild;
 
   const [nickname, setNickname] = useState('');
 
   const onSubmit = useCallback(() => {
-    dispatch(cacheSlice.actions.saveSignUpData({ nickname }));
-    navigation.navigate('SignUpAvatar');
-  }, [dispatch, navigation, nickname]);
+    if (isChild) {
+      dispatch(cacheSlice.actions.saveSignUpDataChild({ nickname }));
+    } else {
+      dispatch(cacheSlice.actions.saveSignUpDataParent({ nickname }));
+    }
+    navigation.navigate('SignUpAvatar', { isChild });
+  }, [dispatch, isChild, navigation, nickname]);
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
