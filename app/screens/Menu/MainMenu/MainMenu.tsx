@@ -17,9 +17,7 @@ import {
 import { IMainMenuScreenProps } from './MainMenu.props';
 import { styles } from './MainMenu.styles';
 
-export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
-  navigation,
-}) => {
+export const MainMenuScreen: React.FC<IMainMenuScreenProps> = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
