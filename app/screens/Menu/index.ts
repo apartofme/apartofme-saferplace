@@ -1,2 +1,2 @@
 export * from './MainMenu';
-export * from './ParentsGuide';
+export * from './GrownUpsGuide';
