@@ -18,6 +18,7 @@ export const en = {
     attend: 'Attend',
     bid_now: 'Bid Now',
     ready: 'I’m ready',
+    reset_password: 'Reset Password',
     we_ready: 'We’re ready',
   },
   placeholders: {
@@ -116,6 +117,13 @@ export const en = {
           '...can do for you, please let me know. It is my job to care for everything in this forest: from the trees to the people passing through.',
         tenthPhrase:
           'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
+      },
+      forgot_password: {
+        email: {
+          title: 'Forgot your password?',
+          subtitle:
+            'Enter your email address below and we will send you a link to reset your password.',
+        },
       },
     },
     menu: {
