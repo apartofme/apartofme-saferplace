@@ -11,7 +11,7 @@ export const EmojiButtons: React.FC<IEmojiButtonsProps> = ({
   setSelected,
 }) => {
   const [selectedItem, setSelectedItem] = useState<EmojiButtonType>(
-    EmojiButtonType.neutral,
+    EmojiButtonType.Neutral,
   );
 
   useEffect(() => {
@@ -20,17 +20,17 @@ export const EmojiButtons: React.FC<IEmojiButtonsProps> = ({
 
   const getEmojiImage = useCallback(() => {
     switch (selectedItem) {
-      case EmojiButtonType.veryStressed:
+      case EmojiButtonType.VeryStressed:
         return styles.grayBackground;
-      case EmojiButtonType.neutral:
+      case EmojiButtonType.Neutral:
         return styles.greenBackground;
-      case EmojiButtonType.ok:
+      case EmojiButtonType.Ok:
         return styles.yellowBackground;
-      case EmojiButtonType.stressed:
+      case EmojiButtonType.Stressed:
         return styles.orangeBackground;
-      case EmojiButtonType.worried:
+      case EmojiButtonType.Worried:
         return styles.redBackground;
-      case EmojiButtonType.veryOk:
+      case EmojiButtonType.VeryOk:
         return styles.purpleBackground;
     }
   }, [selectedItem]);

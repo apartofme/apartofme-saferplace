@@ -1,10 +1,10 @@
 export enum EmojiButtonType {
-  veryStressed = 'veryStressed',
-  neutral = 'neutral',
-  ok = 'ok',
-  stressed = 'stressed',
-  worried = 'worreid',
-  veryOk = 'veryOk',
+  VeryStressed = 'veryStressed',
+  Neutral = 'neutral',
+  Ok = 'ok',
+  Stressed = 'stressed',
+  Worried = 'worried',
+  VeryOk = 'veryOk',
 }
 
 export interface IEmojiButton {
