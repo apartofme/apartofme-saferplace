@@ -81,7 +81,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
       <ReanimatedCarousel
         loop={false}
         width={WINDOW_WIDTH}
-        data={data}
+        data={[...data]}
         //* Set undefind for default mode
         mode={preset === CarouselType.OnlyImage ? 'parallax' : undefined}
         renderItem={renderCarouselItem}
