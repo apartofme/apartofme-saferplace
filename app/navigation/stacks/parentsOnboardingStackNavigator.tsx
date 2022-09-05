@@ -18,8 +18,8 @@ export type ParentsOnboardingStackParams = {
   LanguageSelection: undefined;
   Acknowledgement: undefined;
   SignUpCredentials: undefined;
-  SignUpNickname: undefined;
-  SignUpAvatar: undefined;
+  SignUpNickname: { isChild?: boolean } | undefined;
+  SignUpAvatar: { isChild?: boolean } | undefined;
   CharmsIntroducing: undefined;
   OnboardingCarousel: undefined;
 };
@@ -42,8 +42,16 @@ export const ParentsOnboardingStackNavigator = () => (
       name="SignUpCredentials"
       component={SignUpCredentialsScreen}
     />
-    <Stack.Screen name="SignUpNickname" component={SignUpNicknameScreen} />
-    <Stack.Screen name="SignUpAvatar" component={SignUpAvatarScreen} />
+    <Stack.Screen
+      name="SignUpNickname"
+      component={SignUpNicknameScreen}
+      initialParams={{ isChild: false }}
+    />
+    <Stack.Screen
+      name="SignUpAvatar"
+      component={SignUpAvatarScreen}
+      initialParams={{ isChild: false }}
+    />
     <Stack.Screen
       name="CharmsIntroducing"
       component={CharmsIntroducingScreen}

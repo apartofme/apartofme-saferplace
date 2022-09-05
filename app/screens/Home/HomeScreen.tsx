@@ -47,6 +47,7 @@ export const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
         <ExtendedButton
           onPress={goToMenuStack}
           title="Go to menu"
+          style={styles.testButton}
           titleStyle={styles.dispatchTestButtonText}
         />
       </View>
