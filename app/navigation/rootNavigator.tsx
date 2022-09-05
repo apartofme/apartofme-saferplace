@@ -7,6 +7,7 @@ import {
   JointOnboardingStackNavigator,
   ParentsOnboardingStackNavigator,
   MenuStackNavigator,
+  EndSequenceStackNavigator,
 } from './stacks';
 import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
@@ -17,6 +18,7 @@ export type RootParams = {
   HomeStack: undefined;
   ParentsOnboardingStack: undefined;
   JointOnboardingStack: undefined;
+  EndSequenceStack: undefined;
   MenuStack: undefined;
 };
 
@@ -36,6 +38,10 @@ const RootNavigator = () => (
         component={JointOnboardingStackNavigator}
       />
       <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
+      <Stack.Screen
+        name="EndSequenceStack"
+        component={EndSequenceStackNavigator}
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );

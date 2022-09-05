@@ -1,0 +1,1 @@
+export { EndSequenceShakeScreen } from './EndSequenceShake';
