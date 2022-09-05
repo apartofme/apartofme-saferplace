@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { ImageSourcePropType, View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSharedValue } from 'react-native-reanimated';
 
 import { WINDOW_WIDTH } from '../../constants/window';
@@ -76,7 +77,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   );
 
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <ReanimatedCarousel
         loop={false}
         width={WINDOW_WIDTH}
@@ -89,6 +90,6 @@ export const Carousel: React.FC<ICarouselProps> = ({
         onSnapToItem={onSnapToItem}
       />
       <View style={generalStyles.aiCenter}>{renderProgressBar()}</View>
-    </View>
+    </GestureHandlerRootView>
   );
 };
