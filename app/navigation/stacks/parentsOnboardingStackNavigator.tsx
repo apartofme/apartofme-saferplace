@@ -63,12 +63,10 @@ export const ParentsOnboardingStackNavigator = () => (
     <Stack.Screen
       name="ForgotPasswordEmail"
       component={ForgotPasswordEmailScreen}
-      initialParams={{ isChild: false }}
     />
     <Stack.Screen
       name="ForgotPasswordSuccess"
       component={ForgotPasswordSuccessScreen}
-      initialParams={{ isChild: false }}
     />
   </Stack.Navigator>
 );
