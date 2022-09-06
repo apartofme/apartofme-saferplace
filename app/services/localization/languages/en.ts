@@ -129,8 +129,13 @@ export const en = {
     menu: {
       main_menu: {
         header: 'Menu',
-        title: 'What would you like to do today?',
-        parents_guide: 'Parents guide',
+        title: 'Hi Parent!',
+        subtitle: 'You are currently playing with Child.',
+        user_add_action: 'Add a new user',
+        guide: 'Guide for Grown Ups',
+        support: 'Help & Support',
+        account_manage: 'Manage account',
+        settings: 'Settings & Privacy',
         logout: 'Logout',
       },
       parents_guide: {
