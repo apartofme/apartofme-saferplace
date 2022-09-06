@@ -1,0 +1,1 @@
+export { OnlyImage } from './OnlyImage';
