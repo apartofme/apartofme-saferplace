@@ -10,7 +10,6 @@ import {
   MainHeader,
 } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
-import { generalStyles } from '../../../../utils/styles';
 import { ISignUpSuccessScreenProps } from './SignUpSuccess.props';
 import { styles } from './SignUpSuccess.styles';
 
@@ -20,8 +19,9 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const isChild = route.params?.isChild;
-  const childAvatar = useAppSelector(state => state.cache.auth.child?.avatar);
-  const parentAvatar = useAppSelector(state => state.cache.auth.parent?.avatar);
+  const avatar = useAppSelector(
+    state => state.cache.auth[isChild ? 'child' : 'parent']?.avatar,
+  );
 
   const getCorrectLocalizationPath = () => {
     if (isChild) {
@@ -32,7 +32,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   };
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={styles.container}>
       {/* // TODO: change to correct function */}
       <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={_.noop}>
         <MainHeader
@@ -41,13 +41,13 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
         />
         {/* // TODO: uncomment when user avatar logic is added */}
         {/*<Image
-          source={isChild ? childAvatar : parentAvatar}
+          source={ avatar }
           style={ styles.mt113 }
         />*/}
         <ExtendedText style={styles.title}>
           {t(`${getCorrectLocalizationPath()}.title`)}
         </ExtendedText>
-        <ExtendedText>
+        <ExtendedText style={styles.subtitle}>
           {t(`${getCorrectLocalizationPath()}.subtitle`)}
         </ExtendedText>
       </BottomButtonView>
