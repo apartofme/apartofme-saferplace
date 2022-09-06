@@ -47,7 +47,7 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
             {t('screens.onboarding.language_selection.title')}
           </ExtendedText>
           <RadioButtonList
-            data={LANGUAGES}
+            data={[...LANGUAGES]}
             type={RadioButtonListType.Single}
             setSelected={setSelectedLanguage}
           />

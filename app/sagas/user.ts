@@ -1,14 +1,19 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { userSlice } from '../redux/slices';
-import { IAuthUserActionPayload } from '../redux/types';
+import {
+  IAuthUserActionPayload,
+  IResetPasswordActionPayload,
+} from '../redux/types';
 import {
   firebaseLoginUser,
   firebaseLogout,
+  firebasePasswordReset,
   firebaseRegisterUser,
   firestoreSaveDeviceToken,
   IFirebaseAuthResponse,
 } from '../services/firebase';
+import { Nullable } from '../utils';
 
 function* watchLoginUser({
   payload: { email, password },
@@ -29,7 +34,7 @@ function* watchLoginUser({
 }
 
 function* watchRegisterUser() {
-  const { email, password } = yield select(state => state.cache.auth);
+  const { email, password } = yield select(state => state.cache.auth.parent);
   const registerUserResponse: IFirebaseAuthResponse = yield call(
     firebaseRegisterUser,
     email,
@@ -42,6 +47,21 @@ function* watchRegisterUser() {
   }
 }
 
+function* watchResetPassword({
+  payload: { email },
+}: IResetPasswordActionPayload) {
+  const resetPasswordResponse: Nullable<string> = yield call(
+    firebasePasswordReset,
+    email,
+  );
+  if (!resetPasswordResponse) {
+    // TODO: uncomment when AuthStack will be done
+    // StaticNavigator.navigateTo('AuthStack');
+  } else {
+    yield put(userSlice.actions.resetPasswordError(resetPasswordResponse));
+  }
+}
+
 function* watchLogout() {
   yield call(firebaseLogout);
   // TODO: uncomment when AuthStack will be done
@@ -51,5 +71,6 @@ function* watchLogout() {
 export function* userSaga() {
   yield takeLatest(userSlice.actions.loginUser, watchLoginUser);
   yield takeLatest(userSlice.actions.registerUser, watchRegisterUser);
+  yield takeLatest(userSlice.actions.resetPassword, watchResetPassword);
   yield takeLatest(userSlice.actions.logout, watchLogout);
 }
