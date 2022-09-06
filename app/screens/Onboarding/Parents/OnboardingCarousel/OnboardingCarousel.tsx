@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
@@ -13,13 +12,16 @@ import { CHARMS_CAROUSEL } from './OnboardingCarousel.data';
 import { IOnboardingCarouselScreenProps } from './OnboardingCarousel.props';
 
 export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> =
-  () => {
+  ({ navigation }) => {
     const { t } = useTranslation();
 
+    const onSubmit = useCallback(() => {
+      navigation.navigate('SignUpCredentials');
+    }, [navigation]);
+
     return (
-      // TODO: remove noop to real function
       <SafeAreaView style={generalStyles.whFlex}>
-        <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={_.noop}>
+        <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
           <Carousel
             data={CHARMS_CAROUSEL}
             preset={CarouselType.ImageTitleSubTitle}

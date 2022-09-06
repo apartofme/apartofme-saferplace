@@ -36,54 +36,54 @@ export const en = {
       acknowledgement: {
         title:
           'If you have arrived here, then I know you and your family have been through some really tough times.',
-        subTitle:
+        subtitle:
           'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
-      },
-      sign_up_credentials: {
-        title: 'Create an account',
-        subTitle: 'Already have an account?',
-        footer: 'By creating on account you agreeing to our',
-      },
-      sign_up_nickname: {
-        title: 'What should we call you?',
-        subTitle: '',
-      },
-      sign_up_avatar: {
-        title: 'Select your avatar',
-        subTitle: '',
-        charms_introducing: {
-          first: {
-            title: 'Charms',
-            subTitle:
-              'To advance through the app, you and your child will complete special exercises together, called Charms.',
-          },
-          second: {
-            title: 'Charms',
-            subTitle:
-              'These are fun and simple actions to perform which will help you connect with each other and grow together.',
-          },
-          third: {
-            title: 'A Charm for you',
-            subTitle:
-              'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
-          },
-        },
       },
       onboard_carousel: {
         first: {
           title: 'A Safer Place',
-          subTitle:
+          subtitle:
             'This app has been created to help you and your child understand the difficult things that you have been through together.',
         },
         second: {
           title: 'Snappy Title here',
-          subTitle:
+          subtitle:
             'It mixes magical storytelling and proven therapy techniques to keep you both motivated and engaged.',
         },
         third: {
           title: 'A Better Future',
-          subTitle:
+          subtitle:
             'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
+        },
+      },
+      sign_up_credentials: {
+        title: 'Create an account',
+        subtitle: 'Already have an account?',
+        footer: 'By creating on account you agreeing to our',
+      },
+      sign_up_nickname: {
+        title: 'What should we call you?',
+        subtitle: '',
+      },
+      sign_up_avatar: {
+        title: 'Select your avatar',
+        subtitle: '',
+      },
+      charms_introducing: {
+        first: {
+          title: 'Charms',
+          subtitle:
+            'To advance through the app, you and your child will complete special exercises together, called Charms.',
+        },
+        second: {
+          title: 'Charms',
+          subtitle:
+            'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+        },
+        third: {
+          title: 'A Charm for you',
+          subtitle:
+            'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
         },
       },
       joint: {
