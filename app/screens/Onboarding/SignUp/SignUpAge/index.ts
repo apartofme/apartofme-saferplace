@@ -1,0 +1,1 @@
+export { SignUpAgeScreen } from './SignUpAge';
