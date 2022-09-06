@@ -2,15 +2,15 @@ import { StyleSheet, ViewStyle } from 'react-native';
 
 interface ISignUpAgeScreenStyles {
   container: ViewStyle;
-  vm: ViewStyle;
+  subtitle: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ISignUpAgeScreenStyles>({
   container: {
     flex: 1,
-    paddingHorizontal: 25,
+    paddingHorizontal: 24,
   },
-  vm: {
+  subtitle: {
     marginTop: 24,
     marginBottom: 68,
   },
