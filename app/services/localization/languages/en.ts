@@ -1,5 +1,6 @@
 export const en = {
   buttons: {
+    back: 'back',
     confirm: 'Confirm',
     enter: 'Enter',
     next: 'Next',
@@ -141,6 +142,10 @@ export const en = {
             question_third: 'question third',
           },
         },
+      },
+      feedback_success: {
+        title: 'Thank you!',
+        subtitle: 'We really appreciate your feedback.',
       },
     },
   },
