@@ -1,7 +1,10 @@
+import { ImageSourcePropType } from 'react-native';
+
 import { CarouselType, ICarouselItem } from './Carousel.data';
 
 export interface ICarouselProps {
-  data: ICarouselItem[];
+  data: ReadonlyArray<ICarouselItem>;
   preset: CarouselType;
   setCurrentPossition?: (item: number) => void;
+  setImage?: (item: ImageSourcePropType) => void;
 }

@@ -12,6 +12,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		21175C43DE8C5629C684A850 /* Pods_SaferPlace_SaferPlaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752DBD64088926D77B3282BE /* Pods_SaferPlace_SaferPlaceTests.framework */; };
+		43927B8328C7818800F48B05 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43927B8028C7818800F48B05 /* Poppins-Regular.ttf */; };
+		43927B8428C7818800F48B05 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43927B8128C7818800F48B05 /* Poppins-Medium.ttf */; };
+		43927B8528C7818800F48B05 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43927B8228C7818800F48B05 /* Poppins-Bold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9547DB2928B7B01A00C6720C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9547DB2828B7B01A00C6720C /* GoogleService-Info.plist */; };
 		AB9D31F293B821450D9F0103 /* Pods_SaferPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */; };
@@ -39,6 +42,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SaferPlace/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SaferPlace/main.m; sourceTree = "<group>"; };
 		3FAC6A424648B6EE3F41B110 /* Pods-SaferPlace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaferPlace.debug.xcconfig"; path = "Target Support Files/Pods-SaferPlace/Pods-SaferPlace.debug.xcconfig"; sourceTree = "<group>"; };
+		43927B8028C7818800F48B05 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../../../../Desktop/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		43927B8128C7818800F48B05 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Medium.ttf"; path = "../../../../../Desktop/Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		43927B8228C7818800F48B05 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../../../../Desktop/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752DBD64088926D77B3282BE /* Pods_SaferPlace_SaferPlaceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace_SaferPlaceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SaferPlace/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -111,6 +117,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		43927B7F28C7812700F48B05 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				43927B8228C7818800F48B05 /* Poppins-Bold.ttf */,
+				43927B8128C7818800F48B05 /* Poppins-Medium.ttf */,
+				43927B8028C7818800F48B05 /* Poppins-Regular.ttf */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +137,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				43927B7F28C7812700F48B05 /* Resourses */,
 				13B07FAE1A68108700A75B9A /* SaferPlace */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SaferPlaceTests */,
@@ -247,8 +264,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				43927B8528C7818800F48B05 /* Poppins-Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				9547DB2928B7B01A00C6720C /* GoogleService-Info.plist in Resources */,
+				43927B8328C7818800F48B05 /* Poppins-Regular.ttf in Resources */,
+				43927B8428C7818800F48B05 /* Poppins-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +570,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -616,7 +636,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -27,10 +27,11 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   const onSubmit = useCallback(() => {
     if (isChild) {
       dispatch(cacheSlice.actions.saveSignUpDataChild({ nickname }));
+      navigation.navigate('SignUpAge');
     } else {
       dispatch(cacheSlice.actions.saveSignUpDataParent({ nickname }));
+      navigation.navigate('SignUpAvatar');
     }
-    navigation.navigate('SignUpAvatar');
   }, [dispatch, isChild, navigation, nickname]);
 
   return (
