@@ -11,9 +11,9 @@ import {
   MainHeader,
 } from '../../../../components';
 import { useAppDispatch } from '../../../../hooks';
+import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAgeScreenProps } from './SignUpAgeScreen.props';
-import { styles } from './SignUpAgeScreen.styles';
 
 export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
   navigation,
@@ -23,7 +23,10 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
 
   const [age, setAge] = useState<string>('');
 
-  const onSubmit = useCallback(() => {}, []);
+  const onSubmit = useCallback(() => {
+    dispatch(cacheSlice.actions.saveSignUpDataChild({ age }));
+    navigation.navigate('SignUpAvatar');
+  }, [age, dispatch, navigation]);
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>

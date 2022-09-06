@@ -23,6 +23,7 @@ export const en = {
   placeholders: {
     enter_email: 'Enter your email address',
     create_password: 'Create a password',
+    enter_age: 'Enter age',
   },
   screens: {
     onboarding: {
@@ -67,6 +68,11 @@ export const en = {
               'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
           },
         },
+      },
+      sign_up_age: {
+        title: 'How old are you [child]?',
+        subtitle:
+          'This will help us to improve the experience for different ages.',
       },
       onboard_carousel: {
         first: {
