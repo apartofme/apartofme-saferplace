@@ -19,6 +19,7 @@ export const en = {
     bid_now: 'Bid Now',
     ready: 'I’m ready',
     we_ready: 'We’re ready',
+    open_email: 'Open email app',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -116,6 +117,13 @@ export const en = {
           '...can do for you, please let me know. It is my job to care for everything in this forest: from the trees to the people passing through.',
         tenthPhrase:
           'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
+      },
+      forgot_password: {
+        success: {
+          title: 'Check your email',
+          subtitle:
+            'An email has been sent to you with instructions on resetting your password. If you have not received the email, check your spam folder.',
+        },
       },
     },
     menu: {
