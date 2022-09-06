@@ -1,9 +1,11 @@
 export const en = {
   buttons: {
+    cancel: 'Cancel',
     confirm: 'Confirm',
     enter: 'Enter',
     next: 'Next',
     login: 'Login',
+    save: 'Save',
     signup: 'Sign up',
     skip: 'Skip',
     privacy_policy: 'Privacy Policy',
@@ -160,6 +162,10 @@ export const en = {
             question_third: 'question third',
           },
         },
+      },
+      language_settings: {
+        title: 'Language Settings',
+        subtitle: 'Edit your language settings here:',
       },
     },
   },
