@@ -22,6 +22,15 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
   return registerUserResponse;
 };
 
+export const firebasePasswordReset = async (email: string) => {
+  try {
+    await auth().sendPasswordResetEmail(email);
+    return null;
+  } catch (error) {
+    return parseFirebaseError((error as IFirebaseAuthError).code);
+  }
+};
+
 export const firebaseLoginUser = async (email: string, password: string) => {
   const loginUserResponse: IFirebaseAuthResponse = {
     user: null,
