@@ -12,6 +12,7 @@ import {
 import { useAppSelector } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpSuccessScreenProps } from './SignUpSuccess.props';
+import { styles } from './SignUpSuccess.styles';
 
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   navigation,
@@ -22,10 +23,13 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   const childAvatar = useAppSelector(state => state.cache.auth.child?.avatar);
   const parentAvatar = useAppSelector(state => state.cache.auth.parent?.avatar);
 
-  const getTextType = () =>
-    isChild
-      ? 'screens.onboarding.sign_up_success.child'
-      : 'screens.onboarding.sign_up_success.parent';
+  const getCorrectLocalizationPath = () => {
+    if (isChild) {
+      return 'screens.onboarding.sign_up_success.child';
+    } else {
+      return 'screens.onboarding.sign_up_success.parent';
+    }
+  };
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
@@ -38,10 +42,14 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
         {/* // TODO: uncomment when user avatar logic is added */}
         {/*<Image
           source={isChild ? childAvatar : parentAvatar}
-          style={{ width: 50, height: 50 }}
+          style={ styles.mt113 }
         />*/}
-        <ExtendedText>{t(`${getTextType()}.title`)}</ExtendedText>
-        <ExtendedText>{t(`${getTextType()}.subtitle`)}</ExtendedText>
+        <ExtendedText style={styles.title}>
+          {t(`${getCorrectLocalizationPath()}.title`)}
+        </ExtendedText>
+        <ExtendedText>
+          {t(`${getCorrectLocalizationPath()}.subtitle`)}
+        </ExtendedText>
       </BottomButtonView>
     </SafeAreaView>
   );
