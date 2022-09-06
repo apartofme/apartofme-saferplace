@@ -11,7 +11,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const goToLanguageSelection = useCallback(() => {
+  const onEnterPress = useCallback(() => {
     navigation.navigate('LanguageSelection');
   }, [navigation]);
 
@@ -19,7 +19,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
     <SafeAreaView style={generalStyles.whFlex}>
       <BottomButtonView
         buttonTitle={t('buttons.enter')}
-        onSubmit={goToLanguageSelection}>
+        onSubmit={onEnterPress}>
         <ExtendedText>{t('screens.onboarding.welcome.title')}</ExtendedText>
       </BottomButtonView>
     </SafeAreaView>

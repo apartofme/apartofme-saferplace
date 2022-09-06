@@ -4,7 +4,7 @@ import {
 } from './RadioButtonList.data';
 
 export interface IRadioButtonListProps {
-  data: IRadioButtonListItem[];
+  data: ReadonlyArray<IRadioButtonListItem>;
   type: RadioButtonListType;
   setSelected: (items: string[]) => void;
 }

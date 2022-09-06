@@ -6,20 +6,20 @@ export const CHARMS_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   {
     id: '1',
     image: IMAGES.WHITE_PENCIL,
-    titleID: 'screens.onboarding.charms_introducing.first.title',
-    subTitleID: 'screens.onboarding.charms_introducing.first.subTitle',
+    titleKey: 'screens.onboarding.charms_introducing.first.title',
+    subtitleKey: 'screens.onboarding.charms_introducing.first.subtitle',
   },
   {
     id: '2',
     image: IMAGES.WHITE_PENCIL,
-    titleID: 'screens.onboarding.charms_introducing.second.title',
-    subTitleID: 'screens.onboarding.charms_introducing.second.subTitle',
+    titleKey: 'screens.onboarding.charms_introducing.second.title',
+    subtitleKey: 'screens.onboarding.charms_introducing.second.subtitle',
   },
   {
     id: '3',
     image: IMAGES.WHITE_PENCIL,
-    titleID: 'screens.onboarding.charms_introducing.third.title',
-    subTitleID: 'screens.onboarding.charms_introducing.third.subTitle',
+    titleKey: 'screens.onboarding.charms_introducing.third.title',
+    subtitleKey: 'screens.onboarding.charms_introducing.third.subtitle',
   },
 ];
 
