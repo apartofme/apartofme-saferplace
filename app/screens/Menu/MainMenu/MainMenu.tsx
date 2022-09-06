@@ -22,7 +22,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = () => {
     // navigation.navigate(item.type);
   }, []);
 
-  const onLogOut = useCallback(() => {
+  const onLogoutPress = useCallback(() => {
     dispatch(userSlice.actions.logout());
   }, [dispatch]);
 
@@ -55,7 +55,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = () => {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.logOutContainer} onPress={onLogOut}>
+        <TouchableOpacity
+          style={styles.logOutContainer}
+          onPress={onLogoutPress}>
           <ExtendedText>Log out</ExtendedText>
         </TouchableOpacity>
       </View>
