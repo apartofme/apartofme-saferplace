@@ -3,7 +3,7 @@ import { ImageSourcePropType } from 'react-native';
 import { IMAGES } from '../../../assets';
 
 export enum MainMenuItemType {
-  Guide = 'guide',
+  Guide = 'GrownUpsGuide',
   Support = 'support',
   AccountManage = 'accountManage',
   Settings = 'settings',

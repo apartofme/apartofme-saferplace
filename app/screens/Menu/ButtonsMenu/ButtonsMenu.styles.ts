@@ -1,11 +1,11 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
-interface IGrownUpsGuideScreenStyles {
+interface IButtonsMenuScreenStyles {
   container: ViewStyle;
   title: TextStyle;
 }
 
-export const styles = StyleSheet.create<IGrownUpsGuideScreenStyles>({
+export const styles = StyleSheet.create<IButtonsMenuScreenStyles>({
   container: {
     marginLeft: 26,
     marginRight: 23,
