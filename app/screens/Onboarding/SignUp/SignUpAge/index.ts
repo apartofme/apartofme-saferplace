@@ -1,1 +1,1 @@
-export { SignUpAgeScreen } from './SignUpAgeScreen';
+export { SignUpAgeScreen } from './SignUpAge';

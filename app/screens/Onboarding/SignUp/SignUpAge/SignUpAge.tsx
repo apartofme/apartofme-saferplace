@@ -13,7 +13,7 @@ import {
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpAgeScreenProps } from './SignUpAgeScreen.props';
+import { ISignUpAgeScreenProps } from './SignUpAge.props';
 
 export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
   navigation,
