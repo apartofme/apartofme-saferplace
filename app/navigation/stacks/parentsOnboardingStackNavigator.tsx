@@ -39,10 +39,6 @@ export const ParentsOnboardingStackNavigator = () => (
     />
     <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
     <Stack.Screen
-      name="CharmsIntroducing"
-      component={CharmsIntroducingScreen}
-    />
-    <Stack.Screen
       name="SignUpCredentials"
       component={SignUpCredentialsScreen}
     />
@@ -55,6 +51,10 @@ export const ParentsOnboardingStackNavigator = () => (
       name="SignUpAvatar"
       component={SignUpAvatarScreen}
       initialParams={{ isChild: false }}
+    />
+    <Stack.Screen
+      name="CharmsIntroducing"
+      component={CharmsIntroducingScreen}
     />
   </Stack.Navigator>
 );
