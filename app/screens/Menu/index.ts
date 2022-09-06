@@ -1,2 +1,3 @@
 export * from './MainMenu';
-export * from './GrownUpsGuide';
+export * from './LanguageSettings';
+export * from './ParentsGuide';

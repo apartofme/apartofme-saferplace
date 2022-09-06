@@ -1,9 +1,11 @@
 export const en = {
   buttons: {
+    cancel: 'Cancel',
     confirm: 'Confirm',
     enter: 'Enter',
     next: 'Next',
     login: 'Login',
+    save: 'Save',
     signup: 'Sign up',
     skip: 'Skip',
     privacy_policy: 'Privacy Policy',
@@ -18,7 +20,9 @@ export const en = {
     attend: 'Attend',
     bid_now: 'Bid Now',
     ready: 'I’m ready',
+    reset_password: 'Reset Password',
     we_ready: 'We’re ready',
+    open_email: 'Open email app',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -35,54 +39,54 @@ export const en = {
       acknowledgement: {
         title:
           'If you have arrived here, then I know you and your family have been through some really tough times.',
-        subTitle:
+        subtitle:
           'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
-      },
-      sign_up_credentials: {
-        title: 'Create an account',
-        subTitle: 'Already have an account?',
-        footer: 'By creating on account you agreeing to our',
-      },
-      sign_up_nickname: {
-        title: 'What should we call you?',
-        subTitle: '',
-      },
-      sign_up_avatar: {
-        title: 'Select your avatar',
-        subTitle: '',
-        charms_introducing: {
-          first: {
-            title: 'Charms',
-            subTitle:
-              'To advance through the app, you and your child will complete special exercises together, called Charms.',
-          },
-          second: {
-            title: 'Charms',
-            subTitle:
-              'These are fun and simple actions to perform which will help you connect with each other and grow together.',
-          },
-          third: {
-            title: 'A Charm for you',
-            subTitle:
-              'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
-          },
-        },
       },
       onboard_carousel: {
         first: {
           title: 'A Safer Place',
-          subTitle:
+          subtitle:
             'This app has been created to help you and your child understand the difficult things that you have been through together.',
         },
         second: {
           title: 'Snappy Title here',
-          subTitle:
+          subtitle:
             'It mixes magical storytelling and proven therapy techniques to keep you both motivated and engaged.',
         },
         third: {
           title: 'A Better Future',
-          subTitle:
+          subtitle:
             'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
+        },
+      },
+      sign_up_credentials: {
+        title: 'Create an account',
+        subtitle: 'Already have an account?',
+        footer: 'By creating on account you agreeing to our',
+      },
+      sign_up_nickname: {
+        title: 'What should we call you?',
+        subtitle: '',
+      },
+      sign_up_avatar: {
+        title: 'Select your avatar',
+        subtitle: '',
+      },
+      charms_introducing: {
+        first: {
+          title: 'Charms',
+          subtitle:
+            'To advance through the app, you and your child will complete special exercises together, called Charms.',
+        },
+        second: {
+          title: 'Charms',
+          subtitle:
+            'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+        },
+        third: {
+          title: 'A Charm for you',
+          subtitle:
+            'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
         },
       },
       joint: {
@@ -117,12 +121,29 @@ export const en = {
         tenthPhrase:
           'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
       },
+      forgot_password: {
+        email: {
+          title: 'Forgot your password?',
+          subtitle:
+            'Enter your email address below and we will send you a link to reset your password.',
+        },
+      },
+      success: {
+        title: 'Check your email',
+        subtitle:
+          'An email has been sent to you with instructions on resetting your password. If you have not received the email, check your spam folder.',
+      },
     },
     menu: {
       main_menu: {
         header: 'Menu',
-        title: 'What would you like to do today?',
-        parents_guide: 'Parents guide',
+        title: 'Hi Parent!',
+        subtitle: 'You are currently playing with Child.',
+        user_add_action: 'Add a new user',
+        guide: 'Guide for Grown Ups',
+        support: 'Help & Support',
+        account_manage: 'Manage account',
+        settings: 'Settings & Privacy',
         logout: 'Logout',
       },
       grown_ups_guide: {
@@ -130,6 +151,10 @@ export const en = {
         first_item: 'About the Charms',
         second_item: 'Frequently Asked Questions',
         third_item: 'Feedback',
+      },
+      language_settings: {
+        title: 'Language Settings',
+        subtitle: 'Edit your language settings here:',
       },
     },
   },
