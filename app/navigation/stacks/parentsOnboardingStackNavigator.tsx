@@ -10,6 +10,7 @@ import {
   SignUpAvatarScreen,
   CharmsIntroducingScreen,
   OnboardingCarouselScreen,
+  SignUpSuccessScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -20,6 +21,7 @@ export type ParentsOnboardingStackParams = {
   SignUpCredentials: undefined;
   SignUpNickname: { isChild?: boolean } | undefined;
   SignUpAvatar: { isChild?: boolean } | undefined;
+  SignUpSuccess: { isChild?: boolean } | undefined;
   CharmsIntroducing: undefined;
   OnboardingCarousel: undefined;
 };
@@ -54,6 +56,11 @@ export const ParentsOnboardingStackNavigator = () => (
     <Stack.Screen
       name="SignUpAvatar"
       component={SignUpAvatarScreen}
+      initialParams={{ isChild: false }}
+    />
+    <Stack.Screen
+      name="SignUpSuccess"
+      component={SignUpSuccessScreen}
       initialParams={{ isChild: false }}
     />
   </Stack.Navigator>

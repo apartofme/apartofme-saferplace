@@ -68,6 +68,17 @@ export const en = {
           },
         },
       },
+      sign_up_success: {
+        parent: {
+          title: '[Grown up] You are so very welcome here',
+          subtitle:
+            'That’s your account all set up and ready to go! Please check your email for confirmation.',
+        },
+        child: {
+          title: '[child] you are so very welcome here',
+          subtitle: 'That’s you all set up and ready to go!',
+        },
+      },
       onboard_carousel: {
         first: {
           title: 'A Safer Place',
