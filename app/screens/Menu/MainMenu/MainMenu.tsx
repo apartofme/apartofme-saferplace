@@ -9,11 +9,7 @@ import { useAppDispatch } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
-import {
-  IMainMenuItem,
-  MainMenuItemType,
-  MAIN_MENU_ITEMS,
-} from './MainMenu.data';
+import { IMainMenuItem, MAIN_MENU_ITEMS } from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.props';
 import { styles } from './MainMenu.styles';
 
@@ -23,22 +19,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = () => {
 
   // TODO: change when adding screens
   const onMenuItemPress = useCallback((item: IMainMenuItem) => {
-    switch (item.type) {
-      case MainMenuItemType.Guide:
-        // navigation.navigate('');
-        break;
-      case MainMenuItemType.Guide:
-        // navigation.navigate('');
-        break;
-      case MainMenuItemType.Guide:
-        // navigation.navigate('');
-        break;
-      case MainMenuItemType.Guide:
-        // navigation.navigate('');
-        break;
-      default:
-        break;
-    }
+    // navigation.navigate(item.type);
   }, []);
 
   const onLogOut = useCallback(() => {
@@ -48,7 +29,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = () => {
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <MainHeader
-        // TODO: change for correct icon
+        // TODO: change to correct icon
         rightIcon={IMAGES.WHITE_BACK_ARROW}
       />
       <View style={styles.container}>
