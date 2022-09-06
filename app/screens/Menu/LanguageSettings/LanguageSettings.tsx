@@ -10,10 +10,10 @@ import {
   RadioButtonList,
   RadioButtonListType,
 } from '../../../components';
+import { LANGUAGES } from '../../../constants/languages';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
 import i18n from '../../../services/localization';
-import { LANGUAGES } from './LanguageSelection.data';
 import { ILanguageSettingsScreenProps } from './LanguageSettings.props';
 import { styles } from './LanguageSettings.styles';
 

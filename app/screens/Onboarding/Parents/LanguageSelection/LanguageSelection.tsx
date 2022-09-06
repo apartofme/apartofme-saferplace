@@ -14,8 +14,8 @@ import { useAppDispatch } from '../../../../hooks';
 import { settingsSlice } from '../../../../redux/slices/settingsSlice';
 import { generalStyles } from '../../../../utils/styles';
 import i18n from '../../../../services/localization';
-import { LANGUAGES } from './LanguageSelection.data';
 import { ILanguageSelectionScreenProps } from './LanguageSelection.props';
+import { LANGUAGES } from '../../../../constants/languages';
 
 export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
   ({ navigation }) => {
