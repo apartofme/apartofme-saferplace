@@ -9,3 +9,8 @@ export type IAuthUserActionPayload = PayloadAction<{
 }>;
 
 export type IAuthUserSuccessActionPayload = PayloadAction<Nullable<IUser>>;
+
+export interface IResetPasswordPayload {
+  email: string;
+}
+export type IResetPasswordActionPayload = PayloadAction<IResetPasswordPayload>;

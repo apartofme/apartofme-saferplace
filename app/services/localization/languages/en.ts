@@ -20,6 +20,7 @@ export const en = {
     ready: 'I’m ready',
     reset_password: 'Reset Password',
     we_ready: 'We’re ready',
+    open_email: 'Open email app',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -123,6 +124,12 @@ export const en = {
           title: 'Forgot your password?',
           subtitle:
             'Enter your email address below and we will send you a link to reset your password.',
+            }
+        success: {
+          title: 'Check your email',
+          subtitle:
+            'An email has been sent to you with instructions on resetting your password. If you have not received the email, check your spam folder.',
+          },
         },
       },
     },

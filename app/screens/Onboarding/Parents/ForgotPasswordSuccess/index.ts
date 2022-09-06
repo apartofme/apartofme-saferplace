@@ -1,0 +1,1 @@
+export { ForgotPasswordSuccessScreen } from './ForgotPasswordSuccessScreen';
