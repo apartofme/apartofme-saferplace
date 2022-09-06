@@ -1,0 +1,1 @@
+export { LanguageSettingsScreen } from './LanguageSettings';

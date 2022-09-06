@@ -1,9 +1,11 @@
 export const en = {
   buttons: {
+    cancel: 'Cancel',
     confirm: 'Confirm',
     enter: 'Enter',
     next: 'Next',
     login: 'Login',
+    save: 'Save',
     signup: 'Sign up',
     skip: 'Skip',
     privacy_policy: 'Privacy Policy',
@@ -25,6 +27,7 @@ export const en = {
   placeholders: {
     enter_email: 'Enter your email address',
     create_password: 'Create a password',
+    enter_age: 'Enter age',
   },
   screens: {
     onboarding: {
@@ -80,6 +83,11 @@ export const en = {
           title: '[child] you are so very welcome here',
           subtitle: 'That’s you all set up and ready to go!',
         },
+      },
+      sign_up_age: {
+        title: 'How old are you [child]?',
+        subtitle:
+          'This will help us to improve the experience for different ages.',
       },
       onboard_carousel: {
         first: {
@@ -171,6 +179,10 @@ export const en = {
             question_third: 'question third',
           },
         },
+      },
+      language_settings: {
+        title: 'Language Settings',
+        subtitle: 'Edit your language settings here:',
       },
     },
   },
