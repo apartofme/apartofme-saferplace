@@ -174,7 +174,7 @@ export const en = {
         title: 'Feedback',
         subtitle:
           'We are continually trying to improve our service, so your comments and feedback mean everything to us.',
-        },
+      },
       language_settings: {
         title: 'Language Settings',
         subtitle: 'Edit your language settings here:',
