@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
@@ -18,11 +19,7 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = () => {
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
-      <BottomButtonView
-        buttonTitle={t('buttons.submit')}
-        onSubmit={function (): void {
-          throw new Error('Function not implemented.');
-        }}>
+      <BottomButtonView buttonTitle={t('buttons.submit')} onSubmit={_.noop}>
         <View style={styles.container}>
           <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} />
           <ExtendedText style={styles.title}>
