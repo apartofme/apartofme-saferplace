@@ -18,7 +18,9 @@ export const en = {
     attend: 'Attend',
     bid_now: 'Bid Now',
     ready: 'I’m ready',
+    reset_password: 'Reset Password',
     we_ready: 'We’re ready',
+    open_email: 'Open email app',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -128,12 +130,29 @@ export const en = {
         tenthPhrase:
           'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
       },
+      forgot_password: {
+        email: {
+          title: 'Forgot your password?',
+          subtitle:
+            'Enter your email address below and we will send you a link to reset your password.',
+        },
+      },
+      success: {
+        title: 'Check your email',
+        subtitle:
+          'An email has been sent to you with instructions on resetting your password. If you have not received the email, check your spam folder.',
+      },
     },
     menu: {
       main_menu: {
         header: 'Menu',
-        title: 'What would you like to do today?',
-        parents_guide: 'Parents guide',
+        title: 'Hi Parent!',
+        subtitle: 'You are currently playing with Child.',
+        user_add_action: 'Add a new user',
+        guide: 'Guide for Grown Ups',
+        support: 'Help & Support',
+        account_manage: 'Manage account',
+        settings: 'Settings & Privacy',
         logout: 'Logout',
       },
       parents_guide: {

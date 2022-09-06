@@ -9,7 +9,7 @@ import {
 } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
 import { CHARMS_CAROUSEL } from './OnboardingCarousel.data';
-import { IOnboardingCarouselScreenProps } from './OnboardingCarousel.props';
+import { IOnboardingCarouselScreenProps } from '../OnboardCarousel/OnboardingCarousel.props';
 
 export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> =
   ({ navigation }) => {
@@ -23,7 +23,7 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
       <SafeAreaView style={generalStyles.whFlex}>
         <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
           <Carousel
-            data={CHARMS_CAROUSEL}
+            data={[...CHARMS_CAROUSEL]}
             preset={CarouselType.ImageTitleSubTitle}
           />
         </BottomButtonView>

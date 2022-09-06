@@ -11,6 +11,8 @@ import {
   CharmsIntroducingScreen,
   OnboardingCarouselScreen,
   SignUpSuccessScreen,
+  ForgotPasswordEmailScreen,
+  ForgotPasswordSuccessScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -24,6 +26,8 @@ export type ParentsOnboardingStackParams = {
   SignUpSuccess: { isChild?: boolean } | undefined;
   CharmsIntroducing: undefined;
   OnboardingCarousel: undefined;
+  ForgotPasswordEmail: undefined;
+  ForgotPasswordSuccess: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParentsOnboardingStackParams>();
@@ -61,6 +65,14 @@ export const ParentsOnboardingStackNavigator = () => (
       name="SignUpSuccess"
       component={SignUpSuccessScreen}
       initialParams={{ isChild: false }}
+    />
+    <Stack.Screen
+      name="ForgotPasswordEmail"
+      component={ForgotPasswordEmailScreen}
+    />
+    <Stack.Screen
+      name="ForgotPasswordSuccess"
+      component={ForgotPasswordSuccessScreen}
     />
   </Stack.Navigator>
 );
