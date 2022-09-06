@@ -6,7 +6,7 @@ import { IExtendedTextProps } from './ExtendedText.props';
 
 export const ExtendedText: React.FC<IExtendedTextProps> = ({
   style,
-  preset = 'default',
+  preset = 'body-regular',
   ...rest
 }) => {
   const styles = [presets[preset], style];

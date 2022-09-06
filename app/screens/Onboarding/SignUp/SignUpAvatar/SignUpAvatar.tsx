@@ -4,6 +4,8 @@ import React, { useCallback, useState } from 'react';
 
 import {
   BottomButtonView,
+  Carousel,
+  CarouselType,
   ExtendedText,
   MainHeader,
 } from '../../../../components';
@@ -12,6 +14,7 @@ import { useAppDispatch } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.props';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
+import { SING_UP_CAROUSEL } from './SignUpAvatar.data';
 
 export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   navigation,
@@ -22,7 +25,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const isChild = route.params?.isChild;
 
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(SING_UP_CAROUSEL[0].image);
 
   const onSubmitButtonPress = useCallback(() => {
     if (isChild) {
@@ -30,8 +33,9 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     } else {
       dispatch(cacheSlice.actions.saveSignUpDataParent({ avatar }));
       dispatch(userSlice.actions.registerUser());
+      navigation.navigate('CharmsIntroducing');
     }
-  }, [avatar, dispatch, isChild]);
+  }, [avatar, dispatch, isChild, navigation]);
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
@@ -49,7 +53,11 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
         <ExtendedText>
           {t('screens.onboarding.sign_up_avatar.subtitle')}
         </ExtendedText>
-        {/* // TODO: add carousel */}
+        <Carousel
+          data={[...SING_UP_CAROUSEL]}
+          preset={CarouselType.OnlyImage}
+          setImage={setAvatar}
+        />
       </BottomButtonView>
     </SafeAreaView>
   );
