@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native';
 
-import { BottomButtonView, ExtendedText } from '../../../components';
-import { generalStyles } from '../../../utils/styles';
+import { BottomButtonView, ExtendedText } from '../../../../components';
+import { generalStyles } from '../../../../utils/styles';
 import { IWelcomeParentScreenProps } from './WelcomeParent.props';
 
 export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
