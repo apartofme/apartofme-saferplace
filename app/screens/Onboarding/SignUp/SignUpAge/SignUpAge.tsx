@@ -14,6 +14,7 @@ import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAgeScreenProps } from './SignUpAge.props';
+import { styles } from './SignUpAge.styles';
 
 export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
   navigation,
@@ -29,8 +30,8 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
   }, [age, dispatch, navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
-      <KeyboardAvoidingView style={generalStyles.flex} behavior="padding">
+    <SafeAreaView style={generalStyles.flex}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <BottomButtonView
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
@@ -42,7 +43,7 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
           <ExtendedText>
             {t('screens.onboarding.sign_up_age.title')}
           </ExtendedText>
-          <ExtendedText>
+          <ExtendedText style={styles.vm}>
             {t('screens.onboarding.sign_up_age.subtitle')}
           </ExtendedText>
           <ExtendedTextInput
