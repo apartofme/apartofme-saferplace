@@ -3,4 +3,5 @@ export * from './CharmsIntroducing';
 export * from './ForgotPasswordEmail';
 export * from './ForgotPasswordSuccess';
 export * from './LanguageSelection';
-export * from './OnboardingCarousel';
+export * from './OnboardCarousel';
+export * from './WelcomeParent';

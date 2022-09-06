@@ -1,5 +1,5 @@
-import { IMAGES } from '../../../../../assets';
-import { ICarouselItem } from '../../../../../components';
+import { IMAGES } from '../../../../assets';
+import { ICarouselItem } from '../../../../components';
 
 // TODO: change image for correct
 export const SING_UP_CAROUSEL: ReadonlyArray<ICarouselItem> = [
