@@ -173,6 +173,10 @@ export const en = {
         title: 'Language Settings',
         subtitle: 'Edit your language settings here:',
       },
+      notification_settings: {
+        title: 'Notification settings',
+        allow_notifications: 'Allow Notifications',
+      },
     },
   },
   languages: {

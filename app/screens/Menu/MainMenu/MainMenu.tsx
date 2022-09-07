@@ -9,18 +9,13 @@ import { useAppDispatch } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
-import { IMainMenuItem, MAIN_MENU_ITEMS } from './MainMenu.data';
+import { MAIN_MENU_ITEMS } from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.props';
 import { styles } from './MainMenu.styles';
 
 export const MainMenuScreen: React.FC<IMainMenuScreenProps> = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-
-  // TODO: change when adding screens
-  const onMenuItemPress = useCallback((item: IMainMenuItem) => {
-    // navigation.navigate(item.type);
-  }, []);
 
   const onLogoutPress = useCallback(() => {
     dispatch(userSlice.actions.logout());
@@ -48,7 +43,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = () => {
               <MenuButton
                 key={`main-menu-${item.type}`}
                 title={t(item.title)}
-                onPress={() => onMenuItemPress(item)}
+                onPress={_.noop}
                 icon={item.icon}
               />
             ))}
