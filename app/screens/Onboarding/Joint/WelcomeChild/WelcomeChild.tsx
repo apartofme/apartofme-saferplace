@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
 import { IWelcomeChildScreenProps } from './WelcomeChild.props';
+import { styles } from './WelcomeChild.styles';
 
 export const WelcomeChildScreen: React.FC<IWelcomeChildScreenProps> = ({
   navigation,
@@ -16,11 +17,15 @@ export const WelcomeChildScreen: React.FC<IWelcomeChildScreenProps> = ({
   }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
+        style={styles.container}
         buttonTitle={t('buttons.enter')}
         onSubmit={goToSidekickIntro}>
-        <ExtendedText>{t('screens.onboarding.welcome.title')}</ExtendedText>
+        <ExtendedText preset="secondary-text" style={styles.title}>
+          {t('screens.onboarding.welcome.title').toUpperCase()}
+        </ExtendedText>
+        {/* // TODO: add the logo image */}
       </BottomButtonView>
     </SafeAreaView>
   );

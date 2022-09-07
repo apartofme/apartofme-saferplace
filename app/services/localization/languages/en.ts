@@ -34,7 +34,7 @@ export const en = {
   screens: {
     onboarding: {
       welcome: {
-        title: 'welcome to a',
+        title: 'welcome\nto a',
       },
       language_selection: {
         title: 'What Language would you like to use?',
