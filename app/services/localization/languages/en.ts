@@ -125,15 +125,16 @@ export const en = {
       sidekick_intro: {
         firstPhrase: 'Who is this, who has found their way into my forest?',
         secondPhrase:
-          'Travellers? But where have you come from, and where are you going?',
-        thirdPhrase: 'It doesn`t matter. You`re here now.',
+          'I wonder what adventures brought you to this enchanted forest?',
+        thirdPhrase:
+          'Whatever journey you have been on, you are both so welcome here.',
         fourthPhrase:
-          'You look worried. Especially the big one. But there is nothing to fear.',
+          'You look like you might have had a tough time recently. I am sorry about this. I hope you can find what you need in my enchanted woodland.',
         fifthPhrase: 'I forgot... how rude. Just a moment...',
         sixthPhrase:
-          'There. That`s better. I forget that you humans can`t see me, sometimes.',
+          "There. That's better. I forget that you humans can't see me, sometimes.",
         seventhPhrase:
-          'I like to give every visitor to my forest a personal greeting.\nBut first I need to know what to call you...',
+          'I like to give every visitor to my forest a personal greeting.\n\nBut first I need to know what to call you...',
         eighthPhrase: 'If there is anything that I or my faithful assistant...',
         ninthPhrase:
           '...can do for you, please let me know. It is my job to care for everything in this forest: from the trees to the people passing through.',

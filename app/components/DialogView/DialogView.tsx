@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 
 import { getKeyFromLocalizationString } from '../../utils';
-import { generalStyles } from '../../utils/styles';
 import { ExtendedText } from '../ExtendedText';
 import { IDialogViewProps } from './DialogView.props';
 import { styles } from './DialogView.styles';
@@ -33,10 +32,11 @@ export const DialogView: React.FC<IDialogViewProps> = ({
   }, [currentSpeechIdx, dialog.length, goToNextSpeech, onSubmit]);
 
   return (
-    <ImageBackground source={backgroundImage} style={generalStyles.flex}>
-      <View>
+    <ImageBackground source={backgroundImage} style={styles.container}>
+      <View style={styles.dialogContainer}>
         <ExtendedText
-          key={getKeyFromLocalizationString(getCurrentSpeech().textKey)}>
+          key={getKeyFromLocalizationString(getCurrentSpeech().textKey)}
+          preset="heading">
           {t(getCurrentSpeech().textKey)}
         </ExtendedText>
       </View>
