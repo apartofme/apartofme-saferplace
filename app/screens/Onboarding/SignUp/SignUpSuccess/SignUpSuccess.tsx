@@ -10,6 +10,7 @@ import {
   MainHeader,
 } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
+import { generalStyles } from '../../../../utils/styles';
 import { ISignUpSuccessScreenProps } from './SignUpSuccess.props';
 import { styles } from './SignUpSuccess.styles';
 
@@ -32,22 +33,25 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   }, [isChild]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* // TODO: change to correct function */}
-      <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={_.noop}>
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
+    <SafeAreaView style={generalStyles.flex}>
+      <MainHeader
+        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={navigation.goBack}
+      />
+      <BottomButtonView
+        buttonTitle={t('buttons.next')}
+        // TODO: change to correct function
+        onSubmit={_.noop}
+        style={styles.container}>
         {/* // TODO: uncomment when user avatar logic is added */}
         {/*<Image
           source={ avatar }
           style={ styles.mt113 }
         />*/}
-        <ExtendedText style={styles.title}>
+        <ExtendedText preset="large-title" style={styles.title}>
           {t(`${getCorrectLocalizationPath}.title`)}
         </ExtendedText>
-        <ExtendedText style={styles.subtitle}>
+        <ExtendedText preset="secondary-text" style={styles.subtitle}>
           {t(`${getCorrectLocalizationPath}.subtitle`)}
         </ExtendedText>
       </BottomButtonView>
