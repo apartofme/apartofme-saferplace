@@ -10,6 +10,8 @@ import {
   SignUpAvatarScreen,
   CharmsIntroducingScreen,
   OnboardingCarouselScreen,
+  LoginScreen,
+  SelectUserScreen,
   ForgotPasswordEmailScreen,
   ForgotPasswordSuccessScreen,
 } from '../../screens';
@@ -24,6 +26,8 @@ export type ParentsOnboardingStackParams = {
   SignUpAvatar: { isChild?: boolean } | undefined;
   CharmsIntroducing: undefined;
   OnboardingCarousel: undefined;
+  Login: undefined;
+  SelectUser: undefined;
   ForgotPasswordEmail: undefined;
   ForgotPasswordSuccess: undefined;
 };
@@ -60,6 +64,8 @@ export const ParentsOnboardingStackNavigator = () => (
       component={SignUpAvatarScreen}
       initialParams={{ isChild: false }}
     />
+    <Stack.Screen name="Login" component={LoginScreen} />
+    <Stack.Screen name="SelectUser" component={SelectUserScreen} />
     <Stack.Screen
       name="ForgotPasswordEmail"
       component={ForgotPasswordEmailScreen}
