@@ -39,11 +39,11 @@ export const ParentsOnboardingStackNavigator = () => (
       name="LanguageSelection"
       component={LanguageSelectionScreen}
     />
+    <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
     <Stack.Screen
       name="OnboardingCarousel"
       component={OnboardingCarouselScreen}
     />
-    <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
     <Stack.Screen
       name="CharmsIntroducing"
       component={CharmsIntroducingScreen}

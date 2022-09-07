@@ -43,9 +43,7 @@ export const en = {
       },
       acknowledgement: {
         title:
-          'If you have arrived here, then I know you and your family have been through some really tough times.',
-        subtitle:
-          'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
+          'If you have arrived here, then we know you and your family have been through some really tough times. We are here to guide you and your child so you can find and nurture your inner strengths.',
       },
       charms_introducing: {
         first: {
