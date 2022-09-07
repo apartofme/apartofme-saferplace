@@ -1,0 +1,1 @@
+export { ExtendedSwitch } from './ExtendedSwitch';
