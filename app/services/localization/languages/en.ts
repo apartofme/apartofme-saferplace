@@ -46,6 +46,23 @@ export const en = {
         subtitle:
           'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
       },
+      charms_introducing: {
+        first: {
+          title: 'Charms',
+          subtitle:
+            'To advance through the app, you and your child will complete special exercises together, called Charms.',
+        },
+        second: {
+          title: 'Charms',
+          subtitle:
+            'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+        },
+        third: {
+          title: 'A Charm for you',
+          subtitle:
+            'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
+        },
+      },
       sign_up_credentials: {
         title: 'Create an account',
         subtitle: 'Already have an account?',
@@ -57,24 +74,11 @@ export const en = {
           'Enter a nickname for your child here. This name will be displayed during your journey through A Safer Place.',
       },
       sign_up_avatar: {
-        title: 'Select your avatar',
-        subtitle: '',
-        charms_introducing: {
-          first: {
-            title: 'Charms',
-            subtitle:
-              'To advance through the app, you and your child will complete special exercises together, called Charms.',
-          },
-          second: {
-            title: 'Charms',
-            subtitle:
-              'These are fun and simple actions to perform which will help you connect with each other and grow together.',
-          },
-          third: {
-            title: 'A Charm for you',
-            subtitle:
-              'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
-          },
+        parent: {
+          title: 'Choose a Character',
+        },
+        child: {
+          title: '[Child] choose a\ncharacter ',
         },
       },
       sign_up_success: {

@@ -1,6 +1,6 @@
 import { SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import {
   BottomButtonView,
@@ -15,6 +15,7 @@ import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.props';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { SING_UP_CAROUSEL } from './SignUpAvatar.data';
+import { styles } from './SignUpAvatar.styles';
 
 export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   navigation,
@@ -37,26 +38,33 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     }
   }, [avatar, dispatch, isChild, navigation]);
 
+  const getCorrectLocalizationPath = useMemo(() => {
+    if (isChild) {
+      return 'screens.onboarding.sign_up_avatar.child';
+    } else {
+      return 'screens.onboarding.sign_up_avatar.parent';
+    }
+  }, [isChild]);
+
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
+      <MainHeader
+        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={navigation.goBack}
+      />
       <BottomButtonView
         buttonTitle={t('buttons.next').toUpperCase()}
         onSubmit={onSubmitButtonPress}
-        isDisabledButton={!avatar}>
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
-        <ExtendedText>
-          {t('screens.onboarding.sign_up_avatar.title')}
-        </ExtendedText>
-        <ExtendedText>
-          {t('screens.onboarding.sign_up_avatar.subtitle')}
+        isDisabledButton={!avatar}
+        style={styles.container}>
+        <ExtendedText preset="large-title">
+          {t(`${getCorrectLocalizationPath}.title`)}
         </ExtendedText>
         <Carousel
           data={[...SING_UP_CAROUSEL]}
           preset={CarouselType.OnlyImage}
           setImage={setAvatar}
+          style={styles.carousel}
         />
       </BottomButtonView>
     </SafeAreaView>

@@ -22,6 +22,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   data,
   setCurrentPossition,
   setImage,
+  style,
 }) => {
   const progressValue = useSharedValue(0);
 
@@ -77,7 +78,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   );
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <GestureHandlerRootView style={[styles.container, style]}>
       <ReanimatedCarousel
         loop={false}
         width={WINDOW_WIDTH}
@@ -89,7 +90,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
         onProgressChange={onProgressChange}
         onSnapToItem={onSnapToItem}
       />
-      <View style={generalStyles.aiCenter}>{renderProgressBar()}</View>
+      <View style={styles.progressBar}>{renderProgressBar()}</View>
     </GestureHandlerRootView>
   );
 };
