@@ -1,3 +1,3 @@
 export interface ISpeech {
-  text: string;
+  textKey: string;
 }

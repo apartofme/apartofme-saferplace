@@ -1,6 +1,7 @@
 export * from './BottomButtonView';
 export * from './Carousel';
 export * from './DialogView';
+export * from './EmojiButtons';
 export * from './EmojiSlider';
 export * from './ExtendedButton';
 export * from './ExtendedText';
@@ -10,5 +11,6 @@ export * from './MultilineTextInput';
 export * from './RadioButtonList';
 export * from './RadioButton';
 export * from './RadioButtonList';
+export * from './SearchBox';
 export * from './Timer';
 export * from './VerticalSwipeView';

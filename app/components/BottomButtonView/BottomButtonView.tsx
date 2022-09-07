@@ -3,18 +3,25 @@ import { View } from 'react-native';
 
 import { generalStyles } from '../../utils/styles';
 import { ExtendedButton } from '../ExtendedButton';
-import { IBottomButtonViewProps } from './BottomButtonView.props';
 import { styles } from './BottomButtonView.styles';
+import { IBottomButtonViewProps } from './BottomButtonView.props';
 
 export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
   children,
   onSubmit,
   buttonTitle,
+  isDisabledButton,
+  style,
 }) => {
   return (
     <View style={styles.container}>
-      <View style={generalStyles.flex}>{children}</View>
-      <ExtendedButton title={buttonTitle} onPress={onSubmit} />
+      <View style={[generalStyles.flex, style]}>{children}</View>
+      <ExtendedButton
+        title={buttonTitle}
+        onPress={onSubmit}
+        disabled={isDisabledButton}
+        style={styles.button}
+      />
     </View>
   );
 };

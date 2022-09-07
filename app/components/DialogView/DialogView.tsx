@@ -36,8 +36,8 @@ export const DialogView: React.FC<IDialogViewProps> = ({
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>
       <View>
         <ExtendedText
-          key={getKeyFromLocalizationString(getCurrentSpeech().text)}>
-          {t(getCurrentSpeech().text)}
+          key={getKeyFromLocalizationString(getCurrentSpeech().textKey)}>
+          {t(getCurrentSpeech().textKey)}
         </ExtendedText>
       </View>
       <TouchableOpacity
