@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
@@ -23,13 +23,13 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
     state => state.cache.auth[isChild ? 'child' : 'parent']?.avatar,
   );
 
-  const getCorrectLocalizationPath = () => {
+  const getCorrectLocalizationPath = useMemo(() => {
     if (isChild) {
       return 'screens.onboarding.sign_up_success.child';
     } else {
       return 'screens.onboarding.sign_up_success.parent';
     }
-  };
+  }, [isChild]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -45,10 +45,10 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
           style={ styles.mt113 }
         />*/}
         <ExtendedText style={styles.title}>
-          {t(`${getCorrectLocalizationPath()}.title`)}
+          {t(`${getCorrectLocalizationPath}.title`)}
         </ExtendedText>
         <ExtendedText style={styles.subtitle}>
-          {t(`${getCorrectLocalizationPath()}.subtitle`)}
+          {t(`${getCorrectLocalizationPath}.subtitle`)}
         </ExtendedText>
       </BottomButtonView>
     </SafeAreaView>
