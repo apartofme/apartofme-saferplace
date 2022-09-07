@@ -14,7 +14,7 @@ export const styles = StyleSheet.create<IRadioButtonStyles>({
     backgroundColor: COLORS.BLACK,
     borderRadius: 16,
     padding: 16,
-    marginVertical: 4,
+    marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
   },

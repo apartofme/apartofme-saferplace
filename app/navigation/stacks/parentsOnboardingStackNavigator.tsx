@@ -36,12 +36,12 @@ export const ParentsOnboardingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     <Stack.Screen name="WelcomeParent" component={WelcomeParentScreen} />
     <Stack.Screen
-      name="OnboardingCarousel"
-      component={OnboardingCarouselScreen}
-    />
-    <Stack.Screen
       name="LanguageSelection"
       component={LanguageSelectionScreen}
+    />
+    <Stack.Screen
+      name="OnboardingCarousel"
+      component={OnboardingCarouselScreen}
     />
     <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
     <Stack.Screen

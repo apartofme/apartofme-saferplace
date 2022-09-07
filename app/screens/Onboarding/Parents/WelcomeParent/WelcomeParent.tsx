@@ -27,7 +27,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
         onSubmit={onEnterPress}
         style={styles.container}>
         <View>
-          <ExtendedText style={styles.title}>
+          <ExtendedText preset="secondary-text" style={styles.title}>
             {t('screens.onboarding.welcome.title').toUpperCase()}
           </ExtendedText>
           {/* // TODO: add the logo image */}

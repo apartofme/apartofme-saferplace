@@ -39,7 +39,7 @@ export const en = {
         title: 'welcome\nto a',
       },
       language_selection: {
-        title: 'What Language would you like to use?',
+        title: 'Choose Language',
       },
       acknowledgement: {
         title:
