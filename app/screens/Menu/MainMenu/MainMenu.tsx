@@ -24,7 +24,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  // TODO: change when adding screens
+  // TODO: uncomment when adding screens
   const onMenuItemPress = useCallback(
     (item: IMainMenuItem) => {
       switch (item.type) {
@@ -35,6 +35,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
           });
           break;
         default:
+          // TODO: uncomment when adding screens
           // navigation.navigate(item.type);
           break;
       }

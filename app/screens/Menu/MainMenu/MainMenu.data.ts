@@ -2,11 +2,12 @@ import { ImageSourcePropType } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 
+//* screens name
 export enum MainMenuItemType {
   Guide = 'GrownUpGuide',
-  Support = 'support',
-  AccountManage = 'accountManage',
-  Settings = 'settings',
+  Support = 'Support',
+  AccountManage = 'AccountManage',
+  Settings = 'Settings',
 }
 
 export interface IMainMenuItem {
