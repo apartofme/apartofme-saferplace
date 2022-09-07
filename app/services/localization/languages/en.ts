@@ -29,6 +29,7 @@ export const en = {
   placeholders: {
     enter_email: 'Enter your email address',
     create_password: 'Create a password',
+    enter_nickname: 'Enter a Nickname',
     enter_age: 'Enter age',
   },
   screens: {
@@ -51,8 +52,9 @@ export const en = {
         footer: 'By creating on account you agreeing to our',
       },
       sign_up_nickname: {
-        title: 'What should we call you?',
-        subtitle: '',
+        title: 'Create your nickname',
+        subtitle:
+          'Enter a nickname for your child here. This name will be displayed during your journey through A Safer Place.',
       },
       sign_up_avatar: {
         title: 'Select your avatar',
