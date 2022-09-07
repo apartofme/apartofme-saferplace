@@ -31,19 +31,20 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <KeyboardAvoidingView style={generalStyles.flex} behavior="padding">
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
         <BottomButtonView
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
-          isDisabledButton={!age}>
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={navigation.goBack}
-          />
-          <ExtendedText>
+          isDisabledButton={!age}
+          style={styles.container}>
+          <ExtendedText preset="large-title">
             {t('screens.onboarding.sign_up_age.title')}
           </ExtendedText>
-          <ExtendedText style={styles.subtitle}>
+          <ExtendedText preset="secondary-text" style={styles.subtitle}>
             {t('screens.onboarding.sign_up_age.subtitle')}
           </ExtendedText>
           <ExtendedTextInput
