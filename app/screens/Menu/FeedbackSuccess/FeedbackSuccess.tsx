@@ -26,7 +26,7 @@ export const FeedbackSuccessScreen: React.FC<IFeedbackSuccessScreenProps> =
             <ExtendedText style={styles.title}>
               {t('screens.menu.feedback_success.title')}
             </ExtendedText>
-            <ExtendedText style={styles.subTitle}>
+            <ExtendedText style={styles.subtitle}>
               {t('screens.menu.feedback_success.subtitle')}
             </ExtendedText>
           </View>

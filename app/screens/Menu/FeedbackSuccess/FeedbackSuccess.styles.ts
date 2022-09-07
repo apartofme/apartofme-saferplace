@@ -3,7 +3,7 @@ import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 interface IFeedbackSuccessScreenStyles {
   container: ViewStyle;
   title: TextStyle;
-  subTitle: TextStyle;
+  subtitle: TextStyle;
 }
 
 export const styles = StyleSheet.create<IFeedbackSuccessScreenStyles>({
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create<IFeedbackSuccessScreenStyles>({
   title: {
     marginTop: 46,
   },
-  subTitle: {
+  subtitle: {
     marginTop: 24,
   },
 });
