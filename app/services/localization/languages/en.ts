@@ -6,6 +6,7 @@ export const en = {
     enter: 'Enter',
     next: 'Next',
     login: 'Login',
+    log_in: 'Log in',
     save: 'Save',
     signup: 'Sign up',
     skip: 'Skip',
@@ -100,17 +101,17 @@ export const en = {
       onboard_carousel: {
         first: {
           title: 'A Safer Place',
-          subTitle:
+          subtitle:
             'This app has been created to help you and your child understand the difficult things that you have been through together.',
         },
         second: {
           title: 'Snappy Title here',
-          subTitle:
+          subtitle:
             'It mixes magical storytelling and proven therapy techniques to keep you both motivated and engaged.',
         },
         third: {
           title: 'A Better Future',
-          subTitle:
+          subtitle:
             'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
         },
       },
