@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
-import { IMAGES } from '../../../assets';
 
+import { IMAGES } from '../../../assets';
 import {
   BottomButtonView,
   ExtendedText,
