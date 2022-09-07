@@ -118,7 +118,7 @@ export const en = {
           second: {
             title: 'Funny random loading thing...',
             subtitle:
-              "We suggest telling your child that you've got something magical to play with together. Whenever they are comfortable and curious, you can begin.",
+              'We suggest telling your child that you have found a magical game to play together, a game designed to help us get through difficult times.',
           },
         },
       },
