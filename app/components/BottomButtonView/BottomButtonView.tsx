@@ -11,14 +11,16 @@ export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
   onSubmit,
   buttonTitle,
   isDisabledButton,
+  style,
 }) => {
   return (
     <View style={styles.container}>
-      <View style={generalStyles.flex}>{children}</View>
+      <View style={[generalStyles.flex, style]}>{children}</View>
       <ExtendedButton
         title={buttonTitle}
         onPress={onSubmit}
         disabled={isDisabledButton}
+        style={styles.button}
       />
     </View>
   );

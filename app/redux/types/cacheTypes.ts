@@ -7,12 +7,17 @@ export interface ISignUpData {
   avatar?: ImageSourcePropType;
 }
 
-export type IShortSignUpData = Pick<ISignUpData, 'avatar' | 'nickname'>;
+export interface IShortSignUpData {
+  nickname?: string;
+  age?: string;
+  // TODO: types
+  avatar?: null;
+}
 
 export interface ISignUpDataPayload {
-  payload: Partial<ISignUpData>;
+  payload: ISignUpData;
 }
 
 export interface IShortSignUpDataPayload {
-  payload: Partial<IShortSignUpData>;
+  payload: IShortSignUpData;
 }

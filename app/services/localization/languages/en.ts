@@ -8,6 +8,7 @@ export const en = {
     save: 'Save',
     signup: 'Sign up',
     skip: 'Skip',
+    submit: 'Submit',
     privacy_policy: 'Privacy Policy',
     terms_conditions: 'Terms & Conditions',
 
@@ -27,6 +28,7 @@ export const en = {
   placeholders: {
     enter_email: 'Enter your email address',
     create_password: 'Create a password',
+    enter_age: 'Enter age',
   },
   screens: {
     onboarding: {
@@ -42,23 +44,6 @@ export const en = {
         subtitle:
           'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
       },
-      onboard_carousel: {
-        first: {
-          title: 'A Safer Place',
-          subtitle:
-            'This app has been created to help you and your child understand the difficult things that you have been through together.',
-        },
-        second: {
-          title: 'Snappy Title here',
-          subtitle:
-            'It mixes magical storytelling and proven therapy techniques to keep you both motivated and engaged.',
-        },
-        third: {
-          title: 'A Better Future',
-          subtitle:
-            'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
-        },
-      },
       sign_up_credentials: {
         title: 'Create an account',
         subtitle: 'Already have an account?',
@@ -71,22 +56,55 @@ export const en = {
       sign_up_avatar: {
         title: 'Select your avatar',
         subtitle: '',
+        charms_introducing: {
+          first: {
+            title: 'Charms',
+            subtitle:
+              'To advance through the app, you and your child will complete special exercises together, called Charms.',
+          },
+          second: {
+            title: 'Charms',
+            subtitle:
+              'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+          },
+          third: {
+            title: 'A Charm for you',
+            subtitle:
+              'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
+          },
+        },
       },
-      charms_introducing: {
-        first: {
-          title: 'Charms',
+      sign_up_success: {
+        parent: {
+          title: '[Grown up] You are so very welcome here',
           subtitle:
-            'To advance through the app, you and your child will complete special exercises together, called Charms.',
+            'That’s your account all set up and ready to go! Please check your email for confirmation.',
+        },
+        child: {
+          title: '[child] you are so very welcome here',
+          subtitle: 'That’s you all set up and ready to go!',
+        },
+      },
+      sign_up_age: {
+        title: 'How old are you [child]?',
+        subtitle:
+          'This will help us to improve the experience for different ages.',
+      },
+      onboard_carousel: {
+        first: {
+          title: 'A Safer Place',
+          subTitle:
+            'This app has been created to help you and your child understand the difficult things that you have been through together.',
         },
         second: {
-          title: 'Charms',
-          subtitle:
-            'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+          title: 'Snappy Title here',
+          subTitle:
+            'It mixes magical storytelling and proven therapy techniques to keep you both motivated and engaged.',
         },
         third: {
-          title: 'A Charm for you',
-          subtitle:
-            'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
+          title: 'A Better Future',
+          subTitle:
+            'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
         },
       },
       joint: {
@@ -151,6 +169,11 @@ export const en = {
         first_item: 'About the Charms',
         second_item: 'Frequently Asked Questions',
         third_item: 'Feedback',
+      },
+      feedback: {
+        title: 'Feedback',
+        subtitle:
+          'We are continually trying to improve our service, so your comments and feedback mean everything to us.',
       },
       language_settings: {
         title: 'Language Settings',

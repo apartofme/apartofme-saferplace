@@ -7,6 +7,8 @@ import {
   SignUpNicknameScreen,
   SidekickIntroScreen,
   WelcomeChildScreen,
+  SignUpSuccessScreen,
+  SignUpAgeScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -16,6 +18,8 @@ export type JointOnboardingStackParams = {
   SidekickIntro: undefined;
   SignUpNickname: { isChild?: boolean } | undefined;
   SignUpAvatar: { isChild?: boolean } | undefined;
+  SignUpSuccess: { isChild?: boolean } | undefined;
+  SignUpAge: undefined;
 };
 
 const Stack = createNativeStackNavigator<JointOnboardingStackParams>();
@@ -30,9 +34,15 @@ export const JointOnboardingStackNavigator = () => (
       component={SignUpNicknameScreen}
       initialParams={{ isChild: true }}
     />
+    <Stack.Screen name="SignUpAge" component={SignUpAgeScreen} />
     <Stack.Screen
       name="SignUpAvatar"
       component={SignUpAvatarScreen}
+      initialParams={{ isChild: true }}
+    />
+    <Stack.Screen
+      name="SignUpSuccess"
+      component={SignUpSuccessScreen}
       initialParams={{ isChild: true }}
     />
   </Stack.Navigator>
