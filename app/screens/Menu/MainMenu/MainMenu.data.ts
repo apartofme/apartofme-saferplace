@@ -2,7 +2,7 @@ import { ImageSourcePropType } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 
-//* screens name
+//* This enum is used for navigation so names must be capitalized
 export enum MainMenuItemType {
   Guide = 'GrownUpGuide',
   Support = 'Support',
