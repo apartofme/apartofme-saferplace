@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
-import { GROWN_UPS_GUIDE_ITEMS } from '../ButtonsMenu/ButtonsMenu.data';
+import { GROWN_UP_GUIDE_ITEMS } from '../ButtonsMenu/ButtonsMenu.data';
 import {
   IMainMenuItem,
   MainMenuItemType,
@@ -30,7 +30,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
       switch (item.type) {
         case MainMenuItemType.Guide:
           navigation.navigate('ButtonsMenu', {
-            data: GROWN_UPS_GUIDE_ITEMS,
+            data: GROWN_UP_GUIDE_ITEMS,
             titleKey: 'screens.menu.grown_ups_guide.title',
           });
           break;

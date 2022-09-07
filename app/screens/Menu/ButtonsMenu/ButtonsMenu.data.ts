@@ -3,7 +3,7 @@ export interface IButtonsMenuItem {
   type: string;
 }
 
-export const GROWN_UPS_GUIDE_ITEMS: ReadonlyArray<IButtonsMenuItem> = [
+export const GROWN_UP_GUIDE_ITEMS: ReadonlyArray<IButtonsMenuItem> = [
   {
     title: 'screens.menu.grown_ups_guide.first_item',
     type: 'AboutCharms',
