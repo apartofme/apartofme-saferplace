@@ -31,6 +31,7 @@ export type ParentsOnboardingStackParams = {
 };
 
 const Stack = createNativeStackNavigator<ParentsOnboardingStackParams>();
+
 export const ParentsOnboardingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     <Stack.Screen
