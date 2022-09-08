@@ -12,7 +12,5 @@ export const styles = StyleSheet.create<ISignUpAvatarScreenStyles>({
   },
   carousel: {
     alignSelf: 'center',
-    marginTop: 118,
-    marginBottom: 24,
   },
 });
