@@ -158,11 +158,11 @@ export const en = {
           subtitle:
             'Enter your email address below and we will send you a link to reset your password.',
         },
-      },
-      success: {
-        title: 'Check your email',
-        subtitle:
-          'An email has been sent to you with instructions on resetting your password. If you have not received the email, check your spam folder.',
+        success: {
+          title: 'Check your email',
+          subtitle:
+            'An email has been sent to you with instructions on resetting your password. If you have not received the email, check your spam folder.',
+        },
       },
     },
     menu: {
