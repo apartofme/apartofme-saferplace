@@ -165,11 +165,13 @@ export const en = {
         settings: 'Settings & Privacy',
         logout: 'Logout',
       },
-      parents_guide: {
+      frequently_asked_questions_screen: {
+        header: 'faqs',
+        title: 'Frequently asked questions',
         questions: {
           section_first: {
             title: 'Section 1',
-            question_first: 'question first',
+            question_first: 'question vlad',
             question_second: 'question second',
             question_third: 'question third',
           },

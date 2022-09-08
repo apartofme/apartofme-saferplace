@@ -7,6 +7,7 @@ import {
   ParentsGuideScreen,
   FeedbackSuccessScreen,
   LanguageSettingsScreen,
+  FrequentlyAskedQuestionsScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -16,12 +17,17 @@ export type MenuStackParams = {
   FeedbackSuccess: undefined;
   Feedback: undefined;
   LanguageSettings: undefined;
+  FrequentlyAskedQuestions: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
 
 export const MenuStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
+    <Stack.Screen
+      name="FrequentlyAskedQuestions"
+      component={FrequentlyAskedQuestionsScreen}
+    />
     <Stack.Screen name="MainMenu" component={MainMenuScreen} />
     <Stack.Screen name="ParentsGuide" component={ParentsGuideScreen} />
     <Stack.Screen name="Feedback" component={FeedbackScreen} />

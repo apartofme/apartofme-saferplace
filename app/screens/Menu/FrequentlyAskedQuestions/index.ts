@@ -1,0 +1,1 @@
+export { FrequentlyAskedQuestionsScreen } from './FrequentlyAskedQuestions';
