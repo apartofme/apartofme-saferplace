@@ -1,2 +1,2 @@
 export * from './MenuButton';
-export * from './MenuSwitch';
+export * from './MenuSwitchRow';

@@ -1,31 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  ILanguageActionPayload,
-  INotificationAllowActionPayload,
-} from '../types';
+import { ISettingsData, ISettingsDataPayload } from '../types';
 
-interface ISettingsState {
-  language: string;
-  isNotificationAllow: boolean;
+export interface ISettingsState {
+  settings: ISettingsData;
 }
 
 const INITIAL_STATE: ISettingsState = {
-  language: 'en',
-  isNotificationAllow: false,
+  settings: {
+    language: 'en',
+    isNotificationsEnabled: false,
+  },
 };
 
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState: INITIAL_STATE,
   reducers: {
-    setLanguage(state, { payload: { language } }: ILanguageActionPayload) {
-      state.language = language;
-    },
-    setNotificationAllow(
-      state,
-      { payload: { isNotificationAllow } }: INotificationAllowActionPayload,
-    ) {
-      state.isNotificationAllow = isNotificationAllow;
+    setSettings(state, { payload }: ISettingsDataPayload) {
+      state.settings = {
+        ...state.settings,
+        ...payload,
+      };
     },
   },
 });

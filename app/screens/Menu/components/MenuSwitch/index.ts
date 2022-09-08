@@ -1,1 +1,0 @@
-export { MenuSwitch } from './MenuSwitch';

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
@@ -7,7 +7,7 @@ import { ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
-import { MenuSwitch } from '../components';
+import { MenuSwitchRow } from '../components';
 import { INotificationSettingsScreenProps } from './NotificationSettings.props';
 import { styles } from './NotificationSettings.styles';
 
@@ -17,18 +17,18 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
 
     const dispatch = useAppDispatch();
 
-    const [isNotificationAllow, setIsNotificationAllow] = useState(
-      useAppSelector(state => state.settings.isNotificationAllow),
+    const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(
+      useAppSelector(state => state.settings.settings.isNotificationsEnabled),
     );
 
-    const setNotificationAllow = useCallback(() => {
-      setIsNotificationAllow(!isNotificationAllow);
+    const setNotificationEnabled = useCallback(() => {
+      setIsNotificationsEnabled(!isNotificationsEnabled);
       dispatch(
-        settingsSlice.actions.setNotificationAllow({
-          isNotificationAllow: !isNotificationAllow,
+        settingsSlice.actions.setSettings({
+          isNotificationsEnabled,
         }),
       );
-    }, [isNotificationAllow, setIsNotificationAllow, dispatch]);
+    }, [isNotificationsEnabled, setIsNotificationsEnabled, dispatch]);
 
     return (
       <SafeAreaView style={generalStyles.whFlex}>
@@ -41,10 +41,12 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
             {t('screens.menu.notification_settings.title')}
           </ExtendedText>
 
-          <MenuSwitch
-            title={t('screens.menu.notification_settings.allow_notifications')}
-            isEnabled={isNotificationAllow}
-            setIsEnabled={setNotificationAllow}
+          <MenuSwitchRow
+            title={t(
+              'screens.menu.notification_settings.is_notifications_enabled',
+            )}
+            isEnabled={!isNotificationsEnabled}
+            setIsEnabled={setNotificationEnabled}
           />
         </View>
       </SafeAreaView>

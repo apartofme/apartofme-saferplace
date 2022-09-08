@@ -175,7 +175,7 @@ export const en = {
       },
       notification_settings: {
         title: 'Notification settings',
-        allow_notifications: 'Allow Notifications',
+        is_notifications_enabled: 'Allow Notifications',
       },
     },
   },

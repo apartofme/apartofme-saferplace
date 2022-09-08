@@ -1,10 +1,10 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
-interface IMenuSwitchStyles {
+interface IMenuSwitchRowStyles {
   container: ViewStyle;
 }
 
-export const styles = StyleSheet.create<IMenuSwitchStyles>({
+export const styles = StyleSheet.create<IMenuSwitchRowStyles>({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',

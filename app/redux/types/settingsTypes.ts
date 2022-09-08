@@ -1,9 +1,8 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+export interface ISettingsData {
+  language?: string;
+  isNotificationsEnabled?: boolean;
+}
 
-export type ILanguageActionPayload = PayloadAction<{
-  language: string;
-}>;
-
-export type INotificationAllowActionPayload = PayloadAction<{
-  isNotificationAllow: boolean;
-}>;
+export type ISettingsDataPayload = {
+  payload: Partial<ISettingsData>;
+};

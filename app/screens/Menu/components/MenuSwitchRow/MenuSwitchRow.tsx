@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 import { ExtendedSwitch, ExtendedText } from '../../../../components';
-import { IMenuSwitchProps } from './MenuSwitch.props';
-import { styles } from './MenuSwitch.styles';
+import { IMenuSwitchRowProps } from './MenuSwitchRow.props';
+import { styles } from './MenuSwitchRow.styles';
 
-export const MenuSwitch: React.FC<IMenuSwitchProps> = ({
+export const MenuSwitchRow: React.FC<IMenuSwitchRowProps> = ({
   title,
-  isEnabled,
+  isEnabled = false,
   setIsEnabled,
 }) => {
   const { t } = useTranslation();
