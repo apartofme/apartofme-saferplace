@@ -1,11 +1,11 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
-interface IAcknowledgementStyles {
+interface IAcknowledgementScreenStyles {
   container: ViewStyle;
   title: TextStyle;
 }
 
-export const styles = StyleSheet.create<IAcknowledgementStyles>({
+export const styles = StyleSheet.create<IAcknowledgementScreenStyles>({
   container: {
     paddingHorizontal: 24,
     justifyContent: 'flex-end',

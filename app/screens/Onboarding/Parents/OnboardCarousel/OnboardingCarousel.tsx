@@ -10,6 +10,7 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { CHARMS_CAROUSEL } from './OnboardingCarousel.data';
 import { IOnboardingCarouselScreenProps } from '../OnboardCarousel/OnboardingCarousel.props';
+import { styles } from './OnboardingCarousel.styles';
 
 export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> =
   ({ navigation }) => {
@@ -20,11 +21,15 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
     }, [navigation]);
 
     return (
-      <SafeAreaView style={generalStyles.whFlex}>
-        <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
+      <SafeAreaView style={generalStyles.flex}>
+        <BottomButtonView
+          buttonTitle={t('buttons.next')}
+          onSubmit={onSubmit}
+          style={styles.container}>
           <Carousel
             data={[...CHARMS_CAROUSEL]}
             preset={CarouselType.ImageTitleSubTitle}
+            carouselItemStyle={styles.carouselItem}
           />
         </BottomButtonView>
       </SafeAreaView>

@@ -8,9 +8,9 @@ export interface ICarouselStyles {
 export const styles = StyleSheet.create<ICarouselStyles>({
   container: {
     flex: 1,
+    marginBottom: 24,
   },
   progressBar: {
     alignItems: 'center',
-    marginTop: 130,
   },
 });

@@ -100,17 +100,22 @@ export const en = {
         first: {
           title: 'A Safer Place',
           subtitle:
-            'This app has been created to help you and your child understand the difficult things that you have been through together.',
+            'This app is designed to help you and your child/children learn how to be kinder to yourself and others, become more confident in your ability to navigate difficult times, and rediscover hope',
         },
         second: {
-          title: 'Snappy Title here',
+          title: 'Healing Through Play',
           subtitle:
-            'It mixes magical storytelling and proven therapy techniques to keep you both motivated and engaged.',
+            'Here you will find a 14-day programme of simple, evidence-based therapy exercises delivered in a playful format so children will enjoy doing them without needing to be nagged.',
         },
         third: {
-          title: 'A Better Future',
+          title: 'Growing Hope Together',
           subtitle:
-            'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
+            'In just two weeks, you and your child can feel a bit calmer, closer to each other, and more in control.',
+        },
+        fourth: {
+          title: 'Support For You',
+          subtitle:
+            'Our guide for grown ups has lots of resources and information to help you on this journey. You can find this in the menu, or by tapping on ‘Find out More’.',
         },
       },
       joint: {
