@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
@@ -16,7 +17,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const onEnterPress = useCallback(() => {
+  const onSignUpPress = useCallback(() => {
     navigation.navigate('LanguageSelection');
   }, [navigation]);
 
@@ -24,7 +25,8 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
     <SafeAreaView style={generalStyles.whFlex}>
       <BottomButtonView
         buttonTitle={t('buttons.log_in')}
-        onSubmit={onEnterPress}
+        // TODO: change to real function
+        onSubmit={_.noop}
         style={styles.container}>
         <View>
           <ExtendedText preset="secondary-text" style={styles.title}>
@@ -32,7 +34,11 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
           </ExtendedText>
           {/* // TODO: add the logo image */}
         </View>
-        <ExtendedButton title={t('buttons.signup')} style={styles.button} />
+        <ExtendedButton
+          onPress={onSignUpPress}
+          title={t('buttons.signup')}
+          style={styles.button}
+        />
       </BottomButtonView>
     </SafeAreaView>
   );
