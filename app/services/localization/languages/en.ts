@@ -9,6 +9,7 @@ export const en = {
     log_in: 'Log in',
     save: 'Save',
     signup: 'Sign up',
+    signin: 'Sign in!',
     skip: 'Skip',
     submit: 'Submit',
     privacy_policy: 'Privacy Policy',
@@ -214,7 +215,7 @@ export const en = {
     russian: 'Russian',
   },
   labels: {
-    and: 'and',
+    and: ' and ',
     take_photo: 'Take Photo',
     choose_library: 'Choose photo from library',
 

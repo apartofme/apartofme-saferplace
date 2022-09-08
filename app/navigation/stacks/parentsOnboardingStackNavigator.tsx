@@ -45,10 +45,6 @@ export const ParentsOnboardingStackNavigator = () => (
       component={OnboardingCarouselScreen}
     />
     <Stack.Screen
-      name="CharmsIntroducing"
-      component={CharmsIntroducingScreen}
-    />
-    <Stack.Screen
       name="SignUpCredentials"
       component={SignUpCredentialsScreen}
     />
@@ -74,6 +70,10 @@ export const ParentsOnboardingStackNavigator = () => (
     <Stack.Screen
       name="ForgotPasswordSuccess"
       component={ForgotPasswordSuccessScreen}
+    />
+    <Stack.Screen
+      name="CharmsIntroducing"
+      component={CharmsIntroducingScreen}
     />
   </Stack.Navigator>
 );
