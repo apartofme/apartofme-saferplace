@@ -1,6 +1,7 @@
 export const en = {
   buttons: {
     cancel: 'Cancel',
+    back: 'back',
     confirm: 'Confirm',
     enter: 'Enter',
     next: 'Next',
@@ -8,6 +9,7 @@ export const en = {
     save: 'Save',
     signup: 'Sign up',
     skip: 'Skip',
+    submit: 'Submit',
     privacy_policy: 'Privacy Policy',
     terms_conditions: 'Terms & Conditions',
 
@@ -71,6 +73,17 @@ export const en = {
             subtitle:
               'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
           },
+        },
+      },
+      sign_up_success: {
+        parent: {
+          title: '[Grown up] You are so very welcome here',
+          subtitle:
+            'That’s your account all set up and ready to go! Please check your email for confirmation.',
+        },
+        child: {
+          title: '[child] you are so very welcome here',
+          subtitle: 'That’s you all set up and ready to go!',
         },
       },
       sign_up_age: {
@@ -169,9 +182,18 @@ export const en = {
           },
         },
       },
+      feedback: {
+        title: 'Feedback',
+        subtitle:
+          'We are continually trying to improve our service, so your comments and feedback mean everything to us.',
+      },
       language_settings: {
         title: 'Language Settings',
         subtitle: 'Edit your language settings here:',
+      },
+      feedback_success: {
+        title: 'Thank you!',
+        subtitle: 'We really appreciate your feedback.',
       },
       notification_settings: {
         title: 'Notification settings',
