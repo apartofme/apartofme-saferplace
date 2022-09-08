@@ -1,6 +1,7 @@
 export const en = {
   buttons: {
     cancel: 'Cancel',
+    back: 'back',
     confirm: 'Confirm',
     enter: 'Enter',
     next: 'Next',
@@ -189,6 +190,10 @@ export const en = {
       language_settings: {
         title: 'Language Settings',
         subtitle: 'Edit your language settings here:',
+      },
+      feedback_success: {
+        title: 'Thank you!',
+        subtitle: 'We really appreciate your feedback.',
       },
     },
   },
