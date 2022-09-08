@@ -7,10 +7,12 @@ import {
   ParentsGuideScreen,
   FeedbackSuccessScreen,
   LanguageSettingsScreen,
+  ChangePasswordSuccessScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type MenuStackParams = {
+  ChangePasswordSuccess: undefined;
   MainMenu: undefined;
   ParentsGuide: undefined;
   FeedbackSuccess: undefined;
@@ -27,5 +29,9 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="Feedback" component={FeedbackScreen} />
     <Stack.Screen name="FeedbackSuccess" component={FeedbackSuccessScreen} />
     <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} />
+    <Stack.Screen
+      name="ChangePasswordSuccess"
+      component={ChangePasswordSuccessScreen}
+    />
   </Stack.Navigator>
 );
