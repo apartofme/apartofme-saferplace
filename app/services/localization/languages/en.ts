@@ -50,7 +50,7 @@ export const en = {
         first: {
           title: 'Charms',
           subtitle:
-            'To advance through the app, you and your child will complete special exercises together, called Charms.',
+            'To advance through this world, you and your child will complete special exercises together, called Charms. ',
         },
         second: {
           title: 'Charms',
@@ -60,7 +60,7 @@ export const en = {
         third: {
           title: 'A Charm for you',
           subtitle:
-            'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
+            "Why don't you try one yourself, first of all. You've also been through a really tough time.",
         },
       },
       sign_up_credentials: {

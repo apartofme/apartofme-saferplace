@@ -64,16 +64,16 @@ export const ParentsOnboardingStackNavigator = () => (
       initialParams={{ isChild: false }}
     />
     <Stack.Screen
+      name="CharmsIntroducing"
+      component={CharmsIntroducingScreen}
+    />
+    <Stack.Screen
       name="ForgotPasswordEmail"
       component={ForgotPasswordEmailScreen}
     />
     <Stack.Screen
       name="ForgotPasswordSuccess"
       component={ForgotPasswordSuccessScreen}
-    />
-    <Stack.Screen
-      name="CharmsIntroducing"
-      component={CharmsIntroducingScreen}
     />
   </Stack.Navigator>
 );
