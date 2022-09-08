@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
@@ -32,6 +31,12 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
     }
   }, [isChild]);
 
+  const onSubmit = useCallback(() => {
+    if (isChild) {
+      navigation.navigate('SidekickIntro', { isStart: false });
+    }
+  }, [isChild, navigation]);
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
@@ -41,7 +46,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
       <BottomButtonView
         buttonTitle={t('buttons.next')}
         // TODO: change to correct function
-        onSubmit={_.noop}
+        onSubmit={onSubmit}
         style={styles.container}>
         {/* // TODO: uncomment when user avatar logic is added */}
         {/*<Image

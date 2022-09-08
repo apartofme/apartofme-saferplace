@@ -88,7 +88,7 @@ export const en = {
             'That’s your account all set up and ready to go! Please check your email for confirmation.',
         },
         child: {
-          title: 'Large title here',
+          title: '[Child], you are so very welcome here',
           subtitle: 'That’s you all set up and ready to go!',
         },
       },
