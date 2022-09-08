@@ -195,6 +195,17 @@ export const en = {
         title: 'Thank you!',
         subtitle: 'We really appreciate your feedback.',
       },
+      change_password: {
+        title: 'Change your password',
+        subtitle:
+          'Your new password must be different from previous used passwords',
+        reset_password: 'Reset Password',
+        input_placeholder: {
+          current_password: 'Enter your Current Password',
+          new_password: 'Enter your New Password',
+          confirm_new_password: 'Confirm New Password',
+        },
+      },
     },
   },
   languages: {
