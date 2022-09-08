@@ -1,6 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, ScrollView, View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
+import {
+  Directions,
+  FlingGestureHandler,
+  GestureHandlerRootView,
+  ScrollView,
+} from 'react-native-gesture-handler';
 
 import { generalStyles } from '../../utils/styles';
 import { ExtendedButton } from '../ExtendedButton';
@@ -17,6 +23,8 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
 }) => {
   const [isTopPosition, setIsTopPosition] = useState(true);
 
+  const [scrollViewHeight, setScrollViewHeight] = useState(0);
+
   const { t } = useTranslation();
 
   const scrollViewRef = useRef<ScrollView>(null);
@@ -31,32 +39,61 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
     }
   }, [isTopPosition]);
 
+  const onLayout = useCallback(event => {
+    const { height } = event.nativeEvent.layout;
+    setScrollViewHeight(height);
+  }, []);
+
   return (
-    <View style={generalStyles.flex}>
-      <ImageBackground source={image} style={generalStyles.flex}>
-        <ScrollView
-          scrollEnabled={false}
-          ref={scrollViewRef}
-          style={styles.scrollView}>
-          <View style={styles.topContentContainer}>
-            <ExtendedText>{t(titleKey)}</ExtendedText>
-            <ExtendedText>{t(subtitleKey)}</ExtendedText>
-            <ExtendedButton title={t('buttons.ready')} />
-            <ExtendedButton
-              title={t('components.VerticalSwipeView.to_bottom')}
-              onPress={setScrollPosition}
-            />
-          </View>
-          <View style={styles.bottomContentContainer}>
-            <ExtendedButton
-              title={t('components.VerticalSwipeView.to_top')}
-              onPress={setScrollPosition}
-            />
-            <ExtendedText>{t(aboutTitleKey)}</ExtendedText>
-            <ExtendedText>{t(aboutSubtitleKey)}</ExtendedText>
-          </View>
-        </ScrollView>
-      </ImageBackground>
-    </View>
+    <GestureHandlerRootView style={generalStyles.flex}>
+      <FlingGestureHandler
+        onEnded={setScrollPosition}
+        direction={isTopPosition ? Directions.UP : Directions.DOWN}>
+        <View style={generalStyles.flex} onLayout={onLayout}>
+          <ImageBackground source={image} style={generalStyles.flex}>
+            <ScrollView scrollEnabled={false} ref={scrollViewRef}>
+              <View
+                style={[
+                  styles.topContentContainer,
+                  { height: scrollViewHeight },
+                ]}>
+                <ExtendedText style={styles.topTitle}>
+                  {t(titleKey)}
+                </ExtendedText>
+                <ExtendedText style={styles.topSubtitle}>
+                  {t(subtitleKey)}
+                </ExtendedText>
+                <ExtendedButton
+                  title={t('buttons.ready')}
+                  style={styles.submitButton}
+                />
+                <ExtendedButton
+                  title={t('components.VerticalSwipeView.to_bottom')}
+                  onPress={setScrollPosition}
+                />
+              </View>
+              <View
+                style={[
+                  styles.bottomContentContainer,
+                  { height: scrollViewHeight },
+                ]}>
+                <ExtendedButton
+                  title={t('components.VerticalSwipeView.to_top')}
+                  onPress={setScrollPosition}
+                />
+                <ExtendedText style={styles.bottomTitle}>
+                  {t(aboutTitleKey)}
+                </ExtendedText>
+                <ScrollView>
+                  <ExtendedText style={styles.bottomsubtitle}>
+                    {t(aboutSubtitleKey)}
+                  </ExtendedText>
+                </ScrollView>
+              </View>
+            </ScrollView>
+          </ImageBackground>
+        </View>
+      </FlingGestureHandler>
+    </GestureHandlerRootView>
   );
 };

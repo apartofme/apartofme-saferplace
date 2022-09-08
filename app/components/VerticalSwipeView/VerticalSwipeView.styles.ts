@@ -1,22 +1,38 @@
-import { StyleSheet, ViewStyle } from 'react-native';
-
-import { SCROLL_VIEW_HEIGHT } from './VerticalSwipeView.data';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 interface IMainHeaderStyles {
-  scrollView: ViewStyle;
   topContentContainer: ViewStyle;
+  topTitle: TextStyle;
+  topSubtitle: TextStyle;
+  submitButton: ViewStyle;
+  bottomTitle: TextStyle;
+  bottomsubtitle: TextStyle;
   bottomContentContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IMainHeaderStyles>({
-  scrollView: {
-    height: SCROLL_VIEW_HEIGHT,
-  },
   topContentContainer: {
-    height: SCROLL_VIEW_HEIGHT / 2,
     justifyContent: 'flex-end',
   },
+  topTitle: {
+    textAlign: 'center',
+  },
+  topSubtitle: {
+    textAlign: 'center',
+    marginTop: 24,
+  },
+  submitButton: {
+    marginTop: 90,
+    marginBottom: 24,
+    marginHorizontal: 40,
+  },
+  bottomTitle: {
+    marginTop: 140,
+  },
+  bottomsubtitle: {
+    marginTop: 37,
+  },
   bottomContentContainer: {
-    height: SCROLL_VIEW_HEIGHT / 2,
+    paddingHorizontal: 24,
   },
 });
