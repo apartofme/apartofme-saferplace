@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
@@ -18,6 +18,13 @@ export const ButtonsMenuScreen: React.FC<IButtonsMenuScreenProps> = ({
 
   const { t } = useTranslation();
 
+  const onMenuItemPress = useCallback(
+    (type: string) => {
+      navigation.navigate(type);
+    },
+    [navigation],
+  );
+
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <MainHeader
@@ -33,7 +40,7 @@ export const ButtonsMenuScreen: React.FC<IButtonsMenuScreenProps> = ({
               <MenuButton
                 key={`main-menu-${item.type}`}
                 title={item.title}
-                onPress={_.noop}
+                onPress={() => onMenuItemPress(item.type)}
               />
             );
           })}

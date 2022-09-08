@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import {
   FeedbackScreen,
   MainMenuScreen,
+  FeedbackSuccessScreen,
   LanguageSettingsScreen,
   ButtonsMenuScreen,
 } from '../../screens';
@@ -17,6 +18,7 @@ export type MenuStackParams = {
     subtitleKey?: string;
     data: ReadonlyArray<IButtonsMenuItem>;
   };
+  FeedbackSuccess: undefined;
   Feedback: undefined;
   LanguageSettings: undefined;
 };
@@ -28,6 +30,7 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="MainMenu" component={MainMenuScreen} />
     <Stack.Screen name="ButtonsMenu" component={ButtonsMenuScreen} />
     <Stack.Screen name="Feedback" component={FeedbackScreen} />
+    <Stack.Screen name="FeedbackSuccess" component={FeedbackSuccessScreen} />
     <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} />
   </Stack.Navigator>
 );
