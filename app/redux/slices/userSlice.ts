@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   IAuthUserActionPayload,
   IAuthUserSuccessActionPayload,
+  IResetPasswordActionPayload,
 } from '../types';
 import { Nullable } from '../../utils';
 import { IUser } from '../../models/IUser';
@@ -34,6 +35,10 @@ export const userSlice = createSlice({
       state.user = user;
     },
     registerUserError(state, action: PayloadAction<string>) {},
+
+    resetPassword(state, action: IResetPasswordActionPayload) {},
+    resetPasswordSuccess() {},
+    resetPasswordError(state, action: PayloadAction<string>) {},
 
     logout(state) {
       return INITIAL_STATE;
