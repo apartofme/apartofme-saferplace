@@ -219,6 +219,7 @@ export const en = {
           new_password: 'Enter your New Password',
           confirm_new_password: 'Confirm New Password',
         },
+      },
       change_password_success: {
         title: 'Password Changed',
         subtitle: 'You have successfully changed your password.',
