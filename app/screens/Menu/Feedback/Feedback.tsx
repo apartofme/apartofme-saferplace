@@ -14,14 +14,19 @@ import { generalStyles } from '../../../utils/styles';
 import { IFeedbackScreenProps } from './Feedback.props';
 import { styles } from './Feedback.styles';
 
-export const FeedbackScreen: React.FC<IFeedbackScreenProps> = () => {
+export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
+  navigation,
+}) => {
   const { t } = useTranslation();
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <BottomButtonView buttonTitle={t('buttons.submit')} onSubmit={_.noop}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
         <View style={styles.container}>
-          <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} />
           <ExtendedText style={styles.title}>
             {t('screens.menu.feedback.title')}
           </ExtendedText>

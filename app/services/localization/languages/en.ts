@@ -239,8 +239,8 @@ export const en = {
         subtitle: 'You have successfully changed your password.',
       },
       notification_settings: {
-        title: 'title',
-        is_notifications_enabled: 'is_notifications_enabled',
+        title: 'Notification settings',
+        is_notifications_enabled: 'Allow Notifications',
       },
     },
   },
@@ -248,10 +248,6 @@ export const en = {
     VerticalSwipeView: {
       to_bottom: 'tell me more',
       to_top: 'back',
-      notification_settings: {
-        title: 'Notification settings',
-        is_notifications_enabled: 'Allow Notifications',
-      },
     },
   },
   languages: {

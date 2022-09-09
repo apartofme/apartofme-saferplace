@@ -37,10 +37,6 @@ const Stack = createNativeStackNavigator<MenuStackParams>();
 
 export const MenuStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
-    <Stack.Screen
-      name="NotificationSettings"
-      component={NotificationSettingsScreen}
-    />
     <Stack.Screen name="MainMenu" component={MainMenuScreen} />
     <Stack.Screen
       name="FrequentlyAskedQuestions"
@@ -55,6 +51,10 @@ export const MenuStackNavigator = () => (
     <Stack.Screen
       name="ChangePasswordSuccess"
       component={ChangePasswordSuccessScreen}
+    />
+    <Stack.Screen
+      name="NotificationSettings"
+      component={NotificationSettingsScreen}
     />
   </Stack.Navigator>
 );

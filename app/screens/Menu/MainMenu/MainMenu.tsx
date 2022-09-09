@@ -69,7 +69,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
               <MenuButton
                 key={`main-menu-${item.type}`}
                 title={t(item.title)}
-                onPress={_.noop}
+                onPress={() => onMenuItemPress(item)}
                 icon={item.icon}
               />
             ))}
