@@ -15,7 +15,7 @@ export const MenuButton: React.FC<IMenuButtonProps> = ({
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={icon} />
+      {icon && <Image source={icon} />}
       <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
       {/* //TODO: uncoment when design will be done */}
       {/* <Image source={IMAGES.WHITE_RIGHT_ARROW}/> */}

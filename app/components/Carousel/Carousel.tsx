@@ -22,6 +22,9 @@ export const Carousel: React.FC<ICarouselProps> = ({
   data,
   setCurrentPossition,
   setImage,
+  style,
+  carouselStyle,
+  carouselItemStyle,
 }) => {
   const progressValue = useSharedValue(0);
 
@@ -64,20 +67,20 @@ export const Carousel: React.FC<ICarouselProps> = ({
     ({ item }: { item: ICarouselItem }) => {
       switch (preset) {
         case CarouselType.ImageTitleSubTitle:
-          return <ImageTitleSubTitle data={item} />;
+          return <ImageTitleSubTitle data={item} style={carouselItemStyle} />;
         case CarouselType.ImageSubTitle:
-          return <ImageSubTitle data={item} />;
+          return <ImageSubTitle data={item} style={carouselItemStyle} />;
         case CarouselType.OnlyImage:
-          return <OnlyImage data={item} />;
+          return <OnlyImage data={item} style={carouselItemStyle} />;
         default:
           return <View />;
       }
     },
-    [preset],
+    [carouselItemStyle, preset],
   );
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <GestureHandlerRootView style={[styles.container, style]}>
       <ReanimatedCarousel
         loop={false}
         width={WINDOW_WIDTH}
@@ -85,11 +88,11 @@ export const Carousel: React.FC<ICarouselProps> = ({
         //* Set undefind for default mode
         mode={preset === CarouselType.OnlyImage ? 'parallax' : undefined}
         renderItem={renderCarouselItem}
-        style={generalStyles.flex}
+        style={[generalStyles.flex, carouselStyle]}
         onProgressChange={onProgressChange}
         onSnapToItem={onSnapToItem}
       />
-      <View style={generalStyles.aiCenter}>{renderProgressBar()}</View>
+      <View style={styles.progressBar}>{renderProgressBar()}</View>
     </GestureHandlerRootView>
   );
 };

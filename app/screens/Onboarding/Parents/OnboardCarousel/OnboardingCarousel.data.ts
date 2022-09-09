@@ -21,4 +21,10 @@ export const CHARMS_CAROUSEL: ReadonlyArray<ICarouselItem> = [
     titleKey: 'screens.onboarding.onboard_carousel.third.title',
     subtitleKey: 'screens.onboarding.onboard_carousel.third.subtitle',
   },
+  {
+    id: '4',
+    image: IMAGES.WHITE_PENCIL,
+    titleKey: 'screens.onboarding.onboard_carousel.fourth.title',
+    subtitleKey: 'screens.onboarding.onboard_carousel.fourth.subtitle',
+  },
 ];

@@ -6,8 +6,10 @@ export const en = {
     enter: 'Enter',
     next: 'Next',
     login: 'Login',
+    log_in: 'Log in',
     save: 'Save',
     signup: 'Sign up',
+    signin: 'Sign in!',
     skip: 'Skip',
     submit: 'Submit',
     privacy_policy: 'Privacy Policy',
@@ -29,21 +31,37 @@ export const en = {
   placeholders: {
     enter_email: 'Enter your email address',
     create_password: 'Create a password',
+    enter_nickname: 'Enter a Nickname',
     enter_age: 'Enter age',
   },
   screens: {
     onboarding: {
       welcome: {
-        title: 'welcome to a',
+        title: 'welcome\nto a',
       },
       language_selection: {
-        title: 'What Language would you like to use?',
+        title: 'Choose Language',
       },
       acknowledgement: {
         title:
-          'If you have arrived here, then I know you and your family have been through some really tough times.',
-        subtitle:
-          'I am so sorry that you have had to experience this. I am here to guide you and your child to find a way through this.',
+          'If you have arrived here, then we know you and your family have been through some really tough times. We are here to guide you and your child so you can find and nurture your inner strengths.',
+      },
+      charms_introducing: {
+        first: {
+          title: 'Charms',
+          subtitle:
+            'To advance through this world, you and your child will complete special exercises together, called Charms. ',
+        },
+        second: {
+          title: 'Charms',
+          subtitle:
+            'These are fun and simple actions to perform which will help you connect with each other and grow together.',
+        },
+        third: {
+          title: 'A Charm for you',
+          subtitle:
+            "Why don't you try one yourself, first of all. You've also been through a really tough time.",
+        },
       },
       sign_up_credentials: {
         title: 'Create an account',
@@ -51,28 +69,16 @@ export const en = {
         footer: 'By creating on account you agreeing to our',
       },
       sign_up_nickname: {
-        title: 'What should we call you?',
-        subtitle: '',
+        title: 'Create your nickname',
+        subtitle:
+          'Enter a nickname for your child here. This name will be displayed during your journey through A Safer Place.',
       },
       sign_up_avatar: {
-        title: 'Select your avatar',
-        subtitle: '',
-        charms_introducing: {
-          first: {
-            title: 'Charms',
-            subtitle:
-              'To advance through the app, you and your child will complete special exercises together, called Charms.',
-          },
-          second: {
-            title: 'Charms',
-            subtitle:
-              'These are fun and simple actions to perform which will help you connect with each other and grow together.',
-          },
-          third: {
-            title: 'A Charm for you',
-            subtitle:
-              'Why don`t you try one yourself, first of all. You`ve also been through something difficult.',
-          },
+        parent: {
+          title: 'Choose a Character',
+        },
+        child: {
+          title: '[Child] choose a\ncharacter ',
         },
       },
       sign_up_success: {
@@ -82,7 +88,7 @@ export const en = {
             'That’s your account all set up and ready to go! Please check your email for confirmation.',
         },
         child: {
-          title: '[child] you are so very welcome here',
+          title: '[Child], you are so very welcome here',
           subtitle: 'That’s you all set up and ready to go!',
         },
       },
@@ -94,18 +100,23 @@ export const en = {
       onboard_carousel: {
         first: {
           title: 'A Safer Place',
-          subTitle:
-            'This app has been created to help you and your child understand the difficult things that you have been through together.',
+          subtitle:
+            'This app is designed to help you and your child/children learn how to be kinder to yourself and others, become more confident in your ability to navigate difficult times, and rediscover hope',
         },
         second: {
-          title: 'Snappy Title here',
-          subTitle:
-            'It mixes magical storytelling and proven therapy techniques to keep you both motivated and engaged.',
+          title: 'Healing Through Play',
+          subtitle:
+            'Here you will find a 14-day programme of simple, evidence-based therapy exercises delivered in a playful format so children will enjoy doing them without needing to be nagged.',
         },
         third: {
-          title: 'A Better Future',
-          subTitle:
-            'In just two weeks, you will both feel calmer, closer to each other, and more in control.',
+          title: 'Growing Hope Together',
+          subtitle:
+            'In just two weeks, you and your child can feel a bit calmer, closer to each other, and more in control.',
+        },
+        fourth: {
+          title: 'Support For You',
+          subtitle:
+            'Our guide for grown ups has lots of resources and information to help you on this journey. You can find this in the menu, or by tapping on ‘Find out More’.',
         },
       },
       joint: {
@@ -118,22 +129,23 @@ export const en = {
           second: {
             title: 'Funny random loading thing...',
             subtitle:
-              "We suggest telling your child that you've got something magical to play with together. Whenever they are comfortable and curious, you can begin.",
+              'We suggest telling your child that you have found a magical game to play together, a game designed to help us get through difficult times.',
           },
         },
       },
       sidekick_intro: {
         firstPhrase: 'Who is this, who has found their way into my forest?',
         secondPhrase:
-          'Travellers? But where have you come from, and where are you going?',
-        thirdPhrase: 'It doesn`t matter. You`re here now.',
+          'I wonder what adventures brought you to this enchanted forest?',
+        thirdPhrase:
+          'Whatever journey you have been on, you are both so welcome here.',
         fourthPhrase:
-          'You look worried. Especially the big one. But there is nothing to fear.',
+          'You look like you might have had a tough time recently. I am sorry about this. I hope you can find what you need in my enchanted woodland.',
         fifthPhrase: 'I forgot... how rude. Just a moment...',
         sixthPhrase:
-          'There. That`s better. I forget that you humans can`t see me, sometimes.',
+          "There. That's better. I forget that you humans can't see me, sometimes.",
         seventhPhrase:
-          'I like to give every visitor to my forest a personal greeting.\nBut first I need to know what to call you...',
+          'I like to give every visitor to my forest a personal greeting.\n\nBut first I need to know what to call you...',
         eighthPhrase: 'If there is anything that I or my faithful assistant...',
         ninthPhrase:
           '...can do for you, please let me know. It is my job to care for everything in this forest: from the trees to the people passing through.',
@@ -146,11 +158,11 @@ export const en = {
           subtitle:
             'Enter your email address below and we will send you a link to reset your password.',
         },
-      },
-      success: {
-        title: 'Check your email',
-        subtitle:
-          'An email has been sent to you with instructions on resetting your password. If you have not received the email, check your spam folder.',
+        success: {
+          title: 'Check your email',
+          subtitle:
+            'An email has been sent to you with instructions on resetting your password. If you have not received the email, check your spam folder.',
+        },
       },
     },
     menu: {
@@ -183,6 +195,11 @@ export const en = {
             question_third: 'question third',
           },
         },
+      grown_ups_guide: {
+        title: 'Our Guide for grown ups',
+        first_item: 'About the Charms',
+        second_item: 'Frequently Asked Questions',
+        third_item: 'Feedback',
       },
       feedback: {
         title: 'Feedback',
@@ -197,6 +214,26 @@ export const en = {
         title: 'Thank you!',
         subtitle: 'We really appreciate your feedback.',
       },
+      change_password: {
+        title: 'Change your password',
+        subtitle:
+          'Your new password must be different from previous used passwords',
+        reset_password: 'Reset Password',
+        input_placeholder: {
+          current_password: 'Enter your Current Password',
+          new_password: 'Enter your New Password',
+          confirm_new_password: 'Confirm New Password',
+        },
+      change_password_success: {
+        title: 'Password Changed',
+        subtitle: 'You have successfully changed your password.',
+      },
+    },
+  },
+  components: {
+    VerticalSwipeView: {
+      to_bottom: 'tell me more',
+      to_top: 'back',
     },
   },
   languages: {
@@ -205,7 +242,7 @@ export const en = {
     russian: 'Russian',
   },
   labels: {
-    and: 'and',
+    and: ' and ',
     take_photo: 'Take Photo',
     choose_library: 'Choose photo from library',
 
