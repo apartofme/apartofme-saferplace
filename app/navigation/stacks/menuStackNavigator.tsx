@@ -7,12 +7,15 @@ import {
   MainMenuScreen,
   FeedbackSuccessScreen,
   LanguageSettingsScreen,
+  ChangePasswordScreen,
+  ChangePasswordSuccessScreen,
   ButtonsMenuScreen,
 } from '../../screens';
 import { IButtonsMenuItem } from '../../screens/Menu/ButtonsMenu/ButtonsMenu.data';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type MenuStackParams = {
+  ChangePasswordSuccess: undefined;
   MainMenu: undefined;
   AboutCharm: { titleKey: string; subtitleKey: string };
   ButtonsMenu: {
@@ -23,6 +26,7 @@ export type MenuStackParams = {
   FeedbackSuccess: undefined;
   Feedback: undefined;
   LanguageSettings: undefined;
+  ChangePassword: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
@@ -35,5 +39,10 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="FeedbackSuccess" component={FeedbackSuccessScreen} />
     <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} />
     <Stack.Screen name="AboutCharm" component={AboutCharmScreen} />
+    <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+    <Stack.Screen
+      name="ChangePasswordSuccess"
+      component={ChangePasswordSuccessScreen}
+    />
   </Stack.Navigator>
 );

@@ -1,0 +1,1 @@
+export { ChangePasswordSuccessScreen } from './ChangePasswordSuccess';
