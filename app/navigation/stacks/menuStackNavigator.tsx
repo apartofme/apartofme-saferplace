@@ -6,12 +6,14 @@ import {
   MainMenuScreen,
   FeedbackSuccessScreen,
   LanguageSettingsScreen,
+  ChangePasswordSuccessScreen,
   ButtonsMenuScreen,
 } from '../../screens';
 import { IButtonsMenuItem } from '../../screens/Menu/ButtonsMenu/ButtonsMenu.data';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type MenuStackParams = {
+  ChangePasswordSuccess: undefined;
   MainMenu: undefined;
   ButtonsMenu: {
     titleKey: string;
@@ -32,5 +34,9 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="Feedback" component={FeedbackScreen} />
     <Stack.Screen name="FeedbackSuccess" component={FeedbackSuccessScreen} />
     <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} />
+    <Stack.Screen
+      name="ChangePasswordSuccess"
+      component={ChangePasswordSuccessScreen}
+    />
   </Stack.Navigator>
 );

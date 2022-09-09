@@ -196,6 +196,10 @@ export const en = {
         title: 'Thank you!',
         subtitle: 'We really appreciate your feedback.',
       },
+      change_password_success: {
+        title: 'Password Changed',
+        subtitle: 'You have successfully changed your password.',
+      },
     },
   },
   components: {
