@@ -7,6 +7,7 @@ import {
   MainMenuScreen,
   FeedbackSuccessScreen,
   LanguageSettingsScreen,
+  FrequentlyAskedQuestionsScreen,
   ChangePasswordScreen,
   ChangePasswordSuccessScreen,
   ButtonsMenuScreen,

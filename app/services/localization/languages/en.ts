@@ -196,6 +196,12 @@ export const en = {
           },
         },
       },
+      grown_ups_guide: {
+        title: 'Our Guide for grown ups',
+        first_item: 'About the Charms',
+        second_item: 'Frequently Asked Questions',
+        third_item: 'Feedback',
+      },
       feedback: {
         title: 'Feedback',
         subtitle:
