@@ -4,4 +4,5 @@ export interface ITimerScreenProps {
   duration: number;
   background: ImageSourcePropType;
   titleKey?: string;
+  onAnimationComplete?: () => void;
 }
