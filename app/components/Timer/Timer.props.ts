@@ -1,5 +1,8 @@
 import { ViewProps } from 'react-native';
 
 export interface ITimerProps extends ViewProps {
-  value: number;
+  duration: number;
+  isStart: boolean;
+  maxValue?: number;
+  onAnimationComplete?: () => void;
 }

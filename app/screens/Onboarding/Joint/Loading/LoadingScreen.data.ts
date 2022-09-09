@@ -1,7 +1,4 @@
-export const MAX_TIME = 100;
-export const INTERVAL_INCREASE = 1;
-export const NEXT_SPEECH = 50;
-export const TICK_VALUE = 50;
+export const TIME_TO_NEXT_SPEECH = 5000;
 
 interface ISpeechListItem {
   titleKey: string;
