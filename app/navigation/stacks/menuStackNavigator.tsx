@@ -14,7 +14,7 @@ import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type MenuStackParams = {
   MainMenu: undefined;
-  AboutCharm: { titleKey: string; subTitleKey: string };
+  AboutCharm: { titleKey: string; subtitleKey: string };
   ButtonsMenu: {
     titleKey: string;
     subtitleKey?: string;

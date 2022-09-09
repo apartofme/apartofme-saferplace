@@ -11,7 +11,7 @@ import { styles } from './AboutCharm.styles';
 export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
   route,
 }) => {
-  const { titleKey, subTitleKey } = route.params;
+  const { titleKey, subtitleKey } = route.params;
 
   const { t } = useTranslation();
 
@@ -23,7 +23,7 @@ export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
       />
       <ExtendedText style={styles.title}>{t(titleKey)}</ExtendedText>
       <ScrollView>
-        <ExtendedText style={styles.subTitle}>{t(subTitleKey)}</ExtendedText>
+        <ExtendedText style={styles.subtitle}>{t(subtitleKey)}</ExtendedText>
       </ScrollView>
     </SafeAreaView>
   );

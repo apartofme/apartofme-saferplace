@@ -2,7 +2,7 @@ import { StyleSheet, TextStyle } from 'react-native';
 
 interface IHomeScreenStyles {
   title: TextStyle;
-  subTitle: TextStyle;
+  subtitle: TextStyle;
 }
 
 export const styles = StyleSheet.create<IHomeScreenStyles>({
@@ -10,7 +10,7 @@ export const styles = StyleSheet.create<IHomeScreenStyles>({
   title: {
     marginTop: 181,
   },
-  subTitle: {
+  subtitle: {
     marginTop: 40,
   },
 });
