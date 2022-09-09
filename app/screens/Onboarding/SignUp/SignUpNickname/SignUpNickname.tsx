@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { KeyboardAvoidingView, SafeAreaView } from 'react-native';
 
 import {
   BottomButtonView,
@@ -13,6 +13,7 @@ import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpNicknameScreenProps } from './SignUpNickname.props';
+import { styles } from './SignUpNickname.styles';
 
 export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   navigation,
@@ -35,27 +36,30 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   }, [dispatch, isChild, navigation, nickname]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
-      <BottomButtonView
-        buttonTitle={t('buttons.next').toUpperCase()}
-        onSubmit={onSubmit}
-        isDisabledButton={!nickname}>
+    <SafeAreaView style={generalStyles.flex}>
+      <KeyboardAvoidingView style={generalStyles.flex} behavior="padding">
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
         />
-        <ExtendedText>
-          {t('screens.onboarding.sign_up_nickname.title')}
-        </ExtendedText>
-        <ExtendedText>
-          {t('screens.onboarding.sign_up_nickname.subtitle')}
-        </ExtendedText>
-        <ExtendedTextInput
-          value={nickname}
-          onChangeText={setNickname}
-          placeholder={t('placeholders.enter_nickname')}
-        />
-      </BottomButtonView>
+        <BottomButtonView
+          buttonTitle={t('buttons.next').toUpperCase()}
+          onSubmit={onSubmit}
+          isDisabledButton={!nickname}
+          style={styles.container}>
+          <ExtendedText preset="large-title">
+            {t('screens.onboarding.sign_up_nickname.title')}
+          </ExtendedText>
+          <ExtendedText preset="secondary-text" style={styles.subtitle}>
+            {t('screens.onboarding.sign_up_nickname.subtitle')}
+          </ExtendedText>
+          <ExtendedTextInput
+            value={nickname}
+            onChangeText={setNickname}
+            placeholder={t('placeholders.enter_nickname')}
+          />
+        </BottomButtonView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

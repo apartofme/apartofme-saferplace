@@ -16,6 +16,7 @@ import {
   CHARMS_CAROUSEL,
 } from './CharmsIntroducing.data';
 import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.props';
+import { styles } from './CharmsIntroducing.styles';
 
 export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
   ({ navigation }) => {
@@ -25,7 +26,11 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
 
     return (
       // TODO: remove noop to real function
-      <SafeAreaView style={generalStyles.whFlex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
         <BottomButtonView
           buttonTitle={t(
             currentPossition > ABSOLUTE_PROGRESS_VALUE
@@ -33,14 +38,11 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
               : 'buttons.next',
           ).toUpperCase()}
           onSubmit={_.noop}>
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={navigation.goBack}
-          />
           <Carousel
             data={CHARMS_CAROUSEL}
             preset={CarouselType.ImageTitleSubTitle}
             setCurrentPossition={setCurrentPossition}
+            carouselItemStyle={styles.container}
           />
         </BottomButtonView>
       </SafeAreaView>
