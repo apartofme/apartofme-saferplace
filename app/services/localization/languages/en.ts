@@ -196,7 +196,6 @@ export const en = {
             question_second: 'question second',
             question_third: 'question third',
           },
-
           section_second: {
             title: 'Section 2',
             question_first: 'question first',
@@ -204,6 +203,7 @@ export const en = {
             question_third: 'question third',
           },
         },
+      },
       grown_ups_guide: {
         title: 'Our Guide for grown ups',
         first_item: 'About the Charms',
@@ -233,6 +233,8 @@ export const en = {
           new_password: 'Enter your New Password',
           confirm_new_password: 'Confirm New Password',
         },
+      },
+
       change_password_success: {
         title: 'Password Changed',
         subtitle: 'You have successfully changed your password.',
