@@ -14,9 +14,10 @@ export const en = {
     submit: 'Submit',
     privacy_policy: 'Privacy Policy',
     terms_conditions: 'Terms & Conditions',
+    forgot_password: 'Forgot password?',
+    manage_profiles: 'Manage Profiles',
 
     // Dummy
-    forgot_password: 'Forgot the password?',
     get_started: 'Get Started',
     deposit: 'Top Up Deposit',
     view_all: 'View All',
@@ -30,6 +31,7 @@ export const en = {
   },
   placeholders: {
     enter_email: 'Enter your email address',
+    enter_password: 'Enter your password',
     create_password: 'Create a password',
     enter_nickname: 'Enter a Nickname',
     enter_age: 'Enter age',
@@ -151,6 +153,13 @@ export const en = {
           '...can do for you, please let me know. It is my job to care for everything in this forest: from the trees to the people passing through.',
         tenthPhrase:
           'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
+      },
+      login: {
+        title: 'Welcome Back',
+        footer: 'Don’t have an account?',
+      },
+      select_user: {
+        title: 'Who’s playing?',
       },
       forgot_password: {
         email: {
