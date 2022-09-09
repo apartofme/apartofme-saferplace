@@ -1,15 +1,16 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
 interface IForgotPasswordEmailScreenStyles {
-  // TODO: delete when the image will be added
-  goBackButton: ViewStyle;
+  container: ViewStyle;
+  subtitle: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IForgotPasswordEmailScreenStyles>({
-  // TODO: delete when the image will be added
-  goBackButton: {
-    width: 30,
-    height: 30,
-    backgroundColor: 'black',
+  container: {
+    paddingHorizontal: 24,
+  },
+  subtitle: {
+    marginTop: 16,
+    marginBottom: 48,
   },
 });

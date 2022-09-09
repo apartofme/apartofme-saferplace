@@ -3,24 +3,37 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
-import { BottomButtonView, ExtendedText } from '../../../../components';
+import {
+  BottomButtonView,
+  ExtendedText,
+  MainHeader,
+} from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
 import { IForgotPasswordSuccessScreenProps } from './ForgotPasswordSuccessScreen.props';
+import { styles } from './ForgotPasswordSuccessScreen.styles';
+import { IMAGES } from '../../../../assets';
 
 export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenProps> =
-  ({}) => {
+  ({ navigation }) => {
     const { t } = useTranslation();
 
     return (
-      <SafeAreaView style={generalStyles.whFlex}>
-        {/* // TODO: change to correct function */}
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
         <BottomButtonView
           buttonTitle={t('buttons.open_email')}
-          onSubmit={_.noop}>
-          <ExtendedText>
+          // TODO: change to correct function
+          onSubmit={_.noop}
+          style={styles.container}>
+          {/* // TODO: add the image */}
+          <ExtendedText style={styles.title}>
             {t('screens.onboarding.forgot_password.success.title')}
           </ExtendedText>
-          <ExtendedText>
+
+          <ExtendedText style={styles.subtitle}>
             {t('screens.onboarding.forgot_password.success.subtitle')}
           </ExtendedText>
         </BottomButtonView>

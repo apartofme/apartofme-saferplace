@@ -1,9 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View, SafeAreaView } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+  KeyboardAvoidingView,
+} from 'react-native';
 
 import {
-  ExtendedButton,
+  BottomButtonView,
   ExtendedText,
   ExtendedTextInput,
   MainHeader,
@@ -13,6 +18,7 @@ import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpCredentialsScreenProps } from './SignUpCredentials.props';
+import { styles } from './SignUpCredentials.styles';
 
 export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
   ({ navigation }) => {
@@ -27,49 +33,68 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
       navigation.navigate('SignUpNickname');
     }, [dispatch, email, navigation, password]);
 
+    const isButtonDisabled = useMemo(
+      () => !email || !password,
+      [email, password],
+    );
+
     return (
-      <SafeAreaView style={generalStyles.whFlex}>
+      <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
         />
-        <ExtendedText>
-          {t('screens.onboarding.sign_up_credentials.title')}
-        </ExtendedText>
-        <View style={generalStyles.row}>
-          <ExtendedText>
-            {t('screens.onboarding.sign_up_credentials.subtitle')}
-          </ExtendedText>
-          <TouchableOpacity>
-            <ExtendedText>{t('buttons.signup')} </ExtendedText>
-          </TouchableOpacity>
-        </View>
-        <ExtendedTextInput
-          value={email}
-          onChangeText={setEmail}
-          placeholder={t('placeholders.enter_email')}
-        />
-        <ExtendedTextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder={t('placeholders.create_password')}
-        />
-        <ExtendedButton
-          onPress={onSignUpPress}
-          disabled={!email && !password}
-          title={t('buttons.signup').toUpperCase()}
-        />
+        <KeyboardAvoidingView behavior="padding" style={generalStyles.flex}>
+          <BottomButtonView
+            buttonTitle={t('buttons.signup')}
+            onSubmit={onSignUpPress}
+            isDisabledButton={isButtonDisabled}
+            style={styles.container}>
+            <ExtendedText preset="large-title">
+              {t('screens.onboarding.sign_up_credentials.title')}
+            </ExtendedText>
 
-        <View>
-          <ExtendedText>
+            <View style={styles.subtitle}>
+              <ExtendedText preset="secondary-text">
+                {t('screens.onboarding.sign_up_credentials.subtitle')}
+              </ExtendedText>
+              <TouchableOpacity>
+                <ExtendedText preset="secondary-text">
+                  {` ${t('buttons.signin')}`}
+                </ExtendedText>
+              </TouchableOpacity>
+            </View>
+
+            <ExtendedTextInput
+              value={email}
+              onChangeText={setEmail}
+              placeholder={t('placeholders.enter_email')}
+              style={styles.input}
+            />
+            <ExtendedTextInput
+              value={password}
+              onChangeText={setPassword}
+              placeholder={t('placeholders.create_password')}
+            />
+          </BottomButtonView>
+        </KeyboardAvoidingView>
+
+        <View style={styles.bottomConatainer}>
+          <ExtendedText preset="tertiary-text-regular">
             {t('screens.onboarding.sign_up_credentials.footer')}
           </ExtendedText>
           <TouchableOpacity>
-            <ExtendedText>{t('buttons.terms_conditions')}</ExtendedText>
+            <ExtendedText preset="tertiary-text-regular">
+              {t('buttons.terms_conditions')}
+            </ExtendedText>
           </TouchableOpacity>
-          <ExtendedText>{t('labels.and')}</ExtendedText>
+          <ExtendedText preset="tertiary-text-regular">
+            {t('labels.and')}
+          </ExtendedText>
           <TouchableOpacity>
-            <ExtendedText>{t('buttons.privacy_policy')}</ExtendedText>
+            <ExtendedText preset="tertiary-text-regular">
+              {t('buttons.privacy_policy')}
+            </ExtendedText>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
