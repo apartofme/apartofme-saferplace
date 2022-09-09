@@ -16,7 +16,7 @@ export const styles = StyleSheet.create<ISignUpSuccessScreenStyles>({
     marginTop: 113,
   },
   title: {
-    marginTop: 46,
+    marginTop: 39,
     marginBottom: 24,
     textAlign: 'center',
   },
