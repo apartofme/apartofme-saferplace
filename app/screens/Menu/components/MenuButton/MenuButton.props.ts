@@ -2,6 +2,6 @@ import { ImageSourcePropType } from 'react-native';
 
 export interface IMenuButtonProps {
   title: string;
-  icon: ImageSourcePropType;
+  icon?: ImageSourcePropType;
   onPress: () => void;
 }

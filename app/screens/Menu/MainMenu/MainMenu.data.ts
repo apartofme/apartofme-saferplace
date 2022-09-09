@@ -2,11 +2,12 @@ import { ImageSourcePropType } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 
+//* This enum is used for navigation so names must be capitalized
 export enum MainMenuItemType {
-  Guide = 'guide',
-  Support = 'support',
-  AccountManage = 'accountManage',
-  Settings = 'settings',
+  Guide = 'GrownUpGuide',
+  Support = 'Support',
+  AccountManage = 'AccountManage',
+  Settings = 'Settings',
 }
 
 export interface IMainMenuItem {
