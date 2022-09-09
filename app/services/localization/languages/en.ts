@@ -186,6 +186,24 @@ export const en = {
         settings: 'Settings & Privacy',
         logout: 'Logout',
       },
+      frequently_asked_questions_screen: {
+        header: 'faqs',
+        title: 'Frequently asked questions',
+        questions: {
+          section_first: {
+            title: 'Section 1',
+            question_first: 'question vlad',
+            question_second: 'question second',
+            question_third: 'question third',
+          },
+
+          section_second: {
+            title: 'Section 2',
+            question_first: 'question first',
+            question_second: 'question second',
+            question_third: 'question third',
+          },
+        },
       grown_ups_guide: {
         title: 'Our Guide for grown ups',
         first_item: 'About the Charms',
