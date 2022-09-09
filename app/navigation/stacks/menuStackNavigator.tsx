@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import {
+  AboutCharmScreen,
   FeedbackScreen,
   MainMenuScreen,
   FeedbackSuccessScreen,
@@ -16,6 +17,7 @@ import { DEFAULT_STACK_OPTIONS } from '../options';
 export type MenuStackParams = {
   ChangePasswordSuccess: undefined;
   MainMenu: undefined;
+  AboutCharm: { titleKey: string; subtitleKey: string };
   ButtonsMenu: {
     titleKey: string;
     subtitleKey?: string;
@@ -36,6 +38,7 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="Feedback" component={FeedbackScreen} />
     <Stack.Screen name="FeedbackSuccess" component={FeedbackSuccessScreen} />
     <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} />
+    <Stack.Screen name="AboutCharm" component={AboutCharmScreen} />
     <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
     <Stack.Screen
       name="ChangePasswordSuccess"
