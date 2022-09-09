@@ -198,6 +198,12 @@ export const en = {
       },
     },
   },
+  components: {
+    VerticalSwipeView: {
+      to_bottom: 'tell me more',
+      to_top: 'back',
+    },
+  },
   languages: {
     english: 'English',
     ukrainian: 'Ukrainian',
