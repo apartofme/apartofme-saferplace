@@ -32,11 +32,10 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   const setScrollPosition = useCallback(() => {
     if (isTopPosition) {
       scrollViewRef.current?.scrollToEnd();
-      setIsTopPosition(false);
     } else {
       scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true });
-      setIsTopPosition(true);
     }
+    setIsTopPosition(!isTopPosition);
   }, [isTopPosition]);
 
   const onLayout = useCallback(event => {
