@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 
@@ -17,16 +17,18 @@ export const TimerScreen: React.FC<ITimerScreenProps> = ({
   background,
   duration,
   titleKey = '',
+  onAnimationComplete,
 }) => {
   const { t } = useTranslation();
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
 
+  const correctButtonTitle = useMemo(
+    () => (isTimerStart ? 'buttons.timer_started' : 'buttons.start_timer'),
+    [isTimerStart],
+  );
+
   const onSubmitPress = useCallback(() => {
     setIsTimerStart(true);
-  }, []);
-
-  const goToNextScreen = useCallback(() => {
-    // TODO: add navigation
   }, []);
 
   return (
@@ -34,15 +36,20 @@ export const TimerScreen: React.FC<ITimerScreenProps> = ({
       <ImageBackground source={background} style={generalStyles.flex}>
         <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} />
         <BottomButtonView
-          buttonTitle={t('')}
+          buttonTitle={t(correctButtonTitle)}
           onSubmit={onSubmitPress}
-          isDisabledButton={isTimerStart}>
+          isDisabledButton={isTimerStart}
+          style={styles.container}>
           <Timer
             duration={duration}
             isStart={isTimerStart}
-            onAnimationComplete={goToNextScreen}
+            onAnimationComplete={onAnimationComplete}
           />
-          {!!titleKey && <ExtendedText>{t(titleKey)}</ExtendedText>}
+          {!!titleKey && (
+            <ExtendedText preset="heading" style={styles.title}>
+              {t(titleKey)}
+            </ExtendedText>
+          )}
         </BottomButtonView>
       </ImageBackground>
     </SafeAreaView>

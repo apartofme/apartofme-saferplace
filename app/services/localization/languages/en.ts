@@ -28,6 +28,8 @@ export const en = {
     reset_password: 'Reset Password',
     we_ready: 'We’re ready',
     open_email: 'Open email app',
+    start_timer: 'Start Timer',
+    timer_started: 'Timer Started',
   },
   placeholders: {
     enter_email: 'Enter your email address',
