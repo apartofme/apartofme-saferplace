@@ -21,7 +21,7 @@ function* watchLoginUser({
   );
   if (!loginUserResponse.error) {
     yield put(userSlice.actions.loginUserSuccess(loginUserResponse.user));
-    StaticNavigator.navigateTo('SelectUser');
+    yield call(StaticNavigator.navigateTo, 'SelectUser');
     yield call(firestoreSaveDeviceToken);
   } else {
     yield put(userSlice.actions.loginUserError(loginUserResponse.error));
