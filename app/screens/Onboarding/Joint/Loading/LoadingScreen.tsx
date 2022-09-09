@@ -12,6 +12,7 @@ import {
   SPEECH_LIST,
   TICK_VALUE,
 } from './LoadingScreen.data';
+import { styles } from './LoadingScreen.styles';
 
 export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   navigation,
@@ -53,11 +54,16 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   return (
     <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
+        style={styles.container}
         buttonTitle={t('buttons.we_ready').toUpperCase()}
         onSubmit={onSubmit}>
-        <Timer value={currentLoaderValue} />
-        <ExtendedText>{t(currentSpeech.titleKey)}</ExtendedText>
-        <ExtendedText>{t(currentSpeech.subtitleKey)}</ExtendedText>
+        <Timer value={currentLoaderValue} style={styles.timer} />
+        <ExtendedText style={styles.title} preset="heading">
+          {t(currentSpeech.titleKey)}
+        </ExtendedText>
+        <ExtendedText style={styles.subtitle} preset="secondary-text">
+          {t(currentSpeech.subtitleKey)}
+        </ExtendedText>
       </BottomButtonView>
     </SafeAreaView>
   );
