@@ -29,7 +29,9 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
     const onSubmit = useCallback(() => {
       i18n.changeLanguage(selectedLanguage[0]);
       disptach(
-        settingsSlice.actions.setLanguage({ language: selectedLanguage[0] }),
+        settingsSlice.actions.setSettings({
+          language: selectedLanguage[0],
+        }),
       );
       navigation.navigate('Acknowledgement');
     }, [disptach, navigation, selectedLanguage]);

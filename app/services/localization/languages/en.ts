@@ -234,10 +234,13 @@ export const en = {
           confirm_new_password: 'Confirm New Password',
         },
       },
-
       change_password_success: {
         title: 'Password Changed',
         subtitle: 'You have successfully changed your password.',
+      },
+      notification_settings: {
+        title: 'title',
+        is_notifications_enabled: 'is_notifications_enabled',
       },
     },
   },

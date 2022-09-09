@@ -8,4 +8,3 @@ export * from './FeedbackSuccess';
 export * from './FrequentlyAskedQuestions';
 export * from './LanguageSettings';
 export * from './NotificationSettings';
-export * from './ParentsGuide';

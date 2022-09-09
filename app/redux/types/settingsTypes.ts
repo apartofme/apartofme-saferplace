@@ -3,6 +3,6 @@ export interface ISettingsData {
   isNotificationsEnabled?: boolean;
 }
 
-export type ISettingsDataPayload = {
+export type ISetSettingsDataPayload = {
   payload: Partial<ISettingsData>;
 };

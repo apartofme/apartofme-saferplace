@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ISettingsData, ISettingsDataPayload } from '../types';
+import { ISetSettingsDataPayload, ISettingsData } from '../types';
 
 export interface ISettingsState {
   settings: ISettingsData;
@@ -16,7 +16,7 @@ export const settingsSlice = createSlice({
   name: 'settings',
   initialState: INITIAL_STATE,
   reducers: {
-    setSettings(state, { payload }: ISettingsDataPayload) {
+    setSettings(state, { payload }: ISetSettingsDataPayload) {
       state.settings = {
         ...state.settings,
         ...payload,
