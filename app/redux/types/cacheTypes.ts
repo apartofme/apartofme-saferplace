@@ -10,8 +10,7 @@ export interface ISignUpData {
 export interface IShortSignUpData {
   nickname?: string;
   age?: string;
-  // TODO: types
-  avatar?: null;
+  avatar?: ImageSourcePropType;
 }
 
 export interface ISignUpDataPayload {

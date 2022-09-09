@@ -6,4 +6,9 @@ export interface IDialogViewProps {
   backgroundImage: ImageSourcePropType;
   dialog: ISpeech[];
   onSubmit: () => void;
+  initialIdx?: number;
+  navigateBetween?: {
+    onPress: () => void;
+    index: number;
+  } | null;
 }
