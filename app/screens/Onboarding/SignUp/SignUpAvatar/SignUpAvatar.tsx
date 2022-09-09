@@ -39,7 +39,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     }
   }, [avatar, dispatch, isChild, navigation]);
 
-  const getCorrectLocalizationPath = useMemo(() => {
+  const localizationPath = useMemo(() => {
     if (isChild) {
       return 'screens.onboarding.sign_up_avatar.child';
     } else {
@@ -59,7 +59,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
         isDisabledButton={!avatar}
         style={styles.container}>
         <ExtendedText preset="large-title">
-          {t(`${getCorrectLocalizationPath}.title`)}
+          {t(`${localizationPath}.title`)}
         </ExtendedText>
         <Carousel
           data={[...SING_UP_CAROUSEL]}
