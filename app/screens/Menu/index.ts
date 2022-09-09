@@ -1,3 +1,4 @@
+export * from './ChangePassword';
 export * from './ChangePasswordSuccess';
 export * from './MainMenu';
 export * from './Feedback';
