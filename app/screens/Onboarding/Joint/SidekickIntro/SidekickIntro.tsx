@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { SafeAreaView } from 'react-native';
 
@@ -9,17 +10,30 @@ import { ISidekickIntroScreenProps } from './SidekickIntro.props';
 
 export const SidekickIntroScreen: React.FC<ISidekickIntroScreenProps> = ({
   navigation,
+  route,
 }) => {
+  const isStart = route.params?.isStart;
+
   const goToSignUpNickname = useCallback(() => {
     navigation.navigate('SignUpNickname');
   }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <DialogView
         backgroundImage={IMAGES.LOGO}
         dialog={INTRO_DIALOG}
-        onSubmit={goToSignUpNickname}
+        // TODO: change _.noop to the real function
+        onSubmit={_.noop}
+        navigateBetween={
+          isStart
+            ? {
+                index: 6,
+                onPress: goToSignUpNickname,
+              }
+            : null
+        }
+        initialIdx={isStart ? 0 : 7}
       />
     </SafeAreaView>
   );

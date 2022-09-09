@@ -3,6 +3,8 @@ import {
   SectionList,
   SectionListData,
   SectionListRenderItem,
+  View,
+  Image,
 } from 'react-native';
 import _ from 'lodash';
 
@@ -15,6 +17,7 @@ import {
 import { IFAQSectionListProps } from './FAQSectionList.props';
 import { usePrevious } from '../../../../../hooks';
 import { ExtendedText } from '../../../../../components';
+import { IMAGES } from '../../../../../assets';
 
 export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
   filterValue,
@@ -54,14 +57,26 @@ export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
 
   const renderSectionHeader = useCallback(
     ({ section }: { section: SectionListData<IMenuItem, ISectionData> }) => {
-      return <ExtendedText>{section.title}</ExtendedText>;
+      return (
+        <ExtendedText style={styles.sectionListItemTitle}>
+          {section.title}
+        </ExtendedText>
+      );
     },
     [],
   );
 
   const renderItem: SectionListRenderItem<IMenuItem, ISectionData> =
     useCallback(({ item }) => {
-      return <ExtendedText>{item.title}</ExtendedText>;
+      return (
+        <View style={styles.sectionListItemContainer}>
+          <ExtendedText style={styles.sectionListItemTitle}>
+            {item.title}
+          </ExtendedText>
+          {/* // TODO: change to correct icon */}
+          <Image source={IMAGES.WHITE_PENCIL} />
+        </View>
+      );
     }, []);
 
   return (

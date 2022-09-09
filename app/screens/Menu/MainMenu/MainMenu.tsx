@@ -9,13 +9,39 @@ import { useAppDispatch } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
-import { MAIN_MENU_ITEMS } from './MainMenu.data';
+import { GROWN_UP_GUIDE_ITEMS } from '../ButtonsMenu/ButtonsMenu.data';
+import {
+  IMainMenuItem,
+  MainMenuItemType,
+  MAIN_MENU_ITEMS,
+} from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.props';
 import { styles } from './MainMenu.styles';
 
-export const MainMenuScreen: React.FC<IMainMenuScreenProps> = () => {
+export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
+  navigation,
+}) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+
+  // TODO: uncomment when adding screens
+  const onMenuItemPress = useCallback(
+    (item: IMainMenuItem) => {
+      switch (item.type) {
+        case MainMenuItemType.Guide:
+          navigation.navigate('ButtonsMenu', {
+            data: GROWN_UP_GUIDE_ITEMS,
+            titleKey: 'screens.menu.grown_ups_guide.title',
+          });
+          break;
+        default:
+          // TODO: uncomment when adding screens
+          // navigation.navigate(item.type);
+          break;
+      }
+    },
+    [navigation],
+  );
 
   const onLogoutPress = useCallback(() => {
     dispatch(userSlice.actions.logout());

@@ -10,6 +10,8 @@ import {
   SignUpAvatarScreen,
   CharmsIntroducingScreen,
   OnboardingCarouselScreen,
+  LoginScreen,
+  SelectUserScreen,
   SignUpSuccessScreen,
   ForgotPasswordEmailScreen,
   ForgotPasswordSuccessScreen,
@@ -26,6 +28,8 @@ export type ParentsOnboardingStackParams = {
   SignUpSuccess: { isChild?: boolean } | undefined;
   CharmsIntroducing: undefined;
   OnboardingCarousel: undefined;
+  Login: undefined;
+  SelectUser: undefined;
   ForgotPasswordEmail: undefined;
   ForgotPasswordSuccess: undefined;
 };
@@ -34,10 +38,6 @@ const Stack = createNativeStackNavigator<ParentsOnboardingStackParams>();
 
 export const ParentsOnboardingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
-    <Stack.Screen
-      name="OnboardingCarousel"
-      component={OnboardingCarouselScreen}
-    />
     <Stack.Screen name="WelcomeParent" component={WelcomeParentScreen} />
     <Stack.Screen
       name="LanguageSelection"
@@ -45,8 +45,8 @@ export const ParentsOnboardingStackNavigator = () => (
     />
     <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
     <Stack.Screen
-      name="CharmsIntroducing"
-      component={CharmsIntroducingScreen}
+      name="OnboardingCarousel"
+      component={OnboardingCarouselScreen}
     />
     <Stack.Screen
       name="SignUpCredentials"
@@ -62,10 +62,16 @@ export const ParentsOnboardingStackNavigator = () => (
       component={SignUpAvatarScreen}
       initialParams={{ isChild: false }}
     />
+    <Stack.Screen name="Login" component={LoginScreen} />
+    <Stack.Screen name="SelectUser" component={SelectUserScreen} />
     <Stack.Screen
       name="SignUpSuccess"
       component={SignUpSuccessScreen}
       initialParams={{ isChild: false }}
+    />
+    <Stack.Screen
+      name="CharmsIntroducing"
+      component={CharmsIntroducingScreen}
     />
     <Stack.Screen
       name="ForgotPasswordEmail"
