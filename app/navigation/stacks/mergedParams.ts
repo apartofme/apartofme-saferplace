@@ -9,3 +9,5 @@ export type MergedStackParams = HomeStackParams &
   MenuStackParams &
   ParentsOnboardingStackParams &
   JointOnboardingStackParams;
+
+export type NavigationRouteNames = keyof MergedStackParams;
