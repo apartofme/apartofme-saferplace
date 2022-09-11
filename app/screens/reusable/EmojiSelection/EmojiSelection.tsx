@@ -10,7 +10,7 @@ import {
 import { IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
-import { IEmojiSelectionScreenProps } from './EmojiSelection.props';
+import { IEmojiSelectionScreenProps } from './EmojiSelection.types';
 
 export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   navigation,
@@ -19,7 +19,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   const { onSubmit } = route.params.data;
   const { t } = useTranslation();
 
-  // TODO: chande to real nickname
+  // TODO: change when user state will be modify
   const parentNickname = useAppSelector(state => state.user.user?.displayName);
 
   //   const [emoji, setEmoji] = useState<EmojiType>(EmojiType.Normal);

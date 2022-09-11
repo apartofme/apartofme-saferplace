@@ -1,2 +1,2 @@
 export { VerticalSwipeScreen } from './VerticalSwipe';
-export type { IVerticalSwipeRoute } from './VerticalSwipe.props';
+export type { IVerticalSwipeRoute } from './VerticalSwipe.types';

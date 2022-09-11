@@ -10,7 +10,7 @@ import {
 import { IMAGES } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './AcknowledgementTitle.styles';
-import { IAcknowledgementTitleScreenProps } from './AcknowledgementTitle.props';
+import { IAcknowledgementTitleScreenProps } from './AcknowledgementTitle.types';
 
 export const AcknowledgementTitleScreen: React.FC<IAcknowledgementTitleScreenProps> =
   ({ navigation, route }) => {

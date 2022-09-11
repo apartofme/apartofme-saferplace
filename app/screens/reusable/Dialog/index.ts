@@ -1,2 +1,2 @@
 export { DialogScreen } from './Dialog';
-export type { IDialogRoute } from './Dialog.props';
+export type { IDialogRoute } from './Dialog.types';

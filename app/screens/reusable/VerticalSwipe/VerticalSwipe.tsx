@@ -10,7 +10,7 @@ import {
 
 import { ExtendedButton, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IVerticalSwipeScreenProps } from './VerticalSwipe.props';
+import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
 
 export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({

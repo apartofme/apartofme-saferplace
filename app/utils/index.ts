@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import {
   NICKNAME_INSERT_SYMBOL_END,
   NICKNAME_INSERT_SYMBOL_START,
-} from '../constants/symbols';
+} from '../constants/translations';
 import { IParseTextWithNicknameResult, NicknameType } from './types';
 
 export const isAndroid = Platform.OS === 'android';
@@ -37,7 +37,9 @@ export const parseTextWithNickname = (
   const startNicknameTypeIndex = _.indexOf(text, NICKNAME_INSERT_SYMBOL_START);
   const endNicknameTypeIndex = _.indexOf(text, NICKNAME_INSERT_SYMBOL_END);
   const nicknameType: NicknameType =
-    text.substring(startNicknameTypeIndex + 1, endNicknameTypeIndex) === 'Child'
+    text
+      .substring(startNicknameTypeIndex + 1, endNicknameTypeIndex)
+      .toLocaleLowerCase() === NicknameType.Child
       ? NicknameType.Child
       : NicknameType.Parent;
 

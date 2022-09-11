@@ -9,11 +9,11 @@ import {
   MainHeader,
 } from '../../../../components';
 import { IMAGES } from '../../../../assets';
-import { useAppSelector } from '../../../../hooks';
+import { useAppSelector, useMount } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { Nullable, parseTextWithNickname } from '../../../../utils';
 import { IParseTextWithNicknameResult } from '../../../../utils/types';
-import { IAcknowledgementTitleSubtitleScreenProps } from './AcknowledgementTitleSubtitle.props';
+import { IAcknowledgementTitleSubtitleScreenProps } from './AcknowledgementTitleSubtitle.types';
 import { AcknowledgementTitleSubtitleType } from './AcknowledgementTitleSubtitle.data';
 
 export const AcknowledgementTitleSubtitleScreen: React.FC<IAcknowledgementTitleSubtitleScreenProps> =
@@ -32,11 +32,13 @@ export const AcknowledgementTitleSubtitleScreen: React.FC<IAcknowledgementTitleS
     const [titleInfo, setTitleInfo] =
       useState<Nullable<IParseTextWithNicknameResult>>(null);
 
-    if (isTitleHaveNickname) {
-      setTitleInfo(parseTextWithNickname(titleKey));
-    }
+    useMount(() => {
+      if (isTitleHaveNickname) {
+        setTitleInfo(parseTextWithNickname(titleKey));
+      }
+    });
 
-    const nickName = useAppSelector(state =>
+    const nickname = useAppSelector(state =>
       _.find(state.user, titleInfo?.nicknameType),
     );
 
@@ -67,7 +69,7 @@ export const AcknowledgementTitleSubtitleScreen: React.FC<IAcknowledgementTitleS
           <View style={generalStyles.row}>
             {_.map(titleInfo?.textArray, (item: string) => {
               if (item === titleInfo?.nicknameType) {
-                return <ExtendedText>{nickName}</ExtendedText>;
+                return <ExtendedText>{nickname}</ExtendedText>;
               } else {
                 return <ExtendedText>{t(item)}</ExtendedText>;
               }
@@ -77,7 +79,7 @@ export const AcknowledgementTitleSubtitleScreen: React.FC<IAcknowledgementTitleS
       } else {
         return <ExtendedText>{t(titleKey)}</ExtendedText>;
       }
-    }, [isTitleHaveNickname, nickName, t, titleInfo, titleKey]);
+    }, [isTitleHaveNickname, nickname, t, titleInfo, titleKey]);
 
     const renderContent = useCallback(() => {
       if (type === AcknowledgementTitleSubtitleType.AlongEdges) {
@@ -88,15 +90,14 @@ export const AcknowledgementTitleSubtitleScreen: React.FC<IAcknowledgementTitleS
             <ExtendedText>{t(subtitleKey)}</ExtendedText>
           </View>
         );
-      } else {
-        return (
-          <View>
-            {renderTitle()}
-            <Image source={image} />
-            <ExtendedText>{t(subtitleKey)}</ExtendedText>
-          </View>
-        );
       }
+      return (
+        <View>
+          <Image source={image} />
+          {renderTitle()}
+          <ExtendedText>{t(subtitleKey)}</ExtendedText>
+        </View>
+      );
     }, [image, renderTitle, subtitleKey, t, type]);
 
     return (

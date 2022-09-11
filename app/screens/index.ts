@@ -1,5 +1,4 @@
 export * from './Initial';
 export * from './Menu';
 export * from './Onboarding';
-
-export * from './reusable';
+export * from './Reusable';

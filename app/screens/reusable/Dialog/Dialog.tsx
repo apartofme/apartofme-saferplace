@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native';
 
 import { DialogView } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IDialogScreenProps } from './Dialog.props';
+import { IDialogScreenProps } from './Dialog.types';
 
 export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
   const { speechs, backgroundImage, onSubmit } = route.params.data;
@@ -11,7 +11,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
   return (
     <SafeAreaView style={generalStyles.flex}>
       <DialogView
-        dialog={[speechs]}
+        dialog={speechs}
         onSubmit={onSubmit}
         backgroundImage={backgroundImage}
       />
