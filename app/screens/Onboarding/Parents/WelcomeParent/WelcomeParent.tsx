@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
