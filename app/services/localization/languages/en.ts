@@ -12,6 +12,7 @@ export const en = {
     signin: 'Sign in!',
     skip: 'Skip',
     submit: 'Submit',
+    select: 'Select',
     privacy_policy: 'Privacy Policy',
     terms_conditions: 'Terms & Conditions',
     forgot_password: 'Forgot password?',
@@ -239,6 +240,10 @@ export const en = {
         title: 'Password Changed',
         subtitle: 'You have successfully changed your password.',
       },
+    },
+    emoji_selction: {
+      title:
+        'use the slider to choose the emotion that best describes how you feel now.',
     },
   },
   components: {
