@@ -48,7 +48,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   }, [dispatch]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <MainHeader
         // TODO: change to correct icon
         rightIcon={IMAGES.WHITE_BACK_ARROW}

@@ -12,6 +12,7 @@ export const en = {
     signin: 'Sign in!',
     skip: 'Skip',
     submit: 'Submit',
+    select: 'Select',
     privacy_policy: 'Privacy Policy',
     terms_conditions: 'Terms & Conditions',
     forgot_password: 'Forgot password?',
@@ -242,6 +243,10 @@ export const en = {
         title: 'Notification settings',
         is_notifications_enabled: 'Allow Notifications',
       },
+    },
+    emoji_selction: {
+      title:
+        'use the slider to choose the emotion that best describes how you feel now.',
     },
   },
   components: {

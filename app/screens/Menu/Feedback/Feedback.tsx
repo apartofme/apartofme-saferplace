@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
@@ -18,10 +17,18 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
+  const [feedback, setFeedback] = useState('');
+
+  const onSubmit = useCallback(() => {
+    navigation.navigate('FeedbackSuccess');
+  }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
-      <BottomButtonView buttonTitle={t('buttons.submit')} onSubmit={_.noop}>
+    <SafeAreaView style={generalStyles.flex}>
+      <BottomButtonView
+        buttonTitle={t('buttons.submit')}
+        onSubmit={onSubmit}
+        isDisabledButton={!feedback}>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
@@ -34,7 +41,7 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
             {t('screens.menu.feedback.subtitle')}
           </ExtendedText>
           <View style={styles.inputContainer}>
-            <MultilineTextInput />
+            <MultilineTextInput value={feedback} onChangeText={setFeedback} />
           </View>
         </View>
       </BottomButtonView>
