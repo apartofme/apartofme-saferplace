@@ -37,7 +37,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <MainHeader
         leftIcon={IMAGES.WHITE_BACK_ARROW}
         onLeftIconPress={navigation.goBack}
