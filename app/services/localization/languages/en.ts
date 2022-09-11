@@ -239,6 +239,17 @@ export const en = {
         title: 'Password Changed',
         subtitle: 'You have successfully changed your password.',
       },
+
+      about_charm: {
+        first: {
+          title: 'The Charm of Rooting',
+          subtitle: '',
+        },
+        second: {
+          title: 'The Charm of Healing',
+          subtitle: '',
+        },
+      },
     },
   },
   components: {

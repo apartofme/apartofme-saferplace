@@ -25,18 +25,16 @@ export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
       />
 
       {_.map(ABOUT_CHARMS_SCREEN_DATA, item => {
-        if (item.type === type) {
-          return (
-            <View key={`main-menu-${item.type}`}>
-              <ExtendedText style={styles.title}>{t(item.title)}</ExtendedText>
-              <ScrollView>
-                <ExtendedText style={styles.subtitle}>
-                  {t(item.subtitle)}
-                </ExtendedText>
-              </ScrollView>
-            </View>
-          );
-        }
+        return (
+          <View key={`main-menu-${item.type}`}>
+            <ExtendedText style={styles.title}>{t(item.title)}</ExtendedText>
+            <ScrollView>
+              <ExtendedText style={styles.subtitle}>
+                {t(item.subtitle)}
+              </ExtendedText>
+            </ScrollView>
+          </View>
+        );
       })}
     </SafeAreaView>
   );

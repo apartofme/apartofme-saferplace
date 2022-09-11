@@ -19,25 +19,15 @@ export interface AboutCharmsMenuItem {
   type: AboutCharmsMenuType;
 }
 
-export const ABOUT_CHARMS_SCREEN_DATA: AboutCharmsMenuItem[] = [
+export const ABOUT_CHARMS_SCREEN_DATA: ReadonlyArray<AboutCharmsMenuItem> = [
   {
-    title: 'The Charm of Rooting',
-    subtitle: 'some',
+    title: 'screens.menu.about_charm.first.title',
+    subtitle: 'screens.menu.about_charm.first.subtitle',
     type: AboutCharmsMenuType.TheCharmOfRooting,
   },
   {
-    title: 'The Charm of Healing',
-    subtitle: '',
+    title: 'screens.menu.about_charm.first.title',
+    subtitle: 'screens.menu.about_charm.first.subtitle',
     type: AboutCharmsMenuType.TheCharmOfHealing,
-  },
-  {
-    title: 'The Dancing Charm',
-    subtitle: '',
-    type: AboutCharmsMenuType.TheDancingCharm,
-  },
-  {
-    title: 'The Charm of the Slow Wind',
-    subtitle: '',
-    type: AboutCharmsMenuType.TheCharmOfTheSlowWind,
   },
 ];
