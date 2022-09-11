@@ -21,12 +21,20 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
     navigation.navigate('LanguageSelection');
   }, [navigation]);
 
+  const onLoginPress = useCallback(() => {
+    navigation.navigate('Login');
+  }, [navigation]);
+
+  // TODO: remove
+  const goToMenuStack = useCallback(() => {
+    navigation.navigate('MenuStack');
+  }, [navigation]);
+
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <BottomButtonView
         buttonTitle={t('buttons.log_in')}
-        // TODO: change to real function
-        onSubmit={_.noop}
+        onSubmit={onLoginPress}
         style={styles.container}>
         <View>
           <ExtendedText preset="secondary-text" style={styles.title}>
@@ -34,6 +42,10 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
           </ExtendedText>
           {/* // TODO: add the logo image */}
         </View>
+        <ExtendedButton
+          onPress={goToMenuStack}
+          title="Dummy button for navigation to menu"
+        />
         <ExtendedButton
           onPress={onSignUpPress}
           title={t('buttons.signup')}

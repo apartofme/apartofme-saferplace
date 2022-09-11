@@ -6,11 +6,13 @@ import {
   BottomButtonView,
   Carousel,
   CarouselType,
+  MainHeader,
 } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
 import { CHARMS_CAROUSEL } from './OnboardingCarousel.data';
 import { IOnboardingCarouselScreenProps } from '../OnboardCarousel/OnboardingCarousel.props';
 import { styles } from './OnboardingCarousel.styles';
+import { IMAGES } from '../../../../assets';
 
 export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> =
   ({ navigation }) => {
@@ -22,6 +24,10 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
 
     return (
       <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
         <BottomButtonView
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
