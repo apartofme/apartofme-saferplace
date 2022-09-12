@@ -1,19 +1,17 @@
-export interface IButtonsMenuItem {
-  title: string;
-  type: string;
-}
+import { IButtonsMenuItem } from '../components/MenuButton/MenuButton.data';
 
+// TODO: change route
 export const GROWN_UP_GUIDE_ITEMS: ReadonlyArray<IButtonsMenuItem> = [
   {
     title: 'screens.menu.grown_ups_guide.first_item',
-    type: 'AboutCharms',
+    route: 'ButtonsMenu',
   },
   {
     title: 'screens.menu.grown_ups_guide.second_item',
-    type: 'Questions',
+    route: 'FrequentlyAskedQuestions',
   },
   {
     title: 'screens.menu.grown_ups_guide.third_item',
-    type: 'Feedback',
+    route: 'Feedback',
   },
 ];

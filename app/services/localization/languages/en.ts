@@ -247,6 +247,17 @@ export const en = {
     emoji_selction: {
       title:
         'use the slider to choose the emotion that best describes how you feel now.',
+
+      about_charm: {
+        first: {
+          title: 'The Charm of Rooting',
+          subtitle: '',
+        },
+        second: {
+          title: 'The Charm of Healing',
+          subtitle: '',
+        },
+      },
     },
   },
   components: {

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Image, TouchableOpacity } from 'react-native';
 
 import { ExtendedText } from '../../../../components';
-import { IMenuButtonProps } from './MenuButton.props';
+import { IMenuButtonProps } from './MenuButton.types';
 import { styles } from './MenuButton.styles';
 
 export const MenuButton: React.FC<IMenuButtonProps> = ({

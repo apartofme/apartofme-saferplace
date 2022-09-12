@@ -5,22 +5,21 @@ import { SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
+import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
-import { IButtonsMenuScreenProps } from './ButtonsMenu.props';
-import { styles } from './ButtonsMenu.styles';
+import { GROWN_UP_GUIDE_ITEMS } from './GrownUpsGuide.data';
+import { IGrownUpsGuideScreenProps } from './GrownUpsGuide.types';
+import { styles } from './GrownUpsGuide.styles';
 
-export const ButtonsMenuScreen: React.FC<IButtonsMenuScreenProps> = ({
+export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
   navigation,
-  route,
 }) => {
-  const { data, titleKey, subtitleKey } = route.params;
-
   const { t } = useTranslation();
 
   const onMenuItemPress = useCallback(
-    (type: string) => {
-      navigation.navigate(type);
+    (item: NavigationRouteNames) => {
+      navigation.navigate(item);
     },
     [navigation],
   );
@@ -32,15 +31,16 @@ export const ButtonsMenuScreen: React.FC<IButtonsMenuScreenProps> = ({
         onLeftIconPress={navigation.goBack}
       />
       <View style={styles.container}>
-        <ExtendedText style={styles.title}>{t(titleKey)}</ExtendedText>
-        {subtitleKey && <ExtendedText>{t(subtitleKey)}</ExtendedText>}
+        <ExtendedText style={styles.title}>
+          {t('screens.menu.grown_ups_guide.title')}
+        </ExtendedText>
         <View>
-          {_.map(data, item => {
+          {_.map(GROWN_UP_GUIDE_ITEMS, item => {
             return (
               <MenuButton
-                key={`main-menu-${item.type}`}
+                key={`main-menu-${item.route}`}
                 title={item.title}
-                onPress={() => onMenuItemPress(item.type)}
+                onPress={() => onMenuItemPress(item.route)}
               />
             );
           })}
