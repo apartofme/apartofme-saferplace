@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 import { ExtendedSwitch, ExtendedText } from '../../../../components';
-import { IMenuSwitchRowProps } from './MenuSwitchRow.props';
+import { IMenuSwitchRowProps } from './MenuSwitchRow.types';
 import { styles } from './MenuSwitchRow.styles';
 
 export const MenuSwitchRow: React.FC<IMenuSwitchRowProps> = ({

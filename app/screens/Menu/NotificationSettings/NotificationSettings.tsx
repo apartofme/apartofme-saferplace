@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuSwitchRow } from '../components';
-import { INotificationSettingsScreenProps } from './NotificationSettings.props';
+import { INotificationSettingsScreenProps } from './NotificationSettings.types';
 import { styles } from './NotificationSettings.styles';
 
 export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenProps> =

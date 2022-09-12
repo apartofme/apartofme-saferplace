@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-native';
 
-import { IExtendedSwitchProps } from './ExtendedSwitch.props';
+import { IExtendedSwitchProps } from './ExtendedSwitch.types';
 
 export const ExtendedSwitch: React.FC<IExtendedSwitchProps> = ({
   isEnabled,
