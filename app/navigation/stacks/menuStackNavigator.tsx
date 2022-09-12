@@ -11,6 +11,7 @@ import {
   ChangePasswordScreen,
   ChangePasswordSuccessScreen,
   GrownUpsGuideScreen,
+  NotificationSettingsScreen,
 } from '../../screens';
 import { AboutCharmsMenuType } from '../../screens/Menu/AboutCharm/AboutCharm.data';
 import { DEFAULT_STACK_OPTIONS } from '../options';
@@ -25,6 +26,7 @@ export type MenuStackParams = {
   LanguageSettings: undefined;
   FrequentlyAskedQuestions: undefined;
   ChangePassword: undefined;
+  NotificationSettings: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
@@ -45,6 +47,10 @@ export const MenuStackNavigator = () => (
     <Stack.Screen
       name="ChangePasswordSuccess"
       component={ChangePasswordSuccessScreen}
+    />
+    <Stack.Screen
+      name="NotificationSettings"
+      component={NotificationSettingsScreen}
     />
     <Stack.Screen name="AboutCharm" component={AboutCharmScreen} />
   </Stack.Navigator>
