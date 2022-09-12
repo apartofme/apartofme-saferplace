@@ -253,6 +253,11 @@ export const en = {
         first_item: 'About us',
         second_item: 'Further Support',
       },
+      about_us_screen: {
+        title: 'About us',
+        sutitle:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis vehicula risus. Proin in velit at ex pretium sagittis. Praesent at mauris',
+      },
       about_charm_menu: {
         title: 'About',
         subtitle: 'Find out more about each charm below',

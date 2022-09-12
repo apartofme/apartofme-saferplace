@@ -1,5 +1,6 @@
 export * from './AboutCharm';
 export * from './AboutCharmMenu';
+export * from './AboutUs';
 export * from './GrownUpsGuide';
 export * from './HelpSupport';
 export * from './ChangePassword';
