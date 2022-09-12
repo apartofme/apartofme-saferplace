@@ -9,7 +9,7 @@ import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
 import { GROWN_UP_GUIDE_ITEMS } from './GrownUpsGuide.data';
-import { IGrownUpsGuideScreenProps } from './GrownUpsGuide.props';
+import { IGrownUpsGuideScreenProps } from './GrownUpsGuide.types';
 import { styles } from './GrownUpsGuide.styles';
 
 export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({

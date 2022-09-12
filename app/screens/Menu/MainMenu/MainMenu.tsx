@@ -11,7 +11,7 @@ import { userSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
 import { MAIN_MENU_ITEMS } from './MainMenu.data';
-import { IMainMenuScreenProps } from './MainMenu.props';
+import { IMainMenuScreenProps } from './MainMenu.types';
 import { styles } from './MainMenu.styles';
 
 export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({

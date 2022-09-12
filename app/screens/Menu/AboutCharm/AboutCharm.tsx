@@ -7,7 +7,7 @@ import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { ABOUT_CHARMS_SCREEN_DATA } from './AboutCharm.data';
-import { IAboutCharmScreenProps } from './AboutCharm.props';
+import { IAboutCharmScreenProps } from './AboutCharm.types';
 import { styles } from './AboutCharm.styles';
 
 export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
