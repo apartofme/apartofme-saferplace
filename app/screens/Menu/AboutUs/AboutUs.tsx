@@ -5,7 +5,7 @@ import { SafeAreaView, View } from 'react-native';
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IAboutUsScreenProps } from './AboutUs.props';
+import { IAboutUsScreenProps } from './AboutUs.types';
 import { styles } from './AboutUs.styles';
 
 export const AboutUsScreen: React.FC<IAboutUsScreenProps> = ({

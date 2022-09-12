@@ -11,7 +11,7 @@ import {
   MainHeader,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IChangePasswordScreenProps } from './ChangePassword.props';
+import { IChangePasswordScreenProps } from './ChangePassword.types';
 import { styles } from './ChangePassword.styles';
 
 export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({

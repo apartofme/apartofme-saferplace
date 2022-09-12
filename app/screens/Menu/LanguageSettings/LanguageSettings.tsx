@@ -14,7 +14,7 @@ import { LANGUAGES } from '../../../constants/languages';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
 import i18n from '../../../services/localization';
-import { ILanguageSettingsScreenProps } from './LanguageSettings.props';
+import { ILanguageSettingsScreenProps } from './LanguageSettings.types';
 import { styles } from './LanguageSettings.styles';
 
 export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
