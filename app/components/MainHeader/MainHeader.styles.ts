@@ -11,7 +11,6 @@ export const styles = StyleSheet.create<IMainHeaderStyles>({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 24,
-    marginBottom: 40,
     marginHorizontal: 15,
   },
   // TODO: change for correct styles
