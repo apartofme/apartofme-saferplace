@@ -5,6 +5,7 @@ import {
   ProgressRef,
 } from 'react-native-circular-progress-indicator';
 
+import { SECOND } from './Timer.data';
 import { ITimerProps } from './Timer.props';
 import { styles } from './Timer.styles';
 
@@ -16,8 +17,6 @@ export const Timer: React.FC<ITimerProps> = ({
   style,
 }) => {
   const timerRef = useRef<ProgressRef>(null);
-
-  const SECOND = 1000;
 
   useEffect(() => {
     if (isStart) {
