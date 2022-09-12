@@ -11,7 +11,7 @@ export const MAIN_MENU_ITEMS: ReadonlyArray<IButtonsMenuItem> = [
   {
     titleKey: 'screens.menu.main_menu.support',
     icon: IMAGES.WHITE_PENCIL,
-    route: 'Support',
+    route: 'HelpSupport',
   },
 
   {

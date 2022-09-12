@@ -14,6 +14,7 @@ import {
   NotificationSettingsScreen,
   AboutCharmMenuScreen,
   ManageAccountMenuScreen,
+  HelpSupportScreen,
 } from '../../screens';
 import { AboutCharmsMenuItem } from '../../screens/Menu/AboutCharm/AboutCharm.types';
 import { DEFAULT_STACK_OPTIONS } from '../options';
@@ -31,6 +32,7 @@ export type MenuStackParams = {
   NotificationSettings: undefined;
   AboutCharmMenu: undefined;
   ManageAccountMenu: undefined;
+  HelpSupport: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
@@ -62,5 +64,6 @@ export const MenuStackNavigator = () => (
       name="ManageAccountMenu"
       component={ManageAccountMenuScreen}
     />
+    <Stack.Screen name="HelpSupport" component={HelpSupportScreen} />
   </Stack.Navigator>
 );

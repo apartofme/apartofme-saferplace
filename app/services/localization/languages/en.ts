@@ -248,6 +248,11 @@ export const en = {
         first_item: 'Manage Profiles',
         second_item: 'Change Password',
       },
+      help_support: {
+        title: 'Help & Support',
+        first_item: 'About us',
+        second_item: 'Further Support',
+      },
       about_charm_menu: {
         title: 'About',
         subtitle: 'Find out more about each charm below',
