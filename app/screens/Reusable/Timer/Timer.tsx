@@ -1,57 +1,39 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import _ from 'lodash';
+import React, { useMemo } from 'react';
 
-import { IMAGES } from '../../../assets';
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-  Timer,
-} from '../../../components';
+import { ITimerScreenProps, TimerType } from './Timer.types';
+import { TitleButton } from './components/TitleButton/TitleButton';
+import { ImageBackground } from 'react-native';
 import { generalStyles } from '../../../utils/styles';
-import { ITimerScreenProps } from './Timer.props';
-import { styles } from './Timer.styles';
 
-export const TimerScreen: React.FC<ITimerScreenProps> = ({
-  background,
-  duration,
-  titleKey = '',
-  onAnimationComplete,
-}) => {
-  const { t } = useTranslation();
-  const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
+export const TimerScreen: React.FC<ITimerScreenProps> = ({ route }) => {
+  const {
+    backgroundImage,
+    duration,
+    type,
+    onSubmit = _.noop,
+    titleKey = '',
+  } = route.params?.data;
 
-  const correctButtonTitle = useMemo(
-    () => (isTimerStart ? 'buttons.timer_started' : 'buttons.start_timer'),
-    [isTimerStart],
-  );
+  const TimerItem = useMemo(() => {
+    switch (type) {
+      case TimerType.TitleButton:
+        return (
+          <TitleButton
+            duration={duration}
+            onSubmit={onSubmit}
+            titleKey={titleKey}
+          />
+        );
 
-  const onSubmitPress = useCallback(() => {
-    setIsTimerStart(true);
-  }, []);
+      default:
+        return TitleButton;
+    }
+  }, [duration, onSubmit, titleKey, type]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <ImageBackground source={background} style={generalStyles.flex}>
-        <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} />
-        <BottomButtonView
-          buttonTitle={t(correctButtonTitle)}
-          onSubmit={onSubmitPress}
-          isDisabledButton={isTimerStart}
-          style={styles.container}>
-          <Timer
-            duration={duration}
-            isStart={isTimerStart}
-            onAnimationComplete={onAnimationComplete}
-          />
-          {!!titleKey && (
-            <ExtendedText preset="heading" style={styles.title}>
-              {t(titleKey)}
-            </ExtendedText>
-          )}
-        </BottomButtonView>
-      </ImageBackground>
-    </SafeAreaView>
+    <ImageBackground style={generalStyles.flex} source={backgroundImage}>
+      {TimerItem}
+    </ImageBackground>
   );
 };
