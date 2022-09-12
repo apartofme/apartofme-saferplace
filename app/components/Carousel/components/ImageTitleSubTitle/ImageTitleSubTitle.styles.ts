@@ -9,7 +9,7 @@ interface IImageTitleSubTitleStyles {
 export const styles = StyleSheet.create<IImageTitleSubTitleStyles>({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
   },
   title: {
     marginVertical: 24,
