@@ -243,21 +243,72 @@ export const en = {
         title: 'Notification settings',
         is_notifications_enabled: 'Allow Notifications',
       },
-    },
-    emoji_selction: {
-      title:
-        'use the slider to choose the emotion that best describes how you feel now.',
-
+      about_charm_menu: {
+        title: 'About',
+        subtitle: 'Find out more about each charm below',
+      },
       about_charm: {
         first: {
           title: 'The Charm of Rooting',
-          subtitle: '',
+          subtitle:
+            '`Grounding` is an electrical term that indicates an electric circuit is connected to the earth. In the world of trauma treatment, grounding means having your feet on the floor and being able to direct your attention down into the lower part of your body, especially to your feet and their connection to the earth. It creates a physical base of support that can help the rest of your body and all the stresses and worries inside it to feel held and supported. Trauma and other painful events can cause us to “lose our ground”, to feel out of control, to feel disconnected from our bodies or from the earth. So grounding is one of the most important exercises we need to help us come back down to earth. You might have noticed how children, especially younger ones, love taking their shoes and socks off and feeling their feet on the earth. Our bodies naturally want to feel grounded. Research shows a variety of benefits, including feeling less stressed and reduced inflammation.',
         },
         second: {
           title: 'The Charm of Healing',
-          subtitle: '',
+          subtitle:
+            'A warm, “healing hand” can help your child to feel grounded as your calmness is directly communicated through touch. This is, of course, if your child is receptive to being touched.\n\nTouch is a critical parenting behaviour shared by all mammalian mums.\n\nIf you were blessed to be born into what the British psychoanalyst Donald Winnicott called a ‘good enough’ environment, you would have been regularly picked up, held, stroked, patted on the back, cuddled. He explained that this kind of holding allows the mind to be at home in the body.\n\nCultures with more positive touch in infancy have even been shown to have less violence. And touch heals both ways: contact between ababy and a parent can also reduce cortisol (the stress hormone)\n\nin parents.  If you or your child are uncomfortable with receiving touch from another, then you can simply practice using healing hands on your self.',
+        },
+        third: {
+          title: 'The Dancing Charm',
+          subtitle:
+            'In the David Attenborough series Planet Earth, a baby iguana hatches on Fernandina Island in the Galapagos, only to find that it is surrounded by snakes that want to eat it for breakfast. There’s a chase. At one point, the baby iguana is cornered and it plays dead. This is the freeze response - a survival mechanism that helps animals and humans to escape threats. In the Galapagos clip, once the snake passes by, you see the iguana get up, quickly shake itself off and run to safe ground. This is how the body naturally releases trauma - by shaking. You can see dogs shaking, polar bears shaking. Its a natural response to shaking off stress and trauma. Studies have shown that children who are able to cry and tremble after an accident have fewer problems recovering from it. Your job is to use a calm voice and reassuring presence to let your child know that “It’s good to let the scary stuff shake right out of you.” The key is to avoid interrupting or distracting your child, holding her too tightly or moving too far away. So in this playful exercise, we are going to help you and your child release any heavy energy, anger or trauma from your body by shaking it off.',
+        },
+        fourth: {
+          title: 'The Charm of the Slow Wind',
+          subtitle:
+            'When a baby is born, their exit from the womb and exposure to the new environment triggers their first breath. Breath is what gives us life. As well as giving life, it is responsible for helping us control and regulate both bodily functions, such as balance and movement, and psychological and mental ones, such as thoughts, emotions and mood. The breath is our anchor, it helps us to find calm in the middle of a storm.',
+        },
+        fifth: {
+          title: 'The Charm of Discovery',
+          subtitle:
+            "“Courage doesn’t always roar. Sometimes courage is the quiet voice at the end of the day saying, “I will try again tomorrow.”~ Mary Anne Radmacheкr\n\nCourage is not the absence of fear or difficult emotions but it`s about doing what`s important to us, even when difficult feelings are present. For children who have experienced loss or trauma, being able to go to school is very courageous. The important thing here is to go away from the idea of having to be a superhero, always strong, always ready to act. This is important for both children and adults.\n\nCourage for parents can also mean the courage to be with uncertainty. We don't always have answers to our children's questions (or our own). Finding a way to be ok with this uncertainty or not knowing is a brave thing to do.\n\nIf your child has questions that you aren't sure about how to answer, you can always say `We can work out how to face stuff together. I`m going to do everything I can to keep you safe...?\n\nOther examples of courage: being honest about how you feel. Standing up to a bully. Trying something new, like a new food, or learning how to ride a bike, even though you might hurt yourself.",
+        },
+        sixth: {
+          title: 'The Charm of Sanctuary',
+          subtitle:
+            'You have been through a really difficult and scary time. It is hard to feel safe when you know there is still so much suffering going on in the world. Maybe there are people you are worried about who aren’t safe right now. Whatever your situation, this exercise is designed to help you find a safer place inside yourself. If we go about our daily lives with our fight or flight nervous systems constantly switched on, then we end up being exhausted, not being able to concentrate, and not being able to help each other. This exercise will help you and your child to find a safer place inside your self, to bring your body and mind into a bit more of a relaxed place, and to activate the power of your imagination.',
+        },
+        seventh: {
+          title: 'The Charm of Kindness',
+          subtitle:
+            'Research shows that even remembering kindness, whether its kindness we received or kindness we gave, can increase our sense of wellbeing and helps us to remember that there are good people in the world.',
+        },
+        eighth: {
+          title: 'The Charm of the Mirror',
+          subtitle:
+            "This exercise is a type of self-compassion. Self-compassion  is often a radically new way of relating to ourselves. The idea is that many of us spend a lot of time talking to and treating ourselves like our own worst enemies. We want to start treating ourselves and speaking to ourselves like our own best friends.\n\nAs parents, especially when we have been through a really tough time, it can be very hard to be kind to ourselves. And some people find that when they practice self-compassion,  it can feel really difficult or awkward to do at first. But it's so important for our mental health and for our kids. A 2020 review of self-compassion for parents showed that it consistently reduces depression, anxiety and stress in parents. A recent study of over 900 Dutch families showed that parents with less self-blame had teenagers with fewer symptoms of depression and anxiety.\n\nThere are a few tips to practicing self-compassion that are important to keep in mind. Self-compassion is a practice, which means we need to practice it, like any skill. Even though self-compassion is aimed at helping us to feel better, we can’t always control our feelings or thoughts. So we need to practice self-compassion towards all our thoughts, feelings and the different parts of ourself, even those parts we find most difficult to accept. We need to keep adding our magic potion to the plant of self-compassion so it can keep growing stronger and stronger.",
+        },
+        nineth: {
+          title: 'The Charm of Truth',
+          subtitle:
+            'You have been through a really difficult and scary time. It is hard to feel safe when you know there is still so much suffering going on in the world. Maybe there are people you are worried about who aren’t safe right now. Whatever your situation, this exercise is designed to help you find a safer place inside yourself. If we go about our daily lives with our fight or flight nervous systems constantly switched on, then we end up being exhausted, not being able to concentrate, and not being able to help each other. This exercise will help you and your child to find a safer place inside your self, to bring your body and mind into a bit more of a relaxed place, and to activate the power of your imagination.',
+        },
+        tenth: {
+          title: 'The Charm of the Open Hand',
+          subtitle:
+            'You have been through a really difficult and scary time. It is hard to feel safe when you know there is still so much suffering going on in the world. Maybe there are people you are worried about who aren’t safe right now. Whatever your situation, this exercise is designed to help you find a safer place inside yourself. If we go about our daily lives with our fight or flight nervous systems constantly switched on, then we end up being exhausted, not being able to concentrate, and not being able to help each other. This exercise will help you and your child to find a safer place inside your self, to bring your body and mind into a bit more of a relaxed place, and to activate the power of your imagination.',
+        },
+        eleventh: {
+          title: 'The Charm of Acceptance',
+          subtitle:
+            'You have been through a really difficult and scary time. It is hard to feel safe when you know there is still so much suffering going on in the world. Maybe there are people you are worried about who aren’t safe right now. Whatever your situation, this exercise is designed to help you find a safer place inside yourself. If we go about our daily lives with our fight or flight nervous systems constantly switched on, then we end up being exhausted, not being able to concentrate, and not being able to help each other. This exercise will help you and your child to find a safer place inside your self, to bring your body and mind into a bit more of a relaxed place, and to activate the power of your imagination.',
         },
       },
+    },
+
+    emoji_selction: {
+      title:
+        'use the slider to choose the emotion that best describes how you feel now.',
     },
   },
   components: {

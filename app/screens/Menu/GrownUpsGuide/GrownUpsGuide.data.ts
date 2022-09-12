@@ -1,10 +1,9 @@
 import { IButtonsMenuItem } from '../components/MenuButton/MenuButton.data';
 
-// TODO: change route
 export const GROWN_UP_GUIDE_ITEMS: ReadonlyArray<IButtonsMenuItem> = [
   {
     title: 'screens.menu.grown_ups_guide.first_item',
-    route: 'ButtonsMenu',
+    route: 'AboutCharmMenu',
   },
   {
     title: 'screens.menu.grown_ups_guide.second_item',
