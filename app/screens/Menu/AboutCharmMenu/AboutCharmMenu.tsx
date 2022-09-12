@@ -22,13 +22,7 @@ export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
       const onMenuItemPress = () => {
         navigation.navigate('AboutCharm', { data: item });
       };
-      return (
-        <MenuButton
-          key={`main-menu-${item.type}`}
-          title={item.title}
-          onPress={onMenuItemPress}
-        />
-      );
+      return <MenuButton title={item.title} onPress={onMenuItemPress} />;
     },
     [navigation],
   );

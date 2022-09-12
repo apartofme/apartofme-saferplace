@@ -20,7 +20,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
         buttonTitle={t('screens.menu.change_password.reset_password')}
         onSubmit={_.noop}>

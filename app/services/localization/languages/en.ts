@@ -243,6 +243,11 @@ export const en = {
         title: 'Notification settings',
         is_notifications_enabled: 'Allow Notifications',
       },
+      manage_account_menu: {
+        title: 'Manage account',
+        first_item: 'Manage Profiles',
+        second_item: 'Change Password',
+      },
       about_charm_menu: {
         title: 'About',
         subtitle: 'Find out more about each charm below',

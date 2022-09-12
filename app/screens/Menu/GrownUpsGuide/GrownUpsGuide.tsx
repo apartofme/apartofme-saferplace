@@ -39,7 +39,7 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
             return (
               <MenuButton
                 key={`main-menu-${item.route}`}
-                title={item.title}
+                title={item.titleKey}
                 onPress={() => onMenuItemPress(item.route)}
               />
             );
