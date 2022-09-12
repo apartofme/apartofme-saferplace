@@ -21,10 +21,13 @@ export const TitleButton: React.FC<ITitleButtonProps> = ({
   const { t } = useTranslation();
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
 
-  const correctButtonTitle = useMemo(
-    () => (isTimerStart ? 'buttons.timer_started' : 'buttons.start_timer'),
-    [isTimerStart],
-  );
+  const correctButtonTitle = useMemo(() => {
+    if (isTimerStart) {
+      return 'buttons.timer_started';
+    } else {
+      return 'buttons.start_timer';
+    }
+  }, [isTimerStart]);
 
   const onSubmitPress = useCallback(() => {
     setIsTimerStart(true);
