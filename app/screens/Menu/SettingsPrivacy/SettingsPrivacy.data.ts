@@ -15,7 +15,7 @@ export const SETTINGS_PRIVACY_MENU_ITEM: ReadonlyArray<ISettingsPrivacyMenuItem>
     },
     {
       titleKey: 'screens.menu.settings_privacy_screen.second_item',
-      route: 'AudioSettings',
+      route: 'ComingSoon',
     },
     {
       titleKey: 'screens.menu.settings_privacy_screen.third_item',

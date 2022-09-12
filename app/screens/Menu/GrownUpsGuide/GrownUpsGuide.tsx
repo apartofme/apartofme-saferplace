@@ -25,7 +25,7 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <MainHeader
         leftIcon={IMAGES.WHITE_BACK_ARROW}
         onLeftIconPress={navigation.goBack}
