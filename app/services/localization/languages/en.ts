@@ -262,6 +262,12 @@ export const en = {
         title: 'About',
         subtitle: 'Find out more about each charm below',
       },
+      further_support: {
+        title: 'Here are other services you might find helpful',
+        first_item: 'Link one',
+        second_item: 'Link two',
+        third_item: 'Link three',
+      },
       about_charm: {
         first: {
           title: 'The Charm of Rooting',

@@ -9,6 +9,7 @@ export * from './MainMenu';
 export * from './Feedback';
 export * from './FeedbackSuccess';
 export * from './FrequentlyAskedQuestions';
+export * from './FurtherSupport';
 export * from './LanguageSettings';
 export * from './ManageAccountMenu';
 export * from './NotificationSettings';
