@@ -9,6 +9,7 @@ type RouteProps = StackScreenProps<MergedStackParams, 'Timer'>;
 export interface ITimerScreenProps extends NavigationProps, RouteProps {}
 
 export enum TimerType {
+  Title = 'title',
   TitleButton = 'titleButton',
 }
 

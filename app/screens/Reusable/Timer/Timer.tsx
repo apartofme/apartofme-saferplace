@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React, { useMemo } from 'react';
 
 import { ITimerScreenProps, TimerType } from './Timer.types';
-import { TitleButton } from './components/TitleButton/TitleButton';
 import { ImageBackground } from 'react-native';
 import { generalStyles } from '../../../utils/styles';
+import { Title, TitleButton } from './components';
 
 export const TimerScreen: React.FC<ITimerScreenProps> = ({ route }) => {
   const {
@@ -17,6 +17,10 @@ export const TimerScreen: React.FC<ITimerScreenProps> = ({ route }) => {
 
   const TimerItem = useMemo(() => {
     switch (type) {
+      case TimerType.Title:
+        return (
+          <Title duration={duration} onSubmit={onSubmit} titleKey={titleKey} />
+        );
       case TimerType.TitleButton:
         return (
           <TitleButton
@@ -25,9 +29,8 @@ export const TimerScreen: React.FC<ITimerScreenProps> = ({ route }) => {
             titleKey={titleKey}
           />
         );
-
       default:
-        return TitleButton;
+        return <></>;
     }
   }, [duration, onSubmit, titleKey, type]);
 
