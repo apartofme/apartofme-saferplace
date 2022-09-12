@@ -18,8 +18,10 @@ import {
   AboutUsScreen,
   FurtherSupportScreen,
   SettingsPrivacyScreen,
+  ConditionsScreen,
 } from '../../screens';
 import { AboutCharmsMenuItem } from '../../screens/Menu/AboutCharm/AboutCharm.types';
+import { ConditionsScreenData } from '../../screens/Menu/Conditions/Conditions.types';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type MenuStackParams = {
@@ -39,6 +41,7 @@ export type MenuStackParams = {
   AboutUs: undefined;
   FurtherSupport: undefined;
   SettingsPrivacy: undefined;
+  Conditions: { data: ConditionsScreenData };
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
@@ -74,5 +77,6 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="AboutUs" component={AboutUsScreen} />
     <Stack.Screen name="FurtherSupport" component={FurtherSupportScreen} />
     <Stack.Screen name="SettingsPrivacy" component={SettingsPrivacyScreen} />
+    <Stack.Screen name="Conditions" component={ConditionsScreen} />
   </Stack.Navigator>
 );

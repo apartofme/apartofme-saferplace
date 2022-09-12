@@ -244,6 +244,23 @@ export const en = {
         fifth_item: 'Privacy Policy',
         sixth_item: 'Accessibility Statement',
       },
+      conditions: {
+        terms_conditions: {
+          title: 'Terms & Conditions',
+          subtitle:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim tellus vel mauris eleifend, a scelerisque ipsum scelerisque. Sed eleifend nibh vitae justo blandit laoreet. Fusce neque dui, volutpat id ipsum quis, malesuada consectetur urna. Suspendisse potenti. Donec purus erat, congue ultricies convallis in, pharetra sit amet mi. Quisque quis felis ligula. Mauris non rutrum mi. Aliquam erat volutpat. Cras nulla erat, molestie in fringilla quis, sagittis nec ligula. Etiam eget mi enim. Ut et hendrerit magna, eu faucibus odio. Mauris bibendum, nunc nec ornare efficitur, eros diam ultrices felis, a mattis ex nunc quis neque. Proin a dui velit. Donec vehicula luctus est, eu lacinia magna ultricies ac',
+        },
+        privacy_policy: {
+          title: 'Our Privacy Policy',
+          subtitle:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim tellus vel mauris eleifend, a scelerisque ipsum scelerisque. Sed eleifend nibh vitae justo blandit laoreet. Fusce neque dui, volutpat id ipsum quis, malesuada consectetur urna. Suspendisse potenti. Donec purus erat, congue ultricies convallis in, pharetra sit amet mi. Quisque quis felis ligula. Mauris non rutrum mi. Aliquam erat volutpat. Cras nulla erat, molestie in fringilla quis, sagittis nec ligula. Etiam eget mi enim. Ut et hendrerit magna, eu faucibus odio. Mauris bibendum, nunc nec ornare efficitur, eros diam ultrices felis, a mattis ex nunc quis neque. Proin a dui velit. Donec vehicula luctus est, eu lacinia magna ultricies ac',
+        },
+        accessibility_statement: {
+          title: 'Accessibility Statement',
+          subtitle:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim tellus vel mauris eleifend, a scelerisque ipsum scelerisque. Sed eleifend nibh vitae justo blandit laoreet. Fusce neque dui, volutpat id ipsum quis, malesuada consectetur urna. Suspendisse potenti. Donec purus erat, congue ultricies convallis in, pharetra sit amet mi. Quisque quis felis ligula. Mauris non rutrum mi. Aliquam erat volutpat. Cras nulla erat, molestie in fringilla quis, sagittis nec ligula. Etiam eget mi enim. Ut et hendrerit magna, eu faucibus odio. Mauris bibendum, nunc nec ornare efficitur, eros diam ultrices felis, a mattis ex nunc quis neque. Proin a dui velit. Donec vehicula luctus est, eu lacinia magna ultricies ac',
+        },
+      },
       change_password_success: {
         title: 'Password Changed',
         subtitle: 'You have successfully changed your password.',

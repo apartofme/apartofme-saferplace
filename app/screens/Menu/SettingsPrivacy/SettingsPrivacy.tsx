@@ -9,8 +9,10 @@ import { MenuButton } from '../components';
 import { ISettingsPrivacyScreenProps } from './SettingsPrivacy.types';
 import { styles } from './SettingsPrivacy.styles';
 import { useSpecificKeyExtractor } from '../../../hooks';
-import { SETTINGS_PRIVACY_MENU_ITEM } from './SettingsPrivacy.data';
-import { IButtonsMenuItem } from '../components/MenuButton/MenuButton.data';
+import {
+  ISettingsPrivacyMenuItem,
+  SETTINGS_PRIVACY_MENU_ITEM,
+} from './SettingsPrivacy.data';
 
 export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
   navigation,
@@ -18,16 +20,20 @@ export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
   const { t } = useTranslation();
 
   const renderItem = useCallback(
-    ({ item }: { item: IButtonsMenuItem }) => {
+    ({ item }: { item: ISettingsPrivacyMenuItem }) => {
       const onMenuItemPress = () => {
-        navigation.navigate(item.route);
+        if (item.data) {
+          navigation.navigate('Conditions', { data: item.data });
+        } else {
+          navigation.navigate(item.route);
+        }
       };
       return <MenuButton title={item.titleKey} onPress={onMenuItemPress} />;
     },
     [navigation],
   );
 
-  const keyExtractor = useSpecificKeyExtractor<IButtonsMenuItem>(
+  const keyExtractor = useSpecificKeyExtractor<ISettingsPrivacyMenuItem>(
     'post-thread-list-child-key',
     'route',
   );

@@ -6,6 +6,7 @@ export * from './HelpSupport';
 export * from './ChangePassword';
 export * from './ChangePasswordSuccess';
 export * from './MainMenu';
+export * from './Conditions';
 export * from './Feedback';
 export * from './FeedbackSuccess';
 export * from './FrequentlyAskedQuestions';
