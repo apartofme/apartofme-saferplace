@@ -10,25 +10,23 @@ import {
   FrequentlyAskedQuestionsScreen,
   ChangePasswordScreen,
   ChangePasswordSuccessScreen,
-  ButtonsMenuScreen,
+  GrownUpsGuideScreen,
+  NotificationSettingsScreen,
 } from '../../screens';
-import { IButtonsMenuItem } from '../../screens/Menu/ButtonsMenu/ButtonsMenu.data';
+import { AboutCharmsMenuType } from '../../screens/Menu/AboutCharm/AboutCharm.data';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type MenuStackParams = {
   ChangePasswordSuccess: undefined;
   MainMenu: undefined;
-  AboutCharm: { titleKey: string; subtitleKey: string };
-  ButtonsMenu: {
-    titleKey: string;
-    subtitleKey?: string;
-    data: ReadonlyArray<IButtonsMenuItem>;
-  };
+  AboutCharm: { type: AboutCharmsMenuType };
+  GrownUpsGuide: undefined;
   FeedbackSuccess: undefined;
   Feedback: undefined;
   LanguageSettings: undefined;
   FrequentlyAskedQuestions: undefined;
   ChangePassword: undefined;
+  NotificationSettings: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
@@ -40,15 +38,20 @@ export const MenuStackNavigator = () => (
       name="FrequentlyAskedQuestions"
       component={FrequentlyAskedQuestionsScreen}
     />
-    <Stack.Screen name="ButtonsMenu" component={ButtonsMenuScreen} />
+    <Stack.Screen name="GrownUpsGuide" component={GrownUpsGuideScreen} />
     <Stack.Screen name="Feedback" component={FeedbackScreen} />
     <Stack.Screen name="FeedbackSuccess" component={FeedbackSuccessScreen} />
     <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} />
-    <Stack.Screen name="AboutCharm" component={AboutCharmScreen} />
+
     <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
     <Stack.Screen
       name="ChangePasswordSuccess"
       component={ChangePasswordSuccessScreen}
     />
+    <Stack.Screen
+      name="NotificationSettings"
+      component={NotificationSettingsScreen}
+    />
+    <Stack.Screen name="AboutCharm" component={AboutCharmScreen} />
   </Stack.Navigator>
 );

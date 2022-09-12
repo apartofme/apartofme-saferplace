@@ -12,6 +12,7 @@ export const en = {
     signin: 'Sign in!',
     skip: 'Skip',
     submit: 'Submit',
+    select: 'Select',
     privacy_policy: 'Privacy Policy',
     terms_conditions: 'Terms & Conditions',
     forgot_password: 'Forgot password?',
@@ -236,10 +237,28 @@ export const en = {
           confirm_new_password: 'Confirm New Password',
         },
       },
-
       change_password_success: {
         title: 'Password Changed',
         subtitle: 'You have successfully changed your password.',
+      },
+      notification_settings: {
+        title: 'Notification settings',
+        is_notifications_enabled: 'Allow Notifications',
+      },
+    },
+    emoji_selction: {
+      title:
+        'use the slider to choose the emotion that best describes how you feel now.',
+
+      about_charm: {
+        first: {
+          title: 'The Charm of Rooting',
+          subtitle: '',
+        },
+        second: {
+          title: 'The Charm of Healing',
+          subtitle: '',
+        },
       },
     },
   },

@@ -6,16 +6,12 @@ import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch } from '../../../hooks';
+import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
 import { userSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
-import { GROWN_UP_GUIDE_ITEMS } from '../ButtonsMenu/ButtonsMenu.data';
-import {
-  IMainMenuItem,
-  MainMenuItemType,
-  MAIN_MENU_ITEMS,
-} from './MainMenu.data';
-import { IMainMenuScreenProps } from './MainMenu.props';
+import { MAIN_MENU_ITEMS } from './MainMenu.data';
+import { IMainMenuScreenProps } from './MainMenu.types';
 import { styles } from './MainMenu.styles';
 
 export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
@@ -26,19 +22,8 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
 
   // TODO: uncomment when adding screens
   const onMenuItemPress = useCallback(
-    (item: IMainMenuItem) => {
-      switch (item.type) {
-        case MainMenuItemType.Guide:
-          navigation.navigate('ButtonsMenu', {
-            data: GROWN_UP_GUIDE_ITEMS,
-            titleKey: 'screens.menu.grown_ups_guide.title',
-          });
-          break;
-        default:
-          // TODO: uncomment when adding screens
-          // navigation.navigate(item.type);
-          break;
-      }
+    (item: NavigationRouteNames) => {
+      navigation.navigate(item);
     },
     [navigation],
   );
@@ -48,7 +33,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   }, [dispatch]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <MainHeader
         // TODO: change to correct icon
         rightIcon={IMAGES.WHITE_BACK_ARROW}
@@ -67,9 +52,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
           <View style={styles.menuItemsContainer}>
             {_.map(MAIN_MENU_ITEMS, item => (
               <MenuButton
-                key={`main-menu-${item.type}`}
+                key={`main-menu-${item.route}`}
                 title={t(item.title)}
-                onPress={() => onMenuItemPress(item)}
+                onPress={() => onMenuItemPress(item.route)}
                 icon={item.icon}
               />
             ))}
