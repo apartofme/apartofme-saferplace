@@ -1,21 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ISettingsActionPayload } from '../types';
+import { ISetSettingsDataPayload, ISettingsData } from '../types';
 
-interface ISettingsState {
-  language: string;
+export interface ISettingsState {
+  settings: ISettingsData;
 }
 
 const INITIAL_STATE: ISettingsState = {
-  language: 'en',
+  settings: {
+    language: 'en',
+    isNotificationsEnabled: false,
+  },
 };
 
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState: INITIAL_STATE,
   reducers: {
-    setLanguage(state, { payload: { language } }: ISettingsActionPayload) {
-      state.language = language;
+    setSettings(state, { payload }: ISetSettingsDataPayload) {
+      state.settings = {
+        ...state.settings,
+        ...payload,
+      };
     },
   },
 });

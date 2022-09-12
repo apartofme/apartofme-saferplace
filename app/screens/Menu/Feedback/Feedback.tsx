@@ -29,8 +29,11 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
         buttonTitle={t('buttons.submit')}
         onSubmit={onSubmit}
         isDisabledButton={!feedback}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
         <View style={styles.container}>
-          <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} />
           <ExtendedText style={styles.title}>
             {t('screens.menu.feedback.title')}
           </ExtendedText>

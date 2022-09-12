@@ -11,6 +11,7 @@ import {
   ChangePasswordScreen,
   ChangePasswordSuccessScreen,
   ButtonsMenuScreen,
+  NotificationSettingsScreen,
 } from '../../screens';
 import { IButtonsMenuItem } from '../../screens/Menu/ButtonsMenu/ButtonsMenu.data';
 import { DEFAULT_STACK_OPTIONS } from '../options';
@@ -29,6 +30,7 @@ export type MenuStackParams = {
   LanguageSettings: undefined;
   FrequentlyAskedQuestions: undefined;
   ChangePassword: undefined;
+  NotificationSettings: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
@@ -49,6 +51,10 @@ export const MenuStackNavigator = () => (
     <Stack.Screen
       name="ChangePasswordSuccess"
       component={ChangePasswordSuccessScreen}
+    />
+    <Stack.Screen
+      name="NotificationSettings"
+      component={NotificationSettingsScreen}
     />
   </Stack.Navigator>
 );
