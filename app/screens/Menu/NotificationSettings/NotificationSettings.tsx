@@ -12,7 +12,7 @@ import { INotificationSettingsScreenProps } from './NotificationSettings.types';
 import { styles } from './NotificationSettings.styles';
 
 export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenProps> =
-  () => {
+  ({ navigation }) => {
     const { t } = useTranslation();
 
     const dispatch = useAppDispatch();
@@ -31,10 +31,11 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
     }, [isNotificationsEnabled, setIsNotificationsEnabled, dispatch]);
 
     return (
-      <SafeAreaView style={generalStyles.whFlex}>
+      <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           // TODO: change to correct icon
-          rightIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>
           <ExtendedText style={styles.title}>

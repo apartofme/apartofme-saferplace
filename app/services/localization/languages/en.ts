@@ -235,6 +235,15 @@ export const en = {
           confirm_new_password: 'Confirm New Password',
         },
       },
+      settings_privacy_screen: {
+        title: 'Settings & Privacy',
+        first_item: 'Language Settings',
+        second_item: 'Audio Settings',
+        third_item: 'Notification Settings',
+        fourth_item: 'Terms & Conditions',
+        fifth_item: 'Privacy Policy',
+        sixth_item: 'Accessibility Statement',
+      },
       change_password_success: {
         title: 'Password Changed',
         subtitle: 'You have successfully changed your password.',

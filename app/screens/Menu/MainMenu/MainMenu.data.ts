@@ -22,6 +22,6 @@ export const MAIN_MENU_ITEMS: ReadonlyArray<IButtonsMenuItem> = [
   {
     titleKey: 'screens.menu.main_menu.settings',
     icon: IMAGES.WHITE_PENCIL,
-    route: 'Settings',
+    route: 'SettingsPrivacy',
   },
 ];

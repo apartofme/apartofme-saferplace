@@ -13,3 +13,4 @@ export * from './FurtherSupport';
 export * from './LanguageSettings';
 export * from './ManageAccountMenu';
 export * from './NotificationSettings';
+export * from './SettingsPrivacy';
