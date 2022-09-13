@@ -216,6 +216,11 @@ export const en = {
         subtitle:
           'We are continually trying to improve our service, so your comments and feedback mean everything to us.',
       },
+      audio_settings: {
+        title: 'Audio Settings',
+        is_sound_fx_enabled: 'Sound FX',
+        is_background_music_enabled: 'Background Music',
+      },
       language_settings: {
         title: 'Language Settings',
         subtitle: 'Edit your language settings here:',
