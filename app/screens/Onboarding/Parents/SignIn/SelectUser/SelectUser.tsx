@@ -11,12 +11,12 @@ import {
 import { IMAGES } from '../../../../../assets';
 import { generalStyles } from '../../../../../utils/styles';
 import { ISelectUserScreenProps } from './SelectUser.props';
+import { trackButtonPress } from '../../../../../services/firebase';
 
 export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <MainHeader
@@ -27,7 +27,9 @@ export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
       <BottomButtonView
         buttonTitle={t('buttons.manage_profiles')}
         // TODO: change noop to real function
-        onSubmit={_.noop}>
+        onSubmit={() => {
+          trackButtonPress('manage');
+        }}>
         <ExtendedText>{t('screens.onboarding.select_user.title')}</ExtendedText>
       </BottomButtonView>
     </SafeAreaView>

@@ -7,6 +7,9 @@ import {
   ExtendedButton,
   ExtendedText,
 } from '../../../../components';
+import { useMount } from '../../../../hooks';
+import { apiInstance } from '../../../../services/api/graphql';
+import { trackButtonPress } from '../../../../services/firebase';
 import { generalStyles } from '../../../../utils/styles';
 import { IWelcomeParentScreenProps } from './WelcomeParent.props';
 import { styles } from './WelcomeParent.styles';
@@ -16,12 +19,18 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  // TODO: remove
+  useMount(() => {
+    apiInstance.getAllTranslations();
+  });
+
   const onSignUpPress = useCallback(() => {
     navigation.navigate('LanguageSelection');
   }, [navigation]);
 
   const onLoginPress = useCallback(() => {
     navigation.navigate('Login');
+    trackButtonPress('Login');
   }, [navigation]);
 
   // TODO: remove

@@ -55,3 +55,21 @@ export const parseTextWithNickname = (
     textArray: result,
   };
 };
+
+export interface ITranslations {
+  text: string;
+  label: string;
+}
+
+export const translationsToKeyValue = (data: {
+  data: { allTranslations: ITranslations[] };
+}) => {
+  const result: Record<string, string> = {};
+
+  data.data.allTranslations.forEach(
+    (element: { label: string; text: string }) => {
+      result[element.label] = element.text;
+    },
+  );
+  // console.tron?.log(result);
+};
