@@ -10,7 +10,7 @@ import {
   MainHeader,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IFeedbackSuccessScreenProps } from './FeedbackSuccess.props';
+import { IFeedbackSuccessScreenProps } from './FeedbackSuccess.types';
 import { styles } from './FeedbackSuccess.styles';
 
 export const FeedbackSuccessScreen: React.FC<IFeedbackSuccessScreenProps> =

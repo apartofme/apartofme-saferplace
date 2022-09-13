@@ -10,7 +10,7 @@ import {
   MainHeader,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IChangePasswordSuccessScreenProps } from './ChangePasswordSuccess.props';
+import { IChangePasswordSuccessScreenProps } from './ChangePasswordSuccess.types';
 import { styles } from './ChangePasswordSuccess.styles';
 
 export const ChangePasswordSuccessScreen: React.FC<IChangePasswordSuccessScreenProps> =
