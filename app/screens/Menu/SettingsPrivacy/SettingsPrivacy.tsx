@@ -11,7 +11,8 @@ import { styles } from './SettingsPrivacy.styles';
 import { useSpecificKeyExtractor } from '../../../hooks';
 import {
   ISettingsPrivacyMenuItem,
-  SETTINGS_PRIVACY_MENU_ITEM,
+  SettingsPrivacyRouteType,
+  SETTINGS_PRIVACY_MENU,
 } from './SettingsPrivacy.data';
 
 export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
@@ -22,10 +23,15 @@ export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
   const renderItem = useCallback(
     ({ item }: { item: ISettingsPrivacyMenuItem }) => {
       const onMenuItemPress = () => {
-        if (item.data) {
-          navigation.navigate('Conditions', { data: item.data });
-        } else {
-          navigation.navigate(item.route);
+        switch (item.type) {
+          case SettingsPrivacyRouteType.OnConditionsScreen:
+            if (item.data) {
+              navigation.navigate('Conditions', { data: item.data });
+            }
+            break;
+          default:
+            navigation.navigate(item.route);
+            break;
         }
       };
       return <MenuButton title={item.titleKey} onPress={onMenuItemPress} />;
@@ -51,7 +57,7 @@ export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
 
         <FlatList
           style={styles.list}
-          data={SETTINGS_PRIVACY_MENU_ITEM}
+          data={SETTINGS_PRIVACY_MENU}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
