@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Image, View } from 'react-native';
 
 import { ExtendedText } from '../../../ExtendedText';
-import { IImageSubTitleProps } from './ImageSubTitle.props';
+import { IImageSubTitleProps } from './ImageSubTitle.types';
 
 export const ImageSubTitle: React.FC<IImageSubTitleProps> = ({
   data,

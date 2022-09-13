@@ -7,7 +7,7 @@ import { useSharedValue } from 'react-native-reanimated';
 
 import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
-import { ICarouselProps } from './Carousel.props';
+import { ICarouselProps } from './Carousel.types';
 import { styles } from './Carousel.styles';
 import {
   ImageSubTitle,
