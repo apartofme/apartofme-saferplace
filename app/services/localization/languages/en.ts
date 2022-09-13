@@ -130,7 +130,7 @@ export const en = {
               'You can now introduce your child to A Safer Place. You can do this whenever is best for both of you.',
           },
           second: {
-            title: 'Funny random loading thing...',
+            title: 'Loading Forest...',
             subtitle:
               'We suggest telling your child that you have found a magical game to play together, a game designed to help us get through difficult times.',
           },
