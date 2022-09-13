@@ -30,7 +30,7 @@ export const TimerScreen: React.FC<ITimerScreenProps> = ({ route }) => {
           />
         );
       default:
-        return <></>;
+        return null;
     }
   }, [duration, onSubmit, titleKey, type]);
 
