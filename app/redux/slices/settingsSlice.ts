@@ -10,6 +10,10 @@ const INITIAL_STATE: ISettingsState = {
   settings: {
     language: 'en',
     isNotificationsEnabled: false,
+    audioSettings: {
+      isSoundFXEnabled: false,
+      isBackgroundMusicEnabled: false,
+    },
   },
 };
 
