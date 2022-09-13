@@ -12,7 +12,7 @@ import {
   MainHeader,
 } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import { IForgotPasswordEmailScreenProps } from './ForgotPasswordEmailScreen.props';
+import { IForgotPasswordEmailScreenProps } from './ForgotPasswordEmailScreen.types';
 import { styles } from './ForgotPasswordEmailScreen.styles';
 
 export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps> =

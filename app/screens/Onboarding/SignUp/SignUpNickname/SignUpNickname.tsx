@@ -12,7 +12,7 @@ import { IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpNicknameScreenProps } from './SignUpNickname.props';
+import { ISignUpNicknameScreenProps } from './SignUpNickname.types';
 import { styles } from './SignUpNickname.styles';
 
 export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({

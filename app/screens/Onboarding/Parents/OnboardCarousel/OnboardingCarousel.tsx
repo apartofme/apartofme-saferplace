@@ -10,7 +10,7 @@ import {
 } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
 import { CHARMS_CAROUSEL } from './OnboardingCarousel.data';
-import { IOnboardingCarouselScreenProps } from '../OnboardCarousel/OnboardingCarousel.props';
+import { IOnboardingCarouselScreenProps } from './OnboardingCarousel.types';
 import { styles } from './OnboardingCarousel.styles';
 import { IMAGES } from '../../../../assets';
 

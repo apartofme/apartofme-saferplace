@@ -9,7 +9,7 @@ import {
   MainHeader,
 } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import { IForgotPasswordSuccessScreenProps } from './ForgotPasswordSuccessScreen.props';
+import { IForgotPasswordSuccessScreenProps } from './ForgotPasswordSuccessScreen.types';
 import { styles } from './ForgotPasswordSuccessScreen.styles';
 import { IMAGES } from '../../../../assets';
 

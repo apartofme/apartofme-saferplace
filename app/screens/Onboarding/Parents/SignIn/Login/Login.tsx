@@ -10,7 +10,7 @@ import {
   MainHeader,
 } from '../../../../../components';
 import { styles } from './Login.styles';
-import { ILoginScreenProps } from './Login.props';
+import { ILoginScreenProps } from './Login.types';
 import { IMAGES } from '../../../../../assets';
 import { generalStyles } from '../../../../../utils/styles';
 import { useAppDispatch } from '../../../../../hooks';
