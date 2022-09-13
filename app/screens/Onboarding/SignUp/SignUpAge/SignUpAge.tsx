@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 import { IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
+  ExtendedKeyboardAvoidingView,
   ExtendedText,
   ExtendedTextInput,
   ExtendedTextInputType,
@@ -31,7 +32,7 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <KeyboardAvoidingView style={generalStyles.flex} behavior="padding">
+      <ExtendedKeyboardAvoidingView>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
@@ -54,7 +55,7 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
             placeholder={t('placeholders.enter_age')}
           />
         </BottomButtonView>
-      </KeyboardAvoidingView>
+      </ExtendedKeyboardAvoidingView>
     </SafeAreaView>
   );
 };
