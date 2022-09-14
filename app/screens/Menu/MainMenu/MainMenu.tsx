@@ -37,6 +37,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
       <MainHeader
         // TODO: change to correct icon
         rightIcon={IMAGES.WHITE_BACK_ARROW}
+        onRightIconPress={navigation.goBack}
       />
       <View style={styles.container}>
         <View>

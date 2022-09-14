@@ -24,11 +24,11 @@ export const MainHeader: React.FC<IMainHeaderProps> = ({
       )}
       {title && <ExtendedText>{title}</ExtendedText>}
       {rightIcon ? (
-        <Image source={rightIcon} />
-      ) : (
         <TouchableOpacity onPress={onRightIconPress}>
-          <View style={styles.emptyContainer} />
+          <Image source={rightIcon} />
         </TouchableOpacity>
+      ) : (
+        <View style={styles.emptyContainer} />
       )}
     </SafeAreaView>
   );
