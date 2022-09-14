@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 
@@ -12,18 +12,16 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
     const { titleKey, subtitleKey, onAnimationEnd } = route.params.data;
 
-    const [isFirst, setIsFirst] = useState(false);
+    const [isFirst, setIsFirst] = useState(true);
     const [isSecond, setIsSecond] = useState(false);
-
-    useEffect(() => {
-      if (isFirst && isSecond) {
-        console.log('on');
-      }
-    }, [isFirst, isSecond]);
 
     return (
       <SafeAreaView style={styles.container}>
         <ExtendedText style={styles.title}>{t(titleKey)}</ExtendedText>
+        {/* // TODO: change to animation */}
+        <View
+          style={[styles.square, isFirst && isSecond && styles.redBackground]}
+        />
         <ExtendedText style={styles.subtitle}>{t(subtitleKey)}</ExtendedText>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity

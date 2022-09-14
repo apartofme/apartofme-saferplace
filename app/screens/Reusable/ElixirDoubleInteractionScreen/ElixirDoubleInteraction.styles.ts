@@ -8,6 +8,8 @@ export interface IDialogscreenStyles {
   button: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
+  square: ViewStyle;
+  redBackground: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IDialogscreenStyles>({
@@ -35,5 +37,16 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
   subtitle: {
     textAlign: 'center',
     marginBottom: 40,
+    marginTop: 40,
+  },
+  // TODO: remove when add animation
+  square: {
+    backgroundColor: 'gray',
+    height: 200,
+    width: 200,
+    alignSelf: 'center',
+  },
+  redBackground: {
+    backgroundColor: 'red',
   },
 });
