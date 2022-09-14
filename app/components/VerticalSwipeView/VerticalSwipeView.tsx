@@ -11,7 +11,7 @@ import {
 import { generalStyles } from '../../utils/styles';
 import { ExtendedButton } from '../ExtendedButton';
 import { ExtendedText } from '../ExtendedText';
-import { IVerticalSwipeViewProps } from './VerticalSwipeView.props';
+import { IVerticalSwipeViewProps } from './VerticalSwipeView.types';
 import { styles } from './VerticalSwipeView.styles';
 
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({

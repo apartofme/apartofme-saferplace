@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 import { IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
+  ExtendedKeyboardAvoidingView,
   ExtendedText,
   ExtendedTextInput,
   ExtendedTextInputType,
@@ -13,7 +14,7 @@ import {
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpAgeScreenProps } from './SignUpAge.props';
+import { ISignUpAgeScreenProps } from './SignUpAge.types';
 import { styles } from './SignUpAge.styles';
 
 export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
@@ -31,7 +32,7 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <KeyboardAvoidingView style={generalStyles.flex} behavior="padding">
+      <ExtendedKeyboardAvoidingView>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
@@ -54,7 +55,7 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
             placeholder={t('placeholders.enter_age')}
           />
         </BottomButtonView>
-      </KeyboardAvoidingView>
+      </ExtendedKeyboardAvoidingView>
     </SafeAreaView>
   );
 };

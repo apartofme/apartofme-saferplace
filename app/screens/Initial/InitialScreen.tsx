@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 
 import { ExtendedText } from '../../components';
-import { IInitialScreenProps } from './InitialScreen.props';
+import { IInitialScreenProps } from './InitialScreen.types';
 import { styles } from './InitialScreen.styles';
 
 export const InitialScreen: React.FC<IInitialScreenProps> = ({

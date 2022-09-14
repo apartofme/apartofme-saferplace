@@ -9,7 +9,7 @@ import {
   MainHeader,
 } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import { IForgotPasswordSuccessScreenProps } from './ForgotPasswordSuccessScreen.props';
+import { IForgotPasswordSuccessScreenProps } from './ForgotPasswordSuccessScreen.types';
 import { styles } from './ForgotPasswordSuccessScreen.styles';
 import { IMAGES } from '../../../../assets';
 
@@ -29,11 +29,11 @@ export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenP
           onSubmit={_.noop}
           style={styles.container}>
           {/* // TODO: add the image */}
-          <ExtendedText style={styles.title}>
+          <ExtendedText preset="large-title" style={styles.title}>
             {t('screens.onboarding.forgot_password.success.title')}
           </ExtendedText>
 
-          <ExtendedText style={styles.subtitle}>
+          <ExtendedText preset="secondary-text" style={styles.subtitle}>
             {t('screens.onboarding.forgot_password.success.subtitle')}
           </ExtendedText>
         </BottomButtonView>

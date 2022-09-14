@@ -7,10 +7,11 @@ interface ISignUpNicknameStyles {
 
 export const styles = StyleSheet.create<ISignUpNicknameStyles>({
   container: {
+    paddingTop: 40,
     paddingHorizontal: 24,
   },
   subtitle: {
-    marginTop: 24,
-    marginBottom: 40,
+    marginTop: 16,
+    marginBottom: 48,
   },
 });

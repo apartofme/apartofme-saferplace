@@ -1,4 +1,5 @@
 export * from './AboutCharm';
+export * from './AudioSettings';
 export * from './AboutCharmMenu';
 export * from './AboutUs';
 export * from './GrownUpsGuide';

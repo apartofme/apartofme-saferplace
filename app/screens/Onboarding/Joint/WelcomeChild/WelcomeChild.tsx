@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import { IWelcomeChildScreenProps } from './WelcomeChild.props';
+import { IWelcomeChildScreenProps } from './WelcomeChild.types';
 import { styles } from './WelcomeChild.styles';
 
 export const WelcomeChildScreen: React.FC<IWelcomeChildScreenProps> = ({

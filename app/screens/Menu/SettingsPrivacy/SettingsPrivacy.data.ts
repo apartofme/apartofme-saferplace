@@ -22,7 +22,7 @@ export const SETTINGS_PRIVACY_MENU: ReadonlyArray<ISettingsPrivacyMenuItem> = [
   {
     titleKey: 'screens.menu.settings_privacy_screen.second_item',
     type: SettingsPrivacyRouteType.OnOtherScreens,
-    route: 'ComingSoon',
+    route: 'AudioSettings',
   },
   {
     titleKey: 'screens.menu.settings_privacy_screen.third_item',

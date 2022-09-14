@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, View } from 'react-native';
 
 import { styles } from './SearchBox.styles';
-import { ISearchBoxProps } from './SearchBox.props';
+import { ISearchBoxProps } from './SearchBox.types';
 import { ExtendedTextInput } from '../ExtendedTextInput';
 import { IMAGES } from '../../assets';
 

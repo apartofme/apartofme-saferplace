@@ -9,6 +9,8 @@ interface ISignUpCredentialsScreenStyles {
 
 export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
   container: {
+    flex: 1,
+    paddingTop: 40,
     paddingHorizontal: 24,
   },
   subtitle: {
@@ -23,6 +25,7 @@ export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    paddingHorizontal: 40,
     marginBottom: 24,
   },
 });
