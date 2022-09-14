@@ -39,12 +39,6 @@ export const en = {
   },
   screens: {
     onboarding: {
-      welcome: {
-        title: 'welcome\nto a',
-      },
-      language_selection: {
-        title: 'Choose Language',
-      },
       acknowledgement: {
         title:
           'If you have arrived here, then we know you and your family have been through some really tough times. We are here to guide you and your child so you can find and nurture your inner strengths.',

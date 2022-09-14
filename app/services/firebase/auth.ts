@@ -15,6 +15,7 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
     registerUserResponse.user = (
       await auth().createUserWithEmailAndPassword(email, password)
     ).user;
+    await auth().currentUser?.sendEmailVerification();
   } catch (error) {
     registerUserResponse.error = parseFirebaseError(
       (error as IFirebaseAuthError).code,

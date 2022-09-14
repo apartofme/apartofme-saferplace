@@ -32,7 +32,8 @@ const RootNavigator = () => {
       }}
       onStateChange={() => {
         const previousRouteName = routeNameRef.current;
-        const currentRouteName = navigationRef.current?.getCurrentRoute()?.name;
+        const currentRouteName = navigationRef.current?.getCurrentRoute()
+          ?.name as string;
 
         if (previousRouteName !== currentRouteName) {
           trackScreenView(currentRouteName, currentRouteName);

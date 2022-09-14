@@ -4,12 +4,13 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client';
 
-import CONFIG from '../../../config/env';
-import { translationsToKeyValue } from '../../../utils';
+import CONFIG from '../../config/env';
+import { translationsToDictionary } from '../../utils';
 import { getAllTranslationsQuery } from './graph.types';
 
 class Api {
   private client: ApolloClient<NormalizedCacheObject>;
+
   constructor(baseURL = CONFIG.API_URL, token = CONFIG.API_KEY) {
     this.client = new ApolloClient({
       uri: baseURL,
@@ -22,14 +23,13 @@ class Api {
     });
   }
 
-  getAllTranslations = () =>
-    this.client
-      .query({
-        query: getAllTranslationsQuery('en'),
-      })
-      .then(result => translationsToKeyValue(result));
-}
+  public async getAllTranslations(locale: string) {
+    const result = await this.client.query({
+      query: getAllTranslationsQuery(locale),
+    });
 
-export const apiInstance = new Api();
+    return translationsToDictionary(result);
+  }
+}
 
 export default Api;
