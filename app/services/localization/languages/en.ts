@@ -31,6 +31,7 @@ export const en = {
     open_email: 'Open email app',
     start_timer: 'Start Timer',
     timer_started: 'Timer Started',
+    read_out: 'Read out Loud',
   },
   placeholders: {
     enter_email: 'Enter your email address',
