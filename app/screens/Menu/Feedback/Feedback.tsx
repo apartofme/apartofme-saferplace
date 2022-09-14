@@ -10,7 +10,7 @@ import {
   MultilineTextInput,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IFeedbackScreenProps } from './Feedback.props';
+import { IFeedbackScreenProps } from './Feedback.types';
 import { styles } from './Feedback.styles';
 
 export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({

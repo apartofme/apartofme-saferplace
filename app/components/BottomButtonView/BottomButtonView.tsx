@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { generalStyles } from '../../utils/styles';
 import { ExtendedButton } from '../ExtendedButton';
 import { styles } from './BottomButtonView.styles';
-import { IBottomButtonViewProps } from './BottomButtonView.props';
+import { IBottomButtonViewProps } from './BottomButtonView.types';
 
 export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
   children,

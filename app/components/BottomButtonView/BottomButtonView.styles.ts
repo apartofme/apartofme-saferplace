@@ -8,9 +8,9 @@ export interface IBottomButtonViewStyles {
 export const styles = StyleSheet.create<IBottomButtonViewStyles>({
   container: {
     flex: 1,
+    paddingBottom: 24,
   },
   button: {
     marginHorizontal: 40,
-    marginBottom: 24,
   },
 });

@@ -8,17 +8,18 @@ export interface IProgressBarItemStyles {
 export const styles = StyleSheet.create<IProgressBarItemStyles>({
   // TODO: change for correct styles
   container: {
-    backgroundColor: 'gray',
+    borderColor: 'black',
+    borderWidth: 1,
     borderRadius: 99,
-    width: 50,
-    height: 50,
+    width: 8,
+    height: 8,
     overflow: 'hidden',
     marginHorizontal: 4,
   },
   // TODO: change for correct styles
   contentContainer: {
     borderRadius: 99,
-    backgroundColor: 'black',
+    backgroundColor: '#AA82E0',
     flex: 1,
   },
 });

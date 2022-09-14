@@ -15,7 +15,7 @@ import {
   ABSOLUTE_PROGRESS_VALUE,
   CHARMS_CAROUSEL,
 } from './CharmsIntroducing.data';
-import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.props';
+import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.types';
 import { styles } from './CharmsIntroducing.styles';
 
 export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =

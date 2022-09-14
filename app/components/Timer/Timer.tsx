@@ -6,7 +6,7 @@ import {
 } from 'react-native-circular-progress-indicator';
 
 import { SECOND } from './Timer.data';
-import { ITimerProps } from './Timer.props';
+import { ITimerProps } from './Timer.types';
 import { styles } from './Timer.styles';
 
 export const Timer: React.FC<ITimerProps> = ({

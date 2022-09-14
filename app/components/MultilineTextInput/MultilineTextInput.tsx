@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, TextInput, View } from 'react-native';
 
 import { IMAGES } from '../../assets';
-import { IMultilineTextInputProps } from './MultilineTextInput.props';
+import { IMultilineTextInputProps } from './MultilineTextInput.types';
 import { styles } from './MultilineTextInput.styles';
 
 export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({

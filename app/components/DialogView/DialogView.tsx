@@ -4,7 +4,7 @@ import { ImageBackground, TouchableOpacity, View } from 'react-native';
 
 import { getKeyFromLocalizationString } from '../../utils';
 import { ExtendedText } from '../ExtendedText';
-import { IDialogViewProps } from './DialogView.props';
+import { IDialogViewProps } from './DialogView.types';
 import { styles } from './DialogView.styles';
 
 export const DialogView: React.FC<IDialogViewProps> = ({

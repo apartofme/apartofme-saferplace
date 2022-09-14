@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import { ILoadingScreenProps } from './LoadingScreen.props';
+import { ILoadingScreenProps } from './LoadingScreen.types';
 import { SPEECH_LIST, TIME_TO_NEXT_SPEECH } from './LoadingScreen.data';
 import { styles } from './LoadingScreen.styles';
 
@@ -42,7 +42,7 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
         onSubmit={onSubmit}>
         {/*// TODO: change to correnct time*/}
         <Timer duration={10} isStart={true} style={styles.timer} />
-        <ExtendedText style={styles.title} preset="heading">
+        <ExtendedText style={styles.title} preset="large-title">
           {t(currentSpeech.titleKey)}
         </ExtendedText>
         <ExtendedText style={styles.subtitle} preset="secondary-text">
