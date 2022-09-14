@@ -11,6 +11,9 @@ import { trackButtonPress } from '../../../../services/firebase';
 import { generalStyles } from '../../../../utils/styles';
 import { IWelcomeParentScreenProps } from './WelcomeParent.types';
 import { styles } from './WelcomeParent.styles';
+import { useMount } from '../../../../hooks';
+import Api from '../../../../services/graphql';
+import { questsToDictionary } from '../../../../utils';
 
 export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   navigation,

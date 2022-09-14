@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import { Platform } from 'react-native';
+import { IQuestDatoCms } from '../models/IQuest';
+import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
 
 import { ITranslations } from './types';
 
@@ -48,6 +50,51 @@ export const translationsToDictionary = (data: {
     _.set(formattedKey, key, item.text);
 
     result = _.merge(result, formattedKey);
+  });
+
+  return result;
+};
+
+export const questsToDictionary = (
+  locale: string,
+  questLines: IQuestLineDatoCms[],
+  quests: IQuestDatoCms[],
+) => {
+  const result: Record<string, Record<string, IQuestLine>> = { [locale]: {} };
+
+  _.map(questLines, (questLine: IQuestLineDatoCms) => {
+    const newQuestLine: IQuestLine = {
+      title: questLine.title,
+      quests: {},
+    };
+
+    result[locale][questLine.id] = newQuestLine;
+  });
+
+  _.map(quests, (quest: IQuestDatoCms) => {
+    const questLineId = quest.questlineid.id;
+    const images = _.map(quest.images, image => {
+      return image.path;
+    });
+
+    const tempQuest = {
+      id: quest.title,
+      title: quest.title,
+      description: quest.description,
+      backgroundImage: quest.backgroundimage?.path ?? null,
+      images: images,
+      tellMoreTitle: quest.tellmoretitle ?? null,
+      tellMoreDescription: quest.tellmoredescription ?? null,
+      tellMoreBackground: quest.tellmorebackground?.path ?? null,
+      questLineId: quest.questlineid.id,
+      type: quest.typeid.slug,
+      sort: quest.sort,
+      titleHasNickname: quest.titlehasnickname ?? null,
+      crossHeader: quest.crossheader ?? null,
+      duration: quest.duration ?? null,
+    };
+
+    result[locale][questLineId].quests[quest.id] = tempQuest;
   });
 
   return result;

@@ -9,3 +9,86 @@ export const getAllTranslationsQuery = (locale: string) => gql`
     }
   }
 `;
+
+export const getAllQuestLinesQuery = (locale: string) => gql`
+  query getAllQuestLines {
+    allQuestLines(locale: ${locale}, orderBy: sort_ASC) {
+      id
+      sort
+      title
+    }
+  }
+`;
+
+export const getAllQuestsByQuestLineId = (
+  locale: string,
+  questLineId: string,
+) => gql`
+query getQuestLineQuests {
+  allQuestScreens(locale: ${locale}, orderBy: sort_ASC, filter: {questlineid: {eq: "${questLineId}"}}) {
+    id
+    title
+    description
+    images {
+      id
+      path
+    }
+    backgroundimage {
+      id
+      path
+    }
+    tellmoretitle
+    tellmoredescription
+    tellmorebackground {
+      id
+      path
+    }
+    questlineid {
+      id
+      title
+    }
+    typeid {
+      slug
+    }
+    sort
+    titlehasnickname
+    crossheader
+    duration
+  }
+}
+`;
+
+export const getAllQuests = (locale: string) => gql`
+  query getAllQuest {
+    allQuestScreens(locale: en, orderBy: sort_ASC) {
+      id
+      title
+      description
+      images {
+        id
+        path
+      }
+      backgroundimage {
+        id
+        path
+      }
+      tellmoretitle
+      tellmoredescription
+      tellmorebackground {
+        id
+        path
+      }
+      questlineid {
+        id
+        title
+      }
+      typeid {
+        slug
+      }
+      sort
+      titlehasnickname
+      crossheader
+      duration
+    }
+  }
+`;
