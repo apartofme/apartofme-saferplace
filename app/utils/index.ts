@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import { Platform } from 'react-native';
 
-import {
-  ITranslations,
-} from './types';
+import { ITranslations } from './types';
 
 export const isAndroid = Platform.OS === 'android';
 
