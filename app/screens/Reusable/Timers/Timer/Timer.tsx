@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 
 import { ITimerScreenProps, TimerType } from './Timer.types';
 import { ImageBackground } from 'react-native';
-import { generalStyles } from '../../../utils/styles';
+import { generalStyles } from '../../../../utils/styles';
 import { Title, TitleButton } from './components';
 
 export const TimerScreen: React.FC<ITimerScreenProps> = ({ route }) => {
