@@ -3,7 +3,7 @@ import { ConditionsScreenData } from '../Conditions/Conditions.types';
 
 export enum SettingsPrivacyRouteType {
   OnConditionsScreen = 'onConditionsScreen',
-  OnOtherScreens = 'OnOtherScreens',
+  OnOtherScreens = 'onOtherScreens',
 }
 
 export interface ISettingsPrivacyMenuItem {
