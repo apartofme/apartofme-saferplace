@@ -13,21 +13,20 @@ import { useAppSelector, useMount } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { Nullable, parseTextWithNickname } from '../../../../utils';
 import { IParseTextWithNicknameResult } from '../../../../utils/types';
-import { IAcknowledgementTitleSubtitleScreenProps } from './AcknowledgementTitleSubtitle.types';
-import { AcknowledgementTitleSubtitleType } from './AcknowledgementTitleSubtitle.data';
+import { IAcknowledgementAlongEdgesScreenProps } from './AcknowledgementAlongEdges.types';
 
-export const AcknowledgementTitleSubtitleScreen: React.FC<IAcknowledgementTitleSubtitleScreenProps> =
+export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdgesScreenProps> =
   ({ navigation, route }) => {
     const {
       titleKey,
       subtitleKey,
-      type,
       isCrossHeader,
       isTitleHaveNickname,
       image,
       backgroundImage,
       onSubmit,
     } = route.params.data;
+
     const { t } = useTranslation();
     const [titleInfo, setTitleInfo] =
       useState<Nullable<IParseTextWithNicknameResult>>(null);
@@ -39,6 +38,7 @@ export const AcknowledgementTitleSubtitleScreen: React.FC<IAcknowledgementTitleS
     });
 
     const nickname = useAppSelector(state =>
+      // TODO: change to correct function
       _.find(state.user, titleInfo?.nicknameType),
     );
 
@@ -82,23 +82,14 @@ export const AcknowledgementTitleSubtitleScreen: React.FC<IAcknowledgementTitleS
     }, [isTitleHaveNickname, nickname, t, titleInfo, titleKey]);
 
     const renderContent = useCallback(() => {
-      if (type === AcknowledgementTitleSubtitleType.AlongEdges) {
-        return (
-          <View>
-            {renderTitle()}
-            <Image source={image} />
-            <ExtendedText>{t(subtitleKey)}</ExtendedText>
-          </View>
-        );
-      }
       return (
         <View>
-          <Image source={image} />
           {renderTitle()}
+          <Image source={image} />
           <ExtendedText>{t(subtitleKey)}</ExtendedText>
         </View>
       );
-    }, [image, renderTitle, subtitleKey, t, type]);
+    }, [image, renderTitle, subtitleKey, t]);
 
     return (
       <ImageBackground source={backgroundImage} style={generalStyles.flex}>
