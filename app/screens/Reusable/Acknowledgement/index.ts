@@ -1,2 +1,3 @@
 export * from './AcknowledgementTitle';
-export * from './AcknowledgementTitleSubtitle';
+export * from './AcknowledgementSuccessively';
+export * from './AcknowledgementAlongEdges';
