@@ -3,7 +3,7 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ExtendedText } from '../ExtendedText';
-import { IMainHeaderProps } from './MainHeader.props';
+import { IMainHeaderProps } from './MainHeader.types';
 import { styles } from './MainHeader.styles';
 
 export const MainHeader: React.FC<IMainHeaderProps> = ({

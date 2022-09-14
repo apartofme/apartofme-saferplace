@@ -6,7 +6,7 @@ import { IMAGES } from '../../../../assets';
 import { DialogView } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
 import { INTRO_DIALOG } from './SidekickIntro.data';
-import { ISidekickIntroScreenProps } from './SidekickIntro.props';
+import { ISidekickIntroScreenProps } from './SidekickIntro.types';
 
 export const SidekickIntroScreen: React.FC<ISidekickIntroScreenProps> = ({
   navigation,

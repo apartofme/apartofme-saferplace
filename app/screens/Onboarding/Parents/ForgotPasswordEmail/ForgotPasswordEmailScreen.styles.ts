@@ -7,6 +7,7 @@ interface IForgotPasswordEmailScreenStyles {
 
 export const styles = StyleSheet.create<IForgotPasswordEmailScreenStyles>({
   container: {
+    paddingTop: 40,
     paddingHorizontal: 24,
   },
   subtitle: {

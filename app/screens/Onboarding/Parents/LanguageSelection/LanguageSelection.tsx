@@ -14,7 +14,7 @@ import { useAppDispatch } from '../../../../hooks';
 import { settingsSlice } from '../../../../redux/slices/settingsSlice';
 import { generalStyles } from '../../../../utils/styles';
 import i18n from '../../../../services/localization';
-import { ILanguageSelectionScreenProps } from './LanguageSelection.props';
+import { ILanguageSelectionScreenProps } from './LanguageSelection.types';
 import { LANGUAGES } from '../../../../constants/languages';
 import { styles } from './LanguageSelection.styles';
 

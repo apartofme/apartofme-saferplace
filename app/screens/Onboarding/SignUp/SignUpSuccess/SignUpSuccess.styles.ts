@@ -2,7 +2,7 @@ import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 
 interface ISignUpSuccessScreenStyles {
   container: ViewStyle;
-  mt113: ImageStyle;
+  avatar: ImageStyle;
   title: ViewStyle;
   subtitle: ViewStyle;
 }
@@ -10,9 +10,9 @@ interface ISignUpSuccessScreenStyles {
 export const styles = StyleSheet.create<ISignUpSuccessScreenStyles>({
   container: {
     flex: 1,
-    marginHorizontal: 24,
+    paddingHorizontal: 40,
   },
-  mt113: {
+  avatar: {
     marginTop: 113,
   },
   title: {

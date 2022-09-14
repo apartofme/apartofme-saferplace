@@ -10,7 +10,7 @@ import {
 } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpSuccessScreenProps } from './SignUpSuccess.props';
+import { ISignUpSuccessScreenProps } from './SignUpSuccess.types';
 import { styles } from './SignUpSuccess.styles';
 
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
@@ -51,10 +51,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
         onSubmit={onSubmit}
         style={styles.container}>
         {/* // TODO: uncomment when user avatar logic is added */}
-        {/*<Image
-          source={ avatar }
-          style={ styles.mt113 }
-        />*/}
+        {/*<Image source={avatar} style={styles.avatar} />*/}
         <ExtendedText preset="large-title" style={styles.title}>
           {t(`${getCorrectLocalizationPath}.title`)}
         </ExtendedText>

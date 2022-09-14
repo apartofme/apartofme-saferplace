@@ -8,10 +8,11 @@ interface ISignUpAgeScreenStyles {
 export const styles = StyleSheet.create<ISignUpAgeScreenStyles>({
   container: {
     flex: 1,
+    paddingTop: 40,
     paddingHorizontal: 24,
   },
   subtitle: {
-    marginTop: 24,
+    marginTop: 16,
     marginBottom: 68,
   },
 });

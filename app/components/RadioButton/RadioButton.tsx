@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
-import { IRadioButtonProps } from './RadioButton.props';
+import { IRadioButtonProps } from './RadioButton.types';
 import { styles } from './RadioButton.styles';
 
 export const RadioButton: React.FC<IRadioButtonProps> = ({

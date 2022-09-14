@@ -9,10 +9,14 @@ import {
   MainHeader,
 } from '../../../../components';
 import { IMAGES } from '../../../../assets';
-import { useAppSelector, useMount } from '../../../../hooks';
+import { useMount } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { Nullable, parseTextWithNickname } from '../../../../utils';
-import { IParseTextWithNicknameResult } from '../../../../utils/types';
+import { NicknameType } from '../../../../utils/types';
+import {
+  DUMMY_CHILD_NICKNAME,
+  DUMMY_PARENT_NICKNAME,
+} from './AcknowledgementAlongEdges.dummy';
 import { IAcknowledgementAlongEdgesScreenProps } from './AcknowledgementAlongEdges.types';
 
 export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdgesScreenProps> =
@@ -28,19 +32,17 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
     } = route.params.data;
 
     const { t } = useTranslation();
-    const [titleInfo, setTitleInfo] =
-      useState<Nullable<IParseTextWithNicknameResult>>(null);
+    const [titleArray, setTitleArray] = useState<Nullable<string[]>>(null);
 
     useMount(() => {
       if (isTitleHaveNickname) {
-        setTitleInfo(parseTextWithNickname(titleKey));
+        setTitleArray(parseTextWithNickname(t(titleKey)));
       }
     });
 
-    const nickname = useAppSelector(state =>
-      // TODO: change to correct function
-      _.find(state.user, titleInfo?.nicknameType),
-    );
+    // TODO: uncomment when userState will be update
+    // const parentNickname = useAppSelector(state => state.user.child);
+    // const childNickname =  useAppSelector(state => state.user.parent);
 
     const renderHeader = useCallback(() => {
       if (isCrossHeader) {
@@ -67,11 +69,16 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       if (isTitleHaveNickname) {
         return (
           <View style={generalStyles.row}>
-            {_.map(titleInfo?.textArray, (item: string) => {
-              if (item === titleInfo?.nicknameType) {
-                return <ExtendedText>{nickname}</ExtendedText>;
-              } else {
-                return <ExtendedText>{t(item)}</ExtendedText>;
+            {_.map(titleArray, (item: string) => {
+              switch (item) {
+                case NicknameType.Parent:
+                  // TODO: change to parentNickname when state will be update
+                  return <ExtendedText>{DUMMY_PARENT_NICKNAME}</ExtendedText>;
+                case NicknameType.Child:
+                  // TODO: change to childNickname when state will be update
+                  return <ExtendedText>{DUMMY_CHILD_NICKNAME}</ExtendedText>;
+                default:
+                  return <ExtendedText>{t(item)}</ExtendedText>;
               }
             })}
           </View>
@@ -79,7 +86,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       } else {
         return <ExtendedText>{t(titleKey)}</ExtendedText>;
       }
-    }, [isTitleHaveNickname, nickname, t, titleInfo, titleKey]);
+    }, [isTitleHaveNickname, t, titleArray, titleKey]);
 
     const renderContent = useCallback(() => {
       return (
