@@ -8,7 +8,7 @@ import { ExtendedText, MainHeader, SearchBox } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { FAQSectionList } from './components';
 import { SEARCH_DEBOUNCE_DELAY } from './FrequentlyAskedQuestions.data';
-import { IFrequentlyAskedQuestionsScreenProps } from './FrequentlyAskedQuestions.props';
+import { IFrequentlyAskedQuestionsScreenProps } from './FrequentlyAskedQuestions.types';
 import { styles } from './FrequentlyAskedQuestions.styles';
 
 export const FrequentlyAskedQuestionsScreen: React.FC<IFrequentlyAskedQuestionsScreenProps> =

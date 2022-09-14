@@ -3,7 +3,7 @@ import { FlatList, TouchableOpacity, View } from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
 import { EmojiButtonType, IEmojiButton } from './EmojiButtons.data';
-import { IEmojiButtonsProps } from './EmojiButtons.props';
+import { IEmojiButtonsProps } from './EmojiButtons.types';
 import { styles } from './EmojiButtons.styles';
 
 export const EmojiButtons: React.FC<IEmojiButtonsProps> = ({

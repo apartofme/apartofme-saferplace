@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import { ILoadingScreenProps } from './LoadingScreen.props';
+import { ILoadingScreenProps } from './LoadingScreen.types';
 import {
   INTERVAL_INCREASE,
   MAX_TIME,

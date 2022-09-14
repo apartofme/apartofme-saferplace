@@ -12,7 +12,7 @@ import {
 import { IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpAvatarScreenProps } from './SignUpAvatar.props';
+import { ISignUpAvatarScreenProps } from './SignUpAvatar.types';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { SING_UP_CAROUSEL } from './SignUpAvatar.data';
 import { styles } from './SignUpAvatar.styles';

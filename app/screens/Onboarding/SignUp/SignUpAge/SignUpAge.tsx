@@ -14,7 +14,7 @@ import {
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpAgeScreenProps } from './SignUpAge.props';
+import { ISignUpAgeScreenProps } from './SignUpAge.types';
 import { styles } from './SignUpAge.styles';
 
 export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({

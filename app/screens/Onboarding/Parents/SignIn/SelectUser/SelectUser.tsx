@@ -10,7 +10,7 @@ import {
 } from '../../../../../components';
 import { IMAGES } from '../../../../../assets';
 import { generalStyles } from '../../../../../utils/styles';
-import { ISelectUserScreenProps } from './SelectUser.props';
+import { ISelectUserScreenProps } from './SelectUser.types';
 
 export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
   navigation,

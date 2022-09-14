@@ -10,7 +10,7 @@ import {
 } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpSuccessScreenProps } from './SignUpSuccess.props';
+import { ISignUpSuccessScreenProps } from './SignUpSuccess.types';
 import { styles } from './SignUpSuccess.styles';
 
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({

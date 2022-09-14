@@ -14,7 +14,7 @@ import { IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpCredentialsScreenProps } from './SignUpCredentials.props';
+import { ISignUpCredentialsScreenProps } from './SignUpCredentials.types';
 import { styles } from './SignUpCredentials.styles';
 
 export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =

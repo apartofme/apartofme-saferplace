@@ -6,7 +6,7 @@ import {
   ExtendedTextInputPresetProps,
   ExtendedTextInputType,
 } from './ExtendedTextInput.data';
-import { IExtendedTextInputProps } from './ExtendedTextInput.props';
+import { IExtendedTextInputProps } from './ExtendedTextInput.types';
 import { TextInputPasswordToggle } from './inputs';
 import { styles } from './ExtendedTextInput.styles';
 

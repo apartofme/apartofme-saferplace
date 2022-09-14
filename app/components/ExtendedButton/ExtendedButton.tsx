@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
 import presets, { additionalStyles } from './ExtendedButton.presets';
-import { IExtendedButtonProps } from './ExtendedButton.props';
+import { IExtendedButtonProps } from './ExtendedButton.types';
 
 export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
   title,
