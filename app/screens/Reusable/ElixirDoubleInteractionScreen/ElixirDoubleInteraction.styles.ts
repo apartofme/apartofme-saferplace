@@ -2,7 +2,7 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../../themes/colors';
 
-export interface IDialogscreenStyles {
+export interface IElixirDoubleInteractionStyles {
   container: ViewStyle;
   buttonsContainer: ViewStyle;
   button: ViewStyle;
@@ -12,7 +12,7 @@ export interface IDialogscreenStyles {
   redBackground: ViewStyle;
 }
 
-export const styles = StyleSheet.create<IDialogscreenStyles>({
+export const styles = StyleSheet.create<IElixirDoubleInteractionStyles>({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
