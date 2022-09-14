@@ -37,6 +37,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
       <MainHeader
         // TODO: change to correct icon
         rightIcon={IMAGES.WHITE_BACK_ARROW}
+        onRightIconPress={navigation.goBack}
       />
       <View style={styles.container}>
         <View>
@@ -53,7 +54,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
             {_.map(MAIN_MENU_ITEMS, item => (
               <MenuButton
                 key={`main-menu-${item.route}`}
-                title={t(item.title)}
+                title={t(item.titleKey)}
                 onPress={() => onMenuItemPress(item.route)}
                 icon={item.icon}
               />

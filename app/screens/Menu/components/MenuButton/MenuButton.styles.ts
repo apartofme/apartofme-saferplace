@@ -1,8 +1,8 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 
 interface IMenuButtonStyles {
   container: ViewStyle;
-  title: TextStyle;
+  image: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IMenuButtonStyles>({
@@ -10,7 +10,7 @@ export const styles = StyleSheet.create<IMenuButtonStyles>({
     flexDirection: 'row',
     marginBottom: 24,
   },
-  title: {
-    marginLeft: 17,
+  image: {
+    marginRight: 17,
   },
 });

@@ -10,12 +10,16 @@ import {
 import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
 import { GLOBAL_NAVIGATION_STACK_OPTIONS } from './options';
+// TODO: remove when the screens are ready
+import { ComingSoonScreen } from '../screens/ComingSoon';
 
 export type RootParams = {
   Initial: undefined;
   ParentsOnboardingStack: undefined;
   JointOnboardingStack: undefined;
   MenuStack: undefined;
+  // TODO: remove when the screens are ready
+  ComingSoon: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootParams>();
@@ -33,6 +37,8 @@ const RootNavigator = () => (
         component={JointOnboardingStackNavigator}
       />
       <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
+      {/* // TODO: remove when the screens are ready */}
+      <Stack.Screen name="ComingSoon" component={ComingSoonScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 );

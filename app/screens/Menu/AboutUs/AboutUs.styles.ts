@@ -1,13 +1,12 @@
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
-interface IFeedbackScreenStyles {
+interface IAboutUsScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
-  inputContainer: ViewStyle;
 }
 
-export const styles = StyleSheet.create<IFeedbackScreenStyles>({
+export const styles = StyleSheet.create<IAboutUsScreenStyles>({
   container: {
     marginHorizontal: 24,
   },
@@ -15,10 +14,6 @@ export const styles = StyleSheet.create<IFeedbackScreenStyles>({
     marginTop: 48,
   },
   subtitle: {
-    marginTop: 27,
-  },
-  inputContainer: {
-    marginTop: 30,
-    height: 160,
+    marginTop: 39,
   },
 });

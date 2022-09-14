@@ -5,10 +5,10 @@ import { SafeAreaView, ScrollView, View } from 'react-native';
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IAboutCharmScreenProps } from './AboutCharm.types';
-import { styles } from './AboutCharm.styles';
+import { IConditionsScreenProps } from './Conditions.types';
+import { styles } from './Conditions.styles';
 
-export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
+export const ConditionsScreen: React.FC<IConditionsScreenProps> = ({
   navigation,
   route,
 }) => {
