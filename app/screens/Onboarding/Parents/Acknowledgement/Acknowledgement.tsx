@@ -9,7 +9,7 @@ import {
   MainHeader,
 } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import { IAcknowledgementScreenProps } from './Acknowledgement.props';
+import { IAcknowledgementScreenProps } from './Acknowledgement.types';
 import { styles } from './Acknowledgement.styles';
 
 export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({

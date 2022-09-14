@@ -4,14 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import { ILoadingScreenProps } from './LoadingScreen.props';
-import {
-  INTERVAL_INCREASE,
-  MAX_TIME,
-  NEXT_SPEECH,
-  SPEECH_LIST,
-  TICK_VALUE,
-} from './LoadingScreen.data';
+import { ILoadingScreenProps } from './LoadingScreen.types';
+import { SPEECH_LIST, TIME_TO_NEXT_SPEECH } from './LoadingScreen.data';
 import { styles } from './LoadingScreen.styles';
 
 export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
@@ -20,7 +14,6 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   const { t } = useTranslation();
 
   const [currentSpeechIdx, setCurrentSpeechIdx] = useState(0);
-  const [currentLoaderValue, setCurrentLoaderValue] = useState(0);
 
   const currentSpeech = useMemo(
     () => SPEECH_LIST[currentSpeechIdx],
@@ -28,7 +21,9 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   );
 
   const goToNextSpeech = useCallback(() => {
-    setCurrentSpeechIdx(currentSpeechIdx + 1);
+    if (currentSpeechIdx < SPEECH_LIST.length - 1) {
+      setCurrentSpeechIdx(currentSpeechIdx + 1);
+    }
   }, [currentSpeechIdx]);
 
   const onSubmit = useCallback(() => {
@@ -36,20 +31,8 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   }, [navigation]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const newLocal = currentLoaderValue + INTERVAL_INCREASE;
-      setCurrentLoaderValue(newLocal);
-      if (currentLoaderValue === NEXT_SPEECH) {
-        goToNextSpeech();
-      }
-    }, TICK_VALUE);
-
-    if (currentLoaderValue >= MAX_TIME) {
-      clearInterval(interval);
-    }
-
-    return () => clearInterval(interval);
-  }, [currentLoaderValue, goToNextSpeech]);
+    setTimeout(goToNextSpeech, TIME_TO_NEXT_SPEECH);
+  }, [goToNextSpeech]);
 
   return (
     <SafeAreaView style={generalStyles.flex}>
@@ -57,8 +40,9 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
         style={styles.container}
         buttonTitle={t('buttons.we_ready').toUpperCase()}
         onSubmit={onSubmit}>
-        <Timer value={currentLoaderValue} style={styles.timer} />
-        <ExtendedText style={styles.title} preset="heading">
+        {/*// TODO: change to correnct time*/}
+        <Timer duration={10} isStart={true} style={styles.timer} />
+        <ExtendedText style={styles.title} preset="large-title">
           {t(currentSpeech.titleKey)}
         </ExtendedText>
         <ExtendedText style={styles.subtitle} preset="secondary-text">

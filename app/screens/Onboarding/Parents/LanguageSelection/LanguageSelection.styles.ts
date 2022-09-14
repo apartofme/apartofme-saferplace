@@ -8,8 +8,9 @@ interface ILanguageSelectionStyles {
 export const styles = StyleSheet.create<ILanguageSelectionStyles>({
   container: {
     paddingHorizontal: 24,
+    paddingTop: 40,
   },
   title: {
-    marginBottom: 73,
+    marginBottom: 68,
   },
 });

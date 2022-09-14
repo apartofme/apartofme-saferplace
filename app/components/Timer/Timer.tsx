@@ -1,20 +1,43 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View } from 'react-native';
-import { CircularProgressBase } from 'react-native-circular-progress-indicator';
+import {
+  CircularProgressBase,
+  ProgressRef,
+} from 'react-native-circular-progress-indicator';
 
-import { ITimerProps } from './Timer.props';
+import { SECOND } from './Timer.data';
+import { ITimerProps } from './Timer.types';
 import { styles } from './Timer.styles';
 
-export const Timer: React.FC<ITimerProps> = ({ value, style }) => {
+export const Timer: React.FC<ITimerProps> = ({
+  duration,
+  isStart = false,
+  maxValue = 100,
+  onAnimationComplete,
+  style,
+}) => {
+  const timerRef = useRef<ProgressRef>(null);
+
+  useEffect(() => {
+    if (isStart) {
+      timerRef.current?.play();
+    } else {
+      timerRef.current?.pause();
+    }
+  }, [isStart]);
+
   return (
     // TODO: change to real styles
     <View style={style}>
       <CircularProgressBase
-        value={value}
+        ref={timerRef}
+        value={maxValue}
         radius={104}
         activeStrokeColor="#AA82E0"
         activeStrokeWidth={5}
-        inActiveStrokeWidth={0}>
+        inActiveStrokeWidth={0}
+        duration={SECOND * duration}
+        onAnimationComplete={onAnimationComplete}>
         <View style={styles.circle} />
       </CircularProgressBase>
     </View>

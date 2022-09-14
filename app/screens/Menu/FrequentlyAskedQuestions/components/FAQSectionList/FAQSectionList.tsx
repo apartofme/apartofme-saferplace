@@ -14,7 +14,7 @@ import {
   IMenuItem,
   ISectionData,
 } from './FAQSectionList.data';
-import { IFAQSectionListProps } from './FAQSectionList.props';
+import { IFAQSectionListProps } from './FAQSectionList.types';
 import { usePrevious } from '../../../../../hooks';
 import { ExtendedText } from '../../../../../components';
 import { IMAGES } from '../../../../../assets';

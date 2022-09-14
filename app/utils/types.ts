@@ -7,11 +7,6 @@ export enum NicknameType {
   Parent = 'parent',
 }
 
-export interface IParseTextWithNicknameResult {
-  nicknameType: NicknameType;
-  textArray: string[];
-}
-
 export interface ITranslations {
   text: string;
   label: string;

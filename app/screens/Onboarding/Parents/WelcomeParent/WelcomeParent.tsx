@@ -9,7 +9,7 @@ import {
 } from '../../../../components';
 import { trackButtonPress } from '../../../../services/firebase';
 import { generalStyles } from '../../../../utils/styles';
-import { IWelcomeParentScreenProps } from './WelcomeParent.props';
+import { IWelcomeParentScreenProps } from './WelcomeParent.types';
 import { styles } from './WelcomeParent.styles';
 
 export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({

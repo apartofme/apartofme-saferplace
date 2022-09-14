@@ -1,9 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 import {
   BottomButtonView,
+  ExtendedKeyboardAvoidingView,
   ExtendedText,
   ExtendedTextInput,
   MainHeader,
@@ -12,7 +13,7 @@ import { IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
-import { ISignUpNicknameScreenProps } from './SignUpNickname.props';
+import { ISignUpNicknameScreenProps } from './SignUpNickname.types';
 import { styles } from './SignUpNickname.styles';
 
 export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
@@ -37,11 +38,11 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <KeyboardAvoidingView style={generalStyles.flex} behavior="padding">
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
+      <MainHeader
+        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={navigation.goBack}
+      />
+      <ExtendedKeyboardAvoidingView>
         <BottomButtonView
           buttonTitle={t('buttons.next').toUpperCase()}
           onSubmit={onSubmit}
@@ -59,7 +60,7 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
             placeholder={t('placeholders.enter_nickname')}
           />
         </BottomButtonView>
-      </KeyboardAvoidingView>
+      </ExtendedKeyboardAvoidingView>
     </SafeAreaView>
   );
 };

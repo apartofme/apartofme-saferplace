@@ -4,6 +4,7 @@ export * from './DialogView';
 export * from './EmojiButtons';
 export * from './EmojiSlider';
 export * from './ExtendedButton';
+export * from './ExtendedKeyboardAvoidingView';
 export * from './ExtendedSwitch';
 export * from './ExtendedText';
 export * from './ExtendedTextInput';

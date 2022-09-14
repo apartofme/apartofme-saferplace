@@ -10,7 +10,7 @@ import {
   IRadioButtonListItem,
   RadioButtonListType,
 } from './RadioButtonList.data';
-import { IRadioButtonListProps } from './RadioButtonList.props';
+import { IRadioButtonListProps } from './RadioButtonList.types';
 
 export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
   data,
