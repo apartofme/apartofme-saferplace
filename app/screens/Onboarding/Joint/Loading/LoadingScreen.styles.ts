@@ -19,7 +19,7 @@ export const styles = StyleSheet.create<ILoadingScreenStyles>({
   },
   title: {
     textAlign: 'center',
-    marginBottom: 25,
+    marginBottom: 24,
   },
   subtitle: {
     textAlign: 'center',

@@ -1,11 +1,11 @@
-import _ from 'lodash';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 import { IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
+  ExtendedKeyboardAvoidingView,
   ExtendedText,
   ExtendedTextInput,
   ExtendedTextInputType,
@@ -19,17 +19,23 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
   ({ navigation }) => {
     const { t } = useTranslation();
 
+    const [email, setEmail] = useState('');
+
+    const onSubmit = useCallback(() => {
+      navigation.navigate('ForgotPasswordSuccess');
+    }, [navigation]);
+
     return (
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
         />
-        <KeyboardAvoidingView style={generalStyles.flex} behavior="padding">
+        <ExtendedKeyboardAvoidingView>
           <BottomButtonView
             buttonTitle={t('buttons.reset_password')}
-            // TODO: change to correct function
-            onSubmit={_.noop}
+            onSubmit={onSubmit}
+            isDisabledButton={!email}
             style={styles.container}>
             <ExtendedText preset="large-title">
               {t('screens.onboarding.forgot_password.email.title')}
@@ -41,10 +47,12 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
 
             <ExtendedTextInput
               type={ExtendedTextInputType.Email}
+              value={email}
+              onChangeText={setEmail}
               placeholder={t('placeholders.enter_email')}
             />
           </BottomButtonView>
-        </KeyboardAvoidingView>
+        </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
     );
   };
