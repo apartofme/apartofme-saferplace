@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ISetSettingsDataPayload, ISettingsData } from '../types';
+import CONFIG from '../../config/env';
 
 export interface ISettingsState {
   settings: ISettingsData;
@@ -8,7 +9,7 @@ export interface ISettingsState {
 
 const INITIAL_STATE: ISettingsState = {
   settings: {
-    language: 'en',
+    language: CONFIG.FALLBACK_LANGUAGE,
     isNotificationsEnabled: false,
     audioSettings: {
       isSoundFXEnabled: false,

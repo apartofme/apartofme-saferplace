@@ -1,6 +1,7 @@
 import auth from '@react-native-firebase/auth';
 
 import { parseFirebaseError } from '../../utils';
+import { firestoreCreateUser } from './firestore';
 import { IFirebaseAuthError, IFirebaseAuthResponse } from './types';
 
 export const getCurrentUser = () => auth().currentUser?.uid;
@@ -14,11 +15,13 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
     registerUserResponse.user = (
       await auth().createUserWithEmailAndPassword(email, password)
     ).user;
+    await auth().currentUser?.sendEmailVerification();
   } catch (error) {
     registerUserResponse.error = parseFirebaseError(
       (error as IFirebaseAuthError).code,
     );
   }
+  await firestoreCreateUser();
   return registerUserResponse;
 };
 

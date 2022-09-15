@@ -1,7 +1,7 @@
-import _ from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
+import _ from 'lodash';
 
 import {
   BottomButtonView,
@@ -16,7 +16,6 @@ export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <MainHeader

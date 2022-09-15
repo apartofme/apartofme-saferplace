@@ -7,3 +7,10 @@ export const trackButtonPress = (buttonName: string) => {
     button_name: buttonName,
   });
 };
+
+export const trackScreenView = (screenName: string, screenClass: string) => {
+  analytics().logScreenView({
+    screen_name: screenName,
+    screen_class: screenClass,
+  });
+};

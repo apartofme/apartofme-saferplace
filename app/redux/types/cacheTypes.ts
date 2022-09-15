@@ -20,3 +20,14 @@ export interface ISignUpDataPayload {
 export interface IShortSignUpDataPayload {
   payload: IShortSignUpData;
 }
+
+export interface ISaveTranslationsPayload {
+  payload: ITranslations;
+}
+
+export type ITranslations = Record<
+  string,
+  {
+    translations: Record<string, string>;
+  }
+>;
