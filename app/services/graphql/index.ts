@@ -13,6 +13,8 @@ import {
   getAllTranslationsQuery,
 } from './graph.types';
 import { ITranslations } from '../../utils/types';
+import { IQuestLineDatoCms } from '../../models/IQuestLine';
+import { IQuestDatoCms } from '../../models/IQuest';
 
 class Api {
   private client: ApolloClient<NormalizedCacheObject>;
@@ -50,39 +52,60 @@ class Api {
   }
 
   public async getAllQuestLines(locale: string) {
-    const result = await this.client.query({
-      query: getAllQuestLinesQuery(locale),
-    });
+    let result: IQuestLineDatoCms[] = [];
+    let offset = 0;
 
-    if (!result.data.allQuestLines) {
-      // TODO: throw exception
+    while (true) {
+      const response = await this.client.query({
+        query: getAllQuestLinesQuery(locale, 100, offset),
+      });
+
+      if (response.data.allQuestLines.length) {
+        result = result.concat(response.data.allQuestLines);
+      } else {
+        return result;
+      }
+
+      offset += 100;
     }
-
-    return result.data.allQuestLines;
   }
 
   public async getAllQuestsByQuestLineId(locale: string, questLineId: string) {
-    const result = await this.client.query({
-      query: getAllQuestsByQuestLineId(locale, questLineId),
-    });
+    let result: IQuestLineDatoCms[] = [];
+    let offset = 0;
 
-    if (!result.data.allQuestScreens) {
-      // TODO: throw exception
+    while (true) {
+      const response = await this.client.query({
+        query: getAllQuestsByQuestLineId(locale, questLineId, 100, offset),
+      });
+
+      if (response.data.allQuestLines.length) {
+        result = result.concat(response.data.allQuestLines);
+      } else {
+        return result;
+      }
+
+      offset += 100;
     }
-
-    return result.data.allQuests;
   }
 
   public async getAllQuests(locale: string) {
-    const result = await this.client.query({
-      query: getAllQuests(locale),
-    });
+    let result: IQuestDatoCms[] = [];
+    let offset = 0;
 
-    if (!result.data.allQuestScreens) {
-      // TODO: throw exception
+    while (true) {
+      const response = await this.client.query({
+        query: getAllQuests(locale, 100, offset),
+      });
+
+      if (response.data.allQuestScreens.length) {
+        result = result.concat(response.data.allQuestScreens);
+      } else {
+        return result;
+      }
+
+      offset += 100;
     }
-
-    return result.data.allQuestScreens;
   }
 }
 

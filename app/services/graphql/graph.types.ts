@@ -14,9 +14,13 @@ export const getAllTranslationsQuery = (
   }
 `;
 
-export const getAllQuestLinesQuery = (locale: string) => gql`
+export const getAllQuestLinesQuery = (
+  locale: string,
+  first = 100,
+  skip = 0,
+) => gql`
   query getAllQuestLines {
-    allQuestLines(locale: ${locale}, orderBy: sort_ASC) {
+    allQuestLines(locale: ${locale}, first: ${first}, skip: ${skip}, orderBy: sort_ASC) {
       id
       sort
       title
@@ -27,9 +31,12 @@ export const getAllQuestLinesQuery = (locale: string) => gql`
 export const getAllQuestsByQuestLineId = (
   locale: string,
   questLineId: string,
+  first = 100,
+  skip = 0,
 ) => gql`
 query getQuestLineQuests {
-  allQuestScreens(locale: ${locale}, orderBy: sort_ASC, filter: {questlineid: {eq: "${questLineId}"}}) {
+  allQuestScreens(locale: ${locale}, first: ${first}, skip: ${skip}, 
+    orderBy: sort_ASC, filter: {questlineid: {eq: "${questLineId}"}}) {
     id
     title
     description
@@ -62,9 +69,9 @@ query getQuestLineQuests {
 }
 `;
 
-export const getAllQuests = (locale: string) => gql`
+export const getAllQuests = (locale: string, first = 100, skip = 0) => gql`
   query getAllQuest {
-    allQuestScreens(locale: en, orderBy: sort_ASC) {
+    allQuestScreens(locale: ${locale}, first: ${first}, skip: ${skip}, orderBy: sort_ASC) {
       id
       title
       description
