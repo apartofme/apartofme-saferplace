@@ -12,6 +12,7 @@ import {
   getAllQuestsByQuestLineId,
   getAllTranslationsQuery,
 } from './graph.types';
+import { ITranslations } from '../../utils/types';
 
 class Api {
   private client: ApolloClient<NormalizedCacheObject>;
@@ -29,11 +30,23 @@ class Api {
   }
 
   public async getAllTranslations(locale: string) {
-    const result = await this.client.query({
-      query: getAllTranslationsQuery(locale),
-    });
+    let result: ITranslations[] = [];
+    let offset = 0;
 
-    return translationsToDictionary(result);
+    while (true) {
+      const response = await this.client.query({
+        query: getAllTranslationsQuery(locale, 100, offset),
+      });
+
+      if (response.data.allTranslations.length) {
+        result = result.concat(response.data.allTranslations);
+      } else {
+        const translations = translationsToDictionary(result);
+        return translations;
+      }
+
+      offset += 100;
+    }
   }
 
   public async getAllQuestLines(locale: string) {

@@ -10,7 +10,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
 }) => {
   useEffect(() => {
     // TODO: Timeout for loading simulation. Replace it with data fetching
-    setTimeout(() => navigation.replace('ParentsOnboardingStack'), 500);
+    setTimeout(() => navigation.replace('ParentsOnboardingStack'), 1000);
   }, [navigation]);
 
   return (

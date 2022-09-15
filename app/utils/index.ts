@@ -34,12 +34,10 @@ export const parseTextWithNickname = (text: string): string[] => {
 /*
   Convert data with dots string to translation dictionary
 */
-export const translationsToDictionary = (data: {
-  data: { allTranslations: ITranslations[] };
-}) => {
+export const translationsToDictionary = (allTranslations: ITranslations[]) => {
   let result: Record<string, string> = {};
 
-  _.map(data.data.allTranslations, item => {
+  _.map(allTranslations, item => {
     const key = item.label;
     const formattedKey = {};
 

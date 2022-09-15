@@ -1,9 +1,12 @@
 import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
+import CONFIG from '../../config/env';
 
 import Api from '../graphql/index';
 
-i18n.use(initReactI18next).init();
+i18n.use(initReactI18next).init({
+  fallbackLng: CONFIG.FALLBACK_LANGUAGE,
+});
 
 export const getTranslations = async (locale: string) => {
   try {
@@ -19,9 +22,7 @@ export const setLocalizationBundle = (
   locale: string,
   translations: Record<string, string>,
 ) => {
-  try {
-    i18n.addResourceBundle(locale, 'translation', translations, true, true);
-  } catch {}
+  i18n.addResourceBundle(locale, 'translation', translations, true, true);
 };
 
 export default i18n;
