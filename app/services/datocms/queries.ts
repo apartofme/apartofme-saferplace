@@ -1,9 +1,11 @@
 import gql from 'graphql-tag';
 
+import { MIN_QRAPHQL_SKIP, PAGINATION_STEP } from '../../constants/datocms';
+
 export const getAllTranslationsQuery = (
   locale: string,
-  first = 100,
-  skip = 0,
+  first = PAGINATION_STEP,
+  skip = MIN_QRAPHQL_SKIP,
 ) => gql`
   query getAllTranslations {
     allTranslations(locale: ${locale}, first: ${first}, skip: ${skip}) {
@@ -16,8 +18,8 @@ export const getAllTranslationsQuery = (
 
 export const getAllQuestLinesQuery = (
   locale: string,
-  first = 100,
-  skip = 0,
+  first = PAGINATION_STEP,
+  skip = MIN_QRAPHQL_SKIP,
 ) => gql`
   query getAllQuestLines {
     allQuestLines(locale: ${locale}, first: ${first}, skip: ${skip}, orderBy: sort_ASC) {
@@ -28,11 +30,11 @@ export const getAllQuestLinesQuery = (
   }
 `;
 
-export const getAllQuestsByQuestLineId = (
+export const getAllQuestsByQuestLineIdQuery = (
   locale: string,
   questLineId: string,
-  first = 100,
-  skip = 0,
+  first = PAGINATION_STEP,
+  skip = MIN_QRAPHQL_SKIP,
 ) => gql`
 query getQuestLineQuests {
   allQuestScreens(locale: ${locale}, first: ${first}, skip: ${skip}, 
@@ -69,7 +71,11 @@ query getQuestLineQuests {
 }
 `;
 
-export const getAllQuests = (locale: string, first = 100, skip = 0) => gql`
+export const getAllQuestsQuery = (
+  locale: string,
+  first = PAGINATION_STEP,
+  skip = MIN_QRAPHQL_SKIP,
+) => gql`
   query getAllQuest {
     allQuestScreens(locale: ${locale}, first: ${first}, skip: ${skip}, orderBy: sort_ASC) {
       id

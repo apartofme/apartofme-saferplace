@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
+import _ from 'lodash';
 
 import {
   BottomButtonView,
@@ -9,8 +10,7 @@ import {
 } from '../../../../../components';
 import { IMAGES } from '../../../../../assets';
 import { generalStyles } from '../../../../../utils/styles';
-import { ISelectUserScreenProps } from './SelectUser.props';
-import { trackButtonPress } from '../../../../../services/firebase';
+import { ISelectUserScreenProps } from './SelectUser.types';
 
 export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
   navigation,
@@ -26,9 +26,7 @@ export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
       <BottomButtonView
         buttonTitle={t('buttons.manage_profiles')}
         // TODO: change noop to real function
-        onSubmit={() => {
-          trackButtonPress('manage');
-        }}>
+        onSubmit={_.noop}>
         <ExtendedText>{t('screens.onboarding.select_user.title')}</ExtendedText>
       </BottomButtonView>
     </SafeAreaView>

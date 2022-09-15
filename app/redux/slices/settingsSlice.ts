@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ISetSettingsDataPayload, ISettingsData } from '../types';
 import CONFIG from '../../config/env';
+
 export interface ISettingsState {
   settings: ISettingsData;
 }

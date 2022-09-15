@@ -20,11 +20,11 @@ export function* initLocalizationSaga() {
         cacheSlice.actions.saveTranslations({ [language]: { translations } }),
       );
     } else {
-      const loadTranslations: Record<string, string> = yield select(
+      const reduxTranslations: Record<string, string> = yield select(
         state => state.cache.translations[language].translations,
       );
 
-      yield call(setLocalizationBundle, language, loadTranslations);
+      yield call(setLocalizationBundle, language, reduxTranslations);
     }
   }
 }

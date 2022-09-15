@@ -4,19 +4,21 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client';
 
-import CONFIG from '../../config/env';
-import { translationsToDictionary } from '../../utils';
 import {
   getAllQuestLinesQuery,
-  getAllQuests,
-  getAllQuestsByQuestLineId,
+  getAllQuestsQuery,
+  getAllQuestsByQuestLineIdQuery,
   getAllTranslationsQuery,
-} from './graph.types';
+} from './queries';
+import CONFIG from '../../config/env';
 import { ITranslations } from '../../utils/types';
-import { IQuestLineDatoCms } from '../../models/IQuestLine';
 import { IQuestDatoCms } from '../../models/IQuest';
+import { translationsToDictionary } from '../../utils';
+import { IQuestLineDatoCms } from '../../models/IQuestLine';
+import { APOLLO_HEADERS } from '../../constants/apolloHeaders';
+import { MIN_QRAPHQL_SKIP, PAGINATION_STEP } from '../../constants/datocms';
 
-class Api {
+class DatoCMSApi {
   private client: ApolloClient<NormalizedCacheObject>;
 
   constructor(baseURL = CONFIG.API_URL, token = CONFIG.API_KEY) {
@@ -24,8 +26,7 @@ class Api {
       uri: baseURL,
       cache: new InMemoryCache(),
       headers: {
-        'X-Api-Version': '3',
-        Accept: 'application/json',
+        ...APOLLO_HEADERS,
         authorization: `Bearer ${token}`,
       },
     });
@@ -33,11 +34,11 @@ class Api {
 
   public async getAllTranslations(locale: string) {
     let result: ITranslations[] = [];
-    let offset = 0;
+    let offset = MIN_QRAPHQL_SKIP;
 
     while (true) {
       const response = await this.client.query({
-        query: getAllTranslationsQuery(locale, 100, offset),
+        query: getAllTranslationsQuery(locale, PAGINATION_STEP, offset),
       });
 
       if (response.data.allTranslations.length) {
@@ -47,17 +48,17 @@ class Api {
         return translations;
       }
 
-      offset += 100;
+      offset += PAGINATION_STEP;
     }
   }
 
-  public async getAllQuestLines(locale: string) {
+  getAllQuestLines = async (locale: string) => {
     let result: IQuestLineDatoCms[] = [];
-    let offset = 0;
+    let offset = MIN_QRAPHQL_SKIP;
 
     while (true) {
       const response = await this.client.query({
-        query: getAllQuestLinesQuery(locale, 100, offset),
+        query: getAllQuestLinesQuery(locale, PAGINATION_STEP, offset),
       });
 
       if (response.data.allQuestLines.length) {
@@ -66,17 +67,22 @@ class Api {
         return result;
       }
 
-      offset += 100;
+      offset += PAGINATION_STEP;
     }
-  }
+  };
 
   public async getAllQuestsByQuestLineId(locale: string, questLineId: string) {
     let result: IQuestLineDatoCms[] = [];
-    let offset = 0;
+    let offset = MIN_QRAPHQL_SKIP;
 
     while (true) {
       const response = await this.client.query({
-        query: getAllQuestsByQuestLineId(locale, questLineId, 100, offset),
+        query: getAllQuestsByQuestLineIdQuery(
+          locale,
+          questLineId,
+          PAGINATION_STEP,
+          offset,
+        ),
       });
 
       if (response.data.allQuestLines.length) {
@@ -85,17 +91,17 @@ class Api {
         return result;
       }
 
-      offset += 100;
+      offset += PAGINATION_STEP;
     }
   }
 
-  public async getAllQuests(locale: string) {
+  getAllQuests = async (locale: string) => {
     let result: IQuestDatoCms[] = [];
-    let offset = 0;
+    let offset = MIN_QRAPHQL_SKIP;
 
     while (true) {
       const response = await this.client.query({
-        query: getAllQuests(locale, 100, offset),
+        query: getAllQuestsQuery(locale, PAGINATION_STEP, offset),
       });
 
       if (response.data.allQuestScreens.length) {
@@ -104,9 +110,10 @@ class Api {
         return result;
       }
 
-      offset += 100;
+      offset += PAGINATION_STEP;
     }
-  }
+  };
 }
+export const apiInstance = new DatoCMSApi();
 
-export default Api;
+export default DatoCMSApi;

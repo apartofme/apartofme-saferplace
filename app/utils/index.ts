@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import { Platform } from 'react-native';
+
 import { IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
-
 import { ITranslations } from './types';
 
 export const isAndroid = Platform.OS === 'android';

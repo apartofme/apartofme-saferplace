@@ -1,8 +1,8 @@
 import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
-import CONFIG from '../../config/env';
 
-import Api from '../graphql/index';
+import CONFIG from '../../config/env';
+import Api from '../datocms/index';
 
 i18n.use(initReactI18next).init({
   fallbackLng: CONFIG.FALLBACK_LANGUAGE,
