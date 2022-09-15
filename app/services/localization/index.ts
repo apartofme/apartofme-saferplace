@@ -2,14 +2,8 @@ import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
 
 import Api from '../graphql/index';
-import { en } from './languages';
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: { translation: en },
-  },
-  lng: 'en',
-});
+i18n.use(initReactI18next).init();
 
 export const getTranslations = async (locale: string) => {
   try {
