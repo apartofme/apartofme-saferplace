@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 export const getAllTranslationsQuery = (
   locale: string,
-  first?: number,
-  skip?: number,
+  first = 100,
+  skip = 0,
 ) => gql`
   query getAllTranslations {
     allTranslations(locale: ${locale}, first: ${first}, skip: ${skip}) {
