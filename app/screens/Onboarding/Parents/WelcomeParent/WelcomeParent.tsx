@@ -22,12 +22,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   }, [navigation]);
 
   const onLoginPress = useCallback(() => {
-<<<<<<< HEAD
     navigation.navigate('Login');
-    trackButtonPress('Login');
-=======
-    navigation.navigate('MenuStack');
->>>>>>> 47ad2b5 (refactor(elixir-double-interaction-screen): WelcomeParent)
   }, [navigation]);
 
   // TODO: remove
