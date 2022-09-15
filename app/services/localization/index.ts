@@ -2,7 +2,7 @@ import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
 
 import CONFIG from '../../config/env';
-import Api from '../datocms/index';
+import { datocmsApiInstance } from '../datocms/index';
 
 i18n.use(initReactI18next).init({
   fallbackLng: CONFIG.FALLBACK_LANGUAGE,
@@ -10,7 +10,7 @@ i18n.use(initReactI18next).init({
 
 export const getTranslations = async (locale: string) => {
   try {
-    const translations = await new Api().getAllTranslations(locale);
+    const translations = await datocmsApiInstance.getAllTranslations(locale);
     setLocalizationBundle(locale, translations);
     return translations;
   } catch {

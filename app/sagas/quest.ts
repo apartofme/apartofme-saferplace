@@ -4,7 +4,7 @@ import CONFIG from '../config/env';
 import { IQuestDatoCms } from '../models/IQuest';
 import { IQuestLineDatoCms } from '../models/IQuestLine';
 import { questSlice } from '../redux/slices';
-import { apiInstance } from '../services/datocms';
+import { datocmsApiInstance } from '../services/datocms';
 import { questsToDictionary } from '../utils';
 
 export function* initQuestSaga() {
@@ -12,11 +12,11 @@ export function* initQuestSaga() {
 
   for (const language of locales) {
     const quests: IQuestDatoCms[] = yield call(
-      apiInstance.getAllQuests,
+      datocmsApiInstance.getAllQuests,
       language,
     );
     const questLines: IQuestLineDatoCms[] = yield call(
-      apiInstance.getAllQuestLines,
+      datocmsApiInstance.getAllQuestLines,
       language,
     );
     const allCorrectQuests = questsToDictionary(language, questLines, quests);

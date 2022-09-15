@@ -32,7 +32,7 @@ class DatoCMSApi {
     });
   }
 
-  public async getAllTranslations(locale: string) {
+  getAllTranslations = async (locale: string) => {
     let result: ITranslations[] = [];
     let offset = MIN_QRAPHQL_SKIP;
 
@@ -50,7 +50,7 @@ class DatoCMSApi {
 
       offset += PAGINATION_STEP;
     }
-  }
+  };
 
   getAllQuestLines = async (locale: string) => {
     let result: IQuestLineDatoCms[] = [];
@@ -71,7 +71,7 @@ class DatoCMSApi {
     }
   };
 
-  public async getAllQuestsByQuestLineId(locale: string, questLineId: string) {
+  getAllQuestsByQuestLineId = async (locale: string, questLineId: string) => {
     let result: IQuestLineDatoCms[] = [];
     let offset = MIN_QRAPHQL_SKIP;
 
@@ -93,7 +93,7 @@ class DatoCMSApi {
 
       offset += PAGINATION_STEP;
     }
-  }
+  };
 
   getAllQuests = async (locale: string) => {
     let result: IQuestDatoCms[] = [];
@@ -114,6 +114,4 @@ class DatoCMSApi {
     }
   };
 }
-export const apiInstance = new DatoCMSApi();
-
-export default DatoCMSApi;
+export const datocmsApiInstance = new DatoCMSApi();
