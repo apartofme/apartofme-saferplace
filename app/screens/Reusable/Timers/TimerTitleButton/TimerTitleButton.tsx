@@ -2,24 +2,25 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../../../assets';
+import { IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
   ExtendedText,
   MainHeader,
   Timer,
-} from '../../../../../../components';
-import { generalStyles } from '../../../../../../utils/styles';
-import { ITitleButtonProps } from './TitleButton.types';
-import { styles } from './TitleButton.styles';
+} from '../../../../components';
+import { ITimerTitleButtonScreenProps } from './TimerTitleButton.types';
+import { styles } from './TimerTitleButton.styles';
+import { generalStyles } from '../../../../utils/styles';
 
-export const TitleButton: React.FC<ITitleButtonProps> = ({
-  duration,
-  onSubmit,
-  titleKey,
+export const TimerTitleButtonScreen: React.FC<ITimerTitleButtonScreenProps> = ({
+  navigation,
+  route,
 }) => {
   const { t } = useTranslation();
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
+
+  const { duration, title } = route.params.data;
 
   const correctButtonTitle = useMemo(() => {
     if (isTimerStart) {
@@ -35,20 +36,19 @@ export const TitleButton: React.FC<ITitleButtonProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} />
+      <MainHeader
+        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={navigation.goBack}
+      />
       <BottomButtonView
         buttonTitle={t(correctButtonTitle)}
         onSubmit={onSubmitPress}
         isDisabledButton={isTimerStart}
         style={styles.container}>
-        <Timer
-          duration={duration}
-          isStart={isTimerStart}
-          onAnimationComplete={onSubmit}
-        />
-        {!!titleKey && (
+        <Timer duration={duration} isStart={isTimerStart} />
+        {title && (
           <ExtendedText preset="heading" style={styles.title}>
-            {t(titleKey)}
+            {t(title)}
           </ExtendedText>
         )}
       </BottomButtonView>
