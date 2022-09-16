@@ -14,7 +14,6 @@ export interface ICharmTimerTitleScreenProps
 
 export interface ICharmTimerTitleRoute {
   duration: number;
-  titleKey: string;
-  subtitleKey: string;
-  onSubmit: () => void;
+  title: string;
+  subtitle: string;
 }
