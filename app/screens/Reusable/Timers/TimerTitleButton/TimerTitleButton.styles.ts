@@ -1,11 +1,11 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
-interface ITitleButtonStyles {
+interface ITimerTitleButtonScreenStyles {
   container: ViewStyle;
   title: TextStyle;
 }
 
-export const styles = StyleSheet.create<ITitleButtonStyles>({
+export const styles = StyleSheet.create<ITimerTitleButtonScreenStyles>({
   container: {
     paddingTop: 96,
     paddingHorizontal: 40,
