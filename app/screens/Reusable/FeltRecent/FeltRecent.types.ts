@@ -1,4 +1,5 @@
 import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
+import { ImageSourcePropType } from 'react-native';
 
 import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
 
@@ -10,4 +11,9 @@ export interface IFeltRecentScreenProps extends NavigationProps, RouteProps {}
 export interface IFeltRecentRoute {
   titleKey: string;
   subtitleKey: string;
+}
+
+export interface IFeltRecentItem {
+  titleKey: string;
+  image: ImageSourcePropType;
 }

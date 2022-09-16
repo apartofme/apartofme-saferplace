@@ -11,9 +11,9 @@ import {
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { FeltRecentItem } from './components';
-import { FELT_RECENT_DATA, IFeltRecentItem } from './FeltRecent.data';
+import { FELT_RECENT_DATA } from './FeltRecent.data';
 import { styles } from './FeltRecent.styles';
-import { IFeltRecentScreenProps } from './FeltRecent.types';
+import { IFeltRecentItem, IFeltRecentScreenProps } from './FeltRecent.types';
 
 export const FeltRecentScreen: React.FC<IFeltRecentScreenProps> = ({
   navigation,

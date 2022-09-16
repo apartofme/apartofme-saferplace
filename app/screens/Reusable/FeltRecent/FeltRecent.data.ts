@@ -1,11 +1,5 @@
-import { ImageSourcePropType } from 'react-native';
-
 import { IMAGES } from '../../../assets';
-
-export interface IFeltRecentItem {
-  titleKey: string;
-  image: ImageSourcePropType;
-}
+import { IFeltRecentItem } from './FeltRecent.types';
 
 export const FELT_RECENT_DATA: ReadonlyArray<IFeltRecentItem> = [
   {

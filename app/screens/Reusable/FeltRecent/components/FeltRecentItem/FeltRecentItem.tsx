@@ -1,10 +1,10 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { IFeltRecentItemProps } from './FeltRecentItem.types';
 import { styles } from './FeltRecentItem.styles';
 import { ExtendedText } from '../../../../../components';
-import { useTranslation } from 'react-i18next';
 
 export const FeltRecentItem: React.FC<IFeltRecentItemProps> = ({
   titleKey,
