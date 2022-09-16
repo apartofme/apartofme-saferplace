@@ -15,5 +15,5 @@ export interface ICharmTimerTitleScreenProps
 export interface ICharmTimerTitleRoute {
   duration: number;
   title: string;
-  subtitle: string;
+  description: string;
 }
