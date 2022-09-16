@@ -21,7 +21,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { duration, subtitle } = route.params.data;
+  const { duration, description } = route.params.data;
 
   return (
     <SafeAreaView style={generalStyles.flex}>
@@ -39,7 +39,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
         <ExtendedButton title={t('buttons.read_out')} />
         <Timer duration={duration} isStart={true} style={styles.timer} />
         <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {t(subtitle)}
+          {t(description)}
         </ExtendedText>
       </BottomButtonView>
     </SafeAreaView>

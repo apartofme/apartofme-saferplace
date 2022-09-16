@@ -14,5 +14,5 @@ export interface ICharmTimerButtonScreenProps
 
 export interface ICharmTimerButtonRoute {
   duration: number;
-  subtitle: string;
+  description: string;
 }
