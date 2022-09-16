@@ -46,7 +46,7 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
             {t('screens.onboarding.sign_up_age.title')}
           </ExtendedText>
           <ExtendedText preset="secondary-text" style={styles.subtitle}>
-            {t('screens.onboarding.sign_up_age.subtitle')}
+            {t('screens.onboarding.sign_up_age.description')}
           </ExtendedText>
           <ExtendedTextInput
             value={age}
