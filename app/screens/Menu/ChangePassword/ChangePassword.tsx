@@ -22,7 +22,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
   return (
     <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
-        buttonTitle={t('screens.menu.change_password.reset_password')}
+        buttonTitle={t('buttons.reset_password')}
         onSubmit={_.noop}>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
@@ -31,26 +31,20 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
         <View style={styles.container}>
           <ExtendedText style={styles.title}>Change your password</ExtendedText>
           <ExtendedText>
-            {t('screens.menu.change_password.subtitle')}
+            {t('screens.menu.change_password.description')}
           </ExtendedText>
           <View style={styles.inputContainer}>
             <ExtendedTextInput
               style={styles.input}
-              placeholder={t(
-                'screens.menu.change_password.input_placeholder.current_password',
-              )}
+              placeholder={t('placeholders.enter_current_password')}
             />
             <ExtendedTextInput
               style={styles.input}
-              placeholder={t(
-                'screens.menu.change_password.input_placeholder.new_password',
-              )}
+              placeholder={t('placeholders.enter_new_password')}
             />
             <ExtendedTextInput
               style={styles.input}
-              placeholder={t(
-                'screens.menu.change_password.input_placeholder.confirm_new_password',
-              )}
+              placeholder={t('placeholders.confirm_new_password')}
             />
           </View>
         </View>

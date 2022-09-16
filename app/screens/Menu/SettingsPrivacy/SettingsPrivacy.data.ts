@@ -15,44 +15,44 @@ export interface ISettingsPrivacyMenuItem {
 
 export const SETTINGS_PRIVACY_MENU: ReadonlyArray<ISettingsPrivacyMenuItem> = [
   {
-    titleKey: 'screens.menu.settings_privacy_screen.first_item',
+    titleKey: 'screens.menu.settings_privacy.first_item',
     type: SettingsPrivacyRouteType.OnOtherScreens,
     route: 'LanguageSettings',
   },
   {
-    titleKey: 'screens.menu.settings_privacy_screen.second_item',
+    titleKey: 'screens.menu.settings_privacy.second_item',
     type: SettingsPrivacyRouteType.OnOtherScreens,
     route: 'AudioSettings',
   },
   {
-    titleKey: 'screens.menu.settings_privacy_screen.third_item',
+    titleKey: 'screens.menu.settings_privacy.third_item',
     type: SettingsPrivacyRouteType.OnOtherScreens,
     route: 'NotificationSettings',
   },
   {
-    titleKey: 'screens.menu.settings_privacy_screen.fourth_item',
+    titleKey: 'screens.menu.settings_privacy.fourth_item',
     type: SettingsPrivacyRouteType.OnConditionsScreen,
     data: {
       title: 'screens.menu.conditions.terms_conditions.title',
-      subtitle: 'screens.menu.conditions.terms_conditions.subtitle',
+      subtitle: 'screens.menu.conditions.terms_conditions.description',
     },
     route: 'Conditions',
   },
   {
-    titleKey: 'screens.menu.settings_privacy_screen.fifth_item',
+    titleKey: 'screens.menu.settings_privacy.fifth_item',
     type: SettingsPrivacyRouteType.OnConditionsScreen,
     data: {
       title: 'screens.menu.conditions.privacy_policy.title',
-      subtitle: 'screens.menu.conditions.privacy_policy.subtitle',
+      subtitle: 'screens.menu.conditions.privacy_policy.description',
     },
     route: 'Conditions',
   },
   {
-    titleKey: 'screens.menu.settings_privacy_screen.sixth_item',
+    titleKey: 'screens.menu.settings_privacy.sixth_item',
     type: SettingsPrivacyRouteType.OnConditionsScreen,
     data: {
       title: 'screens.menu.conditions.accessibility_statement.title',
-      subtitle: 'screens.menu.conditions.accessibility_statement.subtitle',
+      subtitle: 'screens.menu.conditions.accessibility_statement.description',
     },
     route: 'Conditions',
   },

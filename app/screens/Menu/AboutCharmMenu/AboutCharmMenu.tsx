@@ -43,7 +43,7 @@ export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
           {t('screens.menu.about_charm_menu.title')}
         </ExtendedText>
         <ExtendedText style={styles.subtitle}>
-          {t('screens.menu.about_charm_menu.subtitle')}
+          {t('screens.menu.about_charm_menu.description')}
         </ExtendedText>
 
         <FlatList

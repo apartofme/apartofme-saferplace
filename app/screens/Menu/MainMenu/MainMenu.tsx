@@ -45,7 +45,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
             {t('screens.menu.main_menu.title')}
           </ExtendedText>
           <ExtendedText style={styles.subtitle}>
-            {t('screens.menu.main_menu.subtitle')}
+            {t('screens.menu.main_menu.description')}
           </ExtendedText>
           <ExtendedText style={styles.userActionTitile}>
             {t('screens.menu.main_menu.user_add_action')}

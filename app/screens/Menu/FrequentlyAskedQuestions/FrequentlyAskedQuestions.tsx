@@ -28,12 +28,12 @@ export const FrequentlyAskedQuestionsScreen: React.FC<IFrequentlyAskedQuestionsS
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
           title={t(
-            'screens.menu.frequently_asked_questions_screen.header',
+            'screens.menu.frequently_asked_questions.header',
           ).toUpperCase()}
         />
         <View style={styles.container}>
           <ExtendedText style={styles.title}>
-            {t('screens.menu.frequently_asked_questions_screen.title')}
+            {t('screens.menu.frequently_asked_questions.title')}
           </ExtendedText>
           <View style={styles.searchBoxContainer}>
             <SearchBox onChangeText={delayedOnSearchChangeText} />

@@ -41,7 +41,11 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
             {t('screens.menu.feedback.subtitle')}
           </ExtendedText>
           <View style={styles.inputContainer}>
-            <MultilineTextInput value={feedback} onChangeText={setFeedback} />
+            <MultilineTextInput
+              value={feedback}
+              onChangeText={setFeedback}
+              placeholder={t('placeholders.enter_text')}
+            />
           </View>
         </View>
       </BottomButtonView>

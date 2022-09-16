@@ -47,7 +47,7 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
           {t('screens.menu.language_settings.title')}
         </ExtendedText>
         <ExtendedText style={styles.subtitle}>
-          {t('screens.menu.language_settings.subtitle')}
+          {t('screens.menu.language_settings.description')}
         </ExtendedText>
         <View style={styles.listContainer}>
           <RadioButtonList

@@ -7,9 +7,10 @@ interface IExtendedTextAreaStyles {
 }
 
 export const styles = StyleSheet.create<IExtendedTextAreaStyles>({
+  // TODO: change for correct styles
   inputContainer: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: 'gray',
   },
   input: {
     flex: 1,

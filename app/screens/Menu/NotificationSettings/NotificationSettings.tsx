@@ -48,7 +48,7 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
 
           <MenuSwitchRow
             title={t(
-              'screens.menu.notification_settings.is_notifications_enabled',
+              'screens.menu.notification_settings.is_allow_notifications',
             )}
             isEnabled={isNotificationsEnabled}
             setIsEnabled={setNotificationEnabled}
