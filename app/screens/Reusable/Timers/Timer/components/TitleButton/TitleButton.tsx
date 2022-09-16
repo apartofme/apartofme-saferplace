@@ -2,14 +2,14 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../../assets';
+import { IMAGES } from '../../../../../../assets';
 import {
   BottomButtonView,
   ExtendedText,
   MainHeader,
   Timer,
-} from '../../../../../components';
-import { generalStyles } from '../../../../../utils/styles';
+} from '../../../../../../components';
+import { generalStyles } from '../../../../../../utils/styles';
 import { ITitleButtonProps } from './TitleButton.types';
 import { styles } from './TitleButton.styles';
 
