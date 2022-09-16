@@ -24,10 +24,10 @@ export const FeedbackSuccessScreen: React.FC<IFeedbackSuccessScreenProps> =
         <BottomButtonView buttonTitle={t('buttons.back')} onSubmit={_.noop}>
           <View style={styles.container}>
             <ExtendedText style={styles.title}>
-              {t('screens.menu.feedback_success.title')}
+              {t('screens.menu.feedback.success.title')}
             </ExtendedText>
             <ExtendedText style={styles.subtitle}>
-              {t('screens.menu.feedback_success.subtitle')}
+              {t('screens.menu.feedback.success.description')}
             </ExtendedText>
           </View>
         </BottomButtonView>

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
@@ -10,7 +11,6 @@ import { generalStyles } from '../../../utils/styles';
 import { MenuSwitchRow } from '../components';
 import { IAudioSettingsScreenProps } from './AudioSettings.types';
 import { styles } from './AudioSettings.styles';
-import _ from 'lodash';
 import { IAudioSettings } from '../../../redux/types';
 import {
   AUDIO_SETTINGS_MENU,

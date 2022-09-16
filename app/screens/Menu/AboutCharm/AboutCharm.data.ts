@@ -41,7 +41,7 @@ export const ABOUT_CHARM_ITEMS: ReadonlyArray<AboutCharmsMenuItem> = [
     type: AboutCharmsMenuType.TheCharmOfDiscovery,
   },
   {
-    title: 'screens.menu.about_charm.fifth.title',
+    title: 'screens.menu.about_charm.sixth.title',
     subtitle: 'screens.menu.about_charm.sixth.description',
     type: AboutCharmsMenuType.TheCharmOfSanctuary,
   },
