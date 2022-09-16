@@ -53,7 +53,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
         onLeftIconPress={navigation.goBack}
       />
       <BottomButtonView
-        buttonTitle={t('buttons.next').toUpperCase()}
+        buttonTitle={t('buttons.select')}
         onSubmit={onSubmitButtonPress}
         isDisabledButton={!avatar}
         style={styles.container}>

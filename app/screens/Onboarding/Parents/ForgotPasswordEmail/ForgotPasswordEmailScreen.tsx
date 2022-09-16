@@ -42,7 +42,7 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
             </ExtendedText>
 
             <ExtendedText preset="secondary-text" style={styles.subtitle}>
-              {t('screens.onboarding.forgot_password.email.subtitle')}
+              {t('screens.onboarding.forgot_password.email.description')}
             </ExtendedText>
 
             <ExtendedTextInput

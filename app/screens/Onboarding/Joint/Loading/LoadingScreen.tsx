@@ -38,7 +38,7 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
     <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
         style={styles.container}
-        buttonTitle={t('buttons.we_ready').toUpperCase()}
+        buttonTitle={t('buttons.we_ready')}
         onSubmit={onSubmit}>
         {/*// TODO: change to correnct time*/}
         <Timer duration={10} isStart={true} style={styles.timer} />

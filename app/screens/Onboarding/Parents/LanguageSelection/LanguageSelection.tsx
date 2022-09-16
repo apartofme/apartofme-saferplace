@@ -43,7 +43,7 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView
-          buttonTitle={t('buttons.confirm')}
+          buttonTitle={t('buttons.select')}
           onSubmit={onSubmit}
           isDisabledButton={!selectedLanguage.length}
           style={styles.container}>

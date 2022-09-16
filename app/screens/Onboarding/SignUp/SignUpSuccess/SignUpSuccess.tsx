@@ -56,7 +56,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
           {t(`${getCorrectLocalizationPath}.title`)}
         </ExtendedText>
         <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {t(`${getCorrectLocalizationPath}.subtitle`)}
+          {t(`${getCorrectLocalizationPath}.description`)}
         </ExtendedText>
       </BottomButtonView>
     </SafeAreaView>

@@ -34,7 +34,7 @@ export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenP
           </ExtendedText>
 
           <ExtendedText preset="secondary-text" style={styles.subtitle}>
-            {t('screens.onboarding.forgot_password.success.subtitle')}
+            {t('screens.onboarding.forgot_password.success.description')}
           </ExtendedText>
         </BottomButtonView>
       </SafeAreaView>

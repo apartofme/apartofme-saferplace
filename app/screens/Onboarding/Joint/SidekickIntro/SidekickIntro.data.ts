@@ -2,33 +2,33 @@ import { ISpeech } from '../../../../utils/types';
 
 export const INTRO_DIALOG: ISpeech[] = [
   {
-    textKey: 'screens.onboarding.sidekick_intro.firstPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.first',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.secondPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.second',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.thirdPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.third',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.fourthPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.fourth',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.fifthPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.fifth',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.sixthPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.sixth',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.seventhPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.seventh',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.eighthPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.eighth',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.ninthPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.ninth',
   },
   {
-    textKey: 'screens.onboarding.sidekick_intro.tenthPhrase',
+    textKey: 'screens.onboarding.sidekick_intro.tenth',
   },
 ];
