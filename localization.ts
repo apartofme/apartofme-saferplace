@@ -18,6 +18,7 @@ export const en = {
     forgot_password: 'Forgot password?',
     manage_profiles: 'Manage Profiles',
     ready: 'I’m ready',
+    read_out: 'Read out Loud',
     reset_password: 'Reset Password',
     we_ready: 'We’re ready',
     open_email: 'Open email app',
