@@ -23,6 +23,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
 
   const onLoginPress = useCallback(() => {
     navigation.navigate('Login');
+    trackButtonPress('Login');
   }, [navigation]);
 
   // TODO: remove
