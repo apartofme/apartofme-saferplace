@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
 import { Nullable } from '../../utils';
 import {
@@ -31,19 +32,13 @@ export const cacheSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     saveSignUpDataParent(state, { payload }: ISignUpDataPayload) {
-      state.auth.parent = {
-        ...state.auth.parent,
-        ...payload,
-      };
+      state.auth.parent = _.merge(state.auth.parent, payload);
     },
     saveSignUpDataChild(state, { payload }: IShortSignUpDataPayload) {
-      state.auth.child = {
-        ...state.auth.child,
-        ...payload,
-      };
+      state.auth.child = _.merge(state.auth.child, payload);
     },
     saveTranslations(state, { payload }: ISaveTranslationsPayload) {
-      state.translations = { ...state.translations, ...payload };
+      state.translations = _.merge(state.translations, payload);
     },
   },
 });
