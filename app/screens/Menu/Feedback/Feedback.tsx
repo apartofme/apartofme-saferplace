@@ -5,6 +5,7 @@ import { SafeAreaView, View } from 'react-native';
 import { IMAGES } from '../../../assets';
 import {
   BottomButtonView,
+  ExtendedKeyboardAvoidingView,
   ExtendedText,
   MainHeader,
   MultilineTextInput,
@@ -25,30 +26,32 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <BottomButtonView
-        buttonTitle={t('buttons.submit')}
-        onSubmit={onSubmit}
-        isDisabledButton={!feedback}>
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
-        <View style={styles.container}>
-          <ExtendedText style={styles.title}>
-            {t('screens.menu.feedback.title')}
-          </ExtendedText>
-          <ExtendedText style={styles.subtitle}>
-            {t('screens.menu.feedback.subtitle')}
-          </ExtendedText>
-          <View style={styles.inputContainer}>
-            <MultilineTextInput
-              value={feedback}
-              onChangeText={setFeedback}
-              placeholder={t('placeholders.enter_text')}
-            />
+      <ExtendedKeyboardAvoidingView>
+        <BottomButtonView
+          buttonTitle={t('buttons.submit')}
+          onSubmit={onSubmit}
+          isDisabledButton={!feedback}>
+          <MainHeader
+            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            onLeftIconPress={navigation.goBack}
+          />
+          <View style={styles.container}>
+            <ExtendedText style={styles.title}>
+              {t('screens.menu.feedback.title')}
+            </ExtendedText>
+            <ExtendedText style={styles.subtitle}>
+              {t('screens.menu.feedback.subtitle')}
+            </ExtendedText>
+            <View style={styles.inputContainer}>
+              <MultilineTextInput
+                value={feedback}
+                onChangeText={setFeedback}
+                placeholder={t('placeholders.enter_text')}
+              />
+            </View>
           </View>
-        </View>
-      </BottomButtonView>
+        </BottomButtonView>
+      </ExtendedKeyboardAvoidingView>
     </SafeAreaView>
   );
 };
