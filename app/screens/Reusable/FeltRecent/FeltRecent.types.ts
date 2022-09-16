@@ -9,8 +9,8 @@ type RouteProps = StackScreenProps<MergedStackParams, 'FeltRecent'>;
 export interface IFeltRecentScreenProps extends NavigationProps, RouteProps {}
 
 export interface IFeltRecentRoute {
-  titleKey: string;
-  subtitleKey: string;
+  title: string;
+  subtitle: string;
 }
 
 export interface IFeltRecentItem {

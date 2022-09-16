@@ -36,6 +36,16 @@ export const en = {
   },
   labels: {
     and: ' and ',
+    emoji: {
+      anger: 'Anger',
+      guilt: 'Guilt',
+      envy: 'Envy',
+      sadness: 'Sadness',
+      exhaustion: 'Exhaustion',
+      worry: 'Worry',
+      fear: 'Fear',
+      shame: 'Shame',
+    },
   },
   errors: {
     auth: {

@@ -19,7 +19,7 @@ export const FeltRecentScreen: React.FC<IFeltRecentScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { titleKey, subtitleKey } = route.params.data;
+  const { title, subtitle } = route.params.data;
 
   const { t } = useTranslation();
 
@@ -59,8 +59,8 @@ export const FeltRecentScreen: React.FC<IFeltRecentScreenProps> = ({
       />
       <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={_.noop}>
         <View style={styles.container}>
-          <ExtendedText style={styles.title}>{t(titleKey)}</ExtendedText>
-          <ExtendedText style={styles.subtitle}>{t(subtitleKey)}</ExtendedText>
+          <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
+          <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
         </View>
         <FlatList
           data={FELT_RECENT_DATA}
