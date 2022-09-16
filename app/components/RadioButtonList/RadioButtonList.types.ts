@@ -1,3 +1,5 @@
+import { ViewStyle } from 'react-native';
+
 import {
   IRadioButtonListItem,
   RadioButtonListType,
@@ -7,4 +9,5 @@ export interface IRadioButtonListProps {
   data: ReadonlyArray<IRadioButtonListItem>;
   type: RadioButtonListType;
   setSelected: (items: string[]) => void;
+  radioButtonStyle?: ViewStyle;
 }

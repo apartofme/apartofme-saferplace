@@ -16,6 +16,7 @@ export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
   data,
   type,
   setSelected,
+  radioButtonStyle,
 }) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
@@ -51,10 +52,12 @@ export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
               : !!_.find(selectedItems, findItem => findItem === item.id)
           }
           onPress={onSelectedPress}
+          imageSource={item.image}
+          style={radioButtonStyle}
         />
       );
     },
-    [selectedItems, setSelectedItems, type, t],
+    [selectedItems, setSelectedItems, type, t, radioButtonStyle],
   );
 
   const keyExtractor = useSpecificKeyExtractor<IRadioButtonListItem>(

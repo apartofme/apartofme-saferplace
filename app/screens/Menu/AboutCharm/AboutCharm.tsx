@@ -1,41 +1,37 @@
-import _ from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, View } from 'react-native';
-import { IMAGES } from '../../../assets';
 
+import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { ABOUT_CHARMS_SCREEN_DATA } from './AboutCharm.data';
 import { IAboutCharmScreenProps } from './AboutCharm.types';
 import { styles } from './AboutCharm.styles';
 
 export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
+  navigation,
   route,
 }) => {
-  const { type } = route.params;
+  const { data } = route.params;
 
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <MainHeader
-        // TODO: add right icon
         leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={navigation.goBack}
       />
-
-      {_.map(ABOUT_CHARMS_SCREEN_DATA, item => {
-        return (
-          <View key={`main-menu-${item.type}`}>
-            <ExtendedText style={styles.title}>{t(item.title)}</ExtendedText>
-            <ScrollView>
-              <ExtendedText style={styles.subtitle}>
-                {t(item.subtitle)}
-              </ExtendedText>
-            </ScrollView>
-          </View>
-        );
-      })}
+      <View style={styles.container}>
+        <ExtendedText style={styles.title}>{t(data.title)}</ExtendedText>
+        <ScrollView
+          style={generalStyles.flex}
+          showsVerticalScrollIndicator={false}>
+          <ExtendedText style={styles.subtitle}>
+            {t(data.subtitle)}
+          </ExtendedText>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

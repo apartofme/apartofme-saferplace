@@ -25,7 +25,7 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
+    <SafeAreaView style={generalStyles.flex}>
       <MainHeader
         leftIcon={IMAGES.WHITE_BACK_ARROW}
         onLeftIconPress={navigation.goBack}
@@ -39,7 +39,7 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
             return (
               <MenuButton
                 key={`main-menu-${item.route}`}
-                title={item.title}
+                title={item.titleKey}
                 onPress={() => onMenuItemPress(item.route)}
               />
             );

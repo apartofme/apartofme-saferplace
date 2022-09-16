@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
@@ -12,7 +12,7 @@ import { INotificationSettingsScreenProps } from './NotificationSettings.types';
 import { styles } from './NotificationSettings.styles';
 
 export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenProps> =
-  () => {
+  ({ navigation }) => {
     const { t } = useTranslation();
 
     const dispatch = useAppDispatch();
@@ -21,20 +21,25 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
       useAppSelector(state => state.settings.settings.isNotificationsEnabled),
     );
 
-    const setNotificationEnabled = useCallback(() => {
-      setIsNotificationsEnabled(!isNotificationsEnabled);
+    useEffect(() => {
       dispatch(
         settingsSlice.actions.setSettings({
           isNotificationsEnabled,
         }),
       );
-    }, [isNotificationsEnabled, setIsNotificationsEnabled, dispatch]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isNotificationsEnabled]);
+
+    const setNotificationEnabled = useCallback(() => {
+      setIsNotificationsEnabled(!isNotificationsEnabled);
+    }, [isNotificationsEnabled, setIsNotificationsEnabled]);
 
     return (
-      <SafeAreaView style={generalStyles.whFlex}>
+      <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           // TODO: change to correct icon
-          rightIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>
           <ExtendedText style={styles.title}>
@@ -45,7 +50,7 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
             title={t(
               'screens.menu.notification_settings.is_notifications_enabled',
             )}
-            isEnabled={!isNotificationsEnabled}
+            isEnabled={isNotificationsEnabled}
             setIsEnabled={setNotificationEnabled}
           />
         </View>

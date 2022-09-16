@@ -24,14 +24,14 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
 
   const disptach = useAppDispatch();
 
-  const [selectedLanguage, setSelectedLanguage] = useState<string[]>([
-    useAppSelector(state => state.settings.language),
+  const [selectedLanguage, setSelectedLanguage] = useState([
+    useAppSelector(state => state.settings.settings.language),
   ]);
 
   const onSubmit = useCallback(() => {
     i18n.changeLanguage(selectedLanguage[0]);
     disptach(
-      settingsSlice.actions.setLanguage({ language: selectedLanguage[0] }),
+      settingsSlice.actions.setSettings({ language: selectedLanguage[0] }),
     );
   }, [disptach, selectedLanguage]);
 

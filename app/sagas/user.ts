@@ -29,7 +29,7 @@ function* watchLoginUser({
 }
 
 function* watchRegisterUser() {
-  const { email, password } = yield select(state => state.cache.auth);
+  const { email, password } = yield select(state => state.cache.auth.parent);
   const registerUserResponse: IFirebaseAuthResponse = yield call(
     firebaseRegisterUser,
     email,

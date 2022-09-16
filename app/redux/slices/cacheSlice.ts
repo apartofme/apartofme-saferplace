@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { Nullable } from '../../utils';
 import {
+  ISaveTranslationsPayload,
   IShortSignUpData,
   IShortSignUpDataPayload,
   ISignUpData,
   ISignUpDataPayload,
+  ITranslations,
 } from '../types';
 
 interface ICacheState {
@@ -13,6 +15,7 @@ interface ICacheState {
     parent: Nullable<ISignUpData>;
     child: Nullable<IShortSignUpData>;
   };
+  translations: Nullable<ITranslations>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -20,6 +23,7 @@ const INITIAL_STATE: ICacheState = {
     parent: null,
     child: null,
   },
+  translations: null,
 };
 
 export const cacheSlice = createSlice({
@@ -37,6 +41,9 @@ export const cacheSlice = createSlice({
         ...state.auth.child,
         ...payload,
       };
+    },
+    saveTranslations(state, { payload }: ISaveTranslationsPayload) {
+      state.translations = { ...state.translations, ...payload };
     },
   },
 });
