@@ -7,13 +7,12 @@ import {
   ParentsOnboardingStackNavigator,
   MenuStackNavigator,
 } from './stacks';
-import { InitialScreen, AlertScreen } from '../screens';
+import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
 import { GLOBAL_NAVIGATION_STACK_OPTIONS } from './options';
 import { trackScreenView } from '../services/firebase';
 // TODO: remove when the screens are ready
 import { ComingSoonScreen } from '../screens/ComingSoon';
-import { IAlertRoute } from '../screens/Reusable/Alert';
 
 export type RootParams = {
   Initial: undefined;
@@ -22,7 +21,6 @@ export type RootParams = {
   MenuStack: undefined;
   // TODO: remove when the screens are ready
   ComingSoon: undefined;
-  Alert: { data: IAlertRoute };
 };
 
 const Stack = createNativeStackNavigator<RootParams>();
@@ -58,7 +56,6 @@ const RootNavigator = () => {
         <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
         {/* // TODO: remove when the screens are ready */}
         <Stack.Screen name="ComingSoon" component={ComingSoonScreen} />
-        <Stack.Screen name="Alert" component={AlertScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
