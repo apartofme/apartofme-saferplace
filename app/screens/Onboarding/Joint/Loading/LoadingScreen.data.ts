@@ -8,10 +8,10 @@ interface ISpeechListItem {
 export const SPEECH_LIST: ReadonlyArray<ISpeechListItem> = [
   {
     titleKey: 'screens.onboarding.joint.loading.first.title',
-    subtitleKey: 'screens.onboarding.joint.loading.first.subtitle',
+    subtitleKey: 'screens.onboarding.joint.loading.first.description',
   },
   {
     titleKey: 'screens.onboarding.joint.loading.second.title',
-    subtitleKey: 'screens.onboarding.joint.loading.second.subtitle',
+    subtitleKey: 'screens.onboarding.joint.loading.second.description',
   },
 ];

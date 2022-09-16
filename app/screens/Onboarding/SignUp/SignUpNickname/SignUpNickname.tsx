@@ -44,7 +44,7 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
       />
       <ExtendedKeyboardAvoidingView>
         <BottomButtonView
-          buttonTitle={t('buttons.next').toUpperCase()}
+          buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
           isDisabledButton={!nickname}
           style={styles.container}>
@@ -52,7 +52,7 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
             {t('screens.onboarding.sign_up_nickname.title')}
           </ExtendedText>
           <ExtendedText preset="secondary-text" style={styles.subtitle}>
-            {t('screens.onboarding.sign_up_nickname.subtitle')}
+            {t('screens.onboarding.sign_up_nickname.description')}
           </ExtendedText>
           <ExtendedTextInput
             value={nickname}

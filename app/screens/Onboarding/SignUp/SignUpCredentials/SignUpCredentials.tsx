@@ -54,7 +54,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
 
               <View style={styles.subtitle}>
                 <ExtendedText preset="secondary-text">
-                  {t('screens.onboarding.sign_up_credentials.subtitle')}
+                  {t('screens.onboarding.sign_up_credentials.description')}
                 </ExtendedText>
                 <TouchableOpacity>
                   <ExtendedText preset="secondary-text">
