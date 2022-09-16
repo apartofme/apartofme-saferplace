@@ -27,10 +27,10 @@ export const ChangePasswordSuccessScreen: React.FC<IChangePasswordSuccessScreenP
         <BottomButtonView buttonTitle={t('buttons.back')} onSubmit={_.noop}>
           <View style={styles.container}>
             <ExtendedText style={styles.title}>
-              {t('screens.menu.change_password_success.title')}
+              {t('screens.menu.change_password.success.title')}
             </ExtendedText>
             <ExtendedText style={styles.subtitle}>
-              {t('screens.menu.change_password_success.subtitle')}
+              {t('screens.menu.change_password.success.description')}
             </ExtendedText>
           </View>
         </BottomButtonView>

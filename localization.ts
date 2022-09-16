@@ -206,7 +206,6 @@ export const en = {
         logout: 'Logout',
       },
       frequently_asked_questions_screen: {
-        header: 'faqs',
         title: 'Frequently asked questions',
         questions: {
           section_first: {

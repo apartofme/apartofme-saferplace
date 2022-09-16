@@ -21,10 +21,10 @@ export const AboutUsScreen: React.FC<IAboutUsScreenProps> = ({
       />
       <View style={styles.container}>
         <ExtendedText style={styles.title}>
-          {t('screens.menu.about_us_screen.title')}
+          {t('screens.menu.about_us.title')}
         </ExtendedText>
         <ExtendedText style={styles.subtitle}>
-          {t('screens.menu.about_us_screen.sutitle')}
+          {t('screens.menu.about_us.description')}
         </ExtendedText>
       </View>
     </SafeAreaView>

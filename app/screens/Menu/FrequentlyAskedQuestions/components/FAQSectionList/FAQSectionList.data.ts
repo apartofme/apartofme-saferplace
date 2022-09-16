@@ -14,37 +14,37 @@ const NON_LOCALISED_SECTION_MENU_ITEMS: ReadonlyArray<INonLocalisedSectionData> 
   [
     {
       titleKey:
-        'screens.menu.frequently_asked_questions_screen.questions.section_first.title',
+        'screens.menu.frequently_asked_questions.questions.section_first.title',
       data: [
         {
           titleKey:
-            'screens.menu.frequently_asked_questions_screen.questions.section_first.question_first',
+            'screens.menu.frequently_asked_questions.questions.section_first.question_first',
         },
         {
           titleKey:
-            'screens.menu.frequently_asked_questions_screen.questions.section_first.question_second',
+            'screens.menu.frequently_asked_questions.questions.section_first.question_second',
         },
         {
           titleKey:
-            'screens.menu.frequently_asked_questions_screen.questions.section_first.question_third',
+            'screens.menu.frequently_asked_questions.questions.section_first.question_third',
         },
       ],
     },
     {
       titleKey:
-        'screens.menu.frequently_asked_questions_screen.questions.section_second.title',
+        'screens.menu.frequently_asked_questions.questions.section_second.title',
       data: [
         {
           titleKey:
-            'screens.menu.frequently_asked_questions_screen.questions.section_second.question_first',
+            'screens.menu.frequently_asked_questions.questions.section_second.question_first',
         },
         {
           titleKey:
-            'screens.menu.frequently_asked_questions_screen.questions.section_second.question_second',
+            'screens.menu.frequently_asked_questions.questions.section_second.question_second',
         },
         {
           titleKey:
-            'screens.menu.frequently_asked_questions_screen.questions.section_second.question_third',
+            'screens.menu.frequently_asked_questions.questions.section_second.question_third',
         },
       ],
     },

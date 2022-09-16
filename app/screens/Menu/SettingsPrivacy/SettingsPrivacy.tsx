@@ -52,7 +52,7 @@ export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
       />
       <View style={styles.container}>
         <ExtendedText style={styles.title}>
-          {t('screens.menu.settings_privacy_screen.title')}
+          {t('screens.menu.settings_privacy.title')}
         </ExtendedText>
 
         <FlatList
