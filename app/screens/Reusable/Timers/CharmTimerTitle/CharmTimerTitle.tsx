@@ -35,11 +35,11 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
         onSubmit={_.noop}
         style={styles.container}>
         <ExtendedText preset="title" style={styles.title}>
-          {t(title)}
+          {title}
         </ExtendedText>
         <Timer duration={duration} isStart={true} style={styles.timer} />
         <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {t(description)}
+          {description}
         </ExtendedText>
       </BottomButtonView>
     </SafeAreaView>

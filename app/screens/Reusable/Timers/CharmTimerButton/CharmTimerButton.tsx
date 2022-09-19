@@ -39,7 +39,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
         <ExtendedButton title={t('buttons.read_out')} />
         <Timer duration={duration} isStart={true} style={styles.timer} />
         <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {t(description)}
+          {description}
         </ExtendedText>
       </BottomButtonView>
     </SafeAreaView>
