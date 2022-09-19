@@ -90,6 +90,7 @@ export const questsToDictionary = (
       titleHasNickname: quest.titlehasnickname ?? null,
       crossHeader: quest.crossheader ?? null,
       duration: quest.duration ?? null,
+      buttonTitle: quest.buttontitle ?? null,
     };
 
     result[locale][questLineId].quests[quest.id] = tempQuest;
