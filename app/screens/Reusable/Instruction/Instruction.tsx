@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 import { FlatList, Image, SafeAreaView, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
 
 import {
   IInstructionListItem,
@@ -12,7 +14,6 @@ import {
   MainHeader,
 } from '../../../components';
 import { IMAGES } from '../../../assets';
-import { useTranslation } from 'react-i18next';
 import { generalStyles } from '../../../utils/styles';
 import { INSTRUCTION_LIST } from './Instruction.data';
 
@@ -22,12 +23,12 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const data = route.params.data;
+  const { buttonTitle } = route.params.data;
 
   const renderItem = useCallback(
     ({ item }: { item: IInstructionListItem }) => (
       <View style={styles.instructionContainer}>
-        <Image source={item.imageSource} style={styles.instructionImage} />
+        <Image source={item.image} style={styles.instructionImage} />
         <ExtendedText
           preset="tertiary-text-medium"
           style={styles.instructionTitle}>
@@ -45,11 +46,11 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
         onLeftIconPress={navigation.goBack}
       />
       <BottomButtonView
-        buttonTitle={t(data && data.buttonTitleKey)}
-        onSubmit={data && data.onSubmit}
+        buttonTitle={buttonTitle}
+        onSubmit={_.noop}
         style={styles.container}>
         <ExtendedText preset="title" style={styles.title}>
-          {t(data && data.titleKey)}
+          {t('screens.instruction.title')}
         </ExtendedText>
         <FlatList data={INSTRUCTION_LIST} renderItem={renderItem} />
       </BottomButtonView>
