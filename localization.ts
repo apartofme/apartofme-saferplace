@@ -383,5 +383,16 @@ export const en = {
       title:
         'use the slider to choose the emotion that best describes how you feel now.',
     },
+    instruction: {
+      first: {
+        title: 'A Quiet Space',
+      },
+      second: {
+        title: 'Bare Feet',
+      },
+      third: {
+        title: 'Sit down, or Stand Up',
+      },
+    },
   },
 };
