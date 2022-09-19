@@ -77,7 +77,7 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
         <BottomButtonView
           buttonTitle={t('buttons.ready')}
           onSubmit={_.noop}
-          isDisabledButton={!selectedPlayer.length}
+          isDisabledButton={!selectedPlayer}
           style={styles.container}>
           <ExtendedText preset="title" style={styles.title}>
             {t('screens.select_player.title')}
