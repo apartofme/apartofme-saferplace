@@ -48,7 +48,7 @@ export const TimerTitleButtonScreen: React.FC<ITimerTitleButtonScreenProps> = ({
         <Timer duration={duration} isStart={isTimerStart} />
         {title && (
           <ExtendedText preset="heading" style={styles.title}>
-            {t(title)}
+            {title}
           </ExtendedText>
         )}
       </BottomButtonView>
