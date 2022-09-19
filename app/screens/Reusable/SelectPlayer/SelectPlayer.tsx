@@ -5,6 +5,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
 import { IPlayer, ISelectPlayerScreenProps } from './SelectPlayer.types';
@@ -14,7 +15,6 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../components';
-import { useTranslation } from 'react-i18next';
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
 import { DUMMY_PLAYER_LIST } from './SelectPlayer.data';
@@ -76,7 +76,7 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
       <BottomButtonView
         buttonTitle={t('buttons.ready')}
         onSubmit={_.noop}
-        isDisabledButton={!selectedPlayer.length}
+        isDisabledButton={!selectedPlayer}
         style={styles.container}>
         <ExtendedText preset="title" style={styles.title}>
           {t('screens.select_player.title')}
