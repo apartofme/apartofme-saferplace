@@ -394,5 +394,9 @@ export const en = {
         title: 'Sit down, or Stand Up',
       },
     },
+    charm_alerts: {
+      completed:
+        'You have no new charms - come back later or play a charm you have completed.',
+    },
   },
 };
