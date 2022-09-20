@@ -10,10 +10,11 @@ import { generalStyles } from '../../utils/styles';
 import { ICarouselProps } from './Carousel.types';
 import { styles } from './Carousel.styles';
 import {
-  ImageSubTitle,
   ImageTitleSubTitle,
   OnlyImage,
   ProgressBarItem,
+  ImageSubtitle,
+  SubtitleImage,
 } from './components';
 import { CarouselType, ICarouselItem } from './Carousel.data';
 
@@ -66,12 +67,14 @@ export const Carousel: React.FC<ICarouselProps> = ({
   const renderCarouselItem = useCallback(
     ({ item }: { item: ICarouselItem }) => {
       switch (preset) {
-        case CarouselType.ImageTitleSubTitle:
+        case CarouselType.ImageTitleSubtitle:
           return <ImageTitleSubTitle data={item} style={carouselItemStyle} />;
-        case CarouselType.ImageSubTitle:
-          return <ImageSubTitle data={item} style={carouselItemStyle} />;
+        case CarouselType.SubtitleImage:
+          return <SubtitleImage data={item} style={carouselItemStyle} />;
         case CarouselType.OnlyImage:
           return <OnlyImage data={item} style={carouselItemStyle} />;
+        case CarouselType.ImageSubtitle:
+          return <ImageSubtitle data={item} style={carouselItemStyle} />;
         default:
           return <View />;
       }
