@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
@@ -15,6 +15,14 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const [isСhildPress, setIsСhildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
 
+    const setСhildPress = useCallback(() => {
+      setIsСhildPress(!isСhildPress);
+    }, [isСhildPress]);
+
+    const setAdultPress = useCallback(() => {
+      setIsAdultPress(!isAdultPress);
+    }, [isAdultPress]);
+
     return (
       <SafeAreaView style={styles.container}>
         <ExtendedText style={styles.title}>{t(titleKey)}</ExtendedText>
@@ -29,13 +37,13 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
         <View style={styles.buttonsContainer}>
           <View
             style={styles.button}
-            onTouchStart={() => setIsСhildPress(true)}
-            onTouchEnd={() => setIsСhildPress(false)}
+            onTouchStart={setСhildPress}
+            onTouchEnd={setСhildPress}
           />
           <View
             style={styles.button}
-            onTouchStart={() => setIsAdultPress(true)}
-            onTouchEnd={() => setIsAdultPress(false)}
+            onTouchStart={setAdultPress}
+            onTouchEnd={setAdultPress}
           />
         </View>
       </SafeAreaView>
