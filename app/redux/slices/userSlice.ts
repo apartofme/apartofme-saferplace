@@ -2,18 +2,21 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
   IAuthUserActionPayload,
-  IAuthUserSuccessActionPayload,
+  ILoginUserSuccessActionPayload,
   IResetPasswordActionPayload,
+  IShortSignUpData,
 } from '../types';
 import { Nullable } from '../../utils';
 import { IUser } from '../../models/IUser';
 
 interface IUserState {
-  user: Nullable<IUser>;
+  parent: Nullable<IUser>;
+  child: Nullable<IShortSignUpData>;
 }
 
 export const INITIAL_STATE: IUserState = {
-  user: null,
+  parent: null,
+  child: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -22,19 +25,26 @@ export const userSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     loginUser(state, action: IAuthUserActionPayload) {},
-    loginUserSuccess(state, { payload: user }: IAuthUserSuccessActionPayload) {
-      state.user = user;
+    loginUserSuccess(state, { payload: user }: ILoginUserSuccessActionPayload) {
+      state.parent = user.parent;
+      state.child = user.child;
     },
     loginUserError(state, action: PayloadAction<string>) {},
 
-    registerUser() {},
-    registerUserSuccess(
-      state,
-      { payload: user }: IAuthUserSuccessActionPayload,
-    ) {
-      state.user = user;
+    registerParent() {},
+    registerParentSuccess(state, { payload: user }: PayloadAction<IUser>) {
+      state.parent = user;
     },
-    registerUserError(state, action: PayloadAction<string>) {},
+    registerParentError(state, action: PayloadAction<string>) {},
+
+    saveChild() {},
+    saveChildSuccess(
+      state,
+      { payload: user }: PayloadAction<IShortSignUpData>,
+    ) {
+      state.child = user;
+    },
+    saveChildError(state, action: PayloadAction<string>) {},
 
     resetPassword(state, action: IResetPasswordActionPayload) {},
     resetPasswordSuccess() {},

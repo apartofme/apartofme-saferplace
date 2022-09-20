@@ -53,14 +53,14 @@ export const appSlice = createSlice({
     });
 
     // Register actions
-    builder.addCase(userSlice.actions.registerUser, state => {
+    builder.addCase(userSlice.actions.registerParent, state => {
       state.loading[LoadingType.isRegisterUser] = true;
       state.errors[ErrorType.registerUser] = null;
     });
-    builder.addCase(userSlice.actions.registerUserSuccess, state => {
+    builder.addCase(userSlice.actions.registerParentSuccess, state => {
       state.loading[LoadingType.isRegisterUser] = false;
     });
-    builder.addCase(userSlice.actions.registerUserError, (state, action) => {
+    builder.addCase(userSlice.actions.registerParentError, (state, action) => {
       state.loading[LoadingType.isRegisterUser] = false;
       state.errors[ErrorType.registerUser] = action.payload;
     });
