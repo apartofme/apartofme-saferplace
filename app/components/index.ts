@@ -1,3 +1,4 @@
+export * from './AvatarCarousel';
 export * from './BottomButtonView';
 export * from './Carousel';
 export * from './DialogView';
