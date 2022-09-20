@@ -30,11 +30,11 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           <View
             style={styles.button}
             onTouchStart={() => setIsСhildPress(true)}
-            onTouchEnd={() => setIsAdultPress(false)}
+            onTouchEnd={() => setIsСhildPress(false)}
           />
           <View
             style={styles.button}
-            onTouchStart={() => setIsСhildPress(true)}
+            onTouchStart={() => setIsAdultPress(true)}
             onTouchEnd={() => setIsAdultPress(false)}
           />
         </View>
