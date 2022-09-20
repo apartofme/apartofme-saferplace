@@ -8,7 +8,7 @@ import { Carousel, CarouselType } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 
 export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> =
-  ({}) => {
+  () => {
     return (
       <SafeAreaView style={generalStyles.flex}>
         <Carousel
