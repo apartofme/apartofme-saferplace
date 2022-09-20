@@ -6,21 +6,31 @@ export const ELIXIR_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   {
     id: '1',
     image: IMAGES.WHITE_PENCIL,
-    subtitleKey: 'screens.onboarding.onboard_carousel.first.description',
+    subtitleKey: 'screens.recognition.elixir_carousel.first',
   },
   {
     id: '2',
     image: IMAGES.WHITE_PENCIL,
-    subtitleKey: 'screens.onboarding.onboard_carousel.second.description',
+    subtitleKey: 'screens.recognition.elixir_carousel.second',
   },
   {
     id: '3',
     image: IMAGES.WHITE_PENCIL,
-    subtitleKey: 'screens.onboarding.onboard_carousel.third.description',
+    subtitleKey: 'screens.recognition.elixir_carousel.third',
   },
   {
     id: '4',
     image: IMAGES.WHITE_PENCIL,
-    subtitleKey: 'screens.onboarding.onboard_carousel.fourth.description',
+    subtitleKey: 'screens.recognition.elixir_carousel.fourth',
+  },
+  {
+    id: '5',
+    image: IMAGES.WHITE_PENCIL,
+    subtitleKey: 'screens.recognition.elixir_carousel.third',
+  },
+  {
+    id: '6',
+    image: IMAGES.WHITE_PENCIL,
+    subtitleKey: 'screens.recognition.elixir_carousel.fourth',
   },
 ];
