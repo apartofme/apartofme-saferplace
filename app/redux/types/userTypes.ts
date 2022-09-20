@@ -1,14 +1,17 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { IUser } from '../../models/IUser';
-import { Nullable } from '../../utils';
+import { IShortSignUpData } from './cacheTypes';
 
 export type IAuthUserActionPayload = PayloadAction<{
   email: string;
   password: string;
 }>;
 
-export type IAuthUserSuccessActionPayload = PayloadAction<Nullable<IUser>>;
+export type ILoginUserSuccessActionPayload = PayloadAction<{
+  parent: IUser;
+  child: IShortSignUpData;
+}>;
 
 export interface IResetPasswordPayload {
   email: string;
