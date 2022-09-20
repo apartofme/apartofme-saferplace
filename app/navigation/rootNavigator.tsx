@@ -6,6 +6,7 @@ import {
   JointOnboardingStackNavigator,
   ParentsOnboardingStackNavigator,
   MenuStackNavigator,
+  RecognitionStackNavigator,
 } from './stacks';
 import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
@@ -19,6 +20,7 @@ export type RootParams = {
   ParentsOnboardingStack: undefined;
   JointOnboardingStack: undefined;
   MenuStack: undefined;
+  RecognitionStack: undefined;
   // TODO: remove when the screens are ready
   ComingSoon: undefined;
 };
@@ -52,6 +54,10 @@ const RootNavigator = () => {
         <Stack.Screen
           name="JointOnboardingStack"
           component={JointOnboardingStackNavigator}
+        />
+        <Stack.Screen
+          name="RecognitionStack"
+          component={RecognitionStackNavigator}
         />
         <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
         {/* // TODO: remove when the screens are ready */}
