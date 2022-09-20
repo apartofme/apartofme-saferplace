@@ -24,6 +24,7 @@ export const en = {
     open_email: 'Open email app',
     start_timer: 'Start Timer',
     timer_started: 'Timer Started',
+    dismiss: 'Dismiss',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -393,6 +394,10 @@ export const en = {
       third: {
         title: 'Sit down, or Stand Up',
       },
+    },
+    charm_alerts: {
+      try_again:
+        'You were half way through a charm - would you like to try again?',
     },
   },
 };
