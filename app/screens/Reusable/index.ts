@@ -2,6 +2,7 @@ export * from './Acknowledgement';
 export * from './Alert';
 export * from './Dialog';
 export * from './ElixirDoubleInteractionScreen';
+export * from './ElixirTitleButton';
 export * from './EmojiSelection';
 export * from './FeltRecent';
 export * from './Instruction';
