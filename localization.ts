@@ -24,6 +24,8 @@ export const en = {
     open_email: 'Open email app',
     start_timer: 'Start Timer',
     timer_started: 'Timer Started',
+    completed_charms: 'Completed Charms',
+    play_now: 'Play Now',
   },
   placeholders: {
     enter_email: 'Enter your email address',
@@ -397,6 +399,7 @@ export const en = {
     charm_alerts: {
       completed:
         'You have no new charms - come back later or play a charm you have completed.',
+      new: 'You have a new charm waiting.',
     },
   },
 };
