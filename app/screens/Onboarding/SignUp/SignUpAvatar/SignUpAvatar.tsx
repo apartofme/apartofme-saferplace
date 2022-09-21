@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import {
+  AvatarCarousel,
   BottomButtonView,
-  Carousel,
-  CarouselType,
   ExtendedText,
   MainHeader,
 } from '../../../../components';
@@ -32,11 +31,14 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   const onSubmitButtonPress = useCallback(() => {
     navigation.navigate('SignUpSuccess');
     if (isChild) {
-      dispatch(cacheSlice.actions.saveSignUpDataChild({ avatar }));
-      dispatch(userSlice.actions.saveChild());
+      dispatch(
+        cacheSlice.actions.saveSignUpDataChild({ avatar: avatar as string }),
+      );
     } else {
-      dispatch(cacheSlice.actions.saveSignUpDataParent({ avatar }));
-      dispatch(userSlice.actions.registerParent());
+      dispatch(
+        cacheSlice.actions.saveSignUpDataParent({ avatar: avatar as string }),
+      );
+      dispatch(userSlice.actions.registerUser());
     }
   }, [avatar, dispatch, isChild, navigation]);
 
@@ -62,9 +64,8 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
         <ExtendedText preset="large-title">
           {t(`${localizationPath}.title`)}
         </ExtendedText>
-        <Carousel
+        <AvatarCarousel
           data={[...SING_UP_CAROUSEL]}
-          preset={CarouselType.OnlyImage}
           setImage={setAvatar}
           style={styles.carousel}
         />

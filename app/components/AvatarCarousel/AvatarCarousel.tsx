@@ -7,35 +7,34 @@ import { useSharedValue } from 'react-native-reanimated';
 
 import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
-import { ICarouselProps } from './Carousel.types';
-import { styles } from './Carousel.styles';
-import {
-  ImageTitleSubTitle,
-  OnlyImage,
-  ProgressBarItem,
-  ImageSubtitle,
-  SubtitleImage,
-} from './components';
-import { CarouselType, ICarouselItem } from './Carousel.data';
+import { IAvatarCarouselProps } from './AvatarCarousel.types';
+import { styles } from './AvatarCarousel.styles';
+import { IAvatarCarouselItem } from './AvatarCarousel.data';
 
-export const Carousel: React.FC<ICarouselProps> = ({
-  preset,
+import { AvatarCarouselItem, ProgressBarItem } from './components';
+
+export const AvatarCarousel: React.FC<IAvatarCarouselProps> = ({
   data,
-  setCurrentPossition,
+  setImage,
   style,
-  carouselStyle,
-  carouselItemStyle,
 }) => {
   const progressValue = useSharedValue(0);
+
+  const onSnapToItem = useCallback(
+    index => {
+      const currentPosition = Math.floor(index);
+      if (setImage && data[currentPosition].image) {
+        setImage(data[currentPosition].image as string);
+      }
+    },
+    [data, setImage],
+  );
 
   const onProgressChange = useCallback(
     (item, absoluteProgress) => {
       progressValue.value = absoluteProgress;
-      if (setCurrentPossition) {
-        setCurrentPossition(progressValue.value);
-      }
     },
-    [progressValue, setCurrentPossition],
+    [progressValue],
   );
 
   const renderProgressBar = useCallback(() => {
@@ -54,21 +53,10 @@ export const Carousel: React.FC<ICarouselProps> = ({
   }, [data, progressValue]);
 
   const renderCarouselItem = useCallback(
-    ({ item }: { item: ICarouselItem }) => {
-      switch (preset) {
-        case CarouselType.ImageTitleSubtitle:
-          return <ImageTitleSubTitle data={item} style={carouselItemStyle} />;
-        case CarouselType.SubtitleImage:
-          return <SubtitleImage data={item} style={carouselItemStyle} />;
-        case CarouselType.OnlyImage:
-          return <OnlyImage data={item} style={carouselItemStyle} />;
-        case CarouselType.ImageSubtitle:
-          return <ImageSubtitle data={item} style={carouselItemStyle} />;
-        default:
-          return <View />;
-      }
+    ({ item }: { item: IAvatarCarouselItem }) => {
+      return <AvatarCarouselItem data={item} />;
     },
-    [carouselItemStyle, preset],
+    [],
   );
 
   return (
@@ -77,10 +65,9 @@ export const Carousel: React.FC<ICarouselProps> = ({
         loop={false}
         width={WINDOW_WIDTH}
         data={[...data]}
-        //* Set undefind for default mode
-        mode={preset === CarouselType.OnlyImage ? 'parallax' : undefined}
         renderItem={renderCarouselItem}
-        style={[generalStyles.flex, carouselStyle]}
+        style={[generalStyles.flex]}
+        onSnapToItem={onSnapToItem}
         onProgressChange={onProgressChange}
       />
       <View style={styles.progressBar}>{renderProgressBar()}</View>
