@@ -397,6 +397,8 @@ export const en = {
       },
     },
     charm_alerts: {
+      completed:
+        'You have no new charms - come back later or play a charm you have completed.',
       new: 'You have a new charm waiting.',
     },
   },
