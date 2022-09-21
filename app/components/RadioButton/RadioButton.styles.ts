@@ -17,7 +17,6 @@ export const styles = StyleSheet.create<IRadioButtonStyles>({
     marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
   },
   title: {
     color: COLORS.WHITE,

@@ -9,12 +9,10 @@ type RouteProps = StackScreenProps<MergedStackParams, 'Instruction'>;
 export interface IInstructionScreenProps extends NavigationProps, RouteProps {}
 
 export interface IInstructionRoute {
-  titleKey: string;
-  buttonTitleKey: string;
-  onSubmit: () => void;
+  buttonTitle: string;
 }
 
 export interface IInstructionListItem {
   titleKey: string;
-  imageSource: ImageSourcePropType;
+  image: ImageSourcePropType;
 }

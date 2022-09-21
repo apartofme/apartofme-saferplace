@@ -8,7 +8,8 @@ export interface ICarouselItem {
 }
 
 export enum CarouselType {
-  ImageSubTitle = 'imageSubTitle',
-  ImageTitleSubTitle = 'imageTitleSubTitle',
+  SubtitleImage = 'SubtitleImage',
+  ImageTitleSubtitle = 'imageTitleSubtitle',
   OnlyImage = 'onlyImage',
+  ImageSubtitle = 'imageSubtitle',
 }
