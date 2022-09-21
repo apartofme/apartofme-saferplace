@@ -60,11 +60,9 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       thunk: false,
-      //! FIXME: fix firebase user data in store
-      serializableCheck: false,
-      //serializableCheck: {
-      //  ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      //},
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
     }),
   ],
 });
