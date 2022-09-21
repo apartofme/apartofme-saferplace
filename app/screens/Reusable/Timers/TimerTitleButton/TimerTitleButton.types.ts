@@ -4,16 +4,15 @@ import { MergedStackParams } from '../../../../navigation/stacks/mergedParams';
 
 type NavigationProps = StackNavigationProp<
   MergedStackParams,
-  'CharmTimerTitle'
+  'TimerTitleButton'
 >;
-type RouteProps = StackScreenProps<MergedStackParams, 'CharmTimerTitle'>;
+type RouteProps = StackScreenProps<MergedStackParams, 'TimerTitleButton'>;
 
-export interface ICharmTimerTitleScreenProps
+export interface ITimerTitleButtonScreenProps
   extends NavigationProps,
     RouteProps {}
 
-export interface ICharmTimerTitleRoute {
+export interface ITimerTitleButtonRoute {
   duration: number;
-  title: string;
-  description: string;
+  title?: string;
 }
