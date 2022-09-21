@@ -1,6 +1,7 @@
 export * from './Acknowledgement';
 export * from './Alert';
 export * from './Dialog';
+export * from './ElixirAnimation';
 export * from './ElixirDoubleInteractionScreen';
 export * from './ElixirTitleButton';
 export * from './EmojiSelection';

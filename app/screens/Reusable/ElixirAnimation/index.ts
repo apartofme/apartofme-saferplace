@@ -1,0 +1,1 @@
+export { ElixirAnimationScreen } from './ElixirAnimation';
