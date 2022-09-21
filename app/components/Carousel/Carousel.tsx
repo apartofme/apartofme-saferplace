@@ -10,7 +10,7 @@ import { generalStyles } from '../../utils/styles';
 import { ICarouselProps } from './Carousel.types';
 import { styles } from './Carousel.styles';
 import {
-  ImageTitleSubTitle,
+  ImageTitleSubtitle,
   OnlyImage,
   ProgressBarItem,
   ImageSubtitle,
@@ -57,7 +57,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
     ({ item }: { item: ICarouselItem }) => {
       switch (preset) {
         case CarouselType.ImageTitleSubtitle:
-          return <ImageTitleSubTitle data={item} style={carouselItemStyle} />;
+          return <ImageTitleSubtitle data={item} style={carouselItemStyle} />;
         case CarouselType.SubtitleImage:
           return <SubtitleImage data={item} style={carouselItemStyle} />;
         case CarouselType.OnlyImage:
