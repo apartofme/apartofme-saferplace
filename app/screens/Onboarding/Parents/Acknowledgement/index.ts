@@ -1,1 +1,0 @@
-export { AcknowledgementScreen } from './Acknowledgement';

@@ -33,7 +33,15 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
           language: selectedLanguage[0],
         }),
       );
-      navigation.navigate('Acknowledgement');
+      navigation.navigate('VerticalSwipe', {
+        data: {
+          titleKey: 'screens.onboarding.acknowledgement.title',
+          nextRouteParams: 'OnboardingCarousel',
+          backgroundImage: IMAGES.WHITE_PENCIL,
+          tellMoreBackgroundImage: IMAGES.WHITE_BACK_ARROW,
+          image: IMAGES.WHITE_BACK_ARROW,
+        },
+      });
     }, [disptach, navigation, selectedLanguage]);
 
     return (

@@ -16,6 +16,7 @@ export const styles = StyleSheet.create<IVerticalSwipeScreenStyles>({
   },
   topTitle: {
     textAlign: 'center',
+    marginTop: 34,
   },
   topSubtitle: {
     textAlign: 'center',
