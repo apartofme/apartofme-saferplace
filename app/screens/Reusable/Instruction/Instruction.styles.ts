@@ -15,7 +15,6 @@ export const styles = StyleSheet.create<IInstructionScreenStyles>({
   },
   title: {
     marginBottom: 47,
-    textAlign: 'center',
   },
   instructionContainer: {
     alignItems: 'center',

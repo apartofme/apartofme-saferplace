@@ -25,6 +25,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const isChild = route.params?.isChild;
 
+  // TODO: rework carousel
   const [avatar, setAvatar] = useState(SING_UP_CAROUSEL[0].image);
 
   const onSubmitButtonPress = useCallback(() => {

@@ -50,6 +50,7 @@ query getQuestLineQuests {
       id
       path
     }
+    buttontitle 
     tellmoretitle
     tellmoredescription
     tellmorebackground {
@@ -89,6 +90,7 @@ export const getAllQuestsQuery = (
         id
         path
       }
+      buttontitle
       tellmoretitle
       tellmoredescription
       tellmorebackground {

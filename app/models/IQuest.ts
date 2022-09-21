@@ -3,6 +3,7 @@ import { Nullable } from '../utils';
 export interface IQuest {
   id: string;
   title: string;
+  buttonTitle: Nullable<string>;
   description: Nullable<string>;
   backgroundImage: Nullable<string>;
   images: string[];
@@ -29,6 +30,7 @@ export interface IQuestDatoCms {
     id: string;
     path: string;
   }>;
+  buttontitle: Nullable<string>;
   tellmoretitle: Nullable<string>;
   tellmoredescription: Nullable<string>;
   tellmorebackground: Nullable<{

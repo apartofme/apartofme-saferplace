@@ -1,12 +1,12 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
-interface IImageTitleSubTitleStyles {
+interface IImageTitleSubtitleStyles {
   container: ViewStyle;
   title: ViewStyle;
   subtitle: ViewStyle;
 }
 
-export const styles = StyleSheet.create<IImageTitleSubTitleStyles>({
+export const styles = StyleSheet.create<IImageTitleSubtitleStyles>({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
