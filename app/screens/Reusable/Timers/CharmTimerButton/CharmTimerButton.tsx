@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
@@ -20,7 +21,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const data = route.params.data;
+  const { duration, description } = route.params.data;
 
   return (
     <SafeAreaView style={generalStyles.flex}>
@@ -32,19 +33,13 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
       />
       <BottomButtonView
         buttonTitle={t('buttons.next')}
-        onSubmit={data && data.onSubmit}
+        // TODO: change to real function when adding logic
+        onSubmit={_.noop}
         style={styles.container}>
-        <ExtendedButton
-          title={t('buttons.read_out')}
-          onPress={data && data.onButtonPress}
-        />
-        <Timer
-          duration={data && data.duration}
-          isStart={true}
-          style={styles.timer}
-        />
+        <ExtendedButton title={t('buttons.read_out')} />
+        <Timer duration={duration} isStart={true} style={styles.timer} />
         <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {t(data && data.subtitleKey)}
+          {description}
         </ExtendedText>
       </BottomButtonView>
     </SafeAreaView>

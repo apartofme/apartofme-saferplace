@@ -25,7 +25,7 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
         <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
           <Carousel
             data={[...CHARMS_CAROUSEL]}
-            preset={CarouselType.ImageTitleSubTitle}
+            preset={CarouselType.ImageTitleSubtitle}
             carouselItemStyle={styles.carouselItem}
           />
         </BottomButtonView>

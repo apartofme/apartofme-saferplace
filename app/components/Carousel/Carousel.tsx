@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
-import { ImageSourcePropType, View } from 'react-native';
+import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSharedValue } from 'react-native-reanimated';
@@ -10,7 +10,7 @@ import { generalStyles } from '../../utils/styles';
 import { ICarouselProps } from './Carousel.types';
 import { styles } from './Carousel.styles';
 import {
-  ImageTitleSubTitle,
+  ImageTitleSubtitle,
   OnlyImage,
   ProgressBarItem,
   ImageSubtitle,
@@ -22,7 +22,6 @@ export const Carousel: React.FC<ICarouselProps> = ({
   preset,
   data,
   setCurrentPossition,
-  setImage,
   style,
   carouselStyle,
   carouselItemStyle,
@@ -37,16 +36,6 @@ export const Carousel: React.FC<ICarouselProps> = ({
       }
     },
     [progressValue, setCurrentPossition],
-  );
-
-  const onSnapToItem = useCallback(
-    index => {
-      const currentPosition = Math.floor(index);
-      if (setImage && data[currentPosition].image) {
-        setImage(data[currentPosition].image as ImageSourcePropType);
-      }
-    },
-    [data, setImage],
   );
 
   const renderProgressBar = useCallback(() => {
@@ -68,7 +57,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
     ({ item }: { item: ICarouselItem }) => {
       switch (preset) {
         case CarouselType.ImageTitleSubtitle:
-          return <ImageTitleSubTitle data={item} style={carouselItemStyle} />;
+          return <ImageTitleSubtitle data={item} style={carouselItemStyle} />;
         case CarouselType.SubtitleImage:
           return <SubtitleImage data={item} style={carouselItemStyle} />;
         case CarouselType.OnlyImage:
@@ -93,7 +82,6 @@ export const Carousel: React.FC<ICarouselProps> = ({
         renderItem={renderCarouselItem}
         style={[generalStyles.flex, carouselStyle]}
         onProgressChange={onProgressChange}
-        onSnapToItem={onSnapToItem}
       />
       <View style={styles.progressBar}>{renderProgressBar()}</View>
     </GestureHandlerRootView>

@@ -40,7 +40,7 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
           onSubmit={_.noop}>
           <Carousel
             data={CHARMS_CAROUSEL}
-            preset={CarouselType.ImageTitleSubTitle}
+            preset={CarouselType.ImageTitleSubtitle}
             setCurrentPossition={setCurrentPossition}
             carouselItemStyle={styles.container}
           />

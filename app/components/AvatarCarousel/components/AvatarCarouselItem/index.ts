@@ -1,0 +1,1 @@
+export { AvatarCarouselItem } from './AvatarCarouselItem';
