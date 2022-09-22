@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 
 import { IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
+import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { ITranslations } from './types';
 
 export const isAndroid = Platform.OS === 'android';
@@ -38,6 +39,8 @@ export const translationsToDictionary = (allTranslations: ITranslations[]) => {
   let result: Record<string, string> = {};
 
   _.map(allTranslations, item => {
+    //*  Uncoment if-block for check localization
+    // if (item.isfinaltranslation) {
     const key = item.label;
     const formattedKey = {};
 
@@ -48,8 +51,8 @@ export const translationsToDictionary = (allTranslations: ITranslations[]) => {
     _.set(formattedKey, key, item.text);
 
     result = _.merge(result, formattedKey);
+    // }
   });
-
   return result;
 };
 
@@ -85,7 +88,7 @@ export const questsToDictionary = (
       tellMoreDescription: quest.tellmoredescription ?? null,
       tellMoreBackground: quest.tellmorebackground?.path ?? null,
       questLineId: quest.questlineid.id,
-      type: quest.typeid.slug,
+      type: quest.typeid.slug as keyof QuestStackParams,
       sort: quest.sort,
       titleHasNickname: quest.titlehasnickname ?? null,
       crossHeader: quest.crossheader ?? null,

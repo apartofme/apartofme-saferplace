@@ -14,6 +14,7 @@ import { GLOBAL_NAVIGATION_STACK_OPTIONS } from './options';
 import { trackScreenView } from '../services/firebase';
 // TODO: remove when the screens are ready
 import { ComingSoonScreen } from '../screens/ComingSoon';
+import { QuestStackNavigator } from './stacks/questStackNavigator';
 
 export type RootParams = {
   Initial: undefined;
@@ -23,6 +24,7 @@ export type RootParams = {
   RecognitionStack: undefined;
   // TODO: remove when the screens are ready
   ComingSoon: undefined;
+  QuestStack: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootParams>();
@@ -62,6 +64,7 @@ const RootNavigator = () => {
         <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
         {/* // TODO: remove when the screens are ready */}
         <Stack.Screen name="ComingSoon" component={ComingSoonScreen} />
+        <Stack.Screen name="QuestStack" component={QuestStackNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

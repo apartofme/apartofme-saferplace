@@ -30,7 +30,8 @@ function* watchLoginUser({
   if (!loginUserResponse.error) {
     const user: IFirestoreUser = yield call(firestoreGetUser);
     yield put(userSlice.actions.loginUserSuccess(user._data));
-    yield call(StaticNavigator.navigateTo, 'SelectUser');
+    // TODO: change to real stack
+    yield call(StaticNavigator.navigateTo, 'QuestStack');
     yield call(firestoreSaveDeviceToken);
   } else {
     yield put(userSlice.actions.loginUserError(loginUserResponse.error));

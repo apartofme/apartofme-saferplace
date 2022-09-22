@@ -2,6 +2,7 @@ import { NativeStackNavigationOptions } from 'react-native-screens/native-stack'
 
 export const DEFAULT_STACK_OPTIONS: NativeStackNavigationOptions = {
   headerShown: false,
+  stackAnimation: 'fade',
 };
 
 export const GLOBAL_NAVIGATION_STACK_OPTIONS: NativeStackNavigationOptions = {

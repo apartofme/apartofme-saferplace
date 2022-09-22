@@ -1,6 +1,7 @@
 export * from './CharmAlerts';
 export * from './ComingSoon';
 export * from './Initial';
+export * from './DummyQuests';
 export * from './Menu';
 export * from './Onboarding';
 export * from './Recognition';

@@ -8,7 +8,3 @@ type RouteProps = StackScreenProps<MergedStackParams, 'EmojiSelection'>;
 export interface IEmojiSelectionScreenProps
   extends NavigationProps,
     RouteProps {}
-
-export interface IEmojiSelectionRoute {
-  onSubmit: () => void;
-}

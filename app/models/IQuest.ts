@@ -1,3 +1,4 @@
+import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { Nullable } from '../utils';
 
 export interface IQuest {
@@ -11,7 +12,7 @@ export interface IQuest {
   tellMoreDescription: Nullable<string>;
   tellMoreBackground: Nullable<string>;
   questLineId: string;
-  type: string;
+  type: keyof QuestStackParams;
   sort: number;
   titleHasNickname: Nullable<boolean>;
   crossHeader: Nullable<boolean>;
