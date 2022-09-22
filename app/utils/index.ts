@@ -39,18 +39,19 @@ export const translationsToDictionary = (allTranslations: ITranslations[]) => {
   let result: Record<string, string> = {};
 
   _.map(allTranslations, item => {
-    if (item.isfinaltranslation) {
-      const key = item.label;
-      const formattedKey = {};
+    //*  Uncoment if-block for check localization
+    // if (item.isfinaltranslation) {
+    const key = item.label;
+    const formattedKey = {};
 
-      /*
+    /*
     This function converts string "screens.onboarding.welcome.title" to object
     { screens: {onboarding: {welcome: {title: value}}}}
     */
-      _.set(formattedKey, key, item.text);
+    _.set(formattedKey, key, item.text);
 
-      result = _.merge(result, formattedKey);
-    }
+    result = _.merge(result, formattedKey);
+    // }
   });
   return result;
 };

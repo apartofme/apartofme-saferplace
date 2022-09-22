@@ -8,7 +8,6 @@ import {
   EmojiSlider,
   ExtendedText,
   MainHeader,
-  EmojiType,
 } from '../../../components';
 import { IMAGES } from '../../../assets';
 import { useAppSelector, useMount } from '../../../hooks';
@@ -28,7 +27,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   const { title, buttonTitle, titleHasNickname } = route.params.data;
   const parentNickname = useAppSelector(state => state.user.parent?.nickname);
   const childNickname = useAppSelector(state => state.user.child?.nickname);
-  const [emoji, setEmoji] = useState<EmojiType>(EmojiType.Ok);
+  const [emoji, setEmoji] = useState('');
   const [titleArray, setTitleArray] = useState<Nullable<string[]>>(null);
 
   useMount(() => {
@@ -85,8 +84,8 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
         buttonTitle={buttonTitle ?? t('buttons.select')}
         onSubmit={onSubmit}>
         {renderTitle()}
-        <ExtendedText>{emoji}</ExtendedText>
-        <EmojiSlider setEmoji={setEmoji} />
+        <ExtendedText>{t(emoji)}</ExtendedText>
+        <EmojiSlider setEmojiKey={setEmoji} />
       </BottomButtonView>
     </ImageBackground>
   );

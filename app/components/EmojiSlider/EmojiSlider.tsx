@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import CommunitySlider from '@react-native-community/slider';
 
@@ -6,34 +6,47 @@ import { generalStyles } from '../../utils/styles';
 import { styles } from './EmojiSlider.styles';
 import { EmojiType, IEmojiSlider } from './EmojiSlider.types';
 
-export const EmojiSlider: React.FC<IEmojiSlider> = ({ setEmoji }) => {
-  const [sliderValue, setSliderValue] = useState(0);
+export const EmojiSlider: React.FC<IEmojiSlider> = ({ setEmojiKey }) => {
+  const [sliderValue, setSliderValue] = useState(EmojiType.NO);
 
-  const getEmojiImage = useCallback(() => {
+  const getEmojiImage = useMemo(() => {
     switch (sliderValue) {
-      case 0:
-        setEmoji(EmojiType.VeryStressed);
+      case EmojiType.NO:
         return styles.grayBackground;
-      case 1:
-        setEmoji(EmojiType.Neutral);
+      case EmojiType.SuperRelaxed:
         return styles.greenBackground;
-      case 2:
-        setEmoji(EmojiType.Ok);
+      case EmojiType.Relaxed:
         return styles.yellowBackground;
-      case 3:
-        setEmoji(EmojiType.Relaxed);
+      case EmojiType.Ok:
         return styles.orangeBackground;
-      case 4:
-        setEmoji(EmojiType.SuperRelaxed);
+      case EmojiType.VeryStressed:
         return styles.redBackground;
-      default:
+    }
+  }, [sliderValue]);
+
+  useEffect(() => {
+    switch (sliderValue) {
+      case EmojiType.NO:
+        setEmojiKey('--');
+        break;
+      case EmojiType.SuperRelaxed:
+        setEmojiKey('labels.emoji.super_relaxed');
+        break;
+      case EmojiType.Relaxed:
+        setEmojiKey('labels.emoji.relaxed');
+        break;
+      case EmojiType.Ok:
+        setEmojiKey('labels.emoji.ok');
+        break;
+      case EmojiType.VeryStressed:
+        setEmojiKey('labels.emoji.very_stressed');
         break;
     }
-  }, [setEmoji, sliderValue]);
+  }, [setEmojiKey, sliderValue]);
 
   return (
     <View style={generalStyles.centered}>
-      <View style={[styles.indicator, getEmojiImage()]} />
+      <View style={[styles.indicator, getEmojiImage]} />
 
       <CommunitySlider
         style={styles.slider}

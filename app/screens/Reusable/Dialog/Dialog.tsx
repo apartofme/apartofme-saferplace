@@ -21,6 +21,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
 
   const goBack = useNavigatePrevQuest();
   const onSubmit = useNavigateNextQuest();
+
   return (
     <ImageBackground
       // TODO: change to real image

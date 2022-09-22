@@ -19,6 +19,7 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
+    {/* // TODO: remove */}
     <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen name="Dialog" component={DialogScreen} />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
