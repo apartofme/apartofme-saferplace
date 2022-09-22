@@ -12,6 +12,7 @@ export const getAllTranslationsQuery = (
       id
       label
       text
+      isfinaltranslation
     }
   }
 `;
