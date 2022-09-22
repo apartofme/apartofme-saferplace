@@ -1,0 +1,1 @@
+export { JournelScreen } from './Journel';
