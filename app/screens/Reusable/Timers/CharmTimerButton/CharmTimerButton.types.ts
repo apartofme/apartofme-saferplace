@@ -14,7 +14,5 @@ export interface ICharmTimerButtonScreenProps
 
 export interface ICharmTimerButtonRoute {
   duration: number;
-  subtitleKey: string;
-  onButtonPress: () => void;
-  onSubmit: () => void;
+  description: string;
 }
