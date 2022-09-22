@@ -8,6 +8,7 @@ export * from './ElixirTitleButton';
 export * from './EmojiSelection';
 export * from './FeltRecent';
 export * from './Instruction';
+export * from './RadioButton';
 export * from './Journel';
 export * from './SelectPlayer';
 export * from './SelectPlayerSupport';
