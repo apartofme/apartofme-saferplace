@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Image,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
@@ -34,12 +35,16 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={goBack}
         />
+        <View style={styles.container}>
+          <Image source={IMAGES.LOGO} style={styles.image} />
 
-        <View style={generalStyles.flex} />
-        <View style={generalStyles.flex}>
-          <ExtendedText>{title}</ExtendedText>
+          <View style={styles.dialogContainer}>
+            <ExtendedText style={styles.title}>{title}</ExtendedText>
+          </View>
+          <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
+            <Image source={IMAGES.WHITE_PENCIL} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={onSubmit} style={styles.roundButton} />
       </SafeAreaView>
     </ImageBackground>
   );
