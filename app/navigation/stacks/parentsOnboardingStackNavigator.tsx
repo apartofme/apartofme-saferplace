@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import {
   SignUpCredentialsScreen,
+  AcknowledgementScreen,
   LanguageSelectionScreen,
   WelcomeParentScreen,
   SignUpNicknameScreen,
@@ -14,14 +15,13 @@ import {
   SignUpSuccessScreen,
   ForgotPasswordEmailScreen,
   ForgotPasswordSuccessScreen,
-  IVerticalSwipeRoute,
-  VerticalSwipeScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentsOnboardingStackParams = {
   WelcomeParent: undefined;
   LanguageSelection: undefined;
+  Acknowledgement: undefined;
   SignUpCredentials: undefined;
   SignUpNickname: { isChild?: boolean } | undefined;
   SignUpAvatar: { isChild?: boolean } | undefined;
@@ -32,7 +32,6 @@ export type ParentsOnboardingStackParams = {
   SelectUser: undefined;
   ForgotPasswordEmail: undefined;
   ForgotPasswordSuccess: undefined;
-  VerticalSwipe: { data: IVerticalSwipeRoute };
 };
 
 const Stack = createNativeStackNavigator<ParentsOnboardingStackParams>();
@@ -44,7 +43,7 @@ export const ParentsOnboardingStackNavigator = () => (
       name="LanguageSelection"
       component={LanguageSelectionScreen}
     />
-    <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
+    <Stack.Screen name="Acknowledgement" component={AcknowledgementScreen} />
     <Stack.Screen
       name="OnboardingCarousel"
       component={OnboardingCarouselScreen}

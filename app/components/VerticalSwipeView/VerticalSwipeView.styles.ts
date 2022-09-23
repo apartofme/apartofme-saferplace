@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 interface IMainHeaderStyles {
   topContentContainer: ViewStyle;
@@ -8,13 +8,15 @@ interface IMainHeaderStyles {
   bottomTitle: TextStyle;
   bottomsubtitle: TextStyle;
   bottomContentContainer: ViewStyle;
+  image: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IMainHeaderStyles>({
   topContentContainer: {
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   topTitle: {
+    marginTop: 24,
     textAlign: 'center',
   },
   topSubtitle: {
@@ -22,7 +24,7 @@ export const styles = StyleSheet.create<IMainHeaderStyles>({
     marginTop: 24,
   },
   submitButton: {
-    marginTop: 90,
+    marginTop: 30,
     marginBottom: 24,
     marginHorizontal: 40,
   },
@@ -34,5 +36,10 @@ export const styles = StyleSheet.create<IMainHeaderStyles>({
   },
   bottomContentContainer: {
     paddingHorizontal: 24,
+  },
+  // TODO: change to correct styles
+  image: {
+    width: 200,
+    height: 200,
   },
 });

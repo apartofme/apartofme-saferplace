@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 import {
   Directions,
   FlingGestureHandler,
@@ -13,6 +13,9 @@ import { ExtendedButton } from '../ExtendedButton';
 import { ExtendedText } from '../ExtendedText';
 import { IVerticalSwipeViewProps } from './VerticalSwipeView.types';
 import { styles } from './VerticalSwipeView.styles';
+import { MainHeader } from '../MainHeader';
+import { IMAGES } from '../../assets';
+import { useNavigation } from '@react-navigation/native';
 
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   titleKey,
@@ -20,8 +23,13 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   aboutTitleKey,
   aboutSubtitleKey,
   image,
+  topBackground,
+  bottomBackground,
+  onSubmit,
 }) => {
   const [isTopPosition, setIsTopPosition] = useState(true);
+
+  const navigation = useNavigation();
 
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
 
@@ -45,54 +53,76 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
 
   return (
     <GestureHandlerRootView style={generalStyles.flex}>
-      <FlingGestureHandler
-        onEnded={setScrollPosition}
-        direction={isTopPosition ? Directions.UP : Directions.DOWN}>
-        <View style={generalStyles.flex} onLayout={onLayout}>
-          <ImageBackground source={image} style={generalStyles.flex}>
-            <ScrollView scrollEnabled={false} ref={scrollViewRef}>
-              <View
-                style={[
-                  styles.topContentContainer,
-                  { height: scrollViewHeight },
-                ]}>
-                <ExtendedText style={styles.topTitle}>
-                  {t(titleKey)}
-                </ExtendedText>
-                <ExtendedText style={styles.topSubtitle}>
-                  {t(subtitleKey)}
-                </ExtendedText>
-                <ExtendedButton
-                  title={t('buttons.ready')}
-                  style={styles.submitButton}
-                />
-                <ExtendedButton
-                  title={t('components.VerticalSwipeView.to_bottom')}
-                  onPress={setScrollPosition}
-                />
-              </View>
-              <View
-                style={[
-                  styles.bottomContentContainer,
-                  { height: scrollViewHeight },
-                ]}>
-                <ExtendedButton
-                  title={t('components.VerticalSwipeView.to_top')}
-                  onPress={setScrollPosition}
-                />
-                <ExtendedText style={styles.bottomTitle}>
-                  {t(aboutTitleKey)}
-                </ExtendedText>
-                <ScrollView>
-                  <ExtendedText style={styles.bottomsubtitle}>
-                    {t(aboutSubtitleKey)}
-                  </ExtendedText>
-                </ScrollView>
-              </View>
-            </ScrollView>
-          </ImageBackground>
-        </View>
-      </FlingGestureHandler>
+      <ImageBackground
+        source={isTopPosition ? topBackground : bottomBackground}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <FlingGestureHandler
+            onEnded={setScrollPosition}
+            direction={isTopPosition ? Directions.UP : Directions.DOWN}>
+            <View style={generalStyles.flex} onLayout={onLayout}>
+              <ScrollView scrollEnabled={false} ref={scrollViewRef}>
+                <View
+                  style={[
+                    styles.topContentContainer,
+                    { height: scrollViewHeight },
+                  ]}>
+                  <MainHeader
+                    leftIcon={IMAGES.WHITE_BACK_ARROW}
+                    onLeftIconPress={navigation.goBack}
+                  />
+                  <View>
+                    {image && (
+                      <View style={generalStyles.aiCenter}>
+                        <Image source={image} style={styles.image} />
+                      </View>
+                    )}
+                    <ExtendedText style={styles.topTitle}>
+                      {t(titleKey)}
+                    </ExtendedText>
+                    {subtitleKey && (
+                      <ExtendedText style={styles.topSubtitle}>
+                        {t(subtitleKey)}
+                      </ExtendedText>
+                    )}
+                    <ExtendedButton
+                      title={t('buttons.ready')}
+                      style={styles.submitButton}
+                      onPress={onSubmit}
+                    />
+                    <ExtendedButton
+                      title={t('components.vertical_swipe_view.tell_more')}
+                      onPress={setScrollPosition}
+                    />
+                  </View>
+                </View>
+                <View
+                  style={[
+                    styles.bottomContentContainer,
+                    { height: scrollViewHeight },
+                  ]}>
+                  <ExtendedButton
+                    title={t('components.vertical_swipe_view.back')}
+                    onPress={setScrollPosition}
+                  />
+                  {aboutTitleKey && (
+                    <ExtendedText style={styles.bottomTitle}>
+                      {t(aboutTitleKey)}
+                    </ExtendedText>
+                  )}
+                  <ScrollView>
+                    {aboutSubtitleKey && (
+                      <ExtendedText style={styles.bottomsubtitle}>
+                        {t(aboutSubtitleKey)}
+                      </ExtendedText>
+                    )}
+                  </ScrollView>
+                </View>
+              </ScrollView>
+            </View>
+          </FlingGestureHandler>
+        </SafeAreaView>
+      </ImageBackground>
     </GestureHandlerRootView>
   );
 };

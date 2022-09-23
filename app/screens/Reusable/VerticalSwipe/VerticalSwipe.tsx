@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 import {
   Directions,
   FlingGestureHandler,
@@ -15,17 +15,15 @@ import { styles } from './VerticalSwipe.styles';
 
 export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   route,
-  navigation,
 }) => {
   const {
     titleKey,
     subtitleKey,
-    nextRouteParams,
+    onSubmit,
     tellMoreTitleKey,
     tellMoreSubtitleKey,
     backgroundImage,
     tellMoreBackgroundImage,
-    image,
   } = route.params.data;
 
   const { t } = useTranslation();
@@ -48,80 +46,59 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     setScrollViewHeight(height);
   }, []);
 
-  const onSubmit = useCallback(() => {
-    navigation.navigate(nextRouteParams);
-  }, [navigation, nextRouteParams]);
-
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <GestureHandlerRootView style={generalStyles.flex}>
-        <FlingGestureHandler
-          onEnded={setScrollPosition}
-          direction={isTopPosition ? Directions.UP : Directions.DOWN}>
-          <View style={generalStyles.flex} onLayout={onLayout}>
+    <GestureHandlerRootView style={generalStyles.flex}>
+      <FlingGestureHandler
+        onEnded={setScrollPosition}
+        direction={isTopPosition ? Directions.UP : Directions.DOWN}>
+        <View style={generalStyles.flex} onLayout={onLayout}>
+          <ImageBackground
+            source={isTopPosition ? backgroundImage : tellMoreBackgroundImage}
+            style={generalStyles.flex}>
             <ScrollView scrollEnabled={false} ref={scrollViewRef}>
-              <ImageBackground
-                source={backgroundImage}
-                style={generalStyles.flex}>
-                <View
-                  style={[
-                    styles.topContentContainer,
-                    { height: scrollViewHeight },
-                  ]}>
-                  {image && (
-                    <View style={generalStyles.centered}>
-                      <Image source={image} />
-                    </View>
-                  )}
-                  <ExtendedText style={styles.topTitle}>
-                    {t(titleKey)}
+              <View
+                style={[
+                  styles.topContentContainer,
+                  { height: scrollViewHeight },
+                ]}>
+                <ExtendedText style={styles.topTitle}>
+                  {t(titleKey)}
+                </ExtendedText>
+                <ExtendedText style={styles.topSubtitle}>
+                  {t(subtitleKey)}
+                </ExtendedText>
+                <ExtendedButton
+                  title={t('buttons.ready')}
+                  style={styles.submitButton}
+                  onPress={onSubmit}
+                />
+                <ExtendedButton
+                  title={t('components.VerticalSwipeView.to_bottom')}
+                  onPress={setScrollPosition}
+                />
+              </View>
+              <View
+                style={[
+                  styles.bottomContentContainer,
+                  { height: scrollViewHeight },
+                ]}>
+                <ExtendedButton
+                  title={t('components.VerticalSwipeView.to_top')}
+                  onPress={setScrollPosition}
+                />
+                <ExtendedText style={styles.bottomTitle}>
+                  {t(tellMoreTitleKey)}
+                </ExtendedText>
+                <ScrollView>
+                  <ExtendedText style={styles.bottomsubtitle}>
+                    {t(tellMoreSubtitleKey)}
                   </ExtendedText>
-                  {subtitleKey && (
-                    <ExtendedText style={styles.topSubtitle}>
-                      {t(subtitleKey)}
-                    </ExtendedText>
-                  )}
-                  <ExtendedButton
-                    title={t('buttons.next')}
-                    style={styles.submitButton}
-                    onPress={onSubmit}
-                  />
-                  <ExtendedButton
-                    title={t('components.vertical_swipe_view.tell_more')}
-                    onPress={setScrollPosition}
-                  />
-                </View>
-              </ImageBackground>
-              <ImageBackground
-                source={tellMoreBackgroundImage}
-                style={generalStyles.flex}>
-                <View
-                  style={[
-                    styles.bottomContentContainer,
-                    { height: scrollViewHeight },
-                  ]}>
-                  <ExtendedButton
-                    title={t('components.vertical_swipe_view.back')}
-                    onPress={setScrollPosition}
-                  />
-                  {tellMoreTitleKey && (
-                    <ExtendedText style={styles.bottomTitle}>
-                      {t(tellMoreTitleKey)}
-                    </ExtendedText>
-                  )}
-                  {tellMoreSubtitleKey && (
-                    <ScrollView>
-                      <ExtendedText style={styles.bottomsubtitle}>
-                        {t(tellMoreSubtitleKey)}
-                      </ExtendedText>
-                    </ScrollView>
-                  )}
-                </View>
-              </ImageBackground>
+                </ScrollView>
+              </View>
             </ScrollView>
-          </View>
-        </FlingGestureHandler>
-      </GestureHandlerRootView>
-    </SafeAreaView>
+          </ImageBackground>
+        </View>
+      </FlingGestureHandler>
+    </GestureHandlerRootView>
   );
 };
