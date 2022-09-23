@@ -25,7 +25,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
 
   return (
     <ImageBackground
-      // TODO: change to real image
+      // TODO: change to the real image
       source={{
         uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
       }}
@@ -42,7 +42,10 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
             <ExtendedText style={styles.title}>{title}</ExtendedText>
           </View>
           <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
-            <Image source={IMAGES.WHITE_PENCIL} />
+            <Image
+              // TODO: change to real image
+              source={IMAGES.WHITE_PENCIL}
+            />
           </TouchableOpacity>
         </View>
       </SafeAreaView>

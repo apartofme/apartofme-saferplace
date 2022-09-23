@@ -32,6 +32,8 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
     minHeight: 220,
   },
   roundButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 64,
     height: 64,
     borderRadius: 100,
