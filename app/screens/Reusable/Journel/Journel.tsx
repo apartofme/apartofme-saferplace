@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
 
 import { IJournelScreenProps } from './Journel.types';
 import { styles } from './Journel.styles';

@@ -10,6 +10,7 @@ import {
   JournelScreen,
   PassPhoneScreen,
   SelectPlayerScreen,
+  VerticalSwipeScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -21,6 +22,7 @@ export type QuestStackParams = {
   SelectPlayer: { data: IQuest };
   PassPhone: { data: IQuest };
   Journel: { data: IQuest };
+  VerticalSwipe: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -38,5 +40,6 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="SelectPlayer" component={SelectPlayerScreen} />
     <Stack.Screen name="PassPhone" component={PassPhoneScreen} />
     <Stack.Screen name="Journel" component={JournelScreen} />
+    <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
   </Stack.Navigator>
 );
