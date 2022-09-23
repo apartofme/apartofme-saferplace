@@ -25,7 +25,7 @@ export const SelectSongScreen: React.FC<ISelectSongScreenProps> = ({
   const carouselRef = useRef<ICarouselInstance>(null);
 
   const [isPause, setIsPause] = useState(true);
-  const [currentAudioName, setCurrentAudioName] = useState('0011993.mp3');
+  const [currentAudioName, setCurrentAudioName] = useState('sound_two.mp3');
   const [duration, setDuration] = useState(0);
   const [isFinished, setIsFished] = useState(false);
 
@@ -43,17 +43,18 @@ export const SelectSongScreen: React.FC<ISelectSongScreenProps> = ({
   }, [currentAudioName, isFinished, isPause]);
 
   const onNextPress = useCallback(() => {
-    if (carouselRef.current) {
-      carouselRef.current?.next();
-    }
+    AudioPlayerHelper.stop();
+    carouselRef.current?.next();
   }, []);
 
   const onPreviosPress = useCallback(() => {
+    AudioPlayerHelper.stop();
     carouselRef.current?.prev();
   }, []);
 
   useEffect(() => {
     AudioPlayerHelper.stop();
+    setIsPause(true);
   }, [currentAudioName]);
 
   return (

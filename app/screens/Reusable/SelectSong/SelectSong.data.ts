@@ -3,15 +3,15 @@ import { ISongCarouselItem } from '../../../components';
 
 export const SONG_CAROUSEL: ReadonlyArray<ISongCarouselItem> = [
   {
-    id: '0012298.mp3',
+    id: 'sound_one.mp3',
     image: IMAGES.LOGO,
   },
   {
-    id: '0011993.mp3',
+    id: 'sound_two.mp3',
     image: IMAGES.LOGO,
   },
   {
-    id: '0002070.mp3',
+    id: 'sound_three.mp3',
     image: IMAGES.LOGO,
   },
 ];
