@@ -7,6 +7,7 @@ import {
   DialogScreen,
   DummyQuestsScreen,
   EmojiSelectionScreen,
+  JournelScreen,
   PassPhoneScreen,
   SelectPlayerScreen,
 } from '../../screens';
@@ -19,6 +20,7 @@ export type QuestStackParams = {
   AcknowledgementSuccessively: { data: IQuest };
   SelectPlayer: { data: IQuest };
   PassPhone: { data: IQuest };
+  Journel: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -35,5 +37,6 @@ export const QuestStackNavigator = () => (
     />
     <Stack.Screen name="SelectPlayer" component={SelectPlayerScreen} />
     <Stack.Screen name="PassPhone" component={PassPhoneScreen} />
+    <Stack.Screen name="Journel" component={JournelScreen} />
   </Stack.Navigator>
 );
