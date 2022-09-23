@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Image,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
@@ -24,7 +25,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
 
   return (
     <ImageBackground
-      // TODO: change to real image
+      // TODO: change to the real image
       source={{
         uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
       }}
@@ -34,12 +35,19 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={goBack}
         />
+        <View style={styles.container}>
+          <Image source={IMAGES.LOGO} style={styles.image} />
 
-        <View style={generalStyles.flex} />
-        <View style={generalStyles.flex}>
-          <ExtendedText>{title}</ExtendedText>
+          <View style={styles.dialogContainer}>
+            <ExtendedText style={styles.title}>{title}</ExtendedText>
+          </View>
+          <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
+            <Image
+              // TODO: change to real image
+              source={IMAGES.WHITE_PENCIL}
+            />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={onSubmit} style={styles.roundButton} />
       </SafeAreaView>
     </ImageBackground>
   );

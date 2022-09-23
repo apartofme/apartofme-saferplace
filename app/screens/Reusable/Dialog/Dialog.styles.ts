@@ -1,8 +1,10 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 export interface IDialogscreenStyles {
   container: ViewStyle;
+  image: ImageStyle;
   dialogContainer: ViewStyle;
+  title: TextStyle;
   roundButton: ViewStyle;
 }
 
@@ -11,11 +13,14 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingHorizontal: 38,
+    marginHorizontal: 38,
+  },
+  image: {
+    width: 300,
+    height: 320,
   },
   dialogContainer: {
-    width: 299,
-    minHeight: 308,
+    alignSelf: 'stretch',
     paddingTop: 40,
     paddingBottom: 48,
     paddingHorizontal: 24,
@@ -23,7 +28,12 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
     // TODO: change to real styles
     backgroundColor: '#cecece',
   },
+  title: {
+    minHeight: 220,
+  },
   roundButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 64,
     height: 64,
     borderRadius: 100,
