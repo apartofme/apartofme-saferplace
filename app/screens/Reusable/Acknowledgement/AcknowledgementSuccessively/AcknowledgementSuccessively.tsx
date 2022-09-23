@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 import _ from 'lodash';
 
 import {
@@ -9,95 +9,122 @@ import {
   MainHeader,
 } from '../../../../components';
 import { IMAGES } from '../../../../assets';
-import { useMount } from '../../../../hooks';
+import { useAppSelector, useMount } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { Nullable, parseTextWithNickname } from '../../../../utils';
 import { NicknameType } from '../../../../utils/types';
 import { IAcknowledgementSuccessivelyScreenProps } from './AcknowledgementSuccessively.types';
-import {
-  DUMMY_CHILD_NICKNAME,
-  DUMMY_PARENT_NICKNAME,
-} from './AcknowledgementSuccessively.dummy';
+import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../../hooks';
+import { styles } from './AcknowledgementSuccessively.styles';
 
 export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccessivelyScreenProps> =
-  ({ navigation, route }) => {
+  ({ route }) => {
     const {
-      titleKey,
-      subtitleKey,
-      isCrossHeader,
-      isTitleHaveNickname,
-      image,
+      title,
+      description,
+      buttonTitle,
+      crossHeader,
+      titleHasNickname,
+      images,
       backgroundImage,
-      onSubmit,
     } = route.params.data;
 
     const { t } = useTranslation();
     const [titleArray, setTitleArray] = useState<Nullable<string[]>>(null);
+    const parentNickname = useAppSelector(state => state.user.child?.nickname);
+    const childNickname = useAppSelector(state => state.user.parent?.nickname);
+
+    const goBack = useNavigatePrevQuest();
+    const onSubmit = useNavigateNextQuest();
 
     useMount(() => {
-      if (isTitleHaveNickname) {
-        setTitleArray(parseTextWithNickname(t(titleKey)));
+      if (titleHasNickname) {
+        setTitleArray(parseTextWithNickname(title));
       }
     });
 
-    // TODO: uncomment when userState will be update
-    // const parentNickname = useAppSelector(state => state.user.child);
-    // const childNickname =  useAppSelector(state => state.user.parent);
-
     const renderHeader = useCallback(() => {
-      if (isCrossHeader) {
+      if (crossHeader) {
         return (
           <MainHeader
             leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={navigation.goBack}
+            onLeftIconPress={goBack}
             // TODO: change to real image & function
             rightIcon={IMAGES.WHITE_BACK_ARROW}
-            onRightIconPress={navigation.goBack}
+            onRightIconPress={goBack}
           />
         );
       } else {
         return (
           <MainHeader
             leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={navigation.goBack}
+            onLeftIconPress={goBack}
           />
         );
       }
-    }, [isCrossHeader, navigation]);
+    }, [crossHeader, goBack]);
 
     const renderTitle = useCallback(() => {
-      if (isTitleHaveNickname) {
+      if (titleHasNickname) {
         return (
           <View style={generalStyles.row}>
             {_.map(titleArray, (item: string) => {
               switch (item) {
                 case NicknameType.Parent:
-                  // TODO: change to parentNickname when state will be update
-                  return <ExtendedText>{DUMMY_PARENT_NICKNAME}</ExtendedText>;
+                  return (
+                    <ExtendedText key={item} preset="body-bold">
+                      {parentNickname}
+                    </ExtendedText>
+                  );
                 case NicknameType.Child:
-                  // TODO: change to childNickname when state will be update
-                  return <ExtendedText>{DUMMY_CHILD_NICKNAME}</ExtendedText>;
+                  return (
+                    <ExtendedText key={item} preset="body-bold">
+                      {childNickname}
+                    </ExtendedText>
+                  );
                 default:
-                  return <ExtendedText>{t(item)}</ExtendedText>;
+                  return (
+                    <ExtendedText key={item} preset="large-title">
+                      {t(item)}
+                    </ExtendedText>
+                  );
               }
             })}
           </View>
         );
       } else {
-        return <ExtendedText>{t(titleKey)}</ExtendedText>;
+        return (
+          <ExtendedText preset="large-title" style={styles.title}>
+            {title}
+          </ExtendedText>
+        );
       }
-    }, [isTitleHaveNickname, t, titleArray, titleKey]);
+    }, [childNickname, parentNickname, t, title, titleArray, titleHasNickname]);
 
     return (
-      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
-        {renderHeader()}
-        <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
-          <View>
-            <Image source={image} />
+      <ImageBackground
+        // TODO: change to the real image
+        source={{
+          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+        }}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          {renderHeader()}
+          <BottomButtonView
+            buttonTitle={buttonTitle ?? t('buttons.next')}
+            onSubmit={onSubmit}
+            style={styles.container}>
+            <Image
+              // TODO: change to the real image
+              source={IMAGES.WHITE_PENCIL}
+              style={styles.image}
+            />
             {renderTitle()}
-            <ExtendedText>{t(subtitleKey)}</ExtendedText>
-          </View>
-        </BottomButtonView>
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {description}
+            </ExtendedText>
+          </BottomButtonView>
+        </SafeAreaView>
       </ImageBackground>
     );
   };
