@@ -7,6 +7,7 @@ import {
   DialogScreen,
   DummyQuestsScreen,
   EmojiSelectionScreen,
+  SelectPlayerScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -15,6 +16,7 @@ export type QuestStackParams = {
   Dialog: { data: IQuest };
   EmojiSelection: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
+  SelectPlayer: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -29,5 +31,6 @@ export const QuestStackNavigator = () => (
       name="AcknowledgementSuccessively"
       component={AcknowledgementSuccessivelyScreen}
     />
+    <Stack.Screen name="SelectPlayer" component={SelectPlayerScreen} />
   </Stack.Navigator>
 );

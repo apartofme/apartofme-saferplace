@@ -3,10 +3,10 @@ import {
   FlatList,
   Image,
   ImageBackground,
+  SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
 
 import { IPlayer, ISelectPlayerScreenProps } from './SelectPlayer.types';
 import { styles } from './SelectPlayer.styles';
@@ -18,37 +18,38 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
 import { DUMMY_PLAYER_LIST } from './SelectPlayer.data';
+import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
 
 export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
-  navigation,
   route,
 }) => {
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
-
   const { t } = useTranslation();
+  const goBack = useNavigatePrevQuest();
+  const onSubmit = useNavigateNextQuest();
 
-  const { backgroundImage, isCrossHeader } = route.params.data;
+  const { backgroundImage, crossHeader } = route.params.data;
 
   const renderHeader = useCallback(() => {
-    if (isCrossHeader) {
+    if (crossHeader) {
       return (
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
+          onLeftIconPress={goBack}
           // TODO: change to real image & function
           rightIcon={IMAGES.WHITE_BACK_ARROW}
-          onRightIconPress={navigation.goBack}
+          onRightIconPress={goBack}
         />
       );
     } else {
       return (
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
+          onLeftIconPress={goBack}
         />
       );
     }
-  }, [isCrossHeader, navigation]);
+  }, [crossHeader, goBack]);
 
   const renderItem = useCallback(
     ({ item }: { item: IPlayer }) => {
@@ -71,18 +72,25 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   );
 
   return (
-    <ImageBackground source={backgroundImage} style={generalStyles.flex}>
-      {renderHeader()}
-      <BottomButtonView
-        buttonTitle={t('buttons.ready')}
-        onSubmit={_.noop}
-        isDisabledButton={!selectedPlayer}
-        style={styles.container}>
-        <ExtendedText preset="title" style={styles.title}>
-          {t('screens.select_player.title')}
-        </ExtendedText>
-        <FlatList data={DUMMY_PLAYER_LIST} renderItem={renderItem} />
-      </BottomButtonView>
+    <ImageBackground
+      // TODO: change to the real image
+      source={{
+        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+      }}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        {renderHeader()}
+        <BottomButtonView
+          buttonTitle={t('buttons.ready')}
+          onSubmit={onSubmit}
+          isDisabledButton={!selectedPlayer}
+          style={styles.container}>
+          <ExtendedText preset="title" style={styles.title}>
+            {t('screens.select_player.title')}
+          </ExtendedText>
+          <FlatList data={DUMMY_PLAYER_LIST} renderItem={renderItem} />
+        </BottomButtonView>
+      </SafeAreaView>
     </ImageBackground>
   );
 };
