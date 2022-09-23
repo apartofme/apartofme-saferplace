@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {
   Directions,
   FlingGestureHandler,
@@ -15,7 +16,6 @@ import { IVerticalSwipeViewProps } from './VerticalSwipeView.types';
 import { styles } from './VerticalSwipeView.styles';
 import { MainHeader } from '../MainHeader';
 import { IMAGES } from '../../assets';
-import { useNavigation } from '@react-navigation/native';
 
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   titleKey,
