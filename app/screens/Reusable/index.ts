@@ -9,5 +9,6 @@ export * from './FeltRecent';
 export * from './Instruction';
 export * from './SelectPlayer';
 export * from './SelectPlayerSupport';
+export * from './SelectSong';
 export * from './Timers';
 export * from './VerticalSwipe';

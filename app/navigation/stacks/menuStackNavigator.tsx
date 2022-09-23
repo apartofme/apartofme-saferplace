@@ -20,6 +20,7 @@ import {
   SettingsPrivacyScreen,
   ConditionsScreen,
   AudioSettingsScreen,
+  SelectSongScreen,
 } from '../../screens';
 import { AboutCharmsMenuItem } from '../../screens/Menu/AboutCharm/AboutCharm.types';
 import { ConditionsScreenData } from '../../screens/Menu/Conditions/Conditions.types';
@@ -44,12 +45,14 @@ export type MenuStackParams = {
   SettingsPrivacy: undefined;
   Conditions: { data: ConditionsScreenData };
   AudioSettings: undefined;
+  SelectSong: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
 
 export const MenuStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
+    <Stack.Screen name="SelectSong" component={SelectSongScreen} />
     <Stack.Screen name="MainMenu" component={MainMenuScreen} />
     <Stack.Screen
       name="FrequentlyAskedQuestions"
