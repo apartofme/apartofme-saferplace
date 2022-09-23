@@ -12,7 +12,7 @@ interface IVerticalSwipeScreenStyles {
 
 export const styles = StyleSheet.create<IVerticalSwipeScreenStyles>({
   topContentContainer: {
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   topTitle: {
     textAlign: 'center',

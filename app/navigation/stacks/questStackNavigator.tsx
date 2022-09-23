@@ -3,13 +3,21 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { IQuest } from '../../models/IQuest';
 import {
+  AcknowledgementAlongEdgesScreen,
   AcknowledgementSuccessivelyScreen,
+  AlertScreen,
+  CharmCompletedScreen,
+  CharmTimerButtonScreen,
   DialogScreen,
   DummyQuestsScreen,
+  ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
   JournelScreen,
   PassPhoneScreen,
   SelectPlayerScreen,
+  SelectPlayerSupportScreen,
+  TimerTitleScreen,
+  VerticalSwipeScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -21,6 +29,14 @@ export type QuestStackParams = {
   SelectPlayer: { data: IQuest };
   PassPhone: { data: IQuest };
   Journel: { data: IQuest };
+  VerticalSwipe: { data: IQuest };
+  AcknowledgementAlongEdges: { data: IQuest };
+  SelectPlayerSupport: { data: IQuest };
+  Alert: undefined;
+  CharmTimerButton: { data: IQuest };
+  CharmCompleted: { data: IQuest };
+  TimerTitle: { data: IQuest };
+  ElixirDoubleInteraction: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -38,5 +54,22 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="SelectPlayer" component={SelectPlayerScreen} />
     <Stack.Screen name="PassPhone" component={PassPhoneScreen} />
     <Stack.Screen name="Journel" component={JournelScreen} />
+    <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
+    <Stack.Screen
+      name="AcknowledgementAlongEdges"
+      component={AcknowledgementAlongEdgesScreen}
+    />
+    <Stack.Screen
+      name="SelectPlayerSupport"
+      component={SelectPlayerSupportScreen}
+    />
+    <Stack.Screen name="Alert" component={AlertScreen} />
+    <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
+    <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
+    <Stack.Screen name="TimerTitle" component={TimerTitleScreen} />
+    <Stack.Screen
+      name="ElixirDoubleInteraction"
+      component={ElixirDoubleInteractionScreen}
+    />
   </Stack.Navigator>
 );
