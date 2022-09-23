@@ -10,11 +10,13 @@ import {
   CharmTimerButtonScreen,
   DialogScreen,
   DummyQuestsScreen,
+  ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
   JournelScreen,
   PassPhoneScreen,
   SelectPlayerScreen,
   SelectPlayerSupportScreen,
+  TimerTitleScreen,
   VerticalSwipeScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
@@ -33,6 +35,8 @@ export type QuestStackParams = {
   Alert: undefined;
   CharmTimerButton: { data: IQuest };
   CharmCompleted: { data: IQuest };
+  TimerTitle: { data: IQuest };
+  ElixirDoubleInteraction: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -62,5 +66,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="Alert" component={AlertScreen} />
     <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
     <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
+    <Stack.Screen name="TimerTitle" component={TimerTitleScreen} />
+    <Stack.Screen
+      name="ElixirDoubleInteraction"
+      component={ElixirDoubleInteractionScreen}
+    />
   </Stack.Navigator>
 );
