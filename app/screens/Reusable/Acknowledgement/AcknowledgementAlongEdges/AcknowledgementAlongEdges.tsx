@@ -119,7 +119,6 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
             {renderTitle()}
             <Image
               // TODO: change to real image
-              //source={IMAGES.WHITE_PENCIL}
               source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
               style={styles.image}
             />
