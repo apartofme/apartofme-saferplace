@@ -6,6 +6,7 @@ import {
   AcknowledgementAlongEdgesScreen,
   AcknowledgementSuccessivelyScreen,
   AlertScreen,
+  CharmTimerButtonScreen,
   DialogScreen,
   DummyQuestsScreen,
   EmojiSelectionScreen,
@@ -29,6 +30,7 @@ export type QuestStackParams = {
   AcknowledgementAlongEdges: { data: IQuest };
   SelectPlayerSupport: { data: IQuest };
   Alert: undefined;
+  CharmTimerButton: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -56,5 +58,6 @@ export const QuestStackNavigator = () => (
       component={SelectPlayerSupportScreen}
     />
     <Stack.Screen name="Alert" component={AlertScreen} />
+    <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
   </Stack.Navigator>
 );
