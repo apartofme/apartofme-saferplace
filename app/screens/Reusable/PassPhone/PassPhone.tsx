@@ -40,7 +40,6 @@ export const PassPhoneScreen: React.FC<IPassPhoneScreenProps> = ({ route }) => {
   useMount(() => {
     if (titleHasNickname) {
       setTitleArray(parseTextWithNickname(title));
-      console.log(titleArray);
     }
   });
 

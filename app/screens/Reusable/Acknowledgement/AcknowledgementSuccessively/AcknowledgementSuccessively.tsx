@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView } from 'react-native';
 import _ from 'lodash';
 
 import {
@@ -31,8 +31,12 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
 
     const { t } = useTranslation();
     const [titleArray, setTitleArray] = useState<Nullable<string[]>>(null);
-    const parentNickname = useAppSelector(state => state.user.child?.nickname);
-    const childNickname = useAppSelector(state => state.user.parent?.nickname);
+    const parentNickname = useAppSelector(
+      state => state.user.child?.nickname,
+    ) as string;
+    const childNickname = useAppSelector(
+      state => state.user.parent?.nickname,
+    ) as string;
 
     const goBack = useNavigatePrevQuest();
     const onSubmit = useNavigateNextQuest();
@@ -66,32 +70,24 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
 
     const renderTitle = useCallback(() => {
       if (titleHasNickname) {
-        return (
-          <View style={generalStyles.row}>
-            {_.map(titleArray, (item: string) => {
-              switch (item) {
-                case NicknameType.Parent:
-                  return (
-                    <ExtendedText key={item} preset="body-bold">
-                      {parentNickname}
-                    </ExtendedText>
-                  );
-                case NicknameType.Child:
-                  return (
-                    <ExtendedText key={item} preset="body-bold">
-                      {childNickname}
-                    </ExtendedText>
-                  );
-                default:
-                  return (
-                    <ExtendedText key={item} preset="large-title">
-                      {t(item)}
-                    </ExtendedText>
-                  );
-              }
-            })}
-          </View>
+        const username = _.find(
+          titleArray,
+          value => value === 'parent' || value === 'child',
         );
+        switch (username) {
+          case NicknameType.Parent:
+            return (
+              <ExtendedText preset="large-title" style={styles.title}>
+                {_.join(titleArray, '').replace(username, parentNickname)}
+              </ExtendedText>
+            );
+          case NicknameType.Child:
+            return (
+              <ExtendedText preset="large-title" style={styles.title}>
+                {_.join(titleArray, '').replace(username, childNickname)}
+              </ExtendedText>
+            );
+        }
       } else {
         return (
           <ExtendedText preset="large-title" style={styles.title}>
@@ -99,7 +95,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
           </ExtendedText>
         );
       }
-    }, [childNickname, parentNickname, t, title, titleArray, titleHasNickname]);
+    }, [childNickname, parentNickname, title, titleArray, titleHasNickname]);
 
     return (
       <ImageBackground
