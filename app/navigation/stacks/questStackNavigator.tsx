@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { IQuest } from '../../models/IQuest';
 import {
+  AcknowledgementAlongEdgesScreen,
   AcknowledgementSuccessivelyScreen,
   DialogScreen,
   DummyQuestsScreen,
@@ -23,6 +24,7 @@ export type QuestStackParams = {
   PassPhone: { data: IQuest };
   Journel: { data: IQuest };
   VerticalSwipe: { data: IQuest };
+  AcknowledgementAlongEdges: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -41,5 +43,9 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="PassPhone" component={PassPhoneScreen} />
     <Stack.Screen name="Journel" component={JournelScreen} />
     <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
+    <Stack.Screen
+      name="AcknowledgementAlongEdges"
+      component={AcknowledgementAlongEdgesScreen}
+    />
   </Stack.Navigator>
 );

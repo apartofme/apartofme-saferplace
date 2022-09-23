@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView } from 'react-native';
 import _ from 'lodash';
 
 import {
@@ -9,101 +9,125 @@ import {
   MainHeader,
 } from '../../../../components';
 import { IMAGES } from '../../../../assets';
-import { useMount } from '../../../../hooks';
+import {
+  useAppSelector,
+  useMount,
+  useNavigateNextQuest,
+  useNavigatePrevQuest,
+} from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { Nullable, parseTextWithNickname } from '../../../../utils';
 import { NicknameType } from '../../../../utils/types';
-import {
-  DUMMY_CHILD_NICKNAME,
-  DUMMY_PARENT_NICKNAME,
-} from './AcknowledgementAlongEdges.dummy';
 import { IAcknowledgementAlongEdgesScreenProps } from './AcknowledgementAlongEdges.types';
+import { styles } from './AcknowledgementAlongEdges.styles';
 
 export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdgesScreenProps> =
-  ({ navigation, route }) => {
+  ({ route }) => {
     const {
-      titleKey,
-      subtitleKey,
-      isCrossHeader,
-      isTitleHaveNickname,
-      image,
+      title,
+      description,
+      buttonTitle,
+      images,
       backgroundImage,
-      onSubmit,
+      titleHasNickname,
+      crossHeader,
     } = route.params.data;
 
     const { t } = useTranslation();
     const [titleArray, setTitleArray] = useState<Nullable<string[]>>(null);
+    const goBack = useNavigatePrevQuest();
+    const onSubmit = useNavigateNextQuest();
 
     useMount(() => {
-      if (isTitleHaveNickname) {
-        setTitleArray(parseTextWithNickname(t(titleKey)));
+      if (titleHasNickname) {
+        setTitleArray(parseTextWithNickname(title));
       }
     });
 
-    // TODO: uncomment when userState will be update
-    // const parentNickname = useAppSelector(state => state.user.child);
-    // const childNickname =  useAppSelector(state => state.user.parent);
+    const parentNickname = useAppSelector(
+      state => state.user.child?.nickname,
+    ) as string;
+    const childNickname = useAppSelector(
+      state => state.user.parent?.nickname,
+    ) as string;
 
     const renderHeader = useCallback(() => {
-      if (isCrossHeader) {
+      if (crossHeader) {
         return (
           <MainHeader
             leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={navigation.goBack}
+            onLeftIconPress={goBack}
             // TODO: change to real image & function
             rightIcon={IMAGES.WHITE_BACK_ARROW}
-            onRightIconPress={navigation.goBack}
+            onRightIconPress={goBack}
           />
         );
       } else {
         return (
           <MainHeader
             leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={navigation.goBack}
+            onLeftIconPress={goBack}
           />
         );
       }
-    }, [isCrossHeader, navigation]);
+    }, [crossHeader, goBack]);
 
     const renderTitle = useCallback(() => {
-      if (isTitleHaveNickname) {
-        return (
-          <View style={generalStyles.row}>
-            {_.map(titleArray, (item: string) => {
-              switch (item) {
-                case NicknameType.Parent:
-                  // TODO: change to parentNickname when state will be update
-                  return <ExtendedText>{DUMMY_PARENT_NICKNAME}</ExtendedText>;
-                case NicknameType.Child:
-                  // TODO: change to childNickname when state will be update
-                  return <ExtendedText>{DUMMY_CHILD_NICKNAME}</ExtendedText>;
-                default:
-                  return <ExtendedText>{t(item)}</ExtendedText>;
-              }
-            })}
-          </View>
+      if (titleHasNickname) {
+        const username = _.find(
+          titleArray,
+          value => value === 'parent' || value === 'child',
         );
+        switch (username) {
+          case NicknameType.Parent:
+            return (
+              <ExtendedText preset="title" style={styles.title}>
+                {_.join(titleArray, '').replace(username, parentNickname)}
+              </ExtendedText>
+            );
+          case NicknameType.Child:
+            return (
+              <ExtendedText preset="title" style={styles.title}>
+                {_.join(titleArray, '').replace(username, childNickname)}
+              </ExtendedText>
+            );
+        }
       } else {
-        return <ExtendedText>{t(titleKey)}</ExtendedText>;
+        return (
+          <ExtendedText preset="title" style={styles.title}>
+            {title}
+          </ExtendedText>
+        );
       }
-    }, [isTitleHaveNickname, t, titleArray, titleKey]);
-
-    const renderContent = useCallback(() => {
-      return (
-        <View>
-          {renderTitle()}
-          <Image source={image} />
-          <ExtendedText>{t(subtitleKey)}</ExtendedText>
-        </View>
-      );
-    }, [image, renderTitle, subtitleKey, t]);
+    }, [childNickname, parentNickname, title, titleArray, titleHasNickname]);
 
     return (
-      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
-        {renderHeader()}
-        <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
-          {renderContent()}
-        </BottomButtonView>
+      <ImageBackground
+        // TODO: change to real default image
+        source={
+          (backgroundImage && IMAGES[backgroundImage]) ?? {
+            uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+          }
+        }
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          {renderHeader()}
+          <BottomButtonView
+            buttonTitle={buttonTitle ?? t('buttons.next')}
+            onSubmit={onSubmit}
+            style={styles.container}>
+            {renderTitle()}
+            <Image
+              // TODO: change to real image
+              //source={IMAGES.WHITE_PENCIL}
+              source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
+              style={styles.image}
+            />
+            <ExtendedText style={styles.description}>
+              {description}
+            </ExtendedText>
+          </BottomButtonView>
+        </SafeAreaView>
       </ImageBackground>
     );
   };
