@@ -15,6 +15,9 @@
 		4330647328C7B57900BF4095 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4330647028C7B57900BF4095 /* Poppins-Bold.ttf */; };
 		4330647428C7B57900BF4095 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4330647128C7B57900BF4095 /* Poppins-Regular.ttf */; };
 		4330647528C7B57900BF4095 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4330647228C7B57900BF4095 /* Poppins-Medium.ttf */; };
+		4335FAA328DCCA3C003412F2 /* sound_two.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4335FAA228DCCA3C003412F2 /* sound_two.mp3 */; };
+		4335FAA528DCCA46003412F2 /* sound_one.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4335FAA428DCCA46003412F2 /* sound_one.mp3 */; };
+		43C236BE28DCB32800AAE549 /* sound_three.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 43C236BD28DCB32800AAE549 /* sound_three.mp3 */; };
 		47291A6628D0773800008A2C /* Pods_SaferPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9547DB2928B7B01A00C6720C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9547DB2828B7B01A00C6720C /* GoogleService-Info.plist */; };
@@ -45,6 +48,9 @@
 		4330647028C7B57900BF4095 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../app/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		4330647128C7B57900BF4095 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../app/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		4330647228C7B57900BF4095 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Medium.ttf"; path = "../../app/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		4335FAA228DCCA3C003412F2 /* sound_two.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound_two.mp3; sourceTree = "<group>"; };
+		4335FAA428DCCA46003412F2 /* sound_one.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound_one.mp3; sourceTree = "<group>"; };
+		43C236BD28DCB32800AAE549 /* sound_three.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound_three.mp3; sourceTree = "<group>"; };
 		5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752DBD64088926D77B3282BE /* Pods_SaferPlace_SaferPlaceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace_SaferPlaceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SaferPlace/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -117,9 +123,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4335FAA128DCBF25003412F2 /* audios */ = {
+			isa = PBXGroup;
+			children = (
+				4335FAA428DCCA46003412F2 /* sound_one.mp3 */,
+				4335FAA228DCCA3C003412F2 /* sound_two.mp3 */,
+				43C236BD28DCB32800AAE549 /* sound_three.mp3 */,
+			);
+			path = audios;
+			sourceTree = "<group>";
+		};
 		43927B7F28C7812700F48B05 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				4335FAA128DCBF25003412F2 /* audios */,
 				4330647028C7B57900BF4095 /* Poppins-Bold.ttf */,
 				4330647228C7B57900BF4095 /* Poppins-Medium.ttf */,
 				4330647128C7B57900BF4095 /* Poppins-Regular.ttf */,
@@ -265,10 +282,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				43C236BE28DCB32800AAE549 /* sound_three.mp3 in Resources */,
 				9547DB2928B7B01A00C6720C /* GoogleService-Info.plist in Resources */,
+				4335FAA528DCCA46003412F2 /* sound_one.mp3 in Resources */,
 				4330647528C7B57900BF4095 /* Poppins-Medium.ttf in Resources */,
 				4330647328C7B57900BF4095 /* Poppins-Bold.ttf in Resources */,
 				4330647428C7B57900BF4095 /* Poppins-Regular.ttf in Resources */,
+				4335FAA328DCCA3C003412F2 /* sound_two.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

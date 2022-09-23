@@ -2,6 +2,7 @@ import Sound from 'react-native-sound';
 
 export class AudioPlayerHelper {
   private static currentAudio: Sound | null;
+  public static filepath: string;
 
   public static play(
     filepath: string,
@@ -12,19 +13,22 @@ export class AudioPlayerHelper {
       this.stop();
     }
 
-    const newAudioInstance = new Sound(filepath, '', error => {
+    const newAudioInstance = new Sound(filepath, Sound.MAIN_BUNDLE, error => {
       if (error) {
         // TODO: set error
         return;
       }
 
       setDuration(newAudioInstance.getDuration());
+
       newAudioInstance.play(isSuccess => {
         isSuccess && setIsFinished?.(true);
       });
 
       setIsFinished?.(false);
       this.currentAudio = newAudioInstance;
+
+      this.filepath = filepath;
     });
   }
 
@@ -35,5 +39,9 @@ export class AudioPlayerHelper {
 
   public static pause() {
     this.currentAudio?.pause();
+  }
+
+  public static start() {
+    this.currentAudio?.play();
   }
 }

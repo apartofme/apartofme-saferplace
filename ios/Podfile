@@ -14,6 +14,8 @@ target 'SaferPlace' do
     :hermes_enabled => false
   )
 
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
   target 'SaferPlaceTests' do
     inherit! :complete
     # Pods for testing

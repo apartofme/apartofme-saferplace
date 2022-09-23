@@ -12,5 +12,6 @@ export * from './RadioButton';
 export * from './Journel';
 export * from './SelectPlayer';
 export * from './SelectPlayerSupport';
+export * from './SelectSound';
 export * from './Timers';
 export * from './VerticalSwipe';
