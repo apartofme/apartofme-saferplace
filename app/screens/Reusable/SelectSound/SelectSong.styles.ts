@@ -1,12 +1,12 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
-interface ISelectSongScreenStyles {
+interface ISelectSoundScreenStyles {
   container: ViewStyle;
   buttonsContainer: ViewStyle;
 }
 
 // TODO: change to correct styles
-export const styles = StyleSheet.create<ISelectSongScreenStyles>({
+export const styles = StyleSheet.create<ISelectSoundScreenStyles>({
   container: {
     paddingTop: 40,
     paddingHorizontal: 24,

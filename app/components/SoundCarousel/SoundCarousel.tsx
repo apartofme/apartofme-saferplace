@@ -5,12 +5,12 @@ import { useSharedValue } from 'react-native-reanimated';
 
 import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
-import { ISongCarouselItemProps } from './SongCarousel.types';
-import { styles } from './SongCarousel.styles';
+import { ISoundCarouselItemProps } from './SoundCarousel.types';
+import { styles } from './SoundCarousel.styles';
 import { OnlyImage } from './components';
-import { ISongCarouselItem } from './SongCarousel.data';
+import { CAROUSEL_MODE_CONFIG, ISoundCarouselItem } from './SoundCarousel.data';
 
-export const SongCarousel: React.FC<ISongCarouselItemProps> = ({
+export const SoundCarousel: React.FC<ISoundCarouselItemProps> = ({
   data,
   setCurrentPossition,
   setCurrentSong,
@@ -38,7 +38,7 @@ export const SongCarousel: React.FC<ISongCarouselItemProps> = ({
   );
 
   const renderCarouselItem = useCallback(
-    ({ item }: { item: ISongCarouselItem }) => {
+    ({ item }: { item: ISoundCarouselItem }) => {
       return <OnlyImage data={item} />;
     },
     [],
@@ -52,11 +52,7 @@ export const SongCarousel: React.FC<ISongCarouselItemProps> = ({
         width={WINDOW_WIDTH}
         data={[...data]}
         mode={'parallax'}
-        modeConfig={{
-          parallaxScrollingScale: 0.9,
-          parallaxScrollingOffset: 230,
-          parallaxAdjacentItemScale: 0.4,
-        }}
+        modeConfig={CAROUSEL_MODE_CONFIG}
         defaultIndex={1}
         renderItem={renderCarouselItem}
         style={generalStyles.flex}

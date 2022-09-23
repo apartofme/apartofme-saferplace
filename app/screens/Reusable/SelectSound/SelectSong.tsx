@@ -9,15 +9,15 @@ import {
   BottomButtonView,
   ExtendedButton,
   MainHeader,
-  SongCarousel,
+  SoundCarousel,
 } from '../../../components';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
-import { SONG_CAROUSEL } from './SelectSong.data';
+import { SOUND_CAROUSEL } from './SelectSound.data';
 import { styles } from './SelectSong.styles';
-import { ISelectSongScreenProps } from './SelectSong.types';
+import { ISelectSoundScreenProps } from './SelectSong.types';
 
-export const SelectSongScreen: React.FC<ISelectSongScreenProps> = ({
+export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ export const SelectSongScreen: React.FC<ISelectSongScreenProps> = ({
   const [duration, setDuration] = useState(0);
   const [isFinished, setIsFished] = useState(false);
 
-  const setSongStatus = useCallback(() => {
+  const setSoundStatus = useCallback(() => {
     if (!isFinished && AudioPlayerHelper.filepath === currentAudioName) {
       if (!isPause) {
         AudioPlayerHelper.pause();
@@ -64,14 +64,14 @@ export const SelectSongScreen: React.FC<ISelectSongScreenProps> = ({
         onLeftIconPress={navigation.goBack}
       />
       <BottomButtonView buttonTitle={t('buttons.select')} onSubmit={_.noop}>
-        <SongCarousel
-          data={SONG_CAROUSEL}
+        <SoundCarousel
+          data={SOUND_CAROUSEL}
           setCurrentSong={setCurrentAudioName}
           carouselRef={carouselRef}
         />
         <View style={styles.buttonsContainer}>
           <ExtendedButton title="<-" onPress={onPreviosPress} />
-          <ExtendedButton title="|>/||" onPress={setSongStatus} />
+          <ExtendedButton title="|>/||" onPress={setSoundStatus} />
           <ExtendedButton title="->" onPress={onNextPress} />
         </View>
       </BottomButtonView>

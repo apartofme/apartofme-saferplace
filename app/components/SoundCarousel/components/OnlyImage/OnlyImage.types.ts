@@ -1,7 +1,7 @@
 import { ViewProps } from 'react-native';
 
-import { ISongCarouselItem } from '../../SongCarousel.data';
+import { ISoundCarouselItem } from '../../SoundCarousel.data';
 
 export interface IOnlyImageProps extends ViewProps {
-  data: ISongCarouselItem;
+  data: ISoundCarouselItem;
 }

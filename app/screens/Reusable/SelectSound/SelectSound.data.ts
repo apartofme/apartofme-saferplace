@@ -1,7 +1,7 @@
 import { IMAGES } from '../../../assets';
-import { ISongCarouselItem } from '../../../components';
+import { ISoundCarouselItem } from '../../../components';
 
-export const SONG_CAROUSEL: ReadonlyArray<ISongCarouselItem> = [
+export const SOUND_CAROUSEL: ReadonlyArray<ISoundCarouselItem> = [
   {
     id: 'sound_one.mp3',
     image: IMAGES.LOGO,
