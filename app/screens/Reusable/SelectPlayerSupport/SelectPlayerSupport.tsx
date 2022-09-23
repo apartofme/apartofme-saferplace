@@ -24,7 +24,7 @@ import { DUMMY_PLAYER_LIST } from './SelectPlayerSupport.data';
 import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
 
 export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps> =
-  ({ route }) => {
+  ({ navigation, route }) => {
     const [selectedPlayer, setSelectedPlayer] = useState<string>('');
 
     const { t } = useTranslation();
@@ -81,6 +81,10 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
       [selectedPlayer],
     );
 
+    const goToAlert = useCallback(() => {
+      navigation.navigate('Alert');
+    }, [navigation]);
+
     return (
       <ImageBackground
         source={
@@ -105,10 +109,13 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
               style={styles.playerList}
             />
             {/* // TODO: change to correct image */}
-            <Image
-              source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
-              style={styles.infoImage}
-            />
+            <TouchableOpacity onPress={goToAlert}>
+              <Image
+                source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
+                style={styles.infoImage}
+              />
+            </TouchableOpacity>
+
             <ExtendedText preset="secondary-text" style={styles.footer}>
               {description ?? t('screens.select_player.footer')}
             </ExtendedText>

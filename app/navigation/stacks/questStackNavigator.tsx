@@ -5,6 +5,7 @@ import { IQuest } from '../../models/IQuest';
 import {
   AcknowledgementAlongEdgesScreen,
   AcknowledgementSuccessivelyScreen,
+  AlertScreen,
   DialogScreen,
   DummyQuestsScreen,
   EmojiSelectionScreen,
@@ -27,6 +28,7 @@ export type QuestStackParams = {
   VerticalSwipe: { data: IQuest };
   AcknowledgementAlongEdges: { data: IQuest };
   SelectPlayerSupport: { data: IQuest };
+  Alert: undefined;
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -53,5 +55,6 @@ export const QuestStackNavigator = () => (
       name="SelectPlayerSupport"
       component={SelectPlayerSupportScreen}
     />
+    <Stack.Screen name="Alert" component={AlertScreen} />
   </Stack.Navigator>
 );
