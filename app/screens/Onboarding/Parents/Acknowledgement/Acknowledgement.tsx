@@ -1,41 +1,28 @@
 import React, { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { IMAGES } from '../../../../assets';
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../../components';
-import { generalStyles } from '../../../../utils/styles';
+import { VerticalSwipeView } from '../../../../components';
 import { IAcknowledgementScreenProps } from './Acknowledgement.types';
-import { styles } from './Acknowledgement.styles';
 
 export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
   navigation,
 }) => {
-  const { t } = useTranslation();
-
   const onNextPress = useCallback(() => {
     navigation.navigate('OnboardingCarousel');
   }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <BottomButtonView
-        buttonTitle={t('buttons.next')}
-        onSubmit={onNextPress}
-        style={styles.container}>
-        {/* // TODO: add the image */}
-        <ExtendedText preset="body-regular" style={styles.title}>
-          {t('screens.onboarding.acknowledgement.title')}
-        </ExtendedText>
-      </BottomButtonView>
-    </SafeAreaView>
+    // TODO: change to correct background
+    <VerticalSwipeView
+      image={IMAGES.LOGO}
+      titleKey="screens.onboarding.acknowledgement.title"
+      topBackground={{
+        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+      }}
+      bottomBackground={{
+        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+      }}
+      onSubmit={onNextPress}
+    />
   );
 };
