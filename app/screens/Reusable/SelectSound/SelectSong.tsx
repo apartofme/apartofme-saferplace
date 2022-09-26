@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
@@ -16,10 +15,9 @@ import { generalStyles } from '../../../utils/styles';
 import { SOUND_CAROUSEL } from './SelectSound.data';
 import { styles } from './SelectSong.styles';
 import { ISelectSoundScreenProps } from './SelectSong.types';
+import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
 
-export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
-  navigation,
-}) => {
+export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = () => {
   const { t } = useTranslation();
 
   const carouselRef = useRef<ICarouselInstance>(null);
@@ -28,6 +26,14 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   const [currentAudioName, setCurrentAudioName] = useState('sound_two.mp3');
   const [duration, setDuration] = useState(0);
   const [isFinished, setIsFished] = useState(false);
+
+  const goBack = useNavigatePrevQuest();
+  const onSubmit = useNavigateNextQuest();
+
+  const onPress = useCallback(() => {
+    AudioPlayerHelper.stop();
+    onSubmit();
+  }, [onSubmit]);
 
   const setSoundStatus = useCallback(() => {
     if (!isFinished && AudioPlayerHelper.filepath === currentAudioName) {
@@ -59,11 +65,8 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <BottomButtonView buttonTitle={t('buttons.select')} onSubmit={_.noop}>
+      <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} onLeftIconPress={goBack} />
+      <BottomButtonView buttonTitle={t('buttons.select')} onSubmit={onPress}>
         <SoundCarousel
           data={SOUND_CAROUSEL}
           setCurrentSong={setCurrentAudioName}

@@ -16,6 +16,7 @@ import {
   PassPhoneScreen,
   SelectPlayerScreen,
   SelectPlayerSupportScreen,
+  SelectSoundScreen,
   TimerTitleScreen,
   VerticalSwipeScreen,
 } from '../../screens';
@@ -37,6 +38,7 @@ export type QuestStackParams = {
   CharmCompleted: { data: IQuest };
   TimerTitle: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
+  SelectSound: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -71,5 +73,6 @@ export const QuestStackNavigator = () => (
       name="ElixirDoubleInteraction"
       component={ElixirDoubleInteractionScreen}
     />
+    <Stack.Screen name="SelectSound" component={SelectSoundScreen} />
   </Stack.Navigator>
 );
