@@ -9,3 +9,5 @@ export interface ISaveCurrentQuestLineQuests {
   id: string;
   quests: IQuest[];
 }
+
+export type IDailyCheck = Record<string, string>;

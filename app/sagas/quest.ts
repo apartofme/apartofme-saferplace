@@ -20,8 +20,11 @@ export function* initQuestSaga() {
       language,
     );
     const allCorrectQuests = questsToDictionary(language, questLines, quests);
+
     if (allCorrectQuests) {
-      yield put(questSlice.actions.saveAllQuests(allCorrectQuests));
+      yield put(questSlice.actions.saveAllQuestsSuccess(allCorrectQuests));
+    } else {
+      yield put(questSlice.actions.saveAllQuestsError('get all quests error'));
     }
   }
 }

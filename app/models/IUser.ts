@@ -4,4 +4,5 @@ export interface IUser {
   avatar: string;
   emailVerified: boolean;
   uid: string;
+  createdAt: string;
 }
