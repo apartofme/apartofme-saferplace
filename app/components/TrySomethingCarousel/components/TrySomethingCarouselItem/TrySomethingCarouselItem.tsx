@@ -7,6 +7,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useTranslation } from 'react-i18next';
 
 import { IOnlyImageProps } from './TrySomethingCarouselItem.types';
 import { styles } from './TrySomethingCarouselItem.styles';
@@ -17,6 +18,7 @@ export const TrySomethingCarouselItem: React.FC<IOnlyImageProps> = ({
   data,
   isActive,
 }) => {
+  const { t } = useTranslation();
   // TODO: change to correct duration
   const progressValue = useDerivedValue(() => {
     return isActive
@@ -40,8 +42,8 @@ export const TrySomethingCarouselItem: React.FC<IOnlyImageProps> = ({
     <GestureHandlerRootView style={generalStyles.flex}>
       <View style={styles.container}>
         <Animated.View style={[styles.contentContainer, backgroundColorStyles]}>
-          <ExtendedText style={styles.title}>{data.title}</ExtendedText>
-          <ExtendedText>{data.subtitle}</ExtendedText>
+          <ExtendedText style={styles.title}>{t(data.title)}</ExtendedText>
+          <ExtendedText>{t(data.subtitle)}</ExtendedText>
         </Animated.View>
       </View>
     </GestureHandlerRootView>

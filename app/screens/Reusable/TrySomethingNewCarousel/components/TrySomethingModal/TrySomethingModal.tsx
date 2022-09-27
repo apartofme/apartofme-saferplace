@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
 
 import { styles } from './TrySomethingModal.styles';
 import { ITrySomethingModalProps } from './TrySomethingModal.types';
@@ -14,6 +13,8 @@ import {
   MainHeader,
 } from '../../../../../components';
 import { IMAGES } from '../../../../../assets';
+import { cacheSlice } from '../../../../../redux/slices';
+import { useAppDispatch, useNavigateNextQuest } from '../../../../../hooks';
 
 export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   title,
@@ -23,14 +24,17 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  const dispatch = useAppDispatch();
+
+  const onSubmit = useNavigateNextQuest();
+
   const [inputValue, setInputValue] = useState('');
 
-  // const setTrySomethingData = useCallback(() => {
-  //   const carouselDataCopy = _.cloneDeep(carouselData);
-  //   carouselDataCopy[activeItemIndex].subtitle = inputValue;
-  //   setCarouselData(carouselDataCopy);
-  //   console.log(carouselData);
-  // }, [activeItemIndex, carouselData, inputValue, setCarouselData]);
+  const onSubmitPress = useCallback(() => {
+    data.subtitle = inputValue;
+    dispatch(cacheSlice.actions.saveTrySomethingItem(data));
+    onSubmit();
+  }, [data, dispatch, inputValue, onSubmit]);
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
@@ -39,7 +43,9 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
         rightIcon={IMAGES.WHITE_PENCIL}
         onLeftIconPress={setModalStatus}
       />
-      <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={_.noop}>
+      <BottomButtonView
+        buttonTitle={t('buttons.next')}
+        onSubmit={onSubmitPress}>
         <View style={styles.container}>
           <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
           <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>

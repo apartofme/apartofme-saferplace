@@ -11,6 +11,11 @@ export interface IShortSignUpData {
   avatar?: string;
 }
 
+export interface ITrySomethingItem {
+  title: string;
+  subtitle: string;
+}
+
 export interface ISignUpDataPayload {
   payload: ISignUpData;
 }
@@ -29,3 +34,7 @@ export type ITranslations = Record<
     translations: Record<string, string>;
   }
 >;
+
+export type ITrySomethingItemPayload = {
+  payload: ITrySomethingItem;
+};

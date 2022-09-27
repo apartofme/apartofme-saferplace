@@ -10,11 +10,12 @@ import {
   MainHeader,
   TrySomethingCarousel,
 } from '../../../components';
-// TODO: refactor
+import { useAppDispatch } from '../../../hooks';
 import {
   useNavigateNextQuest,
   useNavigatePrevQuest,
 } from '../../../hooks/quest';
+import { cacheSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { TrySomethingModal } from './components';
 import { TRY_SOMETHING_ITEMS } from './TrySomethingNewCarousel.data';
@@ -25,9 +26,11 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
   ({}) => {
     // TODO: uncommented when release
     // const { title, description, backgroundImage } = route.params.data;
-    const title = 'some';
-    const description = 'description';
+    const title = 'title';
+    const description = 'subtitle';
     const backgroundImage = IMAGES.WHITE_BACK_ARROW;
+
+    const dispatch = useAppDispatch();
 
     const [activeItem, setActiveItem] = useState(TRY_SOMETHING_ITEMS[0]);
 
@@ -48,6 +51,11 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
       setActiveItem(TRY_SOMETHING_ITEMS[activeItemIndex]);
     }, [activeItemIndex]);
 
+    const onSubmitPress = useCallback(() => {
+      dispatch(cacheSlice.actions.saveTrySomethingItem(activeItem));
+      onSubmit();
+    }, [activeItem, dispatch, onSubmit]);
+
     return (
       <ImageBackground source={backgroundImage} style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
@@ -63,7 +71,6 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
             leftIcon={IMAGES.WHITE_BACK_ARROW}
             rightIcon={IMAGES.WHITE_PENCIL}
             onLeftIconPress={goBack}
-            onRightIconPress={onSubmit}
           />
           <View style={styles.container}>
             <View style={styles.titleContainer}>
@@ -78,6 +85,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
               <ExtendedButton
                 style={styles.selectButton}
                 title={t('buttons.select')}
+                onPress={onSubmitPress}
               />
               <ExtendedButton
                 title={t('buttons.create_your_own')}

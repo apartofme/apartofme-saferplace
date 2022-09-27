@@ -9,6 +9,8 @@ import {
   ISignUpData,
   ISignUpDataPayload,
   ITranslations,
+  ITrySomethingItem,
+  ITrySomethingItemPayload,
 } from '../types';
 
 interface ICacheState {
@@ -17,6 +19,7 @@ interface ICacheState {
     child: Nullable<IShortSignUpData>;
   };
   translations: Nullable<ITranslations>;
+  trySomethingItem: Nullable<ITrySomethingItem>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -25,6 +28,7 @@ const INITIAL_STATE: ICacheState = {
     child: null,
   },
   translations: null,
+  trySomethingItem: null,
 };
 
 export const cacheSlice = createSlice({
@@ -39,6 +43,9 @@ export const cacheSlice = createSlice({
     },
     saveTranslations(state, { payload }: ISaveTranslationsPayload) {
       state.translations = _.merge(state.translations, payload);
+    },
+    saveTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
+      state.trySomethingItem = _.merge(state.trySomethingItem, payload);
     },
   },
 });
