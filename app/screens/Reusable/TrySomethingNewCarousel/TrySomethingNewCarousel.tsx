@@ -23,12 +23,8 @@ import { styles } from './TrySomethingNewCarousel.styles';
 import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.types';
 
 export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScreenProps> =
-  ({}) => {
-    // TODO: uncommented when release
-    // const { title, description, backgroundImage } = route.params.data;
-    const title = 'title';
-    const description = 'subtitle';
-    const backgroundImage = IMAGES.WHITE_BACK_ARROW;
+  ({ route }) => {
+    const { title, description, backgroundImage } = route.params.data;
 
     const dispatch = useAppDispatch();
 

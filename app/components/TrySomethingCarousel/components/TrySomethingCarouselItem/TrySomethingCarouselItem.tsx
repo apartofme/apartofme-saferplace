@@ -13,6 +13,7 @@ import { IOnlyImageProps } from './TrySomethingCarouselItem.types';
 import { styles } from './TrySomethingCarouselItem.styles';
 import { ExtendedText } from '../../../ExtendedText';
 import { generalStyles } from '../../../../utils/styles';
+import { CAROUSEL_COLORS } from './TrySomethingCarouselItem.colors';
 
 export const TrySomethingCarouselItem: React.FC<IOnlyImageProps> = ({
   data,
@@ -31,7 +32,7 @@ export const TrySomethingCarouselItem: React.FC<IOnlyImageProps> = ({
     const backgroundColor = interpolateColor(
       progressValue.value,
       [0, 1],
-      ['rgba(188, 53, 203, 0.30)', 'rgba(188, 53, 203, 0.80)'],
+      [CAROUSEL_COLORS.INACTIVE, CAROUSEL_COLORS.ACTIVE],
     );
     return {
       backgroundColor,

@@ -8,6 +8,7 @@ import { generalStyles } from '../../../../../utils/styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   BottomButtonView,
+  ExtendedKeyboardAvoidingView,
   ExtendedText,
   ExtendedTextInput,
   MainHeader,
@@ -43,15 +44,20 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
         rightIcon={IMAGES.WHITE_PENCIL}
         onLeftIconPress={setModalStatus}
       />
-      <BottomButtonView
-        buttonTitle={t('buttons.next')}
-        onSubmit={onSubmitPress}>
-        <View style={styles.container}>
-          <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
-          <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
-          <ExtendedTextInput value={inputValue} onChangeText={setInputValue} />
-        </View>
-      </BottomButtonView>
+      <ExtendedKeyboardAvoidingView>
+        <BottomButtonView
+          buttonTitle={t('buttons.next')}
+          onSubmit={onSubmitPress}>
+          <View style={styles.container}>
+            <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
+            <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
+            <ExtendedTextInput
+              value={inputValue}
+              onChangeText={setInputValue}
+            />
+          </View>
+        </BottomButtonView>
+      </ExtendedKeyboardAvoidingView>
     </SafeAreaView>
   );
 };

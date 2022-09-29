@@ -23,13 +23,6 @@ export const TrySomethingCarousel: React.FC<ITrySomethingCarouselProps> = ({
 
   const [currentPosition, setCurrentPosition] = useState(0);
 
-  const onSnapToItem = useCallback(
-    index => {
-      setIndex(Math.floor(index));
-    },
-    [setIndex],
-  );
-
   const onProgressChange = useCallback(
     (item, absoluteProgress) => {
       progressValue.value = absoluteProgress;
@@ -62,6 +55,10 @@ export const TrySomethingCarousel: React.FC<ITrySomethingCarouselProps> = ({
     [currentPosition],
   );
 
+  const onScrollBegin = useCallback(() => {
+    setCurrentPosition(-1);
+  }, []);
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <ReanimatedCarousel
@@ -71,11 +68,11 @@ export const TrySomethingCarousel: React.FC<ITrySomethingCarouselProps> = ({
         renderItem={renderCarouselItem}
         mode={'parallax'}
         modeConfig={CAROUSEL_MODE_CONFIG}
-        style={[generalStyles.flex]}
-        onSnapToItem={onSnapToItem}
+        style={generalStyles.flex}
+        onSnapToItem={_.flow(Math.floor, setIndex)}
         onProgressChange={onProgressChange}
-        onScrollBegin={() => setCurrentPosition(-1)}
-        onScrollEnd={index => setCurrentPosition(index)}
+        onScrollBegin={onScrollBegin}
+        onScrollEnd={setCurrentPosition}
       />
       <View style={styles.progressBar}>{renderProgressBar()}</View>
     </GestureHandlerRootView>
