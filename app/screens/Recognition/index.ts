@@ -1,1 +1,1 @@
-export * from './ElixirCarousel';
+export * from './RecognitionAcknowledgement';

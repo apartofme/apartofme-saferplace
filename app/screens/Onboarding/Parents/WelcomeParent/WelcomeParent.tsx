@@ -26,7 +26,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
 
   // TODO: remove
   const goToMenuStack = useCallback(() => {
-    navigation.navigate('MenuStack');
+    navigation.navigate('RecognitionStack');
   }, [navigation]);
 
   return (
