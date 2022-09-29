@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
@@ -12,6 +12,14 @@ import { IRecognitionDialogScreenProps } from './RecognitionDialog.types';
 export const RecognitionDialogScreen: React.FC<IRecognitionDialogScreenProps> =
   ({ navigation }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    const onNextPress = useCallback(() => {
+      if (RECOGNITION_DIALOG_DATA.length - 1 > currentIndex) {
+        setCurrentIndex(currentIndex + 1);
+      } else {
+        navigation.navigate('ChooseReason');
+      }
+    }, [currentIndex, navigation, setCurrentIndex]);
 
     return (
       <ImageBackground
@@ -29,8 +37,8 @@ export const RecognitionDialogScreen: React.FC<IRecognitionDialogScreenProps> =
             <Image source={IMAGES.LOGO} style={styles.image} />
             <Dialog
               data={RECOGNITION_DIALOG_DATA}
+              onNextPress={onNextPress}
               currentIndex={currentIndex}
-              setCurrentIndex={setCurrentIndex}
             />
           </View>
         </SafeAreaView>
