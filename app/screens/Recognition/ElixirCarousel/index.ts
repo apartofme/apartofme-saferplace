@@ -1,1 +1,0 @@
-export { ElixirCarouselScreen } from './ElixirCarousel';
