@@ -6,6 +6,7 @@ export interface IElixirDoubleInteractionStyles {
   container: ViewStyle;
   buttonsContainer: ViewStyle;
   button: ViewStyle;
+  border: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
   square: ViewStyle;
@@ -29,6 +30,11 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionStyles>({
     width: 80,
     borderRadius: 99,
     backgroundColor: COLORS.PRIMARY,
+  },
+  // TODO: remove
+  border: {
+    borderWidth: 5,
+    borderColor: COLORS.BORDER,
   },
   title: {
     textAlign: 'center',

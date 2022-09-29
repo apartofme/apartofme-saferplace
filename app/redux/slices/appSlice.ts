@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
-import { userSlice } from '.';
+import { cacheSlice, questSlice, userSlice } from '../slices';
 import { ErrorType, LoadingType } from '../types';
 
 export interface IAppState {
@@ -14,11 +14,15 @@ const INITIAL_STATE: IAppState = {
     isGetUser: false,
     isLoginUser: false,
     isRegisterUser: false,
+    isSaveAllQuests: false,
+    isSaveTranslations: false,
   },
   errors: {
     getUser: null,
     loginUser: null,
     registerUser: null,
+    saveAllQuests: null,
+    saveTranslations: null,
   },
 };
 
@@ -64,5 +68,34 @@ export const appSlice = createSlice({
       state.loading[LoadingType.isRegisterUser] = false;
       state.errors[ErrorType.registerUser] = action.payload;
     });
+
+    // Save all quests
+    builder.addCase(questSlice.actions.saveAllQuests, state => {
+      state.loading[LoadingType.isSaveAllQuests] = true;
+      state.errors[ErrorType.saveAllQuests] = null;
+    });
+    builder.addCase(questSlice.actions.saveAllQuestsSuccess, state => {
+      state.loading[LoadingType.isSaveAllQuests] = false;
+    });
+    builder.addCase(questSlice.actions.saveAllQuestsError, (state, action) => {
+      state.loading[LoadingType.isSaveAllQuests] = false;
+      state.errors[ErrorType.saveAllQuests] = action.payload;
+    });
+
+    // Save translations
+    builder.addCase(cacheSlice.actions.saveTranslations, state => {
+      state.loading[LoadingType.isSaveTranslations] = true;
+      state.errors[ErrorType.saveTranslations] = null;
+    });
+    builder.addCase(cacheSlice.actions.saveTranslationsSuccess, state => {
+      state.loading[LoadingType.isSaveTranslations] = false;
+    });
+    builder.addCase(
+      cacheSlice.actions.saveTranslationsError,
+      (state, action) => {
+        state.loading[LoadingType.isSaveTranslations] = false;
+        state.errors[ErrorType.saveTranslations] = action.payload;
+      },
+    );
   },
 });

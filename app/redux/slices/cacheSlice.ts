@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
 import { Nullable } from '../../utils';
@@ -31,6 +31,7 @@ const INITIAL_STATE: ICacheState = {
   trySomethingItem: null,
 };
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export const cacheSlice = createSlice({
   name: 'cache',
   initialState: INITIAL_STATE,
@@ -41,11 +42,13 @@ export const cacheSlice = createSlice({
     saveSignUpDataChild(state, { payload }: IShortSignUpDataPayload) {
       state.auth.child = _.merge(state.auth.child, payload);
     },
-    saveTranslations(state, { payload }: ISaveTranslationsPayload) {
+    saveTranslations() {},
+    saveTranslationsSuccess(state, { payload }: ISaveTranslationsPayload) {
       state.translations = _.merge(state.translations, payload);
     },
     saveTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
       state.trySomethingItem = _.merge(state.trySomethingItem, payload);
     },
+    saveTranslationsError(state, action: PayloadAction<string>) {},
   },
 });

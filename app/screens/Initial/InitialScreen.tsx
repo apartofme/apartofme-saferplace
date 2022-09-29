@@ -1,21 +1,43 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView } from 'react-native';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
 
-import { ExtendedText } from '../../components';
 import { IInitialScreenProps } from './InitialScreen.types';
 import { styles } from './InitialScreen.styles';
+import { useAppDispatch, useAppSelector, useMount } from '../../hooks';
+import { cacheSlice, questSlice } from '../../redux/slices';
 
 export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,
 }) => {
+  const user = useAppSelector(state => state.user.parent);
+  const dispatch = useAppDispatch();
+
+  const isSaveAllQuestsLoading = useAppSelector(
+    state => state.app.loading.isSaveAllQuests,
+  );
+  const isSaveTranslationsLoading = useAppSelector(
+    state => state.app.loading.isSaveTranslations,
+  );
+
+  useMount(() => {
+    dispatch(questSlice.actions.saveAllQuests());
+    dispatch(cacheSlice.actions.saveTranslations());
+  });
+
   useEffect(() => {
-    // TODO: Timeout for loading simulation. Replace it with data fetching
-    setTimeout(() => navigation.replace('ParentsOnboardingStack'), 5000);
-  }, [navigation]);
+    if (!isSaveAllQuestsLoading && !isSaveTranslationsLoading) {
+      if (user) {
+        navigation.replace('QuestStack');
+      } else {
+        navigation.replace('ParentsOnboardingStack');
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSaveAllQuestsLoading, isSaveTranslationsLoading]);
 
   return (
     <SafeAreaView style={styles.root}>
-      <ExtendedText preset="title">Loading simulation...</ExtendedText>
+      <ActivityIndicator size="large" />
     </SafeAreaView>
   );
 };

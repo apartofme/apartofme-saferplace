@@ -1,5 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
+import {
+  GestureHandlerRootView,
+  PanGestureHandler,
+} from 'react-native-gesture-handler';
 
 import { ExtendedText } from '../../../components';
 import { styles } from './ElixirDoubleInteraction.styles';
@@ -32,18 +36,15 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
         />
         <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
 
-        <View style={styles.buttonsContainer}>
-          <View
-            style={[styles.button, isChildPress && styles.border]}
-            onTouchStart={setChildPress}
-            onTouchEnd={setChildPress}
-          />
-          <View
-            style={[styles.button, isAdultPress && styles.border]}
-            onTouchStart={setAdultPress}
-            onTouchEnd={setAdultPress}
-          />
-        </View>
+        <GestureHandlerRootView style={styles.buttonsContainer}>
+          <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
+            <View style={[styles.button, isChildPress && styles.border]} />
+          </PanGestureHandler>
+
+          <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
+            <View style={[styles.button, isAdultPress && styles.border]} />
+          </PanGestureHandler>
+        </GestureHandlerRootView>
       </SafeAreaView>
     );
   };

@@ -17,11 +17,16 @@ export function* initLocalizationSaga() {
     );
     if (translations) {
       yield put(
-        cacheSlice.actions.saveTranslations({ [language]: { translations } }),
+        cacheSlice.actions.saveTranslationsSuccess({
+          [language]: { translations },
+        }),
       );
     } else {
       const reduxTranslations: Record<string, string> = yield select(
         state => state.cache.translations[language].translations,
+      );
+      yield put(
+        cacheSlice.actions.saveTranslationsError('Save translations error '),
       );
 
       yield call(setLocalizationBundle, language, reduxTranslations);

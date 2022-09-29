@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
-import _ from 'lodash';
+import { findIndex } from 'lodash';
+import moment from 'moment';
 
 import {
   BottomButtonView,
@@ -10,7 +11,7 @@ import {
   MainHeader,
 } from '../../../components';
 import { IMAGES } from '../../../assets';
-import { useAppSelector, useMount } from '../../../hooks';
+import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { IEmojiSelectionScreenProps } from './EmojiSelection.types';
 import { NicknameType } from '../../../utils/types';
@@ -20,6 +21,7 @@ import {
   useNavigatePrevQuest,
 } from '../../../hooks/quest';
 import { styles } from './EmojiSelection.styles';
+import { questSlice } from '../../../redux/slices';
 
 export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   route,
@@ -27,6 +29,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   const { t } = useTranslation();
   const { title, buttonTitle, crossHeader, titleHasNickname } =
     route.params.data;
+  const dispatch = useAppDispatch();
   const parentNickname = useAppSelector(
     state => state.user.child?.nickname,
   ) as string;
@@ -42,7 +45,22 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
     }
   });
 
-  const onSubmit = useNavigateNextQuest();
+  const navigateToNextQuest = useNavigateNextQuest();
+
+  const onSubmit = useCallback(() => {
+    const currentDate = moment().format('L');
+
+    if (findIndex(titleArray, item => item === 'child')) {
+      dispatch(
+        questSlice.actions.saveDailyCheck({
+          [currentDate]: emoji.split('.')[2],
+        }),
+      );
+    }
+
+    navigateToNextQuest();
+  }, [dispatch, emoji, navigateToNextQuest, titleArray]);
+
   const goBack = useNavigatePrevQuest();
 
   const renderHeader = useCallback(() => {
