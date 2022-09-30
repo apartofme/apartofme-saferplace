@@ -1,5 +1,5 @@
 export const REGEXPS = {
-  CAPITAL_LETTER: /[A-Z]/,
+  LOWERCASE: /[a-z]/,
   NUMBER: /\d/,
-  SMALL_LETTER: /[a-z]/,
+  UPPERCASE: /[A-Z]/,
 };

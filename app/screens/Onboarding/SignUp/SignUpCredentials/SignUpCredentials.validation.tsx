@@ -6,8 +6,8 @@ export const SignUpCredentioalsValidationSchema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup
     .string()
-    .matches(REGEXPS.CAPITAL_LETTER)
-    .matches(REGEXPS.SMALL_LETTER)
+    .matches(REGEXPS.UPPERCASE)
+    .matches(REGEXPS.LOWERCASE)
     .matches(REGEXPS.NUMBER)
     .min(8)
     .required(),
