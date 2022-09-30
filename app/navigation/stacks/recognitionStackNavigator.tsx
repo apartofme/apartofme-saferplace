@@ -5,10 +5,12 @@ import {
   ElixirCarouselScreen,
   IRecognitionAcknowledgementRoute,
   RecognitionAcknowledgementScreen,
+  RecognitionDialogScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type RecognitionStackParams = {
+  RecognitionDialog: undefined;
   RecognitionAcknowledgement: { data: IRecognitionAcknowledgementRoute };
   ElixirCarousel: undefined;
 };
@@ -22,5 +24,10 @@ export const RecognitionStackNavigator = () => (
       component={RecognitionAcknowledgementScreen}
     />
     <Stack.Screen name="ElixirCarousel" component={ElixirCarouselScreen} />
+    />
+    <Stack.Screen 
+      name="RecognitionDialog" 
+      component={RecognitionDialogScreen} />
+    />
   </Stack.Navigator>
 );
