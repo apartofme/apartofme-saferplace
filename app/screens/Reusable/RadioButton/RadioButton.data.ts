@@ -1,12 +1,17 @@
 import { IRadioButtonListItem } from '../../../components';
 
+export enum RadioButtonTypes {
+  yes = 'yes',
+  no = 'no',
+}
+
 export const RADIO_BUTTON_LIST: ReadonlyArray<IRadioButtonListItem> = [
   {
-    id: 'yes',
+    id: RadioButtonTypes.yes,
     title: 'Yes',
   },
   {
-    id: 'no',
+    id: RadioButtonTypes.no,
     title: 'No',
   },
 ];

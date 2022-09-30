@@ -14,6 +14,7 @@ import {
   EmojiSelectionScreen,
   JournelScreen,
   PassPhoneScreen,
+  RadioButtonScreen,
   SelectPlayerScreen,
   SelectPlayerSupportScreen,
   SelectSoundScreen,
@@ -39,6 +40,7 @@ export type QuestStackParams = {
   TimerTitle: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
   SelectSound: { data: IQuest };
+  RadioButton: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -74,5 +76,6 @@ export const QuestStackNavigator = () => (
       component={ElixirDoubleInteractionScreen}
     />
     <Stack.Screen name="SelectSound" component={SelectSoundScreen} />
+    <Stack.Screen name="RadioButton" component={RadioButtonScreen} />
   </Stack.Navigator>
 );

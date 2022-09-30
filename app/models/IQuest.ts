@@ -18,6 +18,7 @@ export interface IQuest {
   titleHasNickname: Nullable<boolean>;
   crossHeader: Nullable<boolean>;
   duration: Nullable<number>;
+  navigatesto: Nullable<string[]>;
 }
 
 export interface IQuestDatoCms {
@@ -50,4 +51,9 @@ export interface IQuestDatoCms {
   titlehasnickname: Nullable<boolean>;
   crossheader: Nullable<boolean>;
   duration: Nullable<number>;
+  navigatesto: Nullable<
+    {
+      id: string;
+    }[]
+  >;
 }

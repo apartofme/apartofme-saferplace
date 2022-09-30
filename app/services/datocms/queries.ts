@@ -38,7 +38,7 @@ export const getAllQuestsByQuestLineIdQuery = (
   skip = MIN_QRAPHQL_SKIP,
 ) => gql`
 query getQuestLineQuests {
-  allQuestScreens(locale: ${locale}, first: ${first}, skip: ${skip}, 
+  allQuestScreens(locale: ${locale}, first: ${first}, skip: ${skip},
     orderBy: sort_ASC, filter: {questlineid: {eq: "${questLineId}"}}) {
     id
     title
@@ -51,7 +51,7 @@ query getQuestLineQuests {
       id
       path
     }
-    buttontitle 
+    buttontitle
     tellmoretitle
     tellmoredescription
     tellmorebackground {
@@ -69,6 +69,9 @@ query getQuestLineQuests {
     titlehasnickname
     crossheader
     duration
+    navigatesto {
+      id
+    }
   }
 }
 `;
@@ -109,6 +112,9 @@ export const getAllQuestsQuery = (
       titlehasnickname
       crossheader
       duration
+      navigatesto {
+        id
+      }
     }
   }
 `;

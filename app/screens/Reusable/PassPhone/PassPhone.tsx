@@ -7,8 +7,8 @@ import { IPassPhoneScreenProps } from './PassPhone.types';
 import { styles } from './PassPhone.styles';
 import {
   useAppSelector,
+  useHandleSubmit,
   useMount,
-  useNavigateNextQuest,
   useNavigatePrevQuest,
 } from '../../../hooks';
 import {
@@ -32,7 +32,7 @@ export const PassPhoneScreen: React.FC<IPassPhoneScreenProps> = ({ route }) => {
   ) as string;
 
   const goBack = useNavigatePrevQuest();
-  const onSubmit = useNavigateNextQuest();
+  const onSubmit = useHandleSubmit();
 
   const { title, description, buttonTitle, crossHeader, titleHasNickname } =
     route.params.data;

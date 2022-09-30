@@ -9,12 +9,12 @@ import {
   MainHeader,
 } from '../../../../components';
 import { IMAGES } from '../../../../assets';
-import { useAppSelector, useMount } from '../../../../hooks';
+import { useAppSelector, useHandleSubmit, useMount } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { Nullable, parseTextWithNickname } from '../../../../utils';
 import { NicknameType } from '../../../../utils/types';
 import { IAcknowledgementSuccessivelyScreenProps } from './AcknowledgementSuccessively.types';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../../hooks';
+import { useNavigatePrevQuest } from '../../../../hooks';
 import { styles } from './AcknowledgementSuccessively.styles';
 
 export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccessivelyScreenProps> =
@@ -39,7 +39,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
     ) as string;
 
     const goBack = useNavigatePrevQuest();
-    const onSubmit = useNavigateNextQuest();
+    const onSubmit = useHandleSubmit();
 
     useMount(() => {
       if (titleHasNickname) {

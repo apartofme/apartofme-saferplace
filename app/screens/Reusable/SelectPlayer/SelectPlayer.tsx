@@ -18,7 +18,7 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
 import { DUMMY_PLAYER_LIST } from './SelectPlayer.data';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
+import { useHandleSubmit, useNavigatePrevQuest } from '../../../hooks';
 
 export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   route,
@@ -26,7 +26,7 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
   const { t } = useTranslation();
   const goBack = useNavigatePrevQuest();
-  const onSubmit = useNavigateNextQuest();
+  const onSubmit = useHandleSubmit();
 
   const { backgroundImage, crossHeader } = route.params.data;
 

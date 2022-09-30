@@ -12,7 +12,7 @@ import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
+import { useHandleSubmit, useNavigatePrevQuest } from '../../../hooks';
 import { IMAGES } from '../../../assets';
 
 export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
@@ -36,7 +36,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
 
   const goBack = useNavigatePrevQuest();
-  const onSubmit = useNavigateNextQuest();
+  const onSubmit = useHandleSubmit();
 
   const setScrollPosition = useCallback(() => {
     if (isTopPosition) {

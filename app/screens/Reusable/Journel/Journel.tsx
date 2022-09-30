@@ -13,13 +13,14 @@ import {
 } from '../../../components';
 import { IMAGES } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
+import { useHandleSubmit, useNavigatePrevQuest } from '../../../hooks';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
   const [inputText, setInputText] = useState<string>('');
   const { t } = useTranslation();
+
   const goBack = useNavigatePrevQuest();
-  const onSubmit = useNavigateNextQuest();
+  const onSubmit = useHandleSubmit();
 
   const { title, description, buttonTitle, backgroundImage } =
     route.params.data;

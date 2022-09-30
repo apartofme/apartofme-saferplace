@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
 
 import { IRadioButtonScreenProps } from './RadioButton.types';
 import { styles } from './RadioButton.styles';
@@ -15,27 +14,31 @@ import {
 import { IMAGES } from '../../../assets';
 import { RADIO_BUTTON_LIST } from './RadioButton.data';
 import { generalStyles } from '../../../utils/styles';
+import { useHandleSubmit, useNavigatePrevQuest } from '../../../hooks';
 
 export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
-  navigation,
   route,
 }) => {
   const { t } = useTranslation();
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
 
-  const { title, isTitleHaveNickname } = route.params.data;
+  const { title, titleHasNickname } = route.params.data;
+
+  const onSubmit = useHandleSubmit(selectedAnswer[0]);
+  const goBack = useNavigatePrevQuest();
 
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
         leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
+        onLeftIconPress={goBack}
         // TODO: change to correct icon
         rightIcon={IMAGES.WHITE_BACK_ARROW}
       />
       <BottomButtonView
         buttonTitle={t('buttons.next')}
-        onSubmit={_.noop}
+        onSubmit={onSubmit}
+        isDisabledButton={!selectedAnswer.length}
         style={styles.container}>
         <ExtendedText preset="title" style={styles.title}>
           {title}
