@@ -28,7 +28,7 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
       state => state.user.parent?.nickname,
     ) as string;
 
-    const correctTitle = useCallback(() => {
+    const getNicknameTitle = useCallback(() => {
       const findedTitle =
         _.find(RECOGNITION_ACKNOWLEDGEMENT_DATA, item => item.type === type)
           ?.title ?? '';
@@ -48,7 +48,7 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
           <View style={styles.container}>
             <Image source={IMAGES.LOGO} style={styles.image} />
             <ExtendedText style={styles.title}>
-              {t(correctTitle())}
+              {t(getNicknameTitle())}
             </ExtendedText>
             <ExtendedText style={styles.subtitle}>
               {t(
