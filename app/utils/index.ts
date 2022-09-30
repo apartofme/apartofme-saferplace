@@ -99,6 +99,7 @@ export const questsToDictionary = (
       buttonTitle: quest.buttontitle ?? null,
       positiveNavigatesTo: quest.positivenavigatesto?.id ?? null,
       negativeNavigatesTo: quest.negativenavigatesto?.id ?? null,
+      titleNicknameChanges: quest.titlenicknamechanges ?? null,
     };
 
     result[locale][questLineId].quests[quest.id] = tempQuest;

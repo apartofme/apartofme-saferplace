@@ -113,3 +113,24 @@ export const useNavigatePrevQuest = () => {
 
   return navigatePrevQuest;
 };
+
+export const useParseTextWithNickname = (text: string): string => {
+  const currentNickname = useAppSelector(
+    state => state.cache.nicknames?.current,
+  ) as string;
+  const parentNickname = useAppSelector(
+    state => state.cache.nicknames?.parent,
+  ) as string;
+  const childNickname = useAppSelector(
+    state => state.cache.nicknames?.child,
+  ) as string;
+  return _.replace(
+    _.replace(
+      _.replace(text, '|child|', childNickname),
+      '|parent|',
+      parentNickname,
+    ),
+    '|nickname|',
+    currentNickname,
+  );
+};

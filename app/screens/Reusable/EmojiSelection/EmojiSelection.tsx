@@ -1,7 +1,7 @@
+import _ from 'lodash';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
-import { findIndex } from 'lodash';
 import moment from 'moment';
 
 import {
@@ -50,7 +50,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   const onSubmit = useCallback(() => {
     const currentDate = moment().format('L');
 
-    if (findIndex(titleArray, item => item === 'child')) {
+    if (_.findIndex(titleArray, item => item === 'child')) {
       dispatch(
         questSlice.actions.saveDailyCheck({
           [currentDate]: emoji.split('.')[2],

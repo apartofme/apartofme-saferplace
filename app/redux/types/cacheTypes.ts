@@ -16,6 +16,12 @@ export interface ITrySomethingItem {
   subtitle: string;
 }
 
+export interface INicknames {
+  parent?: string;
+  child?: string;
+  current?: string;
+}
+
 export interface ISignUpDataPayload {
   payload: ISignUpData;
 }
@@ -35,6 +41,10 @@ export type ITranslations = Record<
   }
 >;
 
-export type ITrySomethingItemPayload = {
+export interface ITrySomethingItemPayload {
   payload: ITrySomethingItem;
-};
+}
+
+export interface INicknamesPayload {
+  payload: INicknames;
+}
