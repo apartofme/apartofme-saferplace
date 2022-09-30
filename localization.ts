@@ -207,6 +207,28 @@ export const en = {
       },
     },
     recognition: {
+      recognition_acknowledgement: {
+        first: {
+          title: 'you told me that someone close to you has died.',
+          description:
+            'I am so sorry you have had to experience this. Big events in life like this can come with big feelings. But I am here to help you through this.',
+        },
+        second: {
+          title: 'you told me that you had to leave your home.',
+          description:
+            'I am so sorry you have had to experience this. Big events in life like this can come with big feelings. But I am here to help you through this.',
+        },
+        third: {
+          title:
+            'you told me that you saw some really horrible and scary things.',
+          description:
+            'I am so sorry you have had to experience this. Big events in life like this can come with big feelings. But I am here to help you through this.',
+        },
+        multiple: {
+          title: 'I am so sorry you have had to experience these things.',
+          description:
+            'Big events in life like this can come with big feelings. But I am here to help you through this.',
+        },
       choose_reason: {
         title: 'What has brought you here?',
         description: 'Choose all of the options that apply',
