@@ -214,6 +214,16 @@ export const en = {
         second: 'You had to leave your home',
         third: 'You saw some really horrible and scary things',
       },
+      dialog: {
+        first:
+          'If there is anything that I or my faithful assistant can do for you, please let me know.',
+        second:
+          'It is my job to care for everything in this forest: from the trees to the people passing through.',
+        third:
+          'And you? Are you two just passing through? You still look worried... in fact, you look as if you have both had a difficult time getting here.',
+        fourth:
+          'Everyone who passes through this enchanted forest has been through a tough time. Would you mind telling me what brought you here?',
+      },
     },
     menu: {
       main_menu: {

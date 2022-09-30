@@ -1,0 +1,1 @@
+export { RecognitionDialogScreen } from './RecognitionDialog';
