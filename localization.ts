@@ -229,6 +229,12 @@ export const en = {
           description:
             'Big events in life like this can come with big feelings. But I am here to help you through this.',
         },
+      choose_reason: {
+        title: 'What has brought you here?',
+        description: 'Choose all of the options that apply',
+        first: 'Someone close to you has died',
+        second: 'You had to leave your home',
+        third: 'You saw some really horrible and scary things',
       },
       dialog: {
         first:
