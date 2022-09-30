@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Platform } from 'react-native';
 
-import { IQuestDatoCms } from '../models/IQuest';
+import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { ITranslations } from './types';
@@ -79,7 +79,7 @@ export const questsToDictionary = (
       return image.path;
     });
 
-    const tempQuest = {
+    const tempQuest: IQuest = {
       id: quest.id,
       title: quest.title,
       description: quest.description,
@@ -97,7 +97,8 @@ export const questsToDictionary = (
       crossHeader: quest.crossheader ?? null,
       duration: quest.duration ?? null,
       buttonTitle: quest.buttontitle ?? null,
-      navigatesto: quest.navigatesto?.map(item => item.id) ?? null,
+      positiveNavigatesTo: quest.positivenavigatesto?.id ?? null,
+      negativeNavigatesTo: quest.negativenavigatesto?.id ?? null,
     };
 
     result[locale][questLineId].quests[quest.id] = tempQuest;

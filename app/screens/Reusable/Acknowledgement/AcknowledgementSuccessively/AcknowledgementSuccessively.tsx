@@ -9,7 +9,11 @@ import {
   MainHeader,
 } from '../../../../components';
 import { IMAGES } from '../../../../assets';
-import { useAppSelector, useHandleSubmit, useMount } from '../../../../hooks';
+import {
+  useAppSelector,
+  useMount,
+  usePositiveNavigateTo,
+} from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { Nullable, parseTextWithNickname } from '../../../../utils';
 import { NicknameType } from '../../../../utils/types';
@@ -27,6 +31,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
       titleHasNickname,
       images,
       backgroundImage,
+      positiveNavigatesTo,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -37,9 +42,8 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
     const childNickname = useAppSelector(
       state => state.user.parent?.nickname,
     ) as string;
-
     const goBack = useNavigatePrevQuest();
-    const onSubmit = useHandleSubmit();
+    const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
     useMount(() => {
       if (titleHasNickname) {

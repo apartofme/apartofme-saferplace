@@ -12,20 +12,22 @@ import {
   RadioButtonListType,
 } from '../../../components';
 import { IMAGES } from '../../../assets';
-import { RADIO_BUTTON_LIST } from './RadioButton.data';
+import { RadioButtonType, RADIO_BUTTON_LIST } from './RadioButton.data';
 import { generalStyles } from '../../../utils/styles';
-import { useHandleSubmit, useNavigatePrevQuest } from '../../../hooks';
+import { useNavigatePrevQuest, useNegativeNavigateTo } from '../../../hooks';
 
 export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
   route,
 }) => {
+  const { title, negativeNavigatesTo } = route.params.data;
+
   const { t } = useTranslation();
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
 
-  const { title, titleHasNickname } = route.params.data;
-
-  const onSubmit = useHandleSubmit(selectedAnswer[0]);
   const goBack = useNavigatePrevQuest();
+
+  const isValid = selectedAnswer[0] === RadioButtonType.No;
+  const onSubmit = useNegativeNavigateTo(negativeNavigatesTo, isValid);
 
   return (
     <SafeAreaView style={generalStyles.flex}>

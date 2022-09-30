@@ -4,61 +4,28 @@ import _ from 'lodash';
 import { useCallback } from 'react';
 
 import { questSlice } from '../redux/slices';
-import { RadioButtonTypes } from '../screens/Reusable/RadioButton/RadioButton.data';
 import { Nullable } from '../utils';
 import { useAppDispatch, useAppSelector } from './redux';
 
-export const useHandleSubmit = (answer?: string) => {
+export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-
+  const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
   const currentQuestLine = useAppSelector(
     state => state.quest.currentQuestLine,
   );
-  const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
-  const currentQuest = currentQuestLine?.quests[currentQuestIdx];
 
   const navigateNextQuest = useCallback(() => {
-    const nextQuestIdx = currentQuestIdx + 1;
-    const nextQuest = currentQuestLine?.quests[nextQuestIdx];
-
-    if (nextQuest) {
-      dispatch(questSlice.actions.saveCurrentQuestIdx(nextQuestIdx));
-
-      navigation.push(nextQuest.type, {
-        data: { ...nextQuest },
-      });
-    } else {
-      // TODO: uncommen when ElixirStack will be done
-      // navigation.navigate('ElixirStack')
-    }
-  }, [currentQuestIdx, currentQuestLine?.quests, dispatch, navigation]);
-
-  const navigateNextQuestById = useCallback(() => {
-    const questId: Nullable<string> = (() => {
-      if (!currentQuest?.navigatesto?.length) {
-        return null;
-      }
-      switch (answer) {
-        case RadioButtonTypes.yes:
-          return currentQuest.navigatesto[0];
-        case RadioButtonTypes.no:
-          return currentQuest.navigatesto[1];
-        default:
-          return currentQuest.navigatesto[0];
-      }
-    })();
-
-    if (questId && currentQuestLine) {
+    if (currentQuestLine) {
       const nextQuestIdx = _.findIndex(
         currentQuestLine.quests,
         value => value.id === questId,
       );
-
       const nextQuest = currentQuestLine?.quests[nextQuestIdx];
 
       if (nextQuest) {
         dispatch(questSlice.actions.saveCurrentQuestIdx(nextQuestIdx));
+        dispatch(questSlice.actions.pushToCurrentQuestStack(currentQuestIdx));
 
         navigation.push(nextQuest.type, {
           data: { ...nextQuest },
@@ -68,17 +35,9 @@ export const useHandleSubmit = (answer?: string) => {
         // navigation.navigate('ElixirStack')
       }
     }
-  }, [
-    answer,
-    currentQuest?.navigatesto,
-    currentQuestLine,
-    dispatch,
-    navigation,
-  ]);
+  }, [currentQuestIdx, currentQuestLine, dispatch, navigation, questId]);
 
-  return currentQuest?.navigatesto?.length
-    ? navigateNextQuestById
-    : navigateNextQuest;
+  return navigateNextQuest;
 };
 
 export const useNavigateNextQuest = () => {
@@ -95,6 +54,7 @@ export const useNavigateNextQuest = () => {
 
     if (nextQuest) {
       dispatch(questSlice.actions.saveCurrentQuestIdx(nextQuestIdx));
+      dispatch(questSlice.actions.pushToCurrentQuestStack(currentQuestIdx));
 
       navigation.push(nextQuest.type, {
         data: { ...nextQuest },
@@ -108,18 +68,48 @@ export const useNavigateNextQuest = () => {
   return navigateNextQuest;
 };
 
+export const usePositiveNavigateTo = (questId: Nullable<string>) => {
+  const navigateToNextQuest = useNavigateNextQuest();
+  const navigateToNextQuestById = useNavigateNextQuestById(questId);
+
+  if (questId) {
+    return navigateToNextQuestById;
+  }
+  return navigateToNextQuest;
+};
+
+export const useNegativeNavigateTo = (
+  questId: Nullable<string>,
+  isValid: Nullable<boolean>,
+) => {
+  const navigateToNextQuest = useNavigateNextQuest();
+  const navigateToNextQuestById = useNavigateNextQuestById(questId);
+
+  if (questId && isValid) {
+    return navigateToNextQuestById;
+  }
+  return navigateToNextQuest;
+};
+
 export const useNavigatePrevQuest = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
+  const previousQuestIdx = useAppSelector(
+    state => state.quest.currentQuestStack.at(-1) || 0,
+  );
 
   const navigatePrevQuest = useCallback(() => {
     navigation.goBack();
 
     if (currentQuestIdx) {
-      dispatch(questSlice.actions.saveCurrentQuestIdx(currentQuestIdx - 1));
+      dispatch(questSlice.actions.saveCurrentQuestIdx(previousQuestIdx));
     }
-  }, [currentQuestIdx, dispatch, navigation]);
+
+    if (previousQuestIdx) {
+      dispatch(questSlice.actions.popFromCurrentQuestStack());
+    }
+  }, [currentQuestIdx, dispatch, navigation, previousQuestIdx]);
 
   return navigatePrevQuest;
 };

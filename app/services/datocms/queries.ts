@@ -69,7 +69,10 @@ query getQuestLineQuests {
     titlehasnickname
     crossheader
     duration
-    navigatesto {
+    positivenavigatesto {
+      id
+    }
+    negativenavigatesto {
       id
     }
   }
@@ -112,7 +115,10 @@ export const getAllQuestsQuery = (
       titlehasnickname
       crossheader
       duration
-      navigatesto {
+      positivenavigatesto {
+        id
+      }
+      negativenavigatesto {
         id
       }
     }
