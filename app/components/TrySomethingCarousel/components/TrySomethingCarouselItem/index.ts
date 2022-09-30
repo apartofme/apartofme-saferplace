@@ -1,0 +1,1 @@
+export { TrySomethingCarouselItem } from './TrySomethingCarouselItem';
