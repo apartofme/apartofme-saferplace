@@ -14,6 +14,7 @@ import {
 import { IMAGES } from '../../../assets';
 import { useTranslation } from 'react-i18next';
 import { CHOOSE_REASON_DATA } from './ChooseReason.data';
+import { RecognitionAcknowledgementType } from '../RecognitionAcknowledgement/RecognitionAcknowledgement.data';
 
 export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
   navigation,
@@ -24,16 +25,20 @@ export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
 
   // TODO: change to correct
   const onSubmitPress = useCallback(() => {
-    if (selected.length > 1) {
-      navigation.navigate('ComingSoon');
+    if (selected.length === 1) {
+      navigation.navigate('RecognitionAcknowledgement', {
+        data: { type: selected[0] as RecognitionAcknowledgementType },
+      });
     } else {
-      navigation.navigate('ComingSoon');
+      navigation.navigate('RecognitionAcknowledgement', {
+        data: { type: RecognitionAcknowledgementType.Multiple },
+      });
     }
-  }, [navigation, selected.length]);
+  }, [navigation, selected]);
 
   // TODO: change to correct
   const onSkipPress = useCallback(() => {
-    navigation.navigate('ComingSoon');
+    navigation.navigate('ElixirCarousel');
   }, [navigation]);
 
   return (

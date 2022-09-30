@@ -37,6 +37,10 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
       );
     }, [childNickname, parentNickname, t, type]);
 
+    const onSubmitPress = useCallback(() => {
+      navigation.navigate('ElixirCarousel');
+    }, [navigation]);
+
     return (
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
@@ -44,7 +48,9 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
           onLeftIconPress={navigation.goBack}
           rightIcon={IMAGES.WHITE_PENCIL}
         />
-        <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={_.noop}>
+        <BottomButtonView
+          buttonTitle={t('buttons.next')}
+          onSubmit={onSubmitPress}>
           <View style={styles.container}>
             <Image source={IMAGES.LOGO} style={styles.image} />
             <ExtendedText style={styles.title}>
