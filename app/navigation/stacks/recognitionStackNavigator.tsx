@@ -5,13 +5,14 @@ import {
   ChooseReasonScreen,
   ElixirCarouselScreen,
   IRecognitionAcknowledgementRoute,
+  IRecognitionDialogRoute,
   RecognitionAcknowledgementScreen,
   RecognitionDialogScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type RecognitionStackParams = {
-  RecognitionDialog: undefined;
+  RecognitionDialog: { data: IRecognitionDialogRoute };
   RecognitionAcknowledgement: { data: IRecognitionAcknowledgementRoute };
   ElixirCarousel: undefined;
   ChooseReason: undefined;

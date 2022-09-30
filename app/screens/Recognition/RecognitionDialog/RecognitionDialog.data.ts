@@ -6,3 +6,12 @@ export const RECOGNITION_DIALOG_DATA: ReadonlyArray<ISpeech> = [
   { textKey: 'screens.recognition.dialog.third' },
   { textKey: 'screens.recognition.dialog.fourth' },
 ];
+
+export const SPIRIT_INTRO_DIALOG: ReadonlyArray<ISpeech> = [
+  { textKey: 'screens.recognition.spirit_intro_dialog.first' },
+  { textKey: 'screens.recognition.spirit_intro_dialog.second' },
+  { textKey: 'screens.recognition.spirit_intro_dialog.third' },
+  { textKey: 'screens.recognition.spirit_intro_dialog.fourth' },
+  { textKey: 'screens.recognition.spirit_intro_dialog.fifth' },
+  { textKey: 'screens.recognition.spirit_intro_dialog.sixth' },
+];

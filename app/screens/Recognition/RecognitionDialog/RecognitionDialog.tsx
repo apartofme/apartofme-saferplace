@@ -10,16 +10,19 @@ import { styles } from './RecognitionDialog.styles';
 import { IRecognitionDialogScreenProps } from './RecognitionDialog.types';
 
 export const RecognitionDialogScreen: React.FC<IRecognitionDialogScreenProps> =
-  ({ navigation }) => {
+  ({ navigation, route }) => {
+    const speech = route.params?.data.speech ?? RECOGNITION_DIALOG_DATA;
+    const nextRoute = route.params?.data.nextRoute ?? 'ChooseReason';
+
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const onNextPress = useCallback(() => {
-      if (RECOGNITION_DIALOG_DATA.length - 1 > currentIndex) {
+      if (speech.length - 1 > currentIndex) {
         setCurrentIndex(currentIndex + 1);
       } else {
-        navigation.navigate('ChooseReason');
+        navigation.navigate(nextRoute);
       }
-    }, [currentIndex, navigation, setCurrentIndex]);
+    }, [currentIndex, navigation, nextRoute, speech.length]);
 
     return (
       <ImageBackground
@@ -36,7 +39,7 @@ export const RecognitionDialogScreen: React.FC<IRecognitionDialogScreenProps> =
           <View style={styles.container}>
             <Image source={IMAGES.LOGO} style={styles.image} />
             <Dialog
-              data={RECOGNITION_DIALOG_DATA}
+              data={speech}
               onNextPress={onNextPress}
               currentIndex={currentIndex}
             />
