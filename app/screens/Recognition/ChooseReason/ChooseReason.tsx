@@ -18,7 +18,7 @@ import { CHOOSE_REASON_DATA } from './ChooseReason.data';
 export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
   navigation,
 }) => {
-  const [selected, setSelected] = useState(['']);
+  const [selected, setSelected] = useState<string[]>([]);
 
   const { t } = useTranslation();
 
@@ -62,7 +62,7 @@ export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
             onPress={onSubmitPress}
             title={t('buttons.select')}
             style={styles.submitButton}
-            disabled={!selected[0]}
+            disabled={!selected.length}
           />
           <ExtendedText style={styles.skipTitle} onPress={onSkipPress}>
             {t('buttons.skip')}
