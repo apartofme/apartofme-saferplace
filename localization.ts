@@ -207,6 +207,13 @@ export const en = {
       },
     },
     recognition: {
+      choose_reason: {
+        title: 'What has brought you here?',
+        description: 'Choose all of the options that apply',
+        first: 'Someone close to you has died',
+        second: 'You had to leave your home',
+        third: 'You saw some really horrible and scary things',
+      },
       dialog: {
         first:
           'If there is anything that I or my faithful assistant can do for you, please let me know.',
