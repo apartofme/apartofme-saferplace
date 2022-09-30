@@ -13,7 +13,7 @@ export const styles = StyleSheet.create<IElixirCarouselScreenStyles>({
     alignItems: 'center',
   },
   image: {
-    paddingTop: 67,
+    marginTop: 67,
     width: 200,
     height: 260,
   },

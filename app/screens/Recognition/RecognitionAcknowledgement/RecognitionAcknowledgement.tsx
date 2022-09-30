@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Image, SafeAreaView, View } from 'react-native';
 
 import { IRecognitionAcknowledgementScreenProps } from './RecognitionAcknowledgement.types';
@@ -12,14 +12,30 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
 import { useTranslation } from 'react-i18next';
+import { RECOGNITION_ACKNOWLEDGEMENT_DATA } from './RecognitionAcknowledgement.data';
+import { useAppSelector } from '../../../hooks';
 
 export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgementScreenProps> =
   ({ navigation, route }) => {
-    // TODO: change
-    // const { isMultipleChoice } = route.params.data;
-    const isMultipleChoice = true;
+    const { type } = route.params.data;
 
     const { t } = useTranslation();
+
+    const parentNickname = useAppSelector(
+      state => state.user.child?.nickname,
+    ) as string;
+    const childNickname = useAppSelector(
+      state => state.user.parent?.nickname,
+    ) as string;
+
+    const correctTitle = useCallback(() => {
+      const findedTitle =
+        _.find(RECOGNITION_ACKNOWLEDGEMENT_DATA, item => item.type === type)
+          ?.title ?? '';
+      return (
+        parentNickname + t('labels.and') + childNickname + ' ' + t(findedTitle)
+      );
+    }, [childNickname, parentNickname, t, type]);
 
     return (
       <SafeAreaView style={generalStyles.flex}>
@@ -31,13 +47,15 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
         <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={_.noop}>
           <View style={styles.container}>
             <Image source={IMAGES.LOGO} style={styles.image} />
-            {/* // TODO: add text */}
-            <ExtendedText style={styles.title}>{t('')}</ExtendedText>
+            <ExtendedText style={styles.title}>
+              {t(correctTitle())}
+            </ExtendedText>
             <ExtendedText style={styles.subtitle}>
               {t(
-                isMultipleChoice
-                  ? 'screens.recognition.recognition_acknowledgement.multiple.description'
-                  : 'screens.recognition.recognition_acknowledgement.single.description',
+                _.find(
+                  RECOGNITION_ACKNOWLEDGEMENT_DATA,
+                  item => item.type === type,
+                )?.subtitle ?? '',
               )}
             </ExtendedText>
           </View>

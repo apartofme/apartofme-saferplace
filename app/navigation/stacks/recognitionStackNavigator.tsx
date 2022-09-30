@@ -8,9 +8,7 @@ import {
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type RecognitionStackParams = {
-  // TODO: change
-  // RecognitionAcknowledgement: { data: IRecognitionAcknowledgementRoute };
-  RecognitionAcknowledgement: undefined;
+  RecognitionAcknowledgement: { data: IRecognitionAcknowledgementRoute };
 };
 
 const Stack = createNativeStackNavigator<RecognitionStackParams>();

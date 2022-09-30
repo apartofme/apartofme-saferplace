@@ -1,6 +1,7 @@
 import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
 
 import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
+import { RecognitionAcknowledgementType } from './RecognitionAcknowledgement.data';
 
 type NavigationProps = StackNavigationProp<
   MergedStackParams,
@@ -16,5 +17,5 @@ export interface IRecognitionAcknowledgementScreenProps
     RouteProps {}
 
 export interface IRecognitionAcknowledgementRoute {
-  isMultipleChoice: boolean;
+  type: RecognitionAcknowledgementType;
 }
