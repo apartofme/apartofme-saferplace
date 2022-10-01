@@ -1,7 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
-import _ from 'lodash';
 
 import {
   BottomButtonView,
@@ -9,10 +8,8 @@ import {
   MainHeader,
 } from '../../../components';
 import { IMAGES } from '../../../assets';
-import { useAppSelector, useMount } from '../../../hooks';
+import { useParseTextWithNickname } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
-import { Nullable, parseTextWithNickname } from '../../../utils';
-import { NicknameType } from '../../../utils/types';
 import { ICharmCompletedScreenProps } from './CharmCompleted.types';
 import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
 import { styles } from './CharmCompleted.styles';
@@ -31,22 +28,9 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   } = route.params.data;
 
   const { t } = useTranslation();
-  const [titleArray, setTitleArray] = useState<Nullable<string[]>>(null);
-  const parentNickname = useAppSelector(
-    state => state.user.child?.nickname,
-  ) as string;
-  const childNickname = useAppSelector(
-    state => state.user.parent?.nickname,
-  ) as string;
 
   const goBack = useNavigatePrevQuest();
   const onSubmit = useNavigateNextQuest();
-
-  useMount(() => {
-    if (titleHasNickname) {
-      setTitleArray(parseTextWithNickname(title));
-    }
-  });
 
   const renderHeader = useCallback(() => {
     if (crossHeader) {
@@ -69,35 +53,6 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     }
   }, [crossHeader, goBack]);
 
-  const renderTitle = useCallback(() => {
-    if (titleHasNickname) {
-      const username = _.find(
-        titleArray,
-        value => value === 'parent' || value === 'child',
-      );
-      switch (username) {
-        case NicknameType.Parent:
-          return (
-            <ExtendedText preset="large-title" style={styles.title}>
-              {_.join(titleArray, '').replace(username, parentNickname)}
-            </ExtendedText>
-          );
-        case NicknameType.Child:
-          return (
-            <ExtendedText preset="large-title" style={styles.title}>
-              {_.join(titleArray, '').replace(username, childNickname)}
-            </ExtendedText>
-          );
-      }
-    } else {
-      return (
-        <ExtendedText preset="large-title" style={styles.title}>
-          {title}
-        </ExtendedText>
-      );
-    }
-  }, [childNickname, parentNickname, title, titleArray, titleHasNickname]);
-
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -116,7 +71,7 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
           buttonTitle={buttonTitle ?? t('buttons.next')}
           onSubmit={onSubmit}
           style={styles.container}>
-          {renderTitle()}
+          <ExtendedText>{useParseTextWithNickname(title)}</ExtendedText>
           <ExtendedText preset="secondary-text" style={styles.description}>
             {description}
           </ExtendedText>

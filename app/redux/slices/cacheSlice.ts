@@ -3,6 +3,8 @@ import _ from 'lodash';
 
 import { Nullable } from '../../utils';
 import {
+  INicknames,
+  INicknamesPayload,
   ISaveTranslationsPayload,
   IShortSignUpData,
   IShortSignUpDataPayload,
@@ -20,6 +22,7 @@ interface ICacheState {
   };
   translations: Nullable<ITranslations>;
   trySomethingItem: Nullable<ITrySomethingItem>;
+  nicknames: Nullable<INicknames>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -29,6 +32,7 @@ const INITIAL_STATE: ICacheState = {
   },
   translations: null,
   trySomethingItem: null,
+  nicknames: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -48,6 +52,18 @@ export const cacheSlice = createSlice({
     },
     saveTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
       state.trySomethingItem = _.merge(state.trySomethingItem, payload);
+    },
+    saveNicknames(state, { payload }: INicknamesPayload) {
+      state.nicknames = _.merge(state.nicknames, payload);
+    },
+    changeCurrentNickname(state) {
+      const nicknames = state.nicknames;
+
+      if (nicknames?.current === nicknames?.child && nicknames?.current) {
+        nicknames.current = nicknames.parent as string;
+      } else if (nicknames?.current) {
+        nicknames.current = nicknames.child as string;
+      }
     },
     saveTranslationsError(state, action: PayloadAction<string>) {},
   },

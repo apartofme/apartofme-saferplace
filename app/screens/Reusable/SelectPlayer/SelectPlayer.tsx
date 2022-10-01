@@ -17,8 +17,15 @@ import {
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
-import { DUMMY_PLAYER_LIST } from './SelectPlayer.data';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
+import { PLAYER_LIST } from './SelectPlayer.data';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useMount,
+  useNavigateNextQuest,
+  useNavigatePrevQuest,
+} from '../../../hooks';
+import { cacheSlice } from '../../../redux/slices';
 
 export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   route,
@@ -26,7 +33,28 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
   const { t } = useTranslation();
   const goBack = useNavigatePrevQuest();
-  const onSubmit = useNavigateNextQuest();
+  const navigateNextQuest = useNavigateNextQuest();
+  const dispatch = useAppDispatch();
+
+  const [playerList, setPlayerList] = useState(PLAYER_LIST);
+
+  const parentNickname = useAppSelector(
+    state => state.user.child?.nickname,
+  ) as string;
+  const childNickname = useAppSelector(
+    state => state.user.parent?.nickname,
+  ) as string;
+
+  useMount(() => {
+    const playerParent = { ...playerList[0], title: parentNickname };
+    const playerChild = { ...playerList[1], title: childNickname };
+    setPlayerList([playerParent, playerChild]);
+  });
+
+  const onSubmit = useCallback(() => {
+    dispatch(cacheSlice.actions.saveNicknames({ current: selectedPlayer }));
+    navigateNextQuest();
+  }, [dispatch, navigateNextQuest, selectedPlayer]);
 
   const { backgroundImage, crossHeader } = route.params.data;
 
@@ -54,14 +82,14 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   const renderItem = useCallback(
     ({ item }: { item: IPlayer }) => {
       const onPlayerPress = () => {
-        setSelectedPlayer(item.id);
+        setSelectedPlayer(item.title);
       };
       return (
         <TouchableOpacity
           onPress={onPlayerPress}
           style={[
             styles.playerContainer,
-            selectedPlayer === item.id && styles.activeBorder,
+            selectedPlayer === item.title && styles.activeBorder,
           ]}>
           <ExtendedText preset="title">{item.title}</ExtendedText>
           <Image source={item.image} style={styles.playerImage} />
@@ -88,7 +116,7 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
           <ExtendedText preset="title" style={styles.title}>
             {t('screens.select_player.title')}
           </ExtendedText>
-          <FlatList data={DUMMY_PLAYER_LIST} renderItem={renderItem} />
+          <FlatList data={playerList} renderItem={renderItem} />
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>

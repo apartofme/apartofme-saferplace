@@ -1,14 +1,18 @@
 import { IMAGES } from '../../../assets';
 import { IPlayer } from './SelectPlayer.types';
 
-export const DUMMY_PLAYER_LIST: ReadonlyArray<IPlayer> = [
+export enum PlayerType {
+  Parent = 'parent',
+  Child = 'child',
+}
+export const PLAYER_LIST: ReadonlyArray<IPlayer> = [
   {
-    id: 'grown_up',
+    id: PlayerType.Parent,
     title: '[Grown up]',
     image: IMAGES.WHITE_PENCIL,
   },
   {
-    id: 'child',
+    id: PlayerType.Child,
     title: '[Child]',
     image: IMAGES.WHITE_PENCIL,
   },

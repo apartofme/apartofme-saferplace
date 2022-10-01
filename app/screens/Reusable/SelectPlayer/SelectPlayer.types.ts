@@ -2,6 +2,7 @@ import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
 import { ImageSourcePropType } from 'react-native';
 
 import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
+import { PlayerType } from './SelectPlayer.data';
 
 type NavigationProps = StackNavigationProp<MergedStackParams, 'SelectPlayer'>;
 type RouteProps = StackScreenProps<MergedStackParams, 'SelectPlayer'>;
@@ -14,7 +15,7 @@ export interface ISelectPlayerRoute {
 }
 
 export interface IPlayer {
-  id: string;
+  id: PlayerType;
   title: string;
   image: ImageSourcePropType;
 }
