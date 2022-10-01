@@ -5,16 +5,19 @@ import {
   ChooseReasonScreen,
   ElixirCarouselScreen,
   IRecognitionAcknowledgementRoute,
+  IRecognitionDialogRoute,
   RecognitionAcknowledgementScreen,
   RecognitionDialogScreen,
+  RecognitionDoubleInteractionScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type RecognitionStackParams = {
-  RecognitionDialog: undefined;
+  RecognitionDialog: { data: IRecognitionDialogRoute };
   RecognitionAcknowledgement: { data: IRecognitionAcknowledgementRoute };
   ElixirCarousel: undefined;
   ChooseReason: undefined;
+  RecognitionDoubleInteraction: undefined;
 };
 
 const Stack = createNativeStackNavigator<RecognitionStackParams>();
@@ -31,5 +34,9 @@ export const RecognitionStackNavigator = () => (
       component={RecognitionAcknowledgementScreen}
     />
     <Stack.Screen name="ElixirCarousel" component={ElixirCarouselScreen} />
+    <Stack.Screen
+      name="RecognitionDoubleInteraction"
+      component={RecognitionDoubleInteractionScreen}
+    />
   </Stack.Navigator>
 );

@@ -14,6 +14,7 @@ import { IMAGES } from '../../../assets';
 import { useTranslation } from 'react-i18next';
 import { RECOGNITION_ACKNOWLEDGEMENT_DATA } from './RecognitionAcknowledgement.data';
 import { useAppSelector } from '../../../hooks';
+import { SPIRIT_INTRO_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
 
 export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgementScreenProps> =
   ({ navigation, route }) => {
@@ -38,7 +39,12 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
     }, [childNickname, parentNickname, t, type]);
 
     const onSubmitPress = useCallback(() => {
-      navigation.navigate('ElixirCarousel');
+      navigation.push('RecognitionDialog', {
+        data: {
+          speech: SPIRIT_INTRO_DIALOG,
+          nextRoute: 'ElixirCarousel',
+        },
+      });
     }, [navigation]);
 
     return (

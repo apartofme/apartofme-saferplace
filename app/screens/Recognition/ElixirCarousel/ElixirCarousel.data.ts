@@ -26,11 +26,11 @@ export const ELIXIR_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   {
     id: '5',
     image: IMAGES.WHITE_PENCIL,
-    subtitleKey: 'screens.recognition.elixir_carousel.third',
+    subtitleKey: 'screens.recognition.elixir_carousel.fifth',
   },
   {
     id: '6',
     image: IMAGES.WHITE_PENCIL,
-    subtitleKey: 'screens.recognition.elixir_carousel.fourth',
+    subtitleKey: 'screens.recognition.elixir_carousel.sixth',
   },
 ];
