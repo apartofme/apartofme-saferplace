@@ -15,7 +15,7 @@ import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../../hooks';
 
 export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScreenProps> =
   ({ navigation, route }) => {
-    const { titleKey, image, subtitleKey, images, backgroundImage } =
+    const { title, image, description, images, backgroundImage } =
       route.params.data;
 
     const goBack = useNavigatePrevQuest();
@@ -38,7 +38,7 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
           onSubmit={onSubmit}
           style={styles.container}>
           <ExtendedText preset="body-regular" style={styles.title}>
-            {t(titleKey)}
+            {t(title)}
           </ExtendedText>
           <Image source={image} style={styles.image} />
           <TouchableOpacity onPress={goToAlert}>
@@ -47,9 +47,7 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
               style={styles.infoImage}
             />
           </TouchableOpacity>
-          <ExtendedText preset="secondary-text" style={styles.title}>
-            {t(subtitleKey)}
-          </ExtendedText>
+          <ExtendedText preset="secondary-text">{t(description)}</ExtendedText>
         </BottomButtonView>
       </ImageBackground>
     );
