@@ -13,16 +13,21 @@ import {
 } from '../../../components';
 import { IMAGES } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
+import { useNavigatePrevQuest, usePositiveNavigateTo } from '../../../hooks';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
+  const {
+    title,
+    description,
+    buttonTitle,
+    backgroundImage,
+    positiveNavigatesTo,
+  } = route.params.data;
+
   const [inputText, setInputText] = useState<string>('');
   const { t } = useTranslation();
   const goBack = useNavigatePrevQuest();
-  const onSubmit = useNavigateNextQuest();
-
-  const { title, description, buttonTitle, backgroundImage } =
-    route.params.data;
+  const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
   return (
     <ImageBackground

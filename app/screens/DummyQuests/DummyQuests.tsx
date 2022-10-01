@@ -36,6 +36,7 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
         navigation.navigate(quests[0].type, {
           data: { ...quests[0] },
         });
+        dispatch(questSlice.actions.clearQuestStack());
       };
 
       return (

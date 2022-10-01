@@ -18,6 +18,8 @@ export interface IQuest {
   titleHasNickname: Nullable<boolean>;
   crossHeader: Nullable<boolean>;
   duration: Nullable<number>;
+  positiveNavigatesTo: Nullable<string>;
+  negativeNavigatesTo: Nullable<string>;
 }
 
 export interface IQuestDatoCms {
@@ -50,4 +52,10 @@ export interface IQuestDatoCms {
   titlehasnickname: Nullable<boolean>;
   crossheader: Nullable<boolean>;
   duration: Nullable<number>;
+  positivenavigatesto: Nullable<{
+    id: string;
+  }>;
+  negativenavigatesto: Nullable<{
+    id: string;
+  }>;
 }

@@ -7,8 +7,8 @@ import { IPassPhoneScreenProps } from './PassPhone.types';
 import { styles } from './PassPhone.styles';
 import {
   useAppSelector,
-  useMount,
   useNavigateNextQuest,
+  useMount,
   useNavigatePrevQuest,
 } from '../../../hooks';
 import {

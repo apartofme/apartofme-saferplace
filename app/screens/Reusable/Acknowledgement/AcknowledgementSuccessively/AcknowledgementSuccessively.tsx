@@ -9,12 +9,16 @@ import {
   MainHeader,
 } from '../../../../components';
 import { IMAGES } from '../../../../assets';
-import { useAppSelector, useMount } from '../../../../hooks';
+import {
+  useAppSelector,
+  useMount,
+  usePositiveNavigateTo,
+} from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { Nullable, parseTextWithNickname } from '../../../../utils';
 import { NicknameType } from '../../../../utils/types';
 import { IAcknowledgementSuccessivelyScreenProps } from './AcknowledgementSuccessively.types';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../../hooks';
+import { useNavigatePrevQuest } from '../../../../hooks';
 import { styles } from './AcknowledgementSuccessively.styles';
 
 export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccessivelyScreenProps> =
@@ -27,6 +31,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
       titleHasNickname,
       images,
       backgroundImage,
+      positiveNavigatesTo,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -37,9 +42,8 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
     const childNickname = useAppSelector(
       state => state.user.parent?.nickname,
     ) as string;
-
     const goBack = useNavigatePrevQuest();
-    const onSubmit = useNavigateNextQuest();
+    const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
     useMount(() => {
       if (titleHasNickname) {
