@@ -16,6 +16,7 @@ import {
   JournelScreen,
   PassPhoneScreen,
   RadioButtonScreen,
+  SelectDrawBuildScreen,
   SelectPlayerScreen,
   SelectPlayerSupportScreen,
   SelectSoundScreen,
@@ -43,6 +44,7 @@ export type QuestStackParams = {
   SelectSound: { data: IQuest };
   RadioButton: { data: IQuest };
   AcknowledgementDoubleImage: { data: IQuest };
+  SelectDrawBuild: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -83,5 +85,6 @@ export const QuestStackNavigator = () => (
       name="AcknowledgementDoubleImage"
       component={AcknowledgementDoubleImageScreen}
     />
+    <Stack.Screen name="SelectDrawBuild" component={SelectDrawBuildScreen} />
   </Stack.Navigator>
 );
