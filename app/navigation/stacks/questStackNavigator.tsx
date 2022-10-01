@@ -5,6 +5,7 @@ import { IQuest } from '../../models/IQuest';
 import {
   AcknowledgementAlongEdgesScreen,
   AcknowledgementDoubleImageScreen,
+  AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyScreen,
   AlertScreen,
   CharmCompletedScreen,
@@ -45,6 +46,7 @@ export type QuestStackParams = {
   RadioButton: { data: IQuest };
   AcknowledgementDoubleImage: { data: IQuest };
   SelectDrawBuild: { data: IQuest };
+  AcknowledgementNicknames: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -86,5 +88,9 @@ export const QuestStackNavigator = () => (
       component={AcknowledgementDoubleImageScreen}
     />
     <Stack.Screen name="SelectDrawBuild" component={SelectDrawBuildScreen} />
+    <Stack.Screen
+      name="AcknowledgementNicknames"
+      component={AcknowledgementNicknamesScreen}
+    />
   </Stack.Navigator>
 );

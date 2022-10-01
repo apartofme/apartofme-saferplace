@@ -10,19 +10,15 @@ interface IAcknowledgementNicknamesScreenStyles {
 export const styles = StyleSheet.create<IAcknowledgementNicknamesScreenStyles>({
   container: {
     alignItems: 'center',
-    paddingTop: 107,
     paddingHorizontal: 40,
   },
   // TODO: change to real styles
   image: {
-    width: 191,
-    height: 191,
-    borderRadius: 100,
-    backgroundColor: '#712CA4',
+    width: 375,
+    height: 345,
   },
   title: {
-    marginTop: 54,
-    marginBottom: 24,
+    paddingVertical: 24,
     textAlign: 'center',
   },
   description: {

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 
 import {
   BottomButtonView,
@@ -10,35 +10,27 @@ import {
 import { IMAGES } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementNicknamesScreenProps } from './AcknowledgementNicknames.types';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../../hooks';
+import {
+  useNavigatePrevQuest,
+  useParseTextWithNickname,
+  usePositiveNavigateTo,
+} from '../../../../hooks';
 import { styles } from './AcknowledgementNicknames.styles';
 
 export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesScreenProps> =
   ({ route }) => {
-    // TODO: uncommented
-    // const {
-    //   title,
-    //   description,
-    //   buttonTitle,
-    //   crossHeader,
-    //   titleHasNickname,
-    //   images,
-    //   backgroundImage,
-    // } = route.params.data;
-
-    // TODO: remove
-    const title = 'title',
-      description = 'some',
-      buttonTitle = 'some',
-      crossHeader = true,
-      titleHasNickname = true,
-      images = ['LOGO'],
-      backgroundImage = IMAGES.LOGO;
+    const {
+      title,
+      description,
+      buttonTitle,
+      crossHeader,
+      positiveNavigatesTo,
+    } = route.params.data;
 
     const { t } = useTranslation();
 
     const goBack = useNavigatePrevQuest();
-    const onSubmit = useNavigateNextQuest();
+    const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
     const renderHeader = useCallback(() => {
       if (crossHeader) {
@@ -79,11 +71,15 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
               source={IMAGES.WHITE_PENCIL}
               style={styles.image}
             />
-            {/* // TODO: change */}
-            {/* {renderTitle()} */}
-            <ExtendedText preset="secondary-text" style={styles.description}>
-              {description}
-            </ExtendedText>
+
+            <View>
+              <ExtendedText style={styles.title}>
+                {useParseTextWithNickname(title)}
+              </ExtendedText>
+              <ExtendedText preset="secondary-text" style={styles.description}>
+                {description}
+              </ExtendedText>
+            </View>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>
