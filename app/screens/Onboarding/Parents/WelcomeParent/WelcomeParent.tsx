@@ -24,11 +24,6 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
     navigation.navigate('Login');
   }, [navigation]);
 
-  // TODO: remove
-  const goToMenuStack = useCallback(() => {
-    navigation.navigate('MenuStack');
-  }, [navigation]);
-
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <BottomButtonView
@@ -41,10 +36,6 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
           </ExtendedText>
           {/* // TODO: add the logo image */}
         </View>
-        <ExtendedButton
-          onPress={goToMenuStack}
-          title="Dummy button for navigation to menu"
-        />
         <ExtendedButton
           onPress={onSignUpPress}
           title={t('buttons.signup')}

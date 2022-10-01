@@ -1,13 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
 import { ExtendedText } from '../../../components';
+import { GARDEN_TRANSSITION_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
 
 export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInteractionScreenProps> =
-  () => {
+  ({ navigation }) => {
     const { t } = useTranslation();
 
     const [isСhildPress, setIsСhildPress] = useState(false);
@@ -20,6 +21,14 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     const setAdultPress = useCallback(() => {
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
+
+    useEffect(() => {
+      if (isСhildPress && isAdultPress) {
+        navigation.push('RecognitionDialog', {
+          data: { speech: GARDEN_TRANSSITION_DIALOG, nextRoute: 'ComingSoon' },
+        });
+      }
+    }, [isAdultPress, isСhildPress, navigation]);
 
     return (
       <SafeAreaView style={styles.container}>

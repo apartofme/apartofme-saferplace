@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { ExtendedText } from '../../components';
+import { ExtendedButton, ExtendedText } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { IQuest } from '../../models/IQuest';
 import { IQuestLine } from '../../models/IQuestLine';
@@ -47,8 +47,21 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
     [dispatch, navigation],
   );
 
+  // TODO: remove
+  const goToMenuStack = useCallback(() => {
+    navigation.navigate('MenuStack');
+  }, [navigation]);
+
+  // TODO: remove
+  const goToRecognitionStack = useCallback(() => {
+    navigation.navigate('RecognitionStack');
+  }, [navigation]);
+
   return (
     <SafeAreaView style={generalStyles.flex}>
+      <ExtendedText preset="large-title">Dummy buttons:</ExtendedText>
+      <ExtendedButton onPress={goToMenuStack} title="To menu" />
+      <ExtendedButton onPress={goToRecognitionStack} title="To recognitionn" />
       <FlatList
         style={generalStyles.flex}
         data={values(allQuests)}

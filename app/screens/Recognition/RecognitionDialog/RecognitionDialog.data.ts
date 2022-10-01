@@ -15,3 +15,8 @@ export const SPIRIT_INTRO_DIALOG: ReadonlyArray<ISpeech> = [
   { textKey: 'screens.recognition.spirit_intro_dialog.fifth' },
   { textKey: 'screens.recognition.spirit_intro_dialog.sixth' },
 ];
+
+export const GARDEN_TRANSSITION_DIALOG: ReadonlyArray<ISpeech> = [
+  { textKey: 'screens.recognition.garden_recognition_dialog.first' },
+  { textKey: 'screens.recognition.garden_recognition_dialog.second' },
+];
