@@ -34,12 +34,14 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
       dispatch(
         cacheSlice.actions.saveSignUpDataChild({ avatar: avatar as string }),
       );
-      dispatch(userSlice.actions.saveChild());
+      // TODO: uncomment when logic is added
+      //dispatch(userSlice.actions.saveChild());
     } else {
       dispatch(
         cacheSlice.actions.saveSignUpDataParent({ avatar: avatar as string }),
       );
-      dispatch(userSlice.actions.registerParent());
+      // TODO: uncomment when logic is added
+      //dispatch(userSlice.actions.registerParent());
     }
   }, [avatar, dispatch, isChild, navigation]);
 
