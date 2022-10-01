@@ -9,6 +9,7 @@ import { IQuest } from '../../models/IQuest';
 import { IQuestLine } from '../../models/IQuestLine';
 import { questSlice } from '../../redux/slices';
 import { generalStyles } from '../../utils/styles';
+import { styles } from './DummyQuests.styles';
 import { IDummyQuestsScreenProps } from './DummyQuests.types';
 
 export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
@@ -39,7 +40,7 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
       };
 
       return (
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={onPress} style={styles.questConteiner}>
           <ExtendedText>{item.title}</ExtendedText>
         </TouchableOpacity>
       );
@@ -58,10 +59,23 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
   }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <ExtendedText preset="large-title">Dummy buttons:</ExtendedText>
-      <ExtendedButton onPress={goToMenuStack} title="To menu" />
-      <ExtendedButton onPress={goToRecognitionStack} title="To recognitionn" />
+    <SafeAreaView style={styles.container}>
+      <ExtendedText preset="large-title" style={styles.buttonsTitle}>
+        Dummy buttons:
+      </ExtendedText>
+      <ExtendedButton
+        onPress={goToMenuStack}
+        title="To menu"
+        style={styles.button}
+      />
+      <ExtendedButton
+        onPress={goToRecognitionStack}
+        title="To recognitionn"
+        style={styles.button}
+      />
+      <ExtendedText preset="large-title" style={styles.questsTitle}>
+        Quests:
+      </ExtendedText>
       <FlatList
         style={generalStyles.flex}
         data={values(allQuests)}
