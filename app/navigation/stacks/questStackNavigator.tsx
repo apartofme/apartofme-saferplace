@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import { IQuest } from '../../models/IQuest';
 import {
   AcknowledgementAlongEdgesScreen,
+  AcknowledgementDoubleImageScreen,
   AcknowledgementSuccessivelyScreen,
   AlertScreen,
   CharmCompletedScreen,
@@ -41,6 +42,7 @@ export type QuestStackParams = {
   ElixirDoubleInteraction: { data: IQuest };
   SelectSound: { data: IQuest };
   RadioButton: { data: IQuest };
+  AcknowledgementDoubleImage: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -77,5 +79,9 @@ export const QuestStackNavigator = () => (
     />
     <Stack.Screen name="SelectSound" component={SelectSoundScreen} />
     <Stack.Screen name="RadioButton" component={RadioButtonScreen} />
+    <Stack.Screen
+      name="AcknowledgementDoubleImage"
+      component={AcknowledgementDoubleImageScreen}
+    />
   </Stack.Navigator>
 );

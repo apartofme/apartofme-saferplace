@@ -1,4 +1,5 @@
-export * from './AcknowledgementTitle';
+export * from './AcknowledgementAlongEdges';
+export * from './AcknowledgementDoubleImage';
 export * from './AcknowledgementSuccessively';
 export * from './AcknowledgementSupport';
-export * from './AcknowledgementAlongEdges';
+export * from './AcknowledgementTitle';
