@@ -26,8 +26,9 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
 
   const goBack = useNavigatePrevQuest();
 
-  const isValid = selectedAnswer[0] === RadioButtonType.No;
-  const onSubmit = useNegativeNavigateTo(negativeNavigatesTo, isValid);
+  const isNoSelected = selectedAnswer[0] === RadioButtonType.No;
+
+  const onSubmit = useNegativeNavigateTo(negativeNavigatesTo, isNoSelected);
 
   return (
     <SafeAreaView style={generalStyles.flex}>
