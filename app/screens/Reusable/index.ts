@@ -12,6 +12,7 @@ export * from './Instruction';
 export * from './Journel';
 export * from './PassPhone';
 export * from './RadioButton';
+export * from './SelectDrawBuild';
 export * from './SelectPlayer';
 export * from './SelectPlayerSupport';
 export * from './SelectSound';
