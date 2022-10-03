@@ -21,7 +21,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   }, [navigation]);
 
   const onLoginPress = useCallback(() => {
-    navigation.navigate('Login');
+    navigation.navigate('RecognitionStack');
   }, [navigation]);
 
   return (

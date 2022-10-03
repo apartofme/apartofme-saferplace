@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { Image, SafeAreaView, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { IRecognitionAcknowledgementScreenProps } from './RecognitionAcknowledgement.types';
 import { styles } from './RecognitionAcknowledgement.styles';
@@ -11,7 +12,6 @@ import {
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
-import { useTranslation } from 'react-i18next';
 import { RECOGNITION_ACKNOWLEDGEMENT_DATA } from './RecognitionAcknowledgement.data';
 import { useAppSelector } from '../../../hooks';
 import { SPIRIT_INTRO_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';

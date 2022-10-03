@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { IChooseReasonScreenProps } from './ChooseReason.types';
 import { styles } from './ChooseReason.styles';
@@ -12,7 +13,6 @@ import {
   RadioButtonListType,
 } from '../../../components';
 import { IMAGES } from '../../../assets';
-import { useTranslation } from 'react-i18next';
 import { CHOOSE_REASON_DATA } from './ChooseReason.data';
 import { RecognitionAcknowledgementType } from '../RecognitionAcknowledgement/RecognitionAcknowledgement.data';
 
