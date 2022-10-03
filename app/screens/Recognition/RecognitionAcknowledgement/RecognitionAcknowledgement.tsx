@@ -33,9 +33,9 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
       const findedTitle =
         _.find(RECOGNITION_ACKNOWLEDGEMENT_DATA, item => item.type === type)
           ?.title ?? '';
-      return (
-        parentNickname + t('labels.and') + childNickname + ' ' + t(findedTitle)
-      );
+      return `${parentNickname}${t('labels.and')}${childNickname} ${t(
+        findedTitle,
+      )}`;
     }, [childNickname, parentNickname, t, type]);
 
     const onSubmitPress = useCallback(() => {
