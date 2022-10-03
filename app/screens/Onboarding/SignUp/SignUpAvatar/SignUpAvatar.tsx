@@ -25,7 +25,6 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const isChild = route.params?.isChild;
 
-  // TODO: rework carousel
   const [avatar, setAvatar] = useState(SING_UP_CAROUSEL[0].image);
 
   const onSubmitButtonPress = useCallback(() => {
@@ -34,14 +33,12 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
       dispatch(
         cacheSlice.actions.saveSignUpDataChild({ avatar: avatar as string }),
       );
-      // TODO: uncomment when logic is added
-      //dispatch(userSlice.actions.saveChild());
+      dispatch(userSlice.actions.saveChild());
     } else {
       dispatch(
         cacheSlice.actions.saveSignUpDataParent({ avatar: avatar as string }),
       );
-      // TODO: uncomment when logic is added
-      //dispatch(userSlice.actions.registerParent());
+      dispatch(userSlice.actions.registerParent());
     }
   }, [avatar, dispatch, isChild, navigation]);
 

@@ -95,9 +95,11 @@ export const useNavigatePrevQuest = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
-  const previousQuestIdx = useAppSelector(
-    state => state.quest.currentQuestStack.at(-1) ?? 0,
-  );
+
+  const previousQuestIdx = useAppSelector(state => {
+    const questStack = state.quest.currentQuestStack;
+    return questStack[questStack.length - 1] ?? 0;
+  });
 
   const navigatePrevQuest = useCallback(() => {
     navigation.goBack();
