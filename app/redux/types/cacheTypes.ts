@@ -3,6 +3,7 @@ export interface ISignUpData {
   password?: string;
   nickname?: string;
   avatar?: string;
+  createdAt?: string;
 }
 
 export interface IShortSignUpData {

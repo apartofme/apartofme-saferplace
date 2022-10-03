@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView } from 'react-native';
 
 import { IInitialScreenProps } from './InitialScreen.types';
@@ -9,8 +9,9 @@ import { cacheSlice, questSlice } from '../../redux/slices';
 export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,
 }) => {
-  const user = useAppSelector(state => state.user.parent);
   const dispatch = useAppDispatch();
+  const user = useAppSelector(state => state.user.parent);
+  const [isStartLoading, setIsStartLoading] = useState(false);
 
   const isSaveAllQuestsLoading = useAppSelector(
     state => state.app.loading.isSaveAllQuests,
@@ -22,10 +23,15 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   useMount(() => {
     dispatch(questSlice.actions.saveAllQuests());
     dispatch(cacheSlice.actions.saveTranslations());
+    setIsStartLoading(true);
   });
 
   useEffect(() => {
-    if (!isSaveAllQuestsLoading && !isSaveTranslationsLoading) {
+    if (
+      !isSaveAllQuestsLoading &&
+      !isSaveTranslationsLoading &&
+      isStartLoading
+    ) {
       if (user) {
         navigation.replace('QuestStack');
       } else {

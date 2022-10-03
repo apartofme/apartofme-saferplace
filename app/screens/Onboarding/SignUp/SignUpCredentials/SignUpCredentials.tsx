@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View, SafeAreaView } from 'react-native';
 import { Formik } from 'formik';
+import moment from 'moment';
 
 import {
   BottomButtonView,
@@ -26,7 +27,14 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
 
     const onSignUpPress = useCallback(
       (email, password) => {
-        dispatch(cacheSlice.actions.saveSignUpDataParent({ email, password }));
+        const createdAt = moment().format('L');
+        dispatch(
+          cacheSlice.actions.saveSignUpDataParent({
+            email,
+            password,
+            createdAt,
+          }),
+        );
         navigation.navigate('SignUpNickname');
       },
       [dispatch, navigation],
