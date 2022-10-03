@@ -15,18 +15,13 @@ import { styles } from './ReadOutLoud.styles';
 import { IReadOutLoudScreenProps } from './ReadOutLoud.types';
 
 export const ReadOutLoudScreen: React.FC<IReadOutLoudScreenProps> = () => {
-  // const { title, description, image, buttonTitle, backgroundImage } = route.params.data;
+  const { title, description, image, buttonTitle, backgroundImage } =
+    route.params.data;
 
   const { t } = useTranslation();
 
   const goBack = useNavigatePrevQuest();
   const onSubmit = useNavigateNextQuest();
-
-  const title = 'title',
-    description = 'some',
-    image = ['LOGO'],
-    buttonTitle = 'some',
-    backgroundImage = IMAGES.WHITE_BACK_ARROW;
 
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>
