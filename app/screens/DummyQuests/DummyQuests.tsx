@@ -29,11 +29,12 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
     state => state.user.parent?.nickname,
   ) as string;
 
+  // TODO: remove
   useMount(() => {
     dispatch(
       cacheSlice.actions.saveNicknames({
-        parent: parentNickname,
-        child: childNickname,
+        firstPlayer: 'Vlad',
+        secondPlayer: 'Anna',
       }),
     );
   });

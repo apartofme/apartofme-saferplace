@@ -1,20 +1,16 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../../components';
+import { BottomButtonView, ExtendedText } from '../../../../components';
 import { IMAGES } from '../../../../assets';
 import {
   usePositiveNavigateTo,
   useParseTextWithNickname,
+  useRenderQuestHeader,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementDoubleImageScreenProps } from './AcknowledgementDoubleImage.types';
-import { useNavigatePrevQuest } from '../../../../hooks';
 import { styles } from './AcknowledgementDoubleImage.styles';
 
 export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleImageScreenProps> =
@@ -23,35 +19,14 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
       title,
       description,
       buttonTitle,
+      titleHasNickname,
       crossHeader,
       positiveNavigatesTo,
     } = route.params.data;
 
     const { t } = useTranslation();
 
-    const goBack = useNavigatePrevQuest();
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
-
-    const renderHeader = useCallback(() => {
-      if (crossHeader) {
-        return (
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={goBack}
-            // TODO: change to real image & function
-            rightIcon={IMAGES.WHITE_BACK_ARROW}
-            onRightIconPress={goBack}
-          />
-        );
-      } else {
-        return (
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={goBack}
-          />
-        );
-      }
-    }, [crossHeader, goBack]);
 
     return (
       <ImageBackground
@@ -61,14 +36,19 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
         }}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          {renderHeader()}
+          {useRenderQuestHeader(crossHeader ?? false)}
           <BottomButtonView
             buttonTitle={buttonTitle ?? t('buttons.next')}
             onSubmit={onSubmit}
             style={styles.container}>
-            <ExtendedText preset="title" style={styles.title}>
-              {useParseTextWithNickname(title)}
-            </ExtendedText>
+            {useParseTextWithNickname({
+              text: title,
+              textHasNickname: titleHasNickname ?? true,
+              preset: 'title',
+              style: styles.title,
+              // TODO: remove
+              nicknameStyle: { color: '#00dbc0' },
+            })}
             <View>
               <View style={styles.imageContainer}>
                 <Image

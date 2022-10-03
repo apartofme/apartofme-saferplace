@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IRadioButtonScreenProps } from './RadioButton.types';
@@ -7,51 +7,49 @@ import { styles } from './RadioButton.styles';
 import {
   BottomButtonView,
   ExtendedText,
-  MainHeader,
   RadioButtonList,
   RadioButtonListType,
 } from '../../../components';
-import { IMAGES } from '../../../assets';
 import { RadioButtonType, RADIO_BUTTON_LIST } from './RadioButton.data';
 import { generalStyles } from '../../../utils/styles';
-import { useNavigatePrevQuest, useNegativeNavigateTo } from '../../../hooks';
+import { useNegativeNavigateTo, useRenderQuestHeader } from '../../../hooks';
 
 export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
   route,
 }) => {
-  const { title, negativeNavigatesTo } = route.params.data;
+  const { title, crossHeader, negativeNavigatesTo } = route.params.data;
 
   const { t } = useTranslation();
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
-
-  const goBack = useNavigatePrevQuest();
 
   const isNoSelected = selectedAnswer[0] === RadioButtonType.No;
 
   const onSubmit = useNegativeNavigateTo(negativeNavigatesTo, isNoSelected);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={goBack}
-        // TODO: change to correct icon
-        rightIcon={IMAGES.WHITE_BACK_ARROW}
-      />
-      <BottomButtonView
-        buttonTitle={t('buttons.next')}
-        onSubmit={onSubmit}
-        isDisabledButton={!selectedAnswer.length}
-        style={styles.container}>
-        <ExtendedText preset="title" style={styles.title}>
-          {title}
-        </ExtendedText>
-        <RadioButtonList
-          data={RADIO_BUTTON_LIST}
-          type={RadioButtonListType.Single}
-          setSelected={setSelectedAnswer}
-        />
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      // TODO: change to the real image
+      source={{
+        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+      }}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        {useRenderQuestHeader(crossHeader ?? false)}
+        <BottomButtonView
+          buttonTitle={t('buttons.next')}
+          onSubmit={onSubmit}
+          isDisabledButton={!selectedAnswer.length}
+          style={styles.container}>
+          <ExtendedText preset="title" style={styles.title}>
+            {title}
+          </ExtendedText>
+          <RadioButtonList
+            data={RADIO_BUTTON_LIST}
+            type={RadioButtonListType.Single}
+            setSelected={setSelectedAnswer}
+          />
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

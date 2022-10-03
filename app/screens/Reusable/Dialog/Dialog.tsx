@@ -8,19 +8,18 @@ import {
 } from 'react-native';
 
 import { IMAGES } from '../../../assets';
-import { ExtendedText, MainHeader } from '../../../components';
+import { ExtendedText } from '../../../components';
 import {
   useNavigateNextQuest,
-  useNavigatePrevQuest,
+  useRenderQuestHeader,
 } from '../../../hooks/quest';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './Dialog.styles';
 import { IDialogScreenProps } from './Dialog.types';
 
 export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
-  const { title } = route.params.data;
+  const { title, crossHeader } = route.params.data;
 
-  const goBack = useNavigatePrevQuest();
   const onSubmit = useNavigateNextQuest();
 
   return (
@@ -31,10 +30,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-        />
+        {useRenderQuestHeader(crossHeader ?? false)}
         <View style={styles.container}>
           <Image source={IMAGES.LOGO} style={styles.image} />
 

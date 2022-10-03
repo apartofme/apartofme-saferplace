@@ -8,11 +8,11 @@ import {
   ScrollView,
 } from 'react-native-gesture-handler';
 
-import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
+import { ExtendedButton, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
+import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
 import { IMAGES } from '../../../assets';
 
 export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
@@ -35,7 +35,6 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   const [isTopPosition, setIsTopPosition] = useState(true);
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
 
-  const goBack = useNavigatePrevQuest();
   const onSubmit = useNavigateNextQuest();
 
   const setScrollPosition = useCallback(() => {
@@ -51,27 +50,6 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     const { height } = event.nativeEvent.layout;
     setScrollViewHeight(height);
   }, []);
-
-  const renderHeader = useCallback(() => {
-    if (crossHeader) {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-          // TODO: change to real image & function
-          rightIcon={IMAGES.WHITE_BACK_ARROW}
-          onRightIconPress={goBack}
-        />
-      );
-    } else {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-        />
-      );
-    }
-  }, [crossHeader, goBack]);
 
   const imageBackground = useMemo(() => {
     if (isTopPosition && backgroundImage) {
@@ -102,7 +80,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                     styles.topContentContainer,
                     { height: scrollViewHeight },
                   ]}>
-                  {renderHeader()}
+                  {useRenderQuestHeader(crossHeader ?? false)}
                   <View>
                     <ExtendedText preset="large-title" style={styles.topTitle}>
                       {title}

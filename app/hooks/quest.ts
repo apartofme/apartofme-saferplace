@@ -1,8 +1,12 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import _ from 'lodash';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
+import { TextStyle } from 'react-native';
 
+import { IMAGES } from '../assets';
+import { ExtendedText, MainHeader } from '../components';
+import { ExtendedTextPresets } from '../components/ExtendedText/ExtendedText.presets';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
 import { useAppDispatch, useAppSelector } from './redux';
@@ -110,29 +114,91 @@ export const useNavigatePrevQuest = () => {
 
     if (previousQuestIdx) {
       dispatch(questSlice.actions.popFromCurrentQuestStack());
+    } else {
+      dispatch(questSlice.actions.clearQuestStack());
     }
   }, [currentQuestIdx, dispatch, navigation, previousQuestIdx]);
 
   return navigatePrevQuest;
 };
 
-export const useParseTextWithNickname = (text: string): string => {
-  const currentNickname = useAppSelector(
-    state => state.cache.nicknames?.current,
+export const useParseTextWithNickname = ({
+  text,
+  textHasNickname,
+  preset,
+  style,
+  nicknamePreset,
+  nicknameStyle,
+}: {
+  text: string;
+  textHasNickname: boolean;
+  preset?: ExtendedTextPresets;
+  style?: TextStyle;
+  nicknamePreset?: ExtendedTextPresets;
+  nicknameStyle?: TextStyle;
+}) => {
+  const firstPlayer = useAppSelector(
+    state => state.cache.nicknames?.firstPlayer,
   ) as string;
-  const parentNickname = useAppSelector(
-    state => state.cache.nicknames?.parent,
+  const secondPlayer = useAppSelector(
+    state => state.cache.nicknames?.secondPlayer,
   ) as string;
-  const childNickname = useAppSelector(
-    state => state.cache.nicknames?.child,
-  ) as string;
-  return _.replace(
-    _.replace(
-      _.replace(text, '|child|', childNickname),
-      '|parent|',
-      parentNickname,
-    ),
-    '|nickname|',
-    currentNickname,
+
+  if (!textHasNickname) {
+    return React.createElement(
+      ExtendedText,
+      {
+        preset,
+        style,
+      },
+      text,
+    );
+  }
+
+  const textArray = _(text)
+    .replace('firstPlayer', firstPlayer)
+    .replace('secondPlayer', secondPlayer)
+    .split('|')
+    .map(value => {
+      if (firstPlayer === value || secondPlayer === value) {
+        return React.createElement(
+          ExtendedText,
+          {
+            key: value,
+            preset: nicknamePreset ?? preset,
+            style: nicknameStyle,
+          },
+          value,
+        );
+      } else {
+        return value;
+      }
+    });
+  return React.createElement(
+    ExtendedText,
+    {
+      preset,
+      style,
+    },
+    textArray,
   );
+};
+
+export const useRenderQuestHeader = (crossHeader: boolean) => {
+  const goBack = useNavigatePrevQuest();
+
+  if (crossHeader) {
+    return React.createElement(MainHeader, {
+      leftIcon: IMAGES.WHITE_BACK_ARROW,
+      onLeftIconPress: goBack,
+      // TODO: change to real image & function
+      rightIcon: IMAGES.WHITE_BACK_ARROW,
+      onRightIconPress: goBack,
+    });
+  } else {
+    return React.createElement(MainHeader, {
+      leftIcon: IMAGES.WHITE_BACK_ARROW,
+      onLeftIconPress: goBack,
+    });
+  }
 };

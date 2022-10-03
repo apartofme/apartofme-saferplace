@@ -56,15 +56,22 @@ export const cacheSlice = createSlice({
     saveNicknames(state, { payload }: INicknamesPayload) {
       state.nicknames = _.merge(state.nicknames, payload);
     },
-    changeCurrentNickname(state) {
-      const nicknames = state.nicknames;
-
-      if (nicknames?.current === nicknames?.child && nicknames?.current) {
-        nicknames.current = nicknames.parent as string;
-      } else if (nicknames?.current) {
-        nicknames.current = nicknames.child as string;
+    saveChosenNickname(state, { payload }: PayloadAction<string>) {
+      if (state.nicknames && payload !== state.nicknames.firstPlayer) {
+        state.nicknames.secondPlayer = state.nicknames.firstPlayer;
+        state.nicknames.firstPlayer = payload;
       }
     },
+
+    //changeCurrentNickname(state) {
+    //  const nicknames = state.nicknames;
+
+    //  if (nicknames?.current === nicknames?.child && nicknames?.current) {
+    //    nicknames.current = nicknames.parent as string;
+    //  } else if (nicknames?.current) {
+    //    nicknames.current = nicknames.child as string;
+    //  }
+    //},
     saveTranslationsError(state, action: PayloadAction<string>) {},
   },
 });

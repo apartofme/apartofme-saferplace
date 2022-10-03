@@ -10,20 +10,15 @@ import { useTranslation } from 'react-i18next';
 
 import { IPlayer, ISelectPlayerScreenProps } from './SelectPlayer.types';
 import { styles } from './SelectPlayer.styles';
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../components';
+import { BottomButtonView, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IMAGES } from '../../../assets';
 import { PLAYER_LIST } from './SelectPlayer.data';
 import {
   useAppDispatch,
   useAppSelector,
   useMount,
   useNavigateNextQuest,
-  useNavigatePrevQuest,
+  useRenderQuestHeader,
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
 
@@ -32,7 +27,6 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
 }) => {
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
   const { t } = useTranslation();
-  const goBack = useNavigatePrevQuest();
   const navigateNextQuest = useNavigateNextQuest();
   const dispatch = useAppDispatch();
 
@@ -52,32 +46,11 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   });
 
   const onSubmit = useCallback(() => {
-    dispatch(cacheSlice.actions.saveNicknames({ current: selectedPlayer }));
+    dispatch(cacheSlice.actions.saveChosenNickname(selectedPlayer));
     navigateNextQuest();
   }, [dispatch, navigateNextQuest, selectedPlayer]);
 
-  const { backgroundImage, crossHeader } = route.params.data;
-
-  const renderHeader = useCallback(() => {
-    if (crossHeader) {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-          // TODO: change to real image & function
-          rightIcon={IMAGES.WHITE_BACK_ARROW}
-          onRightIconPress={goBack}
-        />
-      );
-    } else {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-        />
-      );
-    }
-  }, [crossHeader, goBack]);
+  const { crossHeader } = route.params.data;
 
   const renderItem = useCallback(
     ({ item }: { item: IPlayer }) => {
@@ -107,7 +80,7 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {renderHeader()}
+        {useRenderQuestHeader(crossHeader ?? false)}
         <BottomButtonView
           buttonTitle={t('buttons.ready')}
           onSubmit={onSubmit}

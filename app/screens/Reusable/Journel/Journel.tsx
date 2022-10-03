@@ -16,13 +16,8 @@ import { generalStyles } from '../../../utils/styles';
 import { useNavigatePrevQuest, usePositiveNavigateTo } from '../../../hooks';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
-  const {
-    title,
-    description,
-    buttonTitle,
-    backgroundImage,
-    positiveNavigatesTo,
-  } = route.params.data;
+  const { title, description, buttonTitle, positiveNavigatesTo } =
+    route.params.data;
 
   const [inputText, setInputText] = useState<string>('');
   const { t } = useTranslation();

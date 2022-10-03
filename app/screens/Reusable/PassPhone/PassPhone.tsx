@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -6,52 +6,20 @@ import { IPassPhoneScreenProps } from './PassPhone.types';
 import { styles } from './PassPhone.styles';
 import {
   useNavigateNextQuest,
-  useNavigatePrevQuest,
   useParseTextWithNickname,
+  useRenderQuestHeader,
 } from '../../../hooks';
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../components';
+import { BottomButtonView, ExtendedText } from '../../../components';
 import { IMAGES } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
 
 export const PassPhoneScreen: React.FC<IPassPhoneScreenProps> = ({ route }) => {
   const { t } = useTranslation();
 
-  const goBack = useNavigatePrevQuest();
   const onSubmit = useNavigateNextQuest();
 
-  const {
-    title,
-    description,
-    buttonTitle,
-    crossHeader,
-    titleHasNickname,
-    titleNicknameChanges,
-  } = route.params.data;
-
-  const renderHeader = useCallback(() => {
-    if (crossHeader) {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-          // TODO: change to real image & function
-          rightIcon={IMAGES.WHITE_BACK_ARROW}
-          onRightIconPress={goBack}
-        />
-      );
-    } else {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-        />
-      );
-    }
-  }, [crossHeader, goBack]);
+  const { title, description, buttonTitle, crossHeader, titleHasNickname } =
+    route.params.data;
 
   return (
     <ImageBackground
@@ -61,14 +29,17 @@ export const PassPhoneScreen: React.FC<IPassPhoneScreenProps> = ({ route }) => {
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {renderHeader()}
+        {useRenderQuestHeader(crossHeader ?? false)}
         <BottomButtonView
           buttonTitle={buttonTitle ?? t('buttons.next')}
           onSubmit={onSubmit}
           style={styles.container}>
-          <ExtendedText preset="title" style={styles.title}>
-            {useParseTextWithNickname(title)}
-          </ExtendedText>
+          {useParseTextWithNickname({
+            text: title,
+            textHasNickname: titleHasNickname ?? true,
+            preset: 'title',
+            style: styles.title,
+          })}
           <Image source={IMAGES.WHITE_PENCIL} style={styles.avatar} />
           <ExtendedText preset="secondary-text" style={styles.description}>
             {description}

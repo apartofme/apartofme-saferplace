@@ -1,20 +1,16 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../../components';
+import { BottomButtonView, ExtendedText } from '../../../../components';
 import { IMAGES } from '../../../../assets';
 import {
   usePositiveNavigateTo,
   useParseTextWithNickname,
+  useRenderQuestHeader,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementSuccessivelyScreenProps } from './AcknowledgementSuccessively.types';
-import { useNavigatePrevQuest } from '../../../../hooks';
 import { styles } from './AcknowledgementSuccessively.styles';
 
 export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccessivelyScreenProps> =
@@ -24,38 +20,13 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
       description,
       buttonTitle,
       crossHeader,
-      titleHasNickname,
-      images,
-      backgroundImage,
       positiveNavigatesTo,
-      titleNicknameChanges,
+      titleHasNickname,
     } = route.params.data;
 
     const { t } = useTranslation();
 
-    const goBack = useNavigatePrevQuest();
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
-
-    const renderHeader = useCallback(() => {
-      if (crossHeader) {
-        return (
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={goBack}
-            // TODO: change to real image & function
-            rightIcon={IMAGES.WHITE_BACK_ARROW}
-            onRightIconPress={goBack}
-          />
-        );
-      } else {
-        return (
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={goBack}
-          />
-        );
-      }
-    }, [crossHeader, goBack]);
 
     return (
       <ImageBackground
@@ -65,7 +36,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
         }}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          {renderHeader()}
+          {useRenderQuestHeader(crossHeader ?? false)}
           <BottomButtonView
             buttonTitle={buttonTitle ?? t('buttons.next')}
             onSubmit={onSubmit}
@@ -75,9 +46,12 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
               source={IMAGES.WHITE_PENCIL}
               style={styles.image}
             />
-            <ExtendedText preset="large-title" style={styles.title}>
-              {useParseTextWithNickname(title)}
-            </ExtendedText>
+            {useParseTextWithNickname({
+              text: title,
+              textHasNickname: titleHasNickname ?? true,
+              preset: 'large-title',
+              style: styles.title,
+            })}
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>
