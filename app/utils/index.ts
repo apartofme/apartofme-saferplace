@@ -1,10 +1,11 @@
 import _ from 'lodash';
 import { Platform } from 'react-native';
 
-import { IQuestDatoCms } from '../models/IQuest';
+import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { ITranslations } from './types';
+import { IMAGES } from '../assets/images';
 
 export const isAndroid = Platform.OS === 'android';
 
@@ -78,15 +79,17 @@ export const questsToDictionary = (
       return image.path;
     });
 
-    const tempQuest = {
-      id: quest.title,
+    const tempQuest: IQuest = {
+      id: quest.id,
       title: quest.title,
       description: quest.description,
-      backgroundImage: quest.backgroundimage?.path ?? null,
-      images: images,
+      backgroundImage:
+        (quest.backgroundimage?.path as keyof typeof IMAGES) ?? null,
+      images: images as (keyof typeof IMAGES)[],
       tellMoreTitle: quest.tellmoretitle ?? null,
       tellMoreDescription: quest.tellmoredescription ?? null,
-      tellMoreBackground: quest.tellmorebackground?.path ?? null,
+      tellMoreBackground:
+        (quest.tellmorebackground?.path as keyof typeof IMAGES) ?? null,
       questLineId: quest.questlineid.id,
       type: quest.typeid.slug as keyof QuestStackParams,
       sort: quest.sort,
@@ -94,6 +97,9 @@ export const questsToDictionary = (
       crossHeader: quest.crossheader ?? null,
       duration: quest.duration ?? null,
       buttonTitle: quest.buttontitle ?? null,
+      positiveNavigatesTo: quest.positivenavigatesto?.id ?? null,
+      negativeNavigatesTo: quest.negativenavigatesto?.id ?? null,
+      titleNicknameChanges: quest.titlenicknamechanges ?? null,
     };
 
     result[locale][questLineId].quests[quest.id] = tempQuest;

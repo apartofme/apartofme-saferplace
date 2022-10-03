@@ -17,4 +17,5 @@ export * from './RadioButtonList';
 export * from './SearchBox';
 export * from './SoundCarousel';
 export * from './Timer';
+export * from './TrySomethingCarousel';
 export * from './VerticalSwipeView';

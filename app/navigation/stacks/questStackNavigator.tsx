@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import { IQuest } from '../../models/IQuest';
 import {
   AcknowledgementAlongEdgesScreen,
+  AcknowledgementDoubleImageScreen,
+  AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyScreen,
   AlertScreen,
   CharmCompletedScreen,
@@ -14,6 +16,8 @@ import {
   EmojiSelectionScreen,
   JournelScreen,
   PassPhoneScreen,
+  RadioButtonScreen,
+  SelectDrawBuildScreen,
   SelectPlayerScreen,
   SelectPlayerSupportScreen,
   SelectSoundScreen,
@@ -39,6 +43,10 @@ export type QuestStackParams = {
   TimerTitle: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
   SelectSound: { data: IQuest };
+  RadioButton: { data: IQuest };
+  AcknowledgementDoubleImage: { data: IQuest };
+  SelectDrawBuild: { data: IQuest };
+  AcknowledgementNicknames: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -74,5 +82,15 @@ export const QuestStackNavigator = () => (
       component={ElixirDoubleInteractionScreen}
     />
     <Stack.Screen name="SelectSound" component={SelectSoundScreen} />
+    <Stack.Screen name="RadioButton" component={RadioButtonScreen} />
+    <Stack.Screen
+      name="AcknowledgementDoubleImage"
+      component={AcknowledgementDoubleImageScreen}
+    />
+    <Stack.Screen name="SelectDrawBuild" component={SelectDrawBuildScreen} />
+    <Stack.Screen
+      name="AcknowledgementNicknames"
+      component={AcknowledgementNicknamesScreen}
+    />
   </Stack.Navigator>
 );

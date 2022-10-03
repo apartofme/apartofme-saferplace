@@ -1,0 +1,1 @@
+export { AcknowledgementNicknamesScreen } from './AcknowledgementNicknames';

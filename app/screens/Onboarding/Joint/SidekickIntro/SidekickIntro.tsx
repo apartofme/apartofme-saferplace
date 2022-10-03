@@ -18,13 +18,17 @@ export const SidekickIntroScreen: React.FC<ISidekickIntroScreenProps> = ({
     navigation.navigate('SignUpNickname');
   }, [navigation]);
 
+  const onSabmit = useCallback(() => {
+    navigation.navigate('QuestStack');
+  }, [navigation]);
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <DialogView
         backgroundImage={IMAGES.LOGO}
         dialog={INTRO_DIALOG}
         // TODO: change _.noop to the real function
-        onSubmit={_.noop}
+        onSubmit={onSabmit}
         navigateBetween={
           isStart
             ? {

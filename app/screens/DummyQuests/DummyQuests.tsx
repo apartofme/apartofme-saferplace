@@ -3,11 +3,11 @@ import React, { useCallback } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { ExtendedButton, ExtendedText } from '../../components';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { ExtendedText, ExtendedButton} from '../../components';
+import { useAppDispatch, useAppSelector, useMount } from '../../hooks';
 import { IQuest } from '../../models/IQuest';
 import { IQuestLine } from '../../models/IQuestLine';
-import { questSlice } from '../../redux/slices';
+import { cacheSlice, questSlice } from '../../redux/slices';
 import { generalStyles } from '../../utils/styles';
 import { styles } from './DummyQuests.styles';
 import { IDummyQuestsScreenProps } from './DummyQuests.types';
@@ -23,6 +23,22 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
     state => state.quest.allQuests?.[currentLanguage as string],
   );
 
+  const parentNickname = useAppSelector(
+    state => state.user.child?.nickname,
+  ) as string;
+  const childNickname = useAppSelector(
+    state => state.user.parent?.nickname,
+  ) as string;
+
+  useMount(() => {
+    dispatch(
+      cacheSlice.actions.saveNicknames({
+        parent: parentNickname,
+        child: childNickname,
+      }),
+    );
+  });
+
   const renderItem = useCallback(
     ({ item }: { item: IQuestLine }) => {
       const onPress = () => {
@@ -37,6 +53,7 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
         navigation.navigate(quests[0].type, {
           data: { ...quests[0] },
         });
+        dispatch(questSlice.actions.clearQuestStack());
       };
 
       return (

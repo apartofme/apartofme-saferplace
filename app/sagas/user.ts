@@ -1,5 +1,4 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import moment from 'moment';
 
 import {
   firebaseLoginUser,
@@ -41,7 +40,6 @@ function* watchLoginUser({
 
 function* watchRegisterParent() {
   const parent: ISignUpData = yield select(state => state.cache.auth.parent);
-  const currentDate: string = yield call(moment().format, 'L');
   const registerUserResponse: IFirebaseAuthResponse = yield call(
     firebaseRegisterUser,
     parent.email as string,
@@ -54,7 +52,7 @@ function* watchRegisterParent() {
       nickname: parent.nickname,
       emailVerified: registerUserResponse.user?.emailVerified,
       uid: registerUserResponse.user?.uid,
-      createdAt: currentDate,
+      createdAt: parent.createdAt,
     } as IUser;
     firestoreUpdateUser({ parent: user });
     yield put(userSlice.actions.registerParentSuccess(user));
