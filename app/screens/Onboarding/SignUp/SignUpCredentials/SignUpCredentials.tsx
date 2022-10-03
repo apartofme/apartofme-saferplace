@@ -109,7 +109,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             </ExtendedText>
           </TouchableOpacity>
           <ExtendedText preset="tertiary-text-regular">
-            {t('labels.and')}
+            {` ${t('labels.and')} `}
           </ExtendedText>
           <TouchableOpacity>
             <ExtendedText preset="tertiary-text-regular">

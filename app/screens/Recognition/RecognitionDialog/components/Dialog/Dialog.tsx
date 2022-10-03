@@ -16,10 +16,8 @@ export const Dialog: React.FC<IDialogProps> = ({
   const { t } = useTranslation();
 
   const renderDialog = useCallback(() => {
-    const currentDialogItem = _.find(
-      data,
-      (item, index) => index === currentIndex,
-    );
+    const currentDialogItem = _.find(data, currentIndex);
+    console.log(currentDialogItem);
     if (currentDialogItem) {
       return (
         <ExtendedText style={styles.title} key={currentDialogItem.textKey}>

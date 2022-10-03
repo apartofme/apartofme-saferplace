@@ -25,15 +25,14 @@ export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
 
   // TODO: change to correct
   const onSubmitPress = useCallback(() => {
-    if (selected.length === 1) {
-      navigation.navigate('RecognitionAcknowledgement', {
-        data: { type: selected[0] as RecognitionAcknowledgementType },
-      });
-    } else {
-      navigation.navigate('RecognitionAcknowledgement', {
-        data: { type: RecognitionAcknowledgementType.Multiple },
-      });
-    }
+    navigation.navigate('RecognitionAcknowledgement', {
+      data: {
+        type:
+          selected.length === 1
+            ? (selected[0] as RecognitionAcknowledgementType)
+            : RecognitionAcknowledgementType.Multiple,
+      },
+    });
   }, [navigation, selected]);
 
   // TODO: change to correct
