@@ -9,4 +9,5 @@ export interface IVerticalSwipeViewProps {
   topBackground: ImageSourcePropType;
   bottomBackground: ImageSourcePropType;
   onSubmit: () => void;
+  buttonTitleKey?: string;
 }

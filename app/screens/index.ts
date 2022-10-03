@@ -2,6 +2,7 @@ export * from './CharmAlerts';
 export * from './ComingSoon';
 export * from './Initial';
 export * from './DummyQuests';
+export * from './GroundingExercise';
 export * from './Menu';
 export * from './Onboarding';
 export * from './Recognition';

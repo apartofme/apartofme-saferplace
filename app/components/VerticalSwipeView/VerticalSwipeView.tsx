@@ -26,6 +26,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   topBackground,
   bottomBackground,
   onSubmit,
+  buttonTitleKey = 'buttons.ready',
 }) => {
   const [isTopPosition, setIsTopPosition] = useState(true);
 
@@ -86,7 +87,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
                       </ExtendedText>
                     )}
                     <ExtendedButton
-                      title={t('buttons.ready')}
+                      title={t(buttonTitleKey)}
                       style={styles.submitButton}
                       onPress={onSubmit}
                     />

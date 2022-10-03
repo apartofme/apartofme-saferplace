@@ -7,6 +7,8 @@ import {
   ParentsOnboardingStackNavigator,
   MenuStackNavigator,
   RecognitionStackNavigator,
+  ParentGroundingExerciseStackNavigator,
+  QuestStackNavigator,
 } from './stacks';
 import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
@@ -14,7 +16,6 @@ import { GLOBAL_NAVIGATION_STACK_OPTIONS } from './options';
 import { trackScreenView } from '../services/firebase';
 // TODO: remove when the screens are ready
 import { ComingSoonScreen } from '../screens/ComingSoon';
-import { QuestStackNavigator } from './stacks/questStackNavigator';
 
 export type RootParams = {
   Initial: undefined;
@@ -22,9 +23,10 @@ export type RootParams = {
   JointOnboardingStack: undefined;
   MenuStack: undefined;
   RecognitionStack: undefined;
+  QuestStack: undefined;
+  ParentGroundingExerciseStack: undefined;
   // TODO: remove when the screens are ready
   ComingSoon: undefined;
-  QuestStack: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootParams>();
@@ -60,6 +62,10 @@ const RootNavigator = () => {
         <Stack.Screen
           name="RecognitionStack"
           component={RecognitionStackNavigator}
+        />
+        <Stack.Screen
+          name="ParentGroundingExerciseStack"
+          component={ParentGroundingExerciseStackNavigator}
         />
         <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
         {/* // TODO: remove when the screens are ready */}
