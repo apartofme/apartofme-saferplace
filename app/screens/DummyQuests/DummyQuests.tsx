@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { ExtendedText, ExtendedButton} from '../../components';
+import { ExtendedText, ExtendedButton } from '../../components';
 import { useAppDispatch, useAppSelector, useMount } from '../../hooks';
 import { IQuest } from '../../models/IQuest';
 import { IQuestLine } from '../../models/IQuestLine';
