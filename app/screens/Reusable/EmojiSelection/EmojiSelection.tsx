@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
@@ -11,14 +10,12 @@ import {
 } from '../../../components';
 import {
   useAppDispatch,
-  useMount,
   useNavigateNextQuest,
   useParseTextWithNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { IEmojiSelectionScreenProps } from './EmojiSelection.types';
-import { Nullable, parseTextWithNickname } from '../../../utils';
 import { styles } from './EmojiSelection.styles';
 import { questSlice } from '../../../redux/slices';
 
@@ -30,20 +27,13 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
     route.params.data;
   const dispatch = useAppDispatch();
   const [emoji, setEmoji] = useState('');
-  const [titleArray, setTitleArray] = useState<Nullable<string[]>>(null);
-
-  useMount(() => {
-    if (titleHasNickname) {
-      setTitleArray(parseTextWithNickname(title));
-    }
-  });
 
   const navigateToNextQuest = useNavigateNextQuest();
 
   const onSubmit = useCallback(() => {
     const currentDate = moment().format('L');
 
-    if (_.findIndex(titleArray, item => item === 'child')) {
+    if (title.search('child') !== -1) {
       dispatch(
         questSlice.actions.saveDailyCheck({
           [currentDate]: emoji.split('.')[2],
@@ -52,7 +42,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
     }
 
     navigateToNextQuest();
-  }, [dispatch, emoji, navigateToNextQuest, titleArray]);
+  }, [dispatch, emoji, navigateToNextQuest, title]);
 
   return (
     <ImageBackground
@@ -70,6 +60,8 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
           {useParseTextWithNickname({
             text: title,
             textHasNickname: titleHasNickname ?? true,
+            // TODO: remove
+            nicknameStyle: { color: '#00dbc0' },
           })}
           <ExtendedText>{t(emoji)}</ExtendedText>
           <EmojiSlider setEmojiKey={setEmoji} />

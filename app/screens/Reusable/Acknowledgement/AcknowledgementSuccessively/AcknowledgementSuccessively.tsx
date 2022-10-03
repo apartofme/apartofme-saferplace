@@ -51,6 +51,8 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
               textHasNickname: titleHasNickname ?? true,
               preset: 'large-title',
               style: styles.title,
+              // TODO: remove
+              nicknameStyle: { color: '#00dbc0' },
             })}
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}

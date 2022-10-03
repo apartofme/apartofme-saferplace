@@ -75,7 +75,6 @@ query getQuestLineQuests {
     negativenavigatesto {
       id
     }
-    titlenicknamechanges
   }
 }
 `;
@@ -122,7 +121,6 @@ export const getAllQuestsQuery = (
       negativenavigatesto {
         id
       }
-      titlenicknamechanges
     }
   }
 `;

@@ -33,10 +33,10 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   const [playerList, setPlayerList] = useState(PLAYER_LIST);
 
   const parentNickname = useAppSelector(
-    state => state.user.child?.nickname,
+    state => state.user.parent?.nickname,
   ) as string;
   const childNickname = useAppSelector(
-    state => state.user.parent?.nickname,
+    state => state.user.child?.nickname,
   ) as string;
 
   useMount(() => {

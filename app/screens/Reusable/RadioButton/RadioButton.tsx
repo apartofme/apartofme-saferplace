@@ -12,12 +12,17 @@ import {
 } from '../../../components';
 import { RadioButtonType, RADIO_BUTTON_LIST } from './RadioButton.data';
 import { generalStyles } from '../../../utils/styles';
-import { useNegativeNavigateTo, useRenderQuestHeader } from '../../../hooks';
+import {
+  useNegativeNavigateTo,
+  useParseTextWithNickname,
+  useRenderQuestHeader,
+} from '../../../hooks';
 
 export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
   route,
 }) => {
-  const { title, crossHeader, negativeNavigatesTo } = route.params.data;
+  const { title, crossHeader, titleHasNickname, negativeNavigatesTo } =
+    route.params.data;
 
   const { t } = useTranslation();
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
@@ -41,7 +46,13 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
           isDisabledButton={!selectedAnswer.length}
           style={styles.container}>
           <ExtendedText preset="title" style={styles.title}>
-            {title}
+            {useParseTextWithNickname({
+              text: title,
+              textHasNickname: titleHasNickname ?? true,
+              preset: 'title',
+              // TODO: remove
+              nicknameStyle: { color: '#00dbc0' },
+            })}
           </ExtendedText>
           <RadioButtonList
             data={RADIO_BUTTON_LIST}

@@ -40,6 +40,8 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
             textHasNickname: titleHasNickname ?? true,
             preset: 'title',
             style: styles.title,
+            // TODO: remove
+            nicknameStyle: { color: '#00dbc0' },
           })}
           <Timer
             duration={duration ?? 10}
@@ -51,6 +53,8 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
             textHasNickname: titleHasNickname ?? true,
             preset: 'secondary-text',
             style: styles.subtitle,
+            // TODO: remove
+            nicknameStyle: { color: '#00dbc0' },
           })}
         </BottomButtonView>
       </SafeAreaView>

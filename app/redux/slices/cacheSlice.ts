@@ -62,16 +62,6 @@ export const cacheSlice = createSlice({
         state.nicknames.firstPlayer = payload;
       }
     },
-
-    //changeCurrentNickname(state) {
-    //  const nicknames = state.nicknames;
-
-    //  if (nicknames?.current === nicknames?.child && nicknames?.current) {
-    //    nicknames.current = nicknames.parent as string;
-    //  } else if (nicknames?.current) {
-    //    nicknames.current = nicknames.child as string;
-    //  }
-    //},
     saveTranslationsError(state, action: PayloadAction<string>) {},
   },
 });

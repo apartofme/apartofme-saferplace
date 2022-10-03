@@ -41,6 +41,8 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
             text: title,
             textHasNickname: titleHasNickname ?? true,
             preset: 'large-title',
+            // TODO: remove
+            nicknameStyle: { color: '#00dbc0' },
           })}
           <ExtendedText preset="secondary-text" style={styles.description}>
             {description}

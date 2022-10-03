@@ -52,6 +52,8 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
                 text: title,
                 textHasNickname: titleHasNickname ?? true,
                 style: styles.title,
+                // TODO: remove
+                nicknameStyle: { color: '#00dbc0' },
               })}
               <ExtendedText preset="secondary-text" style={styles.description}>
                 {description}

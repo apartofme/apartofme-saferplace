@@ -143,6 +143,12 @@ export const useParseTextWithNickname = ({
   const secondPlayer = useAppSelector(
     state => state.cache.nicknames?.secondPlayer,
   ) as string;
+  const parentNickname = useAppSelector(
+    state => state.user.parent?.nickname,
+  ) as string;
+  const childNickname = useAppSelector(
+    state => state.user.child?.nickname,
+  ) as string;
 
   if (!textHasNickname) {
     return React.createElement(
@@ -158,6 +164,8 @@ export const useParseTextWithNickname = ({
   const textArray = _(text)
     .replace('firstPlayer', firstPlayer)
     .replace('secondPlayer', secondPlayer)
+    .replace('grown_up', parentNickname)
+    .replace('child', childNickname)
     .split('|')
     .map(value => {
       if (firstPlayer === value || secondPlayer === value) {

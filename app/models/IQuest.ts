@@ -20,7 +20,6 @@ export interface IQuest {
   duration: Nullable<number>;
   positiveNavigatesTo: Nullable<string>;
   negativeNavigatesTo: Nullable<string>;
-  titleNicknameChanges: Nullable<boolean>;
 }
 
 export interface IQuestDatoCms {
@@ -59,5 +58,4 @@ export interface IQuestDatoCms {
   negativenavigatesto: Nullable<{
     id: string;
   }>;
-  titlenicknamechanges: Nullable<boolean>;
 }

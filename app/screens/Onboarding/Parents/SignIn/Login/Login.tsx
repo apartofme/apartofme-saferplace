@@ -22,7 +22,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState(__DEV__ ? 'emberglazer@gmail.com' : '');
-  const [password, setPassword] = useState(__DEV__ ? '11111111' : '');
+  const [password, setPassword] = useState(__DEV__ ? 'Test1111' : '');
 
   const onLoginPress = useCallback(() => {
     dispatch(userSlice.actions.loginUser({ email, password }));

@@ -48,6 +48,8 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
               textHasNickname: titleHasNickname ?? true,
               preset: 'title',
               style: styles.title,
+              // TODO: remove
+              nicknameStyle: { color: '#00dbc0' },
             })}
             <Image
               // TODO: change to real image

@@ -37,12 +37,10 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
     const [playerList, setPlayerList] = useState(PLAYER_LIST);
 
     const parentNickname = useAppSelector(
-      //state => state.user.child?.nickname,
-      state => state.cache.nicknames?.firstPlayer,
+      state => state.user.parent?.nickname,
     ) as string;
     const childNickname = useAppSelector(
-      //state => state.user.parent?.nickname,
-      state => state.cache.nicknames?.secondPlayer,
+      state => state.user.child?.nickname,
     ) as string;
 
     useMount(() => {
