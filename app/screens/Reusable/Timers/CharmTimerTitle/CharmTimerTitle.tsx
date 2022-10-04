@@ -5,7 +5,7 @@ import { ImageBackground, SafeAreaView } from 'react-native';
 import { BottomButtonView, Timer } from '../../../../components';
 import {
   useNavigateNextQuest,
-  useParseTextWithNickname,
+  useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
@@ -22,6 +22,26 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
 
   const onSubmit = useNavigateNextQuest();
 
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Description = useParsedJSXTextNickname({
+    text: description as string,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'secondary-text',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -30,32 +50,18 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {useRenderQuestHeader(crossHeader ?? false)}
+        <Header />
         <BottomButtonView
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
           style={styles.container}>
-          {useParseTextWithNickname({
-            text: title,
-            textHasNickname: titleHasNickname ?? true,
-            preset: 'title',
-            style: styles.title,
-            // TODO: remove
-            nicknameStyle: { color: '#00dbc0' },
-          })}
+          <Title />
           <Timer
             duration={duration ?? 10}
             isStart={true}
             style={styles.timer}
           />
-          {useParseTextWithNickname({
-            text: description as string,
-            textHasNickname: titleHasNickname ?? true,
-            preset: 'secondary-text',
-            style: styles.subtitle,
-            // TODO: remove
-            nicknameStyle: { color: '#00dbc0' },
-          })}
+          <Description />
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>

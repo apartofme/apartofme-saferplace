@@ -21,6 +21,8 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
 
   const { title, buttonTitle, crossHeader, duration } = route.params.data;
 
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -29,7 +31,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {useRenderQuestHeader(crossHeader ?? false)}
+        <Header />
         <BottomButtonView
           buttonTitle={buttonTitle ?? t('buttons.next')}
           // TODO: change to real function when adding logic

@@ -6,7 +6,7 @@ import { BottomButtonView, ExtendedText } from '../../../../components';
 import { IMAGES } from '../../../../assets';
 import {
   usePositiveNavigateTo,
-  useParseTextWithNickname,
+  useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
@@ -28,6 +28,17 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
 
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
+    const Title = useParsedJSXTextNickname({
+      text: title,
+      textHasNickname: titleHasNickname ?? true,
+      preset: 'title',
+      style: styles.title,
+      // TODO: remove
+      nicknameStyle: { color: '#00dbc0' },
+    });
+
+    const Header = useRenderQuestHeader(crossHeader ?? false);
+
     return (
       <ImageBackground
         // TODO: change to the real image
@@ -36,19 +47,12 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
         }}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          {useRenderQuestHeader(crossHeader ?? false)}
+          <Header />
           <BottomButtonView
             buttonTitle={buttonTitle ?? t('buttons.next')}
             onSubmit={onSubmit}
             style={styles.container}>
-            {useParseTextWithNickname({
-              text: title,
-              textHasNickname: titleHasNickname ?? true,
-              preset: 'title',
-              style: styles.title,
-              // TODO: remove
-              nicknameStyle: { color: '#00dbc0' },
-            })}
+            <Title />
             <View>
               <View style={styles.imageContainer}>
                 <Image

@@ -66,6 +66,8 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     };
   }, [backgroundImage, isTopPosition, tellMoreBackground]);
 
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground source={imageBackground} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
@@ -80,7 +82,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                     styles.topContentContainer,
                     { height: scrollViewHeight },
                   ]}>
-                  {useRenderQuestHeader(crossHeader ?? false)}
+                  <Header />
                   <View>
                     <ExtendedText preset="large-title" style={styles.topTitle}>
                       {title}

@@ -4,7 +4,7 @@ import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { IMAGES } from '../../../assets';
-import { useParseTextWithNickname, useRenderQuestHeader } from '../../../hooks';
+import { useParsedJSXTextNickname, useRenderQuestHeader } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { ICharmCompletedScreenProps } from './CharmCompleted.types';
 import { useNavigateNextQuest } from '../../../hooks';
@@ -19,6 +19,17 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   const { t } = useTranslation();
   const onSubmit = useNavigateNextQuest();
 
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'large-title',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -32,18 +43,12 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
           source={IMAGES.WHITE_PENCIL}
           style={styles.image}
         />
-        {useRenderQuestHeader(crossHeader ?? false)}
+        <Header />
         <BottomButtonView
           buttonTitle={buttonTitle ?? t('buttons.next')}
           onSubmit={onSubmit}
           style={styles.container}>
-          {useParseTextWithNickname({
-            text: title,
-            textHasNickname: titleHasNickname ?? true,
-            preset: 'large-title',
-            // TODO: remove
-            nicknameStyle: { color: '#00dbc0' },
-          })}
+          <Title />
           <ExtendedText preset="secondary-text" style={styles.description}>
             {description}
           </ExtendedText>

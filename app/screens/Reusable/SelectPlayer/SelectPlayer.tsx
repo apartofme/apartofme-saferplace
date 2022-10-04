@@ -25,6 +25,8 @@ import { cacheSlice } from '../../../redux/slices';
 export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   route,
 }) => {
+  const { crossHeader } = route.params.data;
+
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
   const { t } = useTranslation();
   const navigateNextQuest = useNavigateNextQuest();
@@ -39,6 +41,8 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
     state => state.user.child?.nickname,
   ) as string;
 
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   useMount(() => {
     const playerParent = { ...playerList[0], title: parentNickname };
     const playerChild = { ...playerList[1], title: childNickname };
@@ -49,8 +53,6 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
     dispatch(cacheSlice.actions.saveChosenNickname(selectedPlayer));
     navigateNextQuest();
   }, [dispatch, navigateNextQuest, selectedPlayer]);
-
-  const { crossHeader } = route.params.data;
 
   const renderItem = useCallback(
     ({ item }: { item: IPlayer }) => {
@@ -80,7 +82,7 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {useRenderQuestHeader(crossHeader ?? false)}
+        <Header />
         <BottomButtonView
           buttonTitle={t('buttons.ready')}
           onSubmit={onSubmit}

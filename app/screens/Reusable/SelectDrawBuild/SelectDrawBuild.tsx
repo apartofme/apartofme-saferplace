@@ -77,6 +77,8 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
     [selectedAnswer, t],
   );
 
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -85,7 +87,7 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {useRenderQuestHeader(crossHeader ?? false)}
+        <Header />
         <BottomButtonView
           buttonTitle={buttonTitle ?? t('buttons.select')}
           onSubmit={onSubmit}

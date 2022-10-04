@@ -27,6 +27,8 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
       navigation.navigate('Alert');
     }, [navigation]);
 
+    const Header = useRenderQuestHeader(crossHeader ?? false);
+
     return (
       <ImageBackground
         // TODO: change to the real image
@@ -35,7 +37,7 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
         }}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          {useRenderQuestHeader(crossHeader ?? false)}
+          <Header />
           <BottomButtonView
             buttonTitle={buttonTitle ?? t('buttons.next')}
             onSubmit={onSubmit}

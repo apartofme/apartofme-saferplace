@@ -6,7 +6,7 @@ import { BottomButtonView, ExtendedText } from '../../../../components';
 import { IMAGES } from '../../../../assets';
 import {
   useNavigateNextQuest,
-  useParseTextWithNickname,
+  useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
@@ -28,6 +28,17 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
     const { t } = useTranslation();
     const onSubmit = useNavigateNextQuest();
 
+    const Title = useParsedJSXTextNickname({
+      text: title,
+      textHasNickname: titleHasNickname ?? true,
+      preset: 'title',
+      style: styles.title,
+      // TODO: remove
+      nicknameStyle: { color: '#00dbc0' },
+    });
+
+    const Header = useRenderQuestHeader(crossHeader ?? false);
+
     return (
       <ImageBackground
         // TODO: change to real default image
@@ -38,19 +49,12 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          {useRenderQuestHeader(crossHeader ?? false)}
+          <Header />
           <BottomButtonView
             buttonTitle={buttonTitle ?? t('buttons.next')}
             onSubmit={onSubmit}
             style={styles.container}>
-            {useParseTextWithNickname({
-              text: title,
-              textHasNickname: titleHasNickname ?? true,
-              preset: 'title',
-              style: styles.title,
-              // TODO: remove
-              nicknameStyle: { color: '#00dbc0' },
-            })}
+            <Title />
             <Image
               // TODO: change to real image
               source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}

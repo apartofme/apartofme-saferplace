@@ -22,6 +22,8 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
 
   const onSubmit = useNavigateNextQuest();
 
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -30,7 +32,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {useRenderQuestHeader(crossHeader ?? false)}
+        <Header />
         <View style={styles.container}>
           <Image source={IMAGES.LOGO} style={styles.image} />
 

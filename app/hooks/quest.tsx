@@ -122,21 +122,19 @@ export const useNavigatePrevQuest = () => {
   return navigatePrevQuest;
 };
 
-export const useParseTextWithNickname = ({
+export const useParsedJSXTextNickname = ({
   text,
   textHasNickname,
   preset,
   style,
-  nicknamePreset,
   nicknameStyle,
 }: {
   text: string;
   textHasNickname: boolean;
   preset?: ExtendedTextPresets;
   style?: TextStyle;
-  nicknamePreset?: ExtendedTextPresets;
   nicknameStyle?: TextStyle;
-}) => {
+}): React.FC => {
   const firstPlayer = useAppSelector(
     state => state.cache.nicknames?.firstPlayer,
   ) as string;
@@ -151,13 +149,10 @@ export const useParseTextWithNickname = ({
   ) as string;
 
   if (!textHasNickname) {
-    return React.createElement(
-      ExtendedText,
-      {
-        preset,
-        style,
-      },
-      text,
+    return () => (
+      <ExtendedText preset={preset} style={style}>
+        {text}
+      </ExtendedText>
     );
   }
 
@@ -169,44 +164,38 @@ export const useParseTextWithNickname = ({
     .split('|')
     .map(value => {
       if (firstPlayer === value || secondPlayer === value) {
-        return React.createElement(
-          ExtendedText,
-          {
-            key: value,
-            preset: nicknamePreset ?? preset,
-            style: nicknameStyle,
-          },
-          value,
+        return (
+          <ExtendedText key={value} preset={preset} style={nicknameStyle}>
+            {value}
+          </ExtendedText>
         );
       } else {
         return value;
       }
     });
-  return React.createElement(
-    ExtendedText,
-    {
-      preset,
-      style,
-    },
-    textArray,
+  return () => (
+    <ExtendedText preset={preset} style={style}>
+      {textArray}
+    </ExtendedText>
   );
 };
 
-export const useRenderQuestHeader = (crossHeader: boolean) => {
+export const useRenderQuestHeader = (crossHeader: boolean): React.FC => {
   const goBack = useNavigatePrevQuest();
 
   if (crossHeader) {
-    return React.createElement(MainHeader, {
-      leftIcon: IMAGES.WHITE_BACK_ARROW,
-      onLeftIconPress: goBack,
-      // TODO: change to real image & function
-      rightIcon: IMAGES.WHITE_BACK_ARROW,
-      onRightIconPress: goBack,
-    });
+    return () => (
+      <MainHeader
+        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={goBack}
+        // TODO: change to real image & function
+        rightIcon={IMAGES.WHITE_BACK_ARROW}
+        onRightIconPress={goBack}
+      />
+    );
   } else {
-    return React.createElement(MainHeader, {
-      leftIcon: IMAGES.WHITE_BACK_ARROW,
-      onLeftIconPress: goBack,
-    });
+    return () => (
+      <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} onLeftIconPress={goBack} />
+    );
   }
 };

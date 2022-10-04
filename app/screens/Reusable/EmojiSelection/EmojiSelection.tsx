@@ -11,7 +11,7 @@ import {
 import {
   useAppDispatch,
   useNavigateNextQuest,
-  useParseTextWithNickname,
+  useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
@@ -44,6 +44,17 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
     navigateToNextQuest();
   }, [dispatch, emoji, navigateToNextQuest, title]);
 
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground
       // TODO: change to real image
@@ -52,17 +63,12 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {useRenderQuestHeader(crossHeader ?? false)}
+        <Header />
         <BottomButtonView
           buttonTitle={buttonTitle ?? t('buttons.select')}
           onSubmit={onSubmit}
           style={styles.container}>
-          {useParseTextWithNickname({
-            text: title,
-            textHasNickname: titleHasNickname ?? true,
-            // TODO: remove
-            nicknameStyle: { color: '#00dbc0' },
-          })}
+          <Title />
           <ExtendedText>{t(emoji)}</ExtendedText>
           <EmojiSlider setEmojiKey={setEmoji} />
         </BottomButtonView>

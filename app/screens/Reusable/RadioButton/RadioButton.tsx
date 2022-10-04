@@ -14,7 +14,7 @@ import { RadioButtonType, RADIO_BUTTON_LIST } from './RadioButton.data';
 import { generalStyles } from '../../../utils/styles';
 import {
   useNegativeNavigateTo,
-  useParseTextWithNickname,
+  useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
 
@@ -31,6 +31,17 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
 
   const onSubmit = useNegativeNavigateTo(negativeNavigatesTo, isNoSelected);
 
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -39,20 +50,14 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {useRenderQuestHeader(crossHeader ?? false)}
+        <Header />
         <BottomButtonView
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
           isDisabledButton={!selectedAnswer.length}
           style={styles.container}>
           <ExtendedText preset="title" style={styles.title}>
-            {useParseTextWithNickname({
-              text: title,
-              textHasNickname: titleHasNickname ?? true,
-              preset: 'title',
-              // TODO: remove
-              nicknameStyle: { color: '#00dbc0' },
-            })}
+            <Title />
           </ExtendedText>
           <RadioButtonList
             data={RADIO_BUTTON_LIST}

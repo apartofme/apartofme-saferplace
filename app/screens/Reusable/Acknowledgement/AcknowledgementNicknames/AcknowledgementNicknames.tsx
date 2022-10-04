@@ -7,7 +7,7 @@ import { IMAGES } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementNicknamesScreenProps } from './AcknowledgementNicknames.types';
 import {
-  useParseTextWithNickname,
+  useParsedJSXTextNickname,
   usePositiveNavigateTo,
   useRenderQuestHeader,
 } from '../../../../hooks';
@@ -28,6 +28,17 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
 
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
+    const Title = useParsedJSXTextNickname({
+      text: title,
+      textHasNickname: titleHasNickname ?? true,
+      preset: 'title',
+      style: styles.title,
+      // TODO: remove
+      nicknameStyle: { color: '#00dbc0' },
+    });
+
+    const Header = useRenderQuestHeader(crossHeader ?? false);
+
     return (
       <ImageBackground
         // TODO: change to the real image
@@ -36,7 +47,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
         }}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          {useRenderQuestHeader(crossHeader ?? false)}
+          <Header />
           <BottomButtonView
             buttonTitle={buttonTitle ?? t('buttons.next')}
             onSubmit={onSubmit}
@@ -48,13 +59,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
             />
 
             <View>
-              {useParseTextWithNickname({
-                text: title,
-                textHasNickname: titleHasNickname ?? true,
-                style: styles.title,
-                // TODO: remove
-                nicknameStyle: { color: '#00dbc0' },
-              })}
+              <Title />
               <ExtendedText preset="secondary-text" style={styles.description}>
                 {description}
               </ExtendedText>
