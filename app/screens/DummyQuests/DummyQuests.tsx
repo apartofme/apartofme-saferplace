@@ -24,17 +24,18 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
   );
 
   const parentNickname = useAppSelector(
-    state => state.user.child?.nickname,
-  ) as string;
-  const childNickname = useAppSelector(
     state => state.user.parent?.nickname,
   ) as string;
+  const childNickname = useAppSelector(
+    state => state.user.child?.nickname,
+  ) as string;
 
+  // TODO: remove
   useMount(() => {
     dispatch(
       cacheSlice.actions.saveNicknames({
-        parent: parentNickname,
-        child: childNickname,
+        firstPlayer: parentNickname,
+        secondPlayer: childNickname,
       }),
     );
   });

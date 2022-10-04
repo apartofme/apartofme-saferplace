@@ -13,11 +13,7 @@ import {
   ISelectPlayerSupportScreenProps,
 } from './SelectPlayerSupport.types';
 import { styles } from './SelectPlayerSupport.styles';
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../components';
+import { BottomButtonView, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
 import { PLAYER_LIST } from './SelectPlayerSupport.data';
@@ -26,39 +22,12 @@ import {
   useAppSelector,
   useMount,
   useNavigateNextQuest,
-  useNavigatePrevQuest,
+  useRenderQuestHeader,
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
 
 export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps> =
   ({ navigation, route }) => {
-    const [selectedPlayer, setSelectedPlayer] = useState<string>('');
-
-    const { t } = useTranslation();
-    const goBack = useNavigatePrevQuest();
-    const navigateNextQuest = useNavigateNextQuest();
-    const dispatch = useAppDispatch();
-
-    const [playerList, setPlayerList] = useState(PLAYER_LIST);
-
-    const parentNickname = useAppSelector(
-      state => state.user.child?.nickname,
-    ) as string;
-    const childNickname = useAppSelector(
-      state => state.user.parent?.nickname,
-    ) as string;
-
-    useMount(() => {
-      const playerParent = { ...playerList[0], title: parentNickname };
-      const playerChild = { ...playerList[1], title: childNickname };
-      setPlayerList([playerParent, playerChild]);
-    });
-
-    const onSubmit = useCallback(() => {
-      dispatch(cacheSlice.actions.saveNicknames({ current: selectedPlayer }));
-      navigateNextQuest();
-    }, [dispatch, navigateNextQuest, selectedPlayer]);
-
     const {
       title,
       description,
@@ -68,26 +37,33 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
       crossHeader,
     } = route.params.data;
 
-    const renderHeader = useCallback(() => {
-      if (crossHeader) {
-        return (
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={goBack}
-            // TODO: change to real image & function
-            rightIcon={IMAGES.WHITE_BACK_ARROW}
-            onRightIconPress={goBack}
-          />
-        );
-      } else {
-        return (
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={goBack}
-          />
-        );
-      }
-    }, [crossHeader, goBack]);
+    const [selectedPlayer, setSelectedPlayer] = useState<string>('');
+
+    const { t } = useTranslation();
+    const navigateNextQuest = useNavigateNextQuest();
+    const dispatch = useAppDispatch();
+
+    const [playerList, setPlayerList] = useState(PLAYER_LIST);
+
+    const parentNickname = useAppSelector(
+      state => state.user.parent?.nickname,
+    ) as string;
+    const childNickname = useAppSelector(
+      state => state.user.child?.nickname,
+    ) as string;
+
+    const Header = useRenderQuestHeader(crossHeader ?? false);
+
+    useMount(() => {
+      const playerParent = { ...playerList[0], title: parentNickname };
+      const playerChild = { ...playerList[1], title: childNickname };
+      setPlayerList([playerParent, playerChild]);
+    });
+
+    const onSubmit = useCallback(() => {
+      dispatch(cacheSlice.actions.saveChosenNickname(selectedPlayer));
+      navigateNextQuest();
+    }, [dispatch, navigateNextQuest, selectedPlayer]);
 
     const renderItem = useCallback(
       ({ item }: { item: IPlayer }) => {
@@ -122,7 +98,7 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          {renderHeader()}
+          <Header />
           <BottomButtonView
             buttonTitle={buttonTitle ?? t('buttons.ready')}
             onSubmit={onSubmit}
@@ -136,9 +112,9 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
               renderItem={renderItem}
               style={styles.playerList}
             />
-            {/* // TODO: change to correct image */}
             <TouchableOpacity onPress={goToAlert}>
               <Image
+                // TODO: change to correct image
                 source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
                 style={styles.infoImage}
               />

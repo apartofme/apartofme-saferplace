@@ -1,47 +1,69 @@
-import _ from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
+import { BottomButtonView, Timer } from '../../../../components';
 import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-  Timer,
-} from '../../../../components';
+  useNavigateNextQuest,
+  useParsedJSXTextNickname,
+  useRenderQuestHeader,
+} from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './CharmTimerTitle.styles';
 import { ICharmTimerTitleScreenProps } from './CharmTimerTitle.types';
 
 export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
-  navigation,
   route,
 }) => {
   const { t } = useTranslation();
 
-  const { duration, title, description } = route.params.data;
+  const { duration, title, description, crossHeader, titleHasNickname } =
+    route.params.data;
+
+  const onSubmit = useNavigateNextQuest();
+
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Description = useParsedJSXTextNickname({
+    text: description as string,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'secondary-text',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Header = useRenderQuestHeader(crossHeader ?? false);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-        // TODO: change icon
-        rightIcon={IMAGES.WHITE_BACK_ARROW}
-      />
-      <BottomButtonView
-        buttonTitle={t('buttons.next')}
-        onSubmit={_.noop}
-        style={styles.container}>
-        <ExtendedText preset="title" style={styles.title}>
-          {title}
-        </ExtendedText>
-        <Timer duration={duration} isStart={true} style={styles.timer} />
-        <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {description}
-        </ExtendedText>
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      // TODO: change to the real image
+      source={{
+        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+      }}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <Header />
+        <BottomButtonView
+          buttonTitle={t('buttons.next')}
+          onSubmit={onSubmit}
+          style={styles.container}>
+          <Title />
+          <Timer
+            duration={duration ?? 10}
+            isStart={true}
+            style={styles.timer}
+          />
+          <Description />
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

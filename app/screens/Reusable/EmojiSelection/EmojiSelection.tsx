@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
@@ -8,18 +7,15 @@ import {
   BottomButtonView,
   EmojiSlider,
   ExtendedText,
-  MainHeader,
 } from '../../../components';
-import { IMAGES } from '../../../assets';
-import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
+import {
+  useAppDispatch,
+  useNavigateNextQuest,
+  useParsedJSXTextNickname,
+  useRenderQuestHeader,
+} from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { IEmojiSelectionScreenProps } from './EmojiSelection.types';
-import { NicknameType } from '../../../utils/types';
-import { Nullable, parseTextWithNickname } from '../../../utils';
-import {
-  useNavigateNextQuest,
-  useNavigatePrevQuest,
-} from '../../../hooks/quest';
 import { styles } from './EmojiSelection.styles';
 import { questSlice } from '../../../redux/slices';
 
@@ -30,27 +26,14 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   const { title, buttonTitle, crossHeader, titleHasNickname } =
     route.params.data;
   const dispatch = useAppDispatch();
-  const parentNickname = useAppSelector(
-    state => state.user.child?.nickname,
-  ) as string;
-  const childNickname = useAppSelector(
-    state => state.user.parent?.nickname,
-  ) as string;
   const [emoji, setEmoji] = useState('');
-  const [titleArray, setTitleArray] = useState<Nullable<string[]>>(null);
-
-  useMount(() => {
-    if (titleHasNickname) {
-      setTitleArray(parseTextWithNickname(title));
-    }
-  });
 
   const navigateToNextQuest = useNavigateNextQuest();
 
   const onSubmit = useCallback(() => {
     const currentDate = moment().format('L');
 
-    if (_.findIndex(titleArray, item => item === 'child')) {
+    if (title.search('child') !== -1) {
       dispatch(
         questSlice.actions.saveDailyCheck({
           [currentDate]: emoji.split('.')[2],
@@ -59,59 +42,18 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
     }
 
     navigateToNextQuest();
-  }, [dispatch, emoji, navigateToNextQuest, titleArray]);
+  }, [dispatch, emoji, navigateToNextQuest, title]);
 
-  const goBack = useNavigatePrevQuest();
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
 
-  const renderHeader = useCallback(() => {
-    if (crossHeader) {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-          // TODO: change to real image & function
-          rightIcon={IMAGES.WHITE_BACK_ARROW}
-          onRightIconPress={goBack}
-        />
-      );
-    } else {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-        />
-      );
-    }
-  }, [crossHeader, goBack]);
-
-  const renderTitle = useCallback(() => {
-    if (titleHasNickname) {
-      const username = _.find(
-        titleArray,
-        value => value === 'parent' || value === 'child',
-      );
-      switch (username) {
-        case NicknameType.Parent:
-          return (
-            <ExtendedText preset="title" style={styles.title}>
-              {_.join(titleArray, '').replace(username, parentNickname)}
-            </ExtendedText>
-          );
-        case NicknameType.Child:
-          return (
-            <ExtendedText preset="title" style={styles.title}>
-              {_.join(titleArray, '').replace(username, childNickname)}
-            </ExtendedText>
-          );
-      }
-    } else {
-      return (
-        <ExtendedText preset="title" style={styles.title}>
-          {title}
-        </ExtendedText>
-      );
-    }
-  }, [childNickname, parentNickname, title, titleArray, titleHasNickname]);
+  const Header = useRenderQuestHeader(crossHeader ?? false);
 
   return (
     <ImageBackground
@@ -121,12 +63,12 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {renderHeader()}
+        <Header />
         <BottomButtonView
           buttonTitle={buttonTitle ?? t('buttons.select')}
           onSubmit={onSubmit}
           style={styles.container}>
-          {renderTitle()}
+          <Title />
           <ExtendedText>{t(emoji)}</ExtendedText>
           <EmojiSlider setEmojiKey={setEmoji} />
         </BottomButtonView>

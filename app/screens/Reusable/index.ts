@@ -10,7 +10,6 @@ export * from './EmojiSelection';
 export * from './FeltRecent';
 export * from './Instruction';
 export * from './Journel';
-export * from './PassPhone';
 export * from './RadioButton';
 export * from './ReadOutLoud';
 export * from './SelectDrawBuild';

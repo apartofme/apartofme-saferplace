@@ -15,17 +15,15 @@ import {
 } from './SelectDrawBuild.types';
 import { styles } from './SelectDrawBuild.styles';
 import {
-  useNavigatePrevQuest,
   useNegativeNavigateTo,
   usePositiveNavigateTo,
+  useRenderQuestHeader,
 } from '../../../hooks';
 import {
   BottomButtonView,
   ExtendedButton,
   ExtendedText,
-  MainHeader,
 } from '../../../components';
-import { IMAGES } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
 import {
   SelectDrawBuildType,
@@ -35,37 +33,20 @@ import {
 export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
   route,
 }) => {
-  const { buttonTitle, crossHeader, negativeNavigatesTo, positiveNavigatesTo } =
-    route.params.data;
+  const {
+    title,
+    buttonTitle,
+    crossHeader,
+    negativeNavigatesTo,
+    positiveNavigatesTo,
+  } = route.params.data;
 
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
   const { t } = useTranslation();
-  const goBack = useNavigatePrevQuest();
 
   const isBuildSelected = selectedAnswer === SelectDrawBuildType.Build;
 
   const onSubmit = useNegativeNavigateTo(negativeNavigatesTo, isBuildSelected);
-
-  const renderHeader = useCallback(() => {
-    if (crossHeader) {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-          // TODO: change to real image & function
-          rightIcon={IMAGES.WHITE_BACK_ARROW}
-          onRightIconPress={goBack}
-        />
-      );
-    } else {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-        />
-      );
-    }
-  }, [crossHeader, goBack]);
 
   const renderItem = useCallback(
     ({ item }: { item: ISelectDrawBuildListItem }) => {
@@ -96,6 +77,8 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
     [selectedAnswer, t],
   );
 
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -104,14 +87,14 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {renderHeader()}
+        <Header />
         <BottomButtonView
           buttonTitle={buttonTitle ?? t('buttons.select')}
           onSubmit={onSubmit}
           isDisabledButton={!selectedAnswer}
           style={styles.container}>
           <ExtendedText preset="title" style={styles.title}>
-            {t('screens.select_draw_build.title')}
+            {title ?? t('screens.select_draw_build.title')}
           </ExtendedText>
           <FlatList data={SELECT_DRAW_BUILD_LIST} renderItem={renderItem} />
         </BottomButtonView>

@@ -1,19 +1,15 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../../components';
+import { BottomButtonView, ExtendedText } from '../../../../components';
 import { IMAGES } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementNicknamesScreenProps } from './AcknowledgementNicknames.types';
 import {
-  useNavigatePrevQuest,
-  useParseTextWithNickname,
+  useParsedJSXTextNickname,
   usePositiveNavigateTo,
+  useRenderQuestHeader,
 } from '../../../../hooks';
 import { styles } from './AcknowledgementNicknames.styles';
 
@@ -24,34 +20,24 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
       description,
       buttonTitle,
       crossHeader,
+      titleHasNickname,
       positiveNavigatesTo,
     } = route.params.data;
 
     const { t } = useTranslation();
 
-    const goBack = useNavigatePrevQuest();
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
-    const renderHeader = useCallback(() => {
-      if (crossHeader) {
-        return (
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={goBack}
-            // TODO: change to real image & function
-            rightIcon={IMAGES.WHITE_BACK_ARROW}
-            onRightIconPress={goBack}
-          />
-        );
-      } else {
-        return (
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={goBack}
-          />
-        );
-      }
-    }, [crossHeader, goBack]);
+    const Title = useParsedJSXTextNickname({
+      text: title,
+      textHasNickname: titleHasNickname ?? true,
+      preset: 'title',
+      style: styles.title,
+      // TODO: remove
+      nicknameStyle: { color: '#00dbc0' },
+    });
+
+    const Header = useRenderQuestHeader(crossHeader ?? false);
 
     return (
       <ImageBackground
@@ -61,7 +47,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
         }}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          {renderHeader()}
+          <Header />
           <BottomButtonView
             buttonTitle={buttonTitle ?? t('buttons.next')}
             onSubmit={onSubmit}
@@ -73,9 +59,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
             />
 
             <View>
-              <ExtendedText style={styles.title}>
-                {useParseTextWithNickname(title)}
-              </ExtendedText>
+              <Title />
               <ExtendedText preset="secondary-text" style={styles.description}>
                 {description}
               </ExtendedText>

@@ -8,11 +8,11 @@ import {
   ScrollView,
 } from 'react-native-gesture-handler';
 
-import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
+import { ExtendedButton, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
+import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
 import { IMAGES } from '../../../assets';
 
 export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
@@ -35,7 +35,6 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   const [isTopPosition, setIsTopPosition] = useState(true);
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
 
-  const goBack = useNavigatePrevQuest();
   const onSubmit = useNavigateNextQuest();
 
   const setScrollPosition = useCallback(() => {
@@ -52,27 +51,6 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     setScrollViewHeight(height);
   }, []);
 
-  const renderHeader = useCallback(() => {
-    if (crossHeader) {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-          // TODO: change to real image & function
-          rightIcon={IMAGES.WHITE_BACK_ARROW}
-          onRightIconPress={goBack}
-        />
-      );
-    } else {
-      return (
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={goBack}
-        />
-      );
-    }
-  }, [crossHeader, goBack]);
-
   const imageBackground = useMemo(() => {
     if (isTopPosition && backgroundImage) {
       return IMAGES[backgroundImage];
@@ -88,6 +66,8 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     };
   }, [backgroundImage, isTopPosition, tellMoreBackground]);
 
+  const Header = useRenderQuestHeader(crossHeader ?? false);
+
   return (
     <ImageBackground source={imageBackground} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
@@ -102,7 +82,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                     styles.topContentContainer,
                     { height: scrollViewHeight },
                   ]}>
-                  {renderHeader()}
+                  <Header />
                   <View>
                     <ExtendedText preset="large-title" style={styles.topTitle}>
                       {title}

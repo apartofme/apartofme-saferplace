@@ -1,8 +1,11 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import _ from 'lodash';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
+import { TextStyle } from 'react-native';
 
+import { IMAGES } from '../assets';
+import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
 import { useAppDispatch, useAppSelector } from './redux';
@@ -110,29 +113,88 @@ export const useNavigatePrevQuest = () => {
 
     if (previousQuestIdx) {
       dispatch(questSlice.actions.popFromCurrentQuestStack());
+    } else {
+      dispatch(questSlice.actions.clearQuestStack());
     }
   }, [currentQuestIdx, dispatch, navigation, previousQuestIdx]);
 
   return navigatePrevQuest;
 };
 
-export const useParseTextWithNickname = (text: string): string => {
-  const currentNickname = useAppSelector(
-    state => state.cache.nicknames?.current,
+export const useParsedJSXTextNickname = ({
+  text,
+  textHasNickname,
+  preset,
+  style,
+  nicknameStyle,
+}: {
+  text: string;
+  textHasNickname: boolean;
+  preset?: ExtendedTextPresets;
+  style?: TextStyle;
+  nicknameStyle?: TextStyle;
+}): React.FC => {
+  const firstPlayer = useAppSelector(
+    state => state.cache.nicknames?.firstPlayer,
+  ) as string;
+  const secondPlayer = useAppSelector(
+    state => state.cache.nicknames?.secondPlayer,
   ) as string;
   const parentNickname = useAppSelector(
-    state => state.cache.nicknames?.parent,
+    state => state.user.parent?.nickname,
   ) as string;
   const childNickname = useAppSelector(
-    state => state.cache.nicknames?.child,
+    state => state.user.child?.nickname,
   ) as string;
-  return _.replace(
-    _.replace(
-      _.replace(text, '|child|', childNickname),
-      '|parent|',
-      parentNickname,
-    ),
-    '|nickname|',
-    currentNickname,
+
+  if (!textHasNickname) {
+    return () => (
+      <ExtendedText preset={preset} style={style}>
+        {text}
+      </ExtendedText>
+    );
+  }
+
+  const textArray = _(text)
+    .replace('firstPlayer', firstPlayer)
+    .replace('secondPlayer', secondPlayer)
+    .replace('grown_up', parentNickname)
+    .replace('child', childNickname)
+    .split('|')
+    .map(value => {
+      if (firstPlayer === value || secondPlayer === value) {
+        return (
+          <ExtendedText key={value} preset={preset} style={nicknameStyle}>
+            {value}
+          </ExtendedText>
+        );
+      } else {
+        return value;
+      }
+    });
+  return () => (
+    <ExtendedText preset={preset} style={style}>
+      {textArray}
+    </ExtendedText>
   );
+};
+
+export const useRenderQuestHeader = (crossHeader: boolean): React.FC => {
+  const goBack = useNavigatePrevQuest();
+
+  if (crossHeader) {
+    return () => (
+      <MainHeader
+        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={goBack}
+        // TODO: change to real image & function
+        rightIcon={IMAGES.WHITE_BACK_ARROW}
+        onRightIconPress={goBack}
+      />
+    );
+  } else {
+    return () => (
+      <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} onLeftIconPress={goBack} />
+    );
+  }
 };

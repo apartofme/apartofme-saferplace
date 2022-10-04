@@ -18,9 +18,8 @@ export interface ITrySomethingItem {
 }
 
 export interface INicknames {
-  parent?: string;
-  child?: string;
-  current?: string;
+  firstPlayer: string;
+  secondPlayer: string;
 }
 
 export interface ISignUpDataPayload {
