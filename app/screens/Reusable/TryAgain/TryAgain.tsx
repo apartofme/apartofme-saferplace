@@ -8,18 +8,32 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../components';
-import { useNavigateNextQuest, useNavigatePrevQuest } from '../../../hooks';
+import {
+  useNavigateNextQuest,
+  useNavigatePrevQuest,
+  useParsedJSXTextNickname,
+} from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './TryAgain.styles';
 import { ITryAgainScreenProps } from './TryAgain.types';
 
 export const TryAgainScreen: React.FC<ITryAgainScreenProps> = ({ route }) => {
-  const { title, backgroundImage } = route.params.data;
+  const { title, backgroundImage, titleHasNickname, description } =
+    route.params.data;
 
   const goBack = useNavigatePrevQuest();
   const onSubmit = useNavigateNextQuest();
 
   const { t } = useTranslation();
+
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
 
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>
@@ -31,14 +45,12 @@ export const TryAgainScreen: React.FC<ITryAgainScreenProps> = ({ route }) => {
             onLeftIconPress={goBack}
           />
           <View style={styles.container}>
-            <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
+            <Title />
             <View style={styles.imagesContainer}>
               <Image source={IMAGES.LOGO} style={styles.image} />
               <Image source={IMAGES.LOGO} style={styles.image} />
             </View>
-            <ExtendedText style={styles.subtitle}>
-              {t('screens.charm_alerts.try_again')}
-            </ExtendedText>
+            <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
           </View>
         </BottomButtonView>
       </SafeAreaView>
