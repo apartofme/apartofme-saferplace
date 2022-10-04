@@ -101,7 +101,8 @@ export const questsToDictionary = (
       negativeNavigatesTo: quest.negativenavigatesto?.id ?? null,
     };
 
-    result[locale][questLineId].quests[quest.id] = tempQuest;
+    //* ` ${quest.id}` - space is added to prevent automatic object sorting
+    result[locale][questLineId].quests[` ${quest.id}`] = tempQuest;
   });
 
   return result;

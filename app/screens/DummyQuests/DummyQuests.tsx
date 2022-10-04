@@ -88,7 +88,7 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
       />
       <ExtendedButton
         onPress={goToRecognitionStack}
-        title="To recognitionn"
+        title="To recognition"
         style={styles.button}
       />
       <ExtendedText preset="large-title" style={styles.questsTitle}>
