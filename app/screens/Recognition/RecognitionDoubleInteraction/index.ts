@@ -1,0 +1,1 @@
+export { RecognitionDoubleInteractionScreen } from './RecognitionDoubleInteraction';

@@ -5,32 +5,32 @@ import { ICarouselItem } from '../../../components';
 export const ELIXIR_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   {
     id: '1',
-    image: IMAGES.WHITE_PENCIL,
+    image: IMAGES.LOGO,
     subtitleKey: 'screens.recognition.elixir_carousel.first',
   },
   {
     id: '2',
-    image: IMAGES.WHITE_PENCIL,
+    image: IMAGES.LOGO,
     subtitleKey: 'screens.recognition.elixir_carousel.second',
   },
   {
     id: '3',
-    image: IMAGES.WHITE_PENCIL,
+    image: IMAGES.LOGO,
     subtitleKey: 'screens.recognition.elixir_carousel.third',
   },
   {
     id: '4',
-    image: IMAGES.WHITE_PENCIL,
+    image: IMAGES.LOGO,
     subtitleKey: 'screens.recognition.elixir_carousel.fourth',
   },
   {
     id: '5',
-    image: IMAGES.WHITE_PENCIL,
-    subtitleKey: 'screens.recognition.elixir_carousel.third',
+    image: IMAGES.LOGO,
+    subtitleKey: 'screens.recognition.elixir_carousel.fifth',
   },
   {
     id: '6',
-    image: IMAGES.WHITE_PENCIL,
-    subtitleKey: 'screens.recognition.elixir_carousel.fourth',
+    image: IMAGES.LOGO,
+    subtitleKey: 'screens.recognition.elixir_carousel.sixth',
   },
 ];

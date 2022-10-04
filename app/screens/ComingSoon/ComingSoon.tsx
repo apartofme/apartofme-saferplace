@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { SafeAreaView, View } from 'react-native';
 
-import { ExtendedText, MainHeader } from '../../components';
+import { ExtendedButton, ExtendedText, MainHeader } from '../../components';
 import { IComingSoonScreenProps } from './ComingSoon.types';
 import { IMAGES } from '../../assets';
 import { generalStyles } from '../../utils/styles';
@@ -9,6 +9,10 @@ import { generalStyles } from '../../utils/styles';
 export const ComingSoonScreen: React.FC<IComingSoonScreenProps> = ({
   navigation,
 }) => {
+  const onSubmitPress = useCallback(() => {
+    navigation.navigate('Initial');
+  }, [navigation]);
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
@@ -17,6 +21,7 @@ export const ComingSoonScreen: React.FC<IComingSoonScreenProps> = ({
       />
       <View style={generalStyles.centered}>
         <ExtendedText preset="heading">Coming soon...</ExtendedText>
+        <ExtendedButton title="Go to initial" onPress={onSubmitPress} />
       </View>
     </SafeAreaView>
   );

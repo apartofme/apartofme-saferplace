@@ -3,12 +3,13 @@ import React, { useCallback } from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { ExtendedText } from '../../components';
+import { ExtendedText, ExtendedButton } from '../../components';
 import { useAppDispatch, useAppSelector, useMount } from '../../hooks';
 import { IQuest } from '../../models/IQuest';
 import { IQuestLine } from '../../models/IQuestLine';
 import { cacheSlice, questSlice } from '../../redux/slices';
 import { generalStyles } from '../../utils/styles';
+import { styles } from './DummyQuests.styles';
 import { IDummyQuestsScreenProps } from './DummyQuests.types';
 
 export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
@@ -56,7 +57,7 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
       };
 
       return (
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={onPress} style={styles.questConteiner}>
           <ExtendedText>{item.title}</ExtendedText>
         </TouchableOpacity>
       );
@@ -64,8 +65,34 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
     [dispatch, navigation],
   );
 
+  // TODO: remove
+  const goToMenuStack = useCallback(() => {
+    navigation.navigate('MenuStack');
+  }, [navigation]);
+
+  // TODO: remove
+  const goToRecognitionStack = useCallback(() => {
+    navigation.navigate('RecognitionStack');
+  }, [navigation]);
+
   return (
-    <SafeAreaView style={generalStyles.flex}>
+    <SafeAreaView style={styles.container}>
+      <ExtendedText preset="large-title" style={styles.buttonsTitle}>
+        Dummy buttons:
+      </ExtendedText>
+      <ExtendedButton
+        onPress={goToMenuStack}
+        title="To menu"
+        style={styles.button}
+      />
+      <ExtendedButton
+        onPress={goToRecognitionStack}
+        title="To recognitionn"
+        style={styles.button}
+      />
+      <ExtendedText preset="large-title" style={styles.questsTitle}>
+        Quests:
+      </ExtendedText>
       <FlatList
         style={generalStyles.flex}
         data={values(allQuests)}
