@@ -5,8 +5,7 @@ import React, { useCallback } from 'react';
 import { TextStyle } from 'react-native';
 
 import { IMAGES } from '../assets';
-import { ExtendedText, MainHeader } from '../components';
-import { ExtendedTextPresets } from '../components/ExtendedText/ExtendedText.presets';
+import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
 import { useAppDispatch, useAppSelector } from './redux';
