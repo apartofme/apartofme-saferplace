@@ -8,6 +8,7 @@ import {
   AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyScreen,
   AcknowledgementSupportScreen,
+  AcknowledgementTitleScreen,
   AlertScreen,
   CharmCompletedScreen,
   CharmTimerButtonScreen,
@@ -16,9 +17,10 @@ import {
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
+  InstructionScreen,
   JournelScreen,
-  PassPhoneScreen,
   RadioButtonScreen,
+  ReadOutLoudScreen,
   SelectDrawBuildScreen,
   SelectPlayerScreen,
   SelectPlayerSupportScreen,
@@ -36,6 +38,7 @@ export type QuestStackParams = {
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
   AcknowledgementSupport: { data: IQuest };
+  AcknowledgementTitle: { data: IQuest };
   Alert: undefined;
   CharmCompleted: { data: IQuest };
   CharmTimerButton: { data: IQuest };
@@ -52,6 +55,8 @@ export type QuestStackParams = {
   TimerTitle: { data: IQuest };
   TimerTitleButton: { data: IQuest };
   VerticalSwipe: { data: IQuest };
+  Instruction: { data: IQuest };
+  ReadOutLoud: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -80,6 +85,10 @@ export const QuestStackNavigator = () => (
       name="AcknowledgementSupport"
       component={AcknowledgementSupportScreen}
     />
+    <Stack.Screen
+      name="AcknowledgementTitle"
+      component={AcknowledgementTitleScreen}
+    />
     <Stack.Screen name="Alert" component={AlertScreen} />
     <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
     <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
@@ -102,5 +111,7 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="TimerTitle" component={TimerTitleScreen} />
     <Stack.Screen name="TimerTitleButton" component={TimerTitleButtonScreen} />
     <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
+    <Stack.Screen name="Instruction" component={InstructionScreen} />
+    <Stack.Screen name="ReadOutLoud" component={ReadOutLoudScreen} />
   </Stack.Navigator>
 );

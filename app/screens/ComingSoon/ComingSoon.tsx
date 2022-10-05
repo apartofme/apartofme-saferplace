@@ -10,7 +10,7 @@ export const ComingSoonScreen: React.FC<IComingSoonScreenProps> = ({
   navigation,
 }) => {
   const onSubmitPress = useCallback(() => {
-    navigation.navigate('Initial');
+    navigation.navigate('DummyQuests');
   }, [navigation]);
 
   return (
@@ -21,7 +21,10 @@ export const ComingSoonScreen: React.FC<IComingSoonScreenProps> = ({
       />
       <View style={generalStyles.centered}>
         <ExtendedText preset="heading">Coming soon...</ExtendedText>
-        <ExtendedButton title="Go to initial" onPress={onSubmitPress} />
+        <ExtendedButton
+          title="Go to dummy quests screen"
+          onPress={onSubmitPress}
+        />
       </View>
     </SafeAreaView>
   );
