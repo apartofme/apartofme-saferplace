@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
@@ -14,18 +13,32 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IChangePasswordScreenProps } from './ChangePassword.types';
 import { styles } from './ChangePassword.styles';
+import { useAppDispatch } from '../../../hooks';
+import { userSlice } from '../../../redux/slices';
 
 export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
 
+  const [currentPassword, setCerrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+  const dispatch = useAppDispatch();
+
+  const onSubmit = useCallback(() => {
+    dispatch(
+      userSlice.actions.changePassword({ newPassword, currentPassword }),
+    );
+  }, [currentPassword, dispatch, newPassword]);
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <ExtendedKeyboardAvoidingView>
         <BottomButtonView
           buttonTitle={t('buttons.reset_password')}
-          onSubmit={_.noop}>
+          onSubmit={onSubmit}>
           <MainHeader
             leftIcon={IMAGES.WHITE_BACK_ARROW}
             onLeftIconPress={navigation.goBack}
@@ -41,14 +54,17 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
               <ExtendedTextInput
                 style={styles.input}
                 placeholder={t('placeholders.enter_current_password')}
+                onChangeText={setCerrentPassword}
               />
               <ExtendedTextInput
                 style={styles.input}
                 placeholder={t('placeholders.enter_new_password')}
+                onChangeText={setNewPassword}
               />
               <ExtendedTextInput
                 style={styles.input}
                 placeholder={t('placeholders.confirm_new_password')}
+                onChangeText={setConfirmNewPassword}
               />
             </View>
           </View>

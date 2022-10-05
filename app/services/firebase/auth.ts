@@ -1,4 +1,4 @@
-import auth from '@react-native-firebase/auth';
+import auth, { firebase } from '@react-native-firebase/auth';
 
 import { parseFirebaseError } from '../../utils';
 import { firestoreCreateUser } from './firestore';
@@ -49,6 +49,25 @@ export const firebaseLoginUser = async (email: string, password: string) => {
     );
   }
   return loginUserResponse;
+};
+
+export const firebaseChangePassword = async (
+  currentPassword: string,
+  newPassword: string,
+) => {
+  const emailCred = firebase.auth.EmailAuthProvider.credential(
+    auth().currentUser?.email as string,
+    currentPassword,
+  );
+
+  auth()
+    .currentUser?.reauthenticateWithCredential(emailCred)
+    .then(() => {
+      return auth().currentUser?.updatePassword(newPassword);
+    })
+    .catch(error => {
+      return error;
+    });
 };
 
 export const firebaseLogout = async () => {

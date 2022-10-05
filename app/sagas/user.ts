@@ -1,6 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import {
+  firebaseChangePassword,
   firebaseLoginUser,
   firebaseLogout,
   firebaseRegisterUser,
@@ -13,6 +14,7 @@ import {
 import { userSlice } from '../redux/slices';
 import {
   IAuthUserActionPayload,
+  IChangePasswordActionPayload,
   IShortSignUpData,
   ISignUpData,
 } from '../redux/types';
@@ -73,6 +75,16 @@ function* watchSaveChild() {
   }
 }
 
+function* watchChangePassword({
+  payload: { newPassword, currentPassword },
+}: IChangePasswordActionPayload) {
+  try {
+    yield call(firebaseChangePassword, currentPassword, newPassword);
+  } catch {
+    yield put(userSlice.actions.changePasswordError('change password error'));
+  }
+}
+
 function* watchLogout() {
   yield call(firebaseLogout);
   // TODO: uncomment when AuthStack will be done
@@ -83,6 +95,7 @@ export function* userSaga() {
   yield takeLatest(userSlice.actions.loginUser, watchLoginUser);
   yield takeLatest(userSlice.actions.registerParent, watchRegisterParent);
   yield takeLatest(userSlice.actions.saveChild, watchSaveChild);
+  yield takeLatest(userSlice.actions.changePassword, watchChangePassword);
 
   yield takeLatest(userSlice.actions.logout, watchLogout);
 }
