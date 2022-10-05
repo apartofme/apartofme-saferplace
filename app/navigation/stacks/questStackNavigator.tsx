@@ -17,7 +17,7 @@ import {
   ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
   JournelScreen,
-  PassPhoneScreen,
+  JournelSupportScreen,
   RadioButtonScreen,
   SelectDrawBuildScreen,
   SelectPlayerScreen,
@@ -44,6 +44,7 @@ export type QuestStackParams = {
   ElixirDoubleInteraction: { data: IQuest };
   EmojiSelection: { data: IQuest };
   Journel: { data: IQuest };
+  JournelSupport: { data: IQuest };
   RadioButton: { data: IQuest };
   SelectDrawBuild: { data: IQuest };
   SelectPlayer: { data: IQuest };
@@ -91,6 +92,7 @@ export const QuestStackNavigator = () => (
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
     <Stack.Screen name="Journel" component={JournelScreen} />
+    <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />
     <Stack.Screen name="RadioButton" component={RadioButtonScreen} />
     <Stack.Screen name="SelectDrawBuild" component={SelectDrawBuildScreen} />
     <Stack.Screen name="SelectPlayer" component={SelectPlayerScreen} />
