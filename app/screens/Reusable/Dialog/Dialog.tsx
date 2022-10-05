@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import { IMAGES } from '../../../assets';
-import { ExtendedText } from '../../../components';
 import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
