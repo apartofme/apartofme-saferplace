@@ -11,6 +11,7 @@ import { IMAGES } from '../../../assets';
 import { ExtendedText } from '../../../components';
 import {
   useNavigateNextQuest,
+  useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks/quest';
 import { generalStyles } from '../../../utils/styles';
@@ -18,11 +19,20 @@ import { styles } from './Dialog.styles';
 import { IDialogScreenProps } from './Dialog.types';
 
 export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
-  const { title, crossHeader } = route.params.data;
+  const { title, crossHeader, titleHasNickname } = route.params.data;
 
   const onSubmit = useNavigateNextQuest();
 
   const Header = useRenderQuestHeader(crossHeader ?? false);
+
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'body-regular',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
 
   return (
     <ImageBackground
@@ -37,7 +47,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
           <Image source={IMAGES.LOGO} style={styles.image} />
 
           <View style={styles.dialogContainer}>
-            <ExtendedText style={styles.title}>{title}</ExtendedText>
+            <Title />
           </View>
           <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
             <Image
