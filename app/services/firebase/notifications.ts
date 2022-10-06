@@ -2,6 +2,9 @@ import messaging, {
   FirebaseMessagingTypes,
 } from '@react-native-firebase/messaging';
 import notifee from '@notifee/react-native';
+import { Linking } from 'react-native';
+
+import { isIOS } from '../../utils';
 
 const onDisplayNotification = async (
   notification: FirebaseMessagingTypes.Notification,
@@ -27,6 +30,14 @@ const onDisplayNotification = async (
       },
     },
   });
+};
+
+export const openDeviceNotificationSettings = async () => {
+  if (isIOS) {
+    Linking.openURL('app-settings:');
+  } else {
+    await notifee.openNotificationSettings();
+  }
 };
 
 const onMessageHandler = async (
