@@ -2,7 +2,11 @@ import auth, { firebase } from '@react-native-firebase/auth';
 
 import { parseFirebaseError } from '../../utils';
 import { firestoreCreateUser } from './firestore';
-import { IFirebaseAuthError, IFirebaseAuthResponse } from './types';
+import {
+  IFirebaseAuthError,
+  IFirebaseAuthResponse,
+  IFirebaseChangePasswordResponse,
+} from './types';
 
 export const getCurrentUser = () => auth().currentUser?.uid;
 
@@ -55,6 +59,10 @@ export const firebaseChangePassword = async (
   currentPassword: string,
   newPassword: string,
 ) => {
+  const changePasswordResponse: IFirebaseChangePasswordResponse = {
+    error: null,
+  };
+
   const emailCred = firebase.auth.EmailAuthProvider.credential(
     auth().currentUser?.email as string,
     currentPassword,
@@ -63,11 +71,14 @@ export const firebaseChangePassword = async (
   auth()
     .currentUser?.reauthenticateWithCredential(emailCred)
     .then(() => {
-      return auth().currentUser?.updatePassword(newPassword);
+      return auth()
+        .currentUser?.updatePassword(newPassword)
+        .catch(error => (changePasswordResponse.error = error));
     })
     .catch(error => {
       return error;
     });
+  return changePasswordResponse;
 };
 
 export const firebaseLogout = async () => {

@@ -9,6 +9,7 @@ import {
   firestoreSaveDeviceToken,
   firestoreUpdateUser,
   IFirebaseAuthResponse,
+  IFirebaseChangePasswordResponse,
   IFirestoreUser,
 } from '../services/firebase';
 import { userSlice } from '../redux/slices';
@@ -78,9 +79,15 @@ function* watchSaveChild() {
 function* watchChangePassword({
   payload: { newPassword, currentPassword },
 }: IChangePasswordActionPayload) {
-  try {
-    yield call(firebaseChangePassword, currentPassword, newPassword);
-  } catch {
+  const changePasswordresponse: IFirebaseChangePasswordResponse = yield call(
+    firebaseChangePassword,
+    currentPassword,
+    newPassword,
+  );
+
+  if (changePasswordresponse.error) {
+    yield call(StaticNavigator.navigateTo, 'ChangePasswordSuccess');
+  } else {
     yield put(userSlice.actions.changePasswordError('change password error'));
   }
 }
