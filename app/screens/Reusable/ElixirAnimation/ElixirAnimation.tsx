@@ -2,7 +2,6 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 
 import { IElixirAnimationScreenProps } from './ElixirAnimation.types';
-import { styles } from './ElixirAnimation.styles';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 
