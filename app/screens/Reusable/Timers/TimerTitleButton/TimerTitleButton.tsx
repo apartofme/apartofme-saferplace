@@ -2,25 +2,25 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-  Timer,
-} from '../../../../components';
+import { BottomButtonView, Timer } from '../../../../components';
 import { ITimerTitleButtonScreenProps } from './TimerTitleButton.types';
 import { styles } from './TimerTitleButton.styles';
 import { generalStyles } from '../../../../utils/styles';
+import {
+  useNavigateNextQuest,
+  useParsedJSXTextNickname,
+  useRenderQuestHeader,
+} from '../../../../hooks';
 
 export const TimerTitleButtonScreen: React.FC<ITimerTitleButtonScreenProps> = ({
-  navigation,
   route,
 }) => {
   const { t } = useTranslation();
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
+  const navigateNextQuest = useNavigateNextQuest();
+  const { duration, title, crossHeader, titleHasNickname } = route.params.data;
 
-  const { duration, title } = route.params.data;
+  const Header = useRenderQuestHeader(crossHeader ?? false);
 
   const correctButtonTitle = useMemo(() => {
     if (isTimerStart) {
@@ -30,27 +30,33 @@ export const TimerTitleButtonScreen: React.FC<ITimerTitleButtonScreenProps> = ({
     }
   }, [isTimerStart]);
 
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'heading',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
   const onSubmitPress = useCallback(() => {
     setIsTimerStart(true);
   }, []);
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
+      <Header />
       <BottomButtonView
         buttonTitle={t(correctButtonTitle)}
         onSubmit={onSubmitPress}
         isDisabledButton={isTimerStart}
         style={styles.container}>
-        <Timer duration={duration} isStart={isTimerStart} />
-        {title && (
-          <ExtendedText preset="heading" style={styles.title}>
-            {title}
-          </ExtendedText>
-        )}
+        <Timer
+          duration={duration ?? 10}
+          isStart={isTimerStart}
+          onAnimationComplete={navigateNextQuest}
+        />
+        {title && <Title />}
       </BottomButtonView>
     </SafeAreaView>
   );

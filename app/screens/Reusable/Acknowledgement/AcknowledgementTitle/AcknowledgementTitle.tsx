@@ -2,35 +2,54 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground } from 'react-native';
 
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../../components';
+import { BottomButtonView } from '../../../../components';
 import { IMAGES } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './AcknowledgementTitle.styles';
 import { IAcknowledgementTitleScreenProps } from './AcknowledgementTitle.types';
+import {
+  useNavigateNextQuest,
+  useParsedJSXTextNickname,
+  useRenderQuestHeader,
+} from '../../../../hooks';
 
 export const AcknowledgementTitleScreen: React.FC<IAcknowledgementTitleScreenProps> =
-  ({ navigation, route }) => {
-    const { titleKey, image, backgroundImage, onSubmit } = route.params.data;
+  ({ route }) => {
     const { t } = useTranslation();
 
+    const { title, titleHasNickname, crossHeader, buttonTitle } =
+      route.params.data;
+
+    const onSubmit = useNavigateNextQuest();
+
+    const Title = useParsedJSXTextNickname({
+      text: title,
+      textHasNickname: titleHasNickname ?? true,
+      preset: 'body-regular',
+      style: styles.title,
+      // TODO: remove
+      nicknameStyle: { color: '#00dbc0' },
+    });
+
+    const Header = useRenderQuestHeader(crossHeader ?? false);
+
     return (
-      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
+      <ImageBackground
+        // TODO: change to the real image
+        source={{
+          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+        }}
+        style={generalStyles.flex}>
+        <Header />
         <BottomButtonView
-          buttonTitle={t('buttons.next')}
+          buttonTitle={buttonTitle ?? t('buttons.next')}
           onSubmit={onSubmit}
           style={styles.container}>
-          <Image source={image} />
-          <ExtendedText preset="body-regular" style={styles.title}>
-            {t(titleKey)}
-          </ExtendedText>
+          <Image
+            // TODO: change to the real image
+            source={IMAGES.WHITE_PENCIL}
+          />
+          <Title />
         </BottomButtonView>
       </ImageBackground>
     );

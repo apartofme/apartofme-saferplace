@@ -6,15 +6,16 @@ import { ITimerTitleScreenProps } from './TimerTitle.types';
 import { styles } from './TimerTitle.styles';
 import { generalStyles } from '../../../../utils/styles';
 import { IMAGES } from '../../../../assets';
-import { useNavigateNextQuest } from '../../../../hooks';
+import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
 
 export const TimerTitleScreen: React.FC<ITimerTitleScreenProps> = ({
   route,
 }) => {
+  const { crossHeader, backgroundImage, duration, title } = route.params.data;
   const onSubmit = useNavigateNextQuest();
 
-  const { backgroundImage, duration, title } = route.params.data;
-
+  // TODO: remove
+  const Header = useRenderQuestHeader(crossHeader ?? false);
   return (
     <ImageBackground
       // TODO: change to real default image
@@ -25,6 +26,8 @@ export const TimerTitleScreen: React.FC<ITimerTitleScreenProps> = ({
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
+        {/* // TODO: remove */}
+        <Header />
         <View style={styles.container}>
           <Timer
             duration={duration ?? 10}

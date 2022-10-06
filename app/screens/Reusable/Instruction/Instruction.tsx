@@ -1,29 +1,42 @@
 import React, { useCallback } from 'react';
 import { FlatList, Image, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
 
 import {
   IInstructionListItem,
   IInstructionScreenProps,
 } from './Instruction.types';
 import { styles } from './Instruction.styles';
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../components';
-import { IMAGES } from '../../../assets';
+import { BottomButtonView, ExtendedText } from '../../../components';
+
 import { generalStyles } from '../../../utils/styles';
 import { INSTRUCTION_LIST } from './Instruction.data';
+import {
+  useNavigateNextQuest,
+  useParsedJSXTextNickname,
+  useRenderQuestHeader,
+} from '../../../hooks';
 
 export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
-  navigation,
   route,
 }) => {
   const { t } = useTranslation();
 
-  const { buttonTitle } = route.params.data;
+  const { title, titleHasNickname, crossHeader, buttonTitle } =
+    route.params.data;
+
+  const onSubmit = useNavigateNextQuest();
+
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    style: styles.title,
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Header = useRenderQuestHeader(crossHeader ?? false);
 
   const renderItem = useCallback(
     ({ item }: { item: IInstructionListItem }) => (
@@ -41,17 +54,12 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
+      <Header />
       <BottomButtonView
-        buttonTitle={buttonTitle}
-        onSubmit={_.noop}
+        buttonTitle={buttonTitle ?? t('buttons.ready')}
+        onSubmit={onSubmit}
         style={styles.container}>
-        <ExtendedText preset="title" style={styles.title}>
-          {t('screens.instruction.title')}
-        </ExtendedText>
+        <Title />
         <FlatList data={INSTRUCTION_LIST} renderItem={renderItem} />
       </BottomButtonView>
     </SafeAreaView>

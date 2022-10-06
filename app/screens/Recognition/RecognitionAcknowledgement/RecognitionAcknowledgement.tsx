@@ -31,7 +31,8 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
 
     const getNicknameTitle = useCallback(() => {
       const findedTitle =
-        _.find(RECOGNITION_ACKNOWLEDGEMENT_DATA, type)?.title ?? '';
+        _.find(RECOGNITION_ACKNOWLEDGEMENT_DATA, item => item.type === type)
+          ?.title ?? '';
       return `${parentNickname} ${t('labels.and')} ${childNickname} ${t(
         findedTitle,
       )}`;

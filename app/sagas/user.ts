@@ -75,8 +75,7 @@ function* watchSaveChild() {
 
 function* watchLogout() {
   yield call(firebaseLogout);
-  // TODO: uncomment when AuthStack will be done
-  // yield call(StaticNavigator.reset, 'AuthStack');
+  yield call(StaticNavigator.reset, 'ParentsOnboardingStack');
 }
 
 export function* userSaga() {
