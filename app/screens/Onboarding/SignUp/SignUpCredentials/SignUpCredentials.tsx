@@ -26,7 +26,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     const dispatch = useAppDispatch();
 
     const onSignUpPress = useCallback(
-      (email, password) => {
+      ({ email, password }) => {
         const createdAt = moment().format('L');
         dispatch(
           cacheSlice.actions.saveSignUpDataParent({
@@ -55,10 +55,17 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             initialValues={{ email: '', password: '' }}
             validationSchema={SignUpCredentioalsValidationSchema}
             onSubmit={onSignUpPress}>
-            {({ values, handleChange, isValid, dirty }) => (
+            {({
+              values,
+              handleChange,
+              handleSubmit,
+              handleBlur,
+              isValid,
+              dirty,
+            }) => (
               <BottomButtonView
                 buttonTitle={t('buttons.signup')}
-                onSubmit={() => onSignUpPress(values.email, values.password)}
+                onSubmit={handleSubmit}
                 isDisabledButton={dirty ? !isValid : true}
                 style={styles.container}>
                 <View style={generalStyles.flex}>
@@ -82,6 +89,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                       type={ExtendedTextInputType.Email}
                       value={values.email}
                       onChangeText={handleChange('email')}
+                      onBlur={handleBlur('email')}
                       placeholder={t('placeholders.enter_email')}
                       style={styles.input}
                     />
@@ -89,6 +97,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                       type={ExtendedTextInputType.Password}
                       value={values.password}
                       onChangeText={handleChange('password')}
+                      onBlur={handleBlur('password')}
                       placeholder={t('placeholders.create_password')}
                       style={styles.input}
                     />
