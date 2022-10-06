@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
@@ -24,7 +23,9 @@ export const ChangePasswordSuccessScreen: React.FC<IChangePasswordSuccessScreenP
           onLeftIconPress={navigation.goBack}
         />
         {/* // TODO: change for correct function */}
-        <BottomButtonView buttonTitle={t('buttons.back')} onSubmit={_.noop}>
+        <BottomButtonView
+          buttonTitle={t('buttons.back')}
+          onSubmit={navigation.goBack}>
           <View style={styles.container}>
             <ExtendedText style={styles.title}>
               {t('screens.menu.change_password.success.title')}
