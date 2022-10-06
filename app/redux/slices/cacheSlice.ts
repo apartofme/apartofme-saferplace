@@ -3,6 +3,8 @@ import _ from 'lodash';
 
 import { Nullable } from '../../utils';
 import {
+  IEmotionPayload,
+  IEmotions,
   INicknames,
   INicknamesPayload,
   ISaveTranslationsPayload,
@@ -23,6 +25,7 @@ interface ICacheState {
   translations: Nullable<ITranslations>;
   trySomethingItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
+  emotions: IEmotions;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -33,6 +36,10 @@ const INITIAL_STATE: ICacheState = {
   translations: null,
   trySomethingItem: null,
   nicknames: null,
+  emotions: {
+    selected: null,
+    completed: [],
+  },
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -63,5 +70,15 @@ export const cacheSlice = createSlice({
       }
     },
     saveTranslationsError(state, action: PayloadAction<string>) {},
+    saveSelectedEmotion(state, { payload }: IEmotionPayload) {
+      state.emotions.selected = payload;
+    },
+    completeSelectedEmotion({ emotions }) {
+      if (emotions) {
+        emotions.completed = _.union(
+          _.concat(emotions.completed, emotions.selected),
+        );
+      }
+    },
   },
 });

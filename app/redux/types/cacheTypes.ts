@@ -1,3 +1,6 @@
+import { EmotionButtonType } from '../../components';
+import { Nullable } from '../../utils';
+
 export interface ISignUpData {
   email?: string;
   password?: string;
@@ -20,6 +23,11 @@ export interface ITrySomethingItem {
 export interface INicknames {
   firstPlayer: string;
   secondPlayer: string;
+}
+
+export interface IEmotions {
+  selected: Nullable<EmotionButtonType>;
+  completed: Nullable<EmotionButtonType>[];
 }
 
 export interface ISignUpDataPayload {
@@ -47,4 +55,8 @@ export interface ITrySomethingItemPayload {
 
 export interface INicknamesPayload {
   payload: INicknames;
+}
+
+export interface IEmotionPayload {
+  payload: Nullable<EmotionButtonType>;
 }
