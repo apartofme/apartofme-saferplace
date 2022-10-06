@@ -50,7 +50,7 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
           initialValues={{ nickname: '' }}
           validationSchema={SignUpNicknameValidationSchema}
           onSubmit={onSubmit}>
-          {({ values, dirty, isValid, handleChange }) => (
+          {({ values, dirty, isValid, handleChange, errors }) => (
             <BottomButtonView
               buttonTitle={t('buttons.next')}
               onSubmit={() => onSubmit(values.nickname)}
@@ -66,6 +66,7 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
                 value={values.nickname}
                 onChangeText={handleChange('nickname')}
                 placeholder={t('placeholders.enter_nickname')}
+                error={errors.nickname}
               />
             </BottomButtonView>
           )}

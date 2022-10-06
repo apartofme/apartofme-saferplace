@@ -62,6 +62,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
               handleBlur,
               isValid,
               dirty,
+              errors,
             }) => (
               <BottomButtonView
                 buttonTitle={t('buttons.signup')}
@@ -92,6 +93,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                       onBlur={handleBlur('email')}
                       placeholder={t('placeholders.enter_email')}
                       style={styles.input}
+                      error={errors.email}
                     />
                     <ExtendedTextInput
                       type={ExtendedTextInputType.Password}
@@ -100,6 +102,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                       onBlur={handleBlur('password')}
                       placeholder={t('placeholders.create_password')}
                       style={styles.input}
+                      error={errors.password}
                     />
                   </View>
                 </View>
