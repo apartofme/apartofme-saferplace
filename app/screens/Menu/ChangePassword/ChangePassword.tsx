@@ -28,7 +28,6 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
 
   const onSubmit = useCallback(
     (currentPassword, newPassword) => {
-      console.log(currentPassword, newPassword);
       dispatch(
         userSlice.actions.changePassword({ newPassword, currentPassword }),
       );
