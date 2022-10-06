@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { Formik } from 'formik';
 
 import {
   ExtendedButton,
@@ -16,17 +17,18 @@ import { generalStyles } from '../../../../../utils/styles';
 import { useAppDispatch } from '../../../../../hooks';
 import { userSlice } from '../../../../../redux/slices';
 import { HIT_SLOP } from './Lodin.data';
+import { SignInValidationSchema } from './Login.validation';
 
 export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const [email, setEmail] = useState(__DEV__ ? 'emberglazer@gmail.com' : '');
-  const [password, setPassword] = useState(__DEV__ ? 'Test1111' : '');
-
-  const onLoginPress = useCallback(() => {
-    dispatch(userSlice.actions.loginUser({ email, password }));
-  }, [dispatch, email, password]);
+  const onLoginPress = useCallback(
+    ({ email, password }) => {
+      dispatch(userSlice.actions.loginUser({ email, password }));
+    },
+    [dispatch],
+  );
 
   const onForgotPusswordPress = useCallback(() => {
     navigation.navigate('ForgotPasswordEmail');
@@ -46,25 +48,49 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
         <ExtendedText preset="large-title" style={styles.title}>
           {t('screens.onboarding.login.title')}
         </ExtendedText>
-        <ExtendedTextInput
-          value={email}
-          onChangeText={setEmail}
-          placeholder={t('placeholders.enter_email')}
-          type={ExtendedTextInputType.Email}
-          style={styles.mb24}
-        />
-        <ExtendedTextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder={t('placeholders.enter_password')}
-          type={ExtendedTextInputType.Password}
-          style={styles.mb24}
-        />
-        <ExtendedButton
-          title={t('buttons.login')}
-          style={styles.mb24}
-          onPress={onLoginPress}
-        />
+        <Formik
+          initialValues={{
+            email: __DEV__ ? 'emberglazer@gmail.com' : '',
+            password: __DEV__ ? 'Test2222' : '',
+          }}
+          validationSchema={SignInValidationSchema}
+          onSubmit={onLoginPress}>
+          {({
+            values,
+            handleChange,
+            handleSubmit,
+            handleBlur,
+            isValid,
+            errors,
+          }) => (
+            <>
+              <ExtendedTextInput
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                placeholder={t('placeholders.enter_email')}
+                type={ExtendedTextInputType.Email}
+                style={styles.mb24}
+                error={errors.email}
+              />
+              <ExtendedTextInput
+                value={values.password}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                placeholder={t('placeholders.enter_password')}
+                type={ExtendedTextInputType.Password}
+                style={styles.mb24}
+                error={errors.password}
+              />
+              <ExtendedButton
+                title={t('buttons.login')}
+                style={styles.mb24}
+                onPress={handleSubmit}
+                disabled={!isValid}
+              />
+            </>
+          )}
+        </Formik>
         <TouchableOpacity
           onPress={onForgotPusswordPress}
           style={styles.forgotButton}
