@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Image, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -16,7 +16,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
     route.params;
   const { t } = useTranslation();
 
-  const getCorrectTitleKey = useCallback(() => {
+  const title = useMemo(() => {
     switch (phase) {
       case MixingElixirPhaseType.Mix:
         return 'screens.mixing_exixir.elixir_animaion.mix';
@@ -51,7 +51,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   return (
     <SafeAreaView style={styles.container}>
       <Image source={IMAGES.LOGO} style={styles.image} />
-      <ExtendedText preset="title">{t(getCorrectTitleKey())}</ExtendedText>
+      <ExtendedText preset="title">{t(title)}</ExtendedText>
     </SafeAreaView>
   );
 };
