@@ -6,6 +6,7 @@ import {
   AcknowledgementAlongEdgesScreen,
   AcknowledgementDoubleImageScreen,
   AcknowledgementNicknamesScreen,
+  AcknowledgementSuccessivelyDoubleButtonScreen,
   AcknowledgementSuccessivelyScreen,
   AcknowledgementSupportScreen,
   AcknowledgementTitleScreen,
@@ -17,8 +18,10 @@ import {
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
+  EmotionSelectionScreen,
   InstructionScreen,
   JournelScreen,
+  JournelSupportScreen,
   RadioButtonScreen,
   ReadOutLoudScreen,
   SelectDrawBuildScreen,
@@ -37,6 +40,7 @@ export type QuestStackParams = {
   AcknowledgementDoubleImage: { data: IQuest };
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
+  AcknowledgementSuccessivelyDoubleButton: { data: IQuest };
   AcknowledgementSupport: { data: IQuest };
   AcknowledgementTitle: { data: IQuest };
   Alert: undefined;
@@ -46,7 +50,9 @@ export type QuestStackParams = {
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
   EmojiSelection: { data: IQuest };
+  EmotionSelection: { data: IQuest };
   Journel: { data: IQuest };
+  JournelSupport: { data: IQuest };
   RadioButton: { data: IQuest };
   SelectDrawBuild: { data: IQuest };
   SelectPlayer: { data: IQuest };
@@ -82,6 +88,10 @@ export const QuestStackNavigator = () => (
       component={AcknowledgementSuccessivelyScreen}
     />
     <Stack.Screen
+      name="AcknowledgementSuccessivelyDoubleButton"
+      component={AcknowledgementSuccessivelyDoubleButtonScreen}
+    />
+    <Stack.Screen
       name="AcknowledgementSupport"
       component={AcknowledgementSupportScreen}
     />
@@ -99,7 +109,9 @@ export const QuestStackNavigator = () => (
       component={ElixirDoubleInteractionScreen}
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
+    <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
     <Stack.Screen name="Journel" component={JournelScreen} />
+    <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />
     <Stack.Screen name="RadioButton" component={RadioButtonScreen} />
     <Stack.Screen name="SelectDrawBuild" component={SelectDrawBuildScreen} />
     <Stack.Screen name="SelectPlayer" component={SelectPlayerScreen} />

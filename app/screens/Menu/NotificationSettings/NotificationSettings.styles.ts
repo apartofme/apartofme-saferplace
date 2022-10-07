@@ -3,6 +3,7 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 interface INotificationSettingsStyles {
   container: ViewStyle;
   title: TextStyle;
+  button: ViewStyle;
 }
 
 export const styles = StyleSheet.create<INotificationSettingsStyles>({
@@ -13,5 +14,8 @@ export const styles = StyleSheet.create<INotificationSettingsStyles>({
   title: {
     marginTop: 40,
     marginBottom: 100,
+  },
+  button: {
+    marginTop: 24,
   },
 });

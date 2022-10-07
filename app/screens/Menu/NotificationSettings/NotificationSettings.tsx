@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
-import { ExtendedText, MainHeader } from '../../../components';
+import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuSwitchRow } from '../components';
 import { INotificationSettingsScreenProps } from './NotificationSettings.types';
 import { styles } from './NotificationSettings.styles';
+import { openDeviceNotificationSettings } from '../../../services/firebase';
 
 export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenProps> =
   ({ navigation }) => {
@@ -52,6 +53,11 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
             )}
             isEnabled={isNotificationsEnabled}
             setIsEnabled={setNotificationEnabled}
+          />
+          <ExtendedButton
+            title="To device settings"
+            style={styles.button}
+            onPress={openDeviceNotificationSettings}
           />
         </View>
       </SafeAreaView>

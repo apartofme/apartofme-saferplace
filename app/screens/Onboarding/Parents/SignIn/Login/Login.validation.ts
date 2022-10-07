@@ -1,8 +1,8 @@
 import * as yup from 'yup';
 
-import { REGEXPS } from '../../../../utils/regexps';
+import { REGEXPS } from '../../../../../utils/regexps';
 
-export const SignUpCredentioalsValidationSchema = yup.object().shape({
+export const SignInValidationSchema = yup.object().shape({
   email: yup
     .string()
     .email('Incorrect email')

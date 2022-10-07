@@ -55,6 +55,7 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
           data: { ...quests[0] },
         });
         dispatch(questSlice.actions.clearQuestStack());
+        dispatch(cacheSlice.actions.clearEmotions());
       };
 
       return (

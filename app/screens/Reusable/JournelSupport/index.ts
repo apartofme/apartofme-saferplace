@@ -1,0 +1,1 @@
+export { JournelSupportScreen } from './JournelSupport';

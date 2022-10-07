@@ -1,6 +1,7 @@
+import { EmotionButtonType } from '../../components';
+import { Nullable } from '../../utils';
 import { IPlant } from '../../models/IPlant';
 import { PlantAreaType } from '../../screens/Garden/components';
-import { Nullable } from '../../utils';
 
 export interface ISignUpData {
   email?: string;
@@ -24,6 +25,11 @@ export interface ITrySomethingItem {
 export interface INicknames {
   firstPlayer: string;
   secondPlayer: string;
+}
+
+export interface IEmotions {
+  selected: Nullable<EmotionButtonType>;
+  completed: Nullable<EmotionButtonType>[];
 }
 
 export interface ISignUpDataPayload {
@@ -51,6 +57,10 @@ export interface ITrySomethingItemPayload {
 
 export interface INicknamesPayload {
   payload: INicknames;
+}
+
+export interface IEmotionPayload {
+  payload: Nullable<EmotionButtonType>;
 }
 
 export type IPlantArea = Record<PlantAreaType, Nullable<IPlant>>;

@@ -1,25 +1,47 @@
 import React, { useState } from 'react';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { IJournelScreenProps } from './Journel.types';
-import { styles } from './Journel.styles';
+import { IJournelSupportScreenProps } from './JournelSupport.types';
+import { styles } from './JournelSupport.styles';
 import {
   BottomButtonView,
   ExtendedKeyboardAvoidingView,
   ExtendedText,
   MultilineTextInput,
 } from '../../../components';
+import { IMAGES } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
-import { usePositiveNavigateTo, useRenderQuestHeader } from '../../../hooks';
+import {
+  useParsedJSXTextNickname,
+  usePositiveNavigateTo,
+  useRenderQuestHeader,
+} from '../../../hooks';
 
-export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
-  const { title, description, buttonTitle, crossHeader, positiveNavigatesTo } =
-    route.params.data;
+export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
+  route,
+}) => {
+  const {
+    title,
+    description,
+    images,
+    buttonTitle,
+    crossHeader,
+    titleHasNickname,
+    positiveNavigatesTo,
+  } = route.params.data;
 
   const [inputText, setInputText] = useState<string>('');
   const { t } = useTranslation();
   const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
+
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
 
   const Header = useRenderQuestHeader(crossHeader ?? false);
 
@@ -38,12 +60,7 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
             onSubmit={onSubmit}
             isDisabledButton={!inputText}
             style={styles.container}>
-            <ExtendedText preset="title">
-              {title ?? t('screens.journel.title')}
-            </ExtendedText>
-            <ExtendedText preset="secondary-text" style={styles.description}>
-              {description ?? t('screens.journel.description')}
-            </ExtendedText>
+            <Title />
             <View style={styles.inputContainer}>
               <MultilineTextInput
                 placeholder={t('placeholders.enter_text')}
@@ -51,6 +68,16 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
                 onChangeText={setInputText}
               />
             </View>
+
+            <View style={generalStyles.flex} />
+            <Image
+              // TODO: change to correct image
+              source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
+              style={styles.infoImage}
+            />
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {description ?? t('screens.journel.description')}
+            </ExtendedText>
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>

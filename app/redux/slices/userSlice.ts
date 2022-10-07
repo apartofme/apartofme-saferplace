@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
   IAuthUserActionPayload,
+  IChangePasswordActionPayload,
   ILoginUserSuccessActionPayload,
   IResetPasswordActionPayload,
   IShortSignUpData,
@@ -45,6 +46,10 @@ export const userSlice = createSlice({
       state.child = user;
     },
     saveChildError(state, action: PayloadAction<string>) {},
+
+    changePassword(state, action: IChangePasswordActionPayload) {},
+    changePasswordSuccess() {},
+    changePasswordError(state, action: PayloadAction<string>) {},
 
     resetPassword(state, action: IResetPasswordActionPayload) {},
     resetPasswordSuccess() {},

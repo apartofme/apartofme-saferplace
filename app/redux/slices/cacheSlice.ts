@@ -4,6 +4,8 @@ import _ from 'lodash';
 import { IPlant } from '../../models/IPlant';
 import { Nullable } from '../../utils';
 import {
+  IEmotionPayload,
+  IEmotions,
   INicknames,
   INicknamesPayload,
   IPlantArea,
@@ -25,6 +27,7 @@ interface ICacheState {
   translations: Nullable<ITranslations>;
   trySomethingItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
+  emotions: IEmotions;
   // TODO: make it as separate slice
   plantArea: IPlantArea;
 }
@@ -37,6 +40,10 @@ const INITIAL_STATE: ICacheState = {
   translations: null,
   trySomethingItem: null,
   nicknames: null,
+  emotions: {
+    selected: null,
+    completed: [],
+  },
   plantArea: {
     TopLeft: null,
     TopRight: null,
@@ -79,5 +86,18 @@ export const cacheSlice = createSlice({
     },
 
     saveTranslationsError(state, action: PayloadAction<string>) {},
+    saveSelectedEmotion(state, { payload }: IEmotionPayload) {
+      state.emotions.selected = payload;
+    },
+    completeSelectedEmotion({ emotions }) {
+      if (emotions.selected) {
+        emotions.completed = _.concat(emotions.completed, emotions.selected);
+        emotions.selected = null;
+      }
+    },
+    clearEmotions({ emotions }) {
+      emotions.selected = null;
+      emotions.completed = [];
+    },
   },
 });
