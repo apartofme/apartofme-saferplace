@@ -22,5 +22,5 @@ export enum MixingElixirPhaseType {
 }
 
 export enum PlantsType {
-  SPOUR_COMPASSION = 'SPOUR_COMPASSION',
+  SpourCompassion = 'SPOUR_COMPASSION',
 }

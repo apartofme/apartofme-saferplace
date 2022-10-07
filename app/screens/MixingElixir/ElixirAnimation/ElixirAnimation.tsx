@@ -18,15 +18,12 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
 
   const getCorrectTitleKey = useCallback(() => {
     switch (phase) {
-      case MixingElixirPhaseType.Mix: {
+      case MixingElixirPhaseType.Mix:
         return 'screens.mixing_exixir.elixir_animaion.mix';
-      }
-      case MixingElixirPhaseType.Open: {
+      case MixingElixirPhaseType.Open:
         return 'screens.mixing_exixir.elixir_animaion.open';
-      }
-      default: {
+      default:
         return 'screens.mixing_exixir.elixir_animaion.pour';
-      }
     }
   }, [phase]);
 
@@ -39,13 +36,14 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
           selectedPlantArea,
           isFirstTimeGarden,
         });
-      } else {
-        navigation.push('MixingElixirSuccess', {
-          plantImage,
-          selectedPlantArea,
-          isFirstTimeGarden,
-        });
+        return;
       }
+
+      navigation.push('MixingElixirSuccess', {
+        plantImage,
+        selectedPlantArea,
+        isFirstTimeGarden,
+      });
     }, 3000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);

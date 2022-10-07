@@ -2,8 +2,8 @@ import { Nullable } from '../../../../utils';
 
 export interface IPlantAreaProps {
   isPlanting: boolean;
-  activePlantArea: Nullable<keyof typeof PlantAreaType>;
-  setActivePlantArea: (value: Nullable<keyof typeof PlantAreaType>) => void;
+  activePlantArea: Nullable<PlantAreaType>;
+  setActivePlantArea: (value: Nullable<PlantAreaType>) => void;
 }
 
 export enum PlantAreaType {

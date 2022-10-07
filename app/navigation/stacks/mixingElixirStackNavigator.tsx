@@ -14,19 +14,19 @@ export type MixingElixirStackParams = {
   ElixirAnimation: {
     phase: MixingElixirPhaseType;
     isFirstTimeGarden: boolean;
-    plantImage: keyof typeof PlantsType;
-    selectedPlantArea: keyof typeof PlantAreaType;
+    plantImage: PlantsType;
+    selectedPlantArea: PlantAreaType;
   };
   ElixirInstruction: {
     phase: MixingElixirPhaseType;
     isFirstTimeGarden: boolean;
-    plantImage: keyof typeof PlantsType;
-    selectedPlantArea: keyof typeof PlantAreaType;
+    plantImage: PlantsType;
+    selectedPlantArea: PlantAreaType;
   };
   MixingElixirSuccess: {
-    plantImage: keyof typeof PlantsType;
+    plantImage: PlantsType;
     isFirstTimeGarden: boolean;
-    selectedPlantArea: keyof typeof PlantAreaType;
+    selectedPlantArea: PlantAreaType;
   };
 };
 

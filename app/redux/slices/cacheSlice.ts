@@ -25,6 +25,7 @@ interface ICacheState {
   translations: Nullable<ITranslations>;
   trySomethingItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
+  // TODO: make it as separate slice
   plantArea: IPlantArea;
 }
 
@@ -72,6 +73,7 @@ export const cacheSlice = createSlice({
         state.nicknames.firstPlayer = payload;
       }
     },
+    // TODO: move to separate slice
     updatePlantArea(state, { payload }: PayloadAction<IPlant>) {
       state.plantArea[payload.plantArea] = payload;
     },

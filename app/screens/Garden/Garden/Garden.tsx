@@ -28,7 +28,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const { t } = useTranslation();
 
   const [activePlantArea, setActivePlantArea] =
-    useState<Nullable<keyof typeof PlantAreaType>>(null);
+    useState<Nullable<PlantAreaType>>(null);
 
   useMount(() => {
     if (isFirstTime) {
@@ -57,7 +57,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         screen: 'ElixirInstruction',
         params: {
           phase: MixingElixirPhaseType.Mix,
-          plantImage: PlantsType.SPOUR_COMPASSION,
+          plantImage: PlantsType.SpourCompassion,
           selectedPlantArea: activePlantArea,
           isFirstTimeGarden,
         },
@@ -103,7 +103,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
           <TouchableOpacity
             onPress={onBookPress}
             style={styles.bookContainer}
-            disabled={isPlanting}>
+            disabled={isPlanting || isFirstTimeGarden}>
             <Image source={IMAGES.CLOSED_BOOK} style={styles.book} />
           </TouchableOpacity>
         </View>

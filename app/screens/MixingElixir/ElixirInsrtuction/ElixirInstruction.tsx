@@ -22,21 +22,18 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
 
     useMount(() => {
       switch (phase) {
-        case MixingElixirPhaseType.Mix: {
+        case MixingElixirPhaseType.Mix:
           setTitleKey('screens.mixing_exixir.elixir_instruction.mix');
           setButtonTitleKey('buttons.tap_to_mix');
           break;
-        }
-        case MixingElixirPhaseType.Open: {
+        case MixingElixirPhaseType.Open:
           setTitleKey('screens.mixing_exixir.elixir_instruction.open');
           setButtonTitleKey('buttons.tap_to_open');
           break;
-        }
-        default: {
+        default:
           setTitleKey('screens.mixing_exixir.elixir_instruction.pour');
           setButtonTitleKey('buttons.tap_to_pour');
           break;
-        }
       }
     });
 

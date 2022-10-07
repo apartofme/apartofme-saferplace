@@ -28,6 +28,7 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
           plantedAt: nowSeconds,
         }),
       );
+
       navigation.push('GardenStack', {
         screen: 'Garden',
         params: {

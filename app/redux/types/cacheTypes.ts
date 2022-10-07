@@ -53,4 +53,4 @@ export interface INicknamesPayload {
   payload: INicknames;
 }
 
-export type IPlantArea = Record<keyof typeof PlantAreaType, Nullable<IPlant>>;
+export type IPlantArea = Record<PlantAreaType, Nullable<IPlant>>;
