@@ -5,6 +5,7 @@ import { IQuest } from '../../models/IQuest';
 import {
   AcknowledgementAlongEdgesDoubleButtonScreen,
   AcknowledgementAlongEdgesScreen,
+  AcknowledgementDoubleImageDoubleButtonScreen,
   AcknowledgementDoubleImageScreen,
   AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyDoubleButtonScreen,
@@ -40,6 +41,7 @@ export type QuestStackParams = {
   AcknowledgementAlongEdges: { data: IQuest };
   AcknowledgementAlongEdgesDoubleButton: { data: IQuest };
   AcknowledgementDoubleImage: { data: IQuest };
+  AcknowledgementDoubleImageDoubleButton: { data: IQuest };
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
   AcknowledgementSuccessivelyDoubleButton: { data: IQuest };
@@ -84,6 +86,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen
       name="AcknowledgementDoubleImage"
       component={AcknowledgementDoubleImageScreen}
+    />
+    <Stack.Screen
+      name="AcknowledgementDoubleImageDoubleButton"
+      component={AcknowledgementDoubleImageDoubleButtonScreen}
     />
     <Stack.Screen
       name="AcknowledgementNicknames"
