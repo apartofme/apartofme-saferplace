@@ -9,6 +9,7 @@ export * from './ExtendedKeyboardAvoidingView';
 export * from './ExtendedSwitch';
 export * from './ExtendedText';
 export * from './ExtendedTextInput';
+export * from './FavouriteCharmCarousel';
 export * from './MainHeader';
 export * from './MultilineTextInput';
 export * from './RadioButtonList';

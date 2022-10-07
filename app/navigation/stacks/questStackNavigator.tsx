@@ -17,6 +17,7 @@ import {
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
+  FavouriteCharmCarouselScreen,
   InstructionScreen,
   JournelScreen,
   JournelSupportScreen,
@@ -47,6 +48,7 @@ export type QuestStackParams = {
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
   EmojiSelection: { data: IQuest };
+  FavouriteCharmCarousel: { data: IQuest };
   Journel: { data: IQuest };
   JournelSupport: { data: IQuest };
   RadioButton: { data: IQuest };
@@ -66,6 +68,10 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     {/* // TODO: remove */}
+    <Stack.Screen
+      name="FavouriteCharmCarousel"
+      component={FavouriteCharmCarouselScreen}
+    />
     <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
       name="AcknowledgementAlongEdges"

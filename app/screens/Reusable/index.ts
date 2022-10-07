@@ -7,6 +7,7 @@ export * from './ElixirButton';
 export * from './ElixirDoubleInteractionScreen';
 export * from './ElixirTitleButton';
 export * from './EmojiSelection';
+export * from './FavouriteCharmCarousel';
 export * from './FeltRecent';
 export * from './Instruction';
 export * from './Journel';
