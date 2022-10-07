@@ -24,6 +24,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   const onSubmitPress = useCallback(() => {
     if (isTimerEnd) {
       navigateNextQuest();
+      return;
     }
 
     setIsTimerStart(true);
