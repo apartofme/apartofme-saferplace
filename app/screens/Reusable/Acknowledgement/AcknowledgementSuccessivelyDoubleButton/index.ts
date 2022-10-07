@@ -1,0 +1,1 @@
+export { AcknowledgementSuccessivelyDoubleButtonScreen } from './AcknowledgementSuccessivelyDoubleButton';
