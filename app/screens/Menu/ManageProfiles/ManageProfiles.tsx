@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { SafeAreaView, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { IManageProfilesScreenProps } from './ManageProfiles.types';
 import { styles } from './ManageProfiles.styles';
@@ -17,6 +18,8 @@ import { UserImageTitle } from './components';
 export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   navigation,
 }) => {
+  const { t } = useTranslation();
+
   const parentNickname = useAppSelector(
     state => state.user.parent?.nickname,
   ) as string;
@@ -33,13 +36,15 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <BottomButtonView buttonTitle="Done" onSubmit={_.noop}>
+      <BottomButtonView buttonTitle={t('buttons.done')} onSubmit={_.noop}>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>
-          <ExtendedText style={styles.title}>Manage Profiles</ExtendedText>
+          <ExtendedText style={styles.title}>
+            {t('screens.menu.manage_profiles.title')}
+          </ExtendedText>
           <View style={styles.imageContainer}>
             <UserImageTitle
               title={parentNickname}
