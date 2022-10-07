@@ -78,7 +78,9 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
             </ExtendedText>
           </BottomButtonView>
           <TouchableOpacity style={styles.bottomButton}>
-            <ExtendedText>{correctButtonTitle}</ExtendedText>
+            <ExtendedText preset="secondary-text">
+              {correctButtonTitle}
+            </ExtendedText>
           </TouchableOpacity>
         </SafeAreaView>
       </ImageBackground>
