@@ -1,0 +1,1 @@
+export { EmotionSelectionScreen } from './EmotionSelection';
