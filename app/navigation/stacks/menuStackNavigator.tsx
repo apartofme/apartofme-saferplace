@@ -21,6 +21,7 @@ import {
   ConditionsScreen,
   AudioSettingsScreen,
   ManageProfilesScreen,
+  EditProfileScreen,
 } from '../../screens';
 import { AboutCharmsMenuItem } from '../../screens/Menu/AboutCharm/AboutCharm.types';
 import { ConditionsScreenData } from '../../screens/Menu/Conditions/Conditions.types';
@@ -46,6 +47,7 @@ export type MenuStackParams = {
   Conditions: { data: ConditionsScreenData };
   AudioSettings: undefined;
   ManageProfiles: undefined;
+  EditProfile: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
@@ -84,5 +86,6 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="Conditions" component={ConditionsScreen} />
     <Stack.Screen name="AudioSettings" component={AudioSettingsScreen} />
     <Stack.Screen name="ManageProfiles" component={ManageProfilesScreen} />
+    <Stack.Screen name="EditProfile" component={EditProfileScreen} />
   </Stack.Navigator>
 );
