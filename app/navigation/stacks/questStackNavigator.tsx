@@ -6,6 +6,7 @@ import {
   AcknowledgementAlongEdgesScreen,
   AcknowledgementDoubleImageScreen,
   AcknowledgementNicknamesScreen,
+  AcknowledgementSuccessivelyDoubleButtonScreen,
   AcknowledgementSuccessivelyScreen,
   AcknowledgementSupportScreen,
   AcknowledgementTitleScreen,
@@ -17,6 +18,7 @@ import {
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
+  EmotionSelectionScreen,
   FavouriteCharmCarouselScreen,
   InstructionScreen,
   JournelScreen,
@@ -39,6 +41,7 @@ export type QuestStackParams = {
   AcknowledgementDoubleImage: { data: IQuest };
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
+  AcknowledgementSuccessivelyDoubleButton: { data: IQuest };
   AcknowledgementSupport: { data: IQuest };
   AcknowledgementTitle: { data: IQuest };
   Alert: undefined;
@@ -48,6 +51,7 @@ export type QuestStackParams = {
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
   EmojiSelection: { data: IQuest };
+  EmotionSelection: { data: IQuest };
   FavouriteCharmCarousel: { data: IQuest };
   Journel: { data: IQuest };
   JournelSupport: { data: IQuest };
@@ -86,6 +90,10 @@ export const QuestStackNavigator = () => (
       component={AcknowledgementSuccessivelyScreen}
     />
     <Stack.Screen
+      name="AcknowledgementSuccessivelyDoubleButton"
+      component={AcknowledgementSuccessivelyDoubleButtonScreen}
+    />
+    <Stack.Screen
       name="AcknowledgementSupport"
       component={AcknowledgementSupportScreen}
     />
@@ -103,6 +111,7 @@ export const QuestStackNavigator = () => (
       component={ElixirDoubleInteractionScreen}
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
+    <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
     <Stack.Screen
       name="FavouriteCharmCarousel"
       component={FavouriteCharmCarouselScreen}
