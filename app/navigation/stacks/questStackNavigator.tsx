@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import { IQuest } from '../../models/IQuest';
 import {
   AcknowledgementAlongEdgesScreen,
+  AcknowledgementDoubleImageDoubleButtonScreen,
   AcknowledgementDoubleImageScreen,
   AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyScreen,
@@ -36,6 +37,7 @@ export type QuestStackParams = {
   DummyQuests: undefined;
   AcknowledgementAlongEdges: { data: IQuest };
   AcknowledgementDoubleImage: { data: IQuest };
+  AcknowledgementDoubleImageDoubleButton: { data: IQuest };
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
   AcknowledgementSupport: { data: IQuest };
@@ -74,6 +76,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen
       name="AcknowledgementDoubleImage"
       component={AcknowledgementDoubleImageScreen}
+    />
+    <Stack.Screen
+      name="AcknowledgementDoubleImageDoubleButton"
+      component={AcknowledgementDoubleImageDoubleButtonScreen}
     />
     <Stack.Screen
       name="AcknowledgementNicknames"

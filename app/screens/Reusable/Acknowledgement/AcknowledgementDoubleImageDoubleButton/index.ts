@@ -1,0 +1,1 @@
+export { AcknowledgementDoubleImageDoubleButtonScreen } from './AcknowledgementDoubleImageDoubleButton';
