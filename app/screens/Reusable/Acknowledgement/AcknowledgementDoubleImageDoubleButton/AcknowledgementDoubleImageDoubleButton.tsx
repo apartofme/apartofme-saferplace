@@ -48,9 +48,9 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
     const correctButtonTitle = useMemo(() => {
       if (/next/i.test(buttonTitle as string)) {
         return t('buttons.finish').toUpperCase();
-      } else {
-        return t('buttons.not_now').toUpperCase();
       }
+
+      return t('buttons.not_now').toUpperCase();
     }, [buttonTitle, t]);
 
     return (
