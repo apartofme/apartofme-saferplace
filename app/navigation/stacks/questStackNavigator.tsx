@@ -68,10 +68,6 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     {/* // TODO: remove */}
-    <Stack.Screen
-      name="FavouriteCharmCarousel"
-      component={FavouriteCharmCarouselScreen}
-    />
     <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
       name="AcknowledgementAlongEdges"
@@ -107,6 +103,10 @@ export const QuestStackNavigator = () => (
       component={ElixirDoubleInteractionScreen}
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
+    <Stack.Screen
+      name="FavouriteCharmCarousel"
+      component={FavouriteCharmCarouselScreen}
+    />
     <Stack.Screen name="Journel" component={JournelScreen} />
     <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />
     <Stack.Screen name="RadioButton" component={RadioButtonScreen} />

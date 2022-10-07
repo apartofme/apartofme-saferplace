@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { IFavouriteCharmCarouselItemProps } from './FavouriteCharmCarouselItem.types';
 import { styles } from './FavouriteCharmCarouselItem.styles';
@@ -8,12 +9,14 @@ import { ExtendedText } from '../../../ExtendedText';
 
 export const FavouriteCharmCarouselItem: React.FC<IFavouriteCharmCarouselItemProps> =
   ({ data, style }) => {
+    const { t } = useTranslation();
+
     return (
       <View style={style}>
         <View style={styles.container}>
           <Image source={IMAGES[data.image]} style={styles.image} />
           <ExtendedText preset="heading" style={styles.title}>
-            {data.title}
+            {t(data.title)}
           </ExtendedText>
         </View>
       </View>

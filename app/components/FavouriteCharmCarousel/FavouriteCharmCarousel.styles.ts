@@ -17,7 +17,7 @@ export const styles = StyleSheet.create<IFavouriteCharmCarouselStyles>({
   itemContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingHorizontal: 60,
+    alignItems: 'center',
     paddingBottom: 72,
   },
 });

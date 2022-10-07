@@ -1,2 +1,2 @@
 export { FavouriteCharmCarousel } from './FavouriteCharmCarousel';
-//export type { IAvatarCarouselItem } from './FavouriteCharmCarousel.data';
+export type { IFavouriteCharmCarouselItem } from './FavouriteCharmCarousel.types';

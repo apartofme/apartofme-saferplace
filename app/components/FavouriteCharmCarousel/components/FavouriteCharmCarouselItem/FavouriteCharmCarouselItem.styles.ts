@@ -12,6 +12,7 @@ export const styles = StyleSheet.create<IOnlyImageStyles>({
     alignItems: 'center',
     paddingVertical: 40,
     paddingHorizontal: 24,
+    width: 247,
     height: 240,
     backgroundColor: '#1A1A1A',
     borderRadius: 24,

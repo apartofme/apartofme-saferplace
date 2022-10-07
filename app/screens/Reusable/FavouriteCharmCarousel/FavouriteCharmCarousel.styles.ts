@@ -1,11 +1,15 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 interface IFavouriteCharmCarouselScreenStyles {
   container: ViewStyle;
+  title: TextStyle;
 }
 
 export const styles = StyleSheet.create<IFavouriteCharmCarouselScreenStyles>({
   container: {
-    flex: 1,
+    paddingTop: 40,
+  },
+  title: {
+    paddingHorizontal: 24,
   },
 });
