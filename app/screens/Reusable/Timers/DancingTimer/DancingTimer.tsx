@@ -24,9 +24,9 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   const onSubmitPress = useCallback(() => {
     if (isTimerEnd) {
       navigateNextQuest();
-    } else {
-      setIsTimerStart(true);
     }
+
+    setIsTimerStart(true);
   }, [isTimerEnd, navigateNextQuest]);
 
   const onTimerComplete = useCallback(() => {
@@ -48,6 +48,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     if (isTimerEnd) {
       return t('screens.dancing_timer.end.description');
     }
+
     return description;
   }, [description, isTimerEnd, t]);
 
@@ -58,6 +59,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     if (isTimerEnd) {
       return t('buttons.next');
     }
+
     return buttonTitle;
   }, [buttonTitle, isTimerEnd, isTimerStart, t]);
 
