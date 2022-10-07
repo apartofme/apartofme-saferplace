@@ -14,3 +14,13 @@ export interface ITranslations {
   label: string;
   isfinaltranslation: Nullable<boolean>;
 }
+
+export enum MixingElixirPhaseType {
+  Mix = 1,
+  Open = 2,
+  Pour = 3,
+}
+
+export enum PlantsType {
+  SPOUR_COMPASSION = 'SPOUR_COMPASSION',
+}

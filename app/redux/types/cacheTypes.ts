@@ -1,3 +1,7 @@
+import { IPlant } from '../../models/IPlant';
+import { PlantAreaType } from '../../screens/Garden/components';
+import { Nullable } from '../../utils';
+
 export interface ISignUpData {
   email?: string;
   password?: string;
@@ -48,3 +52,5 @@ export interface ITrySomethingItemPayload {
 export interface INicknamesPayload {
   payload: INicknames;
 }
+
+export type IPlantArea = Record<keyof typeof PlantAreaType, Nullable<IPlant>>;

@@ -67,11 +67,6 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
   );
 
   // TODO: remove
-  const goToMenuStack = useCallback(() => {
-    navigation.navigate('MenuStack');
-  }, [navigation]);
-
-  // TODO: remove
   const goToRecognitionStack = useCallback(() => {
     navigation.navigate('RecognitionStack');
   }, [navigation]);
@@ -82,8 +77,8 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
         Dummy buttons:
       </ExtendedText>
       <ExtendedButton
-        onPress={goToMenuStack}
-        title="To menu"
+        onPress={navigation.goBack}
+        title="Go back"
         style={styles.button}
       />
       <ExtendedButton
