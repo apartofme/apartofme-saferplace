@@ -5,10 +5,10 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { IAcknowledgementAlongEdgesDoubleButtonScreenProps } from './AcknowledgementAlongEdgesDoubleButton.types';
 import { styles } from './AcknowledgementAlongEdgesDoubleButton.styles';
-import { useTranslation } from 'react-i18next';
 import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
@@ -47,9 +47,9 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
     const correctButtonTitle = useMemo(() => {
       if (/next/i.test(buttonTitle as string)) {
         return t('buttons.skip').toUpperCase();
-      } else {
-        return t('buttons.finish').toUpperCase();
       }
+
+      return t('buttons.finish').toUpperCase();
     }, [buttonTitle, t]);
 
     return (
