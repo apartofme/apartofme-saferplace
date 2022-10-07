@@ -74,11 +74,14 @@ export const cacheSlice = createSlice({
       state.emotions.selected = payload;
     },
     completeSelectedEmotion({ emotions }) {
-      if (emotions) {
-        emotions.completed = _.union(
-          _.concat(emotions.completed, emotions.selected),
-        );
+      if (emotions.selected) {
+        emotions.completed = _.concat(emotions.completed, emotions.selected);
+        emotions.selected = null;
       }
+    },
+    clearEmotions({ emotions }) {
+      emotions.selected = null;
+      emotions.completed = [];
     },
   },
 });

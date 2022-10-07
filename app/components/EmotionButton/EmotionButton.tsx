@@ -25,15 +25,13 @@ export const EmotionButton: React.FC<IEmotionButtonProps> = ({
   }, [selectedItem, setSelected]);
 
   useEffect(() => {
-    setEmotions(
-      _.compact(
-        _.map(data, item => {
-          if (_.indexOf(completedEmotions, item.type) === -1) {
-            return item;
-          }
-        }),
-      ),
-    );
+    const tempEmotions = _.map(data, item => {
+      if (_.indexOf(completedEmotions, item.type) === -1) {
+        return item;
+      }
+    });
+
+    setEmotions(_.compact(tempEmotions));
   }, [completedEmotions, data]);
 
   const renderItem = useCallback(
