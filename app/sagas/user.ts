@@ -1,6 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import {
+  firebaseChangePassword,
   firebaseLoginUser,
   firebaseLogout,
   firebaseRegisterUser,
@@ -8,11 +9,13 @@ import {
   firestoreSaveDeviceToken,
   firestoreUpdateUser,
   IFirebaseAuthResponse,
+  IFirebaseChangePasswordResponse,
   IFirestoreUser,
 } from '../services/firebase';
 import { userSlice } from '../redux/slices';
 import {
   IAuthUserActionPayload,
+  IChangePasswordActionPayload,
   IShortSignUpData,
   ISignUpData,
 } from '../redux/types';
@@ -73,6 +76,22 @@ function* watchSaveChild() {
   }
 }
 
+function* watchChangePassword({
+  payload: { newPassword, currentPassword },
+}: IChangePasswordActionPayload) {
+  const changePasswordresponse: IFirebaseChangePasswordResponse = yield call(
+    firebaseChangePassword,
+    currentPassword,
+    newPassword,
+  );
+
+  if (changePasswordresponse.error) {
+    yield call(StaticNavigator.navigateTo, 'ChangePasswordSuccess');
+  } else {
+    yield put(userSlice.actions.changePasswordError('change password error'));
+  }
+}
+
 function* watchLogout() {
   yield call(firebaseLogout);
   yield call(StaticNavigator.reset, 'ParentsOnboardingStack');
@@ -82,6 +101,7 @@ export function* userSaga() {
   yield takeLatest(userSlice.actions.loginUser, watchLoginUser);
   yield takeLatest(userSlice.actions.registerParent, watchRegisterParent);
   yield takeLatest(userSlice.actions.saveChild, watchSaveChild);
+  yield takeLatest(userSlice.actions.changePassword, watchChangePassword);
 
   yield takeLatest(userSlice.actions.logout, watchLogout);
 }

@@ -13,6 +13,11 @@ export type ILoginUserSuccessActionPayload = PayloadAction<{
   child: IShortSignUpData;
 }>;
 
+export type IChangePasswordActionPayload = PayloadAction<{
+  newPassword: string;
+  currentPassword: string;
+}>;
+
 export interface IResetPasswordPayload {
   email: string;
 }

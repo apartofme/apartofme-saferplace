@@ -5,7 +5,7 @@ import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
-import { useAppDispatch } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
 import { userSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
@@ -19,6 +19,13 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+
+  const parentNickname = useAppSelector(
+    state => state.user.parent?.nickname,
+  ) as string;
+  const childNickname = useAppSelector(
+    state => state.user.child?.nickname,
+  ) as string;
 
   // TODO: uncomment when adding screens
   const onMenuItemPress = useCallback(
@@ -42,10 +49,10 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
       <View style={styles.container}>
         <View>
           <ExtendedText style={styles.title}>
-            {t('screens.menu.main_menu.title')}
+            {`${t('screens.menu.main_menu.title')} ${parentNickname}`}
           </ExtendedText>
           <ExtendedText style={styles.subtitle}>
-            {t('screens.menu.main_menu.description')}
+            {`${t('screens.menu.main_menu.description')} ${childNickname}`}
           </ExtendedText>
           <ExtendedText style={styles.userActionTitile}>
             {t('screens.menu.main_menu.user_add_action')}

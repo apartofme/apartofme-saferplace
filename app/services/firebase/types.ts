@@ -9,6 +9,10 @@ export interface IFirebaseAuthResponse {
   error: Nullable<string>;
 }
 
+export interface IFirebaseChangePasswordResponse {
+  error: Nullable<string>;
+}
+
 export interface IFirebaseAuthError {
   code: string;
 }
