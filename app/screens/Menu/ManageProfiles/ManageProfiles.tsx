@@ -11,7 +11,7 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../components';
-import { IMAGES, ImagesNames } from '../../../assets';
+import { IMAGES, AvatarsNames } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { UserImageTitle } from './components';
 
@@ -28,10 +28,10 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   ) as string;
 
   const childAvatar = useAppSelector(
-    state => state.user.child?.avatar as ImagesNames,
+    state => state.user.child?.avatar as AvatarsNames,
   );
   const parentAvatar = useAppSelector(
-    state => state.user.parent?.avatar as ImagesNames,
+    state => state.user.parent?.avatar as AvatarsNames,
   );
 
   return (
