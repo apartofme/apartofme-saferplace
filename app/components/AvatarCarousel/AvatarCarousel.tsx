@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -9,25 +9,34 @@ import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
 import { IAvatarCarouselProps } from './AvatarCarousel.types';
 import { styles } from './AvatarCarousel.styles';
-import { IAvatarCarouselItem } from './AvatarCarousel.data';
+import { AVATAR_CAROUSEL, IAvatarCarouselItem } from './AvatarCarousel.data';
 
 import { AvatarCarouselItem, ProgressBarItem } from './components';
 
 export const AvatarCarousel: React.FC<IAvatarCarouselProps> = ({
-  data,
   setImage,
+  defaultImage,
   style,
 }) => {
   const progressValue = useSharedValue(0);
+  const [defaultIndex, setDefaultIndex] = useState<number>();
+
+  useEffect(() => {
+    setDefaultIndex(
+      defaultImage
+        ? _.findIndex(AVATAR_CAROUSEL, item => item.image === defaultImage)
+        : 0,
+    );
+  }, [defaultImage, defaultIndex]);
 
   const onSnapToItem = useCallback(
     index => {
       const currentPosition = Math.floor(index);
-      if (setImage && data[currentPosition].image) {
-        setImage(data[currentPosition].image as string);
+      if (setImage && AVATAR_CAROUSEL[currentPosition].image) {
+        setImage(AVATAR_CAROUSEL[currentPosition].image as string);
       }
     },
-    [data, setImage],
+    [setImage],
   );
 
   const onProgressChange = useCallback(
@@ -40,17 +49,17 @@ export const AvatarCarousel: React.FC<IAvatarCarouselProps> = ({
   const renderProgressBar = useCallback(() => {
     return (
       <View style={generalStyles.row}>
-        {_.map(data, (item, index) => (
+        {_.map(AVATAR_CAROUSEL, (item, index) => (
           <ProgressBarItem
             index={index}
             key={index}
-            length={data.length}
+            length={AVATAR_CAROUSEL.length}
             animValue={progressValue}
           />
         ))}
       </View>
     );
-  }, [data, progressValue]);
+  }, [progressValue]);
 
   const renderCarouselItem = useCallback(
     ({ item }: { item: IAvatarCarouselItem }) => {
@@ -64,9 +73,10 @@ export const AvatarCarousel: React.FC<IAvatarCarouselProps> = ({
       <ReanimatedCarousel
         loop={false}
         width={WINDOW_WIDTH}
-        data={[...data]}
+        defaultIndex={defaultIndex}
+        data={[...AVATAR_CAROUSEL]}
         renderItem={renderCarouselItem}
-        style={[generalStyles.flex]}
+        style={generalStyles.flex}
         onSnapToItem={onSnapToItem}
         onProgressChange={onProgressChange}
       />

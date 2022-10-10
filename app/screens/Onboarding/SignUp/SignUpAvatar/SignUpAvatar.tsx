@@ -4,6 +4,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 
 import {
   AvatarCarousel,
+  AVATAR_CAROUSEL,
   BottomButtonView,
   ExtendedText,
   MainHeader,
@@ -13,7 +14,6 @@ import { useAppDispatch } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.types';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
-import { SING_UP_CAROUSEL } from './SignUpAvatar.data';
 import { styles } from './SignUpAvatar.styles';
 
 export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
@@ -25,7 +25,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const isChild = route.params?.isChild;
 
-  const [avatar, setAvatar] = useState(SING_UP_CAROUSEL[0].image);
+  const [avatar, setAvatar] = useState(AVATAR_CAROUSEL[0].image);
 
   const onSubmitButtonPress = useCallback(() => {
     navigation.navigate('SignUpSuccess');
@@ -64,11 +64,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
         <ExtendedText preset="large-title">
           {t(`${localizationPath}.title`)}
         </ExtendedText>
-        <AvatarCarousel
-          data={[...SING_UP_CAROUSEL]}
-          setImage={setAvatar}
-          style={styles.carousel}
-        />
+        <AvatarCarousel setImage={setAvatar} style={styles.carousel} />
       </BottomButtonView>
     </SafeAreaView>
   );
