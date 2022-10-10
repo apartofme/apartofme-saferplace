@@ -16,6 +16,7 @@ import {
   CharmCompletedScreen,
   CharmTimerButtonScreen,
   CharmTimerTitleScreen,
+  DancingTimerScreen,
   DialogScreen,
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
@@ -51,6 +52,7 @@ export type QuestStackParams = {
   CharmCompleted: { data: IQuest };
   CharmTimerButton: { data: IQuest };
   CharmTimerTitle: { data: IQuest };
+  DancingTimer: { data: IQuest };
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
   EmojiSelection: { data: IQuest };
@@ -115,6 +117,7 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
     <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
     <Stack.Screen name="CharmTimerTitle" component={CharmTimerTitleScreen} />
+    <Stack.Screen name="DancingTimer" component={DancingTimerScreen} />
     <Stack.Screen name="Dialog" component={DialogScreen} />
     <Stack.Screen
       name="ElixirDoubleInteraction"
