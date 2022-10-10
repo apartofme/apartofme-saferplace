@@ -49,7 +49,12 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
       }
 
       return (
-        <View style={styles.plantArea}>
+        <View
+          style={[
+            styles.plantArea,
+            styles.borderTransparent,
+            additionalStyles && [...additionalStyles],
+          ]}>
           {currentPlant && (
             <Plant plant={currentPlant} additionalStyle={styles.plantMargin} />
           )}
@@ -80,7 +85,9 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
           ])}
 
           {/* //* Center plant area */}
-          {renderPlantArea(PlantAreaType.Center, plantArea?.Center)}
+          {renderPlantArea(PlantAreaType.Center, plantArea?.Center, [
+            styles.plantAreaCenter,
+          ])}
 
           {/* //* TopRight plant area */}
           {renderPlantArea(PlantAreaType.TopRight, plantArea?.TopRight, [

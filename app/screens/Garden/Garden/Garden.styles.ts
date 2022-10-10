@@ -1,5 +1,7 @@
 import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 
+import { WINDOW_HEIGHT } from '../../../constants/window';
+
 export interface IGardenScreenStyles {
   avatar: ImageStyle;
   bookContainer: ViewStyle;
@@ -7,27 +9,33 @@ export interface IGardenScreenStyles {
   elixir: ImageStyle;
   plantArea: ViewStyle;
   titleContainer: ViewStyle;
+  zIndex10: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IGardenScreenStyles>({
   avatar: {
     position: 'absolute',
     right: 20,
-    top: 10,
+    top: 40,
     height: 80,
     width: 80,
     borderRadius: 100,
+    zIndex: 100,
   },
   elixir: {
     position: 'absolute',
     left: 20,
-    top: 10,
+    top: 40,
     height: 91,
     width: 70,
+    zIndex: 100,
+  },
+  zIndex10: {
+    zIndex: 10,
   },
   plantArea: {
-    zIndex: 1,
-    top: 80,
+    top: (WINDOW_HEIGHT - 100) / (WINDOW_HEIGHT < 600 ? 7 : 6),
+    zIndex: 0,
   },
   bookContainer: {
     position: 'absolute',
@@ -41,11 +49,12 @@ export const styles = StyleSheet.create<IGardenScreenStyles>({
   },
   titleContainer: {
     borderWidth: 1,
+    height: 75,
     borderRadius: 10,
     marginBottom: 24,
     marginHorizontal: 24,
     paddingLeft: 120,
-    paddingVertical: 22,
+    justifyContent: 'center',
     backgroundColor: 'white',
   },
 });

@@ -5,9 +5,9 @@ import {
   Image,
   ImageBackground,
   Pressable,
+  ScrollView,
   TouchableOpacity,
   View,
-  SafeAreaView,
 } from 'react-native';
 
 import { IMAGES } from '../../../assets';
@@ -72,42 +72,43 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
       }}
       style={generalStyles.flex}>
-      <SafeAreaView style={generalStyles.flex}>
-        <View style={generalStyles.flex}>
-          <TouchableOpacity onPress={onAvatarPress}>
-            <Image source={IMAGES[childAvatar]} style={styles.avatar} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={_.noop} disabled={isPlanting}>
-            <Image source={IMAGES.LOGO} style={styles.elixir} />
-          </TouchableOpacity>
-          <View style={styles.plantArea}>
-            <PlantArea
-              isPlanting={isPlanting}
-              activePlantArea={activePlantArea}
-              setActivePlantArea={setActivePlantArea}
-            />
-          </View>
+      <View style={generalStyles.flex}>
+        <TouchableOpacity onPress={onAvatarPress} style={styles.zIndex10}>
+          <Image source={IMAGES[childAvatar]} style={styles.avatar} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={_.noop}
+          disabled={isPlanting}
+          style={styles.zIndex10}>
+          <Image source={IMAGES.LOGO} style={styles.elixir} />
+        </TouchableOpacity>
+        <View style={styles.plantArea}>
+          <PlantArea
+            isPlanting={isPlanting}
+            activePlantArea={activePlantArea}
+            setActivePlantArea={setActivePlantArea}
+          />
         </View>
-        <View>
-          <Pressable
-            onPress={onTitlePress}
-            style={styles.titleContainer}
-            disabled={!isPlanting}>
-            <ExtendedText>
-              {isPlanting
-                ? t('screens.garden.tapTitle')
-                : t('screens.garden.tapBook')}
-            </ExtendedText>
-          </Pressable>
+      </View>
+      <View>
+        <Pressable
+          onPress={onTitlePress}
+          style={styles.titleContainer}
+          disabled={!isPlanting}>
+          <ExtendedText>
+            {isPlanting
+              ? t('screens.garden.tapTitle')
+              : t('screens.garden.tapBook')}
+          </ExtendedText>
+        </Pressable>
 
-          <TouchableOpacity
-            onPress={onBookPress}
-            style={styles.bookContainer}
-            disabled={isPlanting || isFirstTimeGarden}>
-            <Image source={IMAGES.CLOSED_BOOK} style={styles.book} />
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+        <TouchableOpacity
+          onPress={onBookPress}
+          style={styles.bookContainer}
+          disabled={isPlanting || isFirstTimeGarden}>
+          <Image source={IMAGES.CLOSED_BOOK} style={styles.book} />
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 };
