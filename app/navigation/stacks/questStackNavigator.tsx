@@ -25,6 +25,7 @@ import {
   InstructionScreen,
   JournelScreen,
   JournelSupportScreen,
+  NadiyaEmotionCarouselScreen,
   RadioButtonScreen,
   ReadOutLoudScreen,
   SelectDrawBuildScreen,
@@ -59,6 +60,7 @@ export type QuestStackParams = {
   EmotionSelection: { data: IQuest };
   Journel: { data: IQuest };
   JournelSupport: { data: IQuest };
+  NadiyaEmotionCarousel: { data: IQuest };
   RadioButton: { data: IQuest };
   SelectDrawBuild: { data: IQuest };
   SelectPlayer: { data: IQuest };
@@ -76,6 +78,19 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     {/* // TODO: remove */}
+    {/*<Stack.Screen
+      name="NadiyaEmotionCarousel"
+      component={NadiyaEmotionCarouselScreen}
+      initialParams={{
+        data: {
+          title: 'Nadiya is feeling angry',
+          description:
+            'Choose the kind words you would like to say to her to make her feel better.',
+          buttonTitle: 'Select',
+          crossHeader: true,
+        },
+      }}
+    />*/}
     <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
       name="AcknowledgementAlongEdges"

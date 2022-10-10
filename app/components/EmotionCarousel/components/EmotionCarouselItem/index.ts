@@ -1,0 +1,1 @@
+export { EmotionCarouselItem } from './EmotionCarouselItem';
