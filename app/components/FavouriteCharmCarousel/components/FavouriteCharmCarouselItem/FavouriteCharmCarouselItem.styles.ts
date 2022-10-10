@@ -2,6 +2,7 @@ import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 export interface IOnlyImageStyles {
   container: ViewStyle;
+  contentContainer: ViewStyle;
   image: ImageStyle;
   title: TextStyle;
 }
@@ -9,16 +10,19 @@ export interface IOnlyImageStyles {
 // TODO: change to correct styles
 export const styles = StyleSheet.create<IOnlyImageStyles>({
   container: {
+    flex: 1,
+    padding: 70,
+    justifyContent: 'flex-end',
+  },
+  contentContainer: {
+    flex: 1,
     alignItems: 'center',
     paddingVertical: 40,
     paddingHorizontal: 24,
-    width: 247,
-    height: 240,
-    backgroundColor: '#1A1A1A',
+    maxHeight: 240,
     borderRadius: 24,
   },
   image: {
-    // TODO: change to correct size
     height: 120,
     width: 92,
   },

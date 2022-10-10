@@ -1,3 +1,4 @@
+import { IMAGES } from '../assets';
 import { Nullable } from '../utils/index';
 
 export interface ISpeech {
@@ -14,3 +15,5 @@ export interface ITranslations {
   label: string;
   isfinaltranslation: Nullable<boolean>;
 }
+
+export type ImagesType = keyof typeof IMAGES;

@@ -5,6 +5,8 @@ import { Nullable } from '../../utils';
 import {
   IEmotionPayload,
   IEmotions,
+  IFavouriteCharmItem,
+  IFavouriteCharmItemPayload,
   INicknames,
   INicknamesPayload,
   ISaveTranslationsPayload,
@@ -26,6 +28,7 @@ interface ICacheState {
   trySomethingItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
+  favouriteCharmItem: Nullable<IFavouriteCharmItem>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -40,6 +43,7 @@ const INITIAL_STATE: ICacheState = {
     selected: null,
     completed: [],
   },
+  favouriteCharmItem: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -82,6 +86,9 @@ export const cacheSlice = createSlice({
     clearEmotions({ emotions }) {
       emotions.selected = null;
       emotions.completed = [];
+    },
+    saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
+      state.favouriteCharmItem = _.merge(state.favouriteCharmItem, payload);
     },
   },
 });

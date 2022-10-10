@@ -71,6 +71,17 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
+    <Stack.Screen
+      name="FavouriteCharmCarousel"
+      component={FavouriteCharmCarouselScreen}
+      initialParams={{
+        data: {
+          title: '|grown_up| what has been your favourite charm to perform?',
+          buttonTitle: 'Select',
+          crossHeader: true,
+        },
+      }}
+    />
     {/* // TODO: remove */}
     <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
@@ -112,10 +123,7 @@ export const QuestStackNavigator = () => (
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
-    <Stack.Screen
-      name="FavouriteCharmCarousel"
-      component={FavouriteCharmCarouselScreen}
-    />
+
     <Stack.Screen name="Journel" component={JournelScreen} />
     <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />
     <Stack.Screen name="RadioButton" component={RadioButtonScreen} />

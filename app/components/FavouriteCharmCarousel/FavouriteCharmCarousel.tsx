@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -12,25 +12,16 @@ import {
   IFavouriteCharmCarouselProps,
 } from './FavouriteCharmCarousel.types';
 import { styles } from './FavouriteCharmCarousel.styles';
-
 import { FavouriteCharmCarouselItem, ProgressBarItem } from './components';
+import { CAROUSEL_MODE_CONFIG } from './FavouriteCharmCarousel.data';
 
 export const FavouriteCharmCarousel: React.FC<IFavouriteCharmCarouselProps> = ({
   data,
-  setImage,
+  setIndex,
   style,
 }) => {
   const progressValue = useSharedValue(0);
-
-  const onSnapToItem = useCallback(
-    index => {
-      const currentPosition = Math.floor(index);
-      if (setImage && data[currentPosition].image) {
-        setImage(data[currentPosition].image as string);
-      }
-    },
-    [data, setImage],
-  );
+  const [currentPosition, setCurrentPosition] = useState(0);
 
   const onProgressChange = useCallback(
     (item, absoluteProgress) => {
@@ -38,6 +29,10 @@ export const FavouriteCharmCarousel: React.FC<IFavouriteCharmCarouselProps> = ({
     },
     [progressValue],
   );
+
+  const onScrollBegin = useCallback(() => {
+    setCurrentPosition(-1);
+  }, []);
 
   const renderProgressBar = useCallback(() => {
     return (
@@ -55,12 +50,15 @@ export const FavouriteCharmCarousel: React.FC<IFavouriteCharmCarouselProps> = ({
   }, [data, progressValue]);
 
   const renderCarouselItem = useCallback(
-    ({ item }: { item: IFavouriteCharmCarouselItem }) => {
+    ({ item, index }: { item: IFavouriteCharmCarouselItem; index: number }) => {
       return (
-        <FavouriteCharmCarouselItem data={item} style={styles.itemContainer} />
+        <FavouriteCharmCarouselItem
+          data={item}
+          isActive={index === currentPosition}
+        />
       );
     },
-    [],
+    [currentPosition],
   );
 
   return (
@@ -70,9 +68,13 @@ export const FavouriteCharmCarousel: React.FC<IFavouriteCharmCarouselProps> = ({
         width={WINDOW_WIDTH}
         data={[...data]}
         renderItem={renderCarouselItem}
+        mode="parallax"
+        modeConfig={CAROUSEL_MODE_CONFIG}
         style={[generalStyles.flex]}
-        onSnapToItem={onSnapToItem}
+        onSnapToItem={_.flow(Math.floor, setIndex)}
         onProgressChange={onProgressChange}
+        onScrollBegin={onScrollBegin}
+        onScrollEnd={setCurrentPosition}
       />
       <View style={styles.progressBar}>{renderProgressBar()}</View>
     </GestureHandlerRootView>

@@ -1,5 +1,6 @@
 import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
+import { ImagesType } from '../../utils/types';
 
 export interface ISignUpData {
   email?: string;
@@ -28,6 +29,12 @@ export interface INicknames {
 export interface IEmotions {
   selected: Nullable<EmotionButtonType>;
   completed: Nullable<EmotionButtonType>[];
+}
+
+export interface IFavouriteCharmItem {
+  id: string;
+  image: ImagesType;
+  title: string;
 }
 
 export interface ISignUpDataPayload {
@@ -59,4 +66,8 @@ export interface INicknamesPayload {
 
 export interface IEmotionPayload {
   payload: Nullable<EmotionButtonType>;
+}
+
+export interface IFavouriteCharmItemPayload {
+  payload: IFavouriteCharmItem;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { IFavouriteCharmCarouselScreenProps } from './FavouriteCharmCarousel.types';
@@ -7,12 +7,14 @@ import { BottomButtonView, FavouriteCharmCarousel } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
 import {
+  useAppDispatch,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
 import { useTranslation } from 'react-i18next';
 import { FAVOURITE_CHARM_LIST } from './FavouriteCharmCarousel.data';
+import { cacheSlice } from '../../../redux/slices';
 
 export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScreenProps> =
   ({ route }) => {
@@ -25,7 +27,10 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
     } = route.params.data;
 
     const { t } = useTranslation();
-    const onSubmit = useNavigateNextQuest();
+    const dispatch = useAppDispatch();
+    const navigateToNextQuest = useNavigateNextQuest();
+    const [activeItem, setActiveItem] = useState(FAVOURITE_CHARM_LIST[0]);
+    const [activeItemIndex, setActiveItemIndex] = useState(0);
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -37,6 +42,15 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
     });
 
     const Header = useRenderQuestHeader(crossHeader ?? false);
+
+    useEffect(() => {
+      setActiveItem(FAVOURITE_CHARM_LIST[activeItemIndex]);
+    }, [activeItemIndex]);
+
+    const onSubmit = useCallback(() => {
+      dispatch(cacheSlice.actions.saveFavouriteCharmItem(activeItem));
+      navigateToNextQuest();
+    }, [activeItem, dispatch, navigateToNextQuest]);
 
     return (
       <ImageBackground
@@ -54,7 +68,10 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            <FavouriteCharmCarousel data={FAVOURITE_CHARM_LIST} />
+            <FavouriteCharmCarousel
+              data={FAVOURITE_CHARM_LIST}
+              setIndex={setActiveItemIndex}
+            />
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>
