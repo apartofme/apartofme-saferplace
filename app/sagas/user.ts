@@ -18,6 +18,7 @@ import {
   IChangePasswordActionPayload,
   IShortSignUpData,
   ISignUpData,
+  IUpdateData,
 } from '../redux/types';
 import { StaticNavigator } from '../services/navigator';
 import { IUser } from '../models/IUser';
@@ -69,6 +70,18 @@ function* watchRegisterParent() {
   }
 }
 
+function* watchUpdateParentData() {
+  const parent: IUpdateData = yield select(state => state.cache.auth.parent);
+  firestoreUpdateUser({ parent });
+  yield put(userSlice.actions.updateParentSuccess(parent as IUser));
+}
+
+function* watchUpdateChildData() {
+  const child: IUpdateData = yield select(state => state.cache.auth.child);
+  firestoreUpdateUser({ child });
+  yield put(userSlice.actions.updateChildSuccess(child as IUser));
+}
+
 function* watchSaveChild() {
   const child: IShortSignUpData = yield select(state => state.cache.auth.child);
   try {
@@ -105,6 +118,8 @@ export function* userSaga() {
   yield takeLatest(userSlice.actions.registerParent, watchRegisterParent);
   yield takeLatest(userSlice.actions.saveChild, watchSaveChild);
   yield takeLatest(userSlice.actions.changePassword, watchChangePassword);
+  yield takeLatest(userSlice.actions.updateParent, watchUpdateParentData);
+  yield takeLatest(userSlice.actions.updateChild, watchUpdateChildData);
 
   yield takeLatest(userSlice.actions.logout, watchLogout);
 }

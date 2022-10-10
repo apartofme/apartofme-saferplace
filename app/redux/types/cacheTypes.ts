@@ -11,6 +11,11 @@ export interface ISignUpData {
   createdAt?: string;
 }
 
+export interface IUpdateData {
+  nickname?: string;
+  avatar?: string;
+}
+
 export interface IShortSignUpData {
   nickname?: string;
   age?: string;

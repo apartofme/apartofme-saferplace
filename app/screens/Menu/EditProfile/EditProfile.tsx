@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
@@ -18,12 +18,9 @@ import { cacheSlice, userSlice } from '../../../redux/slices';
 
 export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
+  route,
 }) => {
-  const enum UserType {
-    Parent = 'parent',
-    Child = 'child',
-  }
-  const type = UserType.Parent;
+  const { type } = route.params.data;
 
   const { t } = useTranslation();
 
@@ -50,6 +47,16 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
     UserType.Child === type ? childAvatar : parentAvatar,
   );
 
+  const onSubmit = useCallback(() => {
+    if (type === UserType.Parent) {
+      dispatch(cacheSlice.actions.saveSignUpDataParent({ avatar, nickname }));
+      dispatch(userSlice.actions.updateParent());
+    } else {
+      dispatch(cacheSlice.actions.saveSignUpDataChild({ avatar, nickname }));
+      dispatch(userSlice.actions.updateChild());
+    }
+  }, [avatar, dispatch, nickname, type]);
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
@@ -65,7 +72,11 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
         <View style={styles.container}>
           <ExtendedTextInput value={nickname} onChangeText={setNickname} />
         </View>
-        <ExtendedButton title={t('buttons.save')} style={styles.button} />
+        <ExtendedButton
+          title={t('buttons.save')}
+          style={styles.button}
+          onPress={onSubmit}
+        />
       </BottomButtonView>
     </SafeAreaView>
   );

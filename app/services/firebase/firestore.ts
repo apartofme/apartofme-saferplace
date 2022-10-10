@@ -18,8 +18,8 @@ export const firestoreCreateUser = async () => {
 };
 
 export const firestoreUpdateUser = async (data: {
-  parent?: IUser;
-  child?: IShortSignUpData;
+  parent?: Partial<IUser>;
+  child?: Partial<IShortSignUpData>;
 }) => {
   const userId = getCurrentUser();
   const userDocument = firestore().collection('users').doc(userId);

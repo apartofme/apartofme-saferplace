@@ -22,6 +22,7 @@ import {
   AudioSettingsScreen,
   ManageProfilesScreen,
   EditProfileScreen,
+  IEditProfileRoute,
 } from '../../screens';
 import { AboutCharmsMenuItem } from '../../screens/Menu/AboutCharm/AboutCharm.types';
 import { ConditionsScreenData } from '../../screens/Menu/Conditions/Conditions.types';
@@ -47,7 +48,7 @@ export type MenuStackParams = {
   Conditions: { data: ConditionsScreenData };
   AudioSettings: undefined;
   ManageProfiles: undefined;
-  EditProfile: undefined;
+  EditProfile: { data: IEditProfileRoute };
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
