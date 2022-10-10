@@ -26,14 +26,14 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
     (
       currentPlantArea: PlantAreaType,
       currentPlant: IPlant | null,
-      additionalStyles?: ViewStyle[],
+      additionalStyles: ViewStyle[] | ViewStyle,
     ) => {
       if (isPlanting) {
         return (
           <Pressable
             style={[
               styles.plantArea,
-              additionalStyles && [...additionalStyles],
+              additionalStyles,
               activePlantArea === currentPlantArea && styles.activePlantArea,
             ]}
             disabled={!!currentPlant}
@@ -53,7 +53,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
           style={[
             styles.plantArea,
             styles.borderTransparent,
-            additionalStyles && [...additionalStyles],
+            additionalStyles,
           ]}>
           {currentPlant && (
             <Plant plant={currentPlant} additionalStyle={styles.plantMargin} />
@@ -80,19 +80,25 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
 
         <View style={generalStyles.row}>
           {/* //* BottomLeft plant area */}
-          {renderPlantArea(PlantAreaType.BottomLeft, plantArea?.BottomLeft, [
+          {renderPlantArea(
+            PlantAreaType.BottomLeft,
+            plantArea?.BottomLeft,
             styles.plantAreaBorder,
-          ])}
+          )}
 
           {/* //* Center plant area */}
-          {renderPlantArea(PlantAreaType.Center, plantArea?.Center, [
+          {renderPlantArea(
+            PlantAreaType.Center,
+            plantArea?.Center,
             styles.plantAreaCenter,
-          ])}
+          )}
 
           {/* //* TopRight plant area */}
-          {renderPlantArea(PlantAreaType.TopRight, plantArea?.TopRight, [
+          {renderPlantArea(
+            PlantAreaType.TopRight,
+            plantArea?.TopRight,
             styles.plantAreaBorder,
-          ])}
+          )}
         </View>
         <View style={generalStyles.row}>
           <View style={styles.emptyPlantArea} />

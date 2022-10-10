@@ -1,6 +1,10 @@
 import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../../../../constants/window';
+import {
+  CRITICAL_HEIGHT,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
+} from '../../../../constants/window';
 import { isIOS } from '../../../../utils';
 
 export interface IPlantingPlantStyles {
@@ -18,20 +22,21 @@ export interface IPlantingPlantStyles {
   emptyPlantArea: ViewStyle;
 }
 
+const isCriticalHeight = WINDOW_HEIGHT < CRITICAL_HEIGHT;
+
 export const styles = StyleSheet.create<IPlantingPlantStyles>({
   container: {
     height: 450,
     width: 350,
     alignSelf: 'center',
     zIndex: 0,
-    backgroundColor: 'red',
   },
   tree: {
     position: 'absolute',
     resizeMode: 'contain',
     alignSelf: 'center',
-    height: WINDOW_HEIGHT < 600 ? 278 / 1.5 : 278,
-    width: WINDOW_HEIGHT < 600 ? 212 / 1.5 : 212,
+    height: isCriticalHeight ? 278 / 1.5 : 278,
+    width: isCriticalHeight ? 212 / 1.5 : 212,
     zIndex: 0,
   },
   borderTransparent: {
@@ -59,8 +64,8 @@ export const styles = StyleSheet.create<IPlantingPlantStyles>({
     height: isIOS ? 90 : 120,
     width: isIOS ? 90 : 120,
     zIndex: 10,
-    top: WINDOW_HEIGHT < 600 ? -85 : 0,
-    left: WINDOW_HEIGHT < 600 ? 55 : 0,
+    top: isCriticalHeight ? -85 : 0,
+    left: isCriticalHeight ? 55 : 0,
   },
   plantAreaTop: {
     marginLeft: isIOS ? -51 : -82,
