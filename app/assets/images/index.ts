@@ -10,3 +10,5 @@ export const IMAGES = {
 export const PLANTS_IMAGES = {
   SPOUR_COMPASSION_START: require('./sproutCompassionStart.png'),
 };
+
+export type ImagesNames = keyof typeof IMAGES;

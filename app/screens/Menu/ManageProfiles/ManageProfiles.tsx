@@ -11,7 +11,7 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../components';
-import { IMAGES } from '../../../assets';
+import { IMAGES, ImagesNames } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { UserImageTitle } from './components';
 
@@ -28,14 +28,15 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   ) as string;
 
   const childAvatar = useAppSelector(
-    state => state.user.child?.avatar as keyof typeof IMAGES,
+    state => state.user.child?.avatar as ImagesNames,
   );
   const parentAvatar = useAppSelector(
-    state => state.user.parent?.avatar as keyof typeof IMAGES,
+    state => state.user.parent?.avatar as ImagesNames,
   );
 
   return (
     <SafeAreaView style={generalStyles.flex}>
+      {/* //TODO: change for correct function */}
       <BottomButtonView buttonTitle={t('buttons.done')} onSubmit={_.noop}>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
