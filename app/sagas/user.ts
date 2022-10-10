@@ -34,7 +34,10 @@ function* watchLoginUser({
     const user: IFirestoreUser = yield call(firestoreGetUser);
     yield put(userSlice.actions.loginUserSuccess(user._data));
     // TODO: change to real stack
-    yield call(StaticNavigator.navigateTo, 'QuestStack');
+    yield call(StaticNavigator.navigateTo, 'GardenStack', {
+      screen: 'GardenTutorialDialog',
+      params: { isStart: true },
+    });
     yield call(firestoreSaveDeviceToken);
   } else {
     yield put(userSlice.actions.loginUserError(loginUserResponse.error));
