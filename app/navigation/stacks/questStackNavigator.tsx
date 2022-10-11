@@ -21,6 +21,7 @@ import {
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
+  EmotionCarouselChoiceScreen,
   EmotionSelectionScreen,
   InstructionScreen,
   IEscapeMenuRoute,
@@ -77,6 +78,7 @@ export type QuestStackParams = {
   Instruction: { data: IQuest };
   ReadOutLoud: { data: IQuest };
   EscapeMenu: { data: IEscapeMenuRoute };
+  EmotionCarouselChoice: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -156,6 +158,10 @@ export const QuestStackNavigator = () => (
       options={TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS}
       name="EscapeMenu"
       component={EscapeMenuScreen}
+    />
+    <Stack.Screen
+      name="EmotionCarouselChoice"
+      component={EmotionCarouselChoiceScreen}
     />
   </Stack.Navigator>
 );
