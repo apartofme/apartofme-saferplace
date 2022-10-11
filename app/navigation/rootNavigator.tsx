@@ -1,30 +1,46 @@
 import React, { useRef } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 
 import {
   JointOnboardingStackNavigator,
   ParentsOnboardingStackNavigator,
   MenuStackNavigator,
   RecognitionStackNavigator,
+  GardenStackNavigator,
+  MixingElixirStackNavigator,
+  GardenStackParams,
+  MixingElixirStackParams,
+  RecognitionStackParams,
+  JointOnboardingStackParams,
+  ParentsOnboardingStackParams,
+  // TODO: remove
+  QuestStackNavigator,
+  QuestStackParams,
 } from './stacks';
-import { InitialScreen } from '../screens';
+import { InitialScreen, ComingSoonScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
 import { GLOBAL_NAVIGATION_STACK_OPTIONS } from './options';
 import { trackScreenView } from '../services/firebase';
-// TODO: remove when the screens are ready
-import { ComingSoonScreen } from '../screens/ComingSoon';
-import { QuestStackNavigator } from './stacks/questStackNavigator';
 
 export type RootParams = {
   Initial: undefined;
-  ParentsOnboardingStack: undefined;
-  JointOnboardingStack: undefined;
+  ParentsOnboardingStack:
+    | NavigatorScreenParams<ParentsOnboardingStackParams>
+    | undefined;
+  JointOnboardingStack:
+    | NavigatorScreenParams<JointOnboardingStackParams>
+    | undefined;
   MenuStack: undefined;
-  RecognitionStack: undefined;
+  RecognitionStack: NavigatorScreenParams<RecognitionStackParams> | undefined;
   // TODO: remove when the screens are ready
   ComingSoon: undefined;
-  QuestStack: undefined;
+  QuestStack: NavigatorScreenParams<QuestStackParams> | undefined;
+  MixingElixirStack: NavigatorScreenParams<MixingElixirStackParams> | undefined;
+  GardenStack: NavigatorScreenParams<GardenStackParams> | undefined;
 };
 
 const Stack = createNativeStackNavigator<RootParams>();
@@ -65,6 +81,11 @@ const RootNavigator = () => {
         {/* // TODO: remove when the screens are ready */}
         <Stack.Screen name="ComingSoon" component={ComingSoonScreen} />
         <Stack.Screen name="QuestStack" component={QuestStackNavigator} />
+        <Stack.Screen
+          name="MixingElixirStack"
+          component={MixingElixirStackNavigator}
+        />
+        <Stack.Screen name="GardenStack" component={GardenStackNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

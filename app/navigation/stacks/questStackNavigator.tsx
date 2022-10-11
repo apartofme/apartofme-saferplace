@@ -23,9 +23,11 @@ import {
   EmojiSelectionScreen,
   EmotionSelectionScreen,
   InstructionScreen,
+  IEscapeMenuRoute,
   JournelScreen,
   JournelSupportScreen,
   NadiyaEmotionCarouselScreen,
+  EscapeMenuScreen,
   RadioButtonScreen,
   ReadOutLoudScreen,
   SelectDrawBuildScreen,
@@ -36,7 +38,10 @@ import {
   TimerTitleScreen,
   VerticalSwipeScreen,
 } from '../../screens';
-import { DEFAULT_STACK_OPTIONS } from '../options';
+import {
+  DEFAULT_STACK_OPTIONS,
+  TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS,
+} from '../options';
 
 export type QuestStackParams = {
   DummyQuests: undefined;
@@ -71,6 +76,7 @@ export type QuestStackParams = {
   VerticalSwipe: { data: IQuest };
   Instruction: { data: IQuest };
   ReadOutLoud: { data: IQuest };
+  EscapeMenu: { data: IEscapeMenuRoute };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -146,5 +152,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
     <Stack.Screen name="Instruction" component={InstructionScreen} />
     <Stack.Screen name="ReadOutLoud" component={ReadOutLoudScreen} />
+    <Stack.Screen
+      options={TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS}
+      name="EscapeMenu"
+      component={EscapeMenuScreen}
+    />
   </Stack.Navigator>
 );

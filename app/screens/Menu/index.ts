@@ -14,5 +14,6 @@ export * from './HelpSupport';
 export * from './LanguageSettings';
 export * from './MainMenu';
 export * from './ManageAccountMenu';
+export * from './ManageProfiles';
 export * from './NotificationSettings';
 export * from './SettingsPrivacy';
