@@ -90,6 +90,8 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
             <EmotionCarousel
               data={nadiyaEmotionData}
               setIndex={setActiveItemIndex}
+              style={styles.carousel}
+              itemStyle={styles.carouselItem}
             />
           </BottomButtonView>
         </SafeAreaView>

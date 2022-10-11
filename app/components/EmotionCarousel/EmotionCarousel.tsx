@@ -18,6 +18,8 @@ import { CAROUSEL_MODE_CONFIG } from './EmotionCarousel.data';
 export const EmotionCarousel: React.FC<IEmotionCarouselProps> = ({
   data,
   setIndex,
+  style,
+  itemStyle,
 }) => {
   const progressValue = useSharedValue(0);
 
@@ -51,9 +53,10 @@ export const EmotionCarousel: React.FC<IEmotionCarouselProps> = ({
         data={item}
         key={item.id}
         isActive={index === currentPosition}
+        style={itemStyle}
       />
     ),
-    [currentPosition],
+    [currentPosition, itemStyle],
   );
 
   const onScrollBegin = useCallback(() => {
@@ -61,7 +64,7 @@ export const EmotionCarousel: React.FC<IEmotionCarouselProps> = ({
   }, []);
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <GestureHandlerRootView style={[generalStyles.flex, style]}>
       <ReanimatedCarousel
         loop={false}
         width={WINDOW_WIDTH}
