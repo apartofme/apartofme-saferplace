@@ -1,6 +1,8 @@
 import { IMAGES } from '../../assets';
 import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
+import { IPlant } from '../../models/IPlant';
+import { PlantAreaType } from '../../screens/Garden/components';
 
 export interface ISignUpData {
   email?: string;
@@ -71,3 +73,5 @@ export interface IEmotionPayload {
 export interface IFavouriteCharmItemPayload {
   payload: IFavouriteCharmItem;
 }
+
+export type IPlantArea = Record<PlantAreaType, Nullable<IPlant>>;

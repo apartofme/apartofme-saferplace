@@ -3,7 +3,9 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { IQuest } from '../../models/IQuest';
 import {
+  AcknowledgementAlongEdgesDoubleButtonScreen,
   AcknowledgementAlongEdgesScreen,
+  AcknowledgementDoubleImageDoubleButtonScreen,
   AcknowledgementDoubleImageScreen,
   AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyDoubleButtonScreen,
@@ -14,6 +16,7 @@ import {
   CharmCompletedScreen,
   CharmTimerButtonScreen,
   CharmTimerTitleScreen,
+  DancingTimerScreen,
   DialogScreen,
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
@@ -38,7 +41,9 @@ import { DEFAULT_STACK_OPTIONS } from '../options';
 export type QuestStackParams = {
   DummyQuests: undefined;
   AcknowledgementAlongEdges: { data: IQuest };
+  AcknowledgementAlongEdgesDoubleButton: { data: IQuest };
   AcknowledgementDoubleImage: { data: IQuest };
+  AcknowledgementDoubleImageDoubleButton: { data: IQuest };
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
   AcknowledgementSuccessivelyDoubleButton: { data: IQuest };
@@ -48,6 +53,7 @@ export type QuestStackParams = {
   CharmCompleted: { data: IQuest };
   CharmTimerButton: { data: IQuest };
   CharmTimerTitle: { data: IQuest };
+  DancingTimer: { data: IQuest };
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
   EmojiSelection: { data: IQuest };
@@ -78,8 +84,16 @@ export const QuestStackNavigator = () => (
       component={AcknowledgementAlongEdgesScreen}
     />
     <Stack.Screen
+      name="AcknowledgementAlongEdgesDoubleButton"
+      component={AcknowledgementAlongEdgesDoubleButtonScreen}
+    />
+    <Stack.Screen
       name="AcknowledgementDoubleImage"
       component={AcknowledgementDoubleImageScreen}
+    />
+    <Stack.Screen
+      name="AcknowledgementDoubleImageDoubleButton"
+      component={AcknowledgementDoubleImageDoubleButtonScreen}
     />
     <Stack.Screen
       name="AcknowledgementNicknames"
@@ -105,6 +119,7 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
     <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
     <Stack.Screen name="CharmTimerTitle" component={CharmTimerTitleScreen} />
+    <Stack.Screen name="DancingTimer" component={DancingTimerScreen} />
     <Stack.Screen name="Dialog" component={DialogScreen} />
     <Stack.Screen
       name="ElixirDoubleInteraction"

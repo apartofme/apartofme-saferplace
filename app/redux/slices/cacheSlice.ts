@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
+import { IPlant } from '../../models/IPlant';
 import { Nullable } from '../../utils';
 import {
   IEmotionPayload,
@@ -9,6 +10,7 @@ import {
   IFavouriteCharmItemPayload,
   INicknames,
   INicknamesPayload,
+  IPlantArea,
   ISaveTranslationsPayload,
   IShortSignUpData,
   IShortSignUpDataPayload,
@@ -29,6 +31,8 @@ interface ICacheState {
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
+  // TODO: make it as separate slice
+  plantArea: IPlantArea;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -44,6 +48,13 @@ const INITIAL_STATE: ICacheState = {
     completed: [],
   },
   favouriteCharmItem: null,
+  plantArea: {
+    TopLeft: null,
+    TopRight: null,
+    Center: null,
+    BottomLeft: null,
+    BottomRight: null,
+  },
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -73,6 +84,11 @@ export const cacheSlice = createSlice({
         state.nicknames.firstPlayer = payload;
       }
     },
+    // TODO: move to separate slice
+    updatePlantArea(state, { payload }: PayloadAction<IPlant>) {
+      state.plantArea[payload.plantArea] = payload;
+    },
+
     saveTranslationsError(state, action: PayloadAction<string>) {},
     saveSelectedEmotion(state, { payload }: IEmotionPayload) {
       state.emotions.selected = payload;

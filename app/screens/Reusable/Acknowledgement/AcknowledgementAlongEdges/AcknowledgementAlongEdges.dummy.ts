@@ -1,2 +1,0 @@
-export const DUMMY_PARENT_NICKNAME = 'PARENT';
-export const DUMMY_CHILD_NICKNAME = 'CHILD';
