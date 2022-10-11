@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
 
 import { styles } from './NadiyaEmotionCarousel.styles';
 import {
-  useAppDispatch,
+  useMount,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
@@ -31,8 +32,10 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
     } = route.params.data;
 
     const { t } = useTranslation();
-    const dispatch = useAppDispatch();
     const [activeItemIndex, setActiveItemIndex] = useState(0);
+    const [nadiyaEmotionData, setNadiyaEmotionData] = useState(
+      NADIYA_EMOTION_CAROUSEL_ITEMS,
+    );
 
     const navigateToNextQuest = useNavigateNextQuest();
 
@@ -51,6 +54,20 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
       navigateToNextQuest();
     }, [navigateToNextQuest]);
 
+    const nadiyaEmotion = useMemo(() => {
+      return title.split(' ').pop()?.replace(/\W/g, '') ?? '';
+    }, [title]);
+
+    useMount(() => {
+      setNadiyaEmotionData(prev =>
+        _.map(prev, item =>
+          _.merge(item, {
+            title: t(item.title).replace('|nadiyaEmotion|', nadiyaEmotion),
+          }),
+        ),
+      );
+    });
+
     return (
       <ImageBackground
         // TODO: change to real default image
@@ -66,14 +83,12 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
             buttonTitle={buttonTitle ?? t('buttons.select')}
             onSubmit={onSubmit}
             style={styles.container}>
-            <ExtendedText preset="title" style={styles.title}>
-              {title}
-            </ExtendedText>
+            <Title />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>
             <EmotionCarousel
-              data={NADIYA_EMOTION_CAROUSEL_ITEMS}
+              data={nadiyaEmotionData}
               setIndex={setActiveItemIndex}
             />
           </BottomButtonView>

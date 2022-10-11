@@ -47,7 +47,11 @@ export const EmotionCarousel: React.FC<IEmotionCarouselProps> = ({
 
   const renderCarouselItem = useCallback(
     ({ item, index }: { item: IEmotionCarouselItem; index: number }) => (
-      <EmotionCarouselItem data={item} isActive={index === currentPosition} />
+      <EmotionCarouselItem
+        data={item}
+        key={item.id}
+        isActive={index === currentPosition}
+      />
     ),
     [currentPosition],
   );

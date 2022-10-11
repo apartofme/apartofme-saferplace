@@ -168,9 +168,20 @@ export const useParsedJSXTextNickname = ({
             {value}
           </ExtendedText>
         );
-      } else {
-        return value;
       }
+      if (value.startsWith('*')) {
+        return (
+          <ExtendedText
+            key={value}
+            preset={preset}
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{ fontWeight: '700' }}>
+            {value.replace('*', '')}
+          </ExtendedText>
+        );
+      }
+
+      return value;
     });
   return () => (
     <ExtendedText preset={preset} style={style}>

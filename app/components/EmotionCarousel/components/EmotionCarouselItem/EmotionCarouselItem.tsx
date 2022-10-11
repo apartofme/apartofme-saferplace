@@ -7,7 +7,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { useTranslation } from 'react-i18next';
 
 import { IEmotionCarouselItemProps } from './EmotionCarouselItem.types';
 import { styles } from './EmotionCarouselItem.styles';
@@ -19,7 +18,6 @@ export const EmotionCarouselItem: React.FC<IEmotionCarouselItemProps> = ({
   data,
   isActive,
 }) => {
-  const { t } = useTranslation();
   // TODO: change to correct duration
   const progressValue = useDerivedValue(() => {
     return isActive
@@ -43,7 +41,7 @@ export const EmotionCarouselItem: React.FC<IEmotionCarouselItemProps> = ({
     <GestureHandlerRootView style={generalStyles.flex}>
       <View style={styles.container}>
         <Animated.View style={[styles.contentContainer, backgroundColorStyles]}>
-          <ExtendedText style={styles.title}>{t(data.titleKey)}</ExtendedText>
+          <ExtendedText style={styles.title}>{data.title}</ExtendedText>
         </Animated.View>
       </View>
     </GestureHandlerRootView>

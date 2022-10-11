@@ -7,5 +7,5 @@ export interface IEmotionCarouselProps extends ViewProps {
 
 export interface IEmotionCarouselItem {
   id: string;
-  titleKey: string;
+  title: string;
 }
