@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { IFavouriteCharmCarouselScreenProps } from './FavouriteCharmCarousel.types';
@@ -12,7 +13,6 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
-import { useTranslation } from 'react-i18next';
 import { FAVOURITE_CHARM_LIST } from './FavouriteCharmCarousel.data';
 import { cacheSlice } from '../../../redux/slices';
 
