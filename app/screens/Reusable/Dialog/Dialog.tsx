@@ -18,11 +18,19 @@ import { styles } from './Dialog.styles';
 import { IDialogScreenProps } from './Dialog.types';
 
 export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
-  const { title, crossHeader, titleHasNickname } = route.params.data;
+  const {
+    title,
+    crossHeader,
+    titleHasNickname,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const onSubmit = useNavigateNextQuest();
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   const Title = useParsedJSXTextNickname({
     text: title,

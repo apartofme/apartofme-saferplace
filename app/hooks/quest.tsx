@@ -179,17 +179,30 @@ export const useParsedJSXTextNickname = ({
   );
 };
 
-export const useRenderQuestHeader = (crossHeader: boolean): React.FC => {
+export const useRenderQuestHeader = (data: {
+  crossHeader: boolean;
+  escapeMenuAlternativeNavigateTo?: Nullable<string>;
+}): React.FC => {
   const goBack = useNavigatePrevQuest();
 
-  if (crossHeader) {
+  const navigation = useNavigation();
+
+  const onRightIconPress = useCallback(() => {
+    navigation.navigate('EscapeMenu', {
+      data: {
+        escapeMenuAlternativeNavigateTo: data.escapeMenuAlternativeNavigateTo,
+      },
+    });
+  }, [data.escapeMenuAlternativeNavigateTo, navigation]);
+
+  if (data.crossHeader) {
     return () => (
       <MainHeader
         leftIcon={IMAGES.WHITE_BACK_ARROW}
         onLeftIconPress={goBack}
         // TODO: change to real image & function
         rightIcon={IMAGES.WHITE_BACK_ARROW}
-        onRightIconPress={goBack}
+        onRightIconPress={onRightIconPress}
       />
     );
   } else {

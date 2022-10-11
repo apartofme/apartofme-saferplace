@@ -23,6 +23,7 @@ import {
   EmojiSelectionScreen,
   EmotionSelectionScreen,
   InstructionScreen,
+  IEscapeMenuRoute,
   JournelScreen,
   JournelSupportScreen,
   EscapeMenuScreen,
@@ -73,7 +74,7 @@ export type QuestStackParams = {
   VerticalSwipe: { data: IQuest };
   Instruction: { data: IQuest };
   ReadOutLoud: { data: IQuest };
-  EscapeMenu: undefined;
+  EscapeMenu: { data: IEscapeMenuRoute };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();

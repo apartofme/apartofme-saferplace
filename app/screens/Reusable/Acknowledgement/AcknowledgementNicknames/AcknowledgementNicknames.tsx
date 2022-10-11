@@ -22,6 +22,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
       crossHeader,
       titleHasNickname,
       positiveNavigatesTo,
+      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -37,7 +38,10 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
       nicknameStyle: { color: '#00dbc0' },
     });
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     return (
       <ImageBackground

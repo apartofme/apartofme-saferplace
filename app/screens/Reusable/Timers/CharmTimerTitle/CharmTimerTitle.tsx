@@ -17,8 +17,14 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { duration, title, description, crossHeader, titleHasNickname } =
-    route.params.data;
+  const {
+    duration,
+    title,
+    description,
+    crossHeader,
+    titleHasNickname,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const onSubmit = useNavigateNextQuest();
 
@@ -40,7 +46,10 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
     nicknameStyle: { color: '#00dbc0' },
   });
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground
