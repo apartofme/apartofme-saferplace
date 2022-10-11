@@ -8,7 +8,7 @@ export interface IFavouriteCharmCarouselStyles {
 export const styles = StyleSheet.create<IFavouriteCharmCarouselStyles>({
   container: {
     flex: 1,
-    marginBottom: 24,
+    paddingBottom: 73,
   },
   progressBar: {
     alignItems: 'center',

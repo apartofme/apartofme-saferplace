@@ -11,7 +11,8 @@ export interface IOnlyImageStyles {
 export const styles = StyleSheet.create<IOnlyImageStyles>({
   container: {
     flex: 1,
-    padding: 70,
+    paddingHorizontal: 64,
+    paddingBottom: 72,
     justifyContent: 'flex-end',
   },
   contentContainer: {
