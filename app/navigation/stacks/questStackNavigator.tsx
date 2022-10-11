@@ -86,17 +86,6 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     {/* // TODO: remove */}
-    <Stack.Screen
-      name="EmotionCarousel"
-      component={EmotionCarouselScreen}
-      initialParams={{
-        data: {
-          title:
-            '|grown_up| choose the kind words you would most like to hear when you feel |*playerEmotion|?',
-          crossHeader: true,
-        },
-      }}
-    />
     <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
       name="AcknowledgementAlongEdges"
@@ -145,6 +134,7 @@ export const QuestStackNavigator = () => (
       component={ElixirDoubleInteractionScreen}
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
+    <Stack.Screen name="EmotionCarousel" component={EmotionCarouselScreen} />
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
     <Stack.Screen name="Journel" component={JournelScreen} />
     <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />

@@ -6,6 +6,7 @@ interface IEmotionCarouselScreenStyles {
   carousel: ViewStyle;
   carouselItem: ViewStyle;
   bottomButton: ViewStyle;
+  modal: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IEmotionCarouselScreenStyles>({
@@ -25,5 +26,9 @@ export const styles = StyleSheet.create<IEmotionCarouselScreenStyles>({
   bottomButton: {
     marginHorizontal: 40,
     marginBottom: 24,
+  },
+  modal: {
+    flex: 1,
+    margin: 0,
   },
 });
