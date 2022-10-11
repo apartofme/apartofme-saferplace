@@ -1,6 +1,6 @@
 import { ViewProps } from 'react-native';
 
-import { ImagesType } from '../../utils/types';
+import { IMAGES } from '../../assets';
 
 export interface IFavouriteCharmCarouselProps extends ViewProps {
   data: ReadonlyArray<IFavouriteCharmCarouselItem>;
@@ -9,6 +9,6 @@ export interface IFavouriteCharmCarouselProps extends ViewProps {
 
 export interface IFavouriteCharmCarouselItem {
   id: string;
-  image: ImagesType;
+  image: keyof typeof IMAGES;
   title: string;
 }
