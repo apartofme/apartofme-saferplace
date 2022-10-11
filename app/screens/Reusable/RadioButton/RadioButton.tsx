@@ -21,8 +21,13 @@ import {
 export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
   route,
 }) => {
-  const { title, crossHeader, titleHasNickname, negativeNavigatesTo } =
-    route.params.data;
+  const {
+    title,
+    crossHeader,
+    titleHasNickname,
+    negativeNavigatesTo,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const { t } = useTranslation();
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
@@ -40,7 +45,10 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
     nicknameStyle: { color: '#00dbc0' },
   });
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground

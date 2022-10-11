@@ -23,8 +23,13 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   route,
 }) => {
   const { t } = useTranslation();
-  const { title, buttonTitle, crossHeader, titleHasNickname } =
-    route.params.data;
+  const {
+    title,
+    buttonTitle,
+    crossHeader,
+    titleHasNickname,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
   const dispatch = useAppDispatch();
   const [emoji, setEmoji] = useState('');
 
@@ -53,7 +58,10 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
     nicknameStyle: { color: '#00dbc0' },
   });
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground
