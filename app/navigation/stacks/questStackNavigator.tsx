@@ -7,6 +7,7 @@ import {
   AcknowledgementAlongEdgesScreen,
   AcknowledgementDoubleImageDoubleButtonScreen,
   AcknowledgementDoubleImageScreen,
+  AcknowledgementLargeTitleScreen,
   AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyDoubleButtonScreen,
   AcknowledgementSuccessivelyScreen,
@@ -43,6 +44,7 @@ export type QuestStackParams = {
   AcknowledgementAlongEdgesDoubleButton: { data: IQuest };
   AcknowledgementDoubleImage: { data: IQuest };
   AcknowledgementDoubleImageDoubleButton: { data: IQuest };
+  AcknowledgementLargeTitle: { data: IQuest };
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
   AcknowledgementSuccessivelyDoubleButton: { data: IQuest };
@@ -92,6 +94,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen
       name="AcknowledgementDoubleImageDoubleButton"
       component={AcknowledgementDoubleImageDoubleButtonScreen}
+    />
+    <Stack.Screen
+      name="AcknowledgementLargeTitle"
+      component={AcknowledgementLargeTitleScreen}
     />
     <Stack.Screen
       name="AcknowledgementNicknames"
