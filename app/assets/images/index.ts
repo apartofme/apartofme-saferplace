@@ -4,6 +4,7 @@ export const IMAGES = {
 
   WHITE_BACK_ARROW: require('./whiteBackArrow.png'),
   CLOSED_BOOK: require('./closedBook.png'),
+  OPEN_BOOK: require('./openBook.png'),
   TREE: require('./tree.png'),
 };
 

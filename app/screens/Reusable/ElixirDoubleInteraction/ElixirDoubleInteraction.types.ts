@@ -14,9 +14,3 @@ type RouteProps = StackScreenProps<
 export interface IElixirDoubleInteractionScreenProps
   extends NavigationProps,
     RouteProps {}
-
-export interface IElixirDoubleInteractionRoute {
-  titleKey: string;
-  subtitleKey: string;
-  onAnimationEnd: () => void;
-}

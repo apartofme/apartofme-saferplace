@@ -20,6 +20,7 @@ import {
   DialogScreen,
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
+  ElixirTitleButtonScreen,
   EmojiSelectionScreen,
   EmotionSelectionScreen,
   InstructionScreen,
@@ -33,6 +34,7 @@ import {
   SelectSoundScreen,
   TimerTitleButtonScreen,
   TimerTitleScreen,
+  TrySomethingNewCarouselScreen,
   VerticalSwipeScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
@@ -55,6 +57,7 @@ export type QuestStackParams = {
   DancingTimer: { data: IQuest };
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
+  ElixirTitleButton: undefined;
   EmojiSelection: { data: IQuest };
   EmotionSelection: { data: IQuest };
   Journel: { data: IQuest };
@@ -69,6 +72,7 @@ export type QuestStackParams = {
   VerticalSwipe: { data: IQuest };
   Instruction: { data: IQuest };
   ReadOutLoud: { data: IQuest };
+  TrySomethingNewCarousel: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -123,6 +127,10 @@ export const QuestStackNavigator = () => (
       name="ElixirDoubleInteraction"
       component={ElixirDoubleInteractionScreen}
     />
+    <Stack.Screen
+      name="ElixirTitleButton"
+      component={ElixirTitleButtonScreen}
+    />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
     <Stack.Screen name="Journel" component={JournelScreen} />
@@ -140,5 +148,9 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
     <Stack.Screen name="Instruction" component={InstructionScreen} />
     <Stack.Screen name="ReadOutLoud" component={ReadOutLoudScreen} />
+    <Stack.Screen
+      name="TrySomethingNewCarousel"
+      component={TrySomethingNewCarouselScreen}
+    />
   </Stack.Navigator>
 );

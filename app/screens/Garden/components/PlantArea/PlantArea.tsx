@@ -14,7 +14,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
   setActivePlantArea,
   isPlanting,
 }) => {
-  const plantArea = useAppSelector(state => state.cache.plantArea);
+  const plantArea = useAppSelector(state => state.plant.plantArea);
   const selectPlantArea = useCallback(
     (selectedPlace: PlantAreaType) => {
       setActivePlantArea(selectedPlace);
