@@ -21,6 +21,7 @@ import {
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
   EmojiSelectionScreen,
+  EmotionCarouselScreen,
   EmotionSelectionScreen,
   InstructionScreen,
   IEscapeMenuRoute,
@@ -62,6 +63,7 @@ export type QuestStackParams = {
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
   EmojiSelection: { data: IQuest };
+  EmotionCarousel: { data: IQuest };
   EmotionSelection: { data: IQuest };
   Journel: { data: IQuest };
   JournelSupport: { data: IQuest };
@@ -84,6 +86,17 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     {/* // TODO: remove */}
+    <Stack.Screen
+      name="EmotionCarousel"
+      component={EmotionCarouselScreen}
+      initialParams={{
+        data: {
+          title:
+            '|grown_up| choose the kind words you would most like to hear when you feel |*playerEmotion|?',
+          crossHeader: true,
+        },
+      }}
+    />
     <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
       name="AcknowledgementAlongEdges"

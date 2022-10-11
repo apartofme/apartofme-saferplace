@@ -5,6 +5,7 @@ export * from './Dialog';
 export * from './ElixirDoubleInteractionScreen';
 export * from './ElixirTitleButton';
 export * from './EmojiSelection';
+export * from './EmotionCarousel';
 export * from './EmotionSelection';
 export * from './EscapeMenu';
 export * from './FeltRecent';

@@ -30,6 +30,7 @@ interface ICacheState {
   emotions: IEmotions;
   // TODO: make it as separate slice
   plantArea: IPlantArea;
+  emotionItem: Nullable<string>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -51,6 +52,7 @@ const INITIAL_STATE: ICacheState = {
     BottomLeft: null,
     BottomRight: null,
   },
+  emotionItem: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -98,6 +100,9 @@ export const cacheSlice = createSlice({
     clearEmotions({ emotions }) {
       emotions.selected = null;
       emotions.completed = [];
+    },
+    saveEmotionItem(state, { payload }: PayloadAction<string>) {
+      state.emotionItem = payload;
     },
   },
 });

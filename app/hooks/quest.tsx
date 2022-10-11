@@ -134,18 +134,16 @@ export const useParsedJSXTextNickname = ({
   style?: TextStyle;
   nicknameStyle?: TextStyle;
 }): React.FC => {
-  const firstPlayer = useAppSelector(
-    state => state.cache.nicknames?.firstPlayer,
-  ) as string;
-  const secondPlayer = useAppSelector(
-    state => state.cache.nicknames?.secondPlayer,
-  ) as string;
-  const parentNickname = useAppSelector(
-    state => state.user.parent?.nickname,
-  ) as string;
-  const childNickname = useAppSelector(
-    state => state.user.child?.nickname,
-  ) as string;
+  const firstPlayer =
+    useAppSelector(state => state.cache.nicknames?.firstPlayer) ?? '';
+  const secondPlayer =
+    useAppSelector(state => state.cache.nicknames?.secondPlayer) ?? '';
+  const parentNickname =
+    useAppSelector(state => state.user.parent?.nickname) ?? '';
+  const childNickname =
+    useAppSelector(state => state.user.child?.nickname) ?? '';
+  const playerEmotion =
+    useAppSelector(state => state.cache.emotions.selected) ?? '';
 
   if (!textHasNickname) {
     return () => (
@@ -155,11 +153,22 @@ export const useParsedJSXTextNickname = ({
     );
   }
 
+  const parseBoldText = (boldText: string) => (
+    <ExtendedText
+      key={boldText}
+      preset={preset}
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{ fontWeight: '700' }}>
+      {boldText.replace('*', '')}
+    </ExtendedText>
+  );
+
   const textArray = _(text)
     .replace('firstPlayer', firstPlayer)
     .replace('secondPlayer', secondPlayer)
     .replace('grown_up', parentNickname)
     .replace('child', childNickname)
+    .replace('playerEmotion', playerEmotion)
     .split('|')
     .map(value => {
       if (firstPlayer === value || secondPlayer === value) {
@@ -169,16 +178,9 @@ export const useParsedJSXTextNickname = ({
           </ExtendedText>
         );
       }
+
       if (value.startsWith('*')) {
-        return (
-          <ExtendedText
-            key={value}
-            preset={preset}
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{ fontWeight: '700' }}>
-            {value.replace('*', '')}
-          </ExtendedText>
-        );
+        return parseBoldText(value);
       }
 
       return value;
