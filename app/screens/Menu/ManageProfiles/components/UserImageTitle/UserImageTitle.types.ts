@@ -1,7 +1,7 @@
-import { IMAGES } from '../../../../../assets';
+import { AvatarsNameType } from '../../../../../utils/types';
 
 export interface IUserImageTitleProps {
-  image: keyof typeof IMAGES;
+  image: AvatarsNameType;
   title: string;
   onPress: () => void;
 }

@@ -24,3 +24,10 @@ export enum MixingElixirPhaseType {
 export enum PlantsType {
   SpourCompassion = 'SPOUR_COMPASSION',
 }
+
+export enum AvatarsNameType {
+  Logo = 'LOGO',
+  WhitePencil = 'WHITE_PENCIL',
+  WhiteBackArrow = 'WHITE_BACK_ARROW',
+  Tree = 'TREE',
+}

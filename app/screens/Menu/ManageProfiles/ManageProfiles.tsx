@@ -11,9 +11,10 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../components';
-import { IMAGES, AvatarsNames } from '../../../assets';
+import { IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { UserImageTitle } from './components';
+import { AvatarsNameType } from '../../../utils/types';
 
 export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   navigation,
@@ -27,12 +28,8 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
     state => state.user.child?.nickname,
   ) as string;
 
-  const childAvatar = useAppSelector(
-    state => state.user.child?.avatar as AvatarsNames,
-  );
-  const parentAvatar = useAppSelector(
-    state => state.user.parent?.avatar as AvatarsNames,
-  );
+  const childAvatar = useAppSelector(state => state.user.child?.avatar);
+  const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
 
   return (
     <SafeAreaView style={generalStyles.flex}>
@@ -47,14 +44,16 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
             {t('screens.menu.manage_profiles.title')}
           </ExtendedText>
           <View style={styles.imageContainer}>
+            {/* TODO: change AvatarsNameType.Tree to default avatar */}
             <UserImageTitle
               title={parentNickname}
-              image={parentAvatar}
+              image={parentAvatar ?? AvatarsNameType.Tree}
               onPress={_.noop}
             />
+            {/* TODO: change AvatarsNameType.Tree to default avatar */}
             <UserImageTitle
               title={childNickname}
-              image={childAvatar}
+              image={childAvatar ?? AvatarsNameType.Tree}
               onPress={_.noop}
             />
           </View>
