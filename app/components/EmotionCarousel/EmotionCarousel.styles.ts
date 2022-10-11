@@ -8,7 +8,7 @@ export interface IEmotionCarouselStyles {
 export const styles = StyleSheet.create<IEmotionCarouselStyles>({
   container: {
     flex: 1,
-    marginBottom: 24,
+    paddingBottom: 73,
   },
   progressBar: {
     alignItems: 'center',

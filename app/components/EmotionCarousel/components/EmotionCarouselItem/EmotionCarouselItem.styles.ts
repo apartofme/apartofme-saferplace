@@ -10,16 +10,20 @@ export const styles = StyleSheet.create<IEmotionCarouselItemStyles>({
   // TODO: change for correct styles
   container: {
     flex: 1,
-    padding: 70,
+    paddingBottom: 72,
+    paddingHorizontal: 64,
+    justifyContent: 'flex-end',
   },
   contentContainer: {
     flex: 1,
+    maxHeight: 240,
     justifyContent: 'center',
-    borderRadius: 24,
+    alignItems: 'center',
     paddingHorizontal: 24,
+    borderRadius: 24,
     backgroundColor: 'red',
   },
   title: {
-    marginBottom: 16,
+    textAlign: 'center',
   },
 });

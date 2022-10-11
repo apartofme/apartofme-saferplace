@@ -9,7 +9,11 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
-import { BottomButtonView, EmotionCarousel } from '../../../components';
+import {
+  BottomButtonView,
+  EmotionCarousel,
+  ExtendedText,
+} from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
 import { NADIYA_EMOTION_CAROUSEL_ITEMS } from './NadiyaEmotionCarousel.data';
@@ -19,6 +23,7 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
   ({ route }) => {
     const {
       title,
+      description,
       buttonTitle,
       backgroundImage,
       titleHasNickname,
@@ -61,6 +66,12 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
             buttonTitle={buttonTitle ?? t('buttons.select')}
             onSubmit={onSubmit}
             style={styles.container}>
+            <ExtendedText preset="title" style={styles.title}>
+              {title}
+            </ExtendedText>
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {description}
+            </ExtendedText>
             <EmotionCarousel
               data={NADIYA_EMOTION_CAROUSEL_ITEMS}
               setIndex={setActiveItemIndex}

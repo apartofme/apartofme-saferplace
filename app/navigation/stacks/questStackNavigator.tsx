@@ -78,7 +78,7 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     {/* // TODO: remove */}
-    {/*<Stack.Screen
+    <Stack.Screen
       name="NadiyaEmotionCarousel"
       component={NadiyaEmotionCarouselScreen}
       initialParams={{
@@ -90,7 +90,7 @@ export const QuestStackNavigator = () => (
           crossHeader: true,
         },
       }}
-    />*/}
+    />
     <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
       name="AcknowledgementAlongEdges"
