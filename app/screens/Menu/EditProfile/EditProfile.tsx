@@ -15,6 +15,7 @@ import { IEditProfileScreenProps } from './EditProfile.types';
 import { styles } from './EditProfile.styles';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { cacheSlice, userSlice } from '../../../redux/slices';
+import { UserType } from '../../../utils/types';
 
 export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
@@ -33,12 +34,8 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
     state => state.user.child?.nickname,
   ) as string;
 
-  const parentAvatar = useAppSelector(
-    state => state.user.parent?.avatar,
-  ) as string;
-  const childAvatar = useAppSelector(
-    state => state.user.child?.avatar,
-  ) as string;
+  const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
+  const childAvatar = useAppSelector(state => state.user.child?.avatar);
 
   const [nickname, setNickname] = useState(
     UserType.Child === type ? childNickname : parentNickname,

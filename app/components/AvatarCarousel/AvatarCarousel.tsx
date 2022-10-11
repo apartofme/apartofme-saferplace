@@ -33,7 +33,7 @@ export const AvatarCarousel: React.FC<IAvatarCarouselProps> = ({
     index => {
       const currentPosition = Math.floor(index);
       if (setImage && AVATAR_CAROUSEL[currentPosition].image) {
-        setImage(AVATAR_CAROUSEL[currentPosition].image as string);
+        setImage(AVATAR_CAROUSEL[currentPosition].image);
       }
     },
     [setImage],
