@@ -99,6 +99,8 @@ export const questsToDictionary = (
       buttonTitle: quest.buttontitle ?? null,
       positiveNavigatesTo: quest.positivenavigatesto?.id ?? null,
       negativeNavigatesTo: quest.negativenavigatesto?.id ?? null,
+      escapeMenuAlternativeNavigateTo:
+        quest.escapemenualternativenavigateto?.id ?? null,
     };
 
     //* ` ${quest.id}` - space is added to prevent automatic object sorting

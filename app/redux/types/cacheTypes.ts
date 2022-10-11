@@ -3,6 +3,7 @@ import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
 import { IPlant } from '../../models/IPlant';
 import { PlantAreaType } from '../../screens/Garden/components';
+import { AvatarsNameType } from '../../utils/types';
 
 export interface ISignUpData {
   email?: string;
@@ -15,7 +16,7 @@ export interface ISignUpData {
 export interface IShortSignUpData {
   nickname?: string;
   age?: string;
-  avatar?: string;
+  avatar?: AvatarsNameType;
 }
 
 export interface ITrySomethingItem {

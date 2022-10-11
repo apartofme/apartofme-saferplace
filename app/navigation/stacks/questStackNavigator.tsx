@@ -24,8 +24,11 @@ import {
   EmotionSelectionScreen,
   FavouriteCharmCarouselScreen,
   InstructionScreen,
+  IEscapeMenuRoute,
   JournelScreen,
   JournelSupportScreen,
+  NadiyaEmotionCarouselScreen,
+  EscapeMenuScreen,
   RadioButtonScreen,
   ReadOutLoudScreen,
   SelectDrawBuildScreen,
@@ -36,7 +39,10 @@ import {
   TimerTitleScreen,
   VerticalSwipeScreen,
 } from '../../screens';
-import { DEFAULT_STACK_OPTIONS } from '../options';
+import {
+  DEFAULT_STACK_OPTIONS,
+  TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS,
+} from '../options';
 
 export type QuestStackParams = {
   DummyQuests: undefined;
@@ -61,6 +67,7 @@ export type QuestStackParams = {
   FavouriteCharmCarousel: { data: IQuest };
   Journel: { data: IQuest };
   JournelSupport: { data: IQuest };
+  NadiyaEmotionCarousel: { data: IQuest };
   RadioButton: { data: IQuest };
   SelectDrawBuild: { data: IQuest };
   SelectPlayer: { data: IQuest };
@@ -71,6 +78,7 @@ export type QuestStackParams = {
   VerticalSwipe: { data: IQuest };
   Instruction: { data: IQuest };
   ReadOutLoud: { data: IQuest };
+  EscapeMenu: { data: IEscapeMenuRoute };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -133,6 +141,10 @@ export const QuestStackNavigator = () => (
     />
     <Stack.Screen name="Journel" component={JournelScreen} />
     <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />
+    <Stack.Screen
+      name="NadiyaEmotionCarousel"
+      component={NadiyaEmotionCarouselScreen}
+    />
     <Stack.Screen name="RadioButton" component={RadioButtonScreen} />
     <Stack.Screen name="SelectDrawBuild" component={SelectDrawBuildScreen} />
     <Stack.Screen name="SelectPlayer" component={SelectPlayerScreen} />
@@ -146,5 +158,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
     <Stack.Screen name="Instruction" component={InstructionScreen} />
     <Stack.Screen name="ReadOutLoud" component={ReadOutLoudScreen} />
+    <Stack.Screen
+      options={TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS}
+      name="EscapeMenu"
+      component={EscapeMenuScreen}
+    />
   </Stack.Navigator>
 );

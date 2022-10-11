@@ -1,0 +1,1 @@
+export { ManageProfilesScreen } from './ManageProfiles';

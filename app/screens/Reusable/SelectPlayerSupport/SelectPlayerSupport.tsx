@@ -35,6 +35,7 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
       images,
       backgroundImage,
       crossHeader,
+      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const [selectedPlayer, setSelectedPlayer] = useState<string>('');
@@ -52,7 +53,10 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
       state => state.user.child?.nickname,
     ) as string;
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     useMount(() => {
       const playerParent = { ...playerList[0], title: parentNickname };

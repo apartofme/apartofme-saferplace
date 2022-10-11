@@ -25,7 +25,7 @@ import { cacheSlice } from '../../../redux/slices';
 export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   route,
 }) => {
-  const { crossHeader } = route.params.data;
+  const { crossHeader, escapeMenuAlternativeNavigateTo } = route.params.data;
 
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
   const { t } = useTranslation();
@@ -41,7 +41,10 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
     state => state.user.child?.nickname,
   ) as string;
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   useMount(() => {
     const playerParent = { ...playerList[0], title: parentNickname };

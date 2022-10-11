@@ -4,6 +4,7 @@ export * from './Carousel';
 export * from './DialogView';
 export * from './EmojiSlider';
 export * from './EmotionButton';
+export * from './EmotionCarousel';
 export * from './ExtendedButton';
 export * from './ExtendedKeyboardAvoidingView';
 export * from './ExtendedSwitch';

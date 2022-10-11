@@ -19,9 +19,18 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
   const { t } = useTranslation();
   const onSubmit = useNavigateNextQuest();
 
-  const { title, buttonTitle, crossHeader, duration } = route.params.data;
+  const {
+    title,
+    buttonTitle,
+    crossHeader,
+    duration,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground
