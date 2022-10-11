@@ -26,6 +26,7 @@ import {
   IEscapeMenuRoute,
   JournelScreen,
   JournelSupportScreen,
+  NadiyaEmotionCarouselScreen,
   EscapeMenuScreen,
   RadioButtonScreen,
   ReadOutLoudScreen,
@@ -64,6 +65,7 @@ export type QuestStackParams = {
   EmotionSelection: { data: IQuest };
   Journel: { data: IQuest };
   JournelSupport: { data: IQuest };
+  NadiyaEmotionCarousel: { data: IQuest };
   RadioButton: { data: IQuest };
   SelectDrawBuild: { data: IQuest };
   SelectPlayer: { data: IQuest };
@@ -133,6 +135,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
     <Stack.Screen name="Journel" component={JournelScreen} />
     <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />
+    <Stack.Screen
+      name="NadiyaEmotionCarousel"
+      component={NadiyaEmotionCarouselScreen}
+    />
     <Stack.Screen name="RadioButton" component={RadioButtonScreen} />
     <Stack.Screen name="SelectDrawBuild" component={SelectDrawBuildScreen} />
     <Stack.Screen name="SelectPlayer" component={SelectPlayerScreen} />
