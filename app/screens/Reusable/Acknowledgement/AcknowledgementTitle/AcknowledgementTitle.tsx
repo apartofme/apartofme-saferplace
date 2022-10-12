@@ -17,8 +17,13 @@ export const AcknowledgementTitleScreen: React.FC<IAcknowledgementTitleScreenPro
   ({ route }) => {
     const { t } = useTranslation();
 
-    const { title, titleHasNickname, crossHeader, buttonTitle } =
-      route.params.data;
+    const {
+      title,
+      titleHasNickname,
+      crossHeader,
+      buttonTitle,
+      escapeMenuAlternativeNavigateTo,
+    } = route.params.data;
 
     const onSubmit = useNavigateNextQuest();
 
@@ -31,7 +36,10 @@ export const AcknowledgementTitleScreen: React.FC<IAcknowledgementTitleScreenPro
       nicknameStyle: { color: '#00dbc0' },
     });
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     return (
       <ImageBackground

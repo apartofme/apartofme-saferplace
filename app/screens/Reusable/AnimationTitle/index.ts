@@ -1,0 +1,1 @@
+export { AnimationTitleScreen } from './AnimationTitle';

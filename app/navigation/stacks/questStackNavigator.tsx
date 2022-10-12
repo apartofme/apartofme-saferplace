@@ -37,7 +37,7 @@ import {
   SelectPlayerSupportScreen,
   SelectSoundScreen,
   TimerTitleButtonScreen,
-  TimerTitleScreen,
+  AnimationTitleScreen,
   TrySomethingNewCarouselScreen,
   VerticalSwipeScreen,
 } from '../../screens';
@@ -59,6 +59,7 @@ export type QuestStackParams = {
   AcknowledgementSupport: { data: IQuest };
   AcknowledgementTitle: { data: IQuest };
   Alert: undefined;
+  AnimationTitle: { data: IQuest };
   CharmCompleted: { data: IQuest };
   CharmTimerButton: { data: IQuest };
   CharmTimerTitle: { data: IQuest };
@@ -76,7 +77,6 @@ export type QuestStackParams = {
   SelectPlayer: { data: IQuest };
   SelectPlayerSupport: { data: IQuest };
   SelectSound: { data: IQuest };
-  TimerTitle: { data: IQuest };
   TimerTitleButton: { data: IQuest };
   VerticalSwipe: { data: IQuest };
   Instruction: { data: IQuest };
@@ -132,6 +132,7 @@ export const QuestStackNavigator = () => (
       component={AcknowledgementTitleScreen}
     />
     <Stack.Screen name="Alert" component={AlertScreen} />
+    <Stack.Screen name="AnimationTitle" component={AnimationTitleScreen} />
     <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
     <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
     <Stack.Screen name="CharmTimerTitle" component={CharmTimerTitleScreen} />
@@ -161,7 +162,6 @@ export const QuestStackNavigator = () => (
       component={SelectPlayerSupportScreen}
     />
     <Stack.Screen name="SelectSound" component={SelectSoundScreen} />
-    <Stack.Screen name="TimerTitle" component={TimerTitleScreen} />
     <Stack.Screen name="TimerTitleButton" component={TimerTitleButtonScreen} />
     <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
     <Stack.Screen name="Instruction" component={InstructionScreen} />

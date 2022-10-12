@@ -28,6 +28,7 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
       titleHasNickname,
       crossHeader,
       positiveNavigatesTo,
+      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -43,7 +44,10 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
       nicknameStyle: { color: '#00dbc0' },
     });
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     const correctButtonTitle = useMemo(() => {
       if (/next/i.test(buttonTitle as string)) {
