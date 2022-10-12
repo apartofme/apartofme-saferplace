@@ -7,12 +7,15 @@ import {
   GroundingStartScreen,
   IGroundingStartRoute,
   GroundingStartScreen,
+  GroundingInstructionScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentGroundingStackParams = {
   GroundingAcknowledgement: { data: IGroundingAcknowledgementRoute };
   GroundingStart: undefined;
+
+  Instruction: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParentGroundingStackParams>();
@@ -24,5 +27,7 @@ export const ParentGroundingStackNavigator = () => (
       component={GroundingAcknowledgementScreen}
     />
     <Stack.Screen name="GroundingStart" component={GroundingStartScreen} />
+
+    <Stack.Screen name="Instruction" component={GroundingInstructionScreen} />
   </Stack.Navigator>
 );
