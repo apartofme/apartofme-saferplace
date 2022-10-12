@@ -23,6 +23,7 @@ import {
   ElixirDoubleInteractionScreen,
   ElixirTitleButtonScreen,
   EmojiSelectionScreen,
+  EmotionCarouselChoiceScreen,
   EmotionSelectionScreen,
   FavouriteCharmCarouselScreen,
   InstructionScreen,
@@ -84,6 +85,7 @@ export type QuestStackParams = {
   Instruction: { data: IQuest };
   ReadOutLoud: { data: IQuest };
   EscapeMenu: { data: IEscapeMenuRoute };
+  EmotionCarouselChoice: { data: IQuest };
   TrySomethingNewCarousel: { data: IQuest };
 };
 
@@ -176,6 +178,10 @@ export const QuestStackNavigator = () => (
       options={TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS}
       name="EscapeMenu"
       component={EscapeMenuScreen}
+    />
+    <Stack.Screen
+      name="EmotionCarouselChoice"
+      component={EmotionCarouselChoiceScreen}
     />
     <Stack.Screen
       name="TrySomethingNewCarousel"
