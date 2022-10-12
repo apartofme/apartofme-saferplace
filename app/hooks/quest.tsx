@@ -153,15 +153,16 @@ export const useParsedJSXTextNickname = ({
     );
   }
 
-  const parseBoldText = (boldText: string) => (
-    <ExtendedText
-      key={boldText}
-      preset={preset}
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{ fontWeight: '700' }}>
-      {boldText.replace('*', '')}
-    </ExtendedText>
-  );
+  const parseBoldText = (boldText: string) => {
+    const boldStyle: TextStyle = {
+      fontWeight: '700',
+    };
+    return (
+      <ExtendedText key={boldText} preset={preset} style={boldStyle}>
+        {boldText.replace('*', '')}
+      </ExtendedText>
+    );
+  };
 
   const textArray = _(text)
     .replace('firstPlayer', firstPlayer)
