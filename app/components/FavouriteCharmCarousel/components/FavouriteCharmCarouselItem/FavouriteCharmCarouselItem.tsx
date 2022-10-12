@@ -33,9 +33,7 @@ export const FavouriteCharmCarouselItem: React.FC<IFavouriteCharmCarouselItemPro
         [0, 1],
         [CAROUSEL_COLORS.INACTIVE, CAROUSEL_COLORS.ACTIVE],
       );
-      return {
-        backgroundColor,
-      };
+      return { backgroundColor };
     });
 
     return (
