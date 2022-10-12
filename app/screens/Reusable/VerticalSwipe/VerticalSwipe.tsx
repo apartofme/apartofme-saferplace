@@ -27,6 +27,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     tellMoreDescription,
     tellMoreBackground,
     crossHeader,
+    escapeMenuAlternativeNavigateTo,
   } = route.params.data;
 
   const { t } = useTranslation();
@@ -66,7 +67,10 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     };
   }, [backgroundImage, isTopPosition, tellMoreBackground]);
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground source={imageBackground} style={generalStyles.flex}>

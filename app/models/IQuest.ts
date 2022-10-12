@@ -20,6 +20,7 @@ export interface IQuest {
   duration: Nullable<number>;
   positiveNavigatesTo: Nullable<string>;
   negativeNavigatesTo: Nullable<string>;
+  escapeMenuAlternativeNavigateTo: Nullable<string>;
   elixirReward: Nullable<number>;
 }
 
@@ -57,6 +58,9 @@ export interface IQuestDatoCms {
     id: string;
   }>;
   negativenavigatesto: Nullable<{
+    id: string;
+  }>;
+  escapemenualternativenavigateto: Nullable<{
     id: string;
   }>;
   elixirreward: Nullable<number>;

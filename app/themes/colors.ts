@@ -6,4 +6,5 @@ export const COLORS = {
   WHITE: 'white',
   BLACK: '#333',
   BORDER: '#e2e2e2',
+  BLACK_TRANSPARENT_95: 'rgba(26, 26, 26, 0.95)',
 };

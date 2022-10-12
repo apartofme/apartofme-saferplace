@@ -16,8 +16,14 @@ import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
 
 export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScreenProps> =
   ({ navigation, route }) => {
-    const { title, buttonTitle, crossHeader, description, images } =
-      route.params.data;
+    const {
+      title,
+      buttonTitle,
+      crossHeader,
+      description,
+      images,
+      escapeMenuAlternativeNavigateTo,
+    } = route.params.data;
 
     const onSubmit = useNavigateNextQuest();
 
@@ -27,7 +33,10 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
       navigation.navigate('Alert');
     }, [navigation]);
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     return (
       <ImageBackground

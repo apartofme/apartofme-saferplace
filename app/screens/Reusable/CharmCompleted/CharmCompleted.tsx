@@ -13,8 +13,14 @@ import { styles } from './CharmCompleted.styles';
 export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   route,
 }) => {
-  const { title, description, buttonTitle, crossHeader, titleHasNickname } =
-    route.params.data;
+  const {
+    title,
+    description,
+    buttonTitle,
+    crossHeader,
+    titleHasNickname,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const { t } = useTranslation();
   const onSubmit = useNavigateNextQuest();
@@ -28,7 +34,10 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     nicknameStyle: { color: '#00dbc0' },
   });
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground

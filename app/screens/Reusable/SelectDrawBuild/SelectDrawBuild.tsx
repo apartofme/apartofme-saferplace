@@ -39,6 +39,7 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
     crossHeader,
     negativeNavigatesTo,
     positiveNavigatesTo,
+    escapeMenuAlternativeNavigateTo,
   } = route.params.data;
 
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
@@ -77,7 +78,10 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
     [selectedAnswer, t],
   );
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground

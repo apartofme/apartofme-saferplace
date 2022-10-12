@@ -75,6 +75,9 @@ query getQuestLineQuests {
     negativenavigatesto {
       id
     }
+    escapemenualternativenavigateto {
+      id
+    }
     elixirreward
   }
 }
@@ -120,6 +123,9 @@ export const getAllQuestsQuery = (
         id
       }
       negativenavigatesto {
+        id
+      }
+      escapemenualternativenavigateto {
         id
       }
       elixirreward
