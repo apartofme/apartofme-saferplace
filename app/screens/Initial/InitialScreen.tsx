@@ -17,6 +17,9 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   const interruptedQuestLine = useAppSelector(
     state => state.quest.interruptedQuestLine,
   );
+  const isCurrentDayQuestsStackEmpty = useAppSelector(
+    state => !state.quest.currentQuestStack.length,
+  );
   const user = useAppSelector(state => state.user.parent);
   const [isStartLoading, setIsStartLoading] = useState(false);
 
@@ -35,11 +38,13 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
     const nowSeconds = +moment().format('X');
 
     if (
-      lastDayUpdate - nowSeconds >= ONE_DAY_SECONDS &&
-      !interruptedQuestLine
+      nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
+      !interruptedQuestLine &&
+      !isCurrentDayQuestsStackEmpty
     ) {
       dispatch(questSlice.actions.setLastDayUpdate());
       dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
+      dispatch(questSlice.actions.setCurrentDayQuestsStack());
     }
   });
 
