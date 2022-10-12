@@ -12,7 +12,7 @@ import {
   IFirebaseChangePasswordResponse,
   IFirestoreUser,
 } from '../services/firebase';
-import { userSlice } from '../redux/slices';
+import { questSlice, userSlice } from '../redux/slices';
 import {
   IAuthUserActionPayload,
   IChangePasswordActionPayload,
@@ -60,8 +60,11 @@ function* watchRegisterParent() {
       uid: registerUserResponse.user?.uid,
       createdAt: parent.createdAt,
     } as IUser;
-    firestoreUpdateUser({ parent: user });
+
+    yield call(firestoreUpdateUser, { parent: user });
     yield put(userSlice.actions.registerParentSuccess(user));
+    yield call(questSlice.actions.updateCurrentDay, 1);
+    yield call(questSlice.actions.setLastDayUpdate);
   } else {
     yield put(
       userSlice.actions.registerParentError(registerUserResponse.error),

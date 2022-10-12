@@ -5,7 +5,6 @@ import {
   Image,
   ImageBackground,
   Pressable,
-  ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -15,10 +14,10 @@ import { ExtendedText } from '../../../components';
 import { useAppSelector, useMount } from '../../../hooks';
 import { Nullable } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
-import { PlantArea, PlantAreaType } from '../components';
+import { Book, PlantArea, PlantAreaType } from '../components';
 import { IGardenScreenProps } from './Garden.types';
 import { styles } from './Garden.styles';
-import { MixingElixirPhaseType, PlantsType } from '../../../utils/types';
+import { MixingElixirPhaseType } from '../../../utils/types';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
@@ -46,18 +45,12 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     navigation.navigate('MenuStack');
   }, [navigation]);
 
-  // TODO: change to real stack
-  const onBookPress = useCallback(() => {
-    navigation.navigate('QuestStack');
-  }, [navigation]);
-
   const onTitlePress = useCallback(() => {
     if (activePlantArea) {
       navigation.navigate('MixingElixirStack', {
         screen: 'ElixirInstruction',
         params: {
           phase: MixingElixirPhaseType.Mix,
-          plantImage: PlantsType.SpourCompassion,
           selectedPlantArea: activePlantArea,
           isFirstTimeGarden,
         },
@@ -73,7 +66,10 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <View style={generalStyles.flex}>
-        <TouchableOpacity onPress={onAvatarPress} style={styles.zIndex10}>
+        <TouchableOpacity
+          onPress={onAvatarPress}
+          style={styles.zIndex10}
+          disabled={isFirstTime}>
           <Image source={IMAGES[childAvatar]} style={styles.avatar} />
         </TouchableOpacity>
         <TouchableOpacity
@@ -102,12 +98,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
           </ExtendedText>
         </Pressable>
 
-        <TouchableOpacity
-          onPress={onBookPress}
-          style={styles.bookContainer}
-          disabled={isPlanting || isFirstTimeGarden}>
-          <Image source={IMAGES.CLOSED_BOOK} style={styles.book} />
-        </TouchableOpacity>
+        <Book isDisabled={isPlanting || isFirstTimeGarden} />
       </View>
     </ImageBackground>
   );
