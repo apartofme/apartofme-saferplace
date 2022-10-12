@@ -10,6 +10,7 @@ import {
   firestoreUpdateUser,
   IFirebaseAuthResponse,
   IFirebaseChangePasswordResponse,
+  IFirebaseUpdateUserResponse,
   IFirestoreUser,
 } from '../services/firebase';
 import { questSlice, userSlice } from '../redux/slices';
@@ -18,7 +19,6 @@ import {
   IChangePasswordActionPayload,
   IShortSignUpData,
   ISignUpData,
-  IUpdateData,
 } from '../redux/types';
 import { StaticNavigator } from '../services/navigator';
 import { IUser } from '../models/IUser';
@@ -71,15 +71,31 @@ function* watchRegisterParent() {
 }
 
 function* watchUpdateParentData() {
-  const parent: IUpdateData = yield select(state => state.cache.auth.parent);
-  firestoreUpdateUser({ parent });
-  yield put(userSlice.actions.updateParentSuccess(parent as IUser));
+  const parent: ISignUpData = yield select(state => state.cache.auth.parent);
+  const updateParentResponse: IFirebaseUpdateUserResponse = yield call(
+    firestoreUpdateUser,
+    { parent },
+  );
+
+  if (updateParentResponse.error) {
+    yield put(userSlice.actions.updateParentSuccess(parent as IUser));
+  } else {
+    yield put(userSlice.actions.updateParentError('update parent error'));
+  }
 }
 
 function* watchUpdateChildData() {
-  const child: IUpdateData = yield select(state => state.cache.auth.child);
-  firestoreUpdateUser({ child });
-  yield put(userSlice.actions.updateChildSuccess(child as IUser));
+  const child: IShortSignUpData = yield select(state => state.cache.auth.child);
+  const updateChildResponse: IFirebaseUpdateUserResponse = yield call(
+    firestoreUpdateUser,
+    { child },
+  );
+  console.log(updateChildResponse);
+  // if (updateChildResponse.error) {
+  //   yield put(userSlice.actions.updateChildSuccess(child as IUser));
+  // } else {
+  //   yield put(userSlice.actions.updateChildError('update child error'));
+  // }
 }
 
 function* watchSaveChild() {

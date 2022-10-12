@@ -55,7 +55,7 @@ export const userSlice = createSlice({
     updateParentSuccess(state, { payload: user }: PayloadAction<IUser>) {
       state.parent = user;
     },
-    updateUserError(state, action: PayloadAction<string>) {},
+    updateParentError(state, action: PayloadAction<string>) {},
 
     updateChild() {},
     updateChildSuccess(state, { payload: user }: PayloadAction<IUser>) {
