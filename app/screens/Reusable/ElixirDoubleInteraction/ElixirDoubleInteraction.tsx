@@ -1,17 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
-import {
-  GestureHandlerRootView,
-  PanGestureHandler,
-} from 'react-native-gesture-handler';
 
 import { ExtendedText } from '../../../components';
+import { useAppDispatch } from '../../../hooks';
+import { elixirSlice } from '../../../redux/slices';
 import { styles } from './ElixirDoubleInteraction.styles';
 import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.types';
 
 export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScreenProps> =
-  ({ route }) => {
-    const { title, description } = route.params.data;
+  ({ route, navigation }) => {
+    const { title, description, elixirReward } = route.params.data;
+    const dispatch = useAppDispatch();
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
@@ -23,6 +22,13 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const setAdultPress = useCallback(() => {
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
+
+    useEffect(() => {
+      if (isChildPress && isAdultPress) {
+        dispatch(elixirSlice.actions.updateFullnessElixir(elixirReward ?? 1));
+        navigation.navigate('ElixirTitleButton');
+      }
+    }, [isChildPress, isAdultPress, dispatch, elixirReward, navigation]);
 
     return (
       <SafeAreaView style={styles.container}>
@@ -36,15 +42,18 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
         />
         <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
 
-        <GestureHandlerRootView style={styles.buttonsContainer}>
-          <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
-            <View style={[styles.button, isChildPress && styles.border]} />
-          </PanGestureHandler>
-
-          <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
-            <View style={[styles.button, isAdultPress && styles.border]} />
-          </PanGestureHandler>
-        </GestureHandlerRootView>
+        <View style={styles.buttonsContainer}>
+          <View
+            style={[styles.button, isChildPress && styles.border]}
+            onTouchStart={setChildPress}
+            onTouchEnd={setChildPress}
+          />
+          <View
+            style={[styles.button, isAdultPress && styles.border]}
+            onTouchStart={setAdultPress}
+            onTouchEnd={setAdultPress}
+          />
+        </View>
       </SafeAreaView>
     );
   };

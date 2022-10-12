@@ -1,8 +1,6 @@
 import { IMAGES } from '../../assets';
 import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
-import { IPlant } from '../../models/IPlant';
-import { PlantAreaType } from '../../screens/Garden/components';
 import { AvatarsNameType } from '../../utils/types';
 
 export interface ISignUpData {

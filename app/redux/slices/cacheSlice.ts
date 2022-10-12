@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
-import { IPlant } from '../../models/IPlant';
 import { Nullable } from '../../utils';
 import {
   IEmotionPayload,
@@ -10,7 +9,6 @@ import {
   IFavouriteCharmItemPayload,
   INicknames,
   INicknamesPayload,
-  IPlantArea,
   ISaveTranslationsPayload,
   IShortSignUpData,
   IShortSignUpDataPayload,
@@ -83,10 +81,6 @@ export const cacheSlice = createSlice({
         state.nicknames.secondPlayer = state.nicknames.firstPlayer;
         state.nicknames.firstPlayer = payload;
       }
-    },
-    // TODO: move to separate slice
-    updatePlantArea(state, { payload }: PayloadAction<IPlant>) {
-      state.plantArea[payload.plantArea] = payload;
     },
 
     saveTranslationsError(state, action: PayloadAction<string>) {},

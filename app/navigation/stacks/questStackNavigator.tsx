@@ -20,6 +20,7 @@ import {
   DialogScreen,
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
+  ElixirTitleButtonScreen,
   EmojiSelectionScreen,
   EmotionSelectionScreen,
   FavouriteCharmCarouselScreen,
@@ -37,6 +38,7 @@ import {
   SelectSoundScreen,
   TimerTitleButtonScreen,
   TimerTitleScreen,
+  TrySomethingNewCarouselScreen,
   VerticalSwipeScreen,
 } from '../../screens';
 import {
@@ -62,6 +64,7 @@ export type QuestStackParams = {
   DancingTimer: { data: IQuest };
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
+  ElixirTitleButton: undefined;
   EmojiSelection: { data: IQuest };
   EmotionSelection: { data: IQuest };
   FavouriteCharmCarousel: { data: IQuest };
@@ -79,6 +82,7 @@ export type QuestStackParams = {
   Instruction: { data: IQuest };
   ReadOutLoud: { data: IQuest };
   EscapeMenu: { data: IEscapeMenuRoute };
+  TrySomethingNewCarousel: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -133,6 +137,10 @@ export const QuestStackNavigator = () => (
       name="ElixirDoubleInteraction"
       component={ElixirDoubleInteractionScreen}
     />
+    <Stack.Screen
+      name="ElixirTitleButton"
+      component={ElixirTitleButtonScreen}
+    />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
     <Stack.Screen
@@ -162,6 +170,10 @@ export const QuestStackNavigator = () => (
       options={TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS}
       name="EscapeMenu"
       component={EscapeMenuScreen}
+    />
+    <Stack.Screen
+      name="TrySomethingNewCarousel"
+      component={TrySomethingNewCarouselScreen}
     />
   </Stack.Navigator>
 );

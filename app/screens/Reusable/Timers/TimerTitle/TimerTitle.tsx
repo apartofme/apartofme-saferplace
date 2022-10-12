@@ -30,7 +30,7 @@ export const TimerTitleScreen: React.FC<ITimerTitleScreenProps> = ({
         <Header />
         <View style={styles.container}>
           <Timer
-            duration={duration ?? 10}
+            duration={duration ?? 5}
             isStart={true}
             onAnimationComplete={onSubmit}
           />
