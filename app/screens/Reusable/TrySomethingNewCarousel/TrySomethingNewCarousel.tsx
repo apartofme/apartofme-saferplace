@@ -54,6 +54,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
 
     return (
       <ImageBackground
+        // TODO: change to real image
         source={
           backgroundImage
             ? IMAGES[backgroundImage]

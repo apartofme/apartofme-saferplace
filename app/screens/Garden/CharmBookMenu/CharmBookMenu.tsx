@@ -50,6 +50,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
     );
   });
 
+  // TODO: add functional
   const onCompletedPress = useCallback(() => {}, []);
 
   const onPlayPress = useCallback(() => {
@@ -111,6 +112,8 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
     navigation,
     type,
   ]);
+
+  // TODO: add functional
   const onSkipPress = useCallback(() => {}, []);
 
   const menuContent = useMemo(() => {

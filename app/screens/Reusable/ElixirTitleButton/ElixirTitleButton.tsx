@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
 import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
@@ -11,6 +12,7 @@ import { questSlice } from '../../../redux/slices';
 
 export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
@@ -19,20 +21,19 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       getElixirAnimationByRange(fullnessElixir ?? 0),
     );
 
-    // TODO: add localization
     const buttonTitle = useMemo(() => {
       if (fullnessElixir && fullnessElixir >= 3) {
-        return 'Plant a Plant';
+        return t('buttons.plant_a_plant');
       }
-      return 'Back to the Clearing';
-    }, [fullnessElixir]);
+      return t('buttons.back_to_clearing');
+    }, [fullnessElixir, t]);
 
     const title = useMemo(() => {
       if (fullnessElixir && fullnessElixir >= 3) {
-        return 'Excellent a full bottle of magic potion!';
+        return t('screens.elixir_title_button.title');
       }
       return null;
-    }, [fullnessElixir]);
+    }, [fullnessElixir, t]);
 
     const onSabmit = useCallback(() => {
       dispatch(questSlice.actions.updateCurrentDayQuestsStack());

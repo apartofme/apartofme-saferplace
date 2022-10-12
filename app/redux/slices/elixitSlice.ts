@@ -15,11 +15,7 @@ export const elixirSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     updateFullnessElixir(state, { payload }: PayloadAction<number>) {
-      if (state.fullnessElixir) {
-        state.fullnessElixir = state.fullnessElixir + payload;
-        return;
-      }
-      state.fullnessElixir = 0 + payload;
+      state.fullnessElixir = state.fullnessElixir ?? 0 + payload;
     },
   },
 });
