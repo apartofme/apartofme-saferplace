@@ -24,6 +24,7 @@ import {
   ElixirTitleButtonScreen,
   EmojiSelectionScreen,
   EmotionSelectionScreen,
+  FavouriteCharmCarouselScreen,
   InstructionScreen,
   IEscapeMenuRoute,
   JournelScreen,
@@ -69,6 +70,7 @@ export type QuestStackParams = {
   ElixirTitleButton: undefined;
   EmojiSelection: { data: IQuest };
   EmotionSelection: { data: IQuest };
+  FavouriteCharmCarousel: { data: IQuest };
   Journel: { data: IQuest };
   JournelSupport: { data: IQuest };
   NadiyaEmotionCarousel: { data: IQuest };
@@ -148,6 +150,10 @@ export const QuestStackNavigator = () => (
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
+    <Stack.Screen
+      name="FavouriteCharmCarousel"
+      component={FavouriteCharmCarouselScreen}
+    />
     <Stack.Screen name="Journel" component={JournelScreen} />
     <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />
     <Stack.Screen

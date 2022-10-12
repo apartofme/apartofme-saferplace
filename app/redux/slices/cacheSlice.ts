@@ -5,6 +5,8 @@ import { Nullable } from '../../utils';
 import {
   IEmotionPayload,
   IEmotions,
+  IFavouriteCharmItem,
+  IFavouriteCharmItemPayload,
   INicknames,
   INicknamesPayload,
   ISaveTranslationsPayload,
@@ -26,6 +28,9 @@ interface ICacheState {
   trySomethingItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
+  favouriteCharmItem: Nullable<IFavouriteCharmItem>;
+  // TODO: make it as separate slice
+  plantArea: IPlantArea;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -39,6 +44,14 @@ const INITIAL_STATE: ICacheState = {
   emotions: {
     selected: null,
     completed: [],
+  },
+  favouriteCharmItem: null,
+  plantArea: {
+    TopLeft: null,
+    TopRight: null,
+    Center: null,
+    BottomLeft: null,
+    BottomRight: null,
   },
 };
 
@@ -83,6 +96,9 @@ export const cacheSlice = createSlice({
     clearEmotions({ emotions }) {
       emotions.selected = null;
       emotions.completed = [];
+    },
+    saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
+      state.favouriteCharmItem = _.merge(state.favouriteCharmItem, payload);
     },
   },
 });
