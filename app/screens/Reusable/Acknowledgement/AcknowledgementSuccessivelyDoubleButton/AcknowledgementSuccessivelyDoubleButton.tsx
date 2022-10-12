@@ -27,6 +27,7 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
       crossHeader,
       positiveNavigatesTo,
       titleHasNickname,
+      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -42,7 +43,10 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
       nicknameStyle: { color: '#00dbc0' },
     });
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     return (
       <ImageBackground

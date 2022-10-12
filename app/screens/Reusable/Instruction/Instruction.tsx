@@ -22,8 +22,13 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { title, titleHasNickname, crossHeader, buttonTitle } =
-    route.params.data;
+  const {
+    title,
+    titleHasNickname,
+    crossHeader,
+    buttonTitle,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const onSubmit = useNavigateNextQuest();
 
@@ -36,7 +41,10 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
     nicknameStyle: { color: '#00dbc0' },
   });
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   const renderItem = useCallback(
     ({ item }: { item: IInstructionListItem }) => (

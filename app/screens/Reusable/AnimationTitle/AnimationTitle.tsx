@@ -1,21 +1,31 @@
 import React from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { ExtendedText, Timer } from '../../../../components';
-import { ITimerTitleScreenProps } from './TimerTitle.types';
-import { styles } from './TimerTitle.styles';
-import { generalStyles } from '../../../../utils/styles';
-import { IMAGES } from '../../../../assets';
-import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
+import { ExtendedText, Timer } from '../../../components';
+import { IAnimationTitleScreenProps } from './AnimationTitle.types';
+import { styles } from './AnimationTitle.styles';
+import { generalStyles } from '../../../utils/styles';
+import { IMAGES } from '../../../assets';
+import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
 
-export const TimerTitleScreen: React.FC<ITimerTitleScreenProps> = ({
+export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
 }) => {
-  const { crossHeader, backgroundImage, duration, title } = route.params.data;
+  const {
+    crossHeader,
+    backgroundImage,
+    duration,
+    title,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
   const onSubmit = useNavigateNextQuest();
 
   // TODO: remove
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
+
   return (
     <ImageBackground
       // TODO: change to real default image
@@ -28,6 +38,7 @@ export const TimerTitleScreen: React.FC<ITimerTitleScreenProps> = ({
       <SafeAreaView style={generalStyles.flex}>
         {/* // TODO: remove */}
         <Header />
+        {/* // TODO: change to real animation */}
         <View style={styles.container}>
           <Timer
             duration={duration ?? 5}

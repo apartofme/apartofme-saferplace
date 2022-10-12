@@ -17,7 +17,8 @@ export const RecognitionDoubleInteractionSuccessScreen: React.FC<IRecognitionDou
       navigation.push('RecognitionDialog', {
         data: {
           speech: GARDEN_TRANSSITION_DIALOG,
-          nextRoute: 'ComingSoon',
+          // TODO: change to real stack
+          nextRoute: 'GardenStack',
         },
       });
     }, [navigation]);

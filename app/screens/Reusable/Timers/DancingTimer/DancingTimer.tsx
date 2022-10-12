@@ -11,15 +11,24 @@ import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
 export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   route,
 }) => {
-  const { title, description, buttonTitle, duration, crossHeader } =
-    route.params.data;
+  const {
+    title,
+    description,
+    buttonTitle,
+    duration,
+    crossHeader,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const { t } = useTranslation();
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
   const [isTimerEnd, setIsTimerEnd] = useState<boolean>(false);
   const navigateNextQuest = useNavigateNextQuest();
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   const onSubmitPress = useCallback(() => {
     if (isTimerEnd) {

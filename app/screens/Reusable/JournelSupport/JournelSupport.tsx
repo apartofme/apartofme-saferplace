@@ -29,6 +29,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
     crossHeader,
     titleHasNickname,
     positiveNavigatesTo,
+    escapeMenuAlternativeNavigateTo,
   } = route.params.data;
 
   const [inputText, setInputText] = useState<string>('');
@@ -43,7 +44,10 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
     nicknameStyle: { color: '#00dbc0' },
   });
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground

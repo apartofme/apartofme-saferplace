@@ -1,11 +1,11 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
-interface ITitleStyles {
+interface IAnimationTitleStyles {
   container: ViewStyle;
   title: TextStyle;
 }
 
-export const styles = StyleSheet.create<ITitleStyles>({
+export const styles = StyleSheet.create<IAnimationTitleStyles>({
   container: {
     flex: 1,
     justifyContent: 'center',

@@ -23,8 +23,13 @@ import { cacheSlice } from '../../../redux/slices';
 export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
   route,
 }) => {
-  const { title, buttonTitle, titleHasNickname, crossHeader } =
-    route.params.data;
+  const {
+    title,
+    buttonTitle,
+    titleHasNickname,
+    crossHeader,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const [selectedEmotion, setSelecredEmotion] =
     useState<Nullable<EmotionButtonType>>(null);
@@ -42,7 +47,10 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
     nicknameStyle: { color: '#00dbc0' },
   });
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   const onSubmit = useCallback(() => {
     dispatch(cacheSlice.actions.saveSelectedEmotion(selectedEmotion));

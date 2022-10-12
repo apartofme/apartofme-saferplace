@@ -14,14 +14,23 @@ import { generalStyles } from '../../../utils/styles';
 import { usePositiveNavigateTo, useRenderQuestHeader } from '../../../hooks';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
-  const { title, description, buttonTitle, crossHeader, positiveNavigatesTo } =
-    route.params.data;
+  const {
+    title,
+    description,
+    buttonTitle,
+    crossHeader,
+    positiveNavigatesTo,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const [inputText, setInputText] = useState<string>('');
   const { t } = useTranslation();
   const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground
