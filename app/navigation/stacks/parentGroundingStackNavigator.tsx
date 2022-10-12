@@ -4,11 +4,14 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import {
   GroundingAcknowledgementScreen,
   IGroundingAcknowledgementRoute,
+  GroundingStartScreen,
+  IGroundingStartRoute,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentGroundingStackParams = {
   GroundingAcknowledgement: { data: IGroundingAcknowledgementRoute };
+  GroundingStart: { data: IGroundingStartRoute };
 };
 
 const Stack = createNativeStackNavigator<ParentGroundingStackParams>();
@@ -19,5 +22,6 @@ export const ParentGroundingStackNavigator = () => (
       name="GroundingAcknowledgement"
       component={GroundingAcknowledgementScreen}
     />
+    <Stack.Screen name="GroundingStart" component={GroundingStartScreen} />
   </Stack.Navigator>
 );
