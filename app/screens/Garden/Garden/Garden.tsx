@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import {
@@ -25,6 +25,12 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 }) => {
   const { isPlanting, isFirstTime, isFirstTimeGarden } = route.params;
   const { t } = useTranslation();
+  const isCurrentDayQuestStackEmpty = useAppSelector(
+    state => !state.quest.currentDayQuestsStack.length,
+  );
+  const isInterruptedQuestLineEmpty = useAppSelector(
+    state => !state.quest.interruptedQuestLine,
+  );
 
   const [activePlantArea, setActivePlantArea] =
     useState<Nullable<PlantAreaType>>(null);
@@ -58,6 +64,32 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     }
   }, [activePlantArea, isFirstTimeGarden, navigation]);
 
+  const title = useMemo(() => {
+    const isDisplayNone =
+      !isPlanting &&
+      (isCurrentDayQuestStackEmpty || isInterruptedQuestLineEmpty) &&
+      isPlanting;
+
+    return (
+      <Pressable
+        onPress={onTitlePress}
+        style={[styles.titleContainer, isDisplayNone && styles.displayNone]}
+        disabled={!isPlanting}>
+        <ExtendedText>
+          {isPlanting
+            ? t('screens.garden.tapTitle')
+            : t('screens.garden.tapBook')}
+        </ExtendedText>
+      </Pressable>
+    );
+  }, [
+    isCurrentDayQuestStackEmpty,
+    isInterruptedQuestLineEmpty,
+    isPlanting,
+    onTitlePress,
+    t,
+  ]);
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -87,17 +119,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         </View>
       </View>
       <View>
-        <Pressable
-          onPress={onTitlePress}
-          style={styles.titleContainer}
-          disabled={!isPlanting}>
-          <ExtendedText>
-            {isPlanting
-              ? t('screens.garden.tapTitle')
-              : t('screens.garden.tapBook')}
-          </ExtendedText>
-        </Pressable>
-
+        {title}
         <Book isDisabled={isPlanting || isFirstTimeGarden} />
       </View>
     </ImageBackground>

@@ -34,10 +34,7 @@ function* watchLoginUser({
     const user: IFirestoreUser = yield call(firestoreGetUser);
     yield put(userSlice.actions.loginUserSuccess(user._data));
     // TODO: change to real stack
-    yield call(StaticNavigator.navigateTo, 'GardenStack', {
-      screen: 'GardenTutorialDialog',
-      params: { isStart: true },
-    });
+    yield call(StaticNavigator.navigateTo, 'GardenStack');
     yield call(firestoreSaveDeviceToken);
   } else {
     yield put(userSlice.actions.loginUserError(loginUserResponse.error));
@@ -62,9 +59,9 @@ function* watchRegisterParent() {
     } as IUser;
 
     yield call(firestoreUpdateUser, { parent: user });
+    yield put(questSlice.actions.updateCurrentDay(1));
+    yield put(questSlice.actions.setLastDayUpdate());
     yield put(userSlice.actions.registerParentSuccess(user));
-    yield call(questSlice.actions.updateCurrentDay, 1);
-    yield call(questSlice.actions.setLastDayUpdate);
   } else {
     yield put(
       userSlice.actions.registerParentError(registerUserResponse.error),
