@@ -7,24 +7,21 @@ import {
   MixingElixirSuccessScreen,
 } from '../../screens';
 import { PlantAreaType } from '../../screens/Garden/components';
-import { MixingElixirPhaseType, PlantsType } from '../../utils/types';
+import { MixingElixirPhaseType } from '../../utils/types';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type MixingElixirStackParams = {
   ElixirAnimation: {
     phase: MixingElixirPhaseType;
     isFirstTimeGarden: boolean;
-    plantImage: PlantsType;
     selectedPlantArea: PlantAreaType;
   };
   ElixirInstruction: {
     phase: MixingElixirPhaseType;
     isFirstTimeGarden: boolean;
-    plantImage: PlantsType;
     selectedPlantArea: PlantAreaType;
   };
   MixingElixirSuccess: {
-    plantImage: PlantsType;
     isFirstTimeGarden: boolean;
     selectedPlantArea: PlantAreaType;
   };

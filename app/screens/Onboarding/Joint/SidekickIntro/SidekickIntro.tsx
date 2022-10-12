@@ -17,8 +17,12 @@ export const SidekickIntroScreen: React.FC<ISidekickIntroScreenProps> = ({
     navigation.navigate('SignUpNickname');
   }, [navigation]);
 
+  // TODO: change to real stack
   const onSabmit = useCallback(() => {
-    navigation.navigate('QuestStack');
+    navigation.navigate('GardenStack', {
+      screen: 'GardenTutorialDialog',
+      params: { isStart: true },
+    });
   }, [navigation]);
 
   return (

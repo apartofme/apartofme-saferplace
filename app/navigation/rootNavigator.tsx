@@ -17,11 +17,10 @@ import {
   RecognitionStackParams,
   JointOnboardingStackParams,
   ParentsOnboardingStackParams,
-  // TODO: remove
   QuestStackNavigator,
   QuestStackParams,
 } from './stacks';
-import { InitialScreen, ComingSoonScreen } from '../screens';
+import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
 import { GLOBAL_NAVIGATION_STACK_OPTIONS } from './options';
 import { trackScreenView } from '../services/firebase';
@@ -36,8 +35,6 @@ export type RootParams = {
     | undefined;
   MenuStack: undefined;
   RecognitionStack: NavigatorScreenParams<RecognitionStackParams> | undefined;
-  // TODO: remove when the screens are ready
-  ComingSoon: undefined;
   QuestStack: NavigatorScreenParams<QuestStackParams> | undefined;
   MixingElixirStack: NavigatorScreenParams<MixingElixirStackParams> | undefined;
   GardenStack: NavigatorScreenParams<GardenStackParams> | undefined;
@@ -78,8 +75,6 @@ const RootNavigator = () => {
           component={RecognitionStackNavigator}
         />
         <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
-        {/* // TODO: remove when the screens are ready */}
-        <Stack.Screen name="ComingSoon" component={ComingSoonScreen} />
         <Stack.Screen name="QuestStack" component={QuestStackNavigator} />
         <Stack.Screen
           name="MixingElixirStack"

@@ -12,7 +12,7 @@ import {
   IFirebaseChangePasswordResponse,
   IFirestoreUser,
 } from '../services/firebase';
-import { userSlice } from '../redux/slices';
+import { questSlice, userSlice } from '../redux/slices';
 import {
   IAuthUserActionPayload,
   IChangePasswordActionPayload,
@@ -34,10 +34,7 @@ function* watchLoginUser({
     const user: IFirestoreUser = yield call(firestoreGetUser);
     yield put(userSlice.actions.loginUserSuccess(user._data));
     // TODO: change to real stack
-    yield call(StaticNavigator.navigateTo, 'GardenStack', {
-      screen: 'GardenTutorialDialog',
-      params: { isStart: true },
-    });
+    yield call(StaticNavigator.navigateTo, 'GardenStack');
     yield call(firestoreSaveDeviceToken);
   } else {
     yield put(userSlice.actions.loginUserError(loginUserResponse.error));
@@ -60,7 +57,10 @@ function* watchRegisterParent() {
       uid: registerUserResponse.user?.uid,
       createdAt: parent.createdAt,
     } as IUser;
-    firestoreUpdateUser({ parent: user });
+
+    yield call(firestoreUpdateUser, { parent: user });
+    yield put(questSlice.actions.updateCurrentDay(1));
+    yield put(questSlice.actions.setLastDayUpdate());
     yield put(userSlice.actions.registerParentSuccess(user));
   } else {
     yield put(

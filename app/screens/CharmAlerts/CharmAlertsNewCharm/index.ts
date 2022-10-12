@@ -1,1 +1,0 @@
-export { CharmAlertsNewCharmScreen } from './CharmAlertsNewCharm';

@@ -20,6 +20,20 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
   route,
 }) => {
   const { escapeMenuAlternativeNavigateTo } = route.params.data;
+  const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
+  const currentLanguage = useAppSelector(
+    state => state.settings.settings.language,
+  );
+  const allQuests = useAppSelector(
+    state => state.quest.allQuests?.[currentLanguage as string],
+  );
+  const currentQuestLine = useAppSelector(
+    state => state.quest.currentQuestLine,
+  );
+  const currentDay = useAppSelector(state => state.quest.currentDay);
+  const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
 
   const navigateTo = usePositiveNavigateTo(escapeMenuAlternativeNavigateTo);
 
@@ -29,32 +43,43 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
     navigateTo();
   }, [navigateTo, navigation]);
 
-  const { t } = useTranslation();
-
-  const dispatch = useAppDispatch();
-
-  const currentLanguage = useAppSelector(
-    state => state.settings.settings.language,
-  );
-  const allQuests = useAppSelector(
-    state => state.quest.allQuests?.[currentLanguage as string],
-  );
-
   const goToTheCharmofGrounding = useCallback(() => {
     const quests: IQuest[] = values(allQuests && allQuests['55705521'].quests);
+
     dispatch(
       questSlice.actions.saveCurrentQuestLine({
         id: quests[0].questLineId,
         quests,
       }),
     );
+
     dispatch(questSlice.actions.saveCurrentQuestIdx(0));
     navigation.popToTop();
     navigation.navigate(quests[0].type, {
       data: { ...quests[0] },
     });
+
     dispatch(questSlice.actions.clearQuestStack());
   }, [allQuests, dispatch, navigation]);
+
+  const goToGarden = useCallback(() => {
+    dispatch(
+      questSlice.actions.updateInterruptedQuestLine({
+        id: currentQuestLine?.id as string,
+        day: currentDay,
+        interruptedQuestInx: currentQuestIdx,
+      }),
+    );
+    navigation.goBack();
+    navigation.push('GardenStack', {
+      screen: 'Garden',
+      params: {
+        isFirstTime: false,
+        isPlanting: false,
+        isFirstTimeGarden: false,
+      },
+    });
+  }, [currentDay, currentQuestIdx, currentQuestLine?.id, dispatch, navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -84,6 +109,7 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
         <ExtendedButton
           title={t('buttons.back_to_clearing')}
           style={styles.button}
+          onPress={goToGarden}
         />
       </View>
     </SafeAreaView>

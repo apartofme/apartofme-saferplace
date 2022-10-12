@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView } from 'react-native';
+import moment from 'moment';
 
 import { IInitialScreenProps } from './InitialScreen.types';
 import { styles } from './InitialScreen.styles';
 import { useAppDispatch, useAppSelector, useMount } from '../../hooks';
 import { cacheSlice, questSlice } from '../../redux/slices';
+import { ONE_DAY_SECONDS } from '../../constants/time';
 
 export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,
 }) => {
   const dispatch = useAppDispatch();
+  const currentDay = useAppSelector(state => state.quest.currentDay);
+  const lastDayUpdate = useAppSelector(state => state.quest.lastDayUpdate);
+  const interruptedQuestLine = useAppSelector(
+    state => state.quest.interruptedQuestLine,
+  );
+  const isCurrentDayQuestsStackEmpty = useAppSelector(
+    state => !state.quest.currentQuestStack.length,
+  );
   const user = useAppSelector(state => state.user.parent);
   const [isStartLoading, setIsStartLoading] = useState(false);
 
@@ -24,6 +34,18 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
     dispatch(questSlice.actions.saveAllQuests());
     dispatch(cacheSlice.actions.saveTranslations());
     setIsStartLoading(true);
+
+    const nowSeconds = +moment().format('X');
+
+    if (
+      nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
+      !interruptedQuestLine &&
+      !isCurrentDayQuestsStackEmpty
+    ) {
+      dispatch(questSlice.actions.setLastDayUpdate());
+      dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
+      dispatch(questSlice.actions.setCurrentDayQuestsStack());
+    }
   });
 
   useEffect(() => {

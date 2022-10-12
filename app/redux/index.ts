@@ -22,13 +22,17 @@ import {
   appSlice,
   settingsSlice,
   userSlice,
+  elixirSlice,
   cacheSlice,
   questSlice,
+  plantSlice,
 } from './slices';
 
 export const rootReducer = combineReducers({
   app: appSlice.reducer,
   cache: cacheSlice.reducer,
+  elixir: elixirSlice.reducer,
+  plant: plantSlice.reducer,
   settings: settingsSlice.reducer,
   user: userSlice.reducer,
   quest: questSlice.reducer,
