@@ -25,7 +25,8 @@ import { cacheSlice } from '../../../redux/slices';
 export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
   route,
 }) => {
-  const { crossHeader, escapeMenuAlternativeNavigateTo } = route.params.data;
+  const { title, buttonTitle, crossHeader, escapeMenuAlternativeNavigateTo } =
+    route.params.data;
 
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
   const { t } = useTranslation();
@@ -87,12 +88,12 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
       <SafeAreaView style={generalStyles.flex}>
         <Header />
         <BottomButtonView
-          buttonTitle={t('buttons.ready')}
+          buttonTitle={buttonTitle ?? t('buttons.ready')}
           onSubmit={onSubmit}
           isDisabledButton={!selectedPlayer}
           style={styles.container}>
           <ExtendedText preset="title" style={styles.title}>
-            {t('screens.select_player.title')}
+            {title ?? t('screens.select_player.title')}
           </ExtendedText>
           <FlatList data={playerList} renderItem={renderItem} />
         </BottomButtonView>
