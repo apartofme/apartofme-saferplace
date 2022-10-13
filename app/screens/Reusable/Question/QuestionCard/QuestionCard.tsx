@@ -8,9 +8,14 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../../components';
-import { useNavigateNextQuest, usePositiveNavigateTo } from '../../../../hooks';
+import {
+  useAppSelector,
+  useNavigateNextQuest,
+  usePositiveNavigateTo,
+} from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { QuestionView } from './components';
+import { QUESTION_CARD } from './QuestionCard.data';
 import { styles } from './QuestionCard.styles';
 import { IQuestionCardScreenProps } from './QuestionCard.types';
 
@@ -18,13 +23,17 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { question, positiveNavigatesTo } = route.params.data;
+  const { positiveNavigatesTo } = route.params.data;
 
   const { t } = useTranslation();
 
   const onSubmit = useNavigateNextQuest();
 
   const onSkipPress = usePositiveNavigateTo(positiveNavigatesTo);
+
+  const currentQuestionIndex = useAppSelector(
+    state => state.cache.currentQuestionIndex,
+  );
 
   return (
     <ImageBackground
@@ -42,7 +51,7 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
           <ExtendedText preset="body-regular" style={styles.title}>
             {t('screens.question_card.title')}
           </ExtendedText>
-          <QuestionView title={question ?? ''} />
+          <QuestionView title={QUESTION_CARD[currentQuestionIndex].titleKey} />
         </View>
         <View>
           <ExtendedButton

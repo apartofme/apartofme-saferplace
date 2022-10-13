@@ -4,9 +4,11 @@ import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { BottomButtonView } from '../../../../components';
 import {
+  useAppDispatch,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../../hooks';
+import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './QuestionChoice.styles';
 import { IQuestionChoiceScreenProps } from './QuestionChoice.types';
@@ -19,7 +21,6 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
     title,
     buttonTitle,
     crossHeader,
-    description,
     escapeMenuAlternativeNavigateTo,
     titleHasNickname,
     positiveNavigatesTo,
@@ -27,11 +28,14 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
 
   const { t } = useTranslation();
 
+  const dispatch = useAppDispatch();
+
   const onSubmit = useCallback(() => {
+    dispatch(cacheSlice.actions.incrementCurrentQuestionIndex());
     navigation.navigate('QuestionCard', {
-      data: { question: description, positiveNavigatesTo },
+      data: { positiveNavigatesTo },
     });
-  }, [description, navigation, positiveNavigatesTo]);
+  }, [dispatch, navigation, positiveNavigatesTo]);
 
   const Header = useRenderQuestHeader({
     crossHeader: crossHeader ?? false,

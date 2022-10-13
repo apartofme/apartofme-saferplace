@@ -9,6 +9,5 @@ type RouteProps = StackScreenProps<MergedStackParams, 'QuestionCard'>;
 export interface IQuestionCardScreenProps extends NavigationProps, RouteProps {}
 
 export interface IQuestionCardRoute {
-  question: Nullable<string>;
   positiveNavigatesTo: Nullable<string>;
 }
