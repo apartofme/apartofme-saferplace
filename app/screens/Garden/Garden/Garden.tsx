@@ -1,5 +1,6 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 import _ from 'lodash';
 import {
   Image,
@@ -9,31 +10,78 @@ import {
   View,
 } from 'react-native';
 
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAppState,
+  useMount,
+} from '../../../hooks';
 import { IMAGES } from '../../../assets';
-import { ExtendedText } from '../../../components';
-import { useAppSelector, useMount } from '../../../hooks';
 import { Nullable } from '../../../utils';
+import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { Book, PlantArea, PlantAreaType } from '../components';
+import { MixingElixirPhaseType } from '../../../utils/types';
+import { questSlice } from '../../../redux/slices';
+import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
 import { styles } from './Garden.styles';
-import { MixingElixirPhaseType } from '../../../utils/types';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
   route,
 }) => {
   const { isPlanting, isFirstTime, isFirstTimeGarden } = route.params;
+
   const { t } = useTranslation();
+  const appStatus = useAppState();
+  const dispatch = useAppDispatch();
+
   const isCurrentDayQuestStackEmpty = useAppSelector(
     state => !state.quest.currentDayQuestsStack.length,
   );
   const isInterruptedQuestLineEmpty = useAppSelector(
     state => !state.quest.interruptedQuestLine,
   );
+  const currentDay = useAppSelector(state => state.quest.currentDay);
+  const lastDayUpdate = useAppSelector(state => state.quest.lastDayUpdate);
+  const interruptedQuestLine = useAppSelector(
+    state => state.quest.interruptedQuestLine,
+  );
+  const isCurrentDayQuestsStackEmpty = useAppSelector(
+    state => !state.quest.currentQuestStack.length,
+  );
+  const childAvatar = useAppSelector(
+    state => state.user.child?.avatar,
+  ) as keyof typeof IMAGES;
 
+  const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);
   const [activePlantArea, setActivePlantArea] =
     useState<Nullable<PlantAreaType>>(null);
+
+  useEffect(() => {
+    if (appStatus === 'background') {
+      setIsPrevStatusBackground(true);
+      return;
+    }
+
+    if (appStatus === 'active' && isPrevStatusBackground) {
+      const nowSeconds = +moment().format('X');
+
+      if (
+        nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
+        !interruptedQuestLine &&
+        !isCurrentDayQuestsStackEmpty
+      ) {
+        dispatch(questSlice.actions.setLastDayUpdate());
+        dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
+        dispatch(questSlice.actions.setCurrentDayQuestsStack());
+      }
+      setIsPrevStatusBackground(false);
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appStatus]);
 
   useMount(() => {
     if (isFirstTime) {
@@ -42,10 +90,6 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       }, 3000);
     }
   });
-
-  const childAvatar = useAppSelector(
-    state => state.user.child?.avatar,
-  ) as keyof typeof IMAGES;
 
   const onAvatarPress = useCallback(() => {
     navigation.navigate('MenuStack');

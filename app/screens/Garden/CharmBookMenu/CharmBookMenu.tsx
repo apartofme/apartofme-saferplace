@@ -58,7 +58,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
       const newQuestLineId =
         currentDayQuestStack[currentDayQuestStack.length - 1];
       const newQuests = values(allQuests?.[newQuestLineId].quests);
-      console.log(newQuestLineId);
+
       dispatch(
         questSlice.actions.saveCurrentQuestLine({
           id: newQuests[0].questLineId,

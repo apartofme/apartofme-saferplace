@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { AppState, AppStateStatus } from 'react-native';
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
 export const useMount = (func: () => void) => useEffect(func, []);
@@ -28,3 +29,22 @@ export const usePrevious = <TValue>(value: TValue) => {
   // Return previous value (happens before update in useEffect above)
   return ref.current;
 };
+
+export const useAppState = () => {
+  const { currentState } = AppState;
+  const [appState, setAppState] = useState(currentState);
+
+  useEffect(() => {
+    const onChange = (newState: AppStateStatus) => {
+      setAppState(newState);
+    };
+    const subscription = AppState.addEventListener('change', onChange);
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
+  return appState;
+};
+
+export default useAppState;

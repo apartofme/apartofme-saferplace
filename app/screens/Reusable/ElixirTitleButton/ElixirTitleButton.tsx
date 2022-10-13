@@ -16,6 +16,12 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     const dispatch = useAppDispatch();
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
+    const interruptedQuestLine = useAppSelector(
+      state => state.quest.interruptedQuestLine,
+    );
+    const currentQuestLine = useAppSelector(
+      state => state.quest.currentQuestLine,
+    );
 
     const elixirAnimation = useMount(() =>
       getElixirAnimationByRange(fullnessElixir ?? 0),
@@ -36,6 +42,9 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     }, [fullnessElixir, t]);
 
     const onSabmit = useCallback(() => {
+      if (interruptedQuestLine?.id === currentQuestLine?.id) {
+        dispatch(questSlice.actions.updateInterruptedQuestLine(null));
+      }
       dispatch(questSlice.actions.updateCurrentDayQuestsStack());
       if (fullnessElixir && fullnessElixir >= 3) {
         navigation.navigate('GardenStack', {
@@ -57,7 +66,13 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
           isFirstTimeGarden: false,
         },
       });
-    }, [dispatch, fullnessElixir, navigation]);
+    }, [
+      currentQuestLine?.id,
+      dispatch,
+      fullnessElixir,
+      interruptedQuestLine?.id,
+      navigation,
+    ]);
 
     return (
       <SafeAreaView style={generalStyles.flex}>
