@@ -37,7 +37,7 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
       preset: 'title',
       style: styles.textCenter,
       // TODO: remove
-      nicknameStyle: { color: '#00dbc0' },
+      variableStyle: { color: '#00dbc0' },
     });
 
     const Header = useRenderQuestHeader(crossHeader ?? false);

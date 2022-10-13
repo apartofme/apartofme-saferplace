@@ -38,7 +38,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
     preset: 'body-regular',
     style: styles.title,
     // TODO: remove
-    nicknameStyle: { color: '#00dbc0' },
+    variableStyle: { color: '#00dbc0' },
   });
 
   return (

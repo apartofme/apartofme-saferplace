@@ -44,6 +44,7 @@ import {
   TrySomethingNewCarouselScreen,
   VerticalSwipeScreen,
   ConversationsScreen,
+  TroublesomeSpiritQuestionsCarouselScreen,
 } from '../../screens';
 import {
   DEFAULT_STACK_OPTIONS,
@@ -91,6 +92,7 @@ export type QuestStackParams = {
   EmotionCarouselChoice: { data: IQuest };
   TrySomethingNewCarousel: { data: IQuest };
   Conversations: { data: IQuest };
+  TroublesomeSpiritQuestionsCarousel: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -193,5 +195,9 @@ export const QuestStackNavigator = () => (
       component={TrySomethingNewCarouselScreen}
     />
     <Stack.Screen name="Conversations" component={ConversationsScreen} />
+    <Stack.Screen
+      name="TroublesomeSpiritQuestionsCarousel"
+      component={TroublesomeSpiritQuestionsCarouselScreen}
+    />
   </Stack.Navigator>
 );

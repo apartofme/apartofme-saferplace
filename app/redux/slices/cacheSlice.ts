@@ -32,6 +32,7 @@ interface ICacheState {
   plantArea: IPlantArea;
   emotionItem: Nullable<string>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
+  troublesomeSpiritQuestionsItem: Nullable<string>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -55,6 +56,7 @@ const INITIAL_STATE: ICacheState = {
   },
   emotionItem: null,
   favouriteCharmItem: null,
+  troublesomeSpiritQuestionsItem: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -104,6 +106,12 @@ export const cacheSlice = createSlice({
     },
     saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
       state.favouriteCharmItem = _.merge(state.favouriteCharmItem, payload);
+    },
+    saveTroublesomeSpiritQuestionsItem(
+      state,
+      { payload }: PayloadAction<string>,
+    ) {
+      state.troublesomeSpiritQuestionsItem = payload;
     },
   },
 });

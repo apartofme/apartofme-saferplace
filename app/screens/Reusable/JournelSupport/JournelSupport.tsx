@@ -41,7 +41,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
     // TODO: remove
-    nicknameStyle: { color: '#00dbc0' },
+    variableStyle: { color: '#00dbc0' },
   });
 
   const Header = useRenderQuestHeader({
