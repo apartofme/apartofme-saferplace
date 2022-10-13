@@ -20,7 +20,10 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
     const dispatch = useAppDispatch();
 
     const currentPlant = useAppSelector(
-      state => state.plant.plantsStack[state.plant.plantsStack.length - 1],
+      state =>
+        state.plant.plantsStack?.[
+          state.plant.plantsStack.length - 1
+        ] as PlantsType,
     );
 
     const onSubmit = useCallback(() => {
