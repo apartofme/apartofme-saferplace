@@ -10,6 +10,8 @@ import {
   firestoreUpdateUser,
   IFirebaseAuthResponse,
   IFirebaseChangePasswordResponse,
+  IFirebaseSaveChildResponse,
+  IFirebaseUpdateUserResponse,
   IFirestoreUser,
 } from '../services/firebase';
 import { questSlice, userSlice } from '../redux/slices';
@@ -69,12 +71,44 @@ function* watchRegisterParent() {
   }
 }
 
+function* watchUpdateParentData() {
+  const parent: ISignUpData = yield select(state => state.cache.auth.parent);
+  const updateParentResponse: IFirebaseUpdateUserResponse = yield call(
+    firestoreUpdateUser,
+    { parent },
+  );
+
+  if (!updateParentResponse.error) {
+    yield put(userSlice.actions.updateParentSuccess(parent as IUser));
+  } else {
+    yield put(userSlice.actions.updateParentError('update parent error'));
+  }
+}
+
+function* watchUpdateChildData() {
+  const child: IShortSignUpData = yield select(state => state.cache.auth.child);
+  const updateChildResponse: IFirebaseUpdateUserResponse = yield call(
+    firestoreUpdateUser,
+    { child },
+  );
+
+  if (!updateChildResponse.error) {
+    yield put(userSlice.actions.updateChildSuccess(child as IUser));
+  } else {
+    yield put(userSlice.actions.updateChildError('update child error'));
+  }
+}
+
 function* watchSaveChild() {
   const child: IShortSignUpData = yield select(state => state.cache.auth.child);
-  try {
-    firestoreUpdateUser({ child });
+  const saveChildResponse: IFirebaseSaveChildResponse = yield call(
+    firestoreUpdateUser,
+    { child },
+  );
+
+  if (!saveChildResponse.error) {
     yield put(userSlice.actions.saveChildSuccess(child));
-  } catch {
+  } else {
     yield put(userSlice.actions.saveChildError('save child error'));
   }
 }
@@ -82,13 +116,13 @@ function* watchSaveChild() {
 function* watchChangePassword({
   payload: { newPassword, currentPassword },
 }: IChangePasswordActionPayload) {
-  const changePasswordresponse: IFirebaseChangePasswordResponse = yield call(
+  const changePasswordResponse: IFirebaseChangePasswordResponse = yield call(
     firebaseChangePassword,
     currentPassword,
     newPassword,
   );
 
-  if (changePasswordresponse.error) {
+  if (!changePasswordResponse.error) {
     yield call(StaticNavigator.navigateTo, 'ChangePasswordSuccess');
   } else {
     yield put(userSlice.actions.changePasswordError('change password error'));
@@ -105,6 +139,8 @@ export function* userSaga() {
   yield takeLatest(userSlice.actions.registerParent, watchRegisterParent);
   yield takeLatest(userSlice.actions.saveChild, watchSaveChild);
   yield takeLatest(userSlice.actions.changePassword, watchChangePassword);
+  yield takeLatest(userSlice.actions.updateParent, watchUpdateParentData);
+  yield takeLatest(userSlice.actions.updateChild, watchUpdateChildData);
 
   yield takeLatest(userSlice.actions.logout, watchLogout);
 }

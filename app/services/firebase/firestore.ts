@@ -4,6 +4,7 @@ import { IUser } from '../../models/IUser';
 import { IShortSignUpData } from '../../redux/types';
 import { getCurrentUser } from './auth';
 import { getDeviceToken } from './notifications';
+import { IFirebaseUpdateUserResponse } from './types';
 
 export const firestoreCreateUser = async () => {
   const userId = getCurrentUser();
@@ -18,19 +19,27 @@ export const firestoreCreateUser = async () => {
 };
 
 export const firestoreUpdateUser = async (data: {
-  parent?: IUser;
-  child?: IShortSignUpData;
+  parent?: Partial<IUser>;
+  child?: Partial<IShortSignUpData>;
 }) => {
+  const updateUserResponse: IFirebaseUpdateUserResponse = {
+    error: null,
+  };
   const userId = getCurrentUser();
   const userDocument = firestore().collection('users').doc(userId);
 
   if (data.child) {
-    userDocument.update({ child: data.child });
+    userDocument
+      .update({ child: data.child })
+      .catch(error => (updateUserResponse.error = error));
   }
 
   if (data.parent) {
-    userDocument.update({ parent: data.parent });
+    userDocument
+      .update({ parent: data.parent })
+      .catch(error => (updateUserResponse.error = error));
   }
+  return updateUserResponse;
 };
 
 export const firestoreGetUser = async () => {

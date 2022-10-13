@@ -7,7 +7,7 @@ export interface ISignUpData {
   email?: string;
   password?: string;
   nickname?: string;
-  avatar?: string;
+  avatar?: AvatarsNameType;
   createdAt?: string;
 }
 

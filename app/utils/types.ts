@@ -4,7 +4,7 @@ export interface ISpeech {
   textKey: string;
 }
 
-export enum NicknameType {
+export enum UserType {
   Child = 'child',
   Parent = 'parent',
 }
