@@ -30,14 +30,10 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   const onSubmitButtonPress = useCallback(() => {
     navigation.navigate('SignUpSuccess');
     if (isChild) {
-      dispatch(
-        cacheSlice.actions.saveSignUpDataChild({ avatar: avatar as string }),
-      );
+      dispatch(cacheSlice.actions.saveSignUpDataChild({ avatar }));
       dispatch(userSlice.actions.saveChild());
     } else {
-      dispatch(
-        cacheSlice.actions.saveSignUpDataParent({ avatar: avatar as string }),
-      );
+      dispatch(cacheSlice.actions.saveSignUpDataParent({ avatar }));
       dispatch(userSlice.actions.registerParent());
     }
   }, [avatar, dispatch, isChild, navigation]);

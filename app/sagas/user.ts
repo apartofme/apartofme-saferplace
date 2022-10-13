@@ -10,6 +10,7 @@ import {
   firestoreUpdateUser,
   IFirebaseAuthResponse,
   IFirebaseChangePasswordResponse,
+  IFirebaseSaveChildResponse,
   IFirebaseUpdateUserResponse,
   IFirestoreUser,
 } from '../services/firebase';
@@ -100,10 +101,14 @@ function* watchUpdateChildData() {
 
 function* watchSaveChild() {
   const child: IShortSignUpData = yield select(state => state.cache.auth.child);
-  try {
-    firestoreUpdateUser({ child });
+  const saveChildResponse: IFirebaseSaveChildResponse = yield call(
+    firestoreUpdateUser,
+    { child },
+  );
+
+  if (!saveChildResponse.error) {
     yield put(userSlice.actions.saveChildSuccess(child));
-  } catch {
+  } else {
     yield put(userSlice.actions.saveChildError('save child error'));
   }
 }
@@ -111,13 +116,13 @@ function* watchSaveChild() {
 function* watchChangePassword({
   payload: { newPassword, currentPassword },
 }: IChangePasswordActionPayload) {
-  const changePasswordresponse: IFirebaseChangePasswordResponse = yield call(
+  const changePasswordResponse: IFirebaseChangePasswordResponse = yield call(
     firebaseChangePassword,
     currentPassword,
     newPassword,
   );
 
-  if (changePasswordresponse.error) {
+  if (!changePasswordResponse.error) {
     yield call(StaticNavigator.navigateTo, 'ChangePasswordSuccess');
   } else {
     yield put(userSlice.actions.changePasswordError('change password error'));

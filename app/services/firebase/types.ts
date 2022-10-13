@@ -17,6 +17,10 @@ export type IFirebaseUpdateUserResponse = {
   error: Nullable<string>;
 };
 
+export type IFirebaseSaveChildResponse = {
+  error: Nullable<string>;
+};
+
 export interface IFirebaseAuthError {
   code: string;
 }
