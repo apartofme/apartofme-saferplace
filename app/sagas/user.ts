@@ -77,7 +77,7 @@ function* watchUpdateParentData() {
     { parent },
   );
 
-  if (updateParentResponse.error) {
+  if (!updateParentResponse.error) {
     yield put(userSlice.actions.updateParentSuccess(parent as IUser));
   } else {
     yield put(userSlice.actions.updateParentError('update parent error'));
@@ -90,12 +90,12 @@ function* watchUpdateChildData() {
     firestoreUpdateUser,
     { child },
   );
-  console.log(updateChildResponse);
-  // if (updateChildResponse.error) {
-  //   yield put(userSlice.actions.updateChildSuccess(child as IUser));
-  // } else {
-  //   yield put(userSlice.actions.updateChildError('update child error'));
-  // }
+
+  if (!updateChildResponse.error) {
+    yield put(userSlice.actions.updateChildSuccess(child as IUser));
+  } else {
+    yield put(userSlice.actions.updateChildError('update child error'));
+  }
 }
 
 function* watchSaveChild() {

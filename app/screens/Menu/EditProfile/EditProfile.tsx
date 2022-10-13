@@ -16,6 +16,7 @@ import { styles } from './EditProfile.styles';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { cacheSlice, userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
+import { ExtendedKeyboardAvoidingView } from '../../../components/ExtendedKeyboardAvoidingView/ExtendedKeyboardAvoidingView.android';
 
 export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
@@ -56,25 +57,29 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <BottomButtonView
-        buttonTitle={t('buttons.cancel')}
-        onSubmit={navigation.goBack}>
+      <ExtendedKeyboardAvoidingView>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
           onLeftIconPress={navigation.goBack}
         />
-        <View style={styles.carouselContainer}>
-          <AvatarCarousel setImage={setAvatar} defaultImage={avatar} />
-        </View>
-        <View style={styles.container}>
-          <ExtendedTextInput value={nickname} onChangeText={setNickname} />
-        </View>
-        <ExtendedButton
-          title={t('buttons.save')}
-          style={styles.button}
-          onPress={onSubmit}
-        />
-      </BottomButtonView>
+        <BottomButtonView
+          buttonTitle={t('buttons.cancel')}
+          onSubmit={navigation.goBack}>
+          <View style={styles.carouselContainer}>
+            <AvatarCarousel setImage={setAvatar} defaultImage={avatar} />
+          </View>
+
+          <View style={styles.container}>
+            <ExtendedTextInput value={nickname} onChangeText={setNickname} />
+          </View>
+
+          <ExtendedButton
+            title={t('buttons.save')}
+            style={styles.button}
+            onPress={onSubmit}
+          />
+        </BottomButtonView>
+      </ExtendedKeyboardAvoidingView>
     </SafeAreaView>
   );
 };
