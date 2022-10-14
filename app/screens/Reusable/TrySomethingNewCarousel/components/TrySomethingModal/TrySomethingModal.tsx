@@ -15,11 +15,16 @@ import {
 } from '../../../../../components';
 import { IMAGES } from '../../../../../assets';
 import { cacheSlice } from '../../../../../redux/slices';
-import { useAppDispatch, useNavigateNextQuest } from '../../../../../hooks';
+import {
+  useAppDispatch,
+  useNavigateNextQuest,
+  useParsedJSXTextNickname,
+} from '../../../../../hooks';
 
 export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   title,
   subtitle,
+  titleHasNickname,
   setModalStatus,
   data,
 }) => {
@@ -30,6 +35,14 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   const onSubmit = useNavigateNextQuest();
 
   const [inputValue, setInputValue] = useState('');
+
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
 
   const onSubmitPress = useCallback(() => {
     data.subtitle = inputValue;
@@ -51,7 +64,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
           isDisabledButton={!inputValue}
           onSubmit={onSubmitPress}>
           <View style={styles.container}>
-            <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
+            <Title />
             <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
             <ExtendedTextInput
               value={inputValue}
