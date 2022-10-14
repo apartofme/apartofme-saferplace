@@ -5,13 +5,16 @@ import { GroundingInstructionScreen } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentGroundingStackParams = {
-  Instruction: undefined;
+  GroundingInstruction: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParentGroundingStackParams>();
 
 export const ParentGroundingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
-    <Stack.Screen name="Instruction" component={GroundingInstructionScreen} />
+    <Stack.Screen
+      name="GroundingInstruction"
+      component={GroundingInstructionScreen}
+    />
   </Stack.Navigator>
 );
