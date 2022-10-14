@@ -3,12 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
 import { ExtendedText } from '../../../components';
+import { useAppDispatch } from '../../../hooks';
+import { elixirSlice } from '../../../redux/slices';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
 
 export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInteractionScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
 
     const [isСhildPress, setIsСhildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
@@ -23,9 +26,10 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
 
     useEffect(() => {
       if (isСhildPress && isAdultPress) {
+        dispatch(elixirSlice.actions.updateFullnessElixir(1));
         navigation.navigate('RecognitionDoubleInteractionSuccess');
       }
-    }, [isAdultPress, isСhildPress, navigation]);
+    }, [dispatch, isAdultPress, isСhildPress, navigation]);
 
     return (
       <SafeAreaView style={styles.container}>

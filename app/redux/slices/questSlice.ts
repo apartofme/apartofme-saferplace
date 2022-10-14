@@ -80,7 +80,7 @@ export const questSlice = createSlice({
 
     setCurrentDayQuestsStack() {},
     setCurrentDayQuestsStackSuccess(state) {
-      state.currentDayQuestsStack = state.allQuestsStack[state.currentDay];
+      state.currentDayQuestsStack = state.allQuestsStack[state.currentDay - 1];
     },
     setCurrentDayQuestsStackError(state, action: PayloadAction<string>) {},
 
@@ -125,8 +125,8 @@ export const questSlice = createSlice({
     },
     setLastDayUpdateError(state, action: PayloadAction<string>) {},
 
-    getInitialState() {
-      return INITIAL_STATE;
+    getInitialState(state) {
+      return { ...INITIAL_STATE, allQuests: state.allQuests };
     },
   },
 });

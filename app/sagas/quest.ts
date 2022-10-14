@@ -142,6 +142,7 @@ function* watchSetLastDayUpdate() {
   );
 
   const nowSeconds = +moment().format('X');
+
   // TODO: change to if
   try {
     yield call(firestoreUpdateUserProgress, 'quests', {

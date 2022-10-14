@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 
 import { ExtendedText } from '../../../components';
-import { useAppDispatch } from '../../../hooks';
+import { THE_CHARM_OF_BEFRIENDING_ID } from '../../../constants/quest';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { styles } from './ElixirDoubleInteraction.styles';
 import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.types';
@@ -11,6 +12,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
   ({ route, navigation }) => {
     const { title, description, elixirReward } = route.params.data;
     const dispatch = useAppDispatch();
+    const currentQuestLine = useAppSelector(
+      state => state.quest.currentQuestLine,
+    );
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
@@ -26,9 +30,24 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     useEffect(() => {
       if (isChildPress && isAdultPress) {
         dispatch(elixirSlice.actions.updateFullnessElixir(elixirReward ?? 1));
+
+        if (
+          currentQuestLine &&
+          currentQuestLine.id === THE_CHARM_OF_BEFRIENDING_ID
+        ) {
+          // TODO: add navigation to Dialog -> Garden
+          return;
+        }
         navigation.navigate('ElixirTitleButton');
       }
-    }, [isChildPress, isAdultPress, dispatch, elixirReward, navigation]);
+    }, [
+      isChildPress,
+      isAdultPress,
+      dispatch,
+      elixirReward,
+      navigation,
+      currentQuestLine,
+    ]);
 
     return (
       <SafeAreaView style={styles.container}>
