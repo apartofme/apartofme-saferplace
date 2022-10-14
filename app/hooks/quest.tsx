@@ -8,6 +8,7 @@ import { IMAGES } from '../assets';
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
+import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
@@ -154,11 +155,11 @@ export const useParsedJSXTextNickname = ({
   }
 
   const parseBoldText = (boldText: string) => {
-    const boldStyle: TextStyle = {
-      fontWeight: '700',
-    };
     return (
-      <ExtendedText key={boldText} preset={preset} style={boldStyle}>
+      <ExtendedText
+        key={boldText}
+        preset={preset}
+        style={generalStyles.boldText}>
         {boldText.replace('*', '')}
       </ExtendedText>
     );
