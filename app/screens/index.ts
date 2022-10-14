@@ -4,5 +4,6 @@ export * from './Garden';
 export * from './Menu';
 export * from './MixingElixir';
 export * from './Onboarding';
+export * from './ParentGrounding';
 export * from './Recognition';
 export * from './Reusable';
