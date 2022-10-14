@@ -7,6 +7,7 @@ export const INITIAL_PLANTS_STACK = [
   PlantsType.SpourCompassion,
   PlantsType.SpourCompassion,
 ];
+
 export const INITIAL_PLANT_AREA = {
   TopLeft: null,
   TopRight: null,

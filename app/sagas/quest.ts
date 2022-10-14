@@ -6,27 +6,28 @@ import { IInterruptedQuestLine } from '../redux/types/questTypes';
 import { firestoreUpdateUserProgress } from '../services/firebase';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
+import { RootState } from '../redux';
+import { IQuestProgress } from '../utils/types';
+
+const questStateSelector = (state: RootState) => {
+  return {
+    completedQuestsId: state.quest.completedQuestsId,
+    currentDay: state.quest.currentDay,
+    currentDayQuestsStack: state.quest.currentDayQuestsStack,
+    lastDayUpdate: state.quest.lastDayUpdate,
+    interruptedQuestLine: state.quest.interruptedQuestLine,
+  };
+};
 
 function* watchUpdateCurrentDay({ payload }: PayloadAction<number>) {
-  const completedQuestsId: number[] = yield select(
-    state => state.quest.completedQuestsId,
+  const currentQuestState: IQuestProgress = yield select(state =>
+    questStateSelector(state),
   );
-  const currentDayQuestsStack: number[] = yield select(
-    state => state.quest.currentDayQuestsStack,
-  );
-  const lastDayUpdate: number = yield select(
-    state => state.quest.lastDayUpdate,
-  );
-  const interruptedQuestLine: Nullable<IInterruptedQuestLine> = yield select(
-    state => state.quest.interruptedQuestLine,
-  );
+
   // TODO: change to if
   try {
     yield call(firestoreUpdateUserProgress, 'quests', {
-      completedQuestsId,
-      currentDayQuestsStack,
-      lastDayUpdate,
-      interruptedQuestLine,
+      ...currentQuestState,
       currentDay: payload,
     });
 
@@ -39,27 +40,17 @@ function* watchUpdateCurrentDay({ payload }: PayloadAction<number>) {
 }
 
 function* watchSaveCompletedQuestsId({ payload }: PayloadAction<number>) {
-  const currentDay: number = yield select(state => state.quest.currentDay);
-  const currentDayQuestsStack: number[] = yield select(
-    state => state.quest.currentDayQuestsStack,
+  const currentQuestState: IQuestProgress = yield select(state =>
+    questStateSelector(state),
   );
-  const lastDayUpdate: number = yield select(
-    state => state.quest.lastDayUpdate,
-  );
-  const interruptedQuestLine: Nullable<IInterruptedQuestLine> = yield select(
-    state => state.quest.interruptedQuestLine,
-  );
-  const completedQuestsId: number[] = yield select(
-    state => state.quest.completedQuestsId,
-  );
+
   // TODO: change to if
   try {
     yield call(firestoreUpdateUserProgress, 'quests', {
-      currentDay,
-      currentDayQuestsStack,
-      lastDayUpdate,
-      interruptedQuestLine,
-      completedQuestsId: [...completedQuestsId, payload],
+      ...currentQuestState,
+      completedQuestsId: currentQuestState.completedQuestsId
+        ? [...currentQuestState.completedQuestsId, payload]
+        : [payload],
     });
 
     yield put(questSlice.actions.saveCompletedQuestsIdSuccess(payload));
@@ -75,24 +66,14 @@ function* watchSaveCompletedQuestsId({ payload }: PayloadAction<number>) {
 function* watchUpdateInterruptedQuestLine({
   payload,
 }: PayloadAction<Nullable<IInterruptedQuestLine>>) {
-  const completedQuestsId: number[] = yield select(
-    state => state.quest.completedQuestsId,
-  );
-  const currentDay: number = yield select(state => state.quest.currentDay);
-  const currentDayQuestsStack: number[] = yield select(
-    state => state.quest.currentDayQuestsStack,
-  );
-  const lastDayUpdate: number = yield select(
-    state => state.quest.lastDayUpdate,
+  const currentQuestState: IQuestProgress = yield select(state =>
+    questStateSelector(state),
   );
 
   // TODO: change to if
   try {
     yield call(firestoreUpdateUserProgress, 'quests', {
-      completedQuestsId,
-      currentDay,
-      currentDayQuestsStack,
-      lastDayUpdate,
+      ...currentQuestState,
       interruptedQuestLine: payload,
     });
 
@@ -107,30 +88,18 @@ function* watchUpdateInterruptedQuestLine({
 }
 
 function* watchUpdateCurrentDayQuestsStack() {
-  const completedQuestsId: number[] = yield select(
-    state => state.quest.completedQuestsId,
+  const currentQuestState: IQuestProgress = yield select(state =>
+    questStateSelector(state),
   );
-  const currentDay: number = yield select(state => state.quest.currentDay);
-  const currentDayQuestsStack: number[] = yield select(
-    state => state.quest.currentDayQuestsStack,
-  );
-  const lastDayUpdate: number = yield select(
-    state => state.quest.lastDayUpdate,
-  );
-  const interruptedQuestLine: Nullable<IInterruptedQuestLine> = yield select(
-    state => state.quest.interruptedQuestLine,
-  );
-
-  const newcCurrentDayQuestsStack = [...currentDayQuestsStack];
+  const newcCurrentDayQuestsStack = [
+    ...currentQuestState.currentDayQuestsStack,
+  ];
   newcCurrentDayQuestsStack.pop();
 
   // TODO: change to if
   try {
     yield call(firestoreUpdateUserProgress, 'quests', {
-      completedQuestsId,
-      currentDay,
-      lastDayUpdate,
-      interruptedQuestLine,
+      ...currentQuestState,
       currentDayQuestsStack: newcCurrentDayQuestsStack,
     });
 
@@ -145,25 +114,15 @@ function* watchUpdateCurrentDayQuestsStack() {
 }
 
 function* watchSetLastDayUpdate() {
-  const completedQuestsId: number[] = yield select(
-    state => state.quest.completedQuestsId,
-  );
-  const currentDay: number = yield select(state => state.quest.currentDay);
-  const currentDayQuestsStack: number[] = yield select(
-    state => state.quest.currentDayQuestsStack,
-  );
-  const interruptedQuestLine: Nullable<IInterruptedQuestLine> = yield select(
-    state => state.quest.interruptedQuestLine,
+  const currentQuestState: IQuestProgress = yield select(state =>
+    questStateSelector(state),
   );
 
   const nowSeconds = +moment().format('X');
   // TODO: change to if
   try {
     yield call(firestoreUpdateUserProgress, 'quests', {
-      completedQuestsId,
-      currentDay,
-      currentDayQuestsStack,
-      interruptedQuestLine,
+      ...currentQuestState,
       lastDayUpdate: nowSeconds,
     });
 

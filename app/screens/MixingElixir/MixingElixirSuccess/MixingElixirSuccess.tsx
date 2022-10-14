@@ -20,10 +20,7 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
     const dispatch = useAppDispatch();
 
     const currentPlant = useAppSelector(
-      state =>
-        state.plant.plantsStack?.[
-          state.plant.plantsStack.length - 1
-        ] as PlantsType,
+      state => state.plant.plantsStack?.[state.plant.plantsStack.length - 1],
     );
 
     const onSubmit = useCallback(() => {
@@ -32,7 +29,7 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
       dispatch(
         plantSlice.actions.updatePlantArea({
           plantArea: selectedPlantArea,
-          image: currentPlant,
+          image: currentPlant ?? PlantsType.SpourCompassion,
           plantedAt: nowSeconds,
         }),
       );
@@ -69,7 +66,11 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
             buttonTitle={t('buttons.back_to_clearing')}
             onSubmit={onSubmit}>
             <Image
-              source={PLANTS_IMAGES[`${currentPlant}_START`]}
+              source={
+                currentPlant
+                  ? PLANTS_IMAGES[`${currentPlant}_START`]
+                  : PLANTS_IMAGES.SPOUR_COMPASSION_START
+              }
               style={styles.image}
             />
             <ExtendedText>

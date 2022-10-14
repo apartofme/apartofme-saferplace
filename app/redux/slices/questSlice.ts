@@ -54,21 +54,10 @@ export const questSlice = createSlice({
 
     setQuestState(
       state,
-      {
-        payload: {
-          completedQuestsId,
-          currentDay,
-          currentDayQuestsStack,
-          lastDayUpdate,
-          interruptedQuestLine,
-        },
-      }: PayloadAction<IQuestProgress>,
+
+      { payload }: PayloadAction<IQuestProgress>,
     ) {
-      state.completedQuestsId = completedQuestsId;
-      state.currentDay = currentDay;
-      state.currentDayQuestsStack = currentDayQuestsStack;
-      state.lastDayUpdate = lastDayUpdate;
-      state.interruptedQuestLine = interruptedQuestLine;
+      _.merge(state, payload);
     },
 
     saveCurrentQuestLine(
