@@ -5,16 +5,20 @@ import {
   firebaseLoginUser,
   firebaseLogout,
   firebaseRegisterUser,
+  firestoreCreateUserProgress,
   firestoreGetUser,
+  firestoreGetUserProgress,
   firestoreSaveDeviceToken,
   firestoreUpdateUser,
   IFirebaseAuthResponse,
   IFirebaseChangePasswordResponse,
   IFirebaseSaveChildResponse,
   IFirebaseUpdateUserResponse,
+  IFirestoreErrorResponse,
   IFirestoreUser,
+  IFirestoreUserProgress,
 } from '../services/firebase';
-import { questSlice, userSlice } from '../redux/slices';
+import { plantSlice, questSlice, userSlice } from '../redux/slices';
 import {
   IAuthUserActionPayload,
   IChangePasswordActionPayload,
@@ -34,7 +38,13 @@ function* watchLoginUser({
   );
   if (!loginUserResponse.error) {
     const user: IFirestoreUser = yield call(firestoreGetUser);
+    const userProgress: IFirestoreUserProgress = yield call(
+      firestoreGetUserProgress,
+    );
     yield put(userSlice.actions.loginUserSuccess(user._data));
+    yield put(plantSlice.actions.setPlantState(userProgress._data.plants));
+    yield put(questSlice.actions.setQuestState(userProgress._data.quests));
+
     // TODO: change to real stack
     yield call(StaticNavigator.navigateTo, 'GardenStack');
     yield call(firestoreSaveDeviceToken);
@@ -60,10 +70,16 @@ function* watchRegisterParent() {
       createdAt: parent.createdAt,
     } as IUser;
 
-    yield call(firestoreUpdateUser, { parent: user });
-    yield put(questSlice.actions.updateCurrentDay(1));
-    yield put(questSlice.actions.setLastDayUpdate());
-    yield put(userSlice.actions.registerParentSuccess(user));
+    yield call(firestoreUpdateUser, {
+      parent: user,
+    });
+    const firestoreCreateUserProgressResponse: IFirestoreErrorResponse =
+      yield call(firestoreCreateUserProgress);
+    if (!firestoreCreateUserProgressResponse) {
+      yield put(questSlice.actions.updateCurrentDay(1));
+      yield put(questSlice.actions.setLastDayUpdate());
+      yield put(userSlice.actions.registerParentSuccess(user));
+    }
   } else {
     yield put(
       userSlice.actions.registerParentError(registerUserResponse.error),

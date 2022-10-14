@@ -29,8 +29,6 @@ interface ICacheState {
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
-  // TODO: make it as separate slice
-  plantArea: IPlantArea;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -46,13 +44,6 @@ const INITIAL_STATE: ICacheState = {
     completed: [],
   },
   favouriteCharmItem: null,
-  plantArea: {
-    TopLeft: null,
-    TopRight: null,
-    Center: null,
-    BottomLeft: null,
-    BottomRight: null,
-  },
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
