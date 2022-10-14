@@ -1,10 +1,12 @@
+import { IPlantArea } from '../redux/types';
+import { IInterruptedQuestLine } from '../redux/types/questTypes';
 import { Nullable } from '../utils/index';
 
 export interface ISpeech {
   textKey: string;
 }
 
-export enum NicknameType {
+export enum UserType {
   Child = 'child',
   Parent = 'parent',
 }
@@ -30,4 +32,20 @@ export enum AvatarsNameType {
   WhitePencil = 'WHITE_PENCIL',
   WhiteBackArrow = 'WHITE_BACK_ARROW',
   Tree = 'TREE',
+}
+
+export interface IElixirProgress {
+  fullnessElixir: number;
+}
+export interface IPlantProgress {
+  plantsStack: PlantsType[];
+  plantArea: IPlantArea;
+}
+
+export interface IQuestProgress {
+  currentDay: number;
+  lastDayUpdate: number;
+  currentDayQuestsStack: number[];
+  interruptedQuestLine: Nullable<IInterruptedQuestLine>;
+  completedQuestsId: Nullable<number[]>;
 }

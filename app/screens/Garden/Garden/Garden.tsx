@@ -1,34 +1,87 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 import _ from 'lodash';
 import {
   Image,
   ImageBackground,
   Pressable,
-  ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
 
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAppState,
+  useMount,
+} from '../../../hooks';
 import { IMAGES } from '../../../assets';
-import { ExtendedText } from '../../../components';
-import { useAppSelector, useMount } from '../../../hooks';
 import { Nullable } from '../../../utils';
+import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { PlantArea, PlantAreaType } from '../components';
+import { Book, PlantArea, PlantAreaType } from '../components';
+import { MixingElixirPhaseType } from '../../../utils/types';
+import { questSlice } from '../../../redux/slices';
+import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
 import { styles } from './Garden.styles';
-import { MixingElixirPhaseType, PlantsType } from '../../../utils/types';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
   route,
 }) => {
   const { isPlanting, isFirstTime, isFirstTimeGarden } = route.params;
-  const { t } = useTranslation();
 
+  const { t } = useTranslation();
+  const appStatus = useAppState();
+  const dispatch = useAppDispatch();
+
+  const isCurrentDayQuestStackEmpty = useAppSelector(
+    state => !state.quest.currentDayQuestsStack.length,
+  );
+  const isInterruptedQuestLineEmpty = useAppSelector(
+    state => !state.quest.interruptedQuestLine,
+  );
+  const currentDay = useAppSelector(state => state.quest.currentDay);
+  const lastDayUpdate = useAppSelector(state => state.quest.lastDayUpdate);
+  const interruptedQuestLine = useAppSelector(
+    state => state.quest.interruptedQuestLine,
+  );
+  const isCurrentDayQuestsStackEmpty = useAppSelector(
+    state => !state.quest.currentQuestStack.length,
+  );
+  const childAvatar = useAppSelector(
+    state => state.user.child?.avatar,
+  ) as keyof typeof IMAGES;
+
+  const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);
   const [activePlantArea, setActivePlantArea] =
     useState<Nullable<PlantAreaType>>(null);
+
+  useEffect(() => {
+    if (appStatus === 'background') {
+      setIsPrevStatusBackground(true);
+      return;
+    }
+
+    if (appStatus === 'active' && isPrevStatusBackground) {
+      const nowSeconds = +moment().format('X');
+
+      if (
+        nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
+        !interruptedQuestLine &&
+        !isCurrentDayQuestsStackEmpty
+      ) {
+        dispatch(questSlice.actions.setLastDayUpdate());
+        dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
+        dispatch(questSlice.actions.setCurrentDayQuestsStack());
+      }
+      setIsPrevStatusBackground(false);
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appStatus]);
 
   useMount(() => {
     if (isFirstTime) {
@@ -38,17 +91,8 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     }
   });
 
-  const childAvatar = useAppSelector(
-    state => state.user.child?.avatar,
-  ) as keyof typeof IMAGES;
-
   const onAvatarPress = useCallback(() => {
     navigation.navigate('MenuStack');
-  }, [navigation]);
-
-  // TODO: change to real stack
-  const onBookPress = useCallback(() => {
-    navigation.navigate('QuestStack');
   }, [navigation]);
 
   const onTitlePress = useCallback(() => {
@@ -57,13 +101,38 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         screen: 'ElixirInstruction',
         params: {
           phase: MixingElixirPhaseType.Mix,
-          plantImage: PlantsType.SpourCompassion,
           selectedPlantArea: activePlantArea,
           isFirstTimeGarden,
         },
       });
     }
   }, [activePlantArea, isFirstTimeGarden, navigation]);
+
+  const title = useMemo(() => {
+    const isDisplayNone =
+      !isPlanting &&
+      (isCurrentDayQuestStackEmpty || isInterruptedQuestLineEmpty) &&
+      isPlanting;
+
+    return (
+      <Pressable
+        onPress={onTitlePress}
+        style={[styles.titleContainer, isDisplayNone && styles.displayNone]}
+        disabled={!isPlanting}>
+        <ExtendedText>
+          {isPlanting
+            ? t('screens.garden.tapTitle')
+            : t('screens.garden.tapBook')}
+        </ExtendedText>
+      </Pressable>
+    );
+  }, [
+    isCurrentDayQuestStackEmpty,
+    isInterruptedQuestLineEmpty,
+    isPlanting,
+    onTitlePress,
+    t,
+  ]);
 
   return (
     <ImageBackground
@@ -73,7 +142,10 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       }}
       style={generalStyles.flex}>
       <View style={generalStyles.flex}>
-        <TouchableOpacity onPress={onAvatarPress} style={styles.zIndex10}>
+        <TouchableOpacity
+          onPress={onAvatarPress}
+          style={styles.zIndex10}
+          disabled={isFirstTime}>
           <Image source={IMAGES[childAvatar]} style={styles.avatar} />
         </TouchableOpacity>
         <TouchableOpacity
@@ -91,23 +163,8 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         </View>
       </View>
       <View>
-        <Pressable
-          onPress={onTitlePress}
-          style={styles.titleContainer}
-          disabled={!isPlanting}>
-          <ExtendedText>
-            {isPlanting
-              ? t('screens.garden.tapTitle')
-              : t('screens.garden.tapBook')}
-          </ExtendedText>
-        </Pressable>
-
-        <TouchableOpacity
-          onPress={onBookPress}
-          style={styles.bookContainer}
-          disabled={isPlanting || isFirstTimeGarden}>
-          <Image source={IMAGES.CLOSED_BOOK} style={styles.book} />
-        </TouchableOpacity>
+        {title}
+        <Book isDisabled={isPlanting || isFirstTimeGarden} />
       </View>
     </ImageBackground>
   );

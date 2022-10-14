@@ -1,8 +1,8 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { TextStyle } from 'react-native';
+import _ from 'lodash';
 
 import { IMAGES } from '../assets';
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
@@ -14,7 +14,11 @@ import { useAppDispatch, useAppSelector } from './redux';
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
   const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
+  const interruptedQuestLine = useAppSelector(
+    state => state.quest.interruptedQuestLine,
+  );
   const currentQuestLine = useAppSelector(
     state => state.quest.currentQuestLine,
   );
@@ -35,11 +39,34 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
           data: { ...nextQuest },
         });
       } else {
-        // TODO: uncommen when ElixirStack will be done
-        // navigation.navigate('ElixirStack')
+        if (interruptedQuestLine?.id === currentQuestLine.id) {
+          dispatch(questSlice.actions.updateInterruptedQuestLine(null));
+        }
+        dispatch(
+          questSlice.actions.saveCompletedQuestsId(+currentQuestLine.id),
+        );
+        dispatch(questSlice.actions.updateCurrentDayQuestsStack());
+
+        if (!currentQuestLine?.quests[nextQuestIdx - 1].elixirReward) {
+          navigation.push('GardenStack', {
+            screen: 'Garden',
+            params: {
+              isPlanting: false,
+              isFirstTime: false,
+              isFirstTimeGarden: false,
+            },
+          });
+        }
       }
     }
-  }, [currentQuestIdx, currentQuestLine, dispatch, navigation, questId]);
+  }, [
+    currentQuestIdx,
+    currentQuestLine,
+    dispatch,
+    interruptedQuestLine?.id,
+    navigation,
+    questId,
+  ]);
 
   return navigateNextQuest;
 };
@@ -51,23 +78,50 @@ export const useNavigateNextQuest = () => {
   const currentQuestLine = useAppSelector(
     state => state.quest.currentQuestLine,
   );
+  const interruptedQuestLine = useAppSelector(
+    state => state.quest.interruptedQuestLine,
+  );
 
   const navigateNextQuest = useCallback(() => {
-    const nextQuestIdx = currentQuestIdx + 1;
-    const nextQuest = currentQuestLine?.quests[nextQuestIdx];
+    if (currentQuestLine) {
+      const nextQuestIdx = currentQuestIdx + 1;
+      const nextQuest = currentQuestLine?.quests[nextQuestIdx];
 
-    if (nextQuest) {
-      dispatch(questSlice.actions.saveCurrentQuestIdx(nextQuestIdx));
-      dispatch(questSlice.actions.pushToCurrentQuestStack(currentQuestIdx));
+      if (nextQuest) {
+        dispatch(questSlice.actions.saveCurrentQuestIdx(nextQuestIdx));
+        dispatch(questSlice.actions.pushToCurrentQuestStack(currentQuestIdx));
 
-      navigation.push(nextQuest.type, {
-        data: { ...nextQuest },
-      });
-    } else {
-      // TODO: uncommen when ElixirStack will be done
-      // navigation.navigate('ElixirStack')
+        navigation.push(nextQuest.type, {
+          data: { ...nextQuest },
+        });
+      } else {
+        if (interruptedQuestLine?.id === currentQuestLine.id) {
+          dispatch(questSlice.actions.updateInterruptedQuestLine(null));
+        }
+        dispatch(
+          questSlice.actions.saveCompletedQuestsId(+currentQuestLine.id),
+        );
+        dispatch(questSlice.actions.updateCurrentDayQuestsStack());
+
+        if (!currentQuestLine?.quests[nextQuestIdx - 1].elixirReward) {
+          navigation.push('GardenStack', {
+            screen: 'Garden',
+            params: {
+              isPlanting: false,
+              isFirstTime: false,
+              isFirstTimeGarden: false,
+            },
+          });
+        }
+      }
     }
-  }, [currentQuestIdx, currentQuestLine?.quests, dispatch, navigation]);
+  }, [
+    currentQuestIdx,
+    currentQuestLine,
+    dispatch,
+    interruptedQuestLine?.id,
+    navigation,
+  ]);
 
   return navigateNextQuest;
 };

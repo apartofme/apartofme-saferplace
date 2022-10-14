@@ -1,0 +1,1 @@
+export { AcknowledgementLargeTitleScreen } from './AcknowledgementLargeTitle';

@@ -10,6 +10,7 @@ export interface IGardenScreenStyles {
   plantArea: ViewStyle;
   titleContainer: ViewStyle;
   zIndex10: ViewStyle;
+  displayNone: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IGardenScreenStyles>({
@@ -56,5 +57,8 @@ export const styles = StyleSheet.create<IGardenScreenStyles>({
     paddingLeft: 120,
     justifyContent: 'center',
     backgroundColor: 'white',
+  },
+  displayNone: {
+    display: 'none',
   },
 });

@@ -29,6 +29,7 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
       backgroundImage,
       titleHasNickname,
       crossHeader,
+      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -48,7 +49,10 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
       nicknameStyle: { color: '#00dbc0' },
     });
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     const onSubmit = useCallback(() => {
       navigateToNextQuest();

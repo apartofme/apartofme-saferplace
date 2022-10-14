@@ -1,15 +1,15 @@
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
 import Modal from 'react-native-modal';
 
-import { IMAGES } from '../../../assets';
 import {
   ExtendedButton,
   ExtendedText,
   MainHeader,
   TrySomethingCarousel,
 } from '../../../components';
+import { IMAGES } from '../../../assets';
 import { useAppDispatch } from '../../../hooks';
 import {
   useNavigateNextQuest,
@@ -18,8 +18,8 @@ import {
 import { cacheSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { TrySomethingModal } from './components';
-import { TRY_SOMETHING_ITEMS } from './TrySomethingNewCarousel.data';
 import { styles } from './TrySomethingNewCarousel.styles';
+import { TRY_SOMETHING_ITEMS } from './TrySomethingNewCarousel.data';
 import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.types';
 
 export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScreenProps> =
@@ -53,13 +53,22 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     }, [activeItem, dispatch, onSubmit]);
 
     return (
-      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
+      <ImageBackground
+        // TODO: change to real image
+        source={
+          backgroundImage
+            ? IMAGES[backgroundImage]
+            : {
+                uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+              }
+        }
+        style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Modal isVisible={isModal} style={styles.modal}>
             <TrySomethingModal
               setModalStatus={setModalStatus}
               title={title}
-              subtitle={description}
+              subtitle={description ?? ''}
               data={TRY_SOMETHING_ITEMS[activeItemIndex]}
             />
           </Modal>

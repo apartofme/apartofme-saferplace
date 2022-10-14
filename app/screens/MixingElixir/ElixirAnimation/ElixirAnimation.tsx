@@ -12,8 +12,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { phase, plantImage, selectedPlantArea, isFirstTimeGarden } =
-    route.params;
+  const { phase, selectedPlantArea, isFirstTimeGarden } = route.params;
   const { t } = useTranslation();
 
   const title = useMemo(() => {
@@ -32,7 +31,6 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       if (phase < MixingElixirPhaseType.Pour) {
         navigation.push('ElixirInstruction', {
           phase: phase + 1,
-          plantImage,
           selectedPlantArea,
           isFirstTimeGarden,
         });
@@ -40,7 +38,6 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       }
 
       navigation.push('MixingElixirSuccess', {
-        plantImage,
         selectedPlantArea,
         isFirstTimeGarden,
       });

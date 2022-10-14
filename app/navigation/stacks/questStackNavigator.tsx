@@ -7,6 +7,7 @@ import {
   AcknowledgementAlongEdgesScreen,
   AcknowledgementDoubleImageDoubleButtonScreen,
   AcknowledgementDoubleImageScreen,
+  AcknowledgementLargeTitleScreen,
   AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyDoubleButtonScreen,
   AcknowledgementSuccessivelyScreen,
@@ -20,9 +21,12 @@ import {
   DialogScreen,
   DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
+  ElixirTitleButtonScreen,
   EmojiSelectionScreen,
   EmotionCarouselScreen,
+  EmotionCarouselChoiceScreen,
   EmotionSelectionScreen,
+  FavouriteCharmCarouselScreen,
   InstructionScreen,
   IEscapeMenuRoute,
   JournelScreen,
@@ -36,8 +40,10 @@ import {
   SelectPlayerSupportScreen,
   SelectSoundScreen,
   TimerTitleButtonScreen,
-  TimerTitleScreen,
+  AnimationTitleScreen,
+  TrySomethingNewCarouselScreen,
   VerticalSwipeScreen,
+  ConversationsScreen,
 } from '../../screens';
 import {
   DEFAULT_STACK_OPTIONS,
@@ -50,21 +56,25 @@ export type QuestStackParams = {
   AcknowledgementAlongEdgesDoubleButton: { data: IQuest };
   AcknowledgementDoubleImage: { data: IQuest };
   AcknowledgementDoubleImageDoubleButton: { data: IQuest };
+  AcknowledgementLargeTitle: { data: IQuest };
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
   AcknowledgementSuccessivelyDoubleButton: { data: IQuest };
   AcknowledgementSupport: { data: IQuest };
   AcknowledgementTitle: { data: IQuest };
   Alert: undefined;
+  AnimationTitle: { data: IQuest };
   CharmCompleted: { data: IQuest };
   CharmTimerButton: { data: IQuest };
   CharmTimerTitle: { data: IQuest };
   DancingTimer: { data: IQuest };
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
+  ElixirTitleButton: undefined;
   EmojiSelection: { data: IQuest };
   EmotionCarousel: { data: IQuest };
   EmotionSelection: { data: IQuest };
+  FavouriteCharmCarousel: { data: IQuest };
   Journel: { data: IQuest };
   JournelSupport: { data: IQuest };
   NadiyaEmotionCarousel: { data: IQuest };
@@ -73,12 +83,14 @@ export type QuestStackParams = {
   SelectPlayer: { data: IQuest };
   SelectPlayerSupport: { data: IQuest };
   SelectSound: { data: IQuest };
-  TimerTitle: { data: IQuest };
   TimerTitleButton: { data: IQuest };
   VerticalSwipe: { data: IQuest };
   Instruction: { data: IQuest };
   ReadOutLoud: { data: IQuest };
   EscapeMenu: { data: IEscapeMenuRoute };
+  EmotionCarouselChoice: { data: IQuest };
+  TrySomethingNewCarousel: { data: IQuest };
+  Conversations: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -104,6 +116,10 @@ export const QuestStackNavigator = () => (
       component={AcknowledgementDoubleImageDoubleButtonScreen}
     />
     <Stack.Screen
+      name="AcknowledgementLargeTitle"
+      component={AcknowledgementLargeTitleScreen}
+    />
+    <Stack.Screen
       name="AcknowledgementNicknames"
       component={AcknowledgementNicknamesScreen}
     />
@@ -124,6 +140,7 @@ export const QuestStackNavigator = () => (
       component={AcknowledgementTitleScreen}
     />
     <Stack.Screen name="Alert" component={AlertScreen} />
+    <Stack.Screen name="AnimationTitle" component={AnimationTitleScreen} />
     <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
     <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
     <Stack.Screen name="CharmTimerTitle" component={CharmTimerTitleScreen} />
@@ -133,9 +150,17 @@ export const QuestStackNavigator = () => (
       name="ElixirDoubleInteraction"
       component={ElixirDoubleInteractionScreen}
     />
+    <Stack.Screen
+      name="ElixirTitleButton"
+      component={ElixirTitleButtonScreen}
+    />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
     <Stack.Screen name="EmotionCarousel" component={EmotionCarouselScreen} />
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
+    <Stack.Screen
+      name="FavouriteCharmCarousel"
+      component={FavouriteCharmCarouselScreen}
+    />
     <Stack.Screen name="Journel" component={JournelScreen} />
     <Stack.Screen name="JournelSupport" component={JournelSupportScreen} />
     <Stack.Screen
@@ -150,7 +175,6 @@ export const QuestStackNavigator = () => (
       component={SelectPlayerSupportScreen}
     />
     <Stack.Screen name="SelectSound" component={SelectSoundScreen} />
-    <Stack.Screen name="TimerTitle" component={TimerTitleScreen} />
     <Stack.Screen name="TimerTitleButton" component={TimerTitleButtonScreen} />
     <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
     <Stack.Screen name="Instruction" component={InstructionScreen} />
@@ -160,5 +184,14 @@ export const QuestStackNavigator = () => (
       name="EscapeMenu"
       component={EscapeMenuScreen}
     />
+    <Stack.Screen
+      name="EmotionCarouselChoice"
+      component={EmotionCarouselChoiceScreen}
+    />
+    <Stack.Screen
+      name="TrySomethingNewCarousel"
+      component={TrySomethingNewCarouselScreen}
+    />
+    <Stack.Screen name="Conversations" component={ConversationsScreen} />
   </Stack.Navigator>
 );

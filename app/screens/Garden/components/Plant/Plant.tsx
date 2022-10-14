@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { useCallback, useState } from 'react';
 import { Image, ImageSourcePropType } from 'react-native';
 
-import { ONE_DAY_GROWTH } from '../../../../constants/plant';
+import { ONE_DAY_SECONDS } from '../../../../constants/time';
 import { IMAGES, PLANTS_IMAGES } from '../../../../assets';
 import { useMount } from '../../../../hooks';
 import { IPlantProps } from './Plant.types';
@@ -15,7 +15,7 @@ export const Plant: React.FC<IPlantProps> = ({ plant, additionalStyle }) => {
 
   const setCorrectPlantImage = useCallback(
     (growthSeconds: number) => {
-      if (growthSeconds < ONE_DAY_GROWTH) {
+      if (growthSeconds < ONE_DAY_SECONDS) {
         setPlantImage(PLANTS_IMAGES[`${plant.image}_START`]);
       }
       // TODO: uncomment when added images

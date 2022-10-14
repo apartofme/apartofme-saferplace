@@ -101,6 +101,7 @@ export const questsToDictionary = (
       negativeNavigatesTo: quest.negativenavigatesto?.id ?? null,
       escapeMenuAlternativeNavigateTo:
         quest.escapemenualternativenavigateto?.id ?? null,
+      elixirReward: quest.elixirreward,
     };
 
     //* ` ${quest.id}` - space is added to prevent automatic object sorting
@@ -108,4 +109,26 @@ export const questsToDictionary = (
   });
 
   return result;
+};
+
+// TODO: change string to animation
+export const getElixirAnimationByRange = (currentPosition: number) => {
+  if (currentPosition > 0 && currentPosition <= 0.5) {
+    return '0 - 0.5';
+  }
+  if (currentPosition > 0.5 && currentPosition <= 1) {
+    return '0,5 - 1';
+  }
+  if (currentPosition > 1 && currentPosition <= 1.5) {
+    return '1 - 1,5';
+  }
+  if (currentPosition > 1.5 && currentPosition <= 2) {
+    return '1.5 - 2';
+  }
+  if (currentPosition > 2 && currentPosition <= 2.5) {
+    return '2 - 2.5';
+  }
+  if (currentPosition > 2.5) {
+    return '2.5 - 3';
+  }
 };

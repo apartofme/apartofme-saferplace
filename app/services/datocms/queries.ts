@@ -78,6 +78,7 @@ query getQuestLineQuests {
     escapemenualternativenavigateto {
       id
     }
+    elixirreward
   }
 }
 `;
@@ -127,6 +128,7 @@ export const getAllQuestsQuery = (
       escapemenualternativenavigateto {
         id
       }
+      elixirreward
     }
   }
 `;

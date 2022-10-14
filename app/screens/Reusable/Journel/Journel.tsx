@@ -11,17 +11,39 @@ import {
   MultilineTextInput,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { usePositiveNavigateTo, useRenderQuestHeader } from '../../../hooks';
+import {
+  useParsedJSXTextNickname,
+  usePositiveNavigateTo,
+  useRenderQuestHeader,
+} from '../../../hooks';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
-  const { title, description, buttonTitle, crossHeader, positiveNavigatesTo } =
-    route.params.data;
+  const {
+    title,
+    description,
+    buttonTitle,
+    titleHasNickname,
+    crossHeader,
+    positiveNavigatesTo,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   const [inputText, setInputText] = useState<string>('');
   const { t } = useTranslation();
   const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   return (
     <ImageBackground
@@ -38,9 +60,13 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
             onSubmit={onSubmit}
             isDisabledButton={!inputText}
             style={styles.container}>
-            <ExtendedText preset="title">
-              {title ?? t('screens.journel.title')}
-            </ExtendedText>
+            {title ? (
+              <Title />
+            ) : (
+              <ExtendedText preset="title">
+                {t('screens.journel.title')}
+              </ExtendedText>
+            )}
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description ?? t('screens.journel.description')}
             </ExtendedText>

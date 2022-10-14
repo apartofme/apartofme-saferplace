@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -14,7 +14,7 @@ import {
 import { IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { UserImageTitle } from './components';
-import { AvatarsNameType } from '../../../utils/types';
+import { AvatarsNameType, UserType } from '../../../utils/types';
 
 export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   navigation,
@@ -30,6 +30,13 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
 
   const childAvatar = useAppSelector(state => state.user.child?.avatar);
   const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
+
+  const goToEditProfile = useCallback(
+    (type: UserType) => {
+      navigation.navigate('EditProfile', { data: { type } });
+    },
+    [navigation],
+  );
 
   return (
     <SafeAreaView style={generalStyles.flex}>
@@ -48,13 +55,13 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
             <UserImageTitle
               title={parentNickname}
               image={parentAvatar ?? AvatarsNameType.Tree}
-              onPress={_.noop}
+              onPress={() => goToEditProfile(UserType.Parent)}
             />
             {/* TODO: change AvatarsNameType.Tree to default avatar */}
             <UserImageTitle
               title={childNickname}
               image={childAvatar ?? AvatarsNameType.Tree}
-              onPress={_.noop}
+              onPress={() => goToEditProfile(UserType.Child)}
             />
           </View>
         </View>

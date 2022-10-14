@@ -4,26 +4,41 @@ import _ from 'lodash';
 import { Nullable } from '../../utils';
 import { IQuestLine } from '../../models/IQuestLine';
 import {
+  ALL_QUESTS_STACK,
   IDailyCheck,
+  IInterruptedQuestLine,
   ISaveAllQuestsPayload,
   ISaveCurrentQuestLineQuests,
 } from '../types/questTypes';
 import { IQuest } from '../../models/IQuest';
+import { IQuestProgress } from '../../utils/types';
 
 interface IQuestState {
+  currentDay: number;
+  lastDayUpdate: number;
+  currentDayQuestsStack: number[];
   allQuests: Nullable<Record<string, Record<string, IQuestLine>>>;
+  allQuestsStack: number[][];
+  interruptedQuestLine: Nullable<IInterruptedQuestLine>;
   currentQuestIdx: number;
   currentQuestLine: Nullable<{ id: string; quests: IQuest[] }>;
   currentQuestStack: number[];
   dailyChecks: Nullable<Record<string, string>>;
+  completedQuestsId: Nullable<number[]>;
 }
 
 const INITIAL_STATE: IQuestState = {
+  currentDay: 2,
+  lastDayUpdate: 0,
+  currentDayQuestsStack: [],
   allQuests: null,
+  interruptedQuestLine: null,
+  allQuestsStack: ALL_QUESTS_STACK,
   currentQuestIdx: 0,
   currentQuestLine: null,
   currentQuestStack: [],
   dailyChecks: null,
+  completedQuestsId: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -36,6 +51,10 @@ export const questSlice = createSlice({
       state.allQuests = { ...state.allQuests, ...payload };
     },
     saveAllQuestsError(state, action: PayloadAction<string>) {},
+
+    setQuestState(state, { payload }: PayloadAction<IQuestProgress>) {
+      _.merge(state, payload);
+    },
 
     saveCurrentQuestLine(
       state,
@@ -58,5 +77,48 @@ export const questSlice = createSlice({
     saveDailyCheck(state, { payload }: PayloadAction<IDailyCheck>) {
       state.dailyChecks = { ...state.dailyChecks, ...payload };
     },
+    setCurrentDayQuestsStack(state) {
+      state.currentDayQuestsStack = state.allQuestsStack[state.currentDay];
+    },
+
+    updateCurrentDay(state, action: PayloadAction<number>) {},
+    updateCurrentDaySuccess(state, { payload }: PayloadAction<number>) {
+      state.currentDay = payload;
+    },
+    updateCurrentDayError(state, action: PayloadAction<string>) {},
+
+    saveCompletedQuestsId(state, action: PayloadAction<number>) {},
+    saveCompletedQuestsIdSuccess(state, { payload }: PayloadAction<number>) {
+      if (state.completedQuestsId) {
+        state.completedQuestsId?.push(payload);
+        return;
+      }
+      state.completedQuestsId = [payload];
+    },
+    saveCompletedQuestsIdError(state, action: PayloadAction<string>) {},
+
+    updateInterruptedQuestLine(
+      state,
+      action: PayloadAction<Nullable<IInterruptedQuestLine>>,
+    ) {},
+    updateInterruptedQuestLineSuccess(
+      state,
+      { payload }: PayloadAction<Nullable<IInterruptedQuestLine>>,
+    ) {
+      state.interruptedQuestLine = payload;
+    },
+    updateInterruptedQuestLineError(state, action: PayloadAction<string>) {},
+
+    updateCurrentDayQuestsStack() {},
+    updateCurrentDayQuestsStackSuccess(state) {
+      state.currentDayQuestsStack.pop();
+    },
+    updateCurrentDayQuestsStackError(state, action: PayloadAction<string>) {},
+
+    setLastDayUpdate() {},
+    setLastDayUpdateSuccess(state, { payload }: PayloadAction<number>) {
+      state.lastDayUpdate = payload;
+    },
+    setLastDayUpdateError(state, action: PayloadAction<string>) {},
   },
 });

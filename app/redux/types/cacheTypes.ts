@@ -1,14 +1,13 @@
+import { IMAGES } from '../../assets';
 import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
-import { IPlant } from '../../models/IPlant';
-import { PlantAreaType } from '../../screens/Garden/components';
 import { AvatarsNameType } from '../../utils/types';
 
 export interface ISignUpData {
   email?: string;
   password?: string;
   nickname?: string;
-  avatar?: string;
+  avatar?: AvatarsNameType;
   createdAt?: string;
 }
 
@@ -31,6 +30,12 @@ export interface INicknames {
 export interface IEmotions {
   selected: Nullable<EmotionButtonType>;
   completed: Nullable<EmotionButtonType>[];
+}
+
+export interface IFavouriteCharmItem {
+  id: string;
+  image: keyof typeof IMAGES;
+  title: string;
 }
 
 export interface ISignUpDataPayload {
@@ -62,6 +67,10 @@ export interface INicknamesPayload {
 
 export interface IEmotionPayload {
   payload: Nullable<EmotionButtonType>;
+}
+
+export interface IFavouriteCharmItemPayload {
+  payload: IFavouriteCharmItem;
 }
 
 export type IPlantArea = Record<PlantAreaType, Nullable<IPlant>>;

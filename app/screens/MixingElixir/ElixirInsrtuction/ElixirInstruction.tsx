@@ -12,8 +12,7 @@ import { IElixirInstructionScreenProps } from './ElixirInstruction.types';
 
 export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
   ({ navigation, route }) => {
-    const { phase, plantImage, selectedPlantArea, isFirstTimeGarden } =
-      route.params;
+    const { phase, selectedPlantArea, isFirstTimeGarden } = route.params;
 
     const [titleKey, setTitleKey] = useState('');
     const [buttonTitleKey, setButtonTitleKey] = useState('');
@@ -40,11 +39,10 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
     const onSubmit = useCallback(() => {
       navigation.push('ElixirAnimation', {
         phase,
-        plantImage,
         selectedPlantArea,
         isFirstTimeGarden,
       });
-    }, [navigation, phase, plantImage, selectedPlantArea, isFirstTimeGarden]);
+    }, [navigation, phase, selectedPlantArea, isFirstTimeGarden]);
 
     return (
       <SafeAreaView style={generalStyles.flex}>

@@ -18,9 +18,18 @@ export const TimerTitleButtonScreen: React.FC<ITimerTitleButtonScreenProps> = ({
   const { t } = useTranslation();
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
   const navigateNextQuest = useNavigateNextQuest();
-  const { duration, title, crossHeader, titleHasNickname } = route.params.data;
+  const {
+    duration,
+    title,
+    crossHeader,
+    titleHasNickname,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   const correctButtonTitle = useMemo(() => {
     if (isTimerStart) {

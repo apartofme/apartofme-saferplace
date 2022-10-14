@@ -1,0 +1,1 @@
+export { EmotionCarouselChoiceScreen } from './EmotionCarouselChoice';
