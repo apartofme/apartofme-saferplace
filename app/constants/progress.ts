@@ -17,7 +17,7 @@ export const INITIAL_PLANT_AREA = {
 };
 
 export const INITIAL_ELIXIR = {
-  fullnessElixir: 0,
+  fullnessElixir: 1,
 };
 
 export const INITIAL_QUESTS = {

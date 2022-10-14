@@ -20,7 +20,10 @@ export interface IInterruptedQuestLine {
 
 export const ALL_QUESTS_STACK = [
   //* DAY 1
-  [],
+  [
+    55785050, // Joint Grounding Exercise
+    55785563, // Introduction to the Garden Narrative
+  ],
   //* DAY 2
   [
     55602822, // Healing Hand - The Charm of Healing

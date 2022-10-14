@@ -9,6 +9,7 @@ import { getElixirAnimationByRange } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './ElixirTitleButton.styles';
 import { elixirSlice, questSlice } from '../../../redux/slices';
+import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 
 export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
@@ -55,6 +56,15 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       }
       if (fullnessElixir && fullnessElixir >= 3) {
         dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir - 3));
+
+        if (currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID) {
+          navigation.navigate('GardenStack', {
+            screen: 'GardenTutorialDialog',
+            params: { isStart: true },
+          });
+          return;
+        }
+
         navigation.navigate('GardenStack', {
           screen: 'Garden',
           params: {

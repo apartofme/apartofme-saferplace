@@ -6,7 +6,7 @@ interface IElixirState {
 }
 
 const INITIAL_STATE: IElixirState = {
-  fullnessElixir: 0,
+  fullnessElixir: 1,
 };
 
 export const elixirSlice = createSlice({

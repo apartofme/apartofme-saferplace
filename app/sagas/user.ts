@@ -81,8 +81,9 @@ function* watchRegisterParent() {
     });
     const firestoreCreateUserProgressResponse: IFirestoreErrorResponse =
       yield call(firestoreCreateUserProgress);
-    if (!firestoreCreateUserProgressResponse) {
+    if (!firestoreCreateUserProgressResponse.error) {
       yield put(questSlice.actions.updateCurrentDay(1));
+      yield put(questSlice.actions.setCurrentDayQuestsStack());
       yield put(questSlice.actions.setLastDayUpdate());
       yield put(userSlice.actions.registerParentSuccess(user));
     }
