@@ -2,6 +2,7 @@ export * from './Acknowledgement';
 export * from './Alert';
 export * from './AnimationTitle';
 export * from './CharmCompleted';
+export * from './Conversations';
 export * from './Dialog';
 export * from './ElixirDoubleInteraction';
 export * from './ElixirTitleButton';

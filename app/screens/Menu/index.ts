@@ -5,6 +5,7 @@ export * from './AudioSettings';
 export * from './ChangePassword';
 export * from './ChangePasswordSuccess';
 export * from './Conditions';
+export * from './EditProfile';
 export * from './Feedback';
 export * from './FeedbackSuccess';
 export * from './FrequentlyAskedQuestions';

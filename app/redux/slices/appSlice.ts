@@ -16,6 +16,8 @@ const INITIAL_STATE: IAppState = {
     isRegisterUser: false,
     isSaveAllQuests: false,
     isSaveTranslations: false,
+    isUpdateChild: false,
+    isUpdateParent: false,
   },
   errors: {
     getUser: null,
@@ -23,6 +25,8 @@ const INITIAL_STATE: IAppState = {
     registerUser: null,
     saveAllQuests: null,
     saveTranslations: null,
+    updateChild: null,
+    updateParent: null,
   },
 };
 
@@ -80,6 +84,32 @@ export const appSlice = createSlice({
     builder.addCase(questSlice.actions.saveAllQuestsError, (state, action) => {
       state.loading[LoadingType.isSaveAllQuests] = false;
       state.errors[ErrorType.saveAllQuests] = action.payload;
+    });
+
+    // Update child
+    builder.addCase(userSlice.actions.updateChild, state => {
+      state.loading[LoadingType.isUpdateChild] = true;
+      state.errors[ErrorType.updateChild] = null;
+    });
+    builder.addCase(userSlice.actions.updateChildSuccess, state => {
+      state.loading[LoadingType.isUpdateChild] = false;
+    });
+    builder.addCase(userSlice.actions.updateChildError, (state, action) => {
+      state.loading[LoadingType.isUpdateChild] = false;
+      state.errors[ErrorType.updateChild] = action.payload;
+    });
+
+    // Update parent
+    builder.addCase(userSlice.actions.updateParent, state => {
+      state.loading[LoadingType.isUpdateParent] = true;
+      state.errors[ErrorType.updateParent] = null;
+    });
+    builder.addCase(userSlice.actions.updateParentSuccess, state => {
+      state.loading[LoadingType.isUpdateParent] = false;
+    });
+    builder.addCase(userSlice.actions.updateParentError, (state, action) => {
+      state.loading[LoadingType.isUpdateParent] = false;
+      state.errors[ErrorType.updateParent] = action.payload;
     });
 
     // Save translations
