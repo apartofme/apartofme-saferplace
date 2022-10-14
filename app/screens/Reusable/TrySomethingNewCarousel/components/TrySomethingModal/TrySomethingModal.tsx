@@ -48,7 +48,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
       <ExtendedKeyboardAvoidingView>
         <BottomButtonView
           buttonTitle={t('buttons.next')}
-          isDisabledButton={inputValue === ''}
+          isDisabledButton={!inputValue}
           onSubmit={onSubmitPress}>
           <View style={styles.container}>
             <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
