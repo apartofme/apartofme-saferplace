@@ -1,5 +1,6 @@
 export * from './CharmAlerts';
 export * from './ComingSoon';
+export * from './ParentGrounding';
 export * from './Initial';
 export * from './DummyQuests';
 export * from './Garden';
