@@ -10,7 +10,6 @@ export const styles = StyleSheet.create<IEmotionCarouselItemStyles>({
   // TODO: change for correct styles
   container: {
     flex: 1,
-    paddingBottom: 72,
     paddingHorizontal: 64,
     justifyContent: 'flex-end',
   },

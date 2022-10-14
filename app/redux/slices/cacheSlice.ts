@@ -28,6 +28,9 @@ interface ICacheState {
   trySomethingItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
+  // TODO: make it as separate slice
+  plantArea: IPlantArea;
+  emotionItem: Nullable<string>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
 }
 
@@ -43,6 +46,14 @@ const INITIAL_STATE: ICacheState = {
     selected: null,
     completed: [],
   },
+  plantArea: {
+    TopLeft: null,
+    TopRight: null,
+    Center: null,
+    BottomLeft: null,
+    BottomRight: null,
+  },
+  emotionItem: null,
   favouriteCharmItem: null,
 };
 
@@ -87,6 +98,9 @@ export const cacheSlice = createSlice({
     clearEmotions({ emotions }) {
       emotions.selected = null;
       emotions.completed = [];
+    },
+    saveEmotionItem(state, { payload }: PayloadAction<string>) {
+      state.emotionItem = payload;
     },
     saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
       state.favouriteCharmItem = _.merge(state.favouriteCharmItem, payload);

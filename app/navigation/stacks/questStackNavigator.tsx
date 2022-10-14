@@ -23,6 +23,7 @@ import {
   ElixirDoubleInteractionScreen,
   ElixirTitleButtonScreen,
   EmojiSelectionScreen,
+  EmotionCarouselScreen,
   EmotionCarouselChoiceScreen,
   EmotionSelectionScreen,
   FavouriteCharmCarouselScreen,
@@ -71,6 +72,7 @@ export type QuestStackParams = {
   ElixirDoubleInteraction: { data: IQuest };
   ElixirTitleButton: undefined;
   EmojiSelection: { data: IQuest };
+  EmotionCarousel: { data: IQuest };
   EmotionSelection: { data: IQuest };
   FavouriteCharmCarousel: { data: IQuest };
   Journel: { data: IQuest };
@@ -153,6 +155,7 @@ export const QuestStackNavigator = () => (
       component={ElixirTitleButtonScreen}
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
+    <Stack.Screen name="EmotionCarousel" component={EmotionCarouselScreen} />
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
     <Stack.Screen
       name="FavouriteCharmCarousel"
