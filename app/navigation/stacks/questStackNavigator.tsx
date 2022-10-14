@@ -49,6 +49,7 @@ import {
   ConversationsScreen,
   TroublesomeSpiritQuestionsCarouselScreen,
   TroublesomeSpiritQuestionScreen,
+  LeaveFeedbackScreen,
 } from '../../screens';
 import {
   DEFAULT_STACK_OPTIONS,
@@ -100,6 +101,7 @@ export type QuestStackParams = {
   Conversations: { data: IQuest };
   TroublesomeSpiritQuestionsCarousel: { data: IQuest };
   TroublesomeSpiritQuestion: { data: IQuest };
+  LeaveFeedback: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -212,5 +214,6 @@ export const QuestStackNavigator = () => (
       name="TroublesomeSpiritQuestion"
       component={TroublesomeSpiritQuestionScreen}
     />
+    <Stack.Screen name="LeaveFeedback" component={LeaveFeedbackScreen} />
   </Stack.Navigator>
 );
