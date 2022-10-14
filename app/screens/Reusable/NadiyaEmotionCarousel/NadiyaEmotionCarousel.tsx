@@ -17,8 +17,8 @@ import {
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IMAGES } from '../../../assets';
-import { NADIYA_EMOTION_CAROUSEL_ITEMS } from './NadiyaEmotionCarousel.data';
 import { INadiyaEmotionCarouselScreenProps } from './NadiyaEmotionCarousel.types';
+import { EMOTION_CAROUSEL_ITEMS } from '../../../constants/emotionCarousel';
 
 export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenProps> =
   ({ route }) => {
@@ -35,7 +35,7 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
     const { t } = useTranslation();
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [nadiyaEmotionData, setNadiyaEmotionData] = useState(
-      NADIYA_EMOTION_CAROUSEL_ITEMS,
+      EMOTION_CAROUSEL_ITEMS,
     );
 
     const navigateToNextQuest = useNavigateNextQuest();
@@ -66,7 +66,7 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
       setNadiyaEmotionData(prev =>
         _.map(prev, item =>
           _.merge(item, {
-            title: t(item.title).replace('|nadiyaEmotion|', nadiyaEmotion),
+            title: t(item.title).replace('|emotion|', nadiyaEmotion),
           }),
         ),
       );
@@ -94,6 +94,8 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
             <EmotionCarousel
               data={nadiyaEmotionData}
               setIndex={setActiveItemIndex}
+              style={styles.carousel}
+              itemStyle={styles.carouselItem}
             />
           </BottomButtonView>
         </SafeAreaView>

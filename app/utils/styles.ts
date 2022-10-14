@@ -1,4 +1,5 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
 import { COLORS } from '../themes/colors';
 
 export interface IGeneralStyles {
@@ -15,6 +16,8 @@ export interface IGeneralStyles {
   centered: ViewStyle;
 
   row: ViewStyle;
+
+  boldText: TextStyle;
 }
 
 export const generalStyles = StyleSheet.create<IGeneralStyles>({
@@ -50,5 +53,9 @@ export const generalStyles = StyleSheet.create<IGeneralStyles>({
 
   row: {
     flexDirection: 'row',
+  },
+
+  boldText: {
+    fontWeight: '700',
   },
 });

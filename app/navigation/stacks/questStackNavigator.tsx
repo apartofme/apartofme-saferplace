@@ -23,6 +23,7 @@ import {
   ElixirDoubleInteractionScreen,
   ElixirTitleButtonScreen,
   EmojiSelectionScreen,
+  EmotionCarouselScreen,
   EmotionCarouselChoiceScreen,
   EmotionSelectionScreen,
   FavouriteCharmCarouselScreen,
@@ -45,6 +46,7 @@ import {
   QuestionChoiceScreen,
   IQuestionCardRoute,
   QuestionCardScreen,
+  ConversationsScreen,
 } from '../../screens';
 import {
   DEFAULT_STACK_OPTIONS,
@@ -75,6 +77,7 @@ export type QuestStackParams = {
   ElixirDoubleInteraction: { data: IQuest };
   ElixirTitleButton: undefined;
   EmojiSelection: { data: IQuest };
+  EmotionCarousel: { data: IQuest };
   EmotionSelection: { data: IQuest };
   FavouriteCharmCarousel: { data: IQuest };
   Journel: { data: IQuest };
@@ -92,6 +95,7 @@ export type QuestStackParams = {
   EscapeMenu: { data: IEscapeMenuRoute };
   EmotionCarouselChoice: { data: IQuest };
   TrySomethingNewCarousel: { data: IQuest };
+  Conversations: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -156,6 +160,7 @@ export const QuestStackNavigator = () => (
       component={ElixirTitleButtonScreen}
     />
     <Stack.Screen name="EmojiSelection" component={EmojiSelectionScreen} />
+    <Stack.Screen name="EmotionCarousel" component={EmotionCarouselScreen} />
     <Stack.Screen name="EmotionSelection" component={EmotionSelectionScreen} />
     <Stack.Screen
       name="FavouriteCharmCarousel"
@@ -194,5 +199,6 @@ export const QuestStackNavigator = () => (
     />
     <Stack.Screen name="QuestionChoice" component={QuestionChoiceScreen} />
     <Stack.Screen name="QuestionCard" component={QuestionCardScreen} />
+    <Stack.Screen name="Conversations" component={ConversationsScreen} />
   </Stack.Navigator>
 );

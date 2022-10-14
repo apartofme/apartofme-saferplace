@@ -17,6 +17,7 @@ import { CAROUSEL_COLORS } from './EmotionCarouselItem.colors';
 export const EmotionCarouselItem: React.FC<IEmotionCarouselItemProps> = ({
   data,
   isActive,
+  style,
 }) => {
   // TODO: change to correct duration
   const progressValue = useDerivedValue(() => {
@@ -39,7 +40,7 @@ export const EmotionCarouselItem: React.FC<IEmotionCarouselItemProps> = ({
 
   return (
     <GestureHandlerRootView style={generalStyles.flex}>
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         <Animated.View style={[styles.contentContainer, backgroundColorStyles]}>
           <ExtendedText style={styles.title}>{data.title}</ExtendedText>
         </Animated.View>

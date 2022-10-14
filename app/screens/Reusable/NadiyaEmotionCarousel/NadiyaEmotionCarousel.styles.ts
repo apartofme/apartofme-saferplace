@@ -4,6 +4,8 @@ interface INadiyaEmotionCarouselScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   description: TextStyle;
+  carousel: ViewStyle;
+  carouselItem: ViewStyle;
 }
 
 export const styles = StyleSheet.create<INadiyaEmotionCarouselScreenStyles>({
@@ -16,6 +18,12 @@ export const styles = StyleSheet.create<INadiyaEmotionCarouselScreenStyles>({
   description: {
     paddingTop: 16,
     paddingHorizontal: 24,
+    paddingBottom: 72,
+  },
+  carousel: {
+    paddingBottom: 73,
+  },
+  carouselItem: {
     paddingBottom: 72,
   },
 });

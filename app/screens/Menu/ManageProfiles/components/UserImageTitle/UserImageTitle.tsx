@@ -9,9 +9,10 @@ import { ExtendedText } from '../../../../../components';
 export const UserImageTitle: React.FC<IUserImageTitleProps> = ({
   image,
   title,
+  onPress,
 }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <Image
         // TODO: change to the real image
         source={IMAGES[image]}

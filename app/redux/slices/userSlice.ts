@@ -51,6 +51,18 @@ export const userSlice = createSlice({
     changePasswordSuccess() {},
     changePasswordError(state, action: PayloadAction<string>) {},
 
+    updateParent() {},
+    updateParentSuccess(state, { payload: user }: PayloadAction<IUser>) {
+      state.parent = user;
+    },
+    updateParentError(state, action: PayloadAction<string>) {},
+
+    updateChild() {},
+    updateChildSuccess(state, { payload: user }: PayloadAction<IUser>) {
+      state.child = user;
+    },
+    updateChildError(state, action: PayloadAction<string>) {},
+
     resetPassword(state, action: IResetPasswordActionPayload) {},
     resetPasswordSuccess() {},
     resetPasswordError(state, action: PayloadAction<string>) {},
