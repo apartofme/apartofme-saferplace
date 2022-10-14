@@ -6,12 +6,13 @@ import {
   IGroundingAcknowledgementRoute,
   GroundingStartScreen,
   IGroundingStartRoute,
+  GroundingStartScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentGroundingStackParams = {
   GroundingAcknowledgement: { data: IGroundingAcknowledgementRoute };
-  GroundingStart: { data: IGroundingStartRoute };
+  GroundingStart: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParentGroundingStackParams>();
