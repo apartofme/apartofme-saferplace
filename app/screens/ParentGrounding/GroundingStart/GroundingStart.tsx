@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { IMAGES } from '../../../assets';
 
+import { IMAGES } from '../../../assets';
 import { VerticalSwipeView } from '../../../components';
 import { IGroundingStartScreenProps } from './GroundingStart.types';
 
