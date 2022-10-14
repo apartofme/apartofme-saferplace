@@ -38,7 +38,7 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
       style: styles.title,
       preset: 'title',
       // TODO: remove
-      nicknameStyle: { color: '#00dbc0' },
+      variableStyle: { color: '#00dbc0' },
     });
 
     const Header = useRenderQuestHeader(crossHeader ?? false);

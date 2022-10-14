@@ -181,13 +181,13 @@ export const useParsedJSXTextNickname = ({
   textHasNickname,
   preset,
   style,
-  nicknameStyle,
+  variableStyle,
 }: {
   text: string;
   textHasNickname: boolean;
   preset?: ExtendedTextPresets;
   style?: TextStyle;
-  nicknameStyle?: TextStyle;
+  variableStyle?: TextStyle;
 }): React.FC => {
   const firstPlayer =
     useAppSelector(state => state.cache.nicknames?.firstPlayer) ?? '';
@@ -199,6 +199,8 @@ export const useParsedJSXTextNickname = ({
     useAppSelector(state => state.user.child?.nickname) ?? '';
   const playerEmotion =
     useAppSelector(state => state.cache.emotions.selected) ?? '';
+  const troublesomeSpiritQuestion =
+    useAppSelector(state => state.cache.troublesomeSpiritQuestionsItem) ?? '';
 
   if (!textHasNickname) {
     return () => (
@@ -219,22 +221,26 @@ export const useParsedJSXTextNickname = ({
     );
   };
 
+  const parseVariableText = (variableText: string) => {
+    return (
+      <ExtendedText preset={preset} style={variableStyle}>
+        {variableText.replace('$', '')}
+      </ExtendedText>
+    );
+  };
+
   const textArray = _(text)
-    .replace('firstPlayer', firstPlayer)
-    .replace('secondPlayer', secondPlayer)
-    .replace('grown_up', parentNickname)
-    .replace('child', childNickname)
+    .replace('firstPlayer', `$${firstPlayer}`)
+    .replace('secondPlayer', `$${secondPlayer}`)
+    .replace('grown_up', `$${parentNickname}`)
+    .replace('child', `$${childNickname}`)
+    .replace('troublesomeSpiritQuestion', `$${troublesomeSpiritQuestion}`)
     .replace('playerEmotion', playerEmotion)
     .split('|')
     .map(value => {
-      if (firstPlayer === value || secondPlayer === value) {
-        return (
-          <ExtendedText key={value} preset={preset} style={nicknameStyle}>
-            {value}
-          </ExtendedText>
-        );
+      if (value.startsWith('$')) {
+        return parseVariableText(value);
       }
-
       if (value.startsWith('*')) {
         return parseBoldText(value);
       }

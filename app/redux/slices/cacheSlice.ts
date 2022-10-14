@@ -31,6 +31,7 @@ interface ICacheState {
   currentQuestionIndex: number;
   emotionItem: Nullable<string>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
+  troublesomeSpiritQuestionsItem: Nullable<string>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -55,6 +56,7 @@ const INITIAL_STATE: ICacheState = {
   currentQuestionIndex: -1,
   emotionItem: null,
   favouriteCharmItem: null,
+  troublesomeSpiritQuestionsItem: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -105,7 +107,12 @@ export const cacheSlice = createSlice({
     saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
       state.favouriteCharmItem = _.merge(state.favouriteCharmItem, payload);
     },
-
+    saveTroublesomeSpiritQuestionsItem(
+      state,
+      { payload }: PayloadAction<string>,
+    ) {
+      state.troublesomeSpiritQuestionsItem = payload;
+    },
     incrementCurrentQuestionIndex(state) {
       state.currentQuestionIndex = state.currentQuestionIndex + 1;
     },

@@ -35,7 +35,7 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
       preset: 'title',
       style: styles.title,
       // TODO: remove
-      nicknameStyle: { color: '#00dbc0' },
+      variableStyle: { color: '#00dbc0' },
     });
 
     const Header = useRenderQuestHeader({

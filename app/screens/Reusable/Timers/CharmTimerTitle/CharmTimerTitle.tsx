@@ -34,7 +34,7 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
     preset: 'title',
     style: styles.title,
     // TODO: remove
-    nicknameStyle: { color: '#00dbc0' },
+    variableStyle: { color: '#00dbc0' },
   });
 
   const Description = useParsedJSXTextNickname({
@@ -43,7 +43,7 @@ export const CharmTimerTitleScreen: React.FC<ICharmTimerTitleScreenProps> = ({
     preset: 'secondary-text',
     style: styles.title,
     // TODO: remove
-    nicknameStyle: { color: '#00dbc0' },
+    variableStyle: { color: '#00dbc0' },
   });
 
   const Header = useRenderQuestHeader({

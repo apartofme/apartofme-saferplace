@@ -1,50 +1,50 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
 
-import { styles } from './NadiyaEmotionCarousel.styles';
+import { ITroublesomeSpiritQuestionsCarouselScreenProps } from './TroublesomeSpiritQuestionsCarousel.types';
+import { styles } from './TroublesomeSpiritQuestionsCarousel.styles';
 import {
-  useMount,
+  useAppDispatch,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
+import { cacheSlice } from '../../../redux/slices';
+import { generalStyles } from '../../../utils/styles';
 import {
   BottomButtonView,
-  EmotionCarousel,
   ExtendedText,
+  TroublesomeSpiritQuestionsCarousel,
 } from '../../../components';
-import { generalStyles } from '../../../utils/styles';
+import { TROUBLESOME_SPIRIT_QUESTIONS_LIST } from './TroublesomeSpiritQuestionsCarousel.data';
 import { IMAGES } from '../../../assets';
-import { INadiyaEmotionCarouselScreenProps } from './NadiyaEmotionCarousel.types';
-import { EMOTION_CAROUSEL_ITEMS } from '../../../constants/emotionCarousel';
 
-export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenProps> =
+export const TroublesomeSpiritQuestionsCarouselScreen: React.FC<ITroublesomeSpiritQuestionsCarouselScreenProps> =
   ({ route }) => {
     const {
       title,
       description,
       buttonTitle,
       backgroundImage,
-      titleHasNickname,
       crossHeader,
+      titleHasNickname,
       escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const { t } = useTranslation();
-    const [activeItemIndex, setActiveItemIndex] = useState(0);
-    const [nadiyaEmotionData, setNadiyaEmotionData] = useState(
-      EMOTION_CAROUSEL_ITEMS,
-    );
-
+    const dispatch = useAppDispatch();
     const navigateToNextQuest = useNavigateNextQuest();
+    const [activeItem, setActiveItem] = useState(
+      TROUBLESOME_SPIRIT_QUESTIONS_LIST[0],
+    );
+    const [activeItemIndex, setActiveItemIndex] = useState(0);
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
-      preset: 'title',
       style: styles.title,
+      preset: 'title',
       // TODO: remove
       variableStyle: { color: '#00dbc0' },
     });
@@ -54,23 +54,18 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
       escapeMenuAlternativeNavigateTo,
     });
 
+    useEffect(() => {
+      setActiveItem(TROUBLESOME_SPIRIT_QUESTIONS_LIST[activeItemIndex]);
+    }, [activeItemIndex]);
+
     const onSubmit = useCallback(() => {
-      navigateToNextQuest();
-    }, [navigateToNextQuest]);
-
-    const nadiyaEmotion = useMemo(() => {
-      return title.split(' ').pop()?.replace(/\W/g, '') ?? '';
-    }, [title]);
-
-    useMount(() => {
-      setNadiyaEmotionData(prev =>
-        _.map(prev, item =>
-          _.merge(item, {
-            title: t(item.title).replace('|emotion|', nadiyaEmotion),
-          }),
+      dispatch(
+        cacheSlice.actions.saveTroublesomeSpiritQuestionsItem(
+          t(activeItem.titleKey),
         ),
       );
-    });
+      navigateToNextQuest();
+    }, [activeItem.titleKey, dispatch, navigateToNextQuest, t]);
 
     return (
       <ImageBackground
@@ -91,11 +86,9 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>
-            <EmotionCarousel
-              data={nadiyaEmotionData}
+            <TroublesomeSpiritQuestionsCarousel
+              data={TROUBLESOME_SPIRIT_QUESTIONS_LIST}
               setIndex={setActiveItemIndex}
-              style={styles.carousel}
-              itemStyle={styles.carouselItem}
             />
           </BottomButtonView>
         </SafeAreaView>
