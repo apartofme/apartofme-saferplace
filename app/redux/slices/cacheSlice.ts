@@ -30,6 +30,7 @@ interface ICacheState {
   emotions: IEmotions;
   // TODO: make it as separate slice
   plantArea: IPlantArea;
+  currentQuestionIndex: number;
   emotionItem: Nullable<string>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
 }
@@ -53,6 +54,7 @@ const INITIAL_STATE: ICacheState = {
     BottomLeft: null,
     BottomRight: null,
   },
+  currentQuestionIndex: -1,
   emotionItem: null,
   favouriteCharmItem: null,
 };
@@ -104,6 +106,18 @@ export const cacheSlice = createSlice({
     },
     saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
       state.favouriteCharmItem = _.merge(state.favouriteCharmItem, payload);
+    },
+
+    incrementCurrentQuestionIndex(state) {
+      state.currentQuestionIndex = state.currentQuestionIndex + 1;
+    },
+    decrementCurrentQuestionIndex(state) {
+      if (state.currentQuestionIndex > 0) {
+        state.currentQuestionIndex = state.currentQuestionIndex - 1;
+      }
+    },
+    setDefaultCurrentQuestionIndex(state) {
+      state.currentQuestionIndex = -1;
     },
   },
 });
