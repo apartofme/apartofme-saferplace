@@ -121,7 +121,6 @@ export const questSlice = createSlice({
 
     setLastDayUpdate() {},
     setLastDayUpdateSuccess(state, { payload }: PayloadAction<number>) {
-      console.log('setLastDayUpdateSuccess', payload);
       state.lastDayUpdate = payload;
     },
     setLastDayUpdateError(state, action: PayloadAction<string>) {},
