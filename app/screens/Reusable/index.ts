@@ -24,6 +24,7 @@ export * from './SelectPlayer';
 export * from './SelectPlayerSupport';
 export * from './SelectSound';
 export * from './Timers';
+export * from './TroublesomeSpiritQuestion';
 export * from './TroublesomeSpiritQuestionsCarousel';
 export * from './TrySomethingNewCarousel';
 export * from './VerticalSwipe';
