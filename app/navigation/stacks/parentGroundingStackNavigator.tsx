@@ -4,11 +4,23 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import {
   GroundingAcknowledgementScreen,
   IGroundingAcknowledgementRoute,
+  GroundingInstructionScreen,
+  GroundingStartScreen,
+  GroundingTimerScreen,
 } from '../../screens';
+import {
+  GroundingAcknowledgementTitleScreen,
+  IGroundingAcknowledgementTitleRoute,
+} from '../../screens/ParentGrounding/GroundingAcknowledgementTitle';
 import { DEFAULT_STACK_OPTIONS } from '../options';
+import { NavigationRouteNames } from './mergedParams';
 
 export type ParentGroundingStackParams = {
   GroundingAcknowledgement: { data: IGroundingAcknowledgementRoute };
+  GroundingInstruction: undefined;
+  GroundingStart: undefined;
+  GroundingAcknowledgementTitle: { data: IGroundingAcknowledgementTitleRoute };
+  GroundingTimer: { nextRouteName: NavigationRouteNames };
 };
 
 const Stack = createNativeStackNavigator<ParentGroundingStackParams>();
@@ -19,5 +31,15 @@ export const ParentGroundingStackNavigator = () => (
       name="GroundingAcknowledgement"
       component={GroundingAcknowledgementScreen}
     />
+    <Stack.Screen name="GroundingStart" component={GroundingStartScreen} />
+    <Stack.Screen
+      name="GroundingInstruction"
+      component={GroundingInstructionScreen}
+    />
+    <Stack.Screen
+      name="GroundingAcknowledgementTitle"
+      component={GroundingAcknowledgementTitleScreen}
+    />
+    <Stack.Screen name="GroundingTimer" component={GroundingTimerScreen} />
   </Stack.Navigator>
 );
