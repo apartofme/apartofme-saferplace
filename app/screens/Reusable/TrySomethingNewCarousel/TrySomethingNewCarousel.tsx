@@ -48,9 +48,9 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     }, [activeItemIndex]);
 
     const onSubmitPress = useCallback(() => {
-      dispatch(cacheSlice.actions.saveTrySomethingItem(activeItem));
+      dispatch(cacheSlice.actions.saveTrySomethingItem(t(activeItem.title)));
       onSubmit();
-    }, [activeItem, dispatch, onSubmit]);
+    }, [activeItem.title, dispatch, onSubmit, t]);
 
     return (
       <ImageBackground
