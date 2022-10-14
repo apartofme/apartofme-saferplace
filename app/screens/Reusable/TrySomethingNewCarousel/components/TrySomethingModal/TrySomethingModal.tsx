@@ -33,9 +33,10 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
 
   const onSubmitPress = useCallback(() => {
     data.subtitle = inputValue;
-    dispatch(cacheSlice.actions.saveTrySomethingItem(data));
+    dispatch(cacheSlice.actions.saveTrySomethingItem(t(data.title)));
+    setModalStatus();
     onSubmit();
-  }, [data, dispatch, inputValue, onSubmit]);
+  }, [data, dispatch, inputValue, onSubmit, setModalStatus, t]);
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
@@ -47,6 +48,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
       <ExtendedKeyboardAvoidingView>
         <BottomButtonView
           buttonTitle={t('buttons.next')}
+          isDisabledButton={inputValue === ''}
           onSubmit={onSubmitPress}>
           <View style={styles.container}>
             <ExtendedText style={styles.title}>{t(title)}</ExtendedText>

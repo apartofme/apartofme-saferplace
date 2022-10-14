@@ -48,7 +48,7 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
   }, [dispatch, navigation]);
 
   const onSubmit = useCallback(() => {
-    if (QUESTION_CARD.length <= currentQuestionIndex) {
+    if (QUESTION_CARD.length - 1 <= currentQuestionIndex) {
       positiveNavigates();
       return;
     }

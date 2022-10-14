@@ -17,11 +17,6 @@ export interface IShortSignUpData {
   avatar?: AvatarsNameType;
 }
 
-export interface ITrySomethingItem {
-  title: string;
-  subtitle: string;
-}
-
 export interface INicknames {
   firstPlayer: string;
   secondPlayer: string;
@@ -56,10 +51,6 @@ export type ITranslations = Record<
     translations: Record<string, string>;
   }
 >;
-
-export interface ITrySomethingItemPayload {
-  payload: ITrySomethingItem;
-}
 
 export interface INicknamesPayload {
   payload: INicknames;
