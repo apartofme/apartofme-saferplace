@@ -24,6 +24,7 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
     titleHasNickname,
     positiveNavigatesTo,
+    negativeNavigatesTo,
   } = route.params.data;
 
   const { t } = useTranslation();
@@ -32,10 +33,10 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
 
   const onSubmit = useCallback(() => {
     dispatch(cacheSlice.actions.incrementCurrentQuestionIndex());
-    navigation.navigate('QuestionCard', {
-      data: { positiveNavigatesTo },
+    navigation.push('QuestionCard', {
+      data: { positiveNavigatesTo, negativeNavigatesTo },
     });
-  }, [dispatch, navigation, positiveNavigatesTo]);
+  }, [dispatch, navigation, negativeNavigatesTo, positiveNavigatesTo]);
 
   const Header = useRenderQuestHeader({
     crossHeader: crossHeader ?? false,

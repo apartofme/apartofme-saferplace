@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
@@ -9,10 +9,13 @@ import {
   MainHeader,
 } from '../../../../components';
 import {
+  useAppDispatch,
   useAppSelector,
   useNavigateNextQuest,
+  useNegativeNavigateTo,
   usePositiveNavigateTo,
 } from '../../../../hooks';
+import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { QuestionView } from './components';
 import { QUESTION_CARD } from './QuestionCard.data';
@@ -23,17 +26,34 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { positiveNavigatesTo } = route.params.data;
+  const { positiveNavigatesTo, negativeNavigatesTo } = route.params.data;
 
   const { t } = useTranslation();
 
-  const onSubmit = useNavigateNextQuest();
-
-  const onSkipPress = usePositiveNavigateTo(positiveNavigatesTo);
+  const dispatch = useAppDispatch();
 
   const currentQuestionIndex = useAppSelector(
     state => state.cache.currentQuestionIndex,
   );
+
+  const navigateNextQuest = useNavigateNextQuest();
+
+  const onSkipPress = useNegativeNavigateTo(negativeNavigatesTo, true);
+
+  const positiveNavigates = usePositiveNavigateTo(positiveNavigatesTo);
+
+  const goBack = useCallback(() => {
+    dispatch(cacheSlice.actions.decrementCurrentQuestionIndex());
+    navigation.goBack();
+  }, [dispatch, navigation]);
+
+  const onSubmit = useCallback(() => {
+    if (QUESTION_CARD.length <= currentQuestionIndex) {
+      positiveNavigates();
+      return;
+    }
+    navigateNextQuest();
+  }, [currentQuestionIndex, navigateNextQuest, positiveNavigates]);
 
   return (
     <ImageBackground
@@ -45,7 +65,7 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
       <SafeAreaView style={styles.container}>
         <MainHeader
           leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
+          onLeftIconPress={goBack}
         />
         <View style={styles.contentContainer}>
           <ExtendedText preset="body-regular" style={styles.title}>

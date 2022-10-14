@@ -10,4 +10,5 @@ export interface IQuestionCardScreenProps extends NavigationProps, RouteProps {}
 
 export interface IQuestionCardRoute {
   positiveNavigatesTo: Nullable<string>;
+  negativeNavigatesTo: Nullable<string>;
 }
