@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground } from 'react-native';
-import { IMAGES } from '../../../assets';
 
+import { IMAGES } from '../../../assets';
 import {
   BottomButtonView,
   ExtendedText,
