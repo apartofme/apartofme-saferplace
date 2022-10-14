@@ -33,7 +33,7 @@ export const GroundingAcknowledgementScreen: React.FC<IGroundingAcknowledgementS
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView
-          buttonTitle={buttonTitle}
+          buttonTitle={t(buttonTitle)}
           onSubmit={onSubmit}
           style={styles.container}>
           <Image source={image} style={styles.image} />

@@ -10,14 +10,11 @@ import {
   GroundingInputScreen,
   GroundingInstructionScreen,
   GroundingTimerScreen,
-} from '../../screens';
-
-import {
   GroundingAcknowledgementTitleScreen,
   IGroundingAcknowledgementTitleRoute,
-} from '../../screens/ParentGrounding/GroundingAcknowledgementTitle';
+} from '../../screens';
+
 import { DEFAULT_STACK_OPTIONS } from '../options';
-import { NavigationRouteNames } from './mergedParams';
 
 export type ParentGroundingStackParams = {
   GroundingAcknowledgement: { data: IGroundingAcknowledgementRoute };
@@ -25,7 +22,7 @@ export type ParentGroundingStackParams = {
 
   GroundingInstruction: undefined;
   GroundingAcknowledgementTitle: { data: IGroundingAcknowledgementTitleRoute };
-  GroundingTimer: { nextRouteName: NavigationRouteNames };
+  GroundingTimer: undefined;
   GroundingInput: undefined;
 };
 
@@ -33,12 +30,12 @@ const Stack = createNativeStackNavigator<ParentGroundingStackParams>();
 
 export const ParentGroundingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
+    <Stack.Screen name="GroundingStart" component={GroundingStartScreen} />
     <Stack.Screen
       name="GroundingAcknowledgement"
       component={GroundingAcknowledgementScreen}
     />
     <Stack.Screen name="GroundingInput" component={GroundingInputScreen} />
-    <Stack.Screen name="GroundingStart" component={GroundingStartScreen} />
 
     <Stack.Screen
       name="GroundingInstruction"

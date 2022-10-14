@@ -10,13 +10,10 @@ import { IGroundingTimerScreenProps } from './GroundingTimer.types';
 
 export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
   navigation,
-  route,
 }) => {
   const [timerValue, setTimerValue] = useState(10);
 
   const [isTimerPause, setIsTimerPause] = useState(false);
-
-  const { nextRouteName } = route.params;
 
   useEffect(() => {
     if (timerValue > 0 && !isTimerPause) {
@@ -25,9 +22,9 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
         clearInterval(timer);
       };
     } else if (!isTimerPause) {
-      navigation.navigate(nextRouteName);
+      navigation.navigate('GroundingInput');
     }
-  }, [isTimerPause, navigation, nextRouteName, timerValue]);
+  }, [isTimerPause, navigation, timerValue]);
 
   const timerStatus = useCallback(() => {
     setIsTimerPause(!isTimerPause);
