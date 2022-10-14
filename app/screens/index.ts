@@ -3,7 +3,7 @@ export * from './ComingSoon';
 export * from './Initial';
 export * from './DummyQuests';
 export * from './Garden';
-export * from './Grounding';
+export * from './ParentGrounding';
 export * from './Menu';
 export * from './MixingElixir';
 export * from './Onboarding';
