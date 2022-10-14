@@ -1,6 +1,6 @@
 import { ImageSourcePropType } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
+import { IMAGES } from '../../../assets';
 
 export interface IGroundingInstructionItem {
   titleKey: string;

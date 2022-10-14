@@ -9,13 +9,13 @@ import {
   BottomButtonView,
   ExtendedText,
   MainHeader,
-} from '../../../../components';
-import { generalStyles } from '../../../../utils/styles';
+} from '../../../components';
+import { generalStyles } from '../../../utils/styles';
 import {
   IGroundingInstructionItem,
   INSTRUCTION_LIST,
 } from './GroundingInstruction.data';
-import { IMAGES } from '../../../../assets';
+import { IMAGES } from '../../../assets';
 
 export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   navigation,
