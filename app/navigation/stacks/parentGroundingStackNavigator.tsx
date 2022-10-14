@@ -1,7 +1,10 @@
 import React from 'react';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
-import { GroundingInstructionScreen, GroundingStartScreen } from '../../screens';
+import {
+  GroundingInstructionScreen,
+  GroundingStartScreen,
+} from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
 export type ParentGroundingStackParams = {
