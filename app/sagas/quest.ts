@@ -2,7 +2,10 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import moment from 'moment';
 
-import { IInterruptedQuestLine } from '../redux/types/questTypes';
+import {
+  ALL_QUESTS_STACK,
+  IInterruptedQuestLine,
+} from '../redux/types/questTypes';
 import { firestoreUpdateUserProgress } from '../services/firebase';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
@@ -46,7 +49,7 @@ function* watchSaveCompletedQuestsId({ payload }: PayloadAction<number>) {
   try {
     yield call(firestoreUpdateUserProgress, 'quests', {
       ...currentQuestState,
-      completedQuestsId: currentQuestState.completedQuestsId
+      completedQuestsId: currentQuestState.completedQuestsId.length
         ? [...currentQuestState.completedQuestsId, payload]
         : [payload],
     });
@@ -80,6 +83,28 @@ function* watchUpdateInterruptedQuestLine({
     yield put(
       questSlice.actions.updateInterruptedQuestLineError(
         'updateInterruptedQuestLineError',
+      ),
+    );
+  }
+}
+
+function* watchSetCurrentDayQuestsStack() {
+  const currentQuestState: IQuestProgress = yield select(state =>
+    questStateSelector(state),
+  );
+
+  // TODO: change to if
+  try {
+    yield call(firestoreUpdateUserProgress, 'quests', {
+      ...currentQuestState,
+      currentDayQuestsStack: ALL_QUESTS_STACK[currentQuestState.currentDay],
+    });
+
+    yield put(questSlice.actions.setCurrentDayQuestsStackSuccess());
+  } catch {
+    yield put(
+      questSlice.actions.setCurrentDayQuestsStackError(
+        'updateCurrentDayQuestsStackError',
       ),
     );
   }
@@ -145,6 +170,10 @@ export function* questSaga() {
   yield takeLatest(
     questSlice.actions.updateCurrentDayQuestsStack,
     watchUpdateCurrentDayQuestsStack,
+  );
+  yield takeLatest(
+    questSlice.actions.setCurrentDayQuestsStack,
+    watchSetCurrentDayQuestsStack,
   );
   yield takeLatest(questSlice.actions.setLastDayUpdate, watchSetLastDayUpdate);
 }

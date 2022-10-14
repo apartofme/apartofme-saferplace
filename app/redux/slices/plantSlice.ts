@@ -40,5 +40,9 @@ export const plantSlice = createSlice({
       }
     },
     updatePlantAreaError(state, action: PayloadAction<string>) {},
+
+    getInitialState() {
+      return INITIAL_STATE;
+    },
   },
 });

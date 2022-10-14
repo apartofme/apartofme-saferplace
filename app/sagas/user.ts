@@ -18,7 +18,12 @@ import {
   IFirestoreUser,
   IFirestoreUserProgress,
 } from '../services/firebase';
-import { plantSlice, questSlice, userSlice } from '../redux/slices';
+import {
+  elixirSlice,
+  plantSlice,
+  questSlice,
+  userSlice,
+} from '../redux/slices';
 import {
   IAuthUserActionPayload,
   IChangePasswordActionPayload,
@@ -44,6 +49,7 @@ function* watchLoginUser({
     yield put(userSlice.actions.loginUserSuccess(user._data));
     yield put(plantSlice.actions.setPlantState(userProgress._data.plants));
     yield put(questSlice.actions.setQuestState(userProgress._data.quests));
+    yield put(elixirSlice.actions.setElixirState(userProgress._data.elixir));
 
     // TODO: change to real stack
     yield call(StaticNavigator.navigateTo, 'GardenStack');
@@ -147,6 +153,10 @@ function* watchChangePassword({
 
 function* watchLogout() {
   yield call(firebaseLogout);
+  yield put(questSlice.actions.getInitialState());
+  yield put(plantSlice.actions.getInitialState());
+  yield put(elixirSlice.actions.getInitialState());
+
   yield call(StaticNavigator.reset, 'ParentsOnboardingStack');
 }
 

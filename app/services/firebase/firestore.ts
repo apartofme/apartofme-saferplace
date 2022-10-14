@@ -1,4 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
+import moment from 'moment';
 
 import {
   INITIAL_ELIXIR,
@@ -36,12 +37,13 @@ export const firestoreCreateUserProgress = async () => {
     error: null,
   };
   const userId = getCurrentUser();
+  const nowSeconds = moment().format('X');
   try {
     await firestore()
       .collection('progress')
       .doc(userId)
       .set({
-        quests: INITIAL_QUESTS,
+        quests: { ...INITIAL_QUESTS, lastDayUpdate: nowSeconds },
         plants: {
           plantArea: INITIAL_PLANT_AREA,
           plantsStack: INITIAL_PLANTS_STACK,
