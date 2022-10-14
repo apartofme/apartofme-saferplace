@@ -1,21 +1,33 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Nullable } from '../../utils';
-
 interface IElixirState {
-  fullnessElixir: Nullable<number>;
+  fullnessElixir: number;
 }
 
 const INITIAL_STATE: IElixirState = {
-  fullnessElixir: null,
+  fullnessElixir: 0,
 };
 
 export const elixirSlice = createSlice({
   name: 'elixir',
   initialState: INITIAL_STATE,
   reducers: {
-    updateFullnessElixir(state, { payload }: PayloadAction<number>) {
-      state.fullnessElixir = state.fullnessElixir ?? 0 + payload;
+    setElixirState(
+      state,
+      { payload: { fullnessElixir } }: PayloadAction<IElixirState>,
+    ) {
+      state.fullnessElixir = fullnessElixir;
+    },
+
+    updateFullnessElixir(state, action: PayloadAction<number>) {},
+    updateFullnessElixirSuccess(state, { payload }: PayloadAction<number>) {
+      state.fullnessElixir = state.fullnessElixir + payload;
+    },
+    updateFullnessElixirError(state, action: PayloadAction<string>) {},
+
+    getInitialState() {
+      return INITIAL_STATE;
     },
   },
 });
