@@ -52,11 +52,7 @@ export const questSlice = createSlice({
     },
     saveAllQuestsError(state, action: PayloadAction<string>) {},
 
-    setQuestState(
-      state,
-
-      { payload }: PayloadAction<IQuestProgress>,
-    ) {
+    setQuestState(state, { payload }: PayloadAction<IQuestProgress>) {
       _.merge(state, payload);
     },
 

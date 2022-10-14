@@ -6,8 +6,8 @@ import { IInterruptedQuestLine } from '../redux/types/questTypes';
 import { firestoreUpdateUserProgress } from '../services/firebase';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
-import { RootState } from '../redux';
 import { IQuestProgress } from '../utils/types';
+import { RootState } from '../redux';
 
 const questStateSelector = (state: RootState) => {
   return {
@@ -20,9 +20,7 @@ const questStateSelector = (state: RootState) => {
 };
 
 function* watchUpdateCurrentDay({ payload }: PayloadAction<number>) {
-  const currentQuestState: IQuestProgress = yield select(state =>
-    questStateSelector(state),
-  );
+  const currentQuestState: IQuestProgress = yield select(questStateSelector);
 
   // TODO: change to if
   try {
