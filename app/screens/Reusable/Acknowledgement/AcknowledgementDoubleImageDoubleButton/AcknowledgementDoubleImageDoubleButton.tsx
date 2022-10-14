@@ -14,6 +14,7 @@ import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
+  useNavigateNextQuest,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementDoubleImageDoubleButtonScreenProps } from './AcknowledgementDoubleImageDoubleButton.types';
@@ -57,6 +58,8 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
       return t('buttons.not_now').toUpperCase();
     }, [buttonTitle, t]);
 
+    const navigateToNextQuest = useNavigateNextQuest();
+
     return (
       <ImageBackground
         // TODO: change to the real image
@@ -89,7 +92,9 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
               </ExtendedText>
             </View>
           </BottomButtonView>
-          <TouchableOpacity style={styles.bottomButton}>
+          <TouchableOpacity
+            style={styles.bottomButton}
+            onPress={navigateToNextQuest}>
             <ExtendedText preset="secondary-text">
               {correctButtonTitle}
             </ExtendedText>

@@ -15,11 +15,16 @@ import {
 } from '../../../../../components';
 import { IMAGES } from '../../../../../assets';
 import { cacheSlice } from '../../../../../redux/slices';
-import { useAppDispatch, useNavigateNextQuest } from '../../../../../hooks';
+import {
+  useAppDispatch,
+  useNavigateNextQuest,
+  useParsedJSXTextNickname,
+} from '../../../../../hooks';
 
 export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   title,
   subtitle,
+  titleHasNickname,
   setModalStatus,
   data,
 }) => {
@@ -31,11 +36,20 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
 
   const [inputValue, setInputValue] = useState('');
 
+  const Title = useParsedJSXTextNickname({
+    text: title,
+    textHasNickname: titleHasNickname ?? true,
+    preset: 'title',
+    // TODO: remove
+    nicknameStyle: { color: '#00dbc0' },
+  });
+
   const onSubmitPress = useCallback(() => {
     data.subtitle = inputValue;
-    dispatch(cacheSlice.actions.saveTrySomethingItem(data));
+    dispatch(cacheSlice.actions.saveTrySomethingItem(t(data.title)));
+    setModalStatus();
     onSubmit();
-  }, [data, dispatch, inputValue, onSubmit]);
+  }, [data, dispatch, inputValue, onSubmit, setModalStatus, t]);
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>
@@ -47,9 +61,10 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
       <ExtendedKeyboardAvoidingView>
         <BottomButtonView
           buttonTitle={t('buttons.next')}
+          isDisabledButton={!inputValue}
           onSubmit={onSubmitPress}>
           <View style={styles.container}>
-            <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
+            <Title />
             <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
             <ExtendedTextInput
               value={inputValue}

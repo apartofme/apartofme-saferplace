@@ -47,5 +47,5 @@ export interface IQuestProgress {
   lastDayUpdate: number;
   currentDayQuestsStack: number[];
   interruptedQuestLine: Nullable<IInterruptedQuestLine>;
-  completedQuestsId: Nullable<number[]>;
+  completedQuestsId: number[];
 }

@@ -5,6 +5,7 @@ import { initQuestSaga } from './initQuest';
 import { userSaga } from './user';
 import { plantSaga } from './plant';
 import { questSaga } from './quest';
+import { elixirSaga } from './elixir';
 
 export default function* rootSaga() {
   yield all([
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     initQuestSaga(),
     plantSaga(),
     questSaga(),
+    elixirSaga(),
   ]);
 }

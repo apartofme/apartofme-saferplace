@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
 import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
-import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { getElixirAnimationByRange } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './ElixirTitleButton.styles';
-import { questSlice } from '../../../redux/slices';
+import { elixirSlice, questSlice } from '../../../redux/slices';
 
 export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
@@ -23,8 +23,9 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       state => state.quest.currentQuestLine,
     );
 
-    const elixirAnimation = useMount(() =>
-      getElixirAnimationByRange(fullnessElixir ?? 0),
+    const elixirAnimation = useMemo(
+      () => getElixirAnimationByRange(fullnessElixir ?? 0),
+      [fullnessElixir],
     );
 
     const buttonTitle = useMemo(() => {
@@ -46,7 +47,14 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
         dispatch(questSlice.actions.updateInterruptedQuestLine(null));
       }
       dispatch(questSlice.actions.updateCurrentDayQuestsStack());
+
+      if (currentQuestLine?.id) {
+        dispatch(
+          questSlice.actions.saveCompletedQuestsId(+currentQuestLine?.id),
+        );
+      }
       if (fullnessElixir && fullnessElixir >= 3) {
+        dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir - 3));
         navigation.navigate('GardenStack', {
           screen: 'Garden',
           params: {

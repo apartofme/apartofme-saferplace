@@ -43,6 +43,9 @@ import {
   AnimationTitleScreen,
   TrySomethingNewCarouselScreen,
   VerticalSwipeScreen,
+  QuestionChoiceScreen,
+  IQuestionCardRoute,
+  QuestionCardScreen,
   ConversationsScreen,
   TroublesomeSpiritQuestionsCarouselScreen,
 } from '../../screens';
@@ -52,6 +55,8 @@ import {
 } from '../options';
 
 export type QuestStackParams = {
+  QuestionChoice: { data: IQuest };
+  QuestionCard: { data: IQuestionCardRoute };
   DummyQuests: undefined;
   AcknowledgementAlongEdges: { data: IQuest };
   AcknowledgementAlongEdgesDoubleButton: { data: IQuest };
@@ -194,6 +199,8 @@ export const QuestStackNavigator = () => (
       name="TrySomethingNewCarousel"
       component={TrySomethingNewCarouselScreen}
     />
+    <Stack.Screen name="QuestionChoice" component={QuestionChoiceScreen} />
+    <Stack.Screen name="QuestionCard" component={QuestionCardScreen} />
     <Stack.Screen name="Conversations" component={ConversationsScreen} />
     <Stack.Screen
       name="TroublesomeSpiritQuestionsCarousel"

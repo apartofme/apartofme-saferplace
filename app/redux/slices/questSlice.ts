@@ -28,7 +28,7 @@ interface IQuestState {
 }
 
 const INITIAL_STATE: IQuestState = {
-  currentDay: 2,
+  currentDay: 1,
   lastDayUpdate: 0,
   currentDayQuestsStack: [],
   allQuests: null,
@@ -77,9 +77,12 @@ export const questSlice = createSlice({
     saveDailyCheck(state, { payload }: PayloadAction<IDailyCheck>) {
       state.dailyChecks = { ...state.dailyChecks, ...payload };
     },
-    setCurrentDayQuestsStack(state) {
+
+    setCurrentDayQuestsStack() {},
+    setCurrentDayQuestsStackSuccess(state) {
       state.currentDayQuestsStack = state.allQuestsStack[state.currentDay];
     },
+    setCurrentDayQuestsStackError(state, action: PayloadAction<string>) {},
 
     updateCurrentDay(state, action: PayloadAction<number>) {},
     updateCurrentDaySuccess(state, { payload }: PayloadAction<number>) {
@@ -89,7 +92,8 @@ export const questSlice = createSlice({
 
     saveCompletedQuestsId(state, action: PayloadAction<number>) {},
     saveCompletedQuestsIdSuccess(state, { payload }: PayloadAction<number>) {
-      if (state.completedQuestsId) {
+      const completedQuestsIdState = state.completedQuestsId;
+      if (!_.find(completedQuestsIdState, payload)) {
         state.completedQuestsId?.push(payload);
         return;
       }
@@ -120,5 +124,9 @@ export const questSlice = createSlice({
       state.lastDayUpdate = payload;
     },
     setLastDayUpdateError(state, action: PayloadAction<string>) {},
+
+    getInitialState() {
+      return INITIAL_STATE;
+    },
   },
 });

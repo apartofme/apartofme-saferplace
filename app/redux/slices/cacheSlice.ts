@@ -15,8 +15,6 @@ import {
   ISignUpData,
   ISignUpDataPayload,
   ITranslations,
-  ITrySomethingItem,
-  ITrySomethingItemPayload,
 } from '../types';
 
 interface ICacheState {
@@ -25,11 +23,12 @@ interface ICacheState {
     child: Nullable<IShortSignUpData>;
   };
   translations: Nullable<ITranslations>;
-  trySomethingItem: Nullable<ITrySomethingItem>;
+  trySomethingItem: Nullable<string>;
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
   // TODO: make it as separate slice
   plantArea: IPlantArea;
+  currentQuestionIndex: number;
   emotionItem: Nullable<string>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
   troublesomeSpiritQuestionsItem: Nullable<string>;
@@ -54,6 +53,7 @@ const INITIAL_STATE: ICacheState = {
     BottomLeft: null,
     BottomRight: null,
   },
+  currentQuestionIndex: -1,
   emotionItem: null,
   favouriteCharmItem: null,
   troublesomeSpiritQuestionsItem: null,
@@ -74,8 +74,8 @@ export const cacheSlice = createSlice({
     saveTranslationsSuccess(state, { payload }: ISaveTranslationsPayload) {
       state.translations = _.merge(state.translations, payload);
     },
-    saveTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
-      state.trySomethingItem = _.merge(state.trySomethingItem, payload);
+    saveTrySomethingItem(state, { payload }: PayloadAction<string>) {
+      state.trySomethingItem = payload;
     },
     saveNicknames(state, { payload }: INicknamesPayload) {
       state.nicknames = _.merge(state.nicknames, payload);
@@ -112,6 +112,17 @@ export const cacheSlice = createSlice({
       { payload }: PayloadAction<string>,
     ) {
       state.troublesomeSpiritQuestionsItem = payload;
+    },
+    incrementCurrentQuestionIndex(state) {
+      state.currentQuestionIndex = state.currentQuestionIndex + 1;
+    },
+    decrementCurrentQuestionIndex(state) {
+      if (state.currentQuestionIndex > 0) {
+        state.currentQuestionIndex = state.currentQuestionIndex - 1;
+      }
+    },
+    setDefaultCurrentQuestionIndex(state) {
+      state.currentQuestionIndex = -1;
     },
   },
 });

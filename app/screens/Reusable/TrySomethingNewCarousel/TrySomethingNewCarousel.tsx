@@ -14,6 +14,7 @@ import { useAppDispatch } from '../../../hooks';
 import {
   useNavigateNextQuest,
   useNavigatePrevQuest,
+  useParsedJSXTextNickname,
 } from '../../../hooks/quest';
 import { cacheSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
@@ -24,7 +25,8 @@ import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.t
 
 export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScreenProps> =
   ({ route }) => {
-    const { title, description, backgroundImage } = route.params.data;
+    const { title, description, backgroundImage, titleHasNickname } =
+      route.params.data;
 
     const dispatch = useAppDispatch();
 
@@ -33,6 +35,14 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
     const [isModal, setIsModal] = useState(false);
+
+    const Title = useParsedJSXTextNickname({
+      text: title,
+      textHasNickname: titleHasNickname ?? true,
+      preset: 'title',
+      // TODO: remove
+      nicknameStyle: { color: '#00dbc0' },
+    });
 
     const { t } = useTranslation();
 
@@ -48,9 +58,9 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     }, [activeItemIndex]);
 
     const onSubmitPress = useCallback(() => {
-      dispatch(cacheSlice.actions.saveTrySomethingItem(activeItem));
+      dispatch(cacheSlice.actions.saveTrySomethingItem(t(activeItem.title)));
       onSubmit();
-    }, [activeItem, dispatch, onSubmit]);
+    }, [activeItem.title, dispatch, onSubmit, t]);
 
     return (
       <ImageBackground
@@ -66,6 +76,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
         <SafeAreaView style={generalStyles.flex}>
           <Modal isVisible={isModal} style={styles.modal}>
             <TrySomethingModal
+              titleHasNickname={titleHasNickname ?? false}
               setModalStatus={setModalStatus}
               title={title}
               subtitle={description ?? ''}
@@ -79,7 +90,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
           />
           <View style={styles.container}>
             <View style={styles.titleContainer}>
-              <ExtendedText>{title}</ExtendedText>
+              <Title />
               <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
             </View>
             <TrySomethingCarousel

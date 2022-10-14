@@ -32,6 +32,7 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
 
   // TODO: remove
   useMount(() => {
+    dispatch(cacheSlice.actions.setDefaultCurrentQuestionIndex());
     dispatch(
       cacheSlice.actions.saveNicknames({
         firstPlayer: parentNickname,

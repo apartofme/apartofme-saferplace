@@ -16,6 +16,7 @@ export * from './Instruction';
 export * from './Journel';
 export * from './JournelSupport';
 export * from './NadiyaEmotionCarousel';
+export * from './Question';
 export * from './RadioButton';
 export * from './ReadOutLoud';
 export * from './SelectDrawBuild';
