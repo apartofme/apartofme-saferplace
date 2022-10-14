@@ -9,7 +9,3 @@ type NavigationProps = StackNavigationProp<
 type RouteProps = StackScreenProps<MergedStackParams, 'GroundingInstruction'>;
 
 export interface IInstructionScreenProps extends NavigationProps, RouteProps {}
-
-export interface IGroundingInstructionRoute {
-  buttonTitle: string;
-}
