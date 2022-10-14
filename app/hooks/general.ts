@@ -46,5 +46,3 @@ export const useAppState = () => {
 
   return appState;
 };
-
-export default useAppState;
