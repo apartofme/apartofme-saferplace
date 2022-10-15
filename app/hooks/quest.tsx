@@ -7,9 +7,10 @@ import _ from 'lodash';
 import { IMAGES } from '../assets';
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
-import { Nullable } from '../utils';
+import { containsFirstPlayer, containsSecondPlayer, Nullable } from '../utils';
 import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
+import { DatoCMSTextVariables } from '../constants/quest';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
@@ -179,12 +180,14 @@ export const useNavigatePrevQuest = () => {
 export const useParsedJSXTextNickname = ({
   text,
   textHasNickname,
+  isChild,
   preset,
   style,
   variableStyle,
 }: {
   text: string;
   textHasNickname: boolean;
+  isChild?: boolean;
   preset?: ExtendedTextPresets;
   style?: TextStyle;
   variableStyle?: TextStyle;
@@ -201,6 +204,21 @@ export const useParsedJSXTextNickname = ({
     useAppSelector(state => state.cache.emotions.selected) ?? '';
   const troublesomeSpiritQuestion =
     useAppSelector(state => state.cache.troublesomeSpiritQuestionsItem) ?? '';
+  const childTrySomethingTitle =
+    useAppSelector(state => state.cache.childTrySomethingItem?.title) ?? '';
+  const childTrySomethingDescription =
+    useAppSelector(state => state.cache.childTrySomethingItem?.description) ??
+    '';
+  const parentTrySomethingTitle =
+    useAppSelector(state => state.cache.parentTrySomethingItem?.title) ?? '';
+  const parentTrySomethingDescription =
+    useAppSelector(state => state.cache.parentTrySomethingItem?.description) ??
+    '';
+  const childKindness = useAppSelector(state => state.cache.childKindnessItem);
+  const parentKindness = useAppSelector(
+    state => state.cache.parentKindnessItem,
+  );
+  const isChildMove = useIsChildMove(text);
 
   if (!textHasNickname) {
     return () => (
@@ -210,39 +228,91 @@ export const useParsedJSXTextNickname = ({
     );
   }
 
-  const parseBoldText = (boldText: string) => {
+  if (_.isUndefined(isChild)) {
+    isChild = isChildMove;
+  }
+
+  const renderBoldText = (boldText: string) => (
+    <ExtendedText key={boldText} preset={preset} style={generalStyles.boldText}>
+      {boldText.replace('*', '')}
+    </ExtendedText>
+  );
+
+  const renderVariableText = (variableText: string) => (
+    <ExtendedText key={variableText} preset={preset} style={variableStyle}>
+      {variableText.replace('$', '')}
+    </ExtendedText>
+  );
+
+  const renderTrySomethingTitle = () => {
+    const correctTrySomethingTitle = isChild
+      ? childTrySomethingTitle
+      : parentTrySomethingTitle;
+
     return (
       <ExtendedText
-        key={boldText}
+        key={DatoCMSTextVariables.TrySomethingTitle}
         preset={preset}
-        style={generalStyles.boldText}>
-        {boldText.replace('*', '')}
+        style={variableStyle}>
+        {correctTrySomethingTitle}
       </ExtendedText>
     );
   };
 
-  const parseVariableText = (variableText: string) => {
+  const renderTrySomethingDescription = (trySomethingDescription: string) => {
+    const correctTrySomethingDescription = isChild
+      ? childTrySomethingDescription
+      : parentTrySomethingDescription;
+
     return (
-      <ExtendedText preset={preset} style={variableStyle}>
-        {variableText.replace('$', '')}
+      <ExtendedText
+        key={DatoCMSTextVariables.TrySomethingDescription}
+        preset={preset}
+        style={trySomethingDescription.startsWith('$') ? variableStyle : null}>
+        {correctTrySomethingDescription}
+      </ExtendedText>
+    );
+  };
+
+  const renderKindnessInput = () => {
+    const correctKindnessInput = isChild ? childKindness : parentKindness;
+
+    return (
+      <ExtendedText
+        key={DatoCMSTextVariables.KindnessInput}
+        preset={preset}
+        style={variableStyle}>
+        {correctKindnessInput}
       </ExtendedText>
     );
   };
 
   const textArray = _(text)
-    .replace('firstPlayer', `$${firstPlayer}`)
-    .replace('secondPlayer', `$${secondPlayer}`)
-    .replace('grown_up', `$${parentNickname}`)
-    .replace('child', `$${childNickname}`)
-    .replace('troublesomeSpiritQuestion', `$${troublesomeSpiritQuestion}`)
-    .replace('playerEmotion', playerEmotion)
+    .replace(DatoCMSTextVariables.FirstPlayer, `$${firstPlayer}`)
+    .replace(DatoCMSTextVariables.SecondPlayer, `$${secondPlayer}`)
+    .replace(DatoCMSTextVariables.GrownUp, `$${parentNickname}`)
+    .replace(DatoCMSTextVariables.Child, `$${childNickname}`)
+    .replace(
+      DatoCMSTextVariables.TroublesomeSpiritQuestion,
+      `$${troublesomeSpiritQuestion}`,
+    )
+    .replace(DatoCMSTextVariables.PlayerEmotion, playerEmotion)
     .split('|')
     .map(value => {
+      if (_.includes(value, DatoCMSTextVariables.TrySomethingTitle)) {
+        return renderTrySomethingTitle();
+      }
+      if (_.includes(value, DatoCMSTextVariables.TrySomethingDescription)) {
+        return renderTrySomethingDescription(value);
+      }
+      if (value === DatoCMSTextVariables.KindnessInput) {
+        return renderKindnessInput();
+      }
       if (value.startsWith('$')) {
-        return parseVariableText(value);
+        return renderVariableText(value);
       }
       if (value.startsWith('*')) {
-        return parseBoldText(value);
+        return renderBoldText(value);
       }
 
       return value;
@@ -285,4 +355,20 @@ export const useRenderQuestHeader = (data: {
       <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} onLeftIconPress={goBack} />
     );
   }
+};
+
+export const useIsChildMove = (text: string): boolean => {
+  const childNickname = useAppSelector(state => state.user.child?.nickname);
+  const firstPlayer = useAppSelector(
+    state => state.cache.nicknames?.firstPlayer,
+  );
+  const secondPlayer = useAppSelector(
+    state => state.cache.nicknames?.secondPlayer,
+  );
+
+  const isChild =
+    (containsFirstPlayer(text) && firstPlayer === childNickname) ||
+    (containsSecondPlayer(text) && secondPlayer === childNickname);
+
+  return isChild;
 };

@@ -15,6 +15,8 @@ import {
   ISignUpData,
   ISignUpDataPayload,
   ITranslations,
+  ITrySomethingItem,
+  ITrySomethingItemPayload,
 } from '../types';
 
 interface ICacheState {
@@ -23,13 +25,16 @@ interface ICacheState {
     child: Nullable<IShortSignUpData>;
   };
   translations: Nullable<ITranslations>;
-  trySomethingItem: Nullable<string>;
+  childTrySomethingItem: Nullable<ITrySomethingItem>;
+  parentTrySomethingItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
   currentQuestionIndex: number;
   emotionItem: Nullable<string>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
   troublesomeSpiritQuestionsItem: Nullable<string>;
+  childKindnessItem: Nullable<string>;
+  parentKindnessItem: Nullable<string>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -38,7 +43,8 @@ const INITIAL_STATE: ICacheState = {
     child: null,
   },
   translations: null,
-  trySomethingItem: null,
+  childTrySomethingItem: null,
+  parentTrySomethingItem: null,
   nicknames: null,
   emotions: {
     selected: null,
@@ -48,6 +54,8 @@ const INITIAL_STATE: ICacheState = {
   emotionItem: null,
   favouriteCharmItem: null,
   troublesomeSpiritQuestionsItem: null,
+  childKindnessItem: null,
+  parentKindnessItem: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -65,8 +73,11 @@ export const cacheSlice = createSlice({
     saveTranslationsSuccess(state, { payload }: ISaveTranslationsPayload) {
       state.translations = _.merge(state.translations, payload);
     },
-    saveTrySomethingItem(state, { payload }: PayloadAction<string>) {
-      state.trySomethingItem = payload;
+    saveChildTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
+      state.childTrySomethingItem = payload;
+    },
+    saveParentTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
+      state.parentTrySomethingItem = payload;
     },
     saveNicknames(state, { payload }: INicknamesPayload) {
       state.nicknames = _.merge(state.nicknames, payload);
@@ -114,6 +125,12 @@ export const cacheSlice = createSlice({
     },
     setDefaultCurrentQuestionIndex(state) {
       state.currentQuestionIndex = -1;
+    },
+    saveChildKindnessItem(state, { payload }: PayloadAction<string>) {
+      state.childKindnessItem = payload;
+    },
+    saveParentKindnessItem(state, { payload }: PayloadAction<string>) {
+      state.parentKindnessItem = payload;
     },
   },
 });

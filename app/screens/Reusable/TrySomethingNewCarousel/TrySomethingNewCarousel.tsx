@@ -12,6 +12,7 @@ import {
 import { IMAGES } from '../../../assets';
 import { useAppDispatch } from '../../../hooks';
 import {
+  useIsChildMove,
   useNavigateNextQuest,
   useNavigatePrevQuest,
   useParsedJSXTextNickname,
@@ -25,8 +26,14 @@ import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.t
 
 export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScreenProps> =
   ({ route }) => {
-    const { title, description, backgroundImage, titleHasNickname } =
-      route.params.data;
+    const {
+      title,
+      description,
+      tellMoreTitle,
+      tellMoreDescription,
+      backgroundImage,
+      titleHasNickname,
+    } = route.params.data;
 
     const dispatch = useAppDispatch();
 
@@ -41,13 +48,14 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
       // TODO: remove
-      nicknameStyle: { color: '#00dbc0' },
+      variableStyle: { color: '#00dbc0' },
     });
 
     const { t } = useTranslation();
 
     const goBack = useNavigatePrevQuest();
     const onSubmit = useNavigateNextQuest();
+    const isChild = useIsChildMove(title);
 
     const setModalStatus = useCallback(() => {
       setIsModal(!isModal);
@@ -58,9 +66,24 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     }, [activeItemIndex]);
 
     const onSubmitPress = useCallback(() => {
-      dispatch(cacheSlice.actions.saveTrySomethingItem(t(activeItem.title)));
+      if (isChild) {
+        dispatch(
+          cacheSlice.actions.saveChildTrySomethingItem({
+            title: t(activeItem.title),
+            description: t(activeItem.subtitle),
+          }),
+        );
+      } else {
+        dispatch(
+          cacheSlice.actions.saveParentTrySomethingItem({
+            title: t(activeItem.title),
+            description: t(activeItem.subtitle),
+          }),
+        );
+      }
+
       onSubmit();
-    }, [activeItem.title, dispatch, onSubmit, t]);
+    }, [activeItem.subtitle, activeItem.title, dispatch, isChild, onSubmit, t]);
 
     return (
       <ImageBackground
@@ -78,9 +101,16 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
             <TrySomethingModal
               titleHasNickname={titleHasNickname ?? false}
               setModalStatus={setModalStatus}
-              title={title}
-              subtitle={description ?? ''}
-              data={TRY_SOMETHING_ITEMS[activeItemIndex]}
+              title={tellMoreTitle ?? ''}
+              subtitle={tellMoreDescription ?? ''}
+              // TODO: change to real image
+              backgroundImage={
+                backgroundImage
+                  ? IMAGES[backgroundImage]
+                  : {
+                      uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
+                    }
+              }
             />
           </Modal>
           <MainHeader

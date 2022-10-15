@@ -35,15 +35,19 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
     tellMoreTitle,
     titleHasNickname,
     crossHeader,
+    escapeMenuAlternativeNavigateTo,
   } = route.params.data;
 
   const { t } = useTranslation();
-  const [activeItem, setActiveItem] = useState(EMOTION_CAROUSEL_ITEMS[0]);
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const [emotionData, setEmotionData] = useState(EMOTION_CAROUSEL_ITEMS);
+  const [emotionData, setEmotionData] = useState(
+    _.cloneDeep(EMOTION_CAROUSEL_ITEMS),
+  );
+  const [activeItem, setActiveItem] = useState(emotionData[0]);
   const [isModal, setIsModal] = useState(false);
   const dispatch = useAppDispatch();
-  const emotion = useAppSelector(state => state.cache.emotions.selected) ?? '';
+  const playerEmotion =
+    useAppSelector(state => state.cache.emotions.selected) ?? '';
 
   const navigateToNextQuest = useNavigateNextQuest();
 
@@ -53,15 +57,18 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
     preset: 'title',
     style: styles.title,
     // TODO: remove
-    nicknameStyle: { color: '#00dbc0' },
+    variableStyle: { color: '#00dbc0' },
   });
 
-  const Header = useRenderQuestHeader(crossHeader ?? false);
+  const Header = useRenderQuestHeader({
+    crossHeader: crossHeader ?? false,
+    escapeMenuAlternativeNavigateTo,
+  });
 
   const onSubmit = useCallback(() => {
-    dispatch(cacheSlice.actions.saveEmotionItem(activeItem.title));
+    dispatch(cacheSlice.actions.saveEmotionItem(t(activeItem.title)));
     navigateToNextQuest();
-  }, [activeItem.title, dispatch, navigateToNextQuest]);
+  }, [activeItem.title, dispatch, navigateToNextQuest, t]);
 
   const setModalStatus = useCallback(() => {
     setIsModal(!isModal);
@@ -71,15 +78,15 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
     setEmotionData(prev =>
       _.map(prev, item =>
         _.merge(item, {
-          title: t(item.title).replace('|emotion|', emotion),
+          title: t(item.title).replace('|emotion|', playerEmotion),
         }),
       ),
     );
   });
 
   useEffect(() => {
-    setActiveItem(EMOTION_CAROUSEL_ITEMS[activeItemIndex]);
-  }, [activeItemIndex]);
+    setActiveItem(emotionData[activeItemIndex]);
+  }, [activeItemIndex, emotionData]);
 
   return (
     <ImageBackground

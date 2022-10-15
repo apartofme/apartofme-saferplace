@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { styles } from './TrySomethingModal.styles';
 import { ITrySomethingModalProps } from './TrySomethingModal.types';
 import { generalStyles } from '../../../../../utils/styles';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   BottomButtonView,
   ExtendedKeyboardAvoidingView,
@@ -17,6 +17,7 @@ import { IMAGES } from '../../../../../assets';
 import { cacheSlice } from '../../../../../redux/slices';
 import {
   useAppDispatch,
+  useIsChildMove,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
 } from '../../../../../hooks';
@@ -24,13 +25,14 @@ import {
 export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   title,
   subtitle,
+  backgroundImage,
   titleHasNickname,
   setModalStatus,
-  data,
 }) => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
+  const isChild = useIsChildMove(title);
 
   const onSubmit = useNavigateNextQuest();
 
@@ -41,38 +43,54 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
     // TODO: remove
-    nicknameStyle: { color: '#00dbc0' },
+    variableStyle: { color: '#00dbc0' },
   });
 
   const onSubmitPress = useCallback(() => {
-    data.subtitle = inputValue;
-    dispatch(cacheSlice.actions.saveTrySomethingItem(t(data.title)));
+    if (isChild) {
+      dispatch(
+        cacheSlice.actions.saveChildTrySomethingItem({
+          title: t('labels.create_own'),
+          description: inputValue,
+        }),
+      );
+    } else {
+      dispatch(
+        cacheSlice.actions.saveParentTrySomethingItem({
+          title: t('labels.create_own'),
+          description: inputValue,
+        }),
+      );
+    }
+
     setModalStatus();
     onSubmit();
-  }, [data, dispatch, inputValue, onSubmit, setModalStatus, t]);
+  }, [dispatch, inputValue, isChild, onSubmit, setModalStatus, t]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        rightIcon={IMAGES.WHITE_PENCIL}
-        onLeftIconPress={setModalStatus}
-      />
-      <ExtendedKeyboardAvoidingView>
-        <BottomButtonView
-          buttonTitle={t('buttons.next')}
-          isDisabledButton={!inputValue}
-          onSubmit={onSubmitPress}>
-          <View style={styles.container}>
-            <Title />
-            <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
-            <ExtendedTextInput
-              value={inputValue}
-              onChangeText={setInputValue}
-            />
-          </View>
-        </BottomButtonView>
-      </ExtendedKeyboardAvoidingView>
-    </SafeAreaView>
+    <ImageBackground source={backgroundImage} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          rightIcon={IMAGES.WHITE_PENCIL}
+          onLeftIconPress={setModalStatus}
+        />
+        <ExtendedKeyboardAvoidingView>
+          <BottomButtonView
+            buttonTitle={t('buttons.next')}
+            isDisabledButton={!inputValue}
+            onSubmit={onSubmitPress}>
+            <View style={styles.container}>
+              <Title />
+              <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
+              <ExtendedTextInput
+                value={inputValue}
+                onChangeText={setInputValue}
+              />
+            </View>
+          </BottomButtonView>
+        </ExtendedKeyboardAvoidingView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

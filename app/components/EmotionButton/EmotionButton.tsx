@@ -1,38 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, Image, TouchableOpacity } from 'react-native';
-import _ from 'lodash';
 
 import { ExtendedText } from '../ExtendedText';
 import { EmotionButtonType } from './EmotionButton.data';
 import { IEmotionButton, IEmotionButtonProps } from './EmotionButton.types';
 import { styles } from './EmotionButton.styles';
 import { Nullable } from '../../utils';
-import { useAppSelector } from '../../hooks';
 
 export const EmotionButton: React.FC<IEmotionButtonProps> = ({
   data,
   setSelected,
 }) => {
-  const completedEmotions = useAppSelector(
-    state => state.cache.emotions.completed,
-  );
   const [selectedItem, setSelectedItem] =
     useState<Nullable<EmotionButtonType>>(null);
-  const [emotions, setEmotions] = useState<IEmotionButton[]>(data);
 
   useEffect(() => {
     setSelected(selectedItem);
   }, [selectedItem, setSelected]);
-
-  useEffect(() => {
-    const tempEmotions = _.map(data, item => {
-      if (_.indexOf(completedEmotions, item.type) === -1) {
-        return item;
-      }
-    });
-
-    setEmotions(_.compact(tempEmotions));
-  }, [completedEmotions, data]);
 
   const renderItem = useCallback(
     ({ item }: { item: IEmotionButton }) => {
@@ -57,7 +41,7 @@ export const EmotionButton: React.FC<IEmotionButtonProps> = ({
 
   return (
     <FlatList
-      data={emotions}
+      data={data}
       renderItem={renderItem}
       numColumns={2}
       columnWrapperStyle={styles.row}

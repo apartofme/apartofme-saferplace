@@ -1,7 +1,7 @@
 import { EmotionButtonType, IEmotionButton } from '../../../components';
 
 // TODO: change to correct data
-export const EMOTION_BUTTON_LIST: IEmotionButton[] = [
+export const EMOTION_BUTTON_LIST: ReadonlyArray<IEmotionButton> = [
   {
     title: 'Scared',
     image: {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import {
   Image,
   ImageBackground,
@@ -12,6 +12,7 @@ import { styles } from './AcknowledgementAlongEdgesDoubleButton.styles';
 import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
+  usePositiveNavigateTo,
   useRenderQuestHeader,
 } from '../../../../hooks';
 import { IMAGES } from '../../../../assets';
@@ -28,11 +29,15 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
       backgroundImage,
       crossHeader,
       titleHasNickname,
+      positiveNavigatesTo,
       escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
+    const isNextButtonTitle = /next/i.test(buttonTitle as string);
+
     const { t } = useTranslation();
-    const onSubmit = useNavigateNextQuest();
+    const navigateToNextQuest = useNavigateNextQuest();
+    const positiveNavigate = usePositiveNavigateTo(positiveNavigatesTo);
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -49,12 +54,28 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
     });
 
     const correctButtonTitle = useMemo(() => {
-      if (/next/i.test(buttonTitle as string)) {
+      if (isNextButtonTitle) {
         return t('buttons.skip').toUpperCase();
       }
 
       return t('buttons.finish').toUpperCase();
-    }, [buttonTitle, t]);
+    }, [isNextButtonTitle, t]);
+
+    const onSubmit = useCallback(() => {
+      if (isNextButtonTitle) {
+        navigateToNextQuest();
+        return;
+      }
+      positiveNavigate();
+    }, [isNextButtonTitle, navigateToNextQuest, positiveNavigate]);
+
+    const onBottomButtonPress = useCallback(() => {
+      if (isNextButtonTitle) {
+        positiveNavigate();
+        return;
+      }
+      navigateToNextQuest();
+    }, [isNextButtonTitle, navigateToNextQuest, positiveNavigate]);
 
     return (
       <ImageBackground
@@ -81,7 +102,9 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
               {description}
             </ExtendedText>
           </BottomButtonView>
-          <TouchableOpacity style={styles.bottomButton}>
+          <TouchableOpacity
+            onPress={onBottomButtonPress}
+            style={styles.bottomButton}>
             <ExtendedText preset="secondary-text">
               {correctButtonTitle}
             </ExtendedText>

@@ -33,9 +33,8 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
     } = route.params.data;
 
     const { t } = useTranslation();
-    const [activeItemIndex, setActiveItemIndex] = useState(0);
     const [nadiyaEmotionData, setNadiyaEmotionData] = useState(
-      EMOTION_CAROUSEL_ITEMS,
+      _.cloneDeep(EMOTION_CAROUSEL_ITEMS),
     );
 
     const navigateToNextQuest = useNavigateNextQuest();
@@ -93,7 +92,7 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
             </ExtendedText>
             <EmotionCarousel
               data={nadiyaEmotionData}
-              setIndex={setActiveItemIndex}
+              setIndex={_.noop}
               style={styles.carousel}
               itemStyle={styles.carouselItem}
             />

@@ -33,6 +33,11 @@ export interface IFavouriteCharmItem {
   title: string;
 }
 
+export interface ITrySomethingItem {
+  title: string;
+  description: string;
+}
+
 export interface ISignUpDataPayload {
   payload: ISignUpData;
 }
@@ -64,4 +69,6 @@ export interface IFavouriteCharmItemPayload {
   payload: IFavouriteCharmItem;
 }
 
-export type IPlantArea = Record<PlantAreaType, Nullable<IPlant>>;
+export interface ITrySomethingItemPayload {
+  payload: ITrySomethingItem;
+}
