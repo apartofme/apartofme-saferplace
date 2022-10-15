@@ -1,3 +1,4 @@
+import { IMAGES } from '../assets';
 import { IPlantArea } from '../redux/types';
 import { IInterruptedQuestLine } from '../redux/types/questTypes';
 import { Nullable } from '../utils/index';
@@ -33,6 +34,8 @@ export enum AvatarsNameType {
   WhiteBackArrow = 'WHITE_BACK_ARROW',
   Tree = 'TREE',
 }
+
+export type ImagesKeys = keyof typeof IMAGES;
 
 export interface IElixirProgress {
   fullnessElixir: number;

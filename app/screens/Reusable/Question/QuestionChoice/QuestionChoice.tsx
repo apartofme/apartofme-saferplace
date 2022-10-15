@@ -49,7 +49,7 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
     preset: 'title',
     style: styles.title,
     // TODO: remove
-    nicknameStyle: { color: '#00dbc0' },
+    variableStyle: { color: '#00dbc0' },
   });
 
   return (

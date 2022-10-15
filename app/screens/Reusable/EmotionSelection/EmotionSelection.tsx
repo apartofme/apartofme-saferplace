@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import _ from 'lodash';
 
 import { IEmotionSelectionScreenProps } from './EmotionSelection.types';
 import { styles } from './EmotionSelection.styles';
@@ -11,6 +12,8 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import {
   useAppDispatch,
+  useAppSelector,
+  useMount,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
@@ -33,10 +36,20 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
 
   const [selectedEmotion, setSelecredEmotion] =
     useState<Nullable<EmotionButtonType>>(null);
+  const [emotions, setEmotions] = useState(_.cloneDeep(EMOTION_BUTTON_LIST));
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const completedEmotions = useAppSelector(
+    state => state.cache.emotions.completed,
+  );
 
   const navigateToNextQuest = useNavigateNextQuest();
+
+  useEffect(() => {
+    if (completedEmotions.length >= EMOTION_BUTTON_LIST.length) {
+      dispatch(cacheSlice.actions.clearEmotions());
+    }
+  }, [completedEmotions.length, dispatch]);
 
   const Title = useParsedJSXTextNickname({
     text: title,
@@ -57,6 +70,15 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
     navigateToNextQuest();
   }, [dispatch, navigateToNextQuest, selectedEmotion]);
 
+  useMount(() => {
+    const tempEmotions = _.filter(
+      emotions,
+      item => _.indexOf(completedEmotions, item.type) === -1,
+    );
+
+    setEmotions(tempEmotions);
+  });
+
   return (
     <ImageBackground
       // TODO: change to real image
@@ -72,10 +94,7 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
           isDisabledButton={!selectedEmotion}
           style={styles.container}>
           <Title />
-          <EmotionButton
-            data={EMOTION_BUTTON_LIST}
-            setSelected={setSelecredEmotion}
-          />
+          <EmotionButton data={emotions} setSelected={setSelecredEmotion} />
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>

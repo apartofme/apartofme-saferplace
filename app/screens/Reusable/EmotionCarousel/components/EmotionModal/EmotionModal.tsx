@@ -33,8 +33,9 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
 
   const onSubmit = useCallback(() => {
     dispatch(cacheSlice.actions.saveEmotionItem(inputValue));
+    setModalStatus();
     navigateToNextQuest();
-  }, [dispatch, inputValue, navigateToNextQuest]);
+  }, [dispatch, inputValue, navigateToNextQuest, setModalStatus]);
 
   const Title = useParsedJSXTextNickname({
     text: title,
@@ -42,7 +43,7 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
     preset: 'title',
     style: styles.title,
     // TODO: remove
-    nicknameStyle: { color: '#00dbc0' },
+    variableStyle: { color: '#00dbc0' },
   });
 
   useEffect(() => {

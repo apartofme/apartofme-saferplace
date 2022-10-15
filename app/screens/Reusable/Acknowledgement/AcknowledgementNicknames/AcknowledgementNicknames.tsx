@@ -2,11 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { BottomButtonView, ExtendedText } from '../../../../components';
+import { BottomButtonView } from '../../../../components';
 import { IMAGES } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementNicknamesScreenProps } from './AcknowledgementNicknames.types';
 import {
+  useIsChildMove,
   useParsedJSXTextNickname,
   usePositiveNavigateTo,
   useRenderQuestHeader,
@@ -28,12 +29,23 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
     const { t } = useTranslation();
 
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
+    const isChild = useIsChildMove(title);
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
       style: styles.title,
+      // TODO: remove
+      variableStyle: { color: '#00dbc0' },
+    });
+
+    const Description = useParsedJSXTextNickname({
+      text: description ?? '',
+      textHasNickname: titleHasNickname ?? true,
+      isChild,
+      preset: 'secondary-text',
+      style: styles.description,
       // TODO: remove
       variableStyle: { color: '#00dbc0' },
     });
@@ -64,9 +76,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
 
             <View>
               <Title />
-              <ExtendedText preset="secondary-text" style={styles.description}>
-                {description}
-              </ExtendedText>
+              <Description />
             </View>
           </BottomButtonView>
         </SafeAreaView>

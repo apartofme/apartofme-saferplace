@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -12,10 +12,13 @@ import {
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import {
+  useAppDispatch,
+  useIsChildMove,
   useParsedJSXTextNickname,
   usePositiveNavigateTo,
   useRenderQuestHeader,
 } from '../../../hooks';
+import { cacheSlice } from '../../../redux/slices';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
   const {
@@ -30,7 +33,18 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
 
   const [inputText, setInputText] = useState<string>('');
   const { t } = useTranslation();
-  const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
+  const dispatch = useAppDispatch();
+  const isChild = useIsChildMove(title);
+  const positiveNavigate = usePositiveNavigateTo(positiveNavigatesTo);
+
+  const onSubmit = useCallback(() => {
+    if (isChild) {
+      dispatch(cacheSlice.actions.saveChildKindnessItem(inputText));
+    } else {
+      dispatch(cacheSlice.actions.saveParentKindnessItem(inputText));
+    }
+    positiveNavigate();
+  }, [dispatch, inputText, isChild, positiveNavigate]);
 
   const Title = useParsedJSXTextNickname({
     text: title,
