@@ -26,8 +26,6 @@ interface ICacheState {
   trySomethingItem: Nullable<string>;
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
-  // TODO: make it as separate slice
-  plantArea: IPlantArea;
   currentQuestionIndex: number;
   emotionItem: Nullable<string>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
@@ -45,13 +43,6 @@ const INITIAL_STATE: ICacheState = {
   emotions: {
     selected: null,
     completed: [],
-  },
-  plantArea: {
-    TopLeft: null,
-    TopRight: null,
-    Center: null,
-    BottomLeft: null,
-    BottomRight: null,
   },
   currentQuestionIndex: -1,
   emotionItem: null,
