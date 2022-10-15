@@ -1,9 +1,9 @@
-import { ITrySomethingCarouselItem } from '../../../../../components';
+import { ImageSourcePropType } from 'react-native';
 
 export interface ITrySomethingModalProps {
   title: string;
   subtitle: string;
-  data: ITrySomethingCarouselItem;
   titleHasNickname: boolean;
+  backgroundImage: ImageSourcePropType;
   setModalStatus: () => void;
 }

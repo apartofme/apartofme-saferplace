@@ -23,12 +23,11 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
       backgroundImage,
       crossHeader,
       titleHasNickname,
+      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const { t } = useTranslation();
-    const emotionItem =
-      useAppSelector(state => state.cache.emotionItem) ??
-      '[I feel angry sometimes too]';
+    const emotionItem = useAppSelector(state => state.cache.emotionItem) ?? '';
     const onSubmit = useNavigateNextQuest();
 
     const Title = useParsedJSXTextNickname({
@@ -40,7 +39,10 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
       variableStyle: { color: '#00dbc0' },
     });
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     return (
       <ImageBackground

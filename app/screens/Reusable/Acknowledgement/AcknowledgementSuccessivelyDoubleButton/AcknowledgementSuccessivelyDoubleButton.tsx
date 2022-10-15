@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Image,
@@ -13,10 +13,17 @@ import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
+  useNavigateNextQuest,
+  useAppSelector,
+  useAppDispatch,
+  useNegativeNavigateTo,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementSuccessivelyDoubleButtonScreenProps } from './AcknowledgementSuccessivelyDoubleButton.types';
 import { styles } from './AcknowledgementSuccessivelyDoubleButton.styles';
+import { cacheSlice } from '../../../../redux/slices';
+import { THE_CHARM_OF_THE_MIRROR_ID } from '../../../../constants/quest';
+import { EMOTION_BUTTON_LIST } from '../../EmotionSelection';
 
 export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledgementSuccessivelyDoubleButtonScreenProps> =
   ({ route }) => {
@@ -26,13 +33,30 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
       buttonTitle,
       crossHeader,
       positiveNavigatesTo,
+      negativeNavigatesTo,
       titleHasNickname,
       escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
-    const { t } = useTranslation();
+    const isNextButtonTitle = /next/i.test(buttonTitle as string);
 
-    const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const navigateToNextQuest = useNavigateNextQuest();
+    const positiveNavigate = usePositiveNavigateTo(positiveNavigatesTo);
+    const currentQuestLineId = useAppSelector(
+      state => state.quest.currentQuestLine?.id,
+    );
+    const completedEmotionsCount = useAppSelector(
+      state => state.cache.emotions.completed.length,
+    );
+
+    const isAllEmotionsCompleted =
+      completedEmotionsCount < EMOTION_BUTTON_LIST.length - 1;
+    const negativeNavigate = useNegativeNavigateTo(
+      negativeNavigatesTo,
+      isAllEmotionsCompleted,
+    );
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -47,6 +71,50 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
       crossHeader: crossHeader ?? false,
       escapeMenuAlternativeNavigateTo,
     });
+
+    const correctButtonTitle = useMemo(() => {
+      if (isNextButtonTitle) {
+        return t('buttons.skip').toUpperCase();
+      }
+      return t('buttons.i_finished').toUpperCase();
+    }, [isNextButtonTitle, t]);
+
+    const onSubmit = useCallback(() => {
+      if (isNextButtonTitle) {
+        navigateToNextQuest();
+        return;
+      }
+      if (currentQuestLineId === THE_CHARM_OF_THE_MIRROR_ID) {
+        dispatch(cacheSlice.actions.completeSelectedEmotion());
+        negativeNavigate();
+        return;
+      }
+      positiveNavigate();
+    }, [
+      currentQuestLineId,
+      dispatch,
+      isNextButtonTitle,
+      navigateToNextQuest,
+      negativeNavigate,
+      positiveNavigate,
+    ]);
+
+    const onBottomButtonPress = useCallback(() => {
+      if (isNextButtonTitle) {
+        positiveNavigate();
+        return;
+      }
+      if (currentQuestLineId === THE_CHARM_OF_THE_MIRROR_ID) {
+        dispatch(cacheSlice.actions.clearEmotions());
+      }
+      navigateToNextQuest();
+    }, [
+      currentQuestLineId,
+      dispatch,
+      isNextButtonTitle,
+      navigateToNextQuest,
+      positiveNavigate,
+    ]);
 
     return (
       <ImageBackground
@@ -71,9 +139,11 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
               {description}
             </ExtendedText>
           </BottomButtonView>
-          <TouchableOpacity style={styles.bottomButton}>
+          <TouchableOpacity
+            onPress={onBottomButtonPress}
+            style={styles.bottomButton}>
             <ExtendedText preset="secondary-text">
-              {t('buttons.skip').toUpperCase()}
+              {correctButtonTitle}
             </ExtendedText>
           </TouchableOpacity>
         </SafeAreaView>

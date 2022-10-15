@@ -7,9 +7,20 @@ import _ from 'lodash';
 import { IMAGES } from '../assets';
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
-import { Nullable } from '../utils';
+import { containsFirstPlayer, containsSecondPlayer, Nullable } from '../utils';
 import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
+import {
+  CHILD,
+  FIRST_PLAYER,
+  GROWN_UP,
+  KINDNESS_INPUT,
+  PLAYER_EMOTION,
+  SECOND_PLAYER,
+  TROUBLESOME_SPIRIT_QUESTION,
+  TRY_SOMETHING_DESCRIPTION,
+  TRY_SOMETHING_TITLE,
+} from '../constants/quest';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
@@ -179,12 +190,14 @@ export const useNavigatePrevQuest = () => {
 export const useParsedJSXTextNickname = ({
   text,
   textHasNickname,
+  isChild,
   preset,
   style,
   variableStyle,
 }: {
   text: string;
   textHasNickname: boolean;
+  isChild?: boolean;
   preset?: ExtendedTextPresets;
   style?: TextStyle;
   variableStyle?: TextStyle;
@@ -201,6 +214,21 @@ export const useParsedJSXTextNickname = ({
     useAppSelector(state => state.cache.emotions.selected) ?? '';
   const troublesomeSpiritQuestion =
     useAppSelector(state => state.cache.troublesomeSpiritQuestionsItem) ?? '';
+  const childTrySomethingTitle =
+    useAppSelector(state => state.cache.childTrySomethingItem?.title) ?? '';
+  const childTrySomethingDescription =
+    useAppSelector(state => state.cache.childTrySomethingItem?.description) ??
+    '';
+  const parentTrySomethingTitle =
+    useAppSelector(state => state.cache.parentTrySomethingItem?.title) ?? '';
+  const parentTrySomethingDescription =
+    useAppSelector(state => state.cache.parentTrySomethingItem?.description) ??
+    '';
+  const childKindness = useAppSelector(state => state.cache.childKindnessItem);
+  const parentKindness = useAppSelector(
+    state => state.cache.parentKindnessItem,
+  );
+  const isChildMove = useIsChildMove(text);
 
   if (!textHasNickname) {
     return () => (
@@ -210,34 +238,80 @@ export const useParsedJSXTextNickname = ({
     );
   }
 
-  const parseBoldText = (boldText: string) => {
+  if (isChild === undefined) {
+    isChild = isChildMove;
+  }
+
+  const parseBoldText = (boldText: string) => (
+    <ExtendedText key={boldText} preset={preset} style={generalStyles.boldText}>
+      {boldText.replace('*', '')}
+    </ExtendedText>
+  );
+
+  const parseVariableText = (variableText: string) => (
+    <ExtendedText key={variableText} preset={preset} style={variableStyle}>
+      {variableText.replace('$', '')}
+    </ExtendedText>
+  );
+
+  const parseTrySomethingTitle = () => {
+    const correctTrySomethingTitle = isChild
+      ? childTrySomethingTitle
+      : parentTrySomethingTitle;
+
     return (
       <ExtendedText
-        key={boldText}
+        key={TRY_SOMETHING_TITLE}
         preset={preset}
-        style={generalStyles.boldText}>
-        {boldText.replace('*', '')}
+        style={variableStyle}>
+        {correctTrySomethingTitle}
       </ExtendedText>
     );
   };
 
-  const parseVariableText = (variableText: string) => {
+  const parseTrySomethingDescription = (trySomethingDescription: string) => {
+    const correctTrySomethingDescription = isChild
+      ? childTrySomethingDescription
+      : parentTrySomethingDescription;
+
     return (
-      <ExtendedText preset={preset} style={variableStyle}>
-        {variableText.replace('$', '')}
+      <ExtendedText
+        key={TRY_SOMETHING_DESCRIPTION}
+        preset={preset}
+        style={trySomethingDescription.startsWith('$') ? variableStyle : null}>
+        {correctTrySomethingDescription}
+      </ExtendedText>
+    );
+  };
+
+  const parseKindnessInput = () => {
+    const correctKindnessInput = isChild ? childKindness : parentKindness;
+
+    return (
+      <ExtendedText key={KINDNESS_INPUT} preset={preset} style={variableStyle}>
+        {correctKindnessInput}
       </ExtendedText>
     );
   };
 
   const textArray = _(text)
-    .replace('firstPlayer', `$${firstPlayer}`)
-    .replace('secondPlayer', `$${secondPlayer}`)
-    .replace('grown_up', `$${parentNickname}`)
-    .replace('child', `$${childNickname}`)
-    .replace('troublesomeSpiritQuestion', `$${troublesomeSpiritQuestion}`)
-    .replace('playerEmotion', playerEmotion)
+    .replace(FIRST_PLAYER, `$${firstPlayer}`)
+    .replace(SECOND_PLAYER, `$${secondPlayer}`)
+    .replace(GROWN_UP, `$${parentNickname}`)
+    .replace(CHILD, `$${childNickname}`)
+    .replace(TROUBLESOME_SPIRIT_QUESTION, `$${troublesomeSpiritQuestion}`)
+    .replace(PLAYER_EMOTION, playerEmotion)
     .split('|')
     .map(value => {
+      if (_.includes(value, TRY_SOMETHING_TITLE)) {
+        return parseTrySomethingTitle();
+      }
+      if (_.includes(value, TRY_SOMETHING_DESCRIPTION)) {
+        return parseTrySomethingDescription(value);
+      }
+      if (value === KINDNESS_INPUT) {
+        return parseKindnessInput();
+      }
       if (value.startsWith('$')) {
         return parseVariableText(value);
       }
@@ -285,4 +359,20 @@ export const useRenderQuestHeader = (data: {
       <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} onLeftIconPress={goBack} />
     );
   }
+};
+
+export const useIsChildMove = (text: string): boolean => {
+  const childNickname = useAppSelector(state => state.user.child?.nickname);
+  const firstPlayer = useAppSelector(
+    state => state.cache.nicknames?.firstPlayer,
+  );
+  const secondPlayer = useAppSelector(
+    state => state.cache.nicknames?.secondPlayer,
+  );
+
+  const isChild =
+    (containsFirstPlayer(text) && firstPlayer === childNickname) ||
+    (containsSecondPlayer(text) && secondPlayer === childNickname);
+
+  return isChild;
 };

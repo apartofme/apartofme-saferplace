@@ -14,7 +14,7 @@ import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
-  useNavigateNextQuest,
+  useNegativeNavigateTo,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementDoubleImageDoubleButtonScreenProps } from './AcknowledgementDoubleImageDoubleButton.types';
@@ -29,6 +29,7 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
       titleHasNickname,
       crossHeader,
       positiveNavigatesTo,
+      negativeNavigatesTo,
       escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
@@ -58,7 +59,7 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
       return t('buttons.not_now').toUpperCase();
     }, [buttonTitle, t]);
 
-    const navigateToNextQuest = useNavigateNextQuest();
+    const negativeNavigate = useNegativeNavigateTo(negativeNavigatesTo, true);
 
     return (
       <ImageBackground
@@ -94,7 +95,7 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
           </BottomButtonView>
           <TouchableOpacity
             style={styles.bottomButton}
-            onPress={navigateToNextQuest}>
+            onPress={negativeNavigate}>
             <ExtendedText preset="secondary-text">
               {correctButtonTitle}
             </ExtendedText>

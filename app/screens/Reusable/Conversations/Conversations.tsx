@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, View } from 'react-native';
 
 import { ExtendedButton, ExtendedText } from '../../../components';
-import { useRenderQuestHeader } from '../../../hooks';
+import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { ConversationsCheckbox } from './components';
 import { styles } from './Conversations.styles';
@@ -23,6 +23,7 @@ export const ConversationsScreen: React.FC<IConversationsScreenProps> = ({
   const { t } = useTranslation();
 
   const [isConfirm, setIsConfirm] = useState(false);
+  const onSubmit = useNavigateNextQuest();
 
   const Header = useRenderQuestHeader({
     crossHeader: crossHeader ?? false,
@@ -46,6 +47,7 @@ export const ConversationsScreen: React.FC<IConversationsScreenProps> = ({
           title={buttonTitle ?? t('buttons.next')}
           style={styles.button}
           disabled={!isConfirm}
+          onPress={onSubmit}
         />
       </ScrollView>
     </SafeAreaView>

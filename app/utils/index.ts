@@ -6,6 +6,7 @@ import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { ITranslations } from './types';
 import { IMAGES } from '../assets/images';
+import { REGEXPS } from './regexps';
 
 export const isAndroid = Platform.OS === 'android';
 
@@ -131,4 +132,12 @@ export const getElixirAnimationByRange = (currentPosition: number) => {
   if (currentPosition > 2.5) {
     return '2.5 - 3';
   }
+};
+
+export const containsFirstPlayer = (text: string) => {
+  return REGEXPS.FIRST_PLAYER.test(text);
+};
+
+export const containsSecondPlayer = (text: string) => {
+  return REGEXPS.SECOND_PLAYER.test(text);
 };
