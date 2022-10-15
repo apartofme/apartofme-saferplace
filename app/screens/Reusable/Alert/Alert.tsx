@@ -30,7 +30,7 @@ export const AlertScreen: React.FC<IAlertScreenProps> = ({ navigation }) => {
   }, [t]);
 
   return (
-    <SafeAreaView style={[generalStyles.flex]}>
+    <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
         buttonTitle={t('buttons.ok').toUpperCase()}
         onSubmit={navigation.goBack}>

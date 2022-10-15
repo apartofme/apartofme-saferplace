@@ -10,17 +10,7 @@ import { questSlice } from '../redux/slices';
 import { containsFirstPlayer, containsSecondPlayer, Nullable } from '../utils';
 import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
-import {
-  CHILD,
-  FIRST_PLAYER,
-  GROWN_UP,
-  KINDNESS_INPUT,
-  PLAYER_EMOTION,
-  SECOND_PLAYER,
-  TROUBLESOME_SPIRIT_QUESTION,
-  TRY_SOMETHING_DESCRIPTION,
-  TRY_SOMETHING_TITLE,
-} from '../constants/quest';
+import { DatoCMSTextVariables } from '../constants/quest';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
@@ -238,30 +228,30 @@ export const useParsedJSXTextNickname = ({
     );
   }
 
-  if (isChild === undefined) {
+  if (_.isUndefined(isChild)) {
     isChild = isChildMove;
   }
 
-  const parseBoldText = (boldText: string) => (
+  const renderBoldText = (boldText: string) => (
     <ExtendedText key={boldText} preset={preset} style={generalStyles.boldText}>
       {boldText.replace('*', '')}
     </ExtendedText>
   );
 
-  const parseVariableText = (variableText: string) => (
+  const renderVariableText = (variableText: string) => (
     <ExtendedText key={variableText} preset={preset} style={variableStyle}>
       {variableText.replace('$', '')}
     </ExtendedText>
   );
 
-  const parseTrySomethingTitle = () => {
+  const renderTrySomethingTitle = () => {
     const correctTrySomethingTitle = isChild
       ? childTrySomethingTitle
       : parentTrySomethingTitle;
 
     return (
       <ExtendedText
-        key={TRY_SOMETHING_TITLE}
+        key={DatoCMSTextVariables.TrySomethingTitle}
         preset={preset}
         style={variableStyle}>
         {correctTrySomethingTitle}
@@ -269,14 +259,14 @@ export const useParsedJSXTextNickname = ({
     );
   };
 
-  const parseTrySomethingDescription = (trySomethingDescription: string) => {
+  const renderTrySomethingDescription = (trySomethingDescription: string) => {
     const correctTrySomethingDescription = isChild
       ? childTrySomethingDescription
       : parentTrySomethingDescription;
 
     return (
       <ExtendedText
-        key={TRY_SOMETHING_DESCRIPTION}
+        key={DatoCMSTextVariables.TrySomethingDescription}
         preset={preset}
         style={trySomethingDescription.startsWith('$') ? variableStyle : null}>
         {correctTrySomethingDescription}
@@ -284,39 +274,45 @@ export const useParsedJSXTextNickname = ({
     );
   };
 
-  const parseKindnessInput = () => {
+  const renderKindnessInput = () => {
     const correctKindnessInput = isChild ? childKindness : parentKindness;
 
     return (
-      <ExtendedText key={KINDNESS_INPUT} preset={preset} style={variableStyle}>
+      <ExtendedText
+        key={DatoCMSTextVariables.KindnessInput}
+        preset={preset}
+        style={variableStyle}>
         {correctKindnessInput}
       </ExtendedText>
     );
   };
 
   const textArray = _(text)
-    .replace(FIRST_PLAYER, `$${firstPlayer}`)
-    .replace(SECOND_PLAYER, `$${secondPlayer}`)
-    .replace(GROWN_UP, `$${parentNickname}`)
-    .replace(CHILD, `$${childNickname}`)
-    .replace(TROUBLESOME_SPIRIT_QUESTION, `$${troublesomeSpiritQuestion}`)
-    .replace(PLAYER_EMOTION, playerEmotion)
+    .replace(DatoCMSTextVariables.FirstPlayer, `$${firstPlayer}`)
+    .replace(DatoCMSTextVariables.SecondPlayer, `$${secondPlayer}`)
+    .replace(DatoCMSTextVariables.GrownUp, `$${parentNickname}`)
+    .replace(DatoCMSTextVariables.Child, `$${childNickname}`)
+    .replace(
+      DatoCMSTextVariables.TroublesomeSpiritQuestion,
+      `$${troublesomeSpiritQuestion}`,
+    )
+    .replace(DatoCMSTextVariables.PlayerEmotion, playerEmotion)
     .split('|')
     .map(value => {
-      if (_.includes(value, TRY_SOMETHING_TITLE)) {
-        return parseTrySomethingTitle();
+      if (_.includes(value, DatoCMSTextVariables.TrySomethingTitle)) {
+        return renderTrySomethingTitle();
       }
-      if (_.includes(value, TRY_SOMETHING_DESCRIPTION)) {
-        return parseTrySomethingDescription(value);
+      if (_.includes(value, DatoCMSTextVariables.TrySomethingDescription)) {
+        return renderTrySomethingDescription(value);
       }
-      if (value === KINDNESS_INPUT) {
-        return parseKindnessInput();
+      if (value === DatoCMSTextVariables.KindnessInput) {
+        return renderKindnessInput();
       }
       if (value.startsWith('$')) {
-        return parseVariableText(value);
+        return renderVariableText(value);
       }
       if (value.startsWith('*')) {
-        return parseBoldText(value);
+        return renderBoldText(value);
       }
 
       return value;

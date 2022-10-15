@@ -35,7 +35,7 @@ export enum AvatarsNameType {
   Tree = 'TREE',
 }
 
-export type ImagesType = keyof typeof IMAGES;
+export type ImagesKeys = keyof typeof IMAGES;
 
 export interface IElixirProgress {
   fullnessElixir: number;

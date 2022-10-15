@@ -71,13 +71,12 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
   }, [dispatch, navigateToNextQuest, selectedEmotion]);
 
   useMount(() => {
-    const tempEmotions = _.map(emotions, item => {
-      if (_.indexOf(completedEmotions, item.type) === -1) {
-        return item;
-      }
-    });
+    const tempEmotions = _.filter(
+      emotions,
+      item => _.indexOf(completedEmotions, item.type) === -1,
+    );
 
-    setEmotions(_.compact(tempEmotions));
+    setEmotions(tempEmotions);
   });
 
   return (
