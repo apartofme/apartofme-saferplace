@@ -35,7 +35,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
     if (isChild) {
       navigation.navigate('RecognitionStack');
     } else {
-      navigation.navigate('JointOnboardingStack');
+      navigation.navigate('CharmsIntroducing');
     }
   }, [isChild, navigation]);
 

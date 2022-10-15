@@ -1,1 +1,1 @@
-export const TEN_SECONDS = 1;
+export const TEN_SECONDS = 10;
