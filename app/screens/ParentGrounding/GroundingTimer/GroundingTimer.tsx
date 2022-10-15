@@ -29,12 +29,13 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
   }, [isFocused]);
 
   useEffect(() => {
-    if (timerValue > 0 && !isTimerPause) {
-      const timer = setInterval(() => setTimerValue(timerValue - 1), 1000);
-      return () => {
-        clearInterval(timer);
-      };
-    } else if (!isTimerPause) {
+    if (!isTimerPause) {
+      if (timerValue > 0 && !isTimerPause) {
+        const timer = setInterval(() => setTimerValue(timerValue - 1), 1000);
+        return () => {
+          clearInterval(timer);
+        };
+      }
       navigation.push(nextRouteName);
     }
   }, [isTimerPause, navigation, nextRouteName, timerValue]);

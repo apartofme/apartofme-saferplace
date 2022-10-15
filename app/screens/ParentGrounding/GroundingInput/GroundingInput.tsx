@@ -9,8 +9,8 @@ import {
   MainHeader,
   RadioButtonList,
   RadioButtonListType,
+  RadioButtonOption,
 } from '../../../components';
-import { YES } from '../../../constants/radioButtons';
 import { useAppSelector } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { GROUNDING_RADIO_BUTTON_ITEMS } from './GroundingInput.data';
@@ -30,7 +30,7 @@ export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
 
   const onSubmit = useCallback(() => {
     if (selected.length) {
-      if (selected[0] === YES) {
+      if (selected[0] === RadioButtonOption.Positive) {
         navigation.push('GroundingAcknowledgementTitle', {
           data: {
             title: `screens.parent_grounding_exercise.grounding_acknowledgement_title.second_title ${parentNickname}!`,

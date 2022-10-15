@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
 import {
@@ -9,7 +10,6 @@ import {
 } from '../../../../components';
 import { IGroundingAcknowledgementTitleProps } from './GroundingAcknowledgementTitle.types';
 import { styles } from './GroundingAcknowledgementTitle.styles';
-import { useNavigation } from '@react-navigation/native';
 import { generalStyles } from '../../../../utils/styles';
 import { IMAGES } from '../../../../assets';
 
