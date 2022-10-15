@@ -4,7 +4,7 @@ import { Image, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
-import { TEN_SECONDS } from '../../../constants/timer';
+import { TEN_SECONDS } from '../../../constants/time';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './GroundingTimer.styles';
 

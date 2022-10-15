@@ -13,6 +13,7 @@ export const styles = StyleSheet.create<IGroundingAcknowledgementScreenStyles>({
   },
   title: {
     marginTop: 30,
+    marginBottom: 24,
     textAlign: 'center',
   },
   // TODO: change to correct style

@@ -3,8 +3,6 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import {
   GroundingStartScreen,
-  IGroundingStartRoute,
-  GroundingStartScreen,
   GroundingInputScreen,
   GroundingInstructionScreen,
   GroundingTimerScreen,

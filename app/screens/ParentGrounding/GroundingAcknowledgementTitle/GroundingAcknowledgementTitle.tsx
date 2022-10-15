@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground } from 'react-native';
+import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import {
@@ -28,18 +28,20 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
         // TODO: change to the real image
         source={backgroundImage}
         style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
-        <BottomButtonView
-          buttonTitle={buttonTitle}
-          onSubmit={onSubmit}
-          style={styles.container}>
-          <Image source={image} style={styles.image} />
-          <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
-          <ExtendedText>{t(subtitle)}</ExtendedText>
-        </BottomButtonView>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            onLeftIconPress={navigation.goBack}
+          />
+          <BottomButtonView
+            buttonTitle={t(buttonTitle)}
+            onSubmit={onSubmit}
+            style={styles.container}>
+            <Image source={image} style={styles.image} />
+            <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
+            <ExtendedText>{t(subtitle)}</ExtendedText>
+          </BottomButtonView>
+        </SafeAreaView>
       </ImageBackground>
     );
   };
