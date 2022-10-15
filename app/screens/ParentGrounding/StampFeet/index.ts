@@ -1,0 +1,1 @@
+export { StampFeetScreen } from './StampFeet';

@@ -1,32 +1,25 @@
-import { useIsFocused } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Image, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
-import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
-import { TEN_SECONDS } from '../../../constants/timer';
-import { generalStyles } from '../../../utils/styles';
+import {
+  ExtendedButton,
+  ExtendedText,
+  MainHeader,
+} from '../../../../components';
+import { IGroundingTimerProps } from './GroundingTimer.types';
 import { styles } from './GroundingTimer.styles';
+import { useNavigation } from '@react-navigation/native';
+import { generalStyles } from '../../../../utils/styles';
+import { IMAGES } from '../../../../assets';
 
-import { IGroundingTimerScreenProps } from './GroundingTimer.types';
-
-export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
-  navigation,
-  route,
+export const GroundingTimer: React.FC<IGroundingTimerProps> = ({
+  onNextRouteName,
 }) => {
-  const { nextRouteName } = route.params;
+  const navigation = useNavigation();
 
-  const [timerValue, setTimerValue] = useState(TEN_SECONDS);
+  const [timerValue, setTimerValue] = useState(10);
 
   const [isTimerPause, setIsTimerPause] = useState(false);
-
-  const isFocused = useIsFocused();
-
-  useEffect(() => {
-    if (isFocused) {
-      setTimerValue(TEN_SECONDS);
-    }
-  }, [isFocused]);
 
   useEffect(() => {
     if (timerValue > 0 && !isTimerPause) {
@@ -35,9 +28,9 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
         clearInterval(timer);
       };
     } else if (!isTimerPause) {
-      navigation.push(nextRouteName);
+      navigation.navigate(onNextRouteName);
     }
-  }, [isTimerPause, navigation, nextRouteName, timerValue]);
+  }, [isTimerPause, navigation, onNextRouteName, timerValue]);
 
   const timerStatus = useCallback(() => {
     setIsTimerPause(!isTimerPause);

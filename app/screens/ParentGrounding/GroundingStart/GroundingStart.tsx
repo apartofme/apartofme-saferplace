@@ -8,7 +8,7 @@ export const GroundingStartScreen: React.FC<IGroundingStartScreenProps> = ({
   navigation,
 }) => {
   const onSubmit = useCallback(() => {
-    navigation.navigate('GroundingInstruction');
+    navigation.push('GroundingInstruction');
   }, [navigation]);
 
   return (

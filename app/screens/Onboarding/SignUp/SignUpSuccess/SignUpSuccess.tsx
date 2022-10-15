@@ -33,7 +33,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
 
   const onSubmit = useCallback(() => {
     if (isChild) {
-      navigation.navigate('SidekickIntro', { isStart: false });
+      navigation.navigate('RecognitionStack');
     } else {
       navigation.navigate('JointOnboardingStack');
     }

@@ -16,18 +16,12 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
   ({ navigation, route }) => {
     const { t } = useTranslation();
 
-    const {
-      title,
-      buttonTitle,
-      image,
-      backgroundImage,
-      onNextRouteName,
-      subtitle,
-    } = route.params.data;
+    const { title, buttonTitle, image, backgroundImage, subtitle } =
+      route.params.data;
 
     const onSubmit = useCallback(() => {
-      navigation.navigate(onNextRouteName);
-    }, [navigation, onNextRouteName]);
+      navigation.push('StampFeet');
+    }, [navigation]);
 
     return (
       <ImageBackground

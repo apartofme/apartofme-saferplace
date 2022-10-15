@@ -36,17 +36,7 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   );
 
   const onSubmit = useCallback(() => {
-    navigation.push('GroundingAcknowledgement', {
-      data: {
-        title: 'screens.parent_grounding_exercise.timer_acknowledgement.title',
-        buttonTitle: 'buttons.start_timer',
-        image: IMAGES.LOGO,
-        backgroundImage: {
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        },
-        onNextRouteName: 'GroundingTimer',
-      },
-    });
+    navigation.push('CloseEyes');
   }, [navigation]);
 
   return (
