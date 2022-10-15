@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
@@ -24,6 +23,10 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
 
     const [currentPossition, setCurrentPossition] = useState<number>(0);
 
+    const onSubmit = useCallback(() => {
+      navigation.navigate('ParentGroundingStack');
+    }, [navigation]);
+
     return (
       // TODO: remove noop to real function
       <SafeAreaView style={generalStyles.flex}>
@@ -37,7 +40,7 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
               ? 'buttons.ready'
               : 'buttons.next',
           ).toUpperCase()}
-          onSubmit={_.noop}>
+          onSubmit={onSubmit}>
           <Carousel
             data={CHARMS_CAROUSEL}
             preset={CarouselType.ImageTitleSubtitle}

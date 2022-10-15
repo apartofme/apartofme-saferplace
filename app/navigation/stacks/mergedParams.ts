@@ -6,6 +6,7 @@ import { RecognitionStackParams } from './RecognitionStackNavigator';
 import { QuestStackParams } from './questStackNavigator';
 import { GardenStackParams } from './gardenStackNavigator';
 import { MixingElixirStackParams } from './mixingElixirStackNavigator';
+import { ParentGroundingStackParams } from './parentGroundingStackNavigator';
 
 export type MergedStackParams = RootParams &
   MenuStackParams &
@@ -14,6 +15,7 @@ export type MergedStackParams = RootParams &
   QuestStackParams &
   RecognitionStackParams &
   MixingElixirStackParams &
-  GardenStackParams;
+  GardenStackParams &
+  ParentGroundingStackParams;
 
 export type NavigationRouteNames = keyof MergedStackParams;

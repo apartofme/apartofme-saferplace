@@ -17,8 +17,11 @@ import {
   RecognitionStackParams,
   JointOnboardingStackParams,
   ParentsOnboardingStackParams,
+  ParentGroundingStackNavigator,
+  // TODO: remove
   QuestStackNavigator,
   QuestStackParams,
+  ParentGroundingStackParams,
 } from './stacks';
 import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
@@ -38,6 +41,9 @@ export type RootParams = {
   QuestStack: NavigatorScreenParams<QuestStackParams> | undefined;
   MixingElixirStack: NavigatorScreenParams<MixingElixirStackParams> | undefined;
   GardenStack: NavigatorScreenParams<GardenStackParams> | undefined;
+  ParentGroundingStack:
+    | NavigatorScreenParams<ParentGroundingStackParams>
+    | undefined;
 };
 
 const Stack = createNativeStackNavigator<RootParams>();
@@ -81,6 +87,10 @@ const RootNavigator = () => {
           component={MixingElixirStackNavigator}
         />
         <Stack.Screen name="GardenStack" component={GardenStackNavigator} />
+        <Stack.Screen
+          name="ParentGroundingStack"
+          component={ParentGroundingStackNavigator}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
