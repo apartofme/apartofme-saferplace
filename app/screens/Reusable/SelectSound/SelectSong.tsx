@@ -6,16 +6,24 @@ import { ICarouselInstance } from 'react-native-reanimated-carousel';
 import {
   BottomButtonView,
   ExtendedButton,
+  MainHeader,
   SoundCarousel,
 } from '../../../components';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
-import { SOUND_CAROUSEL } from './SelectSound.data';
+import { SOUND_CAROUSEL } from './SelectSong.data';
 import { styles } from './SelectSong.styles';
 import { ISelectSoundScreenProps } from './SelectSong.types';
-import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
+import {
+  useAppDispatch,
+  useNavigateNextQuest,
+  useNavigatePrevQuest,
+} from '../../../hooks';
+import { cacheSlice } from '../../../redux/slices';
+import { IMAGES } from '../../../assets';
 
 export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
+  navigation,
   route,
 }) => {
   const { t } = useTranslation();
@@ -23,17 +31,37 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
 
   const carouselRef = useRef<ICarouselInstance>(null);
 
+  const dispatch = useAppDispatch();
+
   const [isPause, setIsPause] = useState(true);
-  const [currentAudioName, setCurrentAudioName] = useState('sound_two.mp3');
+  const [currentAudioName, setCurrentAudioName] = useState(
+    SOUND_CAROUSEL[0].id,
+  );
   const [duration, setDuration] = useState(0);
   const [isFinished, setIsFished] = useState(false);
 
-  const onSubmit = useNavigateNextQuest();
+  const navigatePrevQuest = useNavigatePrevQuest();
 
-  const onPress = useCallback(() => {
+  const onBackArrowPress = useCallback(() => {
     AudioPlayerHelper.stop();
-    onSubmit();
-  }, [onSubmit]);
+    navigatePrevQuest();
+  }, [navigatePrevQuest]);
+
+  const onCrossPress = useCallback(() => {
+    navigation.navigate('EscapeMenu', {
+      data: {
+        escapeMenuAlternativeNavigateTo: escapeMenuAlternativeNavigateTo,
+      },
+    });
+  }, [escapeMenuAlternativeNavigateTo, navigation]);
+
+  const navigateNextQuest = useNavigateNextQuest();
+
+  const onSubmit = useCallback(() => {
+    AudioPlayerHelper.stop();
+    dispatch(cacheSlice.actions.setSelectedSong(currentAudioName));
+    navigateNextQuest();
+  }, [currentAudioName, dispatch, navigateNextQuest]);
 
   const setSoundStatus = useCallback(() => {
     if (!isFinished && AudioPlayerHelper.filepath === currentAudioName) {
@@ -63,15 +91,29 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
     setIsPause(true);
   }, [currentAudioName]);
 
-  const Header = useRenderQuestHeader({
-    crossHeader: crossHeader ?? false,
-    escapeMenuAlternativeNavigateTo,
-  });
+  const renderHeader = useCallback(() => {
+    if (crossHeader) {
+      return (
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={onBackArrowPress}
+          rightIcon={IMAGES.WHITE_PENCIL}
+          onRightIconPress={onCrossPress}
+        />
+      );
+    }
+    return (
+      <MainHeader
+        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={onBackArrowPress}
+      />
+    );
+  }, [crossHeader, onBackArrowPress, onCrossPress]);
 
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <Header />
-      <BottomButtonView buttonTitle={t('buttons.select')} onSubmit={onPress}>
+      {renderHeader()}
+      <BottomButtonView buttonTitle={t('buttons.select')} onSubmit={onSubmit}>
         <SoundCarousel
           data={SOUND_CAROUSEL}
           setCurrentSong={setCurrentAudioName}
