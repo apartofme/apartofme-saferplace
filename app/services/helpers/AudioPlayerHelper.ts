@@ -41,6 +41,29 @@ export class AudioPlayerHelper {
     this.currentAudio?.pause();
   }
 
+  public static setInfiniteLoop(filepath: string) {
+    if (this.currentAudio?.isPlaying()) {
+      this.stop();
+    }
+
+    const newAudioInstance = new Sound(filepath, Sound.MAIN_BUNDLE, error => {
+      if (error) {
+        // TODO: set error
+        return;
+      }
+
+      newAudioInstance.play(isSuccess => {
+        isSuccess;
+      });
+
+      newAudioInstance.setNumberOfLoops(-1);
+
+      this.currentAudio = newAudioInstance;
+
+      this.filepath = filepath;
+    });
+  }
+
   public static start() {
     this.currentAudio?.play();
   }
