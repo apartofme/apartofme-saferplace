@@ -57,23 +57,21 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            <View>
-              <View style={styles.imageContainer}>
-                <Image
-                  // TODO: change to the real image
-                  source={IMAGES.WHITE_PENCIL}
-                  style={styles.image}
-                />
-                <Image
-                  // TODO: change to the real image
-                  source={IMAGES.WHITE_PENCIL}
-                  style={[styles.image, styles.childImage]}
-                />
-              </View>
-              <ExtendedText preset="secondary-text" style={styles.description}>
-                {description}
-              </ExtendedText>
+            <View style={styles.imageContainer}>
+              <Image
+                // TODO: change to the real image
+                source={IMAGES.WHITE_PENCIL}
+                style={styles.image}
+              />
+              <Image
+                // TODO: change to the real image
+                source={IMAGES.WHITE_PENCIL}
+                style={[styles.image, styles.childImage]}
+              />
             </View>
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {description}
+            </ExtendedText>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

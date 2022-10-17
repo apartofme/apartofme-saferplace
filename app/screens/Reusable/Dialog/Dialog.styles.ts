@@ -16,20 +16,23 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
     marginHorizontal: 38,
   },
   image: {
-    width: 300,
-    height: 320,
+    flex: 1,
+    width: '75%',
   },
   dialogContainer: {
     alignSelf: 'stretch',
-    paddingTop: 40,
-    paddingBottom: 48,
+    marginTop: 12,
+    paddingVertical: 40,
     paddingHorizontal: 24,
     borderRadius: 24,
     // TODO: change to real styles
-    backgroundColor: '#cecece',
+    borderWidth: 4,
+    borderColor: '#FFB552',
+    backgroundColor: '#3F1670',
   },
   title: {
     minHeight: 220,
+    color: '#FFFFFF',
   },
   roundButton: {
     justifyContent: 'center',

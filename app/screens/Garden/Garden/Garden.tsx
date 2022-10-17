@@ -144,7 +144,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       <View style={generalStyles.flex}>
         <TouchableOpacity
           onPress={onAvatarPress}
-          style={styles.zIndex10}
+          style={styles.avatarContainer}
           disabled={isFirstTime}>
           <Image source={IMAGES[childAvatar]} style={styles.avatar} />
         </TouchableOpacity>

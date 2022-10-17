@@ -15,29 +15,28 @@ export const styles =
       justifyContent: 'space-between',
       paddingTop: 40,
       paddingHorizontal: 40,
-      paddingBottom: 60,
+      paddingBottom: 73,
     },
     imageContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
-      paddingBottom: 70,
     },
     // TODO: change to real styles
     image: {
-      width: 152,
-      height: 152,
+      width: 160,
+      height: 160,
       borderRadius: 100,
       backgroundColor: '#712CA4',
     },
     // TODO: change to real styles
     childImage: {
-      marginLeft: -26,
       backgroundColor: '#00DBC0',
     },
     title: {
       textAlign: 'center',
     },
     description: {
+      minHeight: 100,
       textAlign: 'center',
     },
   });

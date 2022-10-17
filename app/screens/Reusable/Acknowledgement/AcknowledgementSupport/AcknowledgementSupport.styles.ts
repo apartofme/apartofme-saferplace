@@ -10,24 +10,25 @@ interface IAcknowledgementSupportScreenStyles {
 
 export const styles = StyleSheet.create<IAcknowledgementSupportScreenStyles>({
   container: {
+    paddingVertical: 40,
     paddingHorizontal: 24,
     alignItems: 'center',
   },
   title: {
-    marginTop: 55,
-    marginBottom: 30,
+    marginBottom: 25,
     textAlign: 'center',
   },
+  // TODO: change to correct styles
   image: {
-    height: 300,
-    width: 250,
+    flex: 1,
+    width: '100%',
   },
   infoImage: {
     width: 20,
     height: 20,
     alignSelf: 'center',
-    marginTop: 11,
-    marginBottom: 18,
+    marginTop: 28,
+    marginBottom: 20,
     backgroundColor: COLORS.BLACK,
   },
 });
