@@ -2,10 +2,11 @@ export const IMAGES = {
   LOGO: require('./beyondCodelineLogo.png'),
   WHITE_PENCIL: require('./whitePencil.png'),
 
-  WHITE_BACK_ARROW: require('./whiteBackArrow.png'),
   CLOSED_BOOK: require('./closedBook.png'),
+  NADIYA: require('./nadiya.png'),
   OPEN_BOOK: require('./openBook.png'),
   TREE: require('./tree.png'),
+  WHITE_BACK_ARROW: require('./whiteBackArrow.png'),
 };
 
 export const PLANTS_IMAGES = {
@@ -18,4 +19,8 @@ export const AVATAR_IMAGES = {
   WHITE_PENCIL: require('./whitePencil.png'),
   WHITE_BACK_ARROW: require('./whiteBackArrow.png'),
   TREE: require('./tree.png'),
+};
+
+export const BACKGROUND_IMAGES = {
+  SPLASHSCREEN_ADULT: require('./splashscreenAdult.png'),
 };

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
 import {
   BottomButtonView,
@@ -10,6 +10,7 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IWelcomeParentScreenProps } from './WelcomeParent.types';
 import { styles } from './WelcomeParent.styles';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
 
 export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   navigation,
@@ -25,23 +26,31 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.whFlex}>
-      <BottomButtonView
-        buttonTitle={t('buttons.log_in')}
-        onSubmit={onLoginPress}
-        style={styles.container}>
-        <View>
-          <ExtendedText preset="secondary-text" style={styles.title}>
-            {t('screens.onboarding.welcome.title').toUpperCase()}
+    <ImageBackground
+      source={BACKGROUND_IMAGES.SPLASHSCREEN_ADULT}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <BottomButtonView
+          buttonTitle={t('buttons.signup')}
+          onSubmit={onSignUpPress}
+          style={styles.container}>
+          <ExtendedText preset="tertiary-text-medium" style={styles.whiteColor}>
+            {t('screens.onboarding.welcome.title')}
           </ExtendedText>
-          {/* // TODO: add the logo image */}
-        </View>
+
+          <Image source={IMAGES.NADIYA} style={styles.image} />
+
+          <ExtendedText preset="tertiary-text-medium" style={styles.whiteColor}>
+            {t('screens.onboarding.welcome.description')}
+          </ExtendedText>
+        </BottomButtonView>
         <ExtendedButton
-          onPress={onSignUpPress}
-          title={t('buttons.signup')}
-          style={styles.button}
+          onPress={onLoginPress}
+          title={t('buttons.log_in')}
+          preset="border"
+          style={styles.signUpButton}
         />
-      </BottomButtonView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
