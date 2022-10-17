@@ -6,7 +6,7 @@ export const SignUpCredentioalsValidationSchema = yup.object().shape({
   email: yup
     .string()
     .email('Incorrect email')
-    .required('Please enter this fild'),
+    .required('Please enter this field'),
   password: yup
     .string()
     .matches(REGEXPS.UPPERCASE, 'Password must include UPPERCASE')

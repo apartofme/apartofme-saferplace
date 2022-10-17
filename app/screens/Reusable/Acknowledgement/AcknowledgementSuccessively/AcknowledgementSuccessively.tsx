@@ -58,7 +58,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
             style={styles.container}>
             <Image
               // TODO: change to the real image
-              source={IMAGES.WHITE_PENCIL}
+              source={IMAGES.LOGO}
               style={styles.image}
             />
             <Title />
