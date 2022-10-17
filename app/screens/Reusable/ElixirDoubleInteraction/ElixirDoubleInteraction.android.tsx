@@ -6,7 +6,7 @@ import {
 } from 'react-native-gesture-handler';
 
 import { ExtendedText } from '../../../components';
-import { useAppDispatch } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { styles } from './ElixirDoubleInteraction.styles';
 import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.types';
@@ -15,6 +15,8 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
   ({ navigation, route }) => {
     const { title, description, elixirReward } = route.params.data;
     const dispatch = useAppDispatch();
+
+    const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
@@ -29,10 +31,15 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
     useEffect(() => {
       if (isChildPress && isAdultPress) {
-        dispatch(elixirSlice.actions.updateFullnessElixir(elixirReward ?? 1));
+        dispatch(
+          elixirSlice.actions.updateFullnessElixir(
+            fullnessElixir + (elixirReward ?? 1),
+          ),
+        );
         navigation.navigate('ElixirTitleButton');
       }
-    }, [isChildPress, isAdultPress, dispatch, elixirReward, navigation]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isChildPress, isAdultPress]);
 
     return (
       <SafeAreaView style={styles.container}>

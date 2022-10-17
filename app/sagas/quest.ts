@@ -1,6 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import moment from 'moment';
+import _ from 'lodash';
 
 import {
   ALL_QUESTS_STACK,
@@ -45,13 +46,17 @@ function* watchSaveCompletedQuestsId({ payload }: PayloadAction<number>) {
     questStateSelector(state),
   );
 
+  const newCompletedQuestsId = [...currentQuestState.completedQuestsId];
+
+  if (_.findIndex(currentQuestState.completedQuestsId, payload) === -1) {
+    newCompletedQuestsId.push(payload);
+  }
+
   // TODO: change to if
   try {
     yield call(firestoreUpdateUserProgress, 'quests', {
       ...currentQuestState,
-      completedQuestsId: currentQuestState.completedQuestsId.length
-        ? [...currentQuestState.completedQuestsId, payload]
-        : [payload],
+      completedQuestsId: newCompletedQuestsId,
     });
 
     yield put(questSlice.actions.saveCompletedQuestsIdSuccess(payload));
