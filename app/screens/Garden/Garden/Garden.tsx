@@ -43,7 +43,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   useEffect(() => {
     if (isFocused && appStatus === 'active') {
-      AudioPlayerHelper.setInfiniteLoop('sound_two.mp3');
+      AudioPlayerHelper.setInfiniteLoop('forest_ambience_sfx_loop_2_001.mp3');
     } else {
       AudioPlayerHelper.stop();
     }

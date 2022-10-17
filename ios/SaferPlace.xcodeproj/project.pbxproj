@@ -20,7 +20,7 @@
 		43C236BE28DCB32800AAE549 /* sound_three.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 43C236BD28DCB32800AAE549 /* sound_three.mp3 */; };
 		47291A6628D0773800008A2C /* Pods_SaferPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		86DA93CA28FDB7E3001B616D /* forest_ambience_sfx_loop_2_001.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93C928FDB7E3001B616D /* forest_ambience_sfx_loop_2_001.wav */; };
+		86DA93CC28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */; };
 		9547DB2928B7B01A00C6720C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9547DB2828B7B01A00C6720C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +55,7 @@
 		5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752DBD64088926D77B3282BE /* Pods_SaferPlace_SaferPlaceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace_SaferPlaceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SaferPlace/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		86DA93C928FDB7E3001B616D /* forest_ambience_sfx_loop_2_001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = forest_ambience_sfx_loop_2_001.wav; sourceTree = "<group>"; };
+		86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest_ambience_sfx_loop_2_001.mp3; sourceTree = "<group>"; };
 		9547DB2828B7B01A00C6720C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		958C5DB428BE26C000AB565A /* SaferPlace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SaferPlace.entitlements; path = SaferPlace/SaferPlace.entitlements; sourceTree = "<group>"; };
 		CDC7A639BC8B55576F10ADEA /* Pods-SaferPlace-SaferPlaceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaferPlace-SaferPlaceTests.debug.xcconfig"; path = "Target Support Files/Pods-SaferPlace-SaferPlaceTests/Pods-SaferPlace-SaferPlaceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				4335FAA428DCCA46003412F2 /* sound_one.mp3 */,
-				86DA93C928FDB7E3001B616D /* forest_ambience_sfx_loop_2_001.wav */,
+				86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */,
 				4335FAA228DCCA3C003412F2 /* sound_two.mp3 */,
 				43C236BD28DCB32800AAE549 /* sound_three.mp3 */,
 			);
@@ -283,7 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86DA93CA28FDB7E3001B616D /* forest_ambience_sfx_loop_2_001.wav in Resources */,
+				86DA93CC28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				43C236BE28DCB32800AAE549 /* sound_three.mp3 in Resources */,
