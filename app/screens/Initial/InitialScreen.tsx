@@ -56,7 +56,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
       isStartLoading
     ) {
       if (user) {
-        navigation.replace('GardenStack');
+        navigation.replace('QuestStack');
       } else {
         navigation.replace('ParentsOnboardingStack');
       }

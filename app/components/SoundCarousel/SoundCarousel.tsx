@@ -53,7 +53,6 @@ export const SoundCarousel: React.FC<ISoundCarouselItemProps> = ({
         data={[...data]}
         mode={'parallax'}
         modeConfig={CAROUSEL_MODE_CONFIG}
-        defaultIndex={1}
         renderItem={renderCarouselItem}
         style={generalStyles.flex}
         onSnapToItem={onSnapToItem}
