@@ -22,7 +22,7 @@ export const elixirSlice = createSlice({
 
     updateFullnessElixir(state, action: PayloadAction<number>) {},
     updateFullnessElixirSuccess(state, { payload }: PayloadAction<number>) {
-      state.fullnessElixir = state.fullnessElixir + payload;
+      state.fullnessElixir = payload;
     },
     updateFullnessElixirError(state, action: PayloadAction<string>) {},
 

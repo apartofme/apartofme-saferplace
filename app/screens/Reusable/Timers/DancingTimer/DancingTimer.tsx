@@ -4,11 +4,24 @@ import { SafeAreaView } from 'react-native';
 
 import { IDancingTimerScreenProps } from './DancingTimer.types';
 import { styles } from './DancingTimer.styles';
-import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
+import {
+  useAppSelector,
+  useNavigateNextQuest,
+  useNavigatePrevQuest,
+} from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
-import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
+import {
+  BottomButtonView,
+  ExtendedText,
+  MainHeader,
+  Timer,
+} from '../../../../components';
+import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
+import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
+import { IMAGES } from '../../../../assets';
 
 export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
+  navigation,
   route,
 }) => {
   const {
@@ -21,28 +34,53 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   } = route.params.data;
 
   const { t } = useTranslation();
+
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
   const [isTimerEnd, setIsTimerEnd] = useState<boolean>(false);
+
+  const [songDuration, setSongDuration] = useState(0);
+  const [isFinished, setIsFished] = useState(false);
+
+  const selectedSong = useAppSelector(state => state.cache.selectedSong);
+
   const navigateNextQuest = useNavigateNextQuest();
 
-  const Header = useRenderQuestHeader({
-    crossHeader: crossHeader ?? false,
-    escapeMenuAlternativeNavigateTo,
-  });
+  const navigatePrevQuest = useNavigatePrevQuest();
 
   const onSubmitPress = useCallback(() => {
     if (isTimerEnd) {
       navigateNextQuest();
+      AudioPlayerHelper.stop();
       return;
     }
 
     setIsTimerStart(true);
-  }, [isTimerEnd, navigateNextQuest]);
+
+    AudioPlayerHelper.play(
+      selectedSong ?? SOUND_CAROUSEL[0].id,
+      setSongDuration,
+      setIsFished,
+    );
+  }, [isTimerEnd, navigateNextQuest, selectedSong]);
 
   const onTimerComplete = useCallback(() => {
+    AudioPlayerHelper.stop();
     setIsTimerStart(false);
     setIsTimerEnd(true);
   }, []);
+
+  const onBackArrowPress = useCallback(() => {
+    AudioPlayerHelper.stop();
+    navigatePrevQuest();
+  }, [navigatePrevQuest]);
+
+  const onCrossPress = useCallback(() => {
+    navigation.navigate('EscapeMenu', {
+      data: {
+        escapeMenuAlternativeNavigateTo: escapeMenuAlternativeNavigateTo,
+      },
+    });
+  }, [escapeMenuAlternativeNavigateTo, navigation]);
 
   const correctTitle = useMemo(() => {
     if (isTimerStart) {
@@ -73,9 +111,28 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     return buttonTitle;
   }, [buttonTitle, isTimerEnd, isTimerStart, t]);
 
+  const renderHeader = useCallback(() => {
+    if (crossHeader) {
+      return (
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={onBackArrowPress}
+          rightIcon={IMAGES.WHITE_PENCIL}
+          onRightIconPress={onCrossPress}
+        />
+      );
+    }
+    return (
+      <MainHeader
+        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        onLeftIconPress={onBackArrowPress}
+      />
+    );
+  }, [crossHeader, onBackArrowPress, onCrossPress]);
+
   return (
     <SafeAreaView style={generalStyles.flex}>
-      <Header />
+      {renderHeader()}
       <BottomButtonView
         buttonTitle={correctButtonTitle ?? t('buttons.start')}
         onSubmit={onSubmitPress}

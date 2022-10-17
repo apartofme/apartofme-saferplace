@@ -3,6 +3,7 @@ import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 import { WINDOW_HEIGHT } from '../../../constants/window';
 
 export interface IGardenScreenStyles {
+  avatarContainer: ViewStyle;
   avatar: ImageStyle;
   bookContainer: ViewStyle;
   book: ImageStyle;
@@ -14,14 +15,16 @@ export interface IGardenScreenStyles {
 }
 
 export const styles = StyleSheet.create<IGardenScreenStyles>({
-  avatar: {
+  avatarContainer: {
     position: 'absolute',
     right: 20,
     top: 40,
+    zIndex: 100,
+  },
+  avatar: {
     height: 80,
     width: 80,
     borderRadius: 100,
-    zIndex: 100,
   },
   elixir: {
     position: 'absolute',

@@ -2,8 +2,8 @@ import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 interface IAcknowledgementSuccessivelyScreenStyles {
   container: ViewStyle;
-  image: ImageStyle;
   title: TextStyle;
+  image: ImageStyle;
   description: TextStyle;
 }
 
@@ -11,22 +11,21 @@ export const styles =
   StyleSheet.create<IAcknowledgementSuccessivelyScreenStyles>({
     container: {
       alignItems: 'center',
-      paddingTop: 107,
+      justifyContent: 'flex-end',
+      paddingBottom: 60,
       paddingHorizontal: 40,
     },
-    // TODO: change to real styles
-    image: {
-      width: 191,
-      height: 191,
-      borderRadius: 100,
-      backgroundColor: '#712CA4',
-    },
     title: {
-      marginTop: 54,
+      marginTop: 32,
       marginBottom: 24,
       textAlign: 'center',
     },
+    image: {
+      flex: 1,
+      width: '100%',
+    },
     description: {
       textAlign: 'center',
+      minHeight: 120,
     },
   });
