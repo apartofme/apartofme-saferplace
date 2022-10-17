@@ -45,7 +45,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const [isFinished, setIsFished] = useState(false);
 
   useEffect(() => {
-    if (isFocused || isFinished) {
+    if (isFocused) {
       AudioPlayerHelper.play(
         'forest_ambience_sfx_loop_2_001.wav',
         setDuration,
@@ -53,6 +53,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       );
     } else {
       AudioPlayerHelper.stop();
+      console.log(isFocused);
     }
   }, [isFinished, isFocused]);
 
