@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import _ from 'lodash';
+import { useIsFocused } from '@react-navigation/native';
 import {
   Image,
   ImageBackground,
@@ -26,6 +27,7 @@ import { questSlice } from '../../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
 import { styles } from './Garden.styles';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
@@ -36,6 +38,23 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const { t } = useTranslation();
   const appStatus = useAppState();
   const dispatch = useAppDispatch();
+
+  const isFocused = useIsFocused();
+
+  const [duration, setDuration] = useState(0);
+  const [isFinished, setIsFished] = useState(false);
+
+  useEffect(() => {
+    if (isFocused || isFinished) {
+      AudioPlayerHelper.play(
+        'forest_ambience_sfx_loop_2_001.wav',
+        setDuration,
+        setIsFished,
+      );
+    } else {
+      AudioPlayerHelper.stop();
+    }
+  }, [isFinished, isFocused]);
 
   const isCurrentDayQuestStackEmpty = useAppSelector(
     state => !state.quest.currentDayQuestsStack.length,
