@@ -20,11 +20,11 @@
 		43C236BE28DCB32800AAE549 /* sound_three.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 43C236BD28DCB32800AAE549 /* sound_three.mp3 */; };
 		47291A6628D0773800008A2C /* Pods_SaferPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		86DA93CC28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */; };
 		86DA93C128FD82CF001B616D /* dancing_track_happy_dance_016.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93BD28FD82CF001B616D /* dancing_track_happy_dance_016.mp3 */; };
 		86DA93C228FD82CF001B616D /* dancing_track_first_dance_016.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93BE28FD82CF001B616D /* dancing_track_first_dance_016.mp3 */; };
 		86DA93C328FD82CF001B616D /* dancing_track_thunder_016.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93BF28FD82CF001B616D /* dancing_track_thunder_016.mp3 */; };
 		86DA93C428FD82CF001B616D /* dancing_track_percussion_016.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93C028FD82CF001B616D /* dancing_track_percussion_016.mp3 */; };
+		86DA93CC28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */; };
 		9547DB2928B7B01A00C6720C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9547DB2828B7B01A00C6720C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -59,11 +59,11 @@
 		5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752DBD64088926D77B3282BE /* Pods_SaferPlace_SaferPlaceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace_SaferPlaceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SaferPlace/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest_ambience_sfx_loop_2_001.mp3; sourceTree = "<group>"; };
 		86DA93BD28FD82CF001B616D /* dancing_track_happy_dance_016.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dancing_track_happy_dance_016.mp3; sourceTree = "<group>"; };
 		86DA93BE28FD82CF001B616D /* dancing_track_first_dance_016.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dancing_track_first_dance_016.mp3; sourceTree = "<group>"; };
 		86DA93BF28FD82CF001B616D /* dancing_track_thunder_016.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dancing_track_thunder_016.mp3; sourceTree = "<group>"; };
 		86DA93C028FD82CF001B616D /* dancing_track_percussion_016.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dancing_track_percussion_016.mp3; sourceTree = "<group>"; };
+		86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest_ambience_sfx_loop_2_001.mp3; sourceTree = "<group>"; };
 		9547DB2828B7B01A00C6720C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		958C5DB428BE26C000AB565A /* SaferPlace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SaferPlace.entitlements; path = SaferPlace/SaferPlace.entitlements; sourceTree = "<group>"; };
 		CDC7A639BC8B55576F10ADEA /* Pods-SaferPlace-SaferPlaceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaferPlace-SaferPlaceTests.debug.xcconfig"; path = "Target Support Files/Pods-SaferPlace-SaferPlaceTests/Pods-SaferPlace-SaferPlaceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -529,7 +529,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SaferPlace/SaferPlace.entitlements;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = MLK2G3492W;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SaferPlace/Info.plist;
@@ -537,7 +537,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -559,14 +559,14 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SaferPlace/SaferPlace.entitlements;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = MLK2G3492W;
 				INFOPLIST_FILE = SaferPlace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
