@@ -27,6 +27,7 @@ export const styles = StyleSheet.create<IRadioButtonStyles>({
   },
 
   activeBackground: {
+    marginBottom: 22,
     backgroundColor: COLORS.PRIMARY_PURPLE,
     borderWidth: 2,
   },
