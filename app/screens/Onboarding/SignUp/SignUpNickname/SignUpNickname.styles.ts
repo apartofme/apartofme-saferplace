@@ -1,8 +1,11 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 interface ISignUpNicknameStyles {
   container: ViewStyle;
   subtitle: TextStyle;
+  whiteColor: TextStyle;
 }
 
 export const styles = StyleSheet.create<ISignUpNicknameStyles>({
@@ -11,7 +14,11 @@ export const styles = StyleSheet.create<ISignUpNicknameStyles>({
     paddingHorizontal: 24,
   },
   subtitle: {
-    marginTop: 16,
-    marginBottom: 48,
+    paddingTop: 16,
+    paddingBottom: 32,
+    color: COLORS.LIGHT_GREY,
+  },
+  whiteColor: {
+    color: COLORS.BRILLIANT_WHITE,
   },
 });

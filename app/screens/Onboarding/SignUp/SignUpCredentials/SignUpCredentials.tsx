@@ -112,6 +112,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         placeholder={t('placeholders.enter_email')}
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.input}
+                        maxLength={30}
                       />
                       <ExtendedTextInput
                         type={ExtendedTextInputType.PasswordToggle}
@@ -121,6 +122,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         placeholder={t('placeholders.create_password')}
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.input}
+                        maxLength={30}
                       />
                       {!!Object.entries(errors).length &&
                         (touched.email || touched.password) && (
