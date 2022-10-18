@@ -57,6 +57,17 @@ export default StyleSheet.create<IExtendedButtonStyles>({
   default: {
     ...BASE,
     backgroundColor: COLORS.PRIMARY_ORANGE,
+    borderTopWidth: 2,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: COLORS.LIGHT_ORANGE,
+    shadowOffset: {
+      height: 4,
+      width: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    shadowColor: COLORS.LIGHT_BROWN,
   },
   border: {
     ...BASE,
