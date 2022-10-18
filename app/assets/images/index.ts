@@ -2,8 +2,10 @@ export const IMAGES = {
   LOGO: require('./beyondCodelineLogo.png'),
   WHITE_PENCIL: require('./whitePencil.png'),
 
+  BROWN_TRIANGLE: require('./brownTriangle.png'),
   CHECK_MARK: require('./checkMark.png'),
   CLOSED_BOOK: require('./closedBook.png'),
+  COMPASSIONATE_GUIDE: require('./compassionateGuide.png'),
   NADIYA: require('./nadiya.png'),
   OPEN_BOOK: require('./openBook.png'),
   TREE: require('./tree.png'),

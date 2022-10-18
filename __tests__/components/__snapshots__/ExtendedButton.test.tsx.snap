@@ -15,8 +15,11 @@ exports[`UI: ExtendedButton should match snapshot 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
+      "alignItems": "center",
       "backgroundColor": "#FFB452",
       "borderRadius": 40,
+      "flexDirection": "row",
+      "justifyContent": "center",
       "opacity": 1,
       "paddingHorizontal": 24,
       "paddingVertical": 16,

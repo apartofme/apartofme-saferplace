@@ -11,6 +11,7 @@ export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
   onSubmit,
   buttonTitle,
   isDisabledButton,
+  isArrow,
   style,
 }) => {
   return (
@@ -20,6 +21,7 @@ export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
         title={buttonTitle}
         onPress={onSubmit}
         disabled={isDisabledButton}
+        isArrow={isArrow}
         style={styles.button}
       />
     </View>
