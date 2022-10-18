@@ -33,7 +33,7 @@ export const additionalStyles =
       fontSize: 17,
       lineHeight: 30,
       letterSpacing: 0.34,
-      color: COLORS.PRIMARY_BROWN,
+      color: COLORS.DARK_BROWN,
       textAlign: 'center',
     },
     defaultDisabled: {

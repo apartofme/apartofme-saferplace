@@ -2,6 +2,7 @@ export const IMAGES = {
   LOGO: require('./beyondCodelineLogo.png'),
   WHITE_PENCIL: require('./whitePencil.png'),
 
+  CHECK_MARK: require('./checkMark.png'),
   CLOSED_BOOK: require('./closedBook.png'),
   NADIYA: require('./nadiya.png'),
   OPEN_BOOK: require('./openBook.png'),
@@ -23,4 +24,5 @@ export const AVATAR_IMAGES = {
 
 export const BACKGROUND_IMAGES = {
   SPLASHSCREEN_ADULT: require('./splashscreenAdult.png'),
+  NO_DETAIL_DEFAULT: require('./noDetailDefault.png'),
 };

@@ -3,19 +3,18 @@ import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { COLORS } from '../../themes/colors';
 import { hexTransparency } from '../../utils';
 
-export interface IRadioButtonStyles {
+export interface ICheckBoxStyles {
   container: ViewStyle;
   title: TextStyle;
   activeBackground: ViewStyle;
 }
 
-export const styles = StyleSheet.create<IRadioButtonStyles>({
+export const styles = StyleSheet.create<ICheckBoxStyles>({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 20,
-    paddingLeft: 24,
+    padding: 24,
     marginBottom: 24,
     borderRadius: 24,
     backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
@@ -24,6 +23,7 @@ export const styles = StyleSheet.create<IRadioButtonStyles>({
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
+    paddingRight: 24,
   },
 
   activeBackground: {

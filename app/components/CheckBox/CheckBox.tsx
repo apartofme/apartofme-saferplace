@@ -2,11 +2,11 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
-import { IRadioButtonProps } from './RadioButton.types';
-import { styles } from './RadioButton.styles';
-import { Circle } from './components';
+import { ICheckBoxProps } from './CheckBox.types';
+import { styles } from './CheckBox.styles';
+import { Square } from './components';
 
-export const RadioButton: React.FC<IRadioButtonProps> = ({
+export const CheckBox: React.FC<ICheckBoxProps> = ({
   title,
   isActive = false,
   onPress,
@@ -16,7 +16,7 @@ export const RadioButton: React.FC<IRadioButtonProps> = ({
       style={[styles.container, isActive && styles.activeBackground]}
       onPress={onPress}>
       <ExtendedText style={styles.title}>{title}</ExtendedText>
-      <Circle isActive={isActive} />
+      <Square isActive={isActive} />
     </TouchableOpacity>
   );
 };
