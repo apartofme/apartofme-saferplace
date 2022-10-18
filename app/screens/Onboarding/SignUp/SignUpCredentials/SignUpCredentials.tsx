@@ -1,6 +1,11 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View, SafeAreaView } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+  ImageBackground,
+} from 'react-native';
 import { Formik } from 'formik';
 import moment from 'moment';
 
@@ -12,13 +17,14 @@ import {
   ExtendedTextInputType,
   MainHeader,
 } from '../../../../components';
-import { IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpCredentialsScreenProps } from './SignUpCredentials.types';
 import { styles } from './SignUpCredentials.styles';
 import { SignUpCredentioalsValidationSchema } from './SignUpCredentials.validation';
+import { COLORS } from '../../../../themes/colors';
 
 export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
   ({ navigation }) => {
@@ -45,90 +51,119 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     }, [navigation]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
-        <ExtendedKeyboardAvoidingView>
-          <Formik
-            initialValues={{ email: '', password: '' }}
-            validationSchema={SignUpCredentioalsValidationSchema}
-            onSubmit={onSignUpPress}>
-            {({
-              values,
-              handleChange,
-              handleSubmit,
-              handleBlur,
-              isValid,
-              dirty,
-              errors,
-            }) => (
-              <BottomButtonView
-                buttonTitle={t('buttons.signup')}
-                onSubmit={handleSubmit}
-                isDisabledButton={dirty ? !isValid : true}
-                style={styles.container}>
-                <View style={generalStyles.flex}>
-                  <ExtendedText preset="large-title">
-                    {t('screens.onboarding.sign_up_credentials.title')}
-                  </ExtendedText>
-
-                  <View style={styles.subtitle}>
-                    <ExtendedText preset="secondary-text">
-                      {t('screens.onboarding.sign_up_credentials.description')}
+      <ImageBackground
+        source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            onLeftIconPress={navigation.goBack}
+          />
+          <ExtendedKeyboardAvoidingView>
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              validationSchema={SignUpCredentioalsValidationSchema}
+              onSubmit={onSignUpPress}>
+              {({
+                values,
+                handleChange,
+                handleSubmit,
+                setFieldTouched,
+                touched,
+                isValid,
+                dirty,
+                errors,
+              }) => (
+                <BottomButtonView
+                  buttonTitle={t('buttons.signup')}
+                  onSubmit={handleSubmit}
+                  isDisabledButton={dirty ? !isValid : true}
+                  style={styles.container}>
+                  <View style={generalStyles.flex}>
+                    <ExtendedText
+                      preset="large-title"
+                      style={styles.whiteColor}>
+                      {t('screens.onboarding.sign_up_credentials.title')}
                     </ExtendedText>
-                    <TouchableOpacity onPress={onSignInPress}>
-                      <ExtendedText preset="secondary-text">
-                        {` ${t('buttons.signin')}`}
+
+                    <View style={styles.subtitle}>
+                      <ExtendedText
+                        preset="secondary-text"
+                        style={styles.greyColor}>
+                        {t(
+                          'screens.onboarding.sign_up_credentials.description',
+                        )}
                       </ExtendedText>
-                    </TouchableOpacity>
-                  </View>
+                      <TouchableOpacity onPress={onSignInPress}>
+                        <ExtendedText
+                          preset="secondary-text"
+                          style={styles.accentButton}>
+                          {` ${t('buttons.signin')}`}
+                        </ExtendedText>
+                      </TouchableOpacity>
+                    </View>
 
-                  <View>
-                    <ExtendedTextInput
-                      type={ExtendedTextInputType.Email}
-                      value={values.email}
-                      onChangeText={handleChange('email')}
-                      onBlur={handleBlur('email')}
-                      placeholder={t('placeholders.enter_email')}
-                      style={styles.input}
-                      error={errors.email}
-                    />
-                    <ExtendedTextInput
-                      type={ExtendedTextInputType.Password}
-                      value={values.password}
-                      onChangeText={handleChange('password')}
-                      onBlur={handleBlur('password')}
-                      placeholder={t('placeholders.create_password')}
-                      style={styles.input}
-                      error={errors.password}
-                    />
+                    <View>
+                      <ExtendedTextInput
+                        type={ExtendedTextInputType.Email}
+                        value={values.email}
+                        onChangeText={handleChange('email')}
+                        onBlur={() => setFieldTouched('email')}
+                        placeholder={t('placeholders.enter_email')}
+                        placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                        style={styles.input}
+                      />
+                      <ExtendedTextInput
+                        type={ExtendedTextInputType.PasswordToggle}
+                        value={values.password}
+                        onChangeText={handleChange('password')}
+                        onBlur={() => setFieldTouched('password')}
+                        placeholder={t('placeholders.create_password')}
+                        placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                        style={styles.input}
+                      />
+                      {!!Object.entries(errors).length &&
+                        (touched.email || touched.password) && (
+                          <ExtendedText
+                            preset="secondary-text"
+                            style={styles.error}>
+                            {Object.entries(errors)[0][1]}
+                          </ExtendedText>
+                        )}
+                    </View>
                   </View>
-                </View>
-              </BottomButtonView>
-            )}
-          </Formik>
-        </ExtendedKeyboardAvoidingView>
+                </BottomButtonView>
+              )}
+            </Formik>
+          </ExtendedKeyboardAvoidingView>
 
-        <View style={styles.bottomConatainer}>
-          <ExtendedText preset="tertiary-text-regular">
-            {t('screens.onboarding.sign_up_credentials.footer')}
-          </ExtendedText>
-          <TouchableOpacity>
-            <ExtendedText preset="tertiary-text-regular">
-              {t('buttons.terms_conditions')}
+          <View style={styles.bottomConatainer}>
+            <ExtendedText
+              preset="tertiary-text-regular"
+              style={styles.whiteColor}>
+              {t('screens.onboarding.sign_up_credentials.footer')}
             </ExtendedText>
-          </TouchableOpacity>
-          <ExtendedText preset="tertiary-text-regular">
-            {` ${t('labels.and')} `}
-          </ExtendedText>
-          <TouchableOpacity>
-            <ExtendedText preset="tertiary-text-regular">
-              {t('buttons.privacy_policy')}
+            <TouchableOpacity>
+              <ExtendedText
+                preset="tertiary-text-regular"
+                style={styles.accentButton}>
+                {t('buttons.terms_conditions')}
+              </ExtendedText>
+            </TouchableOpacity>
+            <ExtendedText
+              preset="tertiary-text-regular"
+              style={styles.whiteColor}>
+              {` ${t('labels.and')} `}
             </ExtendedText>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+            <TouchableOpacity>
+              <ExtendedText
+                preset="tertiary-text-regular"
+                style={styles.accentButton}>
+                {t('buttons.privacy_policy')}
+              </ExtendedText>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

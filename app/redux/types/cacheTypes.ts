@@ -1,7 +1,6 @@
-import { IMAGES } from '../../assets';
 import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
-import { AvatarsNameType } from '../../utils/types';
+import { AvatarsNameType, ImagesKeys } from '../../utils/types';
 
 export interface ISignUpData {
   email?: string;
@@ -29,7 +28,7 @@ export interface IEmotions {
 
 export interface IFavouriteCharmItem {
   id: string;
-  image: keyof typeof IMAGES;
+  image: ImagesKeys;
   title: string;
 }
 

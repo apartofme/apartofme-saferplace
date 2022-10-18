@@ -21,7 +21,7 @@ import { Nullable } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { Book, Elixir, PlantArea, PlantAreaType } from '../components';
-import { MixingElixirPhaseType } from '../../../utils/types';
+import { ImagesKeys, MixingElixirPhaseType } from '../../../utils/types';
 import { questSlice } from '../../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
@@ -64,7 +64,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   );
   const childAvatar = useAppSelector(
     state => state.user.child?.avatar,
-  ) as keyof typeof IMAGES;
+  ) as ImagesKeys;
 
   const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);
   const [activePlantArea, setActivePlantArea] =

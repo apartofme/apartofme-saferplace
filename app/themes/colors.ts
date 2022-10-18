@@ -20,4 +20,7 @@ export const COLORS = {
 
   BRILLIANT_WHITE: '#FFFFFF',
   LIGHT_GREY: '#E1E1E1',
+
+  ERROR: '#FF6A6A',
+  SUCCESS: '#148914',
 };

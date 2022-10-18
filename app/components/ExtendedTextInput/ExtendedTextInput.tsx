@@ -9,6 +9,7 @@ import {
 import { IExtendedTextInputProps } from './ExtendedTextInput.types';
 import { TextInputPasswordToggle } from './inputs';
 import { styles } from './ExtendedTextInput.styles';
+import { COLORS } from '../../themes/colors';
 
 export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
   label,
@@ -45,6 +46,7 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
         {...initialInputProps}
         {...rest}
         style={[styles.input, style]}
+        selectionColor={COLORS.PRIMARY_ORANGE}
       />
       {error && (
         <ExtendedText style={[styles.error, errorStyle]}>{error}</ExtendedText>
