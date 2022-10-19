@@ -1,9 +1,8 @@
 import _ from 'lodash';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { useSharedValue } from 'react-native-reanimated';
 
 import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
@@ -26,13 +25,13 @@ export const Carousel: React.FC<ICarouselProps> = ({
   carouselStyle,
   carouselItemStyle,
 }) => {
-  const progressValue = useSharedValue(0);
+  const [progressValue, setProgressValue] = useState(0);
 
   const onProgressChange = useCallback(
     (item, absoluteProgress) => {
-      progressValue.value = absoluteProgress;
+      setProgressValue(absoluteProgress);
       if (setCurrentPossition) {
-        setCurrentPossition(progressValue.value);
+        setCurrentPossition(progressValue);
       }
     },
     [progressValue, setCurrentPossition],

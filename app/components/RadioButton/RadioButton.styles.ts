@@ -1,31 +1,34 @@
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
 import { COLORS } from '../../themes/colors';
+import { hexTransparency } from '../../utils';
 
 export interface IRadioButtonStyles {
   container: ViewStyle;
   title: TextStyle;
-  activeTitle: TextStyle;
   activeBackground: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IRadioButtonStyles>({
   container: {
-    backgroundColor: COLORS.BLACK,
-    borderRadius: 16,
-    padding: 16,
-    marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 20,
+    paddingLeft: 24,
+    marginBottom: 24,
+    borderRadius: 24,
+    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
+    borderWidth: 1,
+    borderColor: COLORS.PRIMARY_ORANGE,
   },
   title: {
-    color: COLORS.WHITE,
-    marginLeft: 12,
+    color: COLORS.BRILLIANT_WHITE,
   },
-  activeTitle: {
-    color: COLORS.BLACK,
-  },
+
   activeBackground: {
-    backgroundColor: COLORS.WHITE,
+    marginBottom: 22,
+    backgroundColor: COLORS.PRIMARY_PURPLE,
+    borderWidth: 2,
   },
 });

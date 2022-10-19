@@ -1,28 +1,46 @@
 import React, { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
-import { VerticalSwipeView } from '../../../../components';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import {
+  BottomButtonView,
+  ExtendedText,
+  MainHeader,
+} from '../../../../components';
+import { generalStyles } from '../../../../utils/styles';
+import { styles } from './Acknowledgement.styles';
 import { IAcknowledgementScreenProps } from './Acknowledgement.types';
 
 export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
   navigation,
 }) => {
+  const { t } = useTranslation();
+
   const onNextPress = useCallback(() => {
     navigation.navigate('OnboardingCarousel');
   }, [navigation]);
 
   return (
-    // TODO: change to correct background
-    <VerticalSwipeView
-      image={IMAGES.LOGO}
-      titleKey="screens.onboarding.acknowledgement.title"
-      topBackground={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
-      bottomBackground={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
-      onSubmit={onNextPress}
-    />
+    <ImageBackground
+      source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
+        <BottomButtonView
+          buttonTitle={t('buttons.next')}
+          onSubmit={onNextPress}
+          isArrow={true}
+          style={styles.container}>
+          <Image source={IMAGES.COMPASSIONATE_GUIDE} />
+          <ExtendedText preset="body-regular" style={styles.title}>
+            {t('screens.onboarding.acknowledgement.title')}
+          </ExtendedText>
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

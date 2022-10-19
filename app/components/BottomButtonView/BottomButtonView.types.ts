@@ -4,4 +4,5 @@ export interface IBottomButtonViewProps extends ViewProps {
   buttonTitle: string;
   onSubmit: () => void;
   isDisabledButton?: boolean;
+  isArrow?: boolean;
 }

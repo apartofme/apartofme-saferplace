@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 interface ILanguageSelectionStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -11,6 +13,7 @@ export const styles = StyleSheet.create<ILanguageSelectionStyles>({
     paddingTop: 40,
   },
   title: {
-    marginBottom: 68,
+    paddingBottom: 72,
+    color: COLORS.BRILLIANT_WHITE,
   },
 });
