@@ -58,14 +58,14 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
         dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir - 3));
 
         if (currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID) {
-          navigation.navigate('GardenStack', {
+          navigation.push('GardenStack', {
             screen: 'GardenTutorialDialog',
             params: { isStart: true },
           });
           return;
         }
 
-        navigation.navigate('GardenStack', {
+        navigation.push('GardenStack', {
           screen: 'Garden',
           params: {
             isFirstTime: false,

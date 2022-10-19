@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 import { Formik } from 'formik';
@@ -39,6 +39,13 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
     [dispatch, isChild, navigation],
   );
 
+  const correctDescription = useMemo(() => {
+    if (isChild) {
+      return t('screens.onboarding.sign_up_nickname.child.description');
+    }
+    return t('screens.onboarding.sign_up_nickname.parent.description');
+  }, [isChild, t]);
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
@@ -60,7 +67,7 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
                 {t('screens.onboarding.sign_up_nickname.title')}
               </ExtendedText>
               <ExtendedText preset="secondary-text" style={styles.subtitle}>
-                {t('screens.onboarding.sign_up_nickname.description')}
+                {correctDescription}
               </ExtendedText>
               <ExtendedTextInput
                 value={values.nickname}

@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { ExtendedText } from '../ExtendedText';
 import { IRadioButtonProps } from './RadioButton.types';
 import { styles } from './RadioButton.styles';
+import { Circle } from './components';
 
 export const RadioButton: React.FC<IRadioButtonProps> = ({
   title,
@@ -14,9 +15,8 @@ export const RadioButton: React.FC<IRadioButtonProps> = ({
     <TouchableOpacity
       style={[styles.container, isActive && styles.activeBackground]}
       onPress={onPress}>
-      <ExtendedText style={[styles.title, isActive && styles.activeTitle]}>
-        {title}
-      </ExtendedText>
+      <ExtendedText style={styles.title}>{title}</ExtendedText>
+      <Circle isActive={isActive} />
     </TouchableOpacity>
   );
 };

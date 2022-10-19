@@ -35,6 +35,7 @@ interface ICacheState {
   troublesomeSpiritQuestionsItem: Nullable<string>;
   childKindnessItem: Nullable<string>;
   parentKindnessItem: Nullable<string>;
+  selectedSong: Nullable<string>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -56,6 +57,7 @@ const INITIAL_STATE: ICacheState = {
   troublesomeSpiritQuestionsItem: null,
   childKindnessItem: null,
   parentKindnessItem: null,
+  selectedSong: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -131,6 +133,10 @@ export const cacheSlice = createSlice({
     },
     saveParentKindnessItem(state, { payload }: PayloadAction<string>) {
       state.parentKindnessItem = payload;
+    },
+
+    setSelectedSong(state, { payload }: PayloadAction<string>) {
+      state.selectedSong = payload;
     },
   },
 });

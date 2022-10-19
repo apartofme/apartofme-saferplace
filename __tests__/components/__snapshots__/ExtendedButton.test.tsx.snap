@@ -15,10 +15,25 @@ exports[`UI: ExtendedButton should match snapshot 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
-      "backgroundColor": undefined,
-      "borderRadius": 20,
+      "alignItems": "center",
+      "backgroundColor": "#FFB452",
+      "borderColor": "#FFDBB0",
+      "borderLeftWidth": 1,
+      "borderRadius": 40,
+      "borderRightWidth": 1,
+      "borderTopWidth": 2,
+      "flexDirection": "row",
+      "justifyContent": "center",
       "opacity": 1,
-      "padding": 16,
+      "paddingHorizontal": 24,
+      "paddingVertical": 16,
+      "shadowColor": "#B78036",
+      "shadowOffset": Object {
+        "height": 4,
+        "width": 0,
+      },
+      "shadowOpacity": 1,
+      "shadowRadius": 1,
     }
   }
 >
@@ -33,7 +48,12 @@ exports[`UI: ExtendedButton should match snapshot 1`] = `
         },
         Array [
           Object {
-            "color": undefined,
+            "color": "#69471A",
+            "fontFamily": "Poppins-Bold",
+            "fontSize": 17,
+            "letterSpacing": 0.34,
+            "lineHeight": 30,
+            "textAlign": "center",
           },
           undefined,
           undefined,

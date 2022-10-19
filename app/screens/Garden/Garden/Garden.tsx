@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import _ from 'lodash';
+import { useIsFocused } from '@react-navigation/native';
 import {
   Image,
   ImageBackground,
@@ -26,6 +27,7 @@ import { questSlice } from '../../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
 import { styles } from './Garden.styles';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
@@ -36,6 +38,16 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const { t } = useTranslation();
   const appStatus = useAppState();
   const dispatch = useAppDispatch();
+
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (isFocused && appStatus === 'active') {
+      AudioPlayerHelper.setInfiniteLoop('forest_ambience_sfx_loop_2_001.mp3');
+    } else {
+      AudioPlayerHelper.stop();
+    }
+  }, [appStatus, isFocused]);
 
   const isCurrentDayQuestStackEmpty = useAppSelector(
     state => !state.quest.currentDayQuestsStack.length,
@@ -144,7 +156,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       <View style={generalStyles.flex}>
         <TouchableOpacity
           onPress={onAvatarPress}
-          style={styles.zIndex10}
+          style={styles.avatarContainer}
           disabled={isFirstTime}>
           <Image source={IMAGES[childAvatar]} style={styles.avatar} />
         </TouchableOpacity>

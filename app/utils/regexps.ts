@@ -1,9 +1,9 @@
-import { FIRST_PLAYER, SECOND_PLAYER } from '../constants/quest';
+import { DatoCMSTextVariables } from '../constants/quest';
 
 export const REGEXPS = {
-  FIRST_PLAYER: new RegExp(FIRST_PLAYER),
+  FIRST_PLAYER: new RegExp(DatoCMSTextVariables.FirstPlayer),
   LOWERCASE: /[a-z]/,
   NUMBER: /\d/,
-  SECOND_PLAYER: new RegExp(SECOND_PLAYER),
+  SECOND_PLAYER: new RegExp(DatoCMSTextVariables.SecondPlayer),
   UPPERCASE: /[A-Z]/,
 };

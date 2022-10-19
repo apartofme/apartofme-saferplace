@@ -24,7 +24,7 @@ interface IQuestState {
   currentQuestLine: Nullable<{ id: string; quests: IQuest[] }>;
   currentQuestStack: number[];
   dailyChecks: Nullable<Record<string, string>>;
-  completedQuestsId: Nullable<number[]>;
+  completedQuestsId: number[];
 }
 
 const INITIAL_STATE: IQuestState = {
@@ -38,7 +38,7 @@ const INITIAL_STATE: IQuestState = {
   currentQuestLine: null,
   currentQuestStack: [],
   dailyChecks: null,
-  completedQuestsId: null,
+  completedQuestsId: [],
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -92,12 +92,9 @@ export const questSlice = createSlice({
 
     saveCompletedQuestsId(state, action: PayloadAction<number>) {},
     saveCompletedQuestsIdSuccess(state, { payload }: PayloadAction<number>) {
-      const completedQuestsIdState = state.completedQuestsId;
-      if (!_.find(completedQuestsIdState, payload)) {
+      if (_.findIndex(state.completedQuestsId, payload) === -1) {
         state.completedQuestsId?.push(payload);
-        return;
       }
-      state.completedQuestsId = [payload];
     },
     saveCompletedQuestsIdError(state, action: PayloadAction<string>) {},
 
