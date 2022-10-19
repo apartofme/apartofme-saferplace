@@ -1,17 +1,12 @@
 import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 
-import {
-  CRITICAL_HEIGHT,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
-} from '../../../../constants/window';
+import { CRITICAL_HEIGHT, WINDOW_HEIGHT } from '../../../../constants/window';
 import { isIOS } from '../../../../utils';
 
 export interface IPlantingPlantStyles {
   container: ViewStyle;
   tree: ImageStyle;
   borderTransparent: ViewStyle;
-  plantMargin: ImageStyle;
   plantingPlase: ViewStyle;
   plantArea: ViewStyle;
   plantAreaBorder: ViewStyle;
@@ -42,10 +37,6 @@ export const styles = StyleSheet.create<IPlantingPlantStyles>({
   borderTransparent: {
     borderColor: 'transparent',
   },
-  plantMargin: {
-    marginTop: -(WINDOW_WIDTH / 6),
-    marginLeft: WINDOW_WIDTH / 13,
-  },
   plantAreaBorder: {
     borderWidth: 2,
     borderStyle: 'dashed',
@@ -58,6 +49,7 @@ export const styles = StyleSheet.create<IPlantingPlantStyles>({
     transform: [{ rotate: '-33deg' }],
   },
   plantArea: {
+    justifyContent: 'center',
     transform: isIOS
       ? [{ skewX: '30deg' }]
       : [{ rotateX: '50deg' }, { rotateY: '30deg' }, { rotateZ: '-30deg' }],

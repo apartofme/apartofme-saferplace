@@ -38,12 +38,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
             ]}
             disabled={!!currentPlant}
             onPress={() => selectPlantArea(currentPlantArea)}>
-            {currentPlant && (
-              <Plant
-                plant={currentPlant}
-                additionalStyle={styles.plantMargin}
-              />
-            )}
+            {currentPlant && <Plant plant={currentPlant} />}
           </Pressable>
         );
       }
@@ -55,9 +50,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
             styles.borderTransparent,
             additionalStyles,
           ]}>
-          {currentPlant && (
-            <Plant plant={currentPlant} additionalStyle={styles.plantMargin} />
-          )}
+          {currentPlant && <Plant plant={currentPlant} />}
         </View>
       );
     },

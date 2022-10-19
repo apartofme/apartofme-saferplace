@@ -24,7 +24,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
   const {
     title,
     description,
-    images,
+    image,
     buttonTitle,
     crossHeader,
     titleHasNickname,
@@ -76,7 +76,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
             <View style={generalStyles.flex} />
             <Image
               // TODO: change to correct image
-              source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
+              source={(image && IMAGES[image]) ?? IMAGES.LOGO}
               style={styles.infoImage}
             />
             <ExtendedText preset="secondary-text" style={styles.description}>

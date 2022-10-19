@@ -35,6 +35,16 @@ export enum AvatarsNameType {
   Tree = 'TREE',
 }
 
+export enum ElixirKeysType {
+  ElixirZero = 'ElixirZeroIcon',
+  ElixirZeroHalf = 'ElixirZeroHalfIcon',
+  ElixirOne = 'ElixirOneIcon',
+  ElixirOneHalf = 'ElixirOneHalfIcon',
+  ElixirTwo = 'ElixirTwoIcon',
+  ElixirTwoHalf = 'ElixirTwoHalfIcon',
+  ElixirThree = 'ElixirThreeICon',
+}
+
 export type ImagesKeys = keyof typeof IMAGES;
 
 export interface IElixirProgress {
@@ -51,4 +61,9 @@ export interface IQuestProgress {
   currentDayQuestsStack: number[];
   interruptedQuestLine: Nullable<IInterruptedQuestLine>;
   completedQuestsId: number[];
+}
+
+export interface ISvgProps {
+  height?: number;
+  width?: number;
 }

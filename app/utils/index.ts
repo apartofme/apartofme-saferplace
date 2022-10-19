@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
-import { ImagesKeys, ITranslations } from './types';
+import { ElixirKeysType, ITranslations, ImagesKeys } from './types';
 import { IMAGES } from '../assets/images';
 import { REGEXPS } from './regexps';
 
@@ -110,25 +110,27 @@ export const questsToDictionary = (
 };
 
 // TODO: change string to animation
-export const getElixirAnimationByRange = (currentPosition: number) => {
-  if (currentPosition > 0 && currentPosition <= 0.5) {
-    return '0 - 0.5';
+export const getElixirAnimationKeyByRange = (currentPosition: number) => {
+  if (currentPosition === 0) {
+    return ElixirKeysType.ElixirZero;
   }
-  if (currentPosition > 0.5 && currentPosition <= 1) {
-    return '0,5 - 1';
+  if (currentPosition <= 0.5) {
+    return ElixirKeysType.ElixirZeroHalf;
   }
-  if (currentPosition > 1 && currentPosition <= 1.5) {
-    return '1 - 1,5';
+  if (currentPosition <= 1) {
+    return ElixirKeysType.ElixirOne;
   }
-  if (currentPosition > 1.5 && currentPosition <= 2) {
-    return '1.5 - 2';
+  if (currentPosition <= 1.5) {
+    return ElixirKeysType.ElixirOneHalf;
   }
-  if (currentPosition > 2 && currentPosition <= 2.5) {
-    return '2 - 2.5';
+  if (currentPosition <= 2) {
+    return ElixirKeysType.ElixirTwo;
   }
-  if (currentPosition > 2.5) {
-    return '2.5 - 3';
+  if (currentPosition <= 2.5) {
+    return ElixirKeysType.ElixirTwoHalf;
   }
+
+  return ElixirKeysType.ElixirThree;
 };
 
 export const containsFirstPlayer = (text: string) => {

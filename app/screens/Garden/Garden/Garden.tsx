@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
-import _ from 'lodash';
 import { useIsFocused } from '@react-navigation/native';
 import {
   Image,
@@ -21,7 +20,7 @@ import { IMAGES } from '../../../assets';
 import { Nullable } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { Book, PlantArea, PlantAreaType } from '../components';
+import { Book, Elixir, PlantArea, PlantAreaType } from '../components';
 import { MixingElixirPhaseType } from '../../../utils/types';
 import { questSlice } from '../../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../../constants/time';
@@ -122,16 +121,14 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   const title = useMemo(() => {
     const isDisplayNone =
-      !isPlanting &&
-      (isCurrentDayQuestStackEmpty || isInterruptedQuestLineEmpty) &&
-      isPlanting;
+      isCurrentDayQuestStackEmpty && isInterruptedQuestLineEmpty && !isPlanting;
 
     return (
       <Pressable
         onPress={onTitlePress}
         style={[styles.titleContainer, isDisplayNone && styles.displayNone]}
         disabled={!isPlanting}>
-        <ExtendedText>
+        <ExtendedText preset="tertiary-text-medium" style={styles.title}>
           {isPlanting
             ? t('screens.garden.tapTitle')
             : t('screens.garden.tapBook')}
@@ -148,10 +145,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to the real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={IMAGES.GARDEN_BACKGROUND}
       style={generalStyles.flex}>
       <View style={generalStyles.flex}>
         <TouchableOpacity
@@ -160,12 +154,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
           disabled={isFirstTime}>
           <Image source={IMAGES[childAvatar]} style={styles.avatar} />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={_.noop}
-          disabled={isPlanting}
-          style={styles.zIndex10}>
-          <Image source={IMAGES.LOGO} style={styles.elixir} />
-        </TouchableOpacity>
+        <Elixir />
         <View style={styles.plantArea}>
           <PlantArea
             isPlanting={isPlanting}
