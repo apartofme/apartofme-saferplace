@@ -1,5 +1,7 @@
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IFeedbackScreenStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -13,9 +15,11 @@ export const styles = StyleSheet.create<IFeedbackScreenStyles>({
   },
   title: {
     marginTop: 48,
+    color: COLORS.BRILLIANT_WHITE,
   },
   subtitle: {
     marginTop: 27,
+    color: COLORS.BRILLIANT_WHITE,
   },
   inputContainer: {
     marginTop: 30,

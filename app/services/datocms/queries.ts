@@ -43,7 +43,7 @@ query getQuestLineQuests {
     id
     title
     description
-    images {
+    image {
       id
       path
     }
@@ -93,7 +93,7 @@ export const getAllQuestsQuery = (
       id
       title
       description
-      images {
+      image {
         id
         path
       }

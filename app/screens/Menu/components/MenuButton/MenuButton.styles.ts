@@ -1,14 +1,21 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../../themes/colors';
 
 interface IMenuButtonStyles {
   container: ViewStyle;
+  title: TextStyle;
   image: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IMenuButtonStyles>({
   container: {
+    alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: 24,
+    justifyContent: 'space-between',
+  },
+  title: {
+    color: COLORS.LIGHT_GREY,
   },
   image: {
     marginRight: 17,

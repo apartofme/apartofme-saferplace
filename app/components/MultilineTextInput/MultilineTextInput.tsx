@@ -4,6 +4,7 @@ import { Image, TextInput, View } from 'react-native';
 import { IMAGES } from '../../assets';
 import { IMultilineTextInputProps } from './MultilineTextInput.types';
 import { styles } from './MultilineTextInput.styles';
+import { COLORS } from '../../themes/colors';
 
 export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
   style,
@@ -15,6 +16,7 @@ export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
       <TextInput
         style={[style, styles.input]}
         multiline={true}
+        placeholderTextColor={COLORS.BRILLIANT_WHITE}
         placeholder={placeholder}
         returnKeyType="send"
         {...rest}

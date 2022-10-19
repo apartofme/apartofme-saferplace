@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import {
@@ -16,6 +16,7 @@ import { settingsSlice } from '../../../redux/slices';
 import i18n from '../../../services/localization';
 import { ILanguageSettingsScreenProps } from './LanguageSettings.types';
 import { styles } from './LanguageSettings.styles';
+import { generalStyles } from '../../../utils/styles';
 
 export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
   navigation,
@@ -36,36 +37,38 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
   }, [disptach, selectedLanguage]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <MainHeader
-        // TODO: add right icon
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <View style={styles.contentContainer}>
-        <ExtendedText style={styles.title}>
-          {t('screens.menu.language_settings.title')}
-        </ExtendedText>
-        <ExtendedText style={styles.subtitle}>
-          {t('screens.menu.language_settings.description')}
-        </ExtendedText>
-        <View style={styles.listContainer}>
-          <RadioButtonList
-            data={LANGUAGES}
-            type={RadioButtonListType.Single}
-            setSelected={setSelectedLanguage}
+    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+      <SafeAreaView style={styles.container}>
+        <MainHeader
+          // TODO: add right icon
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
+        <View style={styles.contentContainer}>
+          <ExtendedText style={styles.title} preset="large-title">
+            {t('screens.menu.language_settings.title')}
+          </ExtendedText>
+          <ExtendedText style={styles.subtitle} preset="secondary-text">
+            {t('screens.menu.language_settings.description')}
+          </ExtendedText>
+          <View style={styles.listContainer}>
+            <RadioButtonList
+              data={LANGUAGES}
+              type={RadioButtonListType.Single}
+              setSelected={setSelectedLanguage}
+            />
+          </View>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <ExtendedButton title={t('buttons.save')} onPress={onSubmit} />
+          <ExtendedButton
+            style={styles.cancelButton}
+            title={t('buttons.cancel')}
+            onPress={navigation.goBack}
           />
         </View>
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <ExtendedButton title={t('buttons.save')} onPress={onSubmit} />
-        <ExtendedButton
-          style={styles.cancelButton}
-          title={t('buttons.cancel')}
-          onPress={navigation.goBack}
-        />
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

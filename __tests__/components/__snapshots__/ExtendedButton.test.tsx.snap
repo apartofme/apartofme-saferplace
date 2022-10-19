@@ -15,7 +15,7 @@ exports[`UI: ExtendedButton should match snapshot 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
-      "backgroundColor": "#333",
+      "backgroundColor": undefined,
       "borderRadius": 20,
       "opacity": 1,
       "padding": 16,
@@ -33,7 +33,7 @@ exports[`UI: ExtendedButton should match snapshot 1`] = `
         },
         Array [
           Object {
-            "color": "white",
+            "color": undefined,
           },
           undefined,
           undefined,

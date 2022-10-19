@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View, FlatList } from 'react-native';
+import { SafeAreaView, View, FlatList, ImageBackground } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
@@ -22,7 +22,11 @@ export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
       const onMenuItemPress = () => {
         navigation.navigate('AboutCharm', { data: item });
       };
-      return <MenuButton title={item.title} onPress={onMenuItemPress} />;
+      return (
+        <View style={styles.menuButtonContainer}>
+          <MenuButton title={item.title} onPress={onMenuItemPress} />
+        </View>
+      );
     },
     [navigation],
   );
@@ -33,27 +37,29 @@ export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <View style={styles.container}>
-        <ExtendedText style={styles.title}>
-          {t('screens.menu.about_charm_menu.title')}
-        </ExtendedText>
-        <ExtendedText style={styles.subtitle}>
-          {t('screens.menu.about_charm_menu.description')}
-        </ExtendedText>
-
-        <FlatList
-          style={styles.list}
-          data={ABOUT_CHARM_ITEMS}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-          showsVerticalScrollIndicator={false}
+    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
         />
-      </View>
-    </SafeAreaView>
+        <View style={styles.container}>
+          <ExtendedText style={styles.title} preset="large-title">
+            {t('screens.menu.about_charm_menu.title')}
+          </ExtendedText>
+          <ExtendedText style={styles.subtitle} preset="secondary-text">
+            {t('screens.menu.about_charm_menu.description')}
+          </ExtendedText>
+
+          <FlatList
+            style={styles.list}
+            data={ABOUT_CHARM_ITEMS}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

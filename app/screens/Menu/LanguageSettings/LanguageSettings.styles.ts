@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IHomeScreenStyles {
   container: ViewStyle;
   contentContainer: ViewStyle;
@@ -25,9 +27,11 @@ export const styles = StyleSheet.create<IHomeScreenStyles>({
     marginTop: 42,
   },
   title: {
+    color: COLORS.BRILLIANT_WHITE,
     marginTop: 48,
   },
   subtitle: {
+    color: COLORS.BRILLIANT_WHITE,
     marginTop: 24,
   },
   buttonContainer: {

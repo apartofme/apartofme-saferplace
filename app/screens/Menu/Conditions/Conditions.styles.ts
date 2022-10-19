@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IConditionsScreenStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -7,15 +9,16 @@ interface IConditionsScreenStyles {
 }
 
 export const styles = StyleSheet.create<IConditionsScreenStyles>({
-  // TODO: change on correct styles
   container: {
     flex: 1,
     paddingHorizontal: 24,
   },
   title: {
+    color: COLORS.BRILLIANT_WHITE,
     marginTop: 48,
   },
   subtitle: {
+    color: COLORS.BRILLIANT_WHITE,
     marginTop: 20,
     marginBottom: 40,
   },

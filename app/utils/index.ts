@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
-import { ITranslations } from './types';
+import { ImagesKeys, ITranslations } from './types';
 import { IMAGES } from '../assets/images';
 import { REGEXPS } from './regexps';
 
@@ -76,9 +76,6 @@ export const questsToDictionary = (
 
   _.map(quests, (quest: IQuestDatoCms) => {
     const questLineId = quest.questlineid.id;
-    const images = _.map(quest.images, image => {
-      return image.path;
-    });
 
     const tempQuest: IQuest = {
       id: quest.id,
@@ -86,7 +83,7 @@ export const questsToDictionary = (
       description: quest.description,
       backgroundImage:
         (quest.backgroundimage?.path as keyof typeof IMAGES) ?? null,
-      images: images as (keyof typeof IMAGES)[],
+      image: (quest.image?.path as ImagesKeys) ?? null,
       tellMoreTitle: quest.tellmoretitle ?? null,
       tellMoreDescription: quest.tellmoredescription ?? null,
       tellMoreBackground:

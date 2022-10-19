@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
@@ -47,28 +47,34 @@ export const AudioSettingsScreen: React.FC<IAudioSettingsScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <View style={styles.container}>
-        <ExtendedText style={styles.title}>
-          {t('screens.menu.audio_settings.title')}
-        </ExtendedText>
+    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
+        <View style={styles.container}>
+          <ExtendedText style={styles.title} preset="large-title">
+            {t('screens.menu.audio_settings.title')}
+          </ExtendedText>
 
-        <View>
-          {_.map(AUDIO_SETTINGS_MENU, item => (
-            <View style={styles.menuSwitchContainer} key={`menu-${item.type}`}>
-              <MenuSwitchRow
-                title={item.title}
-                isEnabled={audioSettings[item.type]}
-                setIsEnabled={() => changeLocalNotificationSettings(item.type)}
-              />
-            </View>
-          ))}
+          <View>
+            {_.map(AUDIO_SETTINGS_MENU, item => (
+              <View
+                style={styles.menuSwitchContainer}
+                key={`menu-${item.type}`}>
+                <MenuSwitchRow
+                  title={item.title}
+                  isEnabled={audioSettings[item.type]}
+                  setIsEnabled={() =>
+                    changeLocalNotificationSettings(item.type)
+                  }
+                />
+              </View>
+            ))}
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
