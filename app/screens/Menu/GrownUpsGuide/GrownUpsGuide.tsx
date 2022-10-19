@@ -36,18 +36,16 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
             {t('screens.menu.grown_ups_guide.title')}
           </ExtendedText>
           <View>
-            {_.map(GROWN_UP_GUIDE_ITEMS, item => {
-              return (
-                <View
-                  style={styles.menuButtonContainer}
-                  key={`grown-ups-${item.route}`}>
-                  <MenuButton
-                    title={item.titleKey}
-                    onPress={() => onMenuItemPress(item.route)}
-                  />
-                </View>
-              );
-            })}
+            {_.map(GROWN_UP_GUIDE_ITEMS, item => (
+              <View
+                style={styles.menuButtonContainer}
+                key={`grown-ups-${item.route}`}>
+                <MenuButton
+                  title={item.titleKey}
+                  onPress={() => onMenuItemPress(item.route)}
+                />
+              </View>
+            ))}
           </View>
         </View>
       </SafeAreaView>
