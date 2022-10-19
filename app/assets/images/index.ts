@@ -3,9 +3,10 @@ export const IMAGES = {
   WHITE_PENCIL: require('./whitePencil.png'),
 
   WHITE_BACK_ARROW: require('./whiteBackArrow.png'),
-  CLOSED_BOOK: require('./closedBook.png'),
-  OPEN_BOOK: require('./openBook.png'),
   TREE: require('./tree.png'),
+
+  // TODO: move
+  GARDEN_BACKGROUND: require('./gardenBackground.png'),
 };
 
 export const PLANTS_IMAGES = {

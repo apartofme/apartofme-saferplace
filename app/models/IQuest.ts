@@ -8,7 +8,7 @@ export interface IQuest {
   buttonTitle: Nullable<string>;
   description: Nullable<string>;
   backgroundImage: Nullable<keyof typeof IMAGES>;
-  images: Nullable<(keyof typeof IMAGES)[]>;
+  image: Nullable<keyof typeof IMAGES>;
   tellMoreTitle: Nullable<string>;
   tellMoreDescription: Nullable<string>;
   tellMoreBackground: Nullable<keyof typeof IMAGES>;
@@ -28,10 +28,10 @@ export interface IQuestDatoCms {
   id: string;
   title: string;
   description: Nullable<string>;
-  images: {
+  image: {
     id: string;
     path: string;
-  }[];
+  };
   backgroundimage: Nullable<{
     id: string;
     path: string;

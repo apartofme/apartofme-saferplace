@@ -21,7 +21,7 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
       buttonTitle,
       crossHeader,
       description,
-      images,
+      image,
       escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
@@ -54,10 +54,13 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
             <ExtendedText preset="body-regular" style={styles.title}>
               {title}
             </ExtendedText>
-            <Image source={images && IMAGES[images[0]]} style={styles.image} />
+            <Image
+              source={(image && IMAGES[image]) ?? IMAGES.LOGO}
+              style={styles.image}
+            />
             <TouchableOpacity onPress={goToAlert}>
               <Image
-                source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
+                source={(image && IMAGES[image]) ?? IMAGES.LOGO}
                 style={styles.infoImage}
               />
             </TouchableOpacity>
