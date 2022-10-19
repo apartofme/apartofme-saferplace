@@ -1,9 +1,12 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../themes/colors';
 
 interface IAboutCharmScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
+  image: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IAboutCharmScreenStyles>({
@@ -13,10 +16,15 @@ export const styles = StyleSheet.create<IAboutCharmScreenStyles>({
     paddingHorizontal: 24,
   },
   title: {
-    marginTop: 172,
+    marginTop: 48,
+    color: COLORS.BRILLIANT_WHITE,
   },
   subtitle: {
-    marginTop: 20,
+    marginTop: 40,
     marginBottom: 40,
+    color: COLORS.BRILLIANT_WHITE,
+  },
+  image: {
+    alignSelf: 'center',
   },
 });

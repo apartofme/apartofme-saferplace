@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View, FlatList } from 'react-native';
+import { SafeAreaView, View, FlatList, ImageBackground } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
@@ -23,7 +23,11 @@ export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
   // TODO: change to correct function
   const renderItem = useCallback(
     ({ item }: { item: IFurtherSupportMenuItem }) => {
-      return <MenuButton title={item.titleKey} onPress={_.noop} />;
+      return (
+        <View style={styles.menuButtonContainer}>
+          <MenuButton title={item.titleKey} onPress={_.noop} />
+        </View>
+      );
     },
     [],
   );
@@ -34,24 +38,26 @@ export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <View style={styles.container}>
-        <ExtendedText style={styles.title}>
-          {t('screens.menu.further_support.title')}
-        </ExtendedText>
-
-        <FlatList
-          style={styles.list}
-          data={FURTHER_SUPPORT_MENU_ITEMS}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-          showsVerticalScrollIndicator={false}
+    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
         />
-      </View>
-    </SafeAreaView>
+        <View style={styles.container}>
+          <ExtendedText style={styles.title} preset="large-title">
+            {t('screens.menu.further_support.title')}
+          </ExtendedText>
+
+          <FlatList
+            style={styles.list}
+            data={FURTHER_SUPPORT_MENU_ITEMS}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

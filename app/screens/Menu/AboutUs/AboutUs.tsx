@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
@@ -14,19 +14,21 @@ export const AboutUsScreen: React.FC<IAboutUsScreenProps> = ({
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <View style={styles.container}>
-        <ExtendedText style={styles.title}>
-          {t('screens.menu.about_us.title')}
-        </ExtendedText>
-        <ExtendedText style={styles.subtitle}>
-          {t('screens.menu.about_us.description')}
-        </ExtendedText>
-      </View>
-    </SafeAreaView>
+    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
+        <View style={styles.container}>
+          <ExtendedText style={styles.title} preset="large-title">
+            {t('screens.menu.about_us.title')}
+          </ExtendedText>
+          <ExtendedText style={styles.subtitle} preset="secondary-text">
+            {t('screens.menu.about_us.description')}
+          </ExtendedText>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

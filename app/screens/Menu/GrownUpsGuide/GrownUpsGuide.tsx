@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
@@ -25,27 +25,30 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <View style={styles.container}>
-        <ExtendedText style={styles.title}>
-          {t('screens.menu.grown_ups_guide.title')}
-        </ExtendedText>
-        <View>
-          {_.map(GROWN_UP_GUIDE_ITEMS, item => {
-            return (
-              <MenuButton
-                key={`main-menu-${item.route}`}
-                title={item.titleKey}
-                onPress={() => onMenuItemPress(item.route)}
-              />
-            );
-          })}
+    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
+        <View style={styles.container}>
+          <ExtendedText preset="large-title" style={styles.title}>
+            {t('screens.menu.grown_ups_guide.title')}
+          </ExtendedText>
+          <View>
+            {_.map(GROWN_UP_GUIDE_ITEMS, item => (
+              <View
+                style={styles.menuButtonContainer}
+                key={`grown-ups-${item.route}`}>
+                <MenuButton
+                  title={item.titleKey}
+                  onPress={() => onMenuItemPress(item.route)}
+                />
+              </View>
+            ))}
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

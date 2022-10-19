@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { COLORS } from '../../../themes/colors';
 
 interface INotificationSettingsStyles {
   container: ViewStyle;
@@ -12,7 +13,8 @@ export const styles = StyleSheet.create<INotificationSettingsStyles>({
     flex: 1,
   },
   title: {
-    marginTop: 40,
+    marginTop: 48,
+    color: COLORS.BRILLIANT_WHITE,
     marginBottom: 100,
   },
   button: {

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
@@ -36,30 +36,34 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
     }, [isNotificationsEnabled, setIsNotificationsEnabled]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <MainHeader
-          // TODO: change to correct icon
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
-        <View style={styles.container}>
-          <ExtendedText style={styles.title}>
-            {t('screens.menu.notification_settings.title')}
-          </ExtendedText>
+      <ImageBackground
+        source={IMAGES.MENU_BACKGROUND}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            // TODO: change to correct icon
+            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            onLeftIconPress={navigation.goBack}
+          />
+          <View style={styles.container}>
+            <ExtendedText style={styles.title} preset="large-title">
+              {t('screens.menu.notification_settings.title')}
+            </ExtendedText>
 
-          <MenuSwitchRow
-            title={t(
-              'screens.menu.notification_settings.is_allow_notifications',
-            )}
-            isEnabled={isNotificationsEnabled}
-            setIsEnabled={setNotificationEnabled}
-          />
-          <ExtendedButton
-            title="To device settings"
-            style={styles.button}
-            onPress={openDeviceNotificationSettings}
-          />
-        </View>
-      </SafeAreaView>
+            <MenuSwitchRow
+              title={t(
+                'screens.menu.notification_settings.is_allow_notifications',
+              )}
+              isEnabled={isNotificationsEnabled}
+              setIsEnabled={setNotificationEnabled}
+            />
+            <ExtendedButton
+              title="To device settings"
+              style={styles.button}
+              onPress={openDeviceNotificationSettings}
+            />
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

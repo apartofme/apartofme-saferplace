@@ -1,10 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 
 import { ExtendedText } from '../../../../components';
 import { IMenuButtonProps } from './MenuButton.types';
 import { styles } from './MenuButton.styles';
+import { IMAGES } from '../../../../assets';
+import { generalStyles } from '../../../../utils/styles';
 
 export const MenuButton: React.FC<IMenuButtonProps> = ({
   title,
@@ -15,10 +17,13 @@ export const MenuButton: React.FC<IMenuButtonProps> = ({
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      {icon && <Image source={icon} style={styles.image} />}
-      <ExtendedText>{t(title)}</ExtendedText>
-      {/* //TODO: uncoment when design will be done */}
-      {/* <Image source={IMAGES.WHITE_RIGHT_ARROW}/> */}
+      <View style={[generalStyles.row, generalStyles.aiCenter]}>
+        {icon && <Image source={icon} style={styles.image} />}
+        <ExtendedText preset="secondary-text" style={styles.title}>
+          {t(title)}
+        </ExtendedText>
+      </View>
+      <Image source={IMAGES.WHITE_RIGHT_ARROW} />
     </TouchableOpacity>
   );
 };

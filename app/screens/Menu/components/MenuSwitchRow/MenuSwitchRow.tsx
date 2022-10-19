@@ -15,7 +15,9 @@ export const MenuSwitchRow: React.FC<IMenuSwitchRowProps> = ({
 
   return (
     <View style={styles.container}>
-      <ExtendedText>{t(title)}</ExtendedText>
+      <ExtendedText preset="secondary-text" style={styles.title}>
+        {t(title)}
+      </ExtendedText>
       <ExtendedSwitch isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
     </View>
   );

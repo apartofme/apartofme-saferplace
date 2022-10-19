@@ -1,9 +1,10 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IFAQSectionListStyles {
   container: ViewStyle;
   title: ViewStyle;
-  searchBoxContainer: ViewStyle;
   listContainer: ViewStyle;
 }
 
@@ -13,13 +14,11 @@ export const styles = StyleSheet.create<IFAQSectionListStyles>({
     paddingHorizontal: 24,
   },
   title: {
-    marginTop: 40,
-  },
-  searchBoxContainer: {
-    marginTop: 60,
+    marginTop: 48,
+    color: COLORS.BRILLIANT_WHITE,
   },
   listContainer: {
     flex: 1,
-    marginTop: 40,
+    marginTop: 26,
   },
 });

@@ -58,7 +58,7 @@ export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
   const renderSectionHeader = useCallback(
     ({ section }: { section: SectionListData<IMenuItem, ISectionData> }) => {
       return (
-        <ExtendedText style={styles.sectionListItemTitle}>
+        <ExtendedText style={styles.sectionTitle} preset="body-bold">
           {section.title}
         </ExtendedText>
       );
@@ -70,11 +70,13 @@ export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
     useCallback(({ item }) => {
       return (
         <View style={styles.sectionListItemContainer}>
-          <ExtendedText style={styles.sectionListItemTitle}>
+          <ExtendedText
+            style={styles.sectionListItemTitle}
+            preset="secondary-text">
             {item.title}
           </ExtendedText>
           {/* // TODO: change to correct icon */}
-          <Image source={IMAGES.WHITE_PENCIL} />
+          <Image source={IMAGES.ORANGE_CIRCLE_PLUSS} />
         </View>
       );
     }, []);

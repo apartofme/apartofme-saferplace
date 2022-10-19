@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IAudioSettingsStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -12,6 +14,7 @@ export const styles = StyleSheet.create<IAudioSettingsStyles>({
     flex: 1,
   },
   title: {
+    color: COLORS.BRILLIANT_WHITE,
     marginTop: 48,
     marginBottom: 100,
   },

@@ -5,23 +5,22 @@ import { IButtonsMenuItem } from '../components/MenuButton/MenuButton.data';
 export const MAIN_MENU_ITEMS: ReadonlyArray<IButtonsMenuItem> = [
   {
     titleKey: 'screens.menu.main_menu.guide',
-    icon: IMAGES.WHITE_PENCIL,
+    icon: IMAGES.CIRCLE_EXCLAMATION_MARK,
     route: 'GrownUpsGuide',
   },
   {
     titleKey: 'screens.menu.main_menu.support',
-    icon: IMAGES.WHITE_PENCIL,
+    icon: IMAGES.CIRCLE_QUESTION_MARK,
     route: 'HelpSupport',
   },
-
   {
     titleKey: 'screens.menu.main_menu.account_manage',
-    icon: IMAGES.WHITE_PENCIL,
+    icon: IMAGES.GEAR_MAN,
     route: 'ManageAccountMenu',
   },
   {
     titleKey: 'screens.menu.main_menu.settings',
-    icon: IMAGES.WHITE_PENCIL,
+    icon: IMAGES.WHITE_GEAR,
     route: 'SettingsPrivacy',
   },
 ];

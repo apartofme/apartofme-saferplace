@@ -1,4 +1,5 @@
 import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
+import { ImageSourcePropType } from 'react-native';
 
 import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
 import { AboutCharmsMenuType } from './AboutCharm.data';
@@ -12,5 +13,6 @@ export interface AboutCharmsMenuItem {
   title: string;
   titleAddition?: string;
   subtitle: string;
+  image: ImageSourcePropType;
   type: AboutCharmsMenuType;
 }

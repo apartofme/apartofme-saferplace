@@ -1,6 +1,7 @@
 import { IMAGES } from '../assets';
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { Nullable } from '../utils';
+import { ImagesKeys } from '../utils/types';
 
 export interface IQuest {
   id: string;
@@ -8,7 +9,7 @@ export interface IQuest {
   buttonTitle: Nullable<string>;
   description: Nullable<string>;
   backgroundImage: Nullable<keyof typeof IMAGES>;
-  image: Nullable<keyof typeof IMAGES>;
+  image: Nullable<ImagesKeys>;
   tellMoreTitle: Nullable<string>;
   tellMoreDescription: Nullable<string>;
   tellMoreBackground: Nullable<keyof typeof IMAGES>;

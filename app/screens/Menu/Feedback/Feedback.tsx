@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import {
@@ -25,33 +25,35 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
   }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <ExtendedKeyboardAvoidingView>
-        <BottomButtonView
-          buttonTitle={t('buttons.submit')}
-          onSubmit={onSubmit}
-          isDisabledButton={!feedback}>
-          <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            onLeftIconPress={navigation.goBack}
-          />
-          <View style={styles.container}>
-            <ExtendedText style={styles.title}>
-              {t('screens.menu.feedback.title')}
-            </ExtendedText>
-            <ExtendedText style={styles.subtitle}>
-              {t('screens.menu.feedback.subtitle')}
-            </ExtendedText>
-            <View style={styles.inputContainer}>
-              <MultilineTextInput
-                value={feedback}
-                onChangeText={setFeedback}
-                placeholder={t('placeholders.enter_text')}
-              />
+    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <ExtendedKeyboardAvoidingView>
+          <BottomButtonView
+            buttonTitle={t('buttons.submit')}
+            onSubmit={onSubmit}
+            isDisabledButton={!feedback}>
+            <MainHeader
+              leftIcon={IMAGES.WHITE_BACK_ARROW}
+              onLeftIconPress={navigation.goBack}
+            />
+            <View style={styles.container}>
+              <ExtendedText style={styles.title}>
+                {t('screens.menu.feedback.title')}
+              </ExtendedText>
+              <ExtendedText style={styles.subtitle}>
+                {t('screens.menu.feedback.description')}
+              </ExtendedText>
+              <View style={styles.inputContainer}>
+                <MultilineTextInput
+                  value={feedback}
+                  onChangeText={setFeedback}
+                  placeholder={t('placeholders.enter_text')}
+                />
+              </View>
             </View>
-          </View>
-        </BottomButtonView>
-      </ExtendedKeyboardAvoidingView>
-    </SafeAreaView>
+          </BottomButtonView>
+        </ExtendedKeyboardAvoidingView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
