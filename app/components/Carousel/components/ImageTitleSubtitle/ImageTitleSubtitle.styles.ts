@@ -1,7 +1,11 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+
+import { WINDOW_WIDTH } from '../../../../constants/window';
+import { COLORS } from '../../../../themes/colors';
 
 interface IImageTitleSubtitleStyles {
   container: ViewStyle;
+  image: ImageStyle;
   title: ViewStyle;
   subtitle: ViewStyle;
 }
@@ -9,15 +13,20 @@ interface IImageTitleSubtitleStyles {
 export const styles = StyleSheet.create<IImageTitleSubtitleStyles>({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  image: {
+    width: WINDOW_WIDTH,
   },
   title: {
-    marginVertical: 24,
+    paddingBottom: 24,
     textAlign: 'center',
+    color: COLORS.BRILLIANT_WHITE,
   },
   subtitle: {
-    minHeight: 120,
-    marginBottom: 22,
+    minHeight: 100,
+    marginBottom: 40,
     textAlign: 'center',
+    color: COLORS.LIGHT_GREY,
   },
 });

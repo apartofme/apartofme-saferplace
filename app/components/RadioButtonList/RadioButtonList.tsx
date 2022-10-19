@@ -5,6 +5,7 @@ import { FlatList, View } from 'react-native';
 
 import { useSpecificKeyExtractor } from '../../hooks';
 import { generalStyles } from '../../utils/styles';
+import { CheckBox } from '../CheckBox';
 import { RadioButton } from '../RadioButton/RadioButton';
 import {
   IRadioButtonListItem,
@@ -42,14 +43,19 @@ export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
           }
         }
       };
+      if (type === RadioButtonListType.Single) {
+        return (
+          <RadioButton
+            title={t(item.title)}
+            isActive={selectedItems[0] === item.id}
+            onPress={onSelectedPress}
+          />
+        );
+      }
       return (
-        <RadioButton
+        <CheckBox
           title={t(item.title)}
-          isActive={
-            type === RadioButtonListType.Single
-              ? selectedItems[0] === item.id
-              : !!_.find(selectedItems, findItem => findItem === item.id)
-          }
+          isActive={!!_.find(selectedItems, findItem => findItem === item.id)}
           onPress={onSelectedPress}
         />
       );

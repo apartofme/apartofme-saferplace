@@ -1,9 +1,11 @@
 import React, { useCallback, useMemo } from 'react';
-import { GestureResponderEvent, TouchableOpacity } from 'react-native';
+import { GestureResponderEvent, Image, TouchableOpacity } from 'react-native';
 
+import { IMAGES } from '../../assets';
 import { trackButtonPress } from '../../services/firebase';
 import { ExtendedText } from '../ExtendedText';
 import presets, { additionalStyles } from './ExtendedButton.presets';
+import { styles } from './ExtendedButton.styles';
 import { IExtendedButtonProps } from './ExtendedButton.types';
 
 export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
@@ -11,12 +13,14 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
   titleStyle,
   style,
   preset = 'default',
+  isArrow,
   disabled,
   onPress,
   ...rest
 }) => {
-  const styles = useMemo(
+  const containerStyles = useMemo(
     () => [
+      styles.container,
       presets[preset],
       disabled && additionalStyles[`${preset}Disabled`],
       style,
@@ -44,10 +48,11 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
   return (
     <TouchableOpacity
       {...rest}
-      style={styles}
+      style={containerStyles}
       disabled={disabled}
       onPress={onButtonPress}>
       <ExtendedText style={titleStyles}>{title}</ExtendedText>
+      {isArrow && <Image source={IMAGES.BROWN_TRIANGLE} style={styles.image} />}
     </TouchableOpacity>
   );
 };

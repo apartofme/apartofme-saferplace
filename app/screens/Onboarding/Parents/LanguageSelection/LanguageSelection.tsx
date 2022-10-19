@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
   ExtendedText,
@@ -37,25 +37,29 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
     }, [disptach, navigation, selectedLanguage]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        />
-        <BottomButtonView
-          buttonTitle={t('buttons.select')}
-          onSubmit={onSubmit}
-          isDisabledButton={!selectedLanguage.length}
-          style={styles.container}>
-          <ExtendedText preset="large-title" style={styles.title}>
-            {t('screens.onboarding.language_selection.title')}
-          </ExtendedText>
-          <RadioButtonList
-            data={[...LANGUAGES]}
-            type={RadioButtonListType.Single}
-            setSelected={setSelectedLanguage}
+      <ImageBackground
+        source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            onLeftIconPress={navigation.goBack}
           />
-        </BottomButtonView>
-      </SafeAreaView>
+          <BottomButtonView
+            buttonTitle={t('buttons.select')}
+            onSubmit={onSubmit}
+            isDisabledButton={!selectedLanguage.length}
+            style={styles.container}>
+            <ExtendedText preset="large-title" style={styles.title}>
+              {t('screens.onboarding.language_selection.title')}
+            </ExtendedText>
+            <RadioButtonList
+              data={[...LANGUAGES]}
+              type={RadioButtonListType.Single}
+              setSelected={setSelectedLanguage}
+            />
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };
