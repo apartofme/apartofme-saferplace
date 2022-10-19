@@ -7,3 +7,4 @@ export * from './ElixirTwoHalfIcon';
 export * from './ElixirThreeIcon';
 export * from './OpenBookIcon';
 export * from './ClosedBookIcon';
+export * from './WhiteCrossIcon';

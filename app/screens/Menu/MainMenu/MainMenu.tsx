@@ -20,6 +20,7 @@ import { MAIN_MENU_ITEMS } from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.types';
 import { styles } from './MainMenu.styles';
 import { AvatarsNameType } from '../../../utils/types';
+import { WhiteCrossIcon } from '../../../assets/images/dummySVG';
 
 export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   navigation,
@@ -47,7 +48,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
       <View style={styles.topContainer}>
         <SafeAreaView>
           <MainHeader
-            rightIcon={IMAGES.WHITE_CROSS}
+            rightIcon={<WhiteCrossIcon />}
             onRightIconPress={navigation.goBack}
           />
           <View style={styles.topContentContainer}>
