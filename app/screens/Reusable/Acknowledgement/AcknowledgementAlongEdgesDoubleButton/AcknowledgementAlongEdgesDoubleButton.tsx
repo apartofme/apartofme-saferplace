@@ -25,7 +25,7 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
       title,
       description,
       buttonTitle,
-      images,
+      image,
       backgroundImage,
       crossHeader,
       titleHasNickname,
@@ -95,7 +95,7 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
             <Title />
             <Image
               // TODO: change to real image
-              source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
+              source={(image && IMAGES[image]) ?? IMAGES.LOGO}
               style={styles.image}
             />
             <ExtendedText style={styles.description}>

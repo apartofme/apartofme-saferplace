@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native';
 import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { BottomButtonView, ExtendedText } from '../../../components';
-import { getElixirAnimationByRange } from '../../../utils';
+import { getElixirAnimationKeyByRange } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './ElixirTitleButton.styles';
 import { elixirSlice, questSlice } from '../../../redux/slices';
@@ -25,7 +25,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     );
 
     const elixirAnimation = useMemo(
-      () => getElixirAnimationByRange(fullnessElixir ?? 0),
+      () => getElixirAnimationKeyByRange(fullnessElixir ?? 0),
       [fullnessElixir],
     );
 

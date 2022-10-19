@@ -32,7 +32,7 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
       title,
       description,
       buttonTitle,
-      images,
+      image,
       backgroundImage,
       crossHeader,
       escapeMenuAlternativeNavigateTo,
@@ -119,7 +119,7 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
             <TouchableOpacity onPress={goToAlert}>
               <Image
                 // TODO: change to correct image
-                source={(images && IMAGES[images[0]]) ?? IMAGES.LOGO}
+                source={(image && IMAGES[image]) ?? IMAGES.LOGO}
                 style={styles.infoImage}
               />
             </TouchableOpacity>

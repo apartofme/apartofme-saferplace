@@ -2,6 +2,8 @@ export const IMAGES = {
   LOGO: require('./beyondCodelineLogo.png'),
   WHITE_PENCIL: require('./whitePencil.png'),
 
+  // TODO: move
+  GARDEN_BACKGROUND: require('./gardenBackground.png'),
   BIRD_ON_BRANCHES: require('./birdOnBranches.png'),
   BOOK_ON_LEAVES: require('./bookOnLeaves.png'),
   BROWN_TRIANGLE: require('./brownTriangle.png'),

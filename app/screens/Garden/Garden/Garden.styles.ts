@@ -1,14 +1,15 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { WINDOW_HEIGHT } from '../../../constants/window';
+import { COLORS } from '../../../themes/colors';
 
 export interface IGardenScreenStyles {
   avatarContainer: ViewStyle;
   avatar: ImageStyle;
   bookContainer: ViewStyle;
   book: ImageStyle;
-  elixir: ImageStyle;
   plantArea: ViewStyle;
+  title: TextStyle;
   titleContainer: ViewStyle;
   zIndex10: ViewStyle;
   displayNone: ViewStyle;
@@ -25,14 +26,6 @@ export const styles = StyleSheet.create<IGardenScreenStyles>({
     height: 80,
     width: 80,
     borderRadius: 100,
-  },
-  elixir: {
-    position: 'absolute',
-    left: 20,
-    top: 40,
-    height: 91,
-    width: 70,
-    zIndex: 100,
   },
   zIndex10: {
     zIndex: 10,
@@ -52,14 +45,19 @@ export const styles = StyleSheet.create<IGardenScreenStyles>({
     width: 100,
   },
   titleContainer: {
-    borderWidth: 1,
-    height: 75,
-    borderRadius: 10,
+    borderWidth: 2,
+
+    borderRadius: 16,
     marginBottom: 24,
     marginHorizontal: 24,
-    paddingLeft: 120,
-    justifyContent: 'center',
-    backgroundColor: 'white',
+    paddingLeft: 122,
+    paddingRight: 16,
+    borderColor: COLORS.PRIMARY_ORANGE,
+    backgroundColor: COLORS.PRIMARY_PURPLE,
+  },
+  title: {
+    color: COLORS.BRILLIANT_WHITE,
+    paddingVertical: 20,
   },
   displayNone: {
     display: 'none',

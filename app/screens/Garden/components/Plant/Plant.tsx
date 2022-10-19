@@ -20,11 +20,11 @@ export const Plant: React.FC<IPlantProps> = ({ plant, additionalStyle }) => {
       }
       // TODO: uncomment when added images
       //   else if (
-      //     growthSeconds >= ONE_DAY_GROWTH &&
-      //     growthSeconds < TWO_DAY_GROWTH
+      //     growthSeconds >= ONE_DAY_SECONDS &&
+      //     growthSeconds < TWO_DAY_SECONDS
       //   ) {
       //     setPlantImage(PLANTS_IMAGES[`${plant.image}_MIDDLE`]);
-      //   } else if (growthSeconds >= TWO_DAY_GROWTH) {
+      //   } else if (growthSeconds >= TWO_DAY_SECONDS) {
       //     setPlantImage(PLANTS_IMAGES[`${plant.image}_FINISH`]);
       //   }
     },
