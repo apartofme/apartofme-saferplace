@@ -37,7 +37,6 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   const [currentAudioName, setCurrentAudioName] = useState(
     SOUND_CAROUSEL[0].id,
   );
-  const [duration, setDuration] = useState(0);
   const [isFinished, setIsFished] = useState(false);
 
   const navigatePrevQuest = useNavigatePrevQuest();
@@ -71,7 +70,7 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
         AudioPlayerHelper.start();
       }
     } else {
-      AudioPlayerHelper.play(currentAudioName, setDuration, setIsFished);
+      AudioPlayerHelper.play(currentAudioName, setIsFished);
     }
     setIsPause(!isPause);
   }, [currentAudioName, isFinished, isPause]);
