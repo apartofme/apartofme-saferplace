@@ -5,6 +5,7 @@ import { Image, ImageBackground, SafeAreaView } from 'react-native';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { IMAGES } from '../../../assets';
 import {
+  useAppSelector,
   useAppState,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
@@ -48,13 +49,17 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   });
 
+  const isSoundFXEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+  );
+
   useEffect(() => {
-    if (isFocused && appStatus === 'active') {
+    if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
       AudioPlayerHelper.play('after_completing_exercise_012.wav');
     } else {
       AudioPlayerHelper.stop();
     }
-  }, [appStatus, isFocused]);
+  }, [appStatus, isFocused, isSoundFXEnabled]);
 
   return (
     <ImageBackground

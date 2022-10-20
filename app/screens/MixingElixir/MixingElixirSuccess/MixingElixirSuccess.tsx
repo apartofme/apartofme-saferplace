@@ -64,13 +64,17 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
     const isFocused = useIsFocused();
     const appStatus = useAppState();
 
+    const isSoundFXEnabled = useAppSelector(
+      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+    );
+
     useEffect(() => {
-      if (isFocused && appStatus === 'active') {
+      if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
         AudioPlayerHelper.play('plant_planting_1_005.wav');
       } else {
         AudioPlayerHelper.stop();
       }
-    }, [appStatus, isFocused]);
+    }, [appStatus, isFocused, isSoundFXEnabled]);
 
     return (
       <ImageBackground source={background} style={generalStyles.flex}>
