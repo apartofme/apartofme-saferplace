@@ -22,6 +22,8 @@ import {
   QuestStackNavigator,
   QuestStackParams,
   ParentGroundingStackParams,
+  BefriendingStackParams,
+  BefriendingStackNavigator,
 } from './stacks';
 import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
@@ -44,6 +46,7 @@ export type RootParams = {
   ParentGroundingStack:
     | NavigatorScreenParams<ParentGroundingStackParams>
     | undefined;
+  BefriendingStack: NavigatorScreenParams<BefriendingStackParams> | undefined;
 };
 
 const Stack = createNativeStackNavigator<RootParams>();
@@ -90,6 +93,10 @@ const RootNavigator = () => {
         <Stack.Screen
           name="ParentGroundingStack"
           component={ParentGroundingStackNavigator}
+        />
+        <Stack.Screen
+          name="BefriendingStack"
+          component={BefriendingStackNavigator}
         />
       </Stack.Navigator>
     </NavigationContainer>
