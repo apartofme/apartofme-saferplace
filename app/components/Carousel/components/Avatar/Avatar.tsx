@@ -4,8 +4,8 @@ import Animated from 'react-native-reanimated';
 
 import { IAvatarProps } from './Avatar.types';
 import { styles } from './Avatar.styles';
-import { AVATARS_SVG } from '../../../../assets/svg';
 import { generalStyles } from '../../../../utils/styles';
+import { AVATARS_SVG } from '../../../../assets/svg';
 import { AvatarsNameType } from '../../../../utils/types';
 
 export const Avatar: React.FC<IAvatarProps> = ({ data, isActive, style }) => {

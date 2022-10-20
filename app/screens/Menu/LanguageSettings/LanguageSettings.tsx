@@ -40,9 +40,7 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
   }, [disptach, selectedLanguage]);
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
-      style={generalStyles.flex}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <SafeAreaView style={styles.container}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}

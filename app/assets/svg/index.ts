@@ -38,6 +38,12 @@ import { WhiteCrossIcon } from './WhiteCrossIcon';
 import { WhiteGearIcon } from './WhiteGearIcon';
 import { WhitePencilIcon } from './WhitePencilIcon';
 import { WhiteRightArrowIcon } from './WhiteRightArrowIcon';
+import {
+  BirdOnBranchesIcon,
+  GuideInTreesIcon,
+  HappyNadiyaTreeIcon,
+  NadiyaIcon,
+} from './onboarding';
 
 export const SVG_ICONS = {
   CelebrationGuideIcon: CelebrationGuideIcon,
@@ -53,20 +59,27 @@ export const SVG_ICONS = {
   WhiteRightArrowIcon: WhiteRightArrowIcon,
 };
 
-export const AVATARS_SVG = {
-  bear: BearAvatarIcon,
-  fox: FoxAvatarIcon,
-  monkey: MonkeyAvatarIcon,
-  moth: MothAvatarIcon,
-  owl: OwlAvatarIcon,
-  rabbit: RabbitAvatarIcon,
+export const SVG = {
+  BIRD_ON_BRANCHES_ICON: BirdOnBranchesIcon,
+  GUIDE_IN_TREES_ICON: GuideInTreesIcon,
+  HAPPY_NADIYA_TREE_ICON: HappyNadiyaTreeIcon,
+  NADIYA: NadiyaIcon,
+};
 
-  bearCircle: BearCircleAvatarIcon,
-  foxCircle: FoxCircleAvatarIcon,
-  monkeyCircle: MonkeyCircleAvatarIcon,
-  mothCircle: MothCircleAvatarIcon,
-  owlCircle: OwlCircleAvatarIcon,
-  rabbitCircle: RabbitCircleAvatarIcon,
+export const AVATARS_SVG = {
+  BEAR: BearAvatarIcon,
+  FOX: FoxAvatarIcon,
+  MONKEY: MonkeyAvatarIcon,
+  MOTH: MothAvatarIcon,
+  OWL: OwlAvatarIcon,
+  RABBIT: RabbitAvatarIcon,
+
+  BEAR_CIRCLE: BearCircleAvatarIcon,
+  FOX_CIRCLE: FoxCircleAvatarIcon,
+  MONKEY_CIRCLE: MonkeyCircleAvatarIcon,
+  MOTH_CIRCLE: MothCircleAvatarIcon,
+  OWL_CIRCLE: OwlCircleAvatarIcon,
+  RABBIT_CIRCLE: RabbitCircleAvatarIcon,
 };
 
 export const SVG_CHARM_ILLUSTRATIONS = {

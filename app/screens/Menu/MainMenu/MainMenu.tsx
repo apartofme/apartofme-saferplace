@@ -2,14 +2,13 @@ import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Image,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
   View,
 } from 'react-native';
 
-import { BACKGROUND_IMAGES, IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
@@ -20,7 +19,7 @@ import { MAIN_MENU_ITEMS } from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.types';
 import { styles } from './MainMenu.styles';
 import { AvatarsNameType } from '../../../utils/types';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG_ICONS, AVATARS_SVG } from '../../../assets/svg';
 
 const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
 const LogOutIcon = SVG_ICONS.ExitIcon;
@@ -33,7 +32,10 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
 
   const parentNickname = useAppSelector(state => state.user.parent?.nickname);
   const childNickname = useAppSelector(state => state.user.child?.nickname);
-  const avatar = useAppSelector(state => state.user.parent?.avatar);
+  const avatar =
+    useAppSelector(state => state.user.parent?.avatar) ??
+    `${AvatarsNameType.Rabbit}_CIRCLE`;
+  const AvatarIcon = AVATARS_SVG[avatar];
 
   const onMenuItemPress = useCallback(
     (item: NavigationRouteNames) => {
@@ -47,9 +49,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   }, [dispatch]);
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
-      style={generalStyles.flex}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <View style={styles.topContainer}>
         <SafeAreaView>
           <MainHeader
@@ -57,10 +57,10 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
             onRightIconPress={navigation.goBack}
           />
           <View style={styles.topContentContainer}>
-            <Image
-              source={IMAGES[avatar ?? AvatarsNameType.Tree]}
-              style={styles.avatar}
-            />
+            <View style={styles.avatar}>
+              <AvatarIcon width={80} height={80} />
+            </View>
+
             <View style={generalStyles.row}>
               <ExtendedText preset="title" style={styles.title}>
                 {t('screens.menu.main_menu.title')}

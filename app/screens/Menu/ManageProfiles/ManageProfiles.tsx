@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IManageProfilesScreenProps } from './ManageProfiles.types';
@@ -11,6 +11,7 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../components';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { UserImageTitle } from './components';
 import { AvatarsNameType, UserType } from '../../../utils/types';
@@ -30,8 +31,12 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
     state => state.user.child?.nickname,
   ) as string;
 
-  const childAvatar = useAppSelector(state => state.user.child?.avatar);
-  const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
+  const childAvatar =
+    useAppSelector(state => state.user.child?.avatar) ??
+    `${AvatarsNameType.Fox}_CIRCLE`;
+  const parentAvatar =
+    useAppSelector(state => state.user.parent?.avatar) ??
+    `${AvatarsNameType.Rabbit}_CIRCLE`;
 
   const goToEditProfile = useCallback(
     (type: UserType) => {
@@ -41,33 +46,32 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      {/* //TODO: change for correct function */}
-      <BottomButtonView buttonTitle={t('buttons.done')} onSubmit={_.noop}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
-        <View style={styles.container}>
-          <ExtendedText style={styles.title}>
-            {t('screens.menu.manage_profiles.title')}
-          </ExtendedText>
-          <View style={styles.imageContainer}>
-            {/* TODO: change AvatarsNameType.Tree to default avatar */}
-            <UserImageTitle
-              title={parentNickname}
-              image={parentAvatar ?? AvatarsNameType.Tree}
-              onPress={() => goToEditProfile(UserType.Parent)}
-            />
-            {/* TODO: change AvatarsNameType.Tree to default avatar */}
-            <UserImageTitle
-              title={childNickname}
-              image={childAvatar ?? AvatarsNameType.Tree}
-              onPress={() => goToEditProfile(UserType.Child)}
-            />
+        <BottomButtonView buttonTitle={t('buttons.done')} onSubmit={_.noop}>
+          <View style={styles.container}>
+            <ExtendedText preset="large-title" style={styles.title}>
+              {t('screens.menu.manage_profiles.title')}
+            </ExtendedText>
+            <View style={styles.imageContainer}>
+              <UserImageTitle
+                title={parentNickname}
+                image={parentAvatar}
+                onPress={() => goToEditProfile(UserType.Parent)}
+              />
+              <UserImageTitle
+                title={childNickname}
+                image={childAvatar}
+                onPress={() => goToEditProfile(UserType.Child)}
+              />
+            </View>
           </View>
-        </View>
-      </BottomButtonView>
-    </SafeAreaView>
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

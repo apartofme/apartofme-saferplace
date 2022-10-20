@@ -55,7 +55,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+        source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader

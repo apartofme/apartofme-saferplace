@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { useIsFocused } from '@react-navigation/native';
 import {
-  Image,
   ImageBackground,
   Pressable,
   TouchableOpacity,
@@ -16,18 +15,19 @@ import {
   useAppState,
   useMount,
 } from '../../../hooks';
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { Nullable } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { Book, Elixir, PlantArea, PlantAreaType } from '../components';
-import { ImagesKeys, MixingElixirPhaseType } from '../../../utils/types';
+import { AvatarsNameType, MixingElixirPhaseType } from '../../../utils/types';
 import { questSlice } from '../../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
 import { styles } from './Garden.styles';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
+import { AVATARS_SVG } from '../../../assets/svg';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
@@ -67,9 +67,11 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const isCurrentDayQuestsStackEmpty = useAppSelector(
     state => !state.quest.currentQuestStack.length,
   );
-  const childAvatar = useAppSelector(
-    state => state.user.child?.avatar,
-  ) as ImagesKeys;
+  //? In my mind there should be a parent avatar *Andrey*
+  const parentdAvatar =
+    useAppSelector(state => state.user.parent?.avatar) ??
+    `${AvatarsNameType.Rabbit}_CIRCLE`;
+  const AvatarIcon = AVATARS_SVG[parentdAvatar];
 
   const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);
   const [activePlantArea, setActivePlantArea] =
@@ -150,14 +152,14 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   return (
     <ImageBackground
-      source={IMAGES.GARDEN_BACKGROUND}
+      source={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
       style={generalStyles.flex}>
       <View style={generalStyles.flex}>
         <TouchableOpacity
           onPress={onAvatarPress}
           style={styles.avatarContainer}
           disabled={isFirstTime}>
-          <Image source={IMAGES[childAvatar]} style={styles.avatar} />
+          <AvatarIcon width={80} height={80} />
         </TouchableOpacity>
         <Elixir />
         <View style={styles.plantArea}>

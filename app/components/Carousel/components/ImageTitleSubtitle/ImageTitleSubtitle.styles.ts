@@ -1,11 +1,10 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 
-import { WINDOW_WIDTH } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
 
 interface IImageTitleSubtitleStyles {
   container: ViewStyle;
-  image: ImageStyle;
+
   title: ViewStyle;
   subtitle: ViewStyle;
 }
@@ -15,9 +14,7 @@ export const styles = StyleSheet.create<IImageTitleSubtitleStyles>({
     flex: 1,
     alignItems: 'center',
   },
-  image: {
-    width: WINDOW_WIDTH,
-  },
+
   title: {
     paddingBottom: 24,
     textAlign: 'center',

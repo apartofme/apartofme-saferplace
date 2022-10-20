@@ -74,7 +74,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+      source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
       style={generalStyles.flex}>
       <ImageBackground
         source={IMAGES.CONFETTI}

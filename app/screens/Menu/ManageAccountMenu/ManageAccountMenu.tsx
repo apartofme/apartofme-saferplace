@@ -40,7 +40,7 @@ export const ManageAccountMenuScreen: React.FC<IManageAccountMenuScreenProps> =
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader

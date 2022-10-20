@@ -30,12 +30,12 @@ export enum PlantsType {
 }
 
 export enum AvatarsNameType {
-  Bear = 'bear',
-  Fox = 'fox',
-  Monkey = 'monkey',
-  Moth = 'moth',
-  Owl = 'owl',
-  Rabbit = 'rabbit',
+  Bear = 'BEAR',
+  Fox = 'FOX',
+  Monkey = 'MONKEY',
+  Moth = 'MOTH',
+  Owl = 'OWL',
+  Rabbit = 'RABBIT',
 }
 
 export enum ElixirKeysType {
@@ -49,8 +49,8 @@ export enum ElixirKeysType {
 }
 
 export type AvatarsKeys = keyof typeof AVATARS_SVG;
-
 export type ImagesKeys = keyof typeof IMAGES;
+export type SvgComponentType = (props: ISvgProps) => JSX.Element;
 
 export interface IElixirProgress {
   fullnessElixir: number;

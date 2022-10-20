@@ -40,12 +40,12 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     navigation.navigate('SignUpSuccess');
     if (isChild) {
       dispatch(
-        cacheSlice.actions.saveSignUpDataChild({ avatar: `${avatar}Circle` }),
+        cacheSlice.actions.saveSignUpDataChild({ avatar: `${avatar}_CIRCLE` }),
       );
       dispatch(userSlice.actions.saveChild());
     } else {
       dispatch(
-        cacheSlice.actions.saveSignUpDataParent({ avatar: `${avatar}Circle` }),
+        cacheSlice.actions.saveSignUpDataParent({ avatar: `${avatar}_CIRCLE` }),
       );
       dispatch(userSlice.actions.registerParent());
     }
@@ -61,7 +61,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+      source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader

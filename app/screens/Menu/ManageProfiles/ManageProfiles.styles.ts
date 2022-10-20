@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { COLORS } from '../../../themes/colors';
 
 interface IManageProfilesStyles {
   container: ViewStyle;
@@ -14,6 +15,7 @@ export const styles = StyleSheet.create<IManageProfilesStyles>({
   title: {
     marginTop: 40,
     marginBottom: 50,
+    color: COLORS.BRILLIANT_WHITE,
   },
   imageContainer: {
     flex: 1,

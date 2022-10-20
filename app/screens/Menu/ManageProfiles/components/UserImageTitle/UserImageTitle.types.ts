@@ -1,7 +1,7 @@
-import { AvatarsNameType } from '../../../../../utils/types';
+import { AvatarsKeys } from '../../../../../utils/types';
 
 export interface IUserImageTitleProps {
-  image: AvatarsNameType;
+  image: AvatarsKeys;
   title: string;
   onPress: () => void;
 }

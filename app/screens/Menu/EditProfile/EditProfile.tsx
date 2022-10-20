@@ -1,10 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
+import _ from 'lodash';
 
+import { BACKGROUND_IMAGES } from '../../../assets';
 import {
-  AvatarCarousel,
+  AVATAR_CAROUSEL,
   BottomButtonView,
+  Carousel,
+  CarouselType,
   ExtendedButton,
   ExtendedKeyboardAvoidingView,
   ExtendedTextInput,
@@ -13,7 +17,7 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IEditProfileScreenProps } from './EditProfile.types';
 import { styles } from './EditProfile.styles';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { cacheSlice, userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
 import { SVG_ICONS } from '../../../assets/svg';
@@ -46,6 +50,17 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   const [avatar, setAvatar] = useState(
     UserType.Child === type ? childAvatar : parentAvatar,
   );
+  const [avatarIndex, setAvatarIndex] = useState(0);
+
+  useMount(() => {
+    setAvatarIndex(
+      _.findIndex(AVATAR_CAROUSEL, item => `${item.image}_CIRCLE` === avatar),
+    );
+  });
+
+  useEffect(() => {
+    setAvatar(`${AVATAR_CAROUSEL[avatarIndex].image}_CIRCLE`);
+  }, [avatarIndex]);
 
   const onSubmit = useCallback(() => {
     if (type === UserType.Parent) {
@@ -58,30 +73,35 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   }, [avatar, dispatch, nickname, type]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <ExtendedKeyboardAvoidingView>
-        <MainHeader
-          leftIcon={<WhiteBackArrowIcon />}
-          onLeftIconPress={navigation.goBack}
-        />
-        <BottomButtonView
-          buttonTitle={t('buttons.cancel')}
-          onSubmit={navigation.goBack}>
-          <View style={styles.carouselContainer}>
-            <AvatarCarousel setImage={setAvatar} defaultImage={avatar} />
-          </View>
-
-          <View style={styles.container}>
-            <ExtendedTextInput value={nickname} onChangeText={setNickname} />
-          </View>
-
-          <ExtendedButton
-            title={t('buttons.save')}
-            style={styles.button}
-            onPress={onSubmit}
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <ExtendedKeyboardAvoidingView>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={navigation.goBack}
           />
-        </BottomButtonView>
-      </ExtendedKeyboardAvoidingView>
-    </SafeAreaView>
+          <BottomButtonView
+            buttonTitle={t('buttons.cancel')}
+            onSubmit={navigation.goBack}>
+            <Carousel
+              data={AVATAR_CAROUSEL}
+              preset={CarouselType.Avatar}
+              defaultIndex={avatarIndex === -1 ? 0 : avatarIndex}
+              setIndex={setAvatarIndex}
+            />
+
+            <View style={styles.container}>
+              <ExtendedTextInput value={nickname} onChangeText={setNickname} />
+            </View>
+
+            <ExtendedButton
+              title={t('buttons.save')}
+              style={styles.button}
+              onPress={onSubmit}
+            />
+          </BottomButtonView>
+        </ExtendedKeyboardAvoidingView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

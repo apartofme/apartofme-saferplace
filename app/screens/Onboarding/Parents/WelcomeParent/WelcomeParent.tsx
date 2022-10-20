@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import {
   BottomButtonView,
@@ -10,7 +10,8 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IWelcomeParentScreenProps } from './WelcomeParent.types';
 import { styles } from './WelcomeParent.styles';
-import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES } from '../../../../assets';
+import { SVG } from '../../../../assets/svg';
 
 export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   navigation,
@@ -25,6 +26,8 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
     navigation.navigate('Login');
   }, [navigation]);
 
+  const LogoIcon = SVG.NADIYA;
+
   return (
     <ImageBackground
       source={BACKGROUND_IMAGES.SPLASHSCREEN_ADULT}
@@ -38,7 +41,9 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
             {t('screens.onboarding.welcome.title')}
           </ExtendedText>
 
-          <Image source={IMAGES.NADIYA} style={styles.image} />
+          <View style={styles.imageContainer}>
+            <LogoIcon />
+          </View>
 
           <ExtendedText preset="tertiary-text-medium" style={styles.whiteColor}>
             {t('screens.onboarding.welcome.description')}

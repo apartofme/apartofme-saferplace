@@ -26,7 +26,7 @@ export const ChangePasswordSuccessScreen: React.FC<IChangePasswordSuccessScreenP
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.whFlex}>
           <MainHeader
