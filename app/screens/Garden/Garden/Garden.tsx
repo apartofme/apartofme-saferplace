@@ -40,13 +40,17 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   const isFocused = useIsFocused();
 
+  const isSoundFXEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+  );
+
   useEffect(() => {
-    if (isFocused && appStatus === 'active') {
+    if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
       AudioPlayerHelper.setInfiniteLoop('forest_ambience_sfx_loop_2_001.mp3');
     } else {
       AudioPlayerHelper.stop();
     }
-  }, [appStatus, isFocused]);
+  }, [appStatus, isFocused, isSoundFXEnabled]);
 
   const isCurrentDayQuestStackEmpty = useAppSelector(
     state => !state.quest.currentDayQuestsStack.length,
