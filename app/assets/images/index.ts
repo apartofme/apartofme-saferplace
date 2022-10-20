@@ -9,6 +9,7 @@ export const IMAGES = {
   BROWN_TRIANGLE: require('./brownTriangle.png'),
   CHECK_MARK: require('./checkMark.png'),
   COMPASSIONATE_GUIDE: require('./compassionateGuide.png'),
+  CONFETTI: require('./confetti.png'),
   CROSSED_OUT_EYE: require('./crossedOutEye.png'),
   HAPPY_TREE_ON_GRASS: require('./happyTreeOnGrass.png'),
   OPENED_EYE: require('./openedEye.png'),
@@ -31,15 +32,6 @@ export const IMAGES = {
 
 export const PLANTS_IMAGES = {
   SPOUR_COMPASSION_START: require('./sproutCompassionStart.png'),
-};
-
-export const AVATAR_IMAGES = {
-  BEAR: require('./bearAvatar.png'),
-  FOX: require('./foxAvatar.png'),
-  MONKEY: require('./monkeyAvatar.png'),
-  MOTH: require('./mothAvatar.png'),
-  OWL: require('./owlAvatar.png'),
-  RABBIT: require('./rabbitAvatar.png'),
 };
 
 export const BACKGROUND_IMAGES = {

@@ -18,6 +18,7 @@ export interface IGeneralStyles {
   row: ViewStyle;
 
   boldText: TextStyle;
+  primaryOrange: TextStyle;
 }
 
 export const generalStyles = StyleSheet.create<IGeneralStyles>({
@@ -26,7 +27,7 @@ export const generalStyles = StyleSheet.create<IGeneralStyles>({
   },
   whFlex: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.BRILLIANT_WHITE,
   },
 
   jcCenter: {
@@ -57,5 +58,8 @@ export const generalStyles = StyleSheet.create<IGeneralStyles>({
 
   boldText: {
     fontWeight: '700',
+  },
+  primaryOrange: {
+    color: COLORS.PRIMARY_ORANGE,
   },
 });

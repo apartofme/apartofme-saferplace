@@ -1,4 +1,5 @@
 import { IMAGES } from '../assets';
+import { AVATARS_SVG } from '../assets/svg';
 import { IPlantArea } from '../redux/types';
 import { IInterruptedQuestLine } from '../redux/types/questTypes';
 import { Nullable } from '../utils/index';
@@ -29,12 +30,12 @@ export enum PlantsType {
 }
 
 export enum AvatarsNameType {
-  Rabbit = 'RABBIT',
-  Owl = 'OWL',
-  Moth = 'MOTH',
-  Fox = 'FOX',
-  Bear = 'BEAR',
-  Monkey = 'MONKEY',
+  Bear = 'bear',
+  Fox = 'fox',
+  Monkey = 'monkey',
+  Moth = 'moth',
+  Owl = 'owl',
+  Rabbit = 'rabbit',
 }
 
 export enum ElixirKeysType {
@@ -46,6 +47,8 @@ export enum ElixirKeysType {
   ElixirTwoHalf = 'ElixirTwoHalfIcon',
   ElixirThree = 'ElixirThreeICon',
 }
+
+export type AvatarsKeys = keyof typeof AVATARS_SVG;
 
 export type ImagesKeys = keyof typeof IMAGES;
 

@@ -1,19 +1,19 @@
 import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
-import { AvatarsNameType, ImagesKeys } from '../../utils/types';
+import { AvatarsKeys, ImagesKeys } from '../../utils/types';
 
 export interface ISignUpData {
   email?: string;
   password?: string;
   nickname?: string;
-  avatar?: AvatarsNameType;
+  avatar?: AvatarsKeys;
   createdAt?: string;
 }
 
 export interface IShortSignUpData {
   nickname?: string;
   age?: string;
-  avatar?: AvatarsNameType;
+  avatar?: AvatarsKeys;
 }
 
 export interface INicknames {
