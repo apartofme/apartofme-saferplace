@@ -33,12 +33,13 @@ export const PLANTS_IMAGES = {
   SPOUR_COMPASSION_START: require('./sproutCompassionStart.png'),
 };
 
-// TODO: change to correct images
 export const AVATAR_IMAGES = {
-  LOGO: require('./beyondCodelineLogo.png'),
-  WHITE_PENCIL: require('./whitePencil.png'),
-  WHITE_BACK_ARROW: require('./whiteBackArrow.png'),
-  TREE: require('./tree.png'),
+  BEAR: require('./bearAvatar.png'),
+  FOX: require('./foxAvatar.png'),
+  MONKEY: require('./monkeyAvatar.png'),
+  MOTH: require('./mothAvatar.png'),
+  OWL: require('./owlAvatar.png'),
+  RABBIT: require('./rabbitAvatar.png'),
 };
 
 export const BACKGROUND_IMAGES = {

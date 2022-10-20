@@ -1,41 +1,47 @@
 import _ from 'lodash';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
-import { ICarouselProps } from './Carousel.types';
+import { ICarouselItem, ICarouselProps } from './Carousel.types';
 import { styles } from './Carousel.styles';
 import {
+  Avatar,
   ImageTitleSubtitle,
   OnlyImage,
   ProgressBarItem,
   ImageSubtitle,
   SubtitleImage,
 } from './components';
-import { CarouselType, ICarouselItem } from './Carousel.data';
+import { CarouselType, CAROUSEL_MODE_CONFIG } from './Carousel.data';
 
 export const Carousel: React.FC<ICarouselProps> = ({
   preset,
   data,
-  setCurrentPossition,
+  setIndex,
   style,
   carouselStyle,
   carouselItemStyle,
 }) => {
   const [progressValue, setProgressValue] = useState(0);
+  const [currentPosition, setCurrentPosition] = useState(0);
 
-  const onProgressChange = useCallback(
-    (item, absoluteProgress) => {
-      setProgressValue(absoluteProgress);
-      if (setCurrentPossition) {
-        setCurrentPossition(progressValue);
-      }
-    },
-    [progressValue, setCurrentPossition],
-  );
+  const mode = useMemo(() => {
+    switch (preset) {
+      case CarouselType.OnlyImage:
+      case CarouselType.Avatar:
+        return 'parallax';
+      default:
+        return undefined;
+    }
+  }, [preset]);
+
+  const onProgressChange = useCallback((item, absoluteProgress) => {
+    setProgressValue(absoluteProgress);
+  }, []);
 
   const renderProgressBar = useCallback(() => {
     return (
@@ -53,8 +59,16 @@ export const Carousel: React.FC<ICarouselProps> = ({
   }, [data, progressValue]);
 
   const renderCarouselItem = useCallback(
-    ({ item }: { item: ICarouselItem }) => {
+    ({ item, index }: { item: ICarouselItem; index: number }) => {
       switch (preset) {
+        case CarouselType.Avatar:
+          return (
+            <Avatar
+              data={item}
+              isActive={index === currentPosition}
+              style={carouselItemStyle}
+            />
+          );
         case CarouselType.ImageTitleSubtitle:
           return <ImageTitleSubtitle data={item} style={carouselItemStyle} />;
         case CarouselType.SubtitleImage:
@@ -67,8 +81,12 @@ export const Carousel: React.FC<ICarouselProps> = ({
           return <View />;
       }
     },
-    [carouselItemStyle, preset],
+    [carouselItemStyle, currentPosition, preset],
   );
+
+  const onScrollBegin = useCallback(() => {
+    setCurrentPosition(-1);
+  }, []);
 
   return (
     <GestureHandlerRootView style={[styles.container, style]}>
@@ -77,10 +95,14 @@ export const Carousel: React.FC<ICarouselProps> = ({
         width={WINDOW_WIDTH}
         data={[...data]}
         //* Set undefind for default mode
-        mode={preset === CarouselType.OnlyImage ? 'parallax' : undefined}
+        mode={mode}
+        modeConfig={CAROUSEL_MODE_CONFIG}
         renderItem={renderCarouselItem}
-        style={[generalStyles.flex, carouselStyle]}
+        onSnapToItem={setIndex && _.flow(Math.floor, setIndex)}
         onProgressChange={onProgressChange}
+        onScrollBegin={onScrollBegin}
+        onScrollEnd={setCurrentPosition}
+        style={[generalStyles.flex, carouselStyle]}
       />
       <View style={styles.progressBar}>{renderProgressBar()}</View>
     </GestureHandlerRootView>

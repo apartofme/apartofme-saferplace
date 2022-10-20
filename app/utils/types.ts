@@ -29,10 +29,12 @@ export enum PlantsType {
 }
 
 export enum AvatarsNameType {
-  Logo = 'LOGO',
-  WhitePencil = 'WHITE_PENCIL',
-  WhiteBackArrow = 'WHITE_BACK_ARROW',
-  Tree = 'TREE',
+  Rabbit = 'RABBIT',
+  Owl = 'OWL',
+  Moth = 'MOTH',
+  Fox = 'FOX',
+  Bear = 'BEAR',
+  Monkey = 'MONKEY',
 }
 
 export enum ElixirKeysType {

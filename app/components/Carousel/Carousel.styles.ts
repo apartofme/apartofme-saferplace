@@ -9,6 +9,7 @@ export const styles = StyleSheet.create<ICarouselStyles>({
   container: {
     flex: 1,
     paddingBottom: 45,
+    alignItems: 'center',
   },
   progressBar: {
     alignItems: 'center',

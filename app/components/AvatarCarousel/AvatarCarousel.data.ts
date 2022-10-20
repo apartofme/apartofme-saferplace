@@ -5,9 +5,29 @@ export interface IAvatarCarouselItem {
   image: AvatarsNameType;
 }
 
-// TODO: change image for correct
 export const AVATAR_CAROUSEL: ReadonlyArray<IAvatarCarouselItem> = [
-  { id: '1', image: AvatarsNameType.Logo },
-  { id: '2', image: AvatarsNameType.WhiteBackArrow },
-  { id: '3', image: AvatarsNameType.WhitePencil },
+  {
+    id: '1',
+    image: AvatarsNameType.Rabbit,
+  },
+  {
+    id: '2',
+    image: AvatarsNameType.Owl,
+  },
+  {
+    id: '3',
+    image: AvatarsNameType.Moth,
+  },
+  {
+    id: '4',
+    image: AvatarsNameType.Fox,
+  },
+  {
+    id: '5',
+    image: AvatarsNameType.Bear,
+  },
+  {
+    id: '6',
+    image: AvatarsNameType.Monkey,
+  },
 ];
