@@ -3,7 +3,6 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
 import { generalStyles } from '../../../utils/styles';
@@ -11,6 +10,8 @@ import { MenuButton } from '../components';
 import { GROWN_UP_GUIDE_ITEMS } from './GrownUpsGuide.data';
 import { IGrownUpsGuideScreenProps } from './GrownUpsGuide.types';
 import { styles } from './GrownUpsGuide.styles';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
   navigation,
@@ -24,11 +25,15 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
     [navigation],
   );
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
-    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+      style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>

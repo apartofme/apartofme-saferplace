@@ -1,18 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Image,
-  ImageBackground,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from 'react-native';
+import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IAboutCharmScreenProps } from './AboutCharm.types';
 import { styles } from './AboutCharm.styles';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
   navigation,
@@ -22,11 +17,15 @@ export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
 
   const { t } = useTranslation();
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
-    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+      style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>
@@ -37,7 +36,9 @@ export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
             <ExtendedText style={styles.subtitle}>
               {t(data.subtitle)}
             </ExtendedText>
-            <Image source={data.image} style={styles.image} />
+            <View style={styles.imageContainer}>
+              <data.IconSvgComponent />
+            </View>
           </ScrollView>
         </View>
       </SafeAreaView>

@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
 import { COLORS } from '../../../themes/colors';
 
@@ -6,14 +6,14 @@ interface IFeedbackSuccessScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
-  image: ImageStyle;
+  imageContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IFeedbackSuccessScreenStyles>({
   container: {
     alignItems: 'center',
   },
-  image: {
+  imageContainer: {
     marginTop: 50,
   },
   title: {

@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View, FlatList, ImageBackground } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
@@ -11,6 +10,8 @@ import { styles } from './ManageAccountMenu.styles';
 import { useSpecificKeyExtractor } from '../../../hooks';
 import { MANAGE_ACCOUNT_MENU_ITEM } from './ManageAccountMenu.data';
 import { IButtonsMenuItem } from '../components/MenuButton/MenuButton.data';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 export const ManageAccountMenuScreen: React.FC<IManageAccountMenuScreenProps> =
   ({ navigation }) => {
@@ -35,13 +36,15 @@ export const ManageAccountMenuScreen: React.FC<IManageAccountMenuScreenProps> =
       'route',
     );
 
+    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
     return (
       <ImageBackground
-        source={IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <View style={styles.container}>

@@ -3,7 +3,6 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
@@ -16,6 +15,8 @@ import {
   AUDIO_SETTINGS_MENU,
   IAudioSettingsMenuItemType,
 } from './AudioSettings.data';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 export const AudioSettingsScreen: React.FC<IAudioSettingsScreenProps> = ({
   navigation,
@@ -46,11 +47,15 @@ export const AudioSettingsScreen: React.FC<IAudioSettingsScreenProps> = ({
     [audioSettings, setAudioSettings, dispatch],
   );
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
-    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+      style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>

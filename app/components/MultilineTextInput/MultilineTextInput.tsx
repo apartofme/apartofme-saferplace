@@ -1,16 +1,17 @@
 import React from 'react';
-import { Image, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 
-import { IMAGES } from '../../assets';
 import { IMultilineTextInputProps } from './MultilineTextInput.types';
 import { styles } from './MultilineTextInput.styles';
 import { COLORS } from '../../themes/colors';
+import { SVG_ICONS } from '../../assets/svg';
 
 export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
   style,
   placeholder,
   ...rest
 }) => {
+  const WhitePencil = SVG_ICONS.whitePencilIcon;
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -22,7 +23,7 @@ export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
         {...rest}
       />
       <View style={styles.imageContainer}>
-        <Image source={IMAGES.WHITE_PENCIL} />
+        <WhitePencil />
       </View>
     </View>
   );

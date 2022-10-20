@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
@@ -11,6 +10,8 @@ import { MenuSwitchRow } from '../components';
 import { INotificationSettingsScreenProps } from './NotificationSettings.types';
 import { styles } from './NotificationSettings.styles';
 import { openDeviceNotificationSettings } from '../../../services/firebase';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenProps> =
   ({ navigation }) => {
@@ -35,14 +36,16 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
       setIsNotificationsEnabled(!isNotificationsEnabled);
     }, [isNotificationsEnabled, setIsNotificationsEnabled]);
 
+    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
     return (
       <ImageBackground
-        source={IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
             // TODO: change to correct icon
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <View style={styles.container}>
