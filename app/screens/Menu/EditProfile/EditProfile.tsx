@@ -6,6 +6,7 @@ import {
   AvatarCarousel,
   BottomButtonView,
   ExtendedButton,
+  ExtendedKeyboardAvoidingView,
   ExtendedTextInput,
   MainHeader,
 } from '../../../components';
@@ -15,7 +16,6 @@ import { styles } from './EditProfile.styles';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { cacheSlice, userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
-import { ExtendedKeyboardAvoidingView } from '../../../components/ExtendedKeyboardAvoidingView/ExtendedKeyboardAvoidingView.android';
 import { SVG_ICONS } from '../../../assets/svg';
 
 export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
