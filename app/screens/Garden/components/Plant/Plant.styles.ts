@@ -1,14 +1,15 @@
-import { ImageStyle, StyleSheet } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
+import { isIOS } from '../../../../utils';
 
 export interface IPlantStyles {
-  plant: ImageStyle;
+  plantContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IPlantStyles>({
-  plant: {
+  plantContainer: {
+    marginLeft: isIOS ? 0 : 5,
+    paddingBottom: 45,
     position: 'absolute',
-    height: 132,
-    width: 90,
     transform: [{ rotate: '45deg' }],
     zIndex: 1000,
   },

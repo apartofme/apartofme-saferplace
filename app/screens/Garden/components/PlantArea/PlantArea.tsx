@@ -59,7 +59,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
   return (
     <View style={styles.container}>
       <Image source={IMAGES.TREE} style={styles.tree} />
-      <View style={styles.plantingPlase}>
+      <View style={styles.plantingPlaсe}>
         <View style={generalStyles.row}>
           <View style={styles.emptyPlantArea} />
           {/* //* TopLeft plant area */}

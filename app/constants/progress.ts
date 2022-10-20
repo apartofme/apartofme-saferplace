@@ -1,11 +1,11 @@
 import { PlantsType } from '../utils/types';
 
 export const INITIAL_PLANTS_STACK = [
-  PlantsType.SpourCompassion,
-  PlantsType.SpourCompassion,
-  PlantsType.SpourCompassion,
-  PlantsType.SpourCompassion,
-  PlantsType.SpourCompassion,
+  PlantsType.Calm,
+  PlantsType.Compassion,
+  PlantsType.Courage,
+  PlantsType.Calm,
+  PlantsType.Compassion,
 ];
 
 export const INITIAL_PLANT_AREA = {
