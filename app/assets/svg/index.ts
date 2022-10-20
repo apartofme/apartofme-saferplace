@@ -16,6 +16,7 @@ import {
 } from './CharmIllustration';
 import { CircleExclamationMarkIcon } from './CircleExclamationMarkIcon';
 import { CircleQuestionMarkIcon } from './CircleQuestionMarkIcon';
+import { ExitIcon } from './ExitIcon';
 import { GearManIcon } from './GearManIcon';
 import { OrangeCirclePlussIcon } from './OrangeCirclePlussIcon';
 import { WhiteBackArrowIcon } from './WhiteBackArrowIcon';
@@ -28,6 +29,7 @@ export const SVG_ICONS = {
   celebrationGuideIcon: CelebrationGuideIcon,
   circleExclamationMarkIcon: CircleExclamationMarkIcon,
   circleQuestionMarkIcon: CircleQuestionMarkIcon,
+  exitIcon: ExitIcon,
   gearManIcon: GearManIcon,
   orangeCirclePlussIcon: OrangeCirclePlussIcon,
   whiteCrossIcon: WhiteCrossIcon,
