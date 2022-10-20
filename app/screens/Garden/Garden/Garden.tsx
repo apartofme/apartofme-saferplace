@@ -27,6 +27,7 @@ import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
 import { styles } from './Garden.styles';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../constants/audio';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
@@ -40,17 +41,17 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   const isFocused = useIsFocused();
 
-  const isSoundFXEnabled = useAppSelector(
-    state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+  const isBackgroundMusicEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
   );
 
   useEffect(() => {
-    if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
-      AudioPlayerHelper.setInfiniteLoop('forest_ambience_sfx_loop_2_001.mp3');
+    if (isFocused && appStatus === 'active' && isBackgroundMusicEnabled) {
+      AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
     } else {
       AudioPlayerHelper.stop();
     }
-  }, [appStatus, isFocused, isSoundFXEnabled]);
+  }, [appStatus, isFocused, isBackgroundMusicEnabled]);
 
   const isCurrentDayQuestStackEmpty = useAppSelector(
     state => !state.quest.currentDayQuestsStack.length,

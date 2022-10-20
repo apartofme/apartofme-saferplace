@@ -38,9 +38,6 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
   const [isTimerEnd, setIsTimerEnd] = useState<boolean>(false);
 
-  const [songDuration, setSongDuration] = useState(0);
-  const [isFinished, setIsFished] = useState(false);
-
   const selectedSong = useAppSelector(state => state.cache.selectedSong);
 
   const navigateNextQuest = useNavigateNextQuest();
@@ -56,11 +53,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
 
     setIsTimerStart(true);
 
-    AudioPlayerHelper.play(
-      selectedSong ?? SOUND_CAROUSEL[0].id,
-      setSongDuration,
-      setIsFished,
-    );
+    AudioPlayerHelper.play(selectedSong ?? SOUND_CAROUSEL[0].id);
   }, [isTimerEnd, navigateNextQuest, selectedSong]);
 
   const onTimerComplete = useCallback(() => {

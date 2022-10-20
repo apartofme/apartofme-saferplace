@@ -16,6 +16,7 @@ import { useNavigateNextQuest } from '../../../hooks';
 import { styles } from './CharmCompleted.styles';
 import { useIsFocused } from '@react-navigation/native';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../constants/audio';
 
 export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   route,
@@ -55,7 +56,7 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
 
   useEffect(() => {
     if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
-      AudioPlayerHelper.play('after_completing_exercise_012.wav');
+      AudioPlayerHelper.play(AUDIO.COMPLETING_EXERCISE);
     } else {
       AudioPlayerHelper.stop();
     }

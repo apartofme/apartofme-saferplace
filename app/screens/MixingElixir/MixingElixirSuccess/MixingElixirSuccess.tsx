@@ -6,6 +6,7 @@ import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
 import { PLANTS_IMAGES } from '../../../assets';
 import { BottomButtonView, ExtendedText } from '../../../components';
+import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import { plantSlice } from '../../../redux/slices/plantSlice';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
@@ -70,7 +71,7 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
 
     useEffect(() => {
       if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
-        AudioPlayerHelper.play('plant_planting_1_005.wav');
+        AudioPlayerHelper.play(AUDIO.PLANT_PLANTING);
       } else {
         AudioPlayerHelper.stop();
       }
