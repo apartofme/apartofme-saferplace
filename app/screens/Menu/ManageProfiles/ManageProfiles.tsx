@@ -11,10 +11,10 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../components';
-import { IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { UserImageTitle } from './components';
 import { AvatarsNameType, UserType } from '../../../utils/types';
+import { SVG_ICONS } from '../../../assets/svg';
 
 export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   navigation,
@@ -38,12 +38,14 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
     [navigation],
   );
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       {/* //TODO: change for correct function */}
       <BottomButtonView buttonTitle={t('buttons.done')} onSubmit={_.noop}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>

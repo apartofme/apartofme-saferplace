@@ -5,7 +5,7 @@ import { COLORS } from '../../../../themes/colors';
 interface IMenuButtonStyles {
   container: ViewStyle;
   title: TextStyle;
-  image: ImageStyle;
+  imageContainer: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IMenuButtonStyles>({
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create<IMenuButtonStyles>({
   title: {
     color: COLORS.LIGHT_GREY,
   },
-  image: {
+  imageContainer: {
     marginRight: 17,
   },
 });

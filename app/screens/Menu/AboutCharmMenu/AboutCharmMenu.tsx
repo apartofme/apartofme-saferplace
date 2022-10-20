@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View, FlatList, ImageBackground } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
@@ -11,6 +11,7 @@ import { styles } from './AboutCharmMenu.styles';
 import { ABOUT_CHARM_ITEMS } from '../AboutCharm/AboutCharm.data';
 import { AboutCharmsMenuItem } from '../AboutCharm/AboutCharm.types';
 import { useSpecificKeyExtractor } from '../../../hooks';
+import { SVG_ICONS } from '../../../assets/svg';
 
 export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
   navigation,
@@ -36,11 +37,15 @@ export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
     'type',
   );
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
-    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+      style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>

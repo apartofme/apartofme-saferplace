@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
@@ -20,6 +20,7 @@ import { MAIN_MENU_ITEMS } from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.types';
 import { styles } from './MainMenu.styles';
 import { AvatarsNameType } from '../../../utils/types';
+import { SVG_ICONS } from '../../../assets/svg';
 
 export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   navigation,
@@ -42,12 +43,17 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
     dispatch(userSlice.actions.logout());
   }, [dispatch]);
 
+  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
+  const LogOutIcon = SVG_ICONS.exitIcon;
+
   return (
-    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+      style={generalStyles.flex}>
       <View style={styles.topContainer}>
         <SafeAreaView>
           <MainHeader
-            rightIcon={IMAGES.WHITE_CROSS}
+            rightIcon={<WhiteCrossIcon />}
             onRightIconPress={navigation.goBack}
           />
           <View style={styles.topContentContainer}>
@@ -89,7 +95,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
                   key={`${index} ${item.route}`}
                   title={t(item.titleKey)}
                   onPress={() => onMenuItemPress(item.route)}
-                  icon={item.icon}
+                  IconSvgComponent={item.icon}
                 />
               </View>
             ))}
@@ -98,9 +104,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
           <TouchableOpacity
             style={styles.logOutContainer}
             onPress={onLogoutPress}>
-            <Image source={IMAGES.EXIT_ICON} />
+            <LogOutIcon />
             <ExtendedText preset="body-bold" style={styles.logOutTitle}>
-              Log out
+              {t('screens.menu.main_menu.log_out')}
             </ExtendedText>
           </TouchableOpacity>
         </View>

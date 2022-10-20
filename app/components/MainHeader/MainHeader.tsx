@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, TouchableOpacity, View, SafeAreaView } from 'react-native';
+import { TouchableOpacity, View, SafeAreaView } from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
 import { IMainHeaderProps } from './MainHeader.types';
@@ -16,7 +16,7 @@ export const MainHeader: React.FC<IMainHeaderProps> = ({
     <SafeAreaView style={styles.container}>
       {leftIcon ? (
         <TouchableOpacity onPress={onLeftIconPress}>
-          <Image source={leftIcon} />
+          {leftIcon}
         </TouchableOpacity>
       ) : (
         <View style={styles.emptyContainer} />
@@ -24,7 +24,7 @@ export const MainHeader: React.FC<IMainHeaderProps> = ({
       {title && <ExtendedText>{title}</ExtendedText>}
       {rightIcon ? (
         <TouchableOpacity onPress={onRightIconPress}>
-          <Image source={rightIcon} />
+          {rightIcon}
         </TouchableOpacity>
       ) : (
         <View style={styles.emptyContainer} />

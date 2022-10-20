@@ -4,7 +4,6 @@ import {
   SectionListData,
   SectionListRenderItem,
   View,
-  Image,
 } from 'react-native';
 import _ from 'lodash';
 
@@ -17,7 +16,7 @@ import {
 import { IFAQSectionListProps } from './FAQSectionList.types';
 import { usePrevious } from '../../../../../hooks';
 import { ExtendedText } from '../../../../../components';
-import { IMAGES } from '../../../../../assets';
+import { SVG_ICONS } from '../../../../../assets/svg';
 
 export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
   filterValue,
@@ -66,20 +65,24 @@ export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
     [],
   );
 
+  const OrangeCirclePlussIcon = SVG_ICONS.orangeCirclePlussIcon;
+
   const renderItem: SectionListRenderItem<IMenuItem, ISectionData> =
-    useCallback(({ item }) => {
-      return (
-        <View style={styles.sectionListItemContainer}>
-          <ExtendedText
-            style={styles.sectionListItemTitle}
-            preset="secondary-text">
-            {item.title}
-          </ExtendedText>
-          {/* // TODO: change to correct icon */}
-          <Image source={IMAGES.ORANGE_CIRCLE_PLUSS} />
-        </View>
-      );
-    }, []);
+    useCallback(
+      ({ item }) => {
+        return (
+          <View style={styles.sectionListItemContainer}>
+            <ExtendedText
+              style={styles.sectionListItemTitle}
+              preset="secondary-text">
+              {item.title}
+            </ExtendedText>
+            <OrangeCirclePlussIcon />
+          </View>
+        );
+      },
+      [OrangeCirclePlussIcon],
+    );
 
   return (
     <SectionList
