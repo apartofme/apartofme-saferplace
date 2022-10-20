@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
@@ -53,13 +54,13 @@ export const userSlice = createSlice({
 
     updateParent() {},
     updateParentSuccess(state, { payload: user }: PayloadAction<IUser>) {
-      state.parent = user;
+      state.parent = _.merge(state.parent, user);
     },
     updateParentError(state, action: PayloadAction<string>) {},
 
     updateChild() {},
     updateChildSuccess(state, { payload: user }: PayloadAction<IUser>) {
-      state.child = user;
+      state.child = _.merge(state.child, user);
     },
     updateChildError(state, action: PayloadAction<string>) {},
 

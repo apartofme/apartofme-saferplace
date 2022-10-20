@@ -10,10 +10,10 @@ export interface ISettingsState {
 const INITIAL_STATE: ISettingsState = {
   settings: {
     language: CONFIG.FALLBACK_LANGUAGE,
-    isNotificationsEnabled: false,
+    isNotificationsEnabled: true,
     audioSettings: {
-      isSoundFXEnabled: false,
-      isBackgroundMusicEnabled: false,
+      isSoundFXEnabled: true,
+      isBackgroundMusicEnabled: true,
     },
   },
 };
