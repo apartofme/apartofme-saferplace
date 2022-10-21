@@ -97,7 +97,10 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                       <TouchableOpacity onPress={onSignInPress}>
                         <ExtendedText
                           preset="secondary-text"
-                          style={styles.accentButton}>
+                          style={[
+                            generalStyles.boldText,
+                            generalStyles.primaryOrange,
+                          ]}>
                           {` ${t('buttons.signin')}`}
                         </ExtendedText>
                       </TouchableOpacity>
@@ -148,7 +151,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             <TouchableOpacity>
               <ExtendedText
                 preset="tertiary-text-regular"
-                style={styles.accentButton}>
+                style={[generalStyles.boldText, generalStyles.primaryOrange]}>
                 {t('buttons.terms_conditions')}
               </ExtendedText>
             </TouchableOpacity>
@@ -160,7 +163,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             <TouchableOpacity>
               <ExtendedText
                 preset="tertiary-text-regular"
-                style={styles.accentButton}>
+                style={[generalStyles.boldText, generalStyles.primaryOrange]}>
                 {t('buttons.privacy_policy')}
               </ExtendedText>
             </TouchableOpacity>

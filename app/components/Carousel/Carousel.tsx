@@ -34,8 +34,6 @@ export const Carousel: React.FC<ICarouselProps> = ({
       case CarouselType.OnlyImage:
       case CarouselType.Avatar:
         return 'parallax';
-      default:
-        return undefined;
     }
   }, [preset]);
 

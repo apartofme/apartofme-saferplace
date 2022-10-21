@@ -12,6 +12,7 @@ interface ISignUpSuccessScreenStyles {
 export const styles = StyleSheet.create<ISignUpSuccessScreenStyles>({
   background: {
     resizeMode: 'contain',
+    // TODO: remove when background is done
     marginBottom: '50%',
   },
   container: {
