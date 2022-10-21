@@ -3,7 +3,6 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View, FlatList, ImageBackground } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
@@ -14,13 +13,14 @@ import {
   FURTHER_SUPPORT_MENU_ITEMS,
   IFurtherSupportMenuItem,
 } from './FurtherSupport.data';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
 
-  // TODO: change to correct function
   const renderItem = useCallback(
     ({ item }: { item: IFurtherSupportMenuItem }) => {
       return (
@@ -37,11 +37,15 @@ export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
     'titleKey',
   );
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
-    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+      style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>

@@ -1,12 +1,15 @@
+import { useIsFocused } from '@react-navigation/native';
 import moment from 'moment';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
 import { PLANTS_IMAGES } from '../../../assets';
 import { BottomButtonView, ExtendedText } from '../../../components';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { AUDIO } from '../../../constants/audio';
+import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import { plantSlice } from '../../../redux/slices/plantSlice';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
 import { PlantsType } from '../../../utils/types';
 import { styles } from './MixingElixirSuccess.styles';
@@ -58,6 +61,21 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
           };
       }
     }, [currentPlant]);
+
+    const isFocused = useIsFocused();
+    const appStatus = useAppState();
+
+    const isSoundFXEnabled = useAppSelector(
+      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+    );
+
+    useEffect(() => {
+      if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
+        AudioPlayerHelper.play(AUDIO.PLANT_PLANTING);
+      } else {
+        AudioPlayerHelper.stop();
+      }
+    }, [appStatus, isFocused, isSoundFXEnabled]);
 
     return (
       <ImageBackground source={background} style={generalStyles.flex}>

@@ -41,7 +41,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           currentQuestLine &&
           currentQuestLine.id === THE_CHARM_OF_BEFRIENDING_ID
         ) {
-          // TODO: add navigation to Dialog -> Garden
+          navigation.push('BefriendingStack');
           return;
         }
         navigation.navigate('ElixirTitleButton');

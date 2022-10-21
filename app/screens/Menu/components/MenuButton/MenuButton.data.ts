@@ -1,10 +1,9 @@
-import { ImageSourcePropType } from 'react-native';
-
 import { NavigationRouteNames } from '../../../../navigation/stacks/mergedParams';
+import { ISvgProps } from '../../../../utils/types';
 
 export interface IButtonsMenuItem {
   titleKey: string;
-  icon?: ImageSourcePropType;
+  icon?: (props: ISvgProps) => JSX.Element;
   route: NavigationRouteNames;
 }
 

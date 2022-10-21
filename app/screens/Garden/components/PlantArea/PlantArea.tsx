@@ -1,10 +1,18 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useCallback } from 'react';
-import { Image, Pressable, View, ViewStyle } from 'react-native';
+import {
+  Image,
+  Pressable,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 import { IMAGES } from '../../../../assets';
 import { useAppSelector } from '../../../../hooks';
 import { IPlant } from '../../../../models/IPlant';
 import { generalStyles } from '../../../../utils/styles';
+import { MixingElixirPhaseType } from '../../../../utils/types';
 import { Plant } from '../Plant/Plant';
 import { styles } from './PlantArea.styles';
 import { IPlantAreaProps, PlantAreaType } from './PlantArea.types';
@@ -13,14 +21,28 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
   activePlantArea,
   setActivePlantArea,
   isPlanting,
+  isBefriending,
 }) => {
   const plantArea = useAppSelector(state => state.plant.plantArea);
+  const navigation = useNavigation();
+
   const selectPlantArea = useCallback(
     (selectedPlace: PlantAreaType) => {
       setActivePlantArea(selectedPlace);
     },
     [setActivePlantArea],
   );
+
+  const onTreePress = useCallback(() => {
+    navigation.navigate('MixingElixirStack', {
+      screen: 'ElixirInstruction',
+      params: {
+        phase: MixingElixirPhaseType.Mix,
+        selectedPlantArea: activePlantArea,
+        isFirstTimeGarden: false,
+      },
+    });
+  }, [activePlantArea, navigation]);
 
   const renderPlantArea = useCallback(
     (
@@ -58,7 +80,9 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
   );
   return (
     <View style={styles.container}>
-      <Image source={IMAGES.TREE} style={styles.tree} />
+      <TouchableOpacity disabled={!isBefriending} onPress={onTreePress}>
+        <Image source={IMAGES.TREE} style={styles.tree} />
+      </TouchableOpacity>
       <View style={styles.plantingPlase}>
         <View style={generalStyles.row}>
           <View style={styles.emptyPlantArea} />

@@ -2,24 +2,27 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { FAQSectionList } from './components';
 import { IFrequentlyAskedQuestionsScreenProps } from './FrequentlyAskedQuestions.types';
 import { styles } from './FrequentlyAskedQuestions.styles';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 export const FrequentlyAskedQuestionsScreen: React.FC<IFrequentlyAskedQuestionsScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
 
+    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
     return (
       <ImageBackground
-        source={IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <View style={styles.container}>

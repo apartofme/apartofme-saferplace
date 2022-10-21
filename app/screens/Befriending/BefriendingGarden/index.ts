@@ -1,0 +1,1 @@
+export { BefriendingGardenScreen } from './BefriendingGarden';
