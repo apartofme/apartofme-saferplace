@@ -45,7 +45,6 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={styles.container}>
         <MainHeader
-          // TODO: add right icon
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />

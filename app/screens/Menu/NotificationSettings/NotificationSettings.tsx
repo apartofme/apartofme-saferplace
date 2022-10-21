@@ -44,7 +44,6 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            // TODO: change to correct icon
             leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />

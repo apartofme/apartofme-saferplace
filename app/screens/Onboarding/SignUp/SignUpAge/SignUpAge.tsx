@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
   ExtendedKeyboardAvoidingView,
@@ -16,6 +15,7 @@ import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAgeScreenProps } from './SignUpAge.types';
 import { styles } from './SignUpAge.styles';
+import { SVG_ICONS } from '../../../../assets/svg';
 
 export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
   navigation,
@@ -30,11 +30,13 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
     navigation.navigate('SignUpAvatar');
   }, [age, dispatch, navigation]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <ExtendedKeyboardAvoidingView>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView

@@ -12,12 +12,12 @@ import {
 } from '../../../../../components';
 import { styles } from './Login.styles';
 import { ILoginScreenProps } from './Login.types';
-import { IMAGES } from '../../../../../assets';
 import { generalStyles } from '../../../../../utils/styles';
 import { useAppDispatch } from '../../../../../hooks';
 import { userSlice } from '../../../../../redux/slices';
 import { HIT_SLOP } from './Lodin.data';
 import { SignInValidationSchema } from './Login.validation';
+import { SVG_ICONS } from '../../../../../assets/svg';
 
 export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
@@ -38,10 +38,12 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
     navigation.navigate('SignUpCredentials');
   }, [navigation]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={navigation.goBack}
       />
       <View style={styles.container}>

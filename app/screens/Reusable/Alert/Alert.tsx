@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { SVG_ICONS } from '../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -29,13 +29,15 @@ export const AlertScreen: React.FC<IAlertScreenProps> = ({ navigation }) => {
     );
   }, [t]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <BottomButtonView
         buttonTitle={t('buttons.ok').toUpperCase()}
         onSubmit={navigation.goBack}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>

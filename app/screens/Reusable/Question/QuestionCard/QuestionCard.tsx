@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
 import {
   ExtendedButton,
   ExtendedText,
@@ -55,6 +55,8 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
     navigateNextQuest();
   }, [currentQuestionIndex, navigateNextQuest, positiveNavigates]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <ImageBackground
       // TODO: change to the real image
@@ -64,7 +66,7 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={styles.container}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={goBack}
         />
         <View style={styles.contentContainer}>

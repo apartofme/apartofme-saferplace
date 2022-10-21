@@ -20,6 +20,7 @@ import {
   useParsedJSXTextNickname,
 } from '../../../../../hooks';
 import { ImagesKeys } from '../../../../../utils/types';
+import { SVG_ICONS } from '../../../../../assets/svg';
 
 export const EmotionModal: React.FC<IEmotionModalProps> = ({
   title,
@@ -53,6 +54,9 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
     }
   }, [inputValue]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
+
   return (
     <ImageBackground
       // TODO: change to real default image
@@ -64,8 +68,8 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          rightIcon={IMAGES.WHITE_PENCIL}
+          leftIcon={<WhiteBackArrowIcon />}
+          rightIcon={<WhiteCrossIcon />}
           onLeftIconPress={setModalStatus}
         />
         <ExtendedKeyboardAvoidingView>

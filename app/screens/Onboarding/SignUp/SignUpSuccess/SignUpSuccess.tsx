@@ -4,7 +4,7 @@ import { ImageBackground, SafeAreaView } from 'react-native';
 import _ from 'lodash';
 
 import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
-import { AVATARS_SVG } from '../../../../assets/svg';
+import { AVATARS_SVG, SVG_ICONS } from '../../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -69,6 +69,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
     });
 
   const AvatarIcon = AVATARS_SVG[avatar];
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground
@@ -80,7 +81,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
         imageStyle={styles.background}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <BottomButtonView

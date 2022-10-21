@@ -20,7 +20,7 @@ import {
   useNavigatePrevQuest,
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
-import { IMAGES } from '../../../assets';
+import { SVG_ICONS } from '../../../assets/svg';
 
 export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   navigation,
@@ -90,24 +90,33 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
     setIsPause(true);
   }, [currentAudioName]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
+
   const renderHeader = useCallback(() => {
     if (crossHeader) {
       return (
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={onBackArrowPress}
-          rightIcon={IMAGES.WHITE_PENCIL}
+          rightIcon={<WhiteCrossIcon />}
           onRightIconPress={onCrossPress}
         />
       );
     }
     return (
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={onBackArrowPress}
       />
     );
-  }, [crossHeader, onBackArrowPress, onCrossPress]);
+  }, [
+    WhiteBackArrowIcon,
+    WhiteCrossIcon,
+    crossHeader,
+    onBackArrowPress,
+    onCrossPress,
+  ]);
 
   return (
     <SafeAreaView style={generalStyles.flex}>

@@ -13,7 +13,6 @@ import {
   ExtendedTextInput,
   MainHeader,
 } from '../../../../../components';
-import { IMAGES } from '../../../../../assets';
 import { cacheSlice } from '../../../../../redux/slices';
 import {
   useAppDispatch,
@@ -21,6 +20,7 @@ import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
 } from '../../../../../hooks';
+import { SVG_ICONS } from '../../../../../assets/svg';
 
 export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   title,
@@ -67,12 +67,15 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
     onSubmit();
   }, [dispatch, inputValue, isChild, onSubmit, setModalStatus, t]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
+
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          rightIcon={IMAGES.WHITE_PENCIL}
+          leftIcon={<WhiteBackArrowIcon />}
+          rightIcon={<WhiteCrossIcon />}
           onLeftIconPress={setModalStatus}
         />
         <ExtendedKeyboardAvoidingView>

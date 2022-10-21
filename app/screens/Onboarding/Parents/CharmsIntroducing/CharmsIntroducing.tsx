@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
   Carousel,
@@ -16,6 +15,7 @@ import {
 } from './CharmsIntroducing.data';
 import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.types';
 import { styles } from './CharmsIntroducing.styles';
+import { SVG_ICONS } from '../../../../assets/svg';
 
 export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
   ({ navigation }) => {
@@ -27,11 +27,13 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
       navigation.navigate('ParentGroundingStack');
     }, [navigation]);
 
+    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
     return (
       // TODO: remove noop to real function
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView

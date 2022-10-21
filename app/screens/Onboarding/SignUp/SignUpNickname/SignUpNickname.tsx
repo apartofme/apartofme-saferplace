@@ -10,7 +10,7 @@ import {
   ExtendedTextInput,
   MainHeader,
 } from '../../../../components';
-import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
@@ -18,6 +18,7 @@ import { ISignUpNicknameScreenProps } from './SignUpNickname.types';
 import { styles } from './SignUpNickname.styles';
 import { SignUpNicknameValidationSchema } from './SignUpNickname.validation';
 import { COLORS } from '../../../../themes/colors';
+import { SVG_ICONS } from '../../../../assets/svg';
 
 export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   navigation,
@@ -47,13 +48,15 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
     return t('screens.onboarding.sign_up_nickname.parent.description');
   }, [isChild, t]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <ImageBackground
       source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <ExtendedKeyboardAvoidingView>

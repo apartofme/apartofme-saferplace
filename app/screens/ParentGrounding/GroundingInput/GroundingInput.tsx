@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
+import { SVG_ICONS } from '../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -56,10 +57,12 @@ export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
     }
   }, [navigation, parentNickname, selected]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={navigation.goBack}
       />
       <BottomButtonView

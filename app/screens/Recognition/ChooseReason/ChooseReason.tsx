@@ -12,9 +12,9 @@ import {
   RadioButtonList,
   RadioButtonListType,
 } from '../../../components';
-import { IMAGES } from '../../../assets';
 import { CHOOSE_REASON_DATA } from './ChooseReason.data';
 import { RecognitionAcknowledgementType } from '../RecognitionAcknowledgement/RecognitionAcknowledgement.data';
+import { SVG_ICONS } from '../../../assets/svg';
 
 export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
   navigation,
@@ -40,10 +40,12 @@ export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
     navigation.navigate('ElixirCarousel');
   }, [navigation]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={navigation.goBack}
       />
       <View style={styles.container}>

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
 import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -21,13 +22,15 @@ export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
     navigation.navigate('OnboardingCarousel');
   }, [navigation]);
 
+  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
+
   return (
     <ImageBackground
       source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView

@@ -11,13 +11,15 @@ import { IGroundingAcknowledgementProps } from './GroundingAcknowledgement.types
 import { styles } from './GroundingAcknowledgement.styles';
 import { useNavigation } from '@react-navigation/native';
 import { generalStyles } from '../../../../utils/styles';
-import { IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
 
 export const GroundingAcknowledgement: React.FC<IGroundingAcknowledgementProps> =
   ({ title, buttonTitle, image, backgroundImage, onSubmit }) => {
     const navigation = useNavigation();
 
     const { t } = useTranslation();
+
+    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground
@@ -26,7 +28,7 @@ export const GroundingAcknowledgement: React.FC<IGroundingAcknowledgementProps> 
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <BottomButtonView
