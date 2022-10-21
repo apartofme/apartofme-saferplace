@@ -53,7 +53,6 @@ export const SVG_ICONS = {
   whiteRightArrowIcon: WhiteRightArrowIcon,
 };
 
-
 export const AVATARS_SVG = {
   bear: BearAvatarIcon,
   fox: FoxAvatarIcon,
@@ -68,7 +67,7 @@ export const AVATARS_SVG = {
   mothCircle: MothCircleAvatarIcon,
   owlCircle: OwlCircleAvatarIcon,
   rabbitCircle: RabbitCircleAvatarIcon,
-}
+};
 
 export const SVG_CHARM_ILLUSTRATIONS = {
   acceptanceIllustrationIcon: AcceptanceIllustrationIcon,
