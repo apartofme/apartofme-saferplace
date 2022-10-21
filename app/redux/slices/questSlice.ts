@@ -25,6 +25,7 @@ interface IQuestState {
   currentQuestStack: number[];
   dailyChecks: Nullable<Record<string, string>>;
   completedQuestsId: number[];
+  isCurrentQuestCompleted: boolean;
 }
 
 const INITIAL_STATE: IQuestState = {
@@ -39,6 +40,7 @@ const INITIAL_STATE: IQuestState = {
   currentQuestStack: [],
   dailyChecks: null,
   completedQuestsId: [],
+  isCurrentQuestCompleted: false,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -121,6 +123,10 @@ export const questSlice = createSlice({
       state.lastDayUpdate = payload;
     },
     setLastDayUpdateError(state, action: PayloadAction<string>) {},
+
+    setIsCurrentQuestCompleted(state, { payload }: PayloadAction<boolean>) {
+      state.isCurrentQuestCompleted = payload;
+    },
 
     getInitialState(state) {
       return { ...INITIAL_STATE, allQuests: state.allQuests };
