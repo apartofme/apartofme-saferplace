@@ -8,7 +8,10 @@ export const IMAGES = {
   BROWN_TRIANGLE: require('./brownTriangle.png'),
   CHECK_MARK: require('./checkMark.png'),
   COMPASSIONATE_GUIDE: require('./compassionateGuide.png'),
+  CONFETTI: require('./confetti.png'),
+  CROSSED_OUT_EYE: require('./crossedOutEye.png'),
   HAPPY_TREE_ON_GRASS: require('./happyTreeOnGrass.png'),
+  OPENED_EYE: require('./openedEye.png'),
   MUSHROOM_MAN_IN_TREES: require('./mushroomManInTrees.png'),
   NADIYA: require('./nadiya.png'),
   TREE: require('./tree.png'),
@@ -16,12 +19,6 @@ export const IMAGES = {
 
 export const PLANTS_IMAGES = {
   SPOUR_COMPASSION_START: require('./sproutCompassionStart.png'),
-};
-
-// TODO: change to correct images
-export const AVATAR_IMAGES = {
-  LOGO: require('./beyondCodelineLogo.png'),
-  TREE: require('./tree.png'),
 };
 
 export const BACKGROUND_IMAGES = {

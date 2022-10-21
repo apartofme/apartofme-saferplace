@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 import { Formik } from 'formik';
 
 import {
@@ -10,13 +10,14 @@ import {
   ExtendedTextInput,
   MainHeader,
 } from '../../../../components';
-import { IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpNicknameScreenProps } from './SignUpNickname.types';
 import { styles } from './SignUpNickname.styles';
 import { SignUpNicknameValidationSchema } from './SignUpNickname.validation';
+import { COLORS } from '../../../../themes/colors';
 
 export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   navigation,
@@ -47,38 +48,44 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   }, [isChild, t]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <ExtendedKeyboardAvoidingView>
-        <Formik
-          initialValues={{ nickname: '' }}
-          validationSchema={SignUpNicknameValidationSchema}
-          onSubmit={onSubmit}>
-          {({ values, dirty, isValid, handleChange, errors }) => (
-            <BottomButtonView
-              buttonTitle={t('buttons.next')}
-              onSubmit={() => onSubmit(values.nickname)}
-              isDisabledButton={dirty ? !isValid : true}
-              style={styles.container}>
-              <ExtendedText preset="large-title">
-                {t('screens.onboarding.sign_up_nickname.title')}
-              </ExtendedText>
-              <ExtendedText preset="secondary-text" style={styles.subtitle}>
-                {correctDescription}
-              </ExtendedText>
-              <ExtendedTextInput
-                value={values.nickname}
-                onChangeText={handleChange('nickname')}
-                placeholder={t('placeholders.enter_nickname')}
-                error={errors.nickname}
-              />
-            </BottomButtonView>
-          )}
-        </Formik>
-      </ExtendedKeyboardAvoidingView>
-    </SafeAreaView>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          onLeftIconPress={navigation.goBack}
+        />
+        <ExtendedKeyboardAvoidingView>
+          <Formik
+            initialValues={{ nickname: '' }}
+            validationSchema={SignUpNicknameValidationSchema}
+            onSubmit={onSubmit}>
+            {({ values, dirty, isValid, handleChange }) => (
+              <BottomButtonView
+                buttonTitle={t('buttons.next')}
+                onSubmit={() => onSubmit(values.nickname)}
+                isDisabledButton={dirty ? !isValid : true}
+                isArrow={true}
+                style={styles.container}>
+                <ExtendedText preset="large-title" style={styles.whiteColor}>
+                  {t('screens.onboarding.sign_up_nickname.title')}
+                </ExtendedText>
+                <ExtendedText preset="secondary-text" style={styles.subtitle}>
+                  {correctDescription}
+                </ExtendedText>
+                <ExtendedTextInput
+                  value={values.nickname}
+                  onChangeText={handleChange('nickname')}
+                  placeholder={t('placeholders.enter_nickname')}
+                  placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                  maxLength={12}
+                />
+              </BottomButtonView>
+            )}
+          </Formik>
+        </ExtendedKeyboardAvoidingView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

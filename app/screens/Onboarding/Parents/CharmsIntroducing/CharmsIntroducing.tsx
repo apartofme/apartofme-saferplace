@@ -44,7 +44,7 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
           <Carousel
             data={CHARMS_CAROUSEL}
             preset={CarouselType.ImageTitleSubtitle}
-            setCurrentPossition={setCurrentPossition}
+            setIndex={setCurrentPossition}
             carouselItemStyle={styles.container}
           />
         </BottomButtonView>

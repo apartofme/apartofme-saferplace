@@ -19,6 +19,7 @@ import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
 } from '../../../../../hooks';
+import { ImagesKeys } from '../../../../../utils/types';
 
 export const EmotionModal: React.FC<IEmotionModalProps> = ({
   title,
@@ -56,7 +57,7 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
     <ImageBackground
       // TODO: change to real default image
       source={
-        (backgroundImage && IMAGES[backgroundImage as keyof typeof IMAGES]) ?? {
+        (backgroundImage && IMAGES[backgroundImage as ImagesKeys]) ?? {
           uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
         }
       }

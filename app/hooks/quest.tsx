@@ -181,9 +181,9 @@ export const useParsedJSXTextNickname = ({
   text,
   textHasNickname,
   isChild,
-  preset,
+  preset = 'secondary-text',
   style,
-  variableStyle,
+  variableStyle = generalStyles.primaryOrange,
 }: {
   text: string;
   textHasNickname: boolean;

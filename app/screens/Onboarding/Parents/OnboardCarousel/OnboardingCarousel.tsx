@@ -27,7 +27,10 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
         source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
         style={generalStyles.flex}>
         <SafeAreaView edges={['bottom']} style={generalStyles.flex}>
-          <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
+          <BottomButtonView
+            buttonTitle={t('buttons.next')}
+            onSubmit={onSubmit}
+            isArrow={true}>
             <Carousel
               data={[...CHARMS_CAROUSEL]}
               preset={CarouselType.ImageTitleSubtitle}

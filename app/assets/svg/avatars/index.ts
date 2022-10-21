@@ -1,0 +1,12 @@
+export { BearAvatarIcon } from './BearAvatarIcon';
+export { BearCircleAvatarIcon } from './BearCircleAvatarIcon';
+export { FoxAvatarIcon } from './FoxAvatarIcon';
+export { FoxCircleAvatarIcon } from './FoxCircleAvatarIcon';
+export { MonkeyAvatarIcon } from './MonkeyAvatarIcon';
+export { MonkeyCircleAvatarIcon } from './MonkeyCircleAvatarIcon';
+export { MothAvatarIcon } from './MothAvatarIcon';
+export { MothCircleAvatarIcon } from './MothCircleAvatarIcon';
+export { OwlAvatarIcon } from './OwlAvatarIcon';
+export { OwlCircleAvatarIcon } from './OwlCircleAvatarIcon';
+export { RabbitAvatarIcon } from './RabbitAvatarIcon';
+export { RabbitCircleAvatarIcon } from './RabbitCircleAvatarIcon';

@@ -5,7 +5,6 @@ import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { ElixirKeysType, ITranslations, ImagesKeys } from './types';
-import { IMAGES } from '../assets/images';
 import { REGEXPS } from './regexps';
 
 export const isAndroid = Platform.OS === 'android';
@@ -81,13 +80,12 @@ export const questsToDictionary = (
       id: quest.id,
       title: quest.title,
       description: quest.description,
-      backgroundImage:
-        (quest.backgroundimage?.path as keyof typeof IMAGES) ?? null,
+      backgroundImage: (quest.backgroundimage?.path as ImagesKeys) ?? null,
       image: (quest.image?.path as ImagesKeys) ?? null,
       tellMoreTitle: quest.tellmoretitle ?? null,
       tellMoreDescription: quest.tellmoredescription ?? null,
       tellMoreBackground:
-        (quest.tellmorebackground?.path as keyof typeof IMAGES) ?? null,
+        (quest.tellmorebackground?.path as ImagesKeys) ?? null,
       questLineId: quest.questlineid.id,
       type: quest.typeid.slug as keyof QuestStackParams,
       sort: quest.sort,

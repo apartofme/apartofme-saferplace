@@ -1,5 +1,8 @@
 import { StyleSheet, TextStyle } from 'react-native';
 
+import { COLORS } from '../../themes/colors';
+import { hexTransparency, isIOS } from '../../utils';
+
 interface IExtendedTextInputStyles {
   label: TextStyle;
   input: TextStyle;
@@ -9,10 +12,13 @@ interface IExtendedTextInputStyles {
 export const styles = StyleSheet.create<IExtendedTextInputStyles>({
   label: {},
   input: {
-    borderBottomWidth: 1,
-    //* Fix for android
-    paddingHorizontal: 0,
-    paddingVertical: 0,
+    paddingHorizontal: 24,
+    paddingVertical: isIOS ? 20 : 16,
+    backgroundColor: hexTransparency(COLORS.DARK_PURPLE, 90),
+    borderWidth: 1,
+    borderColor: COLORS.PRIMARY_ORANGE,
+    borderRadius: 24,
+    color: COLORS.BRILLIANT_WHITE,
   },
   error: {},
 });

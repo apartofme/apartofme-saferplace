@@ -1,22 +1,26 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../../themes/colors';
 
 interface ISignUpCredentialsScreenStyles {
   container: ViewStyle;
   subtitle: ViewStyle;
   input: ViewStyle;
   bottomConatainer: ViewStyle;
+  whiteColor: TextStyle;
+  greyColor: TextStyle;
+  error: TextStyle;
 }
 
 export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
   container: {
-    flex: 1,
     paddingTop: 40,
     paddingHorizontal: 24,
   },
   subtitle: {
     flexDirection: 'row',
-    marginTop: 16,
-    marginBottom: 65,
+    paddingTop: 16,
+    paddingBottom: 32,
   },
   input: {
     marginBottom: 16,
@@ -27,5 +31,15 @@ export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
     justifyContent: 'center',
     paddingHorizontal: 40,
     marginBottom: 24,
+  },
+  whiteColor: {
+    color: COLORS.BRILLIANT_WHITE,
+  },
+  greyColor: {
+    color: COLORS.LIGHT_GREY,
+  },
+  error: {
+    color: COLORS.ERROR,
+    paddingTop: 24,
   },
 });
