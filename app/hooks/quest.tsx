@@ -23,6 +23,9 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const currentQuestLine = useAppSelector(
     state => state.quest.currentQuestLine,
   );
+  const isCurrentQuestCompleted = useAppSelector(
+    state => state.quest.isCurrentQuestCompleted,
+  );
 
   const navigateNextQuest = useCallback(() => {
     if (currentQuestLine) {
@@ -40,6 +43,13 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
           data: { ...nextQuest },
         });
       } else {
+        if (isCurrentQuestCompleted) {
+          dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+          navigation.push('GardenStack', {
+            screen: 'CompletedCharmEnd',
+          });
+        }
+
         if (interruptedQuestLine?.id === currentQuestLine.id) {
           dispatch(questSlice.actions.updateInterruptedQuestLine(null));
         }
@@ -65,6 +75,7 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
     currentQuestLine,
     dispatch,
     interruptedQuestLine?.id,
+    isCurrentQuestCompleted,
     navigation,
     questId,
   ]);
@@ -82,6 +93,9 @@ export const useNavigateNextQuest = () => {
   const interruptedQuestLine = useAppSelector(
     state => state.quest.interruptedQuestLine,
   );
+  const isCurrentQuestCompleted = useAppSelector(
+    state => state.quest.isCurrentQuestCompleted,
+  );
 
   const navigateNextQuest = useCallback(() => {
     if (currentQuestLine) {
@@ -96,6 +110,12 @@ export const useNavigateNextQuest = () => {
           data: { ...nextQuest },
         });
       } else {
+        if (isCurrentQuestCompleted) {
+          dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+          navigation.push('GardenStack', {
+            screen: 'CompletedCharmEnd',
+          });
+        }
         if (interruptedQuestLine?.id === currentQuestLine.id) {
           dispatch(questSlice.actions.updateInterruptedQuestLine(null));
         }
@@ -121,6 +141,7 @@ export const useNavigateNextQuest = () => {
     currentQuestLine,
     dispatch,
     interruptedQuestLine?.id,
+    isCurrentQuestCompleted,
     navigation,
   ]);
 

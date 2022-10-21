@@ -1,0 +1,1 @@
+export { SkipCharmJournalScreen } from './SkipCharmJournal';

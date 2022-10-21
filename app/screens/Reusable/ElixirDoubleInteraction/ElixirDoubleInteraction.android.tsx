@@ -7,7 +7,7 @@ import {
 
 import { ExtendedText } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { elixirSlice } from '../../../redux/slices';
+import { elixirSlice, questSlice } from '../../../redux/slices';
 import { styles } from './ElixirDoubleInteraction.styles';
 import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.types';
 
@@ -17,6 +17,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const dispatch = useAppDispatch();
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
+    const isCurrentQuestCompleted = useAppSelector(
+      state => state.quest.isCurrentQuestCompleted,
+    );
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
@@ -31,6 +34,14 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
     useEffect(() => {
       if (isChildPress && isAdultPress) {
+        if (isCurrentQuestCompleted) {
+          dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+          navigation.push('GardenStack', {
+            screen: 'CompletedCharmEnd',
+          });
+          return;
+        }
+
         dispatch(
           elixirSlice.actions.updateFullnessElixir(
             fullnessElixir + (elixirReward ?? 1),
