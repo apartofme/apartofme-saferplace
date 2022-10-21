@@ -1,7 +1,9 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 import {
   firebaseChangePassword,
+  firebaseDeleteAccount,
   firebaseLoginUser,
   firebaseLogout,
   firebaseRegisterUser,
@@ -152,6 +154,21 @@ function* watchChangePassword({
   }
 }
 
+function* watchDeleteAccount({ payload: password }: PayloadAction<string>) {
+  const changePasswordResponse: IFirebaseChangePasswordResponse = yield call(
+    firebaseDeleteAccount,
+    password,
+  );
+  if (!changePasswordResponse.error) {
+    yield put(questSlice.actions.getInitialState());
+    yield put(plantSlice.actions.getInitialState());
+    yield put(elixirSlice.actions.getInitialState());
+    yield call(StaticNavigator.navigateTo, 'DeleteAccountSuccess');
+  } else {
+    yield put(userSlice.actions.deleteAccountError('change password error'));
+  }
+}
+
 function* watchLogout() {
   yield call(firebaseLogout);
   yield put(questSlice.actions.getInitialState());
@@ -168,6 +185,7 @@ export function* userSaga() {
   yield takeLatest(userSlice.actions.changePassword, watchChangePassword);
   yield takeLatest(userSlice.actions.updateParent, watchUpdateParentData);
   yield takeLatest(userSlice.actions.updateChild, watchUpdateChildData);
+  yield takeLatest(userSlice.actions.deleteAccount, watchDeleteAccount);
 
   yield takeLatest(userSlice.actions.logout, watchLogout);
 }

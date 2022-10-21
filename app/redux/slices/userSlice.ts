@@ -68,6 +68,10 @@ export const userSlice = createSlice({
     resetPasswordSuccess() {},
     resetPasswordError(state, action: PayloadAction<string>) {},
 
+    deleteAccount(state, action: PayloadAction<string>) {},
+    deleteAccountSuccess() {},
+    deleteAccountError(state, action: PayloadAction<string>) {},
+
     logout(state) {
       return INITIAL_STATE;
     },
