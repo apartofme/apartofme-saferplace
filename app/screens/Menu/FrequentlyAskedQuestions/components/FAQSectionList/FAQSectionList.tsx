@@ -16,9 +16,9 @@ import {
 import { IFAQSectionListProps } from './FAQSectionList.types';
 import { usePrevious } from '../../../../../hooks';
 import { ExtendedText } from '../../../../../components';
-import { SVG_ICONS } from '../../../../../assets/svg';
+import { SVG } from '../../../../../assets/svg';
 
-const OrangeCirclePlussIcon = SVG_ICONS.OrangeCirclePlussIcon;
+const OrangeCirclePlussIcon = SVG.OrangeCirclePlussIcon;
 
 export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
   filterValue,

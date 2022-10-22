@@ -30,12 +30,12 @@ export enum PlantsType {
 }
 
 export enum AvatarsNameType {
-  Bear = 'BEAR',
-  Fox = 'FOX',
-  Monkey = 'MONKEY',
-  Moth = 'MOTH',
-  Owl = 'OWL',
-  Rabbit = 'RABBIT',
+  Bear = 'BearIcon',
+  Fox = 'FoxIcon',
+  Monkey = 'MonkeyIcon',
+  Moth = 'MothIcon',
+  Owl = 'OwlIcon',
+  Rabbit = 'RabbitIcon',
 }
 
 export enum ElixirKeysType {

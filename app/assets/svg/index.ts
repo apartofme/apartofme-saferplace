@@ -42,44 +42,51 @@ import {
   BirdOnBranchesIcon,
   GuideInTreesIcon,
   HappyNadiyaTreeIcon,
-  NadiyaIcon,
+  NadiyaTextIcon,
 } from './onboarding';
+import { BrownTriangleIcon } from './BrownTriangleIcon';
+import { PurpleCheckMarkIcon } from './PurpleCheckMarkIcon';
+import { CrossedOutEyeIcon } from './CrossedOutEyeIcon';
+import { OpenedEyeIcon } from './OpenedEyeIcon';
+import { CompassionateGuideIcon } from './CompassionateGuideIcon';
 
-export const SVG_ICONS = {
+export const SVG = {
+  BirdOnBranchesIcon: BirdOnBranchesIcon,
+  BrownTriangleIcon: BrownTriangleIcon,
   CelebrationGuideIcon: CelebrationGuideIcon,
   CircleExclamationMarkIcon: CircleExclamationMarkIcon,
   CircleQuestionMarkIcon: CircleQuestionMarkIcon,
+  CompassionateGuideIcon: CompassionateGuideIcon,
+  CrossedOutEyeIcon: CrossedOutEyeIcon,
   ExitIcon: ExitIcon,
   GearManIcon: GearManIcon,
+  GuideInTreesIcon: GuideInTreesIcon,
+  HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
+  NadiyaTextIcon: NadiyaTextIcon,
+  OpenedEyeIcon: OpenedEyeIcon,
   OrangeCirclePlussIcon: OrangeCirclePlussIcon,
+  PurpleCheckMarkIcon: PurpleCheckMarkIcon,
+  WhiteBackArrowIcon: WhiteBackArrowIcon,
   WhiteCrossIcon: WhiteCrossIcon,
   WhiteGearIcon: WhiteGearIcon,
-  WhiteBackArrowIcon: WhiteBackArrowIcon,
   WhitePencilIcon: WhitePencilIcon,
   WhiteRightArrowIcon: WhiteRightArrowIcon,
 };
 
-export const SVG = {
-  BIRD_ON_BRANCHES_ICON: BirdOnBranchesIcon,
-  GUIDE_IN_TREES_ICON: GuideInTreesIcon,
-  HAPPY_NADIYA_TREE_ICON: HappyNadiyaTreeIcon,
-  NADIYA: NadiyaIcon,
-};
-
 export const AVATARS_SVG = {
-  BEAR: BearAvatarIcon,
-  FOX: FoxAvatarIcon,
-  MONKEY: MonkeyAvatarIcon,
-  MOTH: MothAvatarIcon,
-  OWL: OwlAvatarIcon,
-  RABBIT: RabbitAvatarIcon,
+  BearIcon: BearAvatarIcon,
+  FoxIcon: FoxAvatarIcon,
+  MonkeyIcon: MonkeyAvatarIcon,
+  MothIcon: MothAvatarIcon,
+  OwlIcon: OwlAvatarIcon,
+  RabbitIcon: RabbitAvatarIcon,
 
-  BEAR_CIRCLE: BearCircleAvatarIcon,
-  FOX_CIRCLE: FoxCircleAvatarIcon,
-  MONKEY_CIRCLE: MonkeyCircleAvatarIcon,
-  MOTH_CIRCLE: MothCircleAvatarIcon,
-  OWL_CIRCLE: OwlCircleAvatarIcon,
-  RABBIT_CIRCLE: RabbitCircleAvatarIcon,
+  CircleBearIcon: BearCircleAvatarIcon,
+  CircleFoxIcon: FoxCircleAvatarIcon,
+  CircleMonkeyIcon: MonkeyCircleAvatarIcon,
+  CircleMothIcon: MothCircleAvatarIcon,
+  CircleOwlIcon: OwlCircleAvatarIcon,
+  CircleRabbitIcon: RabbitCircleAvatarIcon,
 };
 
 export const SVG_CHARM_ILLUSTRATIONS = {

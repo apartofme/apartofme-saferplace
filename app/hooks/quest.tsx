@@ -10,7 +10,7 @@ import { containsFirstPlayer, containsSecondPlayer, Nullable } from '../utils';
 import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
 import { DatoCMSTextVariables } from '../constants/quest';
-import { SVG_ICONS } from '../assets/svg';
+import { SVG } from '../assets/svg';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
@@ -353,8 +353,8 @@ export const useRenderQuestHeader = (data: {
 
   const navigation = useNavigation();
 
-  const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
-  const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+  const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+  const WhiteCrossIcon = SVG.WhiteCrossIcon;
 
   const onRightIconPress = useCallback(() => {
     navigation.navigate('EscapeMenu', {

@@ -3,14 +3,14 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Image, SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { TEN_SECONDS } from '../../../constants/time';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './GroundingTimer.styles';
 import { IGroundingTimerScreenProps } from './GroundingTimer.types';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
   navigation,

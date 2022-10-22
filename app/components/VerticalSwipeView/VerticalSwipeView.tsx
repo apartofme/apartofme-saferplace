@@ -15,9 +15,9 @@ import { ExtendedText } from '../ExtendedText';
 import { IVerticalSwipeViewProps } from './VerticalSwipeView.types';
 import { styles } from './VerticalSwipeView.styles';
 import { MainHeader } from '../MainHeader';
-import { SVG_ICONS } from '../../assets/svg';
+import { SVG } from '../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   titleKey,

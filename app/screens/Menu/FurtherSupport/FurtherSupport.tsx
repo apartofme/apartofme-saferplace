@@ -13,10 +13,10 @@ import {
   FURTHER_SUPPORT_MENU_ITEMS,
   IFurtherSupportMenuItem,
 } from './FurtherSupport.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
   navigation,

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -12,7 +12,7 @@ import { generalStyles } from '../../../utils/styles';
 import { styles } from './Alert.styles';
 import { IAlertScreenProps } from './Alert.types';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const AlertScreen: React.FC<IAlertScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();

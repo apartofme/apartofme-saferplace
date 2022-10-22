@@ -3,7 +3,7 @@ import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 
 import { ISvgProps } from '../../../utils/types';
 
-export const NadiyaIcon = ({ width = 327, height = 98 }: ISvgProps) => {
+export const NadiyaTextIcon = ({ width = 327, height = 98 }: ISvgProps) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 327 98" fill="none">
       <Path

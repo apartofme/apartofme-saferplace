@@ -67,10 +67,10 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const isCurrentDayQuestsStackEmpty = useAppSelector(
     state => !state.quest.currentQuestStack.length,
   );
-  //? In my mind there should be a parent avatar *Andrey*
+
   const parentdAvatar =
     useAppSelector(state => state.user.parent?.avatar) ??
-    `${AvatarsNameType.Rabbit}_CIRCLE`;
+    `Circle${AvatarsNameType.Rabbit}`;
   const AvatarIcon = AVATARS_SVG[parentdAvatar];
 
   const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);

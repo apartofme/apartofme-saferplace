@@ -26,7 +26,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
     navigation.navigate('Login');
   }, [navigation]);
 
-  const LogoIcon = SVG.NADIYA;
+  const LogoIcon = SVG.NadiyaTextIcon;
 
   return (
     <ImageBackground

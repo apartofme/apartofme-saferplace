@@ -4,9 +4,9 @@ import { TextInput, View } from 'react-native';
 import { IMultilineTextInputProps } from './MultilineTextInput.types';
 import { styles } from './MultilineTextInput.styles';
 import { COLORS } from '../../themes/colors';
-import { SVG_ICONS } from '../../assets/svg';
+import { SVG } from '../../assets/svg';
 
-const WhitePencil = SVG_ICONS.WhitePencilIcon;
+const WhitePencil = SVG.WhitePencilIcon;
 
 export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
   style,

@@ -20,9 +20,9 @@ import { styles } from './EditProfile.styles';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { cacheSlice, userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
@@ -54,12 +54,12 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
 
   useMount(() => {
     setAvatarIndex(
-      _.findIndex(AVATAR_CAROUSEL, item => `${item.image}_CIRCLE` === avatar),
+      _.findIndex(AVATAR_CAROUSEL, item => `Circle${item.image}` === avatar),
     );
   });
 
   useEffect(() => {
-    setAvatar(`${AVATAR_CAROUSEL[avatarIndex].image}_CIRCLE`);
+    setAvatar(`Circle${AVATAR_CAROUSEL[avatarIndex].image}`);
   }, [avatarIndex]);
 
   const onSubmit = useCallback(() => {

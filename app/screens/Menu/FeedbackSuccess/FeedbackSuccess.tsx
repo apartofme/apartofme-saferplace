@@ -11,10 +11,10 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IFeedbackSuccessScreenProps } from './FeedbackSuccess.types';
 import { styles } from './FeedbackSuccess.styles';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
-const CelebrationGuideIcon = SVG_ICONS.CelebrationGuideIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const CelebrationGuideIcon = SVG.CelebrationGuideIcon;
 
 export const FeedbackSuccessScreen: React.FC<IFeedbackSuccessScreenProps> = ({
   navigation,

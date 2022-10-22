@@ -13,10 +13,10 @@ import {
   SettingsPrivacyRouteType,
   SETTINGS_PRIVACY_MENU,
 } from './SettingsPrivacy.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
   navigation,

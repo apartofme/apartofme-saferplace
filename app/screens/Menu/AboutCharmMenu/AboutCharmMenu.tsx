@@ -11,9 +11,9 @@ import { styles } from './AboutCharmMenu.styles';
 import { ABOUT_CHARM_ITEMS } from '../AboutCharm/AboutCharm.data';
 import { AboutCharmsMenuItem } from '../AboutCharm/AboutCharm.types';
 import { useSpecificKeyExtractor } from '../../../hooks';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
   navigation,

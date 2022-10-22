@@ -19,10 +19,10 @@ import { MAIN_MENU_ITEMS } from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.types';
 import { styles } from './MainMenu.styles';
 import { AvatarsNameType } from '../../../utils/types';
-import { SVG_ICONS, AVATARS_SVG } from '../../../assets/svg';
+import { AVATARS_SVG, SVG } from '../../../assets/svg';
 
-const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
-const LogOutIcon = SVG_ICONS.ExitIcon;
+const WhiteCrossIcon = SVG.WhiteCrossIcon;
+const LogOutIcon = SVG.ExitIcon;
 
 export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   navigation,
@@ -34,7 +34,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const childNickname = useAppSelector(state => state.user.child?.nickname);
   const avatar =
     useAppSelector(state => state.user.parent?.avatar) ??
-    `${AvatarsNameType.Rabbit}_CIRCLE`;
+    `Circle${AvatarsNameType.Rabbit}`;
   const AvatarIcon = AVATARS_SVG[avatar];
 
   const onMenuItemPress = useCallback(

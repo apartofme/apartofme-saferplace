@@ -17,9 +17,9 @@ import i18n from '../../../../services/localization';
 import { ILanguageSelectionScreenProps } from './LanguageSelection.types';
 import { LANGUAGES } from '../../../../constants/languages';
 import { styles } from './LanguageSelection.styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
   ({ navigation }) => {

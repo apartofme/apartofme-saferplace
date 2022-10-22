@@ -15,10 +15,10 @@ import { IMAGES } from '../../../assets';
 import { RECOGNITION_ACKNOWLEDGEMENT_DATA } from './RecognitionAcknowledgement.data';
 import { useAppSelector } from '../../../hooks';
 import { SPIRIT_INTRO_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
-const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG.WhiteCrossIcon;
 
 export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgementScreenProps> =
   ({ navigation, route }) => {

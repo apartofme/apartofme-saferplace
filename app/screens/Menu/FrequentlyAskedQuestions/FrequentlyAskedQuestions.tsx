@@ -7,10 +7,10 @@ import { generalStyles } from '../../../utils/styles';
 import { FAQSectionList } from './components';
 import { IFrequentlyAskedQuestionsScreenProps } from './FrequentlyAskedQuestions.types';
 import { styles } from './FrequentlyAskedQuestions.styles';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const FrequentlyAskedQuestionsScreen: React.FC<IFrequentlyAskedQuestionsScreenProps> =
   ({ navigation }) => {

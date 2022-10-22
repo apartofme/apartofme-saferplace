@@ -5,19 +5,19 @@ import { ICarouselItem } from '../../../../components';
 export const CHARMS_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   {
     id: '1',
-    image: SVG.BIRD_ON_BRANCHES_ICON,
+    image: SVG.BirdOnBranchesIcon,
     titleKey: 'screens.onboarding.charms_introducing.first.title',
     subtitleKey: 'screens.onboarding.charms_introducing.first.subtitle',
   },
   {
     id: '2',
-    image: SVG.BIRD_ON_BRANCHES_ICON,
+    image: SVG.BirdOnBranchesIcon,
     titleKey: 'screens.onboarding.charms_introducing.second.title',
     subtitleKey: 'screens.onboarding.charms_introducing.second.subtitle',
   },
   {
     id: '3',
-    image: SVG.BIRD_ON_BRANCHES_ICON,
+    image: SVG.BirdOnBranchesIcon,
     titleKey: 'screens.onboarding.charms_introducing.third.title',
     subtitleKey: 'screens.onboarding.charms_introducing.third.subtitle',
   },

@@ -14,9 +14,9 @@ import {
 } from '../../../components';
 import { CHOOSE_REASON_DATA } from './ChooseReason.data';
 import { RecognitionAcknowledgementType } from '../RecognitionAcknowledgement/RecognitionAcknowledgement.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
   navigation,

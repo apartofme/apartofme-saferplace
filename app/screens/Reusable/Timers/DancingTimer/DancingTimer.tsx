@@ -18,10 +18,10 @@ import {
 } from '../../../../components';
 import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
 import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
-const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG.WhiteCrossIcon;
 
 export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   navigation,

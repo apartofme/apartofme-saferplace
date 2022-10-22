@@ -18,9 +18,9 @@ import { ISignUpNicknameScreenProps } from './SignUpNickname.types';
 import { styles } from './SignUpNickname.styles';
 import { SignUpNicknameValidationSchema } from './SignUpNickname.validation';
 import { COLORS } from '../../../../themes/colors';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   navigation,

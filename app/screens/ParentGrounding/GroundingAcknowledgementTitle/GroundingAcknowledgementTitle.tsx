@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -12,7 +12,7 @@ import { generalStyles } from '../../../utils/styles';
 import { styles } from './GroundingAcknowledgementTitle.styles';
 import { IGroundingAcknowledgementTitleScreenProps } from './GroundingAcknowledgementTitle.types';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledgementTitleScreenProps> =
   ({ navigation, route }) => {

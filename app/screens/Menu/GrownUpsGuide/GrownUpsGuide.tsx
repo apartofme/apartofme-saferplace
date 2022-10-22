@@ -10,10 +10,10 @@ import { MenuButton } from '../components';
 import { GROWN_UP_GUIDE_ITEMS } from './GrownUpsGuide.data';
 import { IGrownUpsGuideScreenProps } from './GrownUpsGuide.types';
 import { styles } from './GrownUpsGuide.styles';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
   navigation,

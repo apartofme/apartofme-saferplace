@@ -1,12 +1,14 @@
 import React, { useCallback, useMemo } from 'react';
-import { GestureResponderEvent, Image, TouchableOpacity } from 'react-native';
+import { GestureResponderEvent, TouchableOpacity, View } from 'react-native';
 
-import { IMAGES } from '../../assets';
+import { SVG } from '../../assets/svg';
 import { trackButtonPress } from '../../services/firebase';
 import { ExtendedText } from '../ExtendedText';
 import presets, { additionalStyles } from './ExtendedButton.presets';
 import { styles } from './ExtendedButton.styles';
 import { IExtendedButtonProps } from './ExtendedButton.types';
+
+const ArrowIcon = SVG.BrownTriangleIcon;
 
 export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
   title,
@@ -52,7 +54,11 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
       disabled={disabled}
       onPress={onButtonPress}>
       <ExtendedText style={titleStyles}>{title}</ExtendedText>
-      {isArrow && <Image source={IMAGES.BROWN_TRIANGLE} style={styles.image} />}
+      {isArrow && (
+        <View style={styles.imageContainer}>
+          <ArrowIcon />
+        </View>
+      )}
     </TouchableOpacity>
   );
 };

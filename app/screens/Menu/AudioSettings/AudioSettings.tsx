@@ -15,10 +15,10 @@ import {
   AUDIO_SETTINGS_MENU,
   IAudioSettingsMenuItemType,
 } from './AudioSettings.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const AudioSettingsScreen: React.FC<IAudioSettingsScreenProps> = ({
   navigation,

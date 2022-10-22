@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
-import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../../assets';
+import { SVG } from '../../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -13,7 +13,9 @@ import { generalStyles } from '../../../../utils/styles';
 import { styles } from './Acknowledgement.styles';
 import { IAcknowledgementScreenProps } from './Acknowledgement.types';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+
+const GuideIcon = SVG.CompassionateGuideIcon;
 
 export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
   navigation,
@@ -38,7 +40,7 @@ export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
           onSubmit={onNextPress}
           isArrow={true}
           style={styles.container}>
-          <Image source={IMAGES.COMPASSIONATE_GUIDE} />
+          <GuideIcon />
           <ExtendedText preset="body-regular" style={styles.title}>
             {t('screens.onboarding.acknowledgement.title')}
           </ExtendedText>

@@ -4,7 +4,7 @@ import { ImageBackground, SafeAreaView } from 'react-native';
 import _ from 'lodash';
 
 import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
-import { AVATARS_SVG, SVG_ICONS } from '../../../../assets/svg';
+import { AVATARS_SVG, SVG } from '../../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -17,7 +17,7 @@ import { styles } from './SignUpSuccess.styles';
 import { AvatarsKeys } from '../../../../utils/types';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   navigation,

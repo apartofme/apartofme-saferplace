@@ -4,11 +4,13 @@ import {
   View,
   TouchableOpacity,
   TextInputProps,
-  Image,
 } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
+import { SVG } from '../../../../assets/svg';
 import { styles } from './TextInputPasswordToggle.styles';
+
+const OpenedEyeIcon = SVG.OpenedEyeIcon;
+const CrossedOutEyeIcon = SVG.CrossedOutEyeIcon;
 
 export const TextInputPasswordToggle: React.FC<TextInputProps> = ({
   style,
@@ -20,6 +22,8 @@ export const TextInputPasswordToggle: React.FC<TextInputProps> = ({
     setIsPasswordHidden(!isPasswordHidden);
   }, [isPasswordHidden]);
 
+  const Icon = isPasswordHidden ? OpenedEyeIcon : CrossedOutEyeIcon;
+
   return (
     <View style={[styles.container, style]}>
       <TextInput
@@ -28,9 +32,7 @@ export const TextInputPasswordToggle: React.FC<TextInputProps> = ({
         style={styles.input}
       />
       <TouchableOpacity onPress={onEyeIconPress} style={styles.iconContainer}>
-        <Image
-          source={isPasswordHidden ? IMAGES.OPENED_EYE : IMAGES.CROSSED_OUT_EYE}
-        />
+        <Icon height={17} />
       </TouchableOpacity>
     </View>
   );

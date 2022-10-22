@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
 import { ClosedBookIcon, OpenBookIcon } from '../../../assets/images/dummySVG';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { cacheSlice, questSlice } from '../../../redux/slices';
@@ -15,7 +15,7 @@ import {
   ICharmBookMenuScreenProps,
 } from './CharmBookMenu.types';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   navigation,

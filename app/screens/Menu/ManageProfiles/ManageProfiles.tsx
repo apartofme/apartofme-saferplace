@@ -15,9 +15,9 @@ import { BACKGROUND_IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { UserImageTitle } from './components';
 import { AvatarsNameType, UserType } from '../../../utils/types';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   navigation,
@@ -33,10 +33,10 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
 
   const childAvatar =
     useAppSelector(state => state.user.child?.avatar) ??
-    `${AvatarsNameType.Fox}_CIRCLE`;
+    `Circle${AvatarsNameType.Fox}`;
   const parentAvatar =
     useAppSelector(state => state.user.parent?.avatar) ??
-    `${AvatarsNameType.Rabbit}_CIRCLE`;
+    `Circle${AvatarsNameType.Rabbit}`;
 
   const goToEditProfile = useCallback(
     (type: UserType) => {

@@ -25,6 +25,5 @@ export const styles = StyleSheet.create<ITextInputPasswordToggleStyles>({
 
   iconContainer: {
     paddingLeft: 24,
-    maxHeight: 17,
   },
 });

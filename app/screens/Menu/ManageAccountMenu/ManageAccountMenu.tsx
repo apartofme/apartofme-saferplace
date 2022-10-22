@@ -10,10 +10,10 @@ import { styles } from './ManageAccountMenu.styles';
 import { useSpecificKeyExtractor } from '../../../hooks';
 import { MANAGE_ACCOUNT_MENU_ITEM } from './ManageAccountMenu.data';
 import { IButtonsMenuItem } from '../components/MenuButton/MenuButton.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ManageAccountMenuScreen: React.FC<IManageAccountMenuScreenProps> =
   ({ navigation }) => {

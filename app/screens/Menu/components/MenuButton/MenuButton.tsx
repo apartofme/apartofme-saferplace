@@ -6,9 +6,9 @@ import { ExtendedText } from '../../../../components';
 import { IMenuButtonProps } from './MenuButton.types';
 import { styles } from './MenuButton.styles';
 import { generalStyles } from '../../../../utils/styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteRightArrow = SVG_ICONS.WhiteRightArrowIcon;
+const WhiteRightArrow = SVG.WhiteRightArrowIcon;
 
 export const MenuButton: React.FC<IMenuButtonProps> = ({
   title,
