@@ -6,6 +6,7 @@ interface ICharmsIntroducingScreenStyles {
 
 export const styles = StyleSheet.create<ICharmsIntroducingScreenStyles>({
   container: {
+    justifyContent: 'flex-end',
     paddingHorizontal: 40,
   },
 });

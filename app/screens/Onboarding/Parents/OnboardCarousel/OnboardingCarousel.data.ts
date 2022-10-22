@@ -22,8 +22,7 @@ export const CHARMS_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   },
   {
     id: '4',
-    // TODO: change to correct image
-    image: SVG.BirdOnBranchesIcon,
+    image: SVG.BookOnLeavesIcon,
     titleKey: 'screens.onboarding.onboard_carousel.fourth.title',
     subtitleKey: 'screens.onboarding.onboard_carousel.fourth.description',
   },

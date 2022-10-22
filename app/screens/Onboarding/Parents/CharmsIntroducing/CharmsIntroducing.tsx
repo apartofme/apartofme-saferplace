@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import {
   BottomButtonView,
@@ -9,13 +9,11 @@ import {
   MainHeader,
 } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
-import {
-  ABSOLUTE_PROGRESS_VALUE,
-  CHARMS_CAROUSEL,
-} from './CharmsIntroducing.data';
+import { CHARMS_CAROUSEL } from './CharmsIntroducing.data';
 import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.types';
 import { styles } from './CharmsIntroducing.styles';
 import { SVG } from '../../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../../assets';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -23,32 +21,30 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
 
-    const [currentPossition, setCurrentPossition] = useState<number>(0);
-
     const onSubmit = useCallback(() => {
       navigation.navigate('ParentGroundingStack');
     }, [navigation]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={<WhiteBackArrowIcon />}
-          onLeftIconPress={navigation.goBack}
-        />
-        <BottomButtonView
-          buttonTitle={t(
-            currentPossition > ABSOLUTE_PROGRESS_VALUE
-              ? 'buttons.ready'
-              : 'buttons.next',
-          ).toUpperCase()}
-          onSubmit={onSubmit}>
-          <Carousel
-            data={CHARMS_CAROUSEL}
-            preset={CarouselType.ImageTitleSubtitle}
-            setIndex={setCurrentPossition}
-            carouselItemStyle={styles.container}
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={navigation.goBack}
           />
-        </BottomButtonView>
-      </SafeAreaView>
+          <BottomButtonView
+            buttonTitle={t('buttons.next')}
+            isArrow={true}
+            onSubmit={onSubmit}>
+            <Carousel
+              data={CHARMS_CAROUSEL}
+              preset={CarouselType.ImageTitleSubtitle}
+              carouselItemStyle={styles.container}
+            />
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

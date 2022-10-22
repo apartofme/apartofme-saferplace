@@ -44,6 +44,7 @@ import { WhitePencilIcon } from './WhitePencilIcon';
 import { WhiteRightArrowIcon } from './WhiteRightArrowIcon';
 import {
   BirdOnBranchesIcon,
+  BookOnLeavesIcon,
   GuideInTreesIcon,
   HappyNadiyaTreeIcon,
   NadiyaTextIcon,
@@ -70,6 +71,7 @@ import {
 
 export const SVG = {
   BirdOnBranchesIcon: BirdOnBranchesIcon,
+  BookOnLeavesIcon: BookOnLeavesIcon,
   BrownTriangleIcon: BrownTriangleIcon,
   CelebrationGuideIcon: CelebrationGuideIcon,
   CircleExclamationMarkIcon: CircleExclamationMarkIcon,
