@@ -17,6 +17,8 @@ import { styles } from './SignUpSuccess.styles';
 import { AvatarsKeys } from '../../../../utils/types';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   navigation,
   route,
@@ -69,7 +71,6 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
     });
 
   const AvatarIcon = AVATARS_SVG[avatar];
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

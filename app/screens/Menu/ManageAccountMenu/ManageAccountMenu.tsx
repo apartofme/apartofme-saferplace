@@ -13,6 +13,8 @@ import { IButtonsMenuItem } from '../components/MenuButton/MenuButton.data';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const ManageAccountMenuScreen: React.FC<IManageAccountMenuScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
@@ -35,8 +37,6 @@ export const ManageAccountMenuScreen: React.FC<IManageAccountMenuScreenProps> =
       'post-thread-list-child-key',
       'route',
     );
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground

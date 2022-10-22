@@ -13,6 +13,8 @@ import { generalStyles } from '../../../../utils/styles';
 import { styles } from './Acknowledgement.styles';
 import { IAcknowledgementScreenProps } from './Acknowledgement.types';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
   navigation,
 }) => {
@@ -21,8 +23,6 @@ export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
   const onNextPress = useCallback(() => {
     navigation.navigate('OnboardingCarousel');
   }, [navigation]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

@@ -12,12 +12,12 @@ import { generalStyles } from '../../../../../utils/styles';
 import { ISelectUserScreenProps } from './SelectUser.types';
 import { SVG_ICONS } from '../../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.whFlex}>

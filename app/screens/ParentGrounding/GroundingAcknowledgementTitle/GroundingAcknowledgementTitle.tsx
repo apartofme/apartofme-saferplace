@@ -12,6 +12,8 @@ import { generalStyles } from '../../../utils/styles';
 import { styles } from './GroundingAcknowledgementTitle.styles';
 import { IGroundingAcknowledgementTitleScreenProps } from './GroundingAcknowledgementTitle.types';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledgementTitleScreenProps> =
   ({ navigation, route }) => {
     const { t } = useTranslation();
@@ -22,8 +24,6 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
     const onSubmit = useCallback(() => {
       navigation.push('StampFeet');
     }, [navigation]);
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground source={backgroundImage} style={generalStyles.flex}>

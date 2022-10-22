@@ -20,6 +20,8 @@ import { ChangePasswordValidationSchema } from './ChangePassword.validation';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
   navigation,
 }) => {
@@ -35,8 +37,6 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
     },
     [dispatch],
   );
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

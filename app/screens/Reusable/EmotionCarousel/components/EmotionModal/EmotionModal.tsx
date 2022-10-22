@@ -22,6 +22,9 @@ import {
 import { ImagesKeys } from '../../../../../utils/types';
 import { SVG_ICONS } from '../../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+
 export const EmotionModal: React.FC<IEmotionModalProps> = ({
   title,
   backgroundImage,
@@ -53,9 +56,6 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
       setInputValue(prev => prev.slice(0, 50));
     }
   }, [inputValue]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
 
   return (
     <ImageBackground

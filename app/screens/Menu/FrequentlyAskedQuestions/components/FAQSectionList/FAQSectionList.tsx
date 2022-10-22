@@ -18,6 +18,8 @@ import { usePrevious } from '../../../../../hooks';
 import { ExtendedText } from '../../../../../components';
 import { SVG_ICONS } from '../../../../../assets/svg';
 
+const OrangeCirclePlussIcon = SVG_ICONS.OrangeCirclePlussIcon;
+
 export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
   filterValue,
 }) => {
@@ -65,24 +67,19 @@ export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
     [],
   );
 
-  const OrangeCirclePlussIcon = SVG_ICONS.orangeCirclePlussIcon;
-
   const renderItem: SectionListRenderItem<IMenuItem, ISectionData> =
-    useCallback(
-      ({ item }) => {
-        return (
-          <View style={styles.sectionListItemContainer}>
-            <ExtendedText
-              style={styles.sectionListItemTitle}
-              preset="secondary-text">
-              {item.title}
-            </ExtendedText>
-            <OrangeCirclePlussIcon />
-          </View>
-        );
-      },
-      [OrangeCirclePlussIcon],
-    );
+    useCallback(({ item }) => {
+      return (
+        <View style={styles.sectionListItemContainer}>
+          <ExtendedText
+            style={styles.sectionListItemTitle}
+            preset="secondary-text">
+            {item.title}
+          </ExtendedText>
+          <OrangeCirclePlussIcon />
+        </View>
+      );
+    }, []);
 
   return (
     <SectionList

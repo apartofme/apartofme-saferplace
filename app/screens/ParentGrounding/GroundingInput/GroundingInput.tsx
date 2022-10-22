@@ -18,6 +18,8 @@ import { GROUNDING_RADIO_BUTTON_ITEMS } from './GroundingInput.data';
 import { styles } from './GroundingInput.styles';
 import { IGroundingStartScreenProps } from './GroundingInput.types';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
   navigation,
 }) => {
@@ -56,8 +58,6 @@ export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
       });
     }
   }, [navigation, parentNickname, selected]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

@@ -22,6 +22,9 @@ import {
 } from '../../../../../hooks';
 import { SVG_ICONS } from '../../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+
 export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   title,
   subtitle,
@@ -66,9 +69,6 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
     setModalStatus();
     onSubmit();
   }, [dispatch, inputValue, isChild, onSubmit, setModalStatus, t]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
 
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>

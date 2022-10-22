@@ -20,6 +20,8 @@ import { SignUpNicknameValidationSchema } from './SignUpNickname.validation';
 import { COLORS } from '../../../../themes/colors';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   navigation,
   route,
@@ -47,8 +49,6 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
     }
     return t('screens.onboarding.sign_up_nickname.parent.description');
   }, [isChild, t]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

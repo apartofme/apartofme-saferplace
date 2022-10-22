@@ -17,6 +17,8 @@ import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.types';
 import { styles } from './CharmsIntroducing.styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
@@ -27,10 +29,7 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
       navigation.navigate('ParentGroundingStack');
     }, [navigation]);
 
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-
     return (
-      // TODO: remove noop to real function
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}

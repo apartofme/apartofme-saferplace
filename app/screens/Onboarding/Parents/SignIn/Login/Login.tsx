@@ -19,6 +19,8 @@ import { HIT_SLOP } from './Lodin.data';
 import { SignInValidationSchema } from './Login.validation';
 import { SVG_ICONS } from '../../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -37,8 +39,6 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const onSignUpPress = useCallback(() => {
     navigation.navigate('SignUpCredentials');
   }, [navigation]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

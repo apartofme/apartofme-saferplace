@@ -13,6 +13,8 @@ import { generalStyles } from '../../../../utils/styles';
 import { IMAGES } from '../../../../assets';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const GroundingTimer: React.FC<IGroundingTimerProps> = ({
   onNextRouteName,
 }) => {
@@ -36,8 +38,6 @@ export const GroundingTimer: React.FC<IGroundingTimerProps> = ({
   const timerStatus = useCallback(() => {
     setIsTimerPause(!isTimerPause);
   }, [isTimerPause]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

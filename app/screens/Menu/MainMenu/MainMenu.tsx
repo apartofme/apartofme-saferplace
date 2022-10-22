@@ -22,6 +22,9 @@ import { styles } from './MainMenu.styles';
 import { AvatarsNameType } from '../../../utils/types';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+const LogOutIcon = SVG_ICONS.ExitIcon;
+
 export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   navigation,
 }) => {
@@ -42,9 +45,6 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const onLogoutPress = useCallback(() => {
     dispatch(userSlice.actions.logout());
   }, [dispatch]);
-
-  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
-  const LogOutIcon = SVG_ICONS.exitIcon;
 
   return (
     <ImageBackground

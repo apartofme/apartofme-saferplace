@@ -353,8 +353,8 @@ export const useRenderQuestHeader = (data: {
 
   const navigation = useNavigation();
 
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
+  const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+  const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
 
   const onRightIconPress = useCallback(() => {
     navigation.navigate('EscapeMenu', {

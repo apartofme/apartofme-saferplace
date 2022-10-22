@@ -17,6 +17,8 @@ import { styles } from './VerticalSwipeView.styles';
 import { MainHeader } from '../MainHeader';
 import { SVG_ICONS } from '../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   titleKey,
   subtitleKey,
@@ -50,8 +52,6 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
     const { height } = event.nativeEvent.layout;
     setScrollViewHeight(height);
   }, []);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <GestureHandlerRootView style={generalStyles.flex}>

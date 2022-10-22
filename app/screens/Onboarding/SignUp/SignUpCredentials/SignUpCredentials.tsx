@@ -27,6 +27,8 @@ import { SignUpCredentioalsValidationSchema } from './SignUpCredentials.validati
 import { COLORS } from '../../../../themes/colors';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
@@ -50,8 +52,6 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     const onSignInPress = useCallback(() => {
       navigation.navigate('Login');
     }, [navigation]);
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground

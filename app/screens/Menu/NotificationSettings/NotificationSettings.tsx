@@ -13,6 +13,8 @@ import { openDeviceNotificationSettings } from '../../../services/firebase';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
@@ -35,8 +37,6 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
     const setNotificationEnabled = useCallback(() => {
       setIsNotificationsEnabled(!isNotificationsEnabled);
     }, [isNotificationsEnabled, setIsNotificationsEnabled]);
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground

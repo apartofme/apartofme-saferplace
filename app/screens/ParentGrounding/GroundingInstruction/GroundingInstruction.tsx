@@ -16,6 +16,8 @@ import {
 } from './GroundingInstruction.data';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   navigation,
 }) => {
@@ -38,8 +40,6 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   const onSubmit = useCallback(() => {
     navigation.push('CloseEyes');
   }, [navigation]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

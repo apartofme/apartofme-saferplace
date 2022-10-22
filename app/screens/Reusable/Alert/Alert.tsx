@@ -12,6 +12,8 @@ import { generalStyles } from '../../../utils/styles';
 import { styles } from './Alert.styles';
 import { IAlertScreenProps } from './Alert.types';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const AlertScreen: React.FC<IAlertScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
@@ -28,8 +30,6 @@ export const AlertScreen: React.FC<IAlertScreenProps> = ({ navigation }) => {
       </>
     );
   }, [t]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

@@ -20,6 +20,9 @@ import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelpe
 import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+
 export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   navigation,
   route,
@@ -104,9 +107,6 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     return buttonTitle;
   }, [buttonTitle, isTimerEnd, isTimerStart, t]);
 
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
-
   const renderHeader = useCallback(() => {
     if (crossHeader) {
       return (
@@ -124,13 +124,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
         onLeftIconPress={onBackArrowPress}
       />
     );
-  }, [
-    WhiteBackArrowIcon,
-    WhiteCrossIcon,
-    crossHeader,
-    onBackArrowPress,
-    onCrossPress,
-  ]);
+  }, [crossHeader, onBackArrowPress, onCrossPress]);
 
   return (
     <SafeAreaView style={generalStyles.flex}>

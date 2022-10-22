@@ -15,6 +15,8 @@ import {
   ICharmBookMenuScreenProps,
 } from './CharmBookMenu.types';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   navigation,
   route,
@@ -189,8 +191,6 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
 
     return null;
   }, [completedQuestsId.length, onCompletedPress, t, type]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

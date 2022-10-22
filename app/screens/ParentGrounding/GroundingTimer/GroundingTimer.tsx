@@ -8,8 +8,9 @@ import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { TEN_SECONDS } from '../../../constants/time';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './GroundingTimer.styles';
-
 import { IGroundingTimerScreenProps } from './GroundingTimer.types';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
   navigation,
@@ -44,8 +45,6 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
   const timerStatus = useCallback(() => {
     setIsTimerPause(!isTimerPause);
   }, [isTimerPause]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

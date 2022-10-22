@@ -18,6 +18,8 @@ import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { styles } from './SignUpAvatar.styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   navigation,
   route,
@@ -56,8 +58,6 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
       return 'screens.onboarding.sign_up_avatar.parent';
     }
   }, [isChild]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

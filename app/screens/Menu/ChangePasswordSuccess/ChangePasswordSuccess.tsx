@@ -13,6 +13,9 @@ import { IChangePasswordSuccessScreenProps } from './ChangePasswordSuccess.types
 import { styles } from './ChangePasswordSuccess.styles';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const CelebrationGuideIcon = SVG_ICONS.CelebrationGuideIcon;
+
 export const ChangePasswordSuccessScreen: React.FC<IChangePasswordSuccessScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
@@ -20,9 +23,6 @@ export const ChangePasswordSuccessScreen: React.FC<IChangePasswordSuccessScreenP
     const onSubmit = useCallback(() => {
       navigation.navigate('ManageAccountMenu');
     }, [navigation]);
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-    const CelebrationGuideIcon = SVG_ICONS.celebrationGuideIcon;
 
     return (
       <ImageBackground

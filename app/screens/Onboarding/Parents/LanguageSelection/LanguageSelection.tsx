@@ -19,6 +19,8 @@ import { LANGUAGES } from '../../../../constants/languages';
 import { styles } from './LanguageSelection.styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
   ({ navigation }) => {
     const disptach = useAppDispatch();
@@ -36,8 +38,6 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
       );
       navigation.navigate('Acknowledgement');
     }, [disptach, navigation, selectedLanguage]);
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground

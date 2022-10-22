@@ -16,6 +16,8 @@ import { CHOOSE_REASON_DATA } from './ChooseReason.data';
 import { RecognitionAcknowledgementType } from '../RecognitionAcknowledgement/RecognitionAcknowledgement.data';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
   navigation,
 }) => {
@@ -39,8 +41,6 @@ export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
   const onSkipPress = useCallback(() => {
     navigation.navigate('ElixirCarousel');
   }, [navigation]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

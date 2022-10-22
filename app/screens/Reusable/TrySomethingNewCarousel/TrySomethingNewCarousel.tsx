@@ -25,6 +25,9 @@ import { TRY_SOMETHING_ITEMS } from './TrySomethingNewCarousel.data';
 import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.types';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+
 export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScreenProps> =
   ({ route }) => {
     const {
@@ -85,9 +88,6 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
 
       onSubmit();
     }, [activeItem.subtitle, activeItem.title, dispatch, isChild, onSubmit, t]);
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-    const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
 
     return (
       <ImageBackground

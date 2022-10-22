@@ -16,6 +16,8 @@ import {
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
   navigation,
 }) => {
@@ -48,8 +50,6 @@ export const SettingsPrivacyScreen: React.FC<ISettingsPrivacyScreenProps> = ({
     'post-thread-list-child-key',
     'route',
   );
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

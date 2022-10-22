@@ -15,6 +15,8 @@ import { IForgotPasswordEmailScreenProps } from './ForgotPasswordEmailScreen.typ
 import { styles } from './ForgotPasswordEmailScreen.styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
@@ -24,8 +26,6 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
     const onSubmit = useCallback(() => {
       navigation.navigate('ForgotPasswordSuccess');
     }, [navigation]);
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <SafeAreaView style={generalStyles.flex}>

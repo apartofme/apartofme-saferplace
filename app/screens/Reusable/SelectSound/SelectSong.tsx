@@ -22,6 +22,9 @@ import {
 import { cacheSlice } from '../../../redux/slices';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+
 export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   navigation,
   route,
@@ -90,9 +93,6 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
     setIsPause(true);
   }, [currentAudioName]);
 
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-  const WhiteCrossIcon = SVG_ICONS.whiteCrossIcon;
-
   const renderHeader = useCallback(() => {
     if (crossHeader) {
       return (
@@ -110,13 +110,7 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
         onLeftIconPress={onBackArrowPress}
       />
     );
-  }, [
-    WhiteBackArrowIcon,
-    WhiteCrossIcon,
-    crossHeader,
-    onBackArrowPress,
-    onCrossPress,
-  ]);
+  }, [crossHeader, onBackArrowPress, onCrossPress]);
 
   return (
     <SafeAreaView style={generalStyles.flex}>

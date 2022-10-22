@@ -16,6 +16,8 @@ import {
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
   navigation,
 }) => {
@@ -36,8 +38,6 @@ export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
     'post-thread-list-child-key',
     'titleKey',
   );
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

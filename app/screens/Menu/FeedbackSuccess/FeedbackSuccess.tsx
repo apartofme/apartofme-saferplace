@@ -13,6 +13,9 @@ import { IFeedbackSuccessScreenProps } from './FeedbackSuccess.types';
 import { styles } from './FeedbackSuccess.styles';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const CelebrationGuideIcon = SVG_ICONS.CelebrationGuideIcon;
+
 export const FeedbackSuccessScreen: React.FC<IFeedbackSuccessScreenProps> = ({
   navigation,
 }) => {
@@ -21,9 +24,6 @@ export const FeedbackSuccessScreen: React.FC<IFeedbackSuccessScreenProps> = ({
   const onSubmit = useCallback(() => {
     navigation.navigate('GrownUpsGuide');
   }, [navigation]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-  const CelebrationGuideIcon = SVG_ICONS.celebrationGuideIcon;
 
   return (
     <ImageBackground

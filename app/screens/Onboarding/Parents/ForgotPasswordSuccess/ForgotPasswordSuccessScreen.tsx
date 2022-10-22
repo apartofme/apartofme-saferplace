@@ -13,11 +13,11 @@ import { IForgotPasswordSuccessScreenProps } from './ForgotPasswordSuccessScreen
 import { styles } from './ForgotPasswordSuccessScreen.styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <SafeAreaView style={generalStyles.flex}>

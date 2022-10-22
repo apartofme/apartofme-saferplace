@@ -13,6 +13,8 @@ import { styles } from './GroundingAcknowledgementTitle.styles';
 import { generalStyles } from '../../../../utils/styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTitleProps> =
   ({
     title,
@@ -29,8 +31,6 @@ export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTi
     const onSubmit = useCallback(() => {
       navigation.navigate(onNextRouteName);
     }, [navigation, onNextRouteName]);
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground

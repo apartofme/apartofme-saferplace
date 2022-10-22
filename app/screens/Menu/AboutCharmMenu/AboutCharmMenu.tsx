@@ -13,6 +13,8 @@ import { AboutCharmsMenuItem } from '../AboutCharm/AboutCharm.types';
 import { useSpecificKeyExtractor } from '../../../hooks';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
   navigation,
 }) => {
@@ -36,8 +38,6 @@ export const AboutCharmMenuScreen: React.FC<IAboutCharmMenuScreenProps> = ({
     'post-thread-list-child-key',
     'type',
   );
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

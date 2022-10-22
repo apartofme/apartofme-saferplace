@@ -19,6 +19,8 @@ import { generalStyles } from '../../../utils/styles';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
   navigation,
 }) => {
@@ -36,8 +38,6 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
       settingsSlice.actions.setSettings({ language: selectedLanguage[0] }),
     );
   }, [disptach, selectedLanguage]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

@@ -22,6 +22,8 @@ import { QUESTION_CARD } from './QuestionCard.data';
 import { styles } from './QuestionCard.styles';
 import { IQuestionCardScreenProps } from './QuestionCard.types';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
   navigation,
   route,
@@ -54,8 +56,6 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
     }
     navigateNextQuest();
   }, [currentQuestionIndex, navigateNextQuest, positiveNavigates]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

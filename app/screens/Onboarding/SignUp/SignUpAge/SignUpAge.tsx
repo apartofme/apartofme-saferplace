@@ -17,6 +17,8 @@ import { ISignUpAgeScreenProps } from './SignUpAge.types';
 import { styles } from './SignUpAge.styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
   navigation,
 }) => {
@@ -29,8 +31,6 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
     dispatch(cacheSlice.actions.saveSignUpDataChild({ age }));
     navigation.navigate('SignUpAvatar');
   }, [age, dispatch, navigation]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

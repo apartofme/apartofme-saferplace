@@ -16,6 +16,8 @@ import { UserImageTitle } from './components';
 import { AvatarsNameType, UserType } from '../../../utils/types';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   navigation,
 }) => {
@@ -37,8 +39,6 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
     },
     [navigation],
   );
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

@@ -13,13 +13,13 @@ import { useNavigation } from '@react-navigation/native';
 import { generalStyles } from '../../../../utils/styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const GroundingAcknowledgement: React.FC<IGroundingAcknowledgementProps> =
   ({ title, buttonTitle, image, backgroundImage, onSubmit }) => {
     const navigation = useNavigation();
 
     const { t } = useTranslation();
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground
