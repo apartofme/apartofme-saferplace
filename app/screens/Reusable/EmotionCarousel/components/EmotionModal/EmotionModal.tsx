@@ -20,6 +20,10 @@ import {
   useParsedJSXTextNickname,
 } from '../../../../../hooks';
 import { ImagesKeys } from '../../../../../utils/types';
+import { SVG_ICONS } from '../../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
 
 export const EmotionModal: React.FC<IEmotionModalProps> = ({
   title,
@@ -64,8 +68,8 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          rightIcon={IMAGES.WHITE_PENCIL}
+          leftIcon={<WhiteBackArrowIcon />}
+          rightIcon={<WhiteCrossIcon />}
           onLeftIconPress={setModalStatus}
         />
         <ExtendedKeyboardAvoidingView>

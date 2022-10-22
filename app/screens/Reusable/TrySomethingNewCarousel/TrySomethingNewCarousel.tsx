@@ -23,6 +23,10 @@ import { TrySomethingModal } from './components';
 import { styles } from './TrySomethingNewCarousel.styles';
 import { TRY_SOMETHING_ITEMS } from './TrySomethingNewCarousel.data';
 import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.types';
+import { SVG_ICONS } from '../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
 
 export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScreenProps> =
   ({ route }) => {
@@ -114,8 +118,8 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
             />
           </Modal>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
-            rightIcon={IMAGES.WHITE_PENCIL}
+            leftIcon={<WhiteBackArrowIcon />}
+            rightIcon={<WhiteCrossIcon />}
             onLeftIconPress={goBack}
           />
           <View style={styles.container}>

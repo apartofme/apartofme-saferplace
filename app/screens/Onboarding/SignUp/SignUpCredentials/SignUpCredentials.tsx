@@ -17,7 +17,7 @@ import {
   ExtendedTextInputType,
   MainHeader,
 } from '../../../../components';
-import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
@@ -25,6 +25,9 @@ import { ISignUpCredentialsScreenProps } from './SignUpCredentials.types';
 import { styles } from './SignUpCredentials.styles';
 import { SignUpCredentioalsValidationSchema } from './SignUpCredentials.validation';
 import { COLORS } from '../../../../themes/colors';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
   ({ navigation }) => {
@@ -56,7 +59,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <ExtendedKeyboardAvoidingView>

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
 import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -11,6 +12,8 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './Acknowledgement.styles';
 import { IAcknowledgementScreenProps } from './Acknowledgement.types';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
   navigation,
@@ -27,7 +30,7 @@ export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView

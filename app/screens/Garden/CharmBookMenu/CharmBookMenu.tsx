@@ -3,8 +3,8 @@ import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import { ClosedBookIcon, OpenBookIcon } from '../../../assets/images/dummySVG';
+import { SVG_ICONS } from '../../../assets/svg';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { cacheSlice, questSlice } from '../../../redux/slices';
@@ -14,6 +14,8 @@ import {
   CharmBookMenuType,
   ICharmBookMenuScreenProps,
 } from './CharmBookMenu.types';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   navigation,
@@ -193,7 +195,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={navigation.goBack}
       />
       {menuContent}

@@ -13,6 +13,8 @@ import { HELP_SUPPORT_MENU_ITEMS } from './HelpSupport.data';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const HelpSupportScreen: React.FC<IHelpSupportScreenProps> = ({
   navigation,
 }) => {
@@ -36,8 +38,6 @@ export const HelpSupportScreen: React.FC<IHelpSupportScreenProps> = ({
     'post-thread-list-child-key',
     'route',
   );
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

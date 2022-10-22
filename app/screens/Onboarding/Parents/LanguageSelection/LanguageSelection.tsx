@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 
-import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
   ExtendedText,
@@ -17,6 +17,9 @@ import i18n from '../../../../services/localization';
 import { ILanguageSelectionScreenProps } from './LanguageSelection.types';
 import { LANGUAGES } from '../../../../constants/languages';
 import { styles } from './LanguageSelection.styles';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
   ({ navigation }) => {
@@ -42,7 +45,7 @@ export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <BottomButtonView

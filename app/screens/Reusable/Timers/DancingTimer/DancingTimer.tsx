@@ -18,7 +18,10 @@ import {
 } from '../../../../components';
 import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
 import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
-import { IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
 
 export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   navigation,
@@ -108,16 +111,16 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     if (crossHeader) {
       return (
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={onBackArrowPress}
-          rightIcon={IMAGES.WHITE_PENCIL}
+          rightIcon={<WhiteCrossIcon />}
           onRightIconPress={onCrossPress}
         />
       );
     }
     return (
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={onBackArrowPress}
       />
     );

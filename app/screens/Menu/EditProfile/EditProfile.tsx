@@ -18,6 +18,8 @@ import { cacheSlice, userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
 import { SVG_ICONS } from '../../../assets/svg';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
   route,
@@ -54,8 +56,6 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
       dispatch(userSlice.actions.updateChild());
     }
   }, [avatar, dispatch, nickname, type]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <SafeAreaView style={generalStyles.flex}>

@@ -10,12 +10,15 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../../components';
-import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.types';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { styles } from './SignUpAvatar.styles';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   navigation,
@@ -62,7 +65,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView

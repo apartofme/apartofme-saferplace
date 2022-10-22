@@ -13,6 +13,8 @@ import { styles } from './GrownUpsGuide.styles';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
   navigation,
 }) => {
@@ -24,8 +26,6 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
     },
     [navigation],
   );
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

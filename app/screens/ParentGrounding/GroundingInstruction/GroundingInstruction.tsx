@@ -14,7 +14,9 @@ import {
   IGroundingInstructionItem,
   INSTRUCTION_LIST,
 } from './GroundingInstruction.data';
-import { IMAGES } from '../../../assets';
+import { SVG_ICONS } from '../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   navigation,
@@ -42,7 +44,7 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={navigation.goBack}
       />
       <BottomButtonView

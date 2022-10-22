@@ -9,6 +9,8 @@ import { styles } from './AboutCharm.styles';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
   navigation,
   route,
@@ -16,8 +18,6 @@ export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
   const { data } = route.params;
 
   const { t } = useTranslation();
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

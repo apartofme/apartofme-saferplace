@@ -19,6 +19,8 @@ import { generalStyles } from '../../../utils/styles';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
   navigation,
 }) => {
@@ -37,15 +39,12 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
     );
   }, [disptach, selectedLanguage]);
 
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-
   return (
     <ImageBackground
       source={BACKGROUND_IMAGES.MENU_BACKGROUND}
       style={generalStyles.flex}>
       <SafeAreaView style={styles.container}>
         <MainHeader
-          // TODO: add right icon
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />

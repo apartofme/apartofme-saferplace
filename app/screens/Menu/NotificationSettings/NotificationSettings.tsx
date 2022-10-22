@@ -13,6 +13,8 @@ import { openDeviceNotificationSettings } from '../../../services/firebase';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
@@ -36,15 +38,12 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
       setIsNotificationsEnabled(!isNotificationsEnabled);
     }, [isNotificationsEnabled, setIsNotificationsEnabled]);
 
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-
     return (
       <ImageBackground
         source={BACKGROUND_IMAGES.MENU_BACKGROUND}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            // TODO: change to correct icon
             leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />

@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
 import {
   BottomButtonView,
   ExtendedKeyboardAvoidingView,
@@ -14,6 +13,9 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IForgotPasswordEmailScreenProps } from './ForgotPasswordEmailScreen.types';
 import { styles } from './ForgotPasswordEmailScreen.styles';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps> =
   ({ navigation }) => {
@@ -28,7 +30,7 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
     return (
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <ExtendedKeyboardAvoidingView>

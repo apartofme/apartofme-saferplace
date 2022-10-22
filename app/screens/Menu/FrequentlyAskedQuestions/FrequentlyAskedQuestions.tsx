@@ -10,11 +10,11 @@ import { styles } from './FrequentlyAskedQuestions.styles';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const FrequentlyAskedQuestionsScreen: React.FC<IFrequentlyAskedQuestionsScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
-
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
     return (
       <ImageBackground

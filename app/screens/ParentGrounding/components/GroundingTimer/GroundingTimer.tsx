@@ -11,6 +11,9 @@ import { styles } from './GroundingTimer.styles';
 import { useNavigation } from '@react-navigation/native';
 import { generalStyles } from '../../../../utils/styles';
 import { IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const GroundingTimer: React.FC<IGroundingTimerProps> = ({
   onNextRouteName,
@@ -39,7 +42,7 @@ export const GroundingTimer: React.FC<IGroundingTimerProps> = ({
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={navigation.goBack}
       />
       <View style={styles.container}>

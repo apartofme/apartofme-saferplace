@@ -15,6 +15,8 @@ import { styles } from './Feedback.styles';
 import { SVG_ICONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
   navigation,
 }) => {
@@ -24,8 +26,6 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
   const onSubmit = useCallback(() => {
     navigation.navigate('FeedbackSuccess');
   }, [navigation]);
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

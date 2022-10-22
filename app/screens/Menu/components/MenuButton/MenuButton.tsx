@@ -8,14 +8,14 @@ import { styles } from './MenuButton.styles';
 import { generalStyles } from '../../../../utils/styles';
 import { SVG_ICONS } from '../../../../assets/svg';
 
+const WhiteRightArrow = SVG_ICONS.WhiteRightArrowIcon;
+
 export const MenuButton: React.FC<IMenuButtonProps> = ({
   title,
   IconSvgComponent,
   onPress,
 }) => {
   const { t } = useTranslation();
-
-  const WhiteRightArrow = SVG_ICONS.whiteRightArrowIcon;
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

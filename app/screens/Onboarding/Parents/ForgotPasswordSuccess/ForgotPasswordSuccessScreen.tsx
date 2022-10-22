@@ -11,7 +11,9 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IForgotPasswordSuccessScreenProps } from './ForgotPasswordSuccessScreen.types';
 import { styles } from './ForgotPasswordSuccessScreen.styles';
-import { IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenProps> =
   ({ navigation }) => {
@@ -20,7 +22,7 @@ export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenP
     return (
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView

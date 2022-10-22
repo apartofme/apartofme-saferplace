@@ -4,13 +4,13 @@ import React, { useCallback } from 'react';
 import { TextStyle } from 'react-native';
 import _ from 'lodash';
 
-import { IMAGES } from '../assets';
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
 import { containsFirstPlayer, containsSecondPlayer, Nullable } from '../utils';
 import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
 import { DatoCMSTextVariables } from '../constants/quest';
+import { SVG_ICONS } from '../assets/svg';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
@@ -353,6 +353,9 @@ export const useRenderQuestHeader = (data: {
 
   const navigation = useNavigation();
 
+  const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+  const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+
   const onRightIconPress = useCallback(() => {
     navigation.navigate('EscapeMenu', {
       data: {
@@ -364,16 +367,16 @@ export const useRenderQuestHeader = (data: {
   if (data.crossHeader) {
     return () => (
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={goBack}
         // TODO: change to real image & function
-        rightIcon={IMAGES.WHITE_BACK_ARROW}
+        rightIcon={<WhiteCrossIcon />}
         onRightIconPress={onRightIconPress}
       />
     );
   } else {
     return () => (
-      <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} onLeftIconPress={goBack} />
+      <MainHeader leftIcon={<WhiteBackArrowIcon />} onLeftIconPress={goBack} />
     );
   }
 };

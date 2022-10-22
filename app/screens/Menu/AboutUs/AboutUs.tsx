@@ -9,12 +9,12 @@ import { IAboutUsScreenProps } from './AboutUs.types';
 import { styles } from './AboutUs.styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+
 export const AboutUsScreen: React.FC<IAboutUsScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
 
   return (
     <ImageBackground

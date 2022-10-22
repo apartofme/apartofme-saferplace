@@ -15,7 +15,9 @@ import { ExtendedText } from '../ExtendedText';
 import { IVerticalSwipeViewProps } from './VerticalSwipeView.types';
 import { styles } from './VerticalSwipeView.styles';
 import { MainHeader } from '../MainHeader';
-import { IMAGES } from '../../assets';
+import { SVG_ICONS } from '../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   titleKey,
@@ -68,7 +70,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
                     { height: scrollViewHeight },
                   ]}>
                   <MainHeader
-                    leftIcon={IMAGES.WHITE_BACK_ARROW}
+                    leftIcon={<WhiteBackArrowIcon />}
                     onLeftIconPress={navigation.goBack}
                   />
                   <View>
