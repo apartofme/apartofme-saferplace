@@ -68,9 +68,12 @@ import {
   EmotionSuperRelaxedIcon,
   EmotionVeryStressedIcon,
 } from './emotions';
+import { WhiteBottomArrowIcon } from './WhiteBottomArrowIcon';
+import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
 
 export const SVG = {
   BirdOnBranchesIcon: BirdOnBranchesIcon,
+  //! required fix on android
   BookOnLeavesIcon: BookOnLeavesIcon,
   BrownTriangleIcon: BrownTriangleIcon,
   CelebrationGuideIcon: CelebrationGuideIcon,
@@ -89,6 +92,7 @@ export const SVG = {
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
   WhiteBackArrowIcon: WhiteBackArrowIcon,
   whiteBinIcon: WhiteBinIcon,
+  WhiteBottomArrowIcon: WhiteBottomArrowIcon,
   WhiteCrossIcon: WhiteCrossIcon,
   WhiteGearIcon: WhiteGearIcon,
   WhitePencilIcon: WhitePencilIcon,
@@ -98,6 +102,7 @@ export const SVG = {
   DialogNextButtonIcon: DialogNextButtonIcon,
   HappyGuideIcon: HappyGuideIcon,
   SadGuideIcon: SadGuideIcon,
+  WhiteTopArrowIcon: WhiteTopArrowIcon,
 };
 
 export const AVATARS_SVG = {

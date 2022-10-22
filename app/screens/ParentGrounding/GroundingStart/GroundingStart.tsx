@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { VerticalSwipeView } from '../../../components';
 import { IGroundingStartScreenProps } from './GroundingStart.types';
 
@@ -13,7 +13,6 @@ export const GroundingStartScreen: React.FC<IGroundingStartScreenProps> = ({
 
   return (
     <VerticalSwipeView
-      image={IMAGES.LOGO}
       titleKey={'screens.parent_grounding_exercise.grounding_start.title'}
       subtitleKey={'screens.parent_grounding_exercise.grounding_start.subtitle'}
       aboutTitleKey={
@@ -22,12 +21,8 @@ export const GroundingStartScreen: React.FC<IGroundingStartScreenProps> = ({
       aboutSubtitleKey={
         'screens.parent_grounding_exercise.grounding_start.about_subtitle'
       }
-      topBackground={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
-      bottomBackground={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      topBackground={BACKGROUND_IMAGES.PARENT_GROUNDING_WELCOME}
+      bottomBackground={BACKGROUND_IMAGES.MENU}
       onSubmit={onSubmit}
     />
   );

@@ -1,45 +1,47 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../themes/colors';
 
 interface IMainHeaderStyles {
   topContentContainer: ViewStyle;
-  topTitle: TextStyle;
   topSubtitle: TextStyle;
   submitButton: ViewStyle;
+  learnMoreArrow: ViewStyle;
+  backArrow: ViewStyle;
   bottomTitle: TextStyle;
-  bottomsubtitle: TextStyle;
   bottomContentContainer: ViewStyle;
-  image: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IMainHeaderStyles>({
   topContentContainer: {
-    justifyContent: 'space-between',
-  },
-  topTitle: {
-    marginTop: 24,
-    textAlign: 'center',
+    paddingHorizontal: 40,
+    justifyContent: 'flex-end',
   },
   topSubtitle: {
-    textAlign: 'center',
     marginTop: 24,
+    minHeight: 80,
   },
   submitButton: {
-    marginTop: 30,
-    marginBottom: 24,
-    marginHorizontal: 40,
+    marginTop: 43,
+    marginBottom: 29,
+  },
+  learnMoreArrow: {
+    paddingTop: 15,
+    paddingBottom: 16,
+    alignSelf: 'center',
+  },
+  backArrow: {
+    paddingTop: 24,
+    paddingBottom: 17,
+    alignSelf: 'center',
   },
   bottomTitle: {
-    marginTop: 140,
-  },
-  bottomsubtitle: {
-    marginTop: 37,
+    paddingTop: 92,
+    paddingBottom: 40,
+    color: COLORS.BRILLIANT_WHITE,
   },
   bottomContentContainer: {
     paddingHorizontal: 24,
-  },
-  // TODO: change to correct styles
-  image: {
-    width: 200,
-    height: 200,
+    paddingBottom: 24,
   },
 });
