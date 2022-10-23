@@ -1,17 +1,28 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import {
   useAppDispatch,
   useAppSelector,
   useParsedJSXTextNickname,
 } from '../../../../../hooks';
-import { ExtendedButton, ExtendedText } from '../../../../../components';
+import {
+  BottomButtonView,
+  ExtendedText,
+  MainHeader,
+} from '../../../../../components';
 import { questSlice } from '../../../../../redux/slices';
 import { COLORS } from '../../../../../themes/colors';
 import { generalStyles } from '../../../../../utils/styles';
 import { ISkipCharmAcknowledgementScreenProps } from './SkipCharmAcknowledgement.types';
+import { SVG } from '../../../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../../../assets';
+import { styles } from './SkipCharmAcknowledgement.styles';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const CompassionateGuideIcon = SVG.CompassionateGuideIcon;
+const CelebrationGuideIcon = SVG.CelebrationGuideIcon;
 
 export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementScreenProps> =
   ({ navigation, route }) => {
@@ -23,7 +34,7 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
       state => state.quest.interruptedQuestLine,
     );
 
-    const onSabmit = useCallback(() => {
+    const onSubmit = useCallback(() => {
       if (isFirst) {
         navigation.push('SkipCharmEmojiSelection', { isChild: false });
         return;
@@ -46,33 +57,42 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
     const Title = useParsedJSXTextNickname({
       text: t(
         isFirst
-          ? 'screens.skip-charm-acknowledgement.first-title'
-          : 'screens.skip-charm-acknowledgement.second-title',
+          ? 'screens.skip_charm_acknowledgement.first.title'
+          : 'screens.skip_charm_acknowledgement.second.title',
       ),
       textHasNickname: true,
-      preset: 'title',
-      // style: styles.title,
+      preset: 'large-title',
+      style: styles.title,
       variableStyle: { color: COLORS.PRIMARY_ORANGE },
     });
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        {/* // TODO: uncoment when icon will be done */}
-        {/* <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
-          onLeftIconPress={navigation.goBack}
-        /> */}
-        {/* // TODO: change to real image */}
-        {/* <Image source={IMAGES.LOGO} /> */}
-        <Title />
-        <ExtendedText>
-          {t(
-            isFirst
-              ? 'screens.skip-charm-acknowledgement.first-description'
-              : 'screens.skip-charm-acknowledgement.second-description',
-          )}
-        </ExtendedText>
-        <ExtendedButton title="buttons.next" onPress={onSabmit} />
-      </SafeAreaView>
+      <ImageBackground
+        source={BACKGROUND_IMAGES.GARDEN_DARK}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={navigation.goBack}
+          />
+          <BottomButtonView
+            buttonTitle={t('buttons.next')}
+            isArrow={true}
+            onSubmit={onSubmit}
+            style={styles.container}>
+            {isFirst ? <CompassionateGuideIcon /> : <CelebrationGuideIcon />}
+            <Title />
+            <ExtendedText
+              preset="secondary-text"
+              style={generalStyles.greyCenter}>
+              {t(
+                isFirst
+                  ? 'screens.skip_charm_acknowledgement.first.description'
+                  : 'screens.skip_charm_acknowledgement.second.description',
+              )}
+            </ExtendedText>
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };
