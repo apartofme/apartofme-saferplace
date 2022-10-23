@@ -68,7 +68,7 @@ export const firebaseChangePassword = async (
     currentPassword,
   );
 
-  auth()
+  await auth()
     .currentUser?.reauthenticateWithCredential(emailCred)
     .then(() => {
       return auth()
@@ -78,6 +78,29 @@ export const firebaseChangePassword = async (
     .catch(error => {
       return error;
     });
+  return changePasswordResponse;
+};
+
+export const firebaseDeleteAccount = async (password: string) => {
+  const changePasswordResponse: IFirebaseChangePasswordResponse = {
+    error: null,
+  };
+  const user = auth().currentUser;
+
+  const emailCred = firebase.auth.EmailAuthProvider.credential(
+    user?.email as string,
+    password,
+  );
+
+  await user
+    ?.reauthenticateWithCredential(emailCred)
+    .then(() =>
+      user?.delete().catch(error => (changePasswordResponse.error = error)),
+    )
+    .catch(() => {
+      changePasswordResponse.error = 'wrong password';
+    });
+
   return changePasswordResponse;
 };
 

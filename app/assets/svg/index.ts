@@ -34,6 +34,7 @@ import { ExitIcon } from './ExitIcon';
 import { GearManIcon } from './GearManIcon';
 import { OrangeCirclePlussIcon } from './OrangeCirclePlussIcon';
 import { WhiteBackArrowIcon } from './WhiteBackArrowIcon';
+import { WhiteBinIcon } from './WhiteBinIcon';
 import { WhiteCrossIcon } from './WhiteCrossIcon';
 import { WhiteGearIcon } from './WhiteGearIcon';
 import { WhitePencilIcon } from './WhitePencilIcon';
@@ -67,6 +68,7 @@ export const SVG = {
   OrangeCirclePlussIcon: OrangeCirclePlussIcon,
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
   WhiteBackArrowIcon: WhiteBackArrowIcon,
+  whiteBinIcon: WhiteBinIcon,
   WhiteCrossIcon: WhiteCrossIcon,
   WhiteGearIcon: WhiteGearIcon,
   WhitePencilIcon: WhitePencilIcon,

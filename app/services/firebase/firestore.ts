@@ -8,7 +8,7 @@ import {
   INITIAL_QUESTS,
 } from '../../constants/progress';
 import { IUser } from '../../models/IUser';
-import { IShortSignUpData } from '../../redux/types';
+import { IShortSignUpData, ISignUpData } from '../../redux/types';
 import {
   IElixirProgress,
   IPlantProgress,
@@ -81,7 +81,7 @@ export const firestoreGetUserProgress = async () => {
 };
 
 export const firestoreUpdateUser = async (data: {
-  parent?: Partial<IUser>;
+  parent?: Partial<ISignUpData>;
   child?: Partial<IShortSignUpData>;
 }) => {
   const updateUserResponse: IFirebaseUpdateUserResponse = {

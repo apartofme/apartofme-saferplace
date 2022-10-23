@@ -47,6 +47,8 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
     [onPress, title],
   );
 
+  const WhiteBinIcon = SVG.whiteBinIcon;
+
   return (
     <TouchableOpacity
       {...rest}
@@ -57,6 +59,11 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
       {isArrow && (
         <View style={styles.imageContainer}>
           <ArrowIcon />
+        </View>
+      )}
+      {preset === 'destructive' && (
+        <View style={styles.imageContainer}>
+          <WhiteBinIcon />
         </View>
       )}
     </TouchableOpacity>

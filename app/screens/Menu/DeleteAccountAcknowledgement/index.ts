@@ -1,0 +1,1 @@
+export { DeleteAccountAcknowledgementScreen } from './DeleteAccountAcknowledgement';

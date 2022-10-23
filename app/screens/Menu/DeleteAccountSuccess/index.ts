@@ -1,0 +1,1 @@
+export { DeleteAccountSuccessScreen } from './DeleteAccountSuccess';

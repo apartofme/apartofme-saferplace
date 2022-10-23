@@ -18,6 +18,10 @@ export interface IFirebaseChangePasswordResponse {
   error: Nullable<string>;
 }
 
+export interface IFirebaseDeleteAccountResponse {
+  error: Nullable<string>;
+}
+
 export type IFirebaseUpdateUserResponse = {
   error: Nullable<string>;
 };

@@ -23,6 +23,9 @@ import {
   ManageProfilesScreen,
   EditProfileScreen,
   IEditProfileRoute,
+  DeleteAccountScreen,
+  DeleteAccountAcknowledgementScreen,
+  DeleteAccountSuccessScreen,
 } from '../../screens';
 import { AboutCharmsMenuItem } from '../../screens/Menu/AboutCharm/AboutCharm.types';
 import { ConditionsScreenData } from '../../screens/Menu/Conditions/Conditions.types';
@@ -49,6 +52,9 @@ export type MenuStackParams = {
   AudioSettings: undefined;
   ManageProfiles: undefined;
   EditProfile: { data: IEditProfileRoute };
+  DeleteAccount: undefined;
+  DeleteAccountAcknowledgement: undefined;
+  DeleteAccountSuccess: undefined;
 };
 
 const Stack = createNativeStackNavigator<MenuStackParams>();
@@ -88,5 +94,14 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="AudioSettings" component={AudioSettingsScreen} />
     <Stack.Screen name="ManageProfiles" component={ManageProfilesScreen} />
     <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+    <Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} />
+    <Stack.Screen
+      name="DeleteAccountAcknowledgement"
+      component={DeleteAccountAcknowledgementScreen}
+    />
+    <Stack.Screen
+      name="DeleteAccountSuccess"
+      component={DeleteAccountSuccessScreen}
+    />
   </Stack.Navigator>
 );

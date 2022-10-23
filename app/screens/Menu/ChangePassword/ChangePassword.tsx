@@ -63,7 +63,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                 />
                 <View style={styles.container}>
                   <ExtendedText style={styles.title} preset="large-title">
-                    Change your password
+                    {t('screens.menu.change_password.title')}
                   </ExtendedText>
                   <ExtendedText style={styles.subtitle} preset="secondary-text">
                     {t('screens.menu.change_password.description')}

@@ -2,6 +2,7 @@ import { ViewStyle, StyleSheet, TextStyle } from 'react-native';
 
 import { FONTS } from '../../assets';
 import { COLORS } from '../../themes/colors';
+import { hexTransparency } from '../../utils';
 
 const BASE: ViewStyle = {
   paddingVertical: 16,
@@ -12,6 +13,7 @@ const BASE: ViewStyle = {
 interface IExtendedButtonStyles {
   default: ViewStyle;
   border: ViewStyle;
+  destructive: ViewStyle;
 }
 
 interface IExtendedButtonAdditionalStyles {
@@ -22,6 +24,10 @@ interface IExtendedButtonAdditionalStyles {
   borderTitle: TextStyle;
   borderDisabled: ViewStyle;
   borderDisabledTitle: TextStyle;
+
+  destructiveTitle: TextStyle;
+  destructiveDisabled: ViewStyle;
+  destructiveDisabledTitle: TextStyle;
 }
 
 export type ExtendedButtonPresets = keyof IExtendedButtonStyles;
@@ -37,9 +43,18 @@ export const additionalStyles =
       textAlign: 'center',
     },
     defaultDisabled: {
-      opacity: 0.5,
+      borderTopWidth: 0,
+      borderLeftWidth: 0,
+      borderRightWidth: 0,
+      shadowOffset: {
+        height: 0,
+        width: 0,
+      },
+      backgroundColor: hexTransparency(COLORS.PRIMARY_ORANGE, 50),
     },
-    defaultDisabledTitle: {},
+    defaultDisabledTitle: {
+      color: hexTransparency(COLORS.DARK_BROWN, 50),
+    },
 
     borderTitle: {
       fontFamily: FONTS.POPPINS_MEDIUM,
@@ -51,6 +66,26 @@ export const additionalStyles =
     },
     borderDisabled: {},
     borderDisabledTitle: {},
+
+    destructiveTitle: {
+      fontFamily: FONTS.POPPINS_BOLD,
+      fontSize: 17,
+      lineHeight: 30,
+      letterSpacing: 0.34,
+      color: COLORS.BRILLIANT_WHITE,
+      textAlign: 'center',
+    },
+    destructiveDisabled: {
+      backgroundColor: COLORS.ERROR,
+      borderTopWidth: 0,
+      borderLeftWidth: 0,
+      borderRightWidth: 0,
+      shadowOffset: {
+        height: 0,
+        width: 0,
+      },
+    },
+    destructiveDisabledTitle: {},
   });
 
 export default StyleSheet.create<IExtendedButtonStyles>({
@@ -73,5 +108,20 @@ export default StyleSheet.create<IExtendedButtonStyles>({
     ...BASE,
     borderWidth: 2,
     borderColor: COLORS.PRIMARY_ORANGE,
+  },
+  destructive: {
+    ...BASE,
+    backgroundColor: COLORS.RED,
+    borderTopWidth: 2,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: COLORS.ERROR,
+    shadowOffset: {
+      height: 4,
+      width: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    shadowColor: COLORS.SANGRIA,
   },
 });

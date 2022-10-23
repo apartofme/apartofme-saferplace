@@ -18,6 +18,10 @@ export type IChangePasswordActionPayload = PayloadAction<{
   currentPassword: string;
 }>;
 
+export type IDeleteAccountActionPayload = PayloadAction<{
+  password: string;
+}>;
+
 export interface IResetPasswordPayload {
   email: string;
 }
