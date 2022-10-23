@@ -2,6 +2,8 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { ImageBackground } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { styles } from './SkipCharmEmojiSelection.styles';
 
 import { generalStyles } from '../../../../../utils/styles';
 import { ISkipCharmEmojiSelectionScreenProps } from './SkipCharmEmojiSelection.types';
@@ -9,8 +11,6 @@ import { useAppDispatch, useParsedJSXTextNickname } from '../../../../../hooks';
 import { EmojiButtons, MainHeader } from '../../../../../components';
 import { SVG } from '../../../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../../../assets';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { styles } from './SkipCharmEmojiSelection.styles';
 import { questSlice } from '../../../../../redux/slices';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
@@ -53,7 +53,7 @@ export const SkipCharmEmojiSelectionScreen: React.FC<ISkipCharmEmojiSelectionScr
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.GARDEN_DARK}
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
         style={generalStyles.flex}>
         <SafeAreaView edges={['top']} style={generalStyles.flex}>
           <MainHeader

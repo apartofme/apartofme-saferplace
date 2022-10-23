@@ -30,7 +30,7 @@ export const SkipCharmJournalScreen: React.FC<ISkipCharmJournalScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.GARDEN_DARK}
+      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader

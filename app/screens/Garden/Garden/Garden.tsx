@@ -162,7 +162,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.GARDEN_LIGHT}
+      source={BACKGROUND_IMAGES.GARDEN}
       style={generalStyles.flex}>
       <Modal
         isVisible={isModal}
