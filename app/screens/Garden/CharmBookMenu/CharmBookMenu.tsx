@@ -126,12 +126,10 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
 
   const onSkipPress = useCallback(() => {
     if (interruptedQuestLine) {
-      dispatch(
-        questSlice.actions.saveCompletedQuestsId(+interruptedQuestLine.id),
-      );
-      dispatch(questSlice.actions.updateInterruptedQuestLine(null));
+      navigation.push('SkipCharmAlert');
+      setModalStatus();
     }
-  }, [dispatch, interruptedQuestLine]);
+  }, [interruptedQuestLine, navigation, setModalStatus]);
 
   const menuContent = useMemo(() => {
     switch (type) {
@@ -197,18 +195,31 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
               <ExtendedText preset="heading" style={styles.title}>
                 {t('screens.garden.charm_book_menu.none.title')}
               </ExtendedText>
-              <ExtendedText preset="secondary-text" style={styles.description}>
-                {t('screens.garden.charm_book_menu.none.description')}
-              </ExtendedText>
-              <ExtendedButton
-                title={t('buttons.completed_charms')}
-                onPress={onCompletedPress}
-              />
+              {completedQuestsId.length >= 5 && (
+                <>
+                  <ExtendedText
+                    preset="secondary-text"
+                    style={styles.description}>
+                    {t('screens.garden.charm_book_menu.none.description')}
+                  </ExtendedText>
+                  <ExtendedButton
+                    title={t('buttons.completed_charms')}
+                    onPress={onCompletedPress}
+                  />
+                </>
+              )}
             </View>
           </View>
         );
     }
-  }, [onCompletedPress, onPlayPress, onSkipPress, t, type]);
+  }, [
+    completedQuestsId.length,
+    onCompletedPress,
+    onPlayPress,
+    onSkipPress,
+    t,
+    type,
+  ]);
 
   const button = useMemo(() => {
     if (type !== CharmBookMenuType.NoneCharm && completedQuestsId.length >= 5) {
