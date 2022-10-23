@@ -1,5 +1,4 @@
 import { StyleSheet, ViewStyle } from 'react-native';
-import { isIOS } from '../../../../utils';
 
 export interface IPlantStyles {
   plantContainer: ViewStyle;
