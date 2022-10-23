@@ -1,24 +1,22 @@
-import { ImageSourcePropType } from 'react-native';
-
-import { IMAGES } from '../../../assets';
+import { SVG } from '../../../assets/svg';
+import { SvgComponentType } from '../../../utils/types';
 
 export interface IGroundingInstructionItem {
   titleKey: string;
-  image: ImageSourcePropType;
+  image: SvgComponentType;
 }
 
-// TODO: change to correct images
 export const INSTRUCTION_LIST: IGroundingInstructionItem[] = [
   {
     titleKey: 'screens.parent_grounding_exercise.instruction.first',
-    image: IMAGES.WHITE_PENCIL,
+    image: SVG.QuietPlaceIcon,
   },
   {
     titleKey: 'screens.parent_grounding_exercise.instruction.second',
-    image: IMAGES.WHITE_PENCIL,
+    image: SVG.BarefootIcon,
   },
   {
     titleKey: 'screens.parent_grounding_exercise.instruction.third',
-    image: IMAGES.WHITE_PENCIL,
+    image: SVG.StandingUpIcon,
   },
 ];

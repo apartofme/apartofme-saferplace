@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { FlatList, Image, SafeAreaView, View } from 'react-native';
+import { FlatList, ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IInstructionScreenProps } from './GroundingInstruction.types';
@@ -15,6 +15,7 @@ import {
   INSTRUCTION_LIST,
 } from './GroundingInstruction.data';
 import { SVG } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -26,10 +27,8 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   const renderItem = useCallback(
     ({ item }: { item: IGroundingInstructionItem }) => (
       <View style={styles.instructionContainer}>
-        <Image source={item.image} style={styles.instructionImage} />
-        <ExtendedText
-          preset="tertiary-text-medium"
-          style={styles.instructionTitle}>
+        <item.image />
+        <ExtendedText preset="heading" style={styles.instructionTitle}>
           {t(item.titleKey)}
         </ExtendedText>
       </View>
@@ -42,20 +41,24 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   }, [navigation]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={<WhiteBackArrowIcon />}
-        onLeftIconPress={navigation.goBack}
-      />
-      <BottomButtonView
-        buttonTitle={t('buttons.ready')}
-        onSubmit={onSubmit}
-        style={styles.container}>
-        <ExtendedText>
-          {t('screens.parent_grounding_exercise.instruction.title')}
-        </ExtendedText>
-        <FlatList data={INSTRUCTION_LIST} renderItem={renderItem} />
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={<WhiteBackArrowIcon />}
+          onLeftIconPress={navigation.goBack}
+        />
+        <BottomButtonView
+          buttonTitle={t('buttons.ready')}
+          onSubmit={onSubmit}
+          style={styles.container}>
+          <ExtendedText preset="title" style={styles.title}>
+            {t('screens.parent_grounding_exercise.instruction.title')}
+          </ExtendedText>
+          <FlatList data={INSTRUCTION_LIST} renderItem={renderItem} />
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

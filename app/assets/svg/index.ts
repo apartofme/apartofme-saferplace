@@ -70,8 +70,10 @@ import {
 } from './emotions';
 import { WhiteBottomArrowIcon } from './WhiteBottomArrowIcon';
 import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
+import { BarefootIcon, QuietPlaceIcon, StandingUpIcon } from './grounding';
 
 export const SVG = {
+  BarefootIcon: BarefootIcon,
   BirdOnBranchesIcon: BirdOnBranchesIcon,
   //! required fix on android
   BookOnLeavesIcon: BookOnLeavesIcon,
@@ -103,6 +105,8 @@ export const SVG = {
   HappyGuideIcon: HappyGuideIcon,
   SadGuideIcon: SadGuideIcon,
   WhiteTopArrowIcon: WhiteTopArrowIcon,
+  QuietPlaceIcon: QuietPlaceIcon,
+  StandingUpIcon: StandingUpIcon,
 };
 
 export const AVATARS_SVG = {
