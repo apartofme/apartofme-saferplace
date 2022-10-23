@@ -7,7 +7,7 @@ import { IElixirCarouselScreenProps } from './ElixirCarousel.types';
 import { styles } from './ElixirCarousel.styles';
 import { BottomButtonView, Carousel, CarouselType } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 
 export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
   navigation,
@@ -20,7 +20,7 @@ export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
 
   return (
     <ImageBackground
-      source={IMAGES.GARDEN_BACKGROUND}
+      source={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView

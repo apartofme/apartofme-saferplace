@@ -5,7 +5,6 @@ import { COLORS } from '../../../themes/colors';
 export interface IElixirDoubleInteractionSubtitleStyles {
   container: ViewStyle;
   buttonsContainer: ViewStyle;
-  button: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
   square: ViewStyle;
@@ -25,12 +24,6 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
       paddingBottom: 24,
     },
     // TODO: change to cerrect styles
-    button: {
-      height: 80,
-      width: 80,
-      borderRadius: 99,
-      backgroundColor: COLORS.PRIMARY,
-    },
     title: {
       textAlign: 'center',
       marginTop: 70,

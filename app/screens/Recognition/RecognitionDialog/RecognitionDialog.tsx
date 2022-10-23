@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { DialogView } from '../../../components';
 import { RECOGNITION_DIALOG_DATA } from './RecognitionDialog.data';
 import { IRecognitionDialogScreenProps } from './RecognitionDialog.types';
@@ -16,7 +16,7 @@ export const RecognitionDialogScreen: React.FC<IRecognitionDialogScreenProps> =
 
     return (
       <DialogView
-        backgroundImage={IMAGES.GARDEN_BACKGROUND}
+        backgroundImage={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
         dialog={[...speech]}
         onSubmit={onSubmit}
       />

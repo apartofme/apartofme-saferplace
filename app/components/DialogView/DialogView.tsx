@@ -6,9 +6,9 @@ import { getKeyFromLocalizationString } from '../../utils';
 import { ExtendedText } from '../ExtendedText';
 import { IDialogViewProps } from './DialogView.types';
 import { styles } from './DialogView.styles';
-import { SVG_ICONS } from '../../assets/svg';
+import { SVG } from '../../assets/svg';
 
-const DialogNextButtonIcon = SVG_ICONS.DialogNextButtonIcon;
+const DialogNextButtonIcon = SVG.DialogNextButtonIcon;
 
 export const DialogView: React.FC<IDialogViewProps> = ({
   backgroundImage,
@@ -27,6 +27,11 @@ export const DialogView: React.FC<IDialogViewProps> = ({
   const currentSpeech = useMemo(
     () => dialog[currentSpeechIdx],
     [currentSpeechIdx, dialog],
+  );
+
+  const Icon = useMemo(
+    () => (currentSpeech.iconKey ? SVG[currentSpeech.iconKey] : null),
+    [currentSpeech.iconKey],
   );
 
   const goToNextSpeech = useCallback(() => {
@@ -52,7 +57,7 @@ export const DialogView: React.FC<IDialogViewProps> = ({
 
   return (
     <ImageBackground source={backgroundImage} style={styles.container}>
-      {currentSpeech.Icon && <currentSpeech.Icon />}
+      {Icon && <Icon />}
 
       <View style={styles.dialogContainer}>
         <ExtendedText

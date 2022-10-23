@@ -15,10 +15,7 @@ export const BACKGROUND_IMAGES = {
   MENU: require('./backgrounds/menuBackground.png'),
   SPLASHSCREEN_ADULT: require('./backgrounds/splashscreenAdultBackground.png'),
   ONBOARDING_DEFAULT: require('./backgrounds/onboardingDefaultBackground.png'),
-  MENU_BACKGROUND: require('./menuBackground.png'),
-  SPLASHSCREEN_ADULT: require('./splashscreenAdult.png'),
-  NO_DETAIL_DEFAULT: require('./noDetailDefault.png'),
-  ALTERNATIVE_GARDEN_BACKGROUND: require('./alternativeGardenBackground.png'),
+  ALTERNATIVE_GARDEN_BACKGROUND: require('./backgrounds/alternativeGardenBackground.png'),
 };
 
 export const CHARMS_BACKGROUNDS = {};

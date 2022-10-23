@@ -52,6 +52,7 @@ import { PurpleCheckMarkIcon } from './PurpleCheckMarkIcon';
 import { CrossedOutEyeIcon } from './CrossedOutEyeIcon';
 import { OpenedEyeIcon } from './OpenedEyeIcon';
 import { CompassionateGuideIcon } from './CompassionateGuideIcon';
+import { ConcernedGuideIcon } from './ConcernedGuideIcon';
 
 export const SVG = {
   BirdOnBranchesIcon: BirdOnBranchesIcon,
@@ -60,6 +61,7 @@ export const SVG = {
   CircleExclamationMarkIcon: CircleExclamationMarkIcon,
   CircleQuestionMarkIcon: CircleQuestionMarkIcon,
   CompassionateGuideIcon: CompassionateGuideIcon,
+  ConcernedGuideIcon: ConcernedGuideIcon,
   CrossedOutEyeIcon: CrossedOutEyeIcon,
   ExitIcon: ExitIcon,
   GearManIcon: GearManIcon,
