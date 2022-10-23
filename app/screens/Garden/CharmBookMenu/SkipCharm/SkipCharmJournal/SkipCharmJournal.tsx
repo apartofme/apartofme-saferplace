@@ -1,14 +1,20 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
+import { BACKGROUND_IMAGES } from '../../../../../assets';
+import { SVG } from '../../../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
+  MainHeader,
   MultilineTextInput,
 } from '../../../../../components';
 import { generalStyles } from '../../../../../utils/styles';
+import { styles } from './SkipCharmJournal.styles';
 import { ISkipCharmJournalScreenProps } from './SkipCharmJournal.types';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SkipCharmJournalScreen: React.FC<ISkipCharmJournalScreenProps> = ({
   navigation,
@@ -24,20 +30,27 @@ export const SkipCharmJournalScreen: React.FC<ISkipCharmJournalScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={BACKGROUND_IMAGES.GARDEN_DARK}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {/* <Header /> */}
+        <MainHeader
+          leftIcon={<WhiteBackArrowIcon />}
+          onLeftIconPress={navigation.goBack}
+        />
         <BottomButtonView
-          buttonTitle={t('buttons.select')}
+          buttonTitle={t('buttons.finish')}
           onSubmit={onSubmit}
-          // style={styles.container}
-        >
-          <ExtendedText>{t('screens.skip-charm-journal.title')}</ExtendedText>
-          <MultilineTextInput onChangeText={setText} value={text} />
+          style={styles.container}>
+          <ExtendedText preset="title" style={generalStyles.brilliantWhite}>
+            {t('screens.skip_charm_journal.title')}
+          </ExtendedText>
+          <View style={styles.inputContainer}>
+            <MultilineTextInput
+              onChangeText={setText}
+              value={text}
+              placeholder={t('placeholders.enter_text')}
+            />
+          </View>
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>
