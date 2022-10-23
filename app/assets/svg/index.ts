@@ -30,9 +30,12 @@ import {
 } from './CharmIllustration';
 import { CircleExclamationMarkIcon } from './CircleExclamationMarkIcon';
 import { CircleQuestionMarkIcon } from './CircleQuestionMarkIcon';
+import { DialogNextButtonIcon } from './DialogNextButtonIcon';
 import { ExitIcon } from './ExitIcon';
 import { GearManIcon } from './GearManIcon';
+import { HappyGuideIcon } from './HappyGuideIcon';
 import { OrangeCirclePlussIcon } from './OrangeCirclePlussIcon';
+import { SadGuideIcon } from './SadGuideIcon';
 import { WhiteBackArrowIcon } from './WhiteBackArrowIcon';
 import { WhiteCrossIcon } from './WhiteCrossIcon';
 import { WhiteGearIcon } from './WhiteGearIcon';
@@ -71,6 +74,11 @@ export const SVG = {
   WhiteGearIcon: WhiteGearIcon,
   WhitePencilIcon: WhitePencilIcon,
   WhiteRightArrowIcon: WhiteRightArrowIcon,
+
+  // TODO: sort
+  DialogNextButtonIcon: DialogNextButtonIcon,
+  HappyGuideIcon: HappyGuideIcon,
+  SadGuideIcon: SadGuideIcon,
 };
 
 export const AVATARS_SVG = {

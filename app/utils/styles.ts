@@ -19,6 +19,7 @@ export interface IGeneralStyles {
 
   boldText: TextStyle;
   primaryOrange: TextStyle;
+  brilliantWhite: TextStyle;
 }
 
 export const generalStyles = StyleSheet.create<IGeneralStyles>({
@@ -61,5 +62,8 @@ export const generalStyles = StyleSheet.create<IGeneralStyles>({
   },
   primaryOrange: {
     color: COLORS.PRIMARY_ORANGE,
+  },
+  brilliantWhite: {
+    color: COLORS.BRILLIANT_WHITE,
   },
 });

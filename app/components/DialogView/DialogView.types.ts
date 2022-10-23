@@ -1,11 +1,12 @@
 import { ImageSourcePropType } from 'react-native';
 
-import { ISpeech } from '../../utils/types';
+import { ISpeech, SvgComponentType } from '../../utils/types';
 
 export interface IDialogViewProps {
   backgroundImage: ImageSourcePropType;
   dialog: ISpeech[];
   onSubmit: () => void;
+  Icon?: SvgComponentType;
   initialIdx?: number;
   navigateBetween?: {
     onPress: () => void;

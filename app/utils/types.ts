@@ -6,6 +6,7 @@ import { Nullable } from '../utils/index';
 
 export interface ISpeech {
   textKey: string;
+  Icon?: SvgComponentType;
 }
 
 export enum UserType {

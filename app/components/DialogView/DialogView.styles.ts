@@ -1,9 +1,12 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../themes/colors';
 
 export interface IDialogViewStyles {
   container: ViewStyle;
   dialogContainer: ViewStyle;
   roundButton: ViewStyle;
+  title: TextStyle;
 }
 
 export const styles = StyleSheet.create<IDialogViewStyles>({
@@ -11,28 +14,29 @@ export const styles = StyleSheet.create<IDialogViewStyles>({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingHorizontal: 38,
+    paddingHorizontal: 40,
+    paddingBottom: 5,
   },
   dialogContainer: {
-    width: 299,
-    minHeight: 308,
+    marginTop: 12,
+    minHeight: 304,
     paddingTop: 40,
-    paddingBottom: 48,
+    paddingBottom: 40,
     paddingHorizontal: 24,
     borderRadius: 24,
-    // TODO: change to real styles
-    backgroundColor: '#cecece',
+    borderWidth: 4,
+    borderColor: COLORS.PRIMARY_ORANGE,
+    backgroundColor: COLORS.PRIMARY_PURPLE,
+  },
+  title: {
+    color: COLORS.BRILLIANT_WHITE,
+    width: 240,
   },
   roundButton: {
-    width: 64,
-    height: 64,
-    borderRadius: 100,
     transform: [
       {
-        translateY: -32,
+        translateY: -40,
       },
     ],
-    // TODO: change to real styles
-    backgroundColor: 'purple',
   },
 });

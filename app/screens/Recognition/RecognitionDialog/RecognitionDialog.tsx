@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 
+import { IMAGES } from '../../../assets';
 import { DialogView } from '../../../components';
 import { RECOGNITION_DIALOG_DATA } from './RecognitionDialog.data';
 import { IRecognitionDialogScreenProps } from './RecognitionDialog.types';
@@ -15,9 +16,7 @@ export const RecognitionDialogScreen: React.FC<IRecognitionDialogScreenProps> =
 
     return (
       <DialogView
-        backgroundImage={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
+        backgroundImage={IMAGES.GARDEN_BACKGROUND}
         dialog={[...speech]}
         onSubmit={onSubmit}
       />

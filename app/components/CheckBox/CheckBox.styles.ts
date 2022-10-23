@@ -11,6 +11,7 @@ export interface ICheckBoxStyles {
 
 export const styles = StyleSheet.create<ICheckBoxStyles>({
   container: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -22,8 +23,9 @@ export const styles = StyleSheet.create<ICheckBoxStyles>({
     borderColor: COLORS.PRIMARY_ORANGE,
   },
   title: {
+    flex: 1,
+    marginRight: 32,
     color: COLORS.BRILLIANT_WHITE,
-    paddingRight: 24,
   },
 
   activeBackground: {

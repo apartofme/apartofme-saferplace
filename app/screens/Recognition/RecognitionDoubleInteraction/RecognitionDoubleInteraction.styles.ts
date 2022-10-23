@@ -16,7 +16,7 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
   {
     container: {
       flex: 1,
-      justifyContent: 'flex-end',
+      justifyContent: 'space-between',
     },
     buttonsContainer: {
       flexDirection: 'row',
@@ -33,13 +33,16 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
     },
     title: {
       textAlign: 'center',
-      marginBottom: 60,
+      marginTop: 70,
+      color: COLORS.BRILLIANT_WHITE,
     },
     subtitle: {
       textAlign: 'center',
       marginBottom: 40,
+      maxWidth: 295,
       marginTop: 40,
       marginHorizontal: 40,
+      color: COLORS.BRILLIANT_WHITE,
     },
     // TODO: remove when add animation
     square: {

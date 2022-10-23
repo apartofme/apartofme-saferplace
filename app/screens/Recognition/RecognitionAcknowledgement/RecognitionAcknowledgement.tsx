@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
-import { Image, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IRecognitionAcknowledgementScreenProps } from './RecognitionAcknowledgement.types';
@@ -11,14 +11,16 @@ import {
   MainHeader,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { RECOGNITION_ACKNOWLEDGEMENT_DATA } from './RecognitionAcknowledgement.data';
-import { useAppSelector } from '../../../hooks';
+import { useParsedJSXTextNickname } from '../../../hooks';
 import { SPIRIT_INTRO_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
 import { SVG } from '../../../assets/svg';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
+// TODO: change to correct
+const CelebrationGuideIcon = SVG.CelebrationGuideIcon;
 
 export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgementScreenProps> =
   ({ navigation, route }) => {
@@ -26,21 +28,16 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
 
     const { t } = useTranslation();
 
-    const parentNickname = useAppSelector(
-      state => state.user.child?.nickname,
-    ) as string;
-    const childNickname = useAppSelector(
-      state => state.user.parent?.nickname,
-    ) as string;
+    const findedTitle =
+      _.find(RECOGNITION_ACKNOWLEDGEMENT_DATA, item => item.type === type)
+        ?.title ?? '';
 
-    const getNicknameTitle = useCallback(() => {
-      const findedTitle =
-        _.find(RECOGNITION_ACKNOWLEDGEMENT_DATA, item => item.type === type)
-          ?.title ?? '';
-      return `${parentNickname} ${t('labels.and')} ${childNickname} ${t(
-        findedTitle,
-      )}`;
-    }, [childNickname, parentNickname, t, type]);
+    const Title = useParsedJSXTextNickname({
+      text: t(findedTitle),
+      preset: 'title',
+      textHasNickname: true,
+      style: styles.title,
+    });
 
     const onSubmitPress = useCallback(() => {
       navigation.push('RecognitionDialog', {
@@ -52,30 +49,33 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
     }, [navigation]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={<WhiteBackArrowIcon />}
-          onLeftIconPress={navigation.goBack}
-          rightIcon={<WhiteCrossIcon />}
-        />
-        <BottomButtonView
-          buttonTitle={t('buttons.next')}
-          onSubmit={onSubmitPress}>
-          <View style={styles.container}>
-            <Image source={IMAGES.LOGO} style={styles.image} />
-            <ExtendedText style={styles.title}>
-              {t(getNicknameTitle())}
-            </ExtendedText>
-            <ExtendedText style={styles.subtitle}>
-              {t(
-                _.find(
-                  RECOGNITION_ACKNOWLEDGEMENT_DATA,
-                  item => item.type === type,
-                )?.subtitle ?? '',
-              )}
-            </ExtendedText>
-          </View>
-        </BottomButtonView>
-      </SafeAreaView>
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={navigation.goBack}
+            rightIcon={<WhiteCrossIcon />}
+          />
+          <BottomButtonView
+            buttonTitle={t('buttons.next')}
+            onSubmit={onSubmitPress}
+            isArrow={true}>
+            <View style={styles.container}>
+              <CelebrationGuideIcon />
+              <Title />
+              <ExtendedText style={styles.subtitle} preset="secondary-text">
+                {t(
+                  _.find(
+                    RECOGNITION_ACKNOWLEDGEMENT_DATA,
+                    item => item.type === type,
+                  )?.subtitle ?? '',
+                )}
+              </ExtendedText>
+            </View>
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };
