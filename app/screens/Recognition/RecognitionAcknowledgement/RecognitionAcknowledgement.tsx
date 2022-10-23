@@ -15,6 +15,10 @@ import { IMAGES } from '../../../assets';
 import { RECOGNITION_ACKNOWLEDGEMENT_DATA } from './RecognitionAcknowledgement.data';
 import { useAppSelector } from '../../../hooks';
 import { SPIRIT_INTRO_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
+import { SVG_ICONS } from '../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
 
 export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgementScreenProps> =
   ({ navigation, route }) => {
@@ -50,9 +54,9 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
     return (
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
-          rightIcon={IMAGES.WHITE_PENCIL}
+          rightIcon={<WhiteCrossIcon />}
         />
         <BottomButtonView
           buttonTitle={t('buttons.next')}

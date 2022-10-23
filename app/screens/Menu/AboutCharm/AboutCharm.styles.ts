@@ -6,11 +6,10 @@ interface IAboutCharmScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
-  image: ImageStyle;
+  imageContainer: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IAboutCharmScreenStyles>({
-  // TODO: change on correct styles
   container: {
     flex: 1,
     paddingHorizontal: 24,
@@ -24,7 +23,7 @@ export const styles = StyleSheet.create<IAboutCharmScreenStyles>({
     marginBottom: 40,
     color: COLORS.BRILLIANT_WHITE,
   },
-  image: {
+  imageContainer: {
     alignSelf: 'center',
   },
 });

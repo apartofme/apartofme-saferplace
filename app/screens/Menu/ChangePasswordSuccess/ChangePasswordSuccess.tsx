@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import {
   BottomButtonView,
   ExtendedText,
@@ -11,6 +11,10 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IChangePasswordSuccessScreenProps } from './ChangePasswordSuccess.types';
 import { styles } from './ChangePasswordSuccess.styles';
+import { SVG_ICONS } from '../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const CelebrationGuideIcon = SVG_ICONS.CelebrationGuideIcon;
 
 export const ChangePasswordSuccessScreen: React.FC<IChangePasswordSuccessScreenProps> =
   ({ navigation }) => {
@@ -22,16 +26,18 @@ export const ChangePasswordSuccessScreen: React.FC<IChangePasswordSuccessScreenP
 
     return (
       <ImageBackground
-        source={IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.whFlex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <BottomButtonView buttonTitle={t('buttons.back')} onSubmit={onSubmit}>
             <View style={styles.container}>
-              <Image source={IMAGES.CELEBRATION_GUIDE} style={styles.image} />
+              <View style={styles.imageContainer}>
+                <CelebrationGuideIcon />
+              </View>
               <ExtendedText style={styles.title} preset="large-title">
                 {t('screens.menu.change_password.success.title')}
               </ExtendedText>

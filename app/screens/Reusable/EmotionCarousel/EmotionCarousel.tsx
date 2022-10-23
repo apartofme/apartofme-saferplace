@@ -24,6 +24,7 @@ import {
 import { EMOTION_CAROUSEL_ITEMS } from '../../../constants/emotionCarousel';
 import { cacheSlice } from '../../../redux/slices';
 import { EmotionModal } from './components';
+import { ImagesKeys } from '../../../utils/types';
 
 export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
   route,
@@ -92,7 +93,7 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
     <ImageBackground
       // TODO: change to real default image
       source={
-        (backgroundImage && IMAGES[backgroundImage as keyof typeof IMAGES]) ?? {
+        (backgroundImage && IMAGES[backgroundImage as ImagesKeys]) ?? {
           uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
         }
       }

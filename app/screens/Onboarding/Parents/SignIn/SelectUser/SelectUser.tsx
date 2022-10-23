@@ -8,18 +8,21 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../../../components';
-import { IMAGES } from '../../../../../assets';
 import { generalStyles } from '../../../../../utils/styles';
 import { ISelectUserScreenProps } from './SelectUser.types';
+import { SVG_ICONS } from '../../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
+
   return (
     <SafeAreaView style={generalStyles.whFlex}>
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={navigation.goBack}
       />
       {/* // TODO: add content */}

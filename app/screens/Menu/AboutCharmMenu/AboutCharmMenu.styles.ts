@@ -24,7 +24,7 @@ export const styles = StyleSheet.create<IAboutCharmMenuScreenStyles>({
     marginTop: 13,
   },
   list: {
-    paddingTop: 50,
+    marginTop: 50,
     flex: 1,
   },
   menuButtonContainer: {

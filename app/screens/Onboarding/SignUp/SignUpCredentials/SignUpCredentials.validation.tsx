@@ -5,13 +5,21 @@ import { REGEXPS } from '../../../../utils/regexps';
 export const SignUpCredentioalsValidationSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Incorrect email')
-    .required('Please enter this field'),
+    .email('Incorrect email address')
+    .max(
+      30,
+      ({ max }) => `Email address must contain no more than ${max} characters`,
+    )
+    .required('Please enter an email address'),
   password: yup
     .string()
-    .matches(REGEXPS.UPPERCASE, 'Password must include UPPERCASE')
-    .matches(REGEXPS.LOWERCASE, 'Password must include LOWERCASE')
-    .matches(REGEXPS.NUMBER, 'Password must include NUMBER')
+    .matches(REGEXPS.UPPERCASE, 'Password must include capital letter')
+    .matches(REGEXPS.LOWERCASE, 'Password must include lowercase letter')
+    .matches(REGEXPS.NUMBER, 'Password must include number')
     .min(8, ({ min }) => `Password must contain at least ${min} characters`)
-    .required('Please enter this fild'),
+    .max(
+      30,
+      ({ max }) => `Password must contain no more than ${max} characters`,
+    )
+    .required('Please enter a password'),
 });

@@ -5,6 +5,7 @@ import { Image, SafeAreaView, TouchableOpacity, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
 import { ExtendedButton, ExtendedText } from '../../../components';
+import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 import {
   useAppDispatch,
   useAppSelector,
@@ -34,6 +35,9 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
   );
   const currentDay = useAppSelector(state => state.quest.currentDay);
   const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
+  const isCurrentQuestCompleted = useAppSelector(
+    state => state.quest.isCurrentQuestCompleted,
+  );
 
   const navigateTo = usePositiveNavigateTo(escapeMenuAlternativeNavigateTo);
 
@@ -44,7 +48,9 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
   }, [navigateTo, navigation]);
 
   const goToTheCharmofGrounding = useCallback(() => {
-    const quests: IQuest[] = values(allQuests && allQuests['55705521'].quests);
+    const quests: IQuest[] = values(
+      allQuests && allQuests[JOINT_GROUNDING_EXERCISE_ID].quests,
+    );
 
     dispatch(
       questSlice.actions.saveCurrentQuestLine({
@@ -63,13 +69,15 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
   }, [allQuests, dispatch, navigation]);
 
   const goToGarden = useCallback(() => {
-    dispatch(
-      questSlice.actions.updateInterruptedQuestLine({
-        id: currentQuestLine?.id as string,
-        day: currentDay,
-        interruptedQuestInx: currentQuestIdx,
-      }),
-    );
+    if (!isCurrentQuestCompleted) {
+      dispatch(
+        questSlice.actions.updateInterruptedQuestLine({
+          id: currentQuestLine?.id as string,
+          day: currentDay,
+          interruptedQuestInx: currentQuestIdx,
+        }),
+      );
+    }
     navigation.goBack();
     navigation.push('GardenStack', {
       screen: 'Garden',
@@ -79,7 +87,14 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
         isFirstTimeGarden: false,
       },
     });
-  }, [currentDay, currentQuestIdx, currentQuestLine?.id, dispatch, navigation]);
+  }, [
+    currentDay,
+    currentQuestIdx,
+    currentQuestLine?.id,
+    dispatch,
+    isCurrentQuestCompleted,
+    navigation,
+  ]);
 
   return (
     <SafeAreaView style={styles.container}>

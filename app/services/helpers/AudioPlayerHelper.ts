@@ -6,8 +6,8 @@ export class AudioPlayerHelper {
 
   public static play(
     filepath: string,
-    setDuration: (newValue: number) => void,
     setIsFinished?: (newValue: boolean) => void,
+    setDuration?: (newValue: number) => void,
   ) {
     if (this.currentAudio?.isPlaying()) {
       this.stop();
@@ -19,7 +19,9 @@ export class AudioPlayerHelper {
         return;
       }
 
-      setDuration(newAudioInstance.getDuration());
+      if (setDuration) {
+        setDuration(newAudioInstance.getDuration());
+      }
 
       newAudioInstance.play(isSuccess => {
         isSuccess && setIsFinished?.(true);

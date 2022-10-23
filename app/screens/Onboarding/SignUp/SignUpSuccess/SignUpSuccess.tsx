@@ -1,8 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
+import _ from 'lodash';
 
-import { IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { AVATARS_SVG, SVG_ICONS } from '../../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -12,6 +14,10 @@ import { useAppSelector } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpSuccessScreenProps } from './SignUpSuccess.types';
 import { styles } from './SignUpSuccess.styles';
+import { AvatarsKeys } from '../../../../utils/types';
+import { DatoCMSTextVariables } from '../../../../constants/quest';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   navigation,
@@ -20,16 +26,23 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   const { t } = useTranslation();
   const isChild = route.params?.isChild;
   const avatar = useAppSelector(
-    state => state.cache.auth[isChild ? 'child' : 'parent']?.avatar,
+    state =>
+      state.cache.auth[isChild ? 'child' : 'parent']?.avatar as AvatarsKeys,
   );
+  const parentNickname =
+    useAppSelector(state => state.cache.auth.parent?.nickname) ?? '';
+  const childNickname =
+    useAppSelector(state => state.cache.auth.child?.nickname) ?? '';
 
-  const getCorrectLocalizationPath = useMemo(() => {
+  const correctLocalizationPath = useMemo(() => {
     if (isChild) {
       return 'screens.onboarding.sign_up_success.child';
     } else {
       return 'screens.onboarding.sign_up_success.parent';
     }
   }, [isChild]);
+
+  const title = t(`${correctLocalizationPath}.title`);
 
   const onSubmit = useCallback(() => {
     if (isChild) {
@@ -39,26 +52,53 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
     }
   }, [isChild, navigation]);
 
+  const titleArray = _(title)
+    .replace(DatoCMSTextVariables.GrownUp, `$${parentNickname}`)
+    .replace(DatoCMSTextVariables.Child, `$${childNickname}`)
+    .split('|')
+    .map(value => {
+      if (value.startsWith('$')) {
+        return (
+          <ExtendedText
+            key={value}
+            preset="large-title"
+            style={generalStyles.primaryOrange}>
+            {value.replace('$', '')}
+          </ExtendedText>
+        );
+      }
+      return value;
+    });
+
+  const AvatarIcon = AVATARS_SVG[avatar];
+
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
-        onLeftIconPress={navigation.goBack}
-      />
-      <BottomButtonView
-        buttonTitle={t('buttons.next')}
-        // TODO: change to correct function
-        onSubmit={onSubmit}
-        style={styles.container}>
-        {/* // TODO: uncomment when user avatar logic is added */}
-        {/*<Image source={avatar} style={styles.avatar} />*/}
-        <ExtendedText preset="large-title" style={styles.title}>
-          {t(`${getCorrectLocalizationPath}.title`)}
-        </ExtendedText>
-        <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {t(`${getCorrectLocalizationPath}.description`)}
-        </ExtendedText>
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+      style={generalStyles.flex}>
+      <ImageBackground
+        source={IMAGES.CONFETTI}
+        style={generalStyles.flex}
+        imageStyle={styles.background}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={navigation.goBack}
+          />
+          <BottomButtonView
+            buttonTitle={t('buttons.next')}
+            onSubmit={onSubmit}
+            style={styles.container}>
+            <AvatarIcon />
+            <ExtendedText preset="large-title" style={styles.title}>
+              {titleArray}
+            </ExtendedText>
+            <ExtendedText preset="secondary-text" style={styles.subtitle}>
+              {t(`${correctLocalizationPath}.description`)}
+            </ExtendedText>
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
+    </ImageBackground>
   );
 };

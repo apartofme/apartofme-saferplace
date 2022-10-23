@@ -11,7 +11,9 @@ import {
 import { IGroundingAcknowledgementTitleProps } from './GroundingAcknowledgementTitle.types';
 import { styles } from './GroundingAcknowledgementTitle.styles';
 import { generalStyles } from '../../../../utils/styles';
-import { IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTitleProps> =
   ({
@@ -37,7 +39,7 @@ export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTi
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <BottomButtonView

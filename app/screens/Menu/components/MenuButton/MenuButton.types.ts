@@ -1,7 +1,7 @@
-import { ImageSourcePropType } from 'react-native';
+import { ISvgProps } from '../../../../utils/types';
 
 export interface IMenuButtonProps {
   title: string;
-  icon?: ImageSourcePropType;
+  IconSvgComponent?: (props: ISvgProps) => JSX.Element;
   onPress: () => void;
 }

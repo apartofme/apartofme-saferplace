@@ -25,12 +25,17 @@ exports[`UI: ExtendedTextInput should match snapshot 1`] = `
   </Text>
   <TextInput
     onChangeText={[Function]}
+    selectionColor="#FFB452"
     style={
       Array [
         Object {
-          "borderBottomWidth": 1,
-          "paddingHorizontal": 0,
-          "paddingVertical": 0,
+          "backgroundColor": "#220A40E6",
+          "borderColor": "#FFB452",
+          "borderRadius": 24,
+          "borderWidth": 1,
+          "color": "#FFFFFF",
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
         },
         Object {
           "backgroundColor": "yellow",
@@ -88,32 +93,38 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
   </Text>
   <View
     style={
-      Object {
-        "borderBottomWidth": 1,
-        "flexDirection": "row",
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        },
+        Array [
+          Object {
+            "backgroundColor": "#220A40E6",
+            "borderColor": "#FFB452",
+            "borderRadius": 24,
+            "borderWidth": 1,
+            "color": "#FFFFFF",
+            "paddingHorizontal": 24,
+            "paddingVertical": 16,
+          },
+          Object {
+            "backgroundColor": "yellow",
+          },
+        ],
+      ]
     }
   >
     <TextInput
       onChangeText={[Function]}
       secureTextEntry={true}
+      selectionColor="#FFB452"
       style={
-        Array [
-          Array [
-            Object {
-              "borderBottomWidth": 1,
-              "paddingHorizontal": 0,
-              "paddingVertical": 0,
-            },
-            Object {
-              "backgroundColor": "yellow",
-            },
-          ],
-          Object {
-            "borderBottomWidth": 0,
-            "flex": 1,
-          },
-        ]
+        Object {
+          "color": "#FFFFFF",
+          "flex": 1,
+          "padding": 0,
+        }
       }
       value="test input"
     />
@@ -131,16 +142,16 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
+          "maxHeight": 17,
           "opacity": 1,
+          "paddingLeft": 24,
         }
       }
     >
-      <View
-        style={
+      <Image
+        source={
           Object {
-            "backgroundColor": "red",
-            "height": 15,
-            "width": 15,
+            "testUri": "../../../app/assets/images/openedEye.png",
           }
         }
       />

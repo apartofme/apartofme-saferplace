@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import {
   BottomButtonView,
   ExtendedKeyboardAvoidingView,
@@ -13,6 +12,10 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IFeedbackScreenProps } from './Feedback.types';
 import { styles } from './Feedback.styles';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
   navigation,
@@ -25,7 +28,9 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
   }, [navigation]);
 
   return (
-    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+      style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
@@ -33,7 +38,7 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
             onSubmit={onSubmit}
             isDisabledButton={!feedback}>
             <MainHeader
-              leftIcon={IMAGES.WHITE_BACK_ARROW}
+              leftIcon={<WhiteBackArrowIcon />}
               onLeftIconPress={navigation.goBack}
             />
             <View style={styles.container}>

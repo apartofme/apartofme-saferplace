@@ -1,15 +1,13 @@
-import { ImageSourcePropType } from 'react-native';
-
-export interface ICarouselItem {
-  id: string;
-  image?: ImageSourcePropType;
-  titleKey?: string;
-  subtitleKey?: string;
-}
-
 export enum CarouselType {
+  Avatar = 'avatar',
   SubtitleImage = 'SubtitleImage',
   ImageTitleSubtitle = 'imageTitleSubtitle',
   OnlyImage = 'onlyImage',
   ImageSubtitle = 'imageSubtitle',
 }
+
+export const CAROUSEL_MODE_CONFIG = {
+  parallaxScrollingScale: 1,
+  parallaxScrollingOffset: 190,
+  parallaxAdjacentItemScale: 0.8,
+};

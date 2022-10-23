@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { Formik } from 'formik';
 
-import { IMAGES } from '../../../assets';
 import {
   BottomButtonView,
   ExtendedKeyboardAvoidingView,
@@ -18,6 +17,10 @@ import { styles } from './ChangePassword.styles';
 import { useAppDispatch } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
 import { ChangePasswordValidationSchema } from './ChangePassword.validation';
+import { SVG_ICONS } from '../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../assets';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
   navigation,
@@ -36,7 +39,9 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
   );
 
   return (
-    <ImageBackground source={IMAGES.MENU_BACKGROUND} style={generalStyles.flex}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+      style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Formik
           initialValues={{
@@ -55,7 +60,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                   onSubmit(values.currentPassword, values.newPassword)
                 }>
                 <MainHeader
-                  leftIcon={IMAGES.WHITE_BACK_ARROW}
+                  leftIcon={<WhiteBackArrowIcon />}
                   onLeftIconPress={navigation.goBack}
                 />
                 <View style={styles.container}>

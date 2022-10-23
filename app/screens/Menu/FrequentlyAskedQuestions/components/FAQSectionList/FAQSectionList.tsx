@@ -4,7 +4,6 @@ import {
   SectionListData,
   SectionListRenderItem,
   View,
-  Image,
 } from 'react-native';
 import _ from 'lodash';
 
@@ -17,7 +16,9 @@ import {
 import { IFAQSectionListProps } from './FAQSectionList.types';
 import { usePrevious } from '../../../../../hooks';
 import { ExtendedText } from '../../../../../components';
-import { IMAGES } from '../../../../../assets';
+import { SVG_ICONS } from '../../../../../assets/svg';
+
+const OrangeCirclePlussIcon = SVG_ICONS.OrangeCirclePlussIcon;
 
 export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
   filterValue,
@@ -75,8 +76,7 @@ export const FAQSectionList: React.FC<IFAQSectionListProps> = ({
             preset="secondary-text">
             {item.title}
           </ExtendedText>
-          {/* // TODO: change to correct icon */}
-          <Image source={IMAGES.ORANGE_CIRCLE_PLUSS} />
+          <OrangeCirclePlussIcon />
         </View>
       );
     }, []);

@@ -4,11 +4,16 @@ import {
   View,
   TouchableOpacity,
   TextInputProps,
+  Image,
 } from 'react-native';
 
+import { IMAGES } from '../../../../assets';
 import { styles } from './TextInputPasswordToggle.styles';
 
-export const TextInputPasswordToggle: React.FC<TextInputProps> = props => {
+export const TextInputPasswordToggle: React.FC<TextInputProps> = ({
+  style,
+  ...rest
+}) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const onEyeIconPress = useCallback(() => {
@@ -16,15 +21,16 @@ export const TextInputPasswordToggle: React.FC<TextInputProps> = props => {
   }, [isPasswordHidden]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <TextInput
-        {...props}
+        {...rest}
         secureTextEntry={isPasswordHidden}
-        style={[props.style, styles.input]}
+        style={styles.input}
       />
       <TouchableOpacity onPress={onEyeIconPress} style={styles.iconContainer}>
-        {/* This should be an eye icon */}
-        <View style={styles.icon} />
+        <Image
+          source={isPasswordHidden ? IMAGES.OPENED_EYE : IMAGES.CROSSED_OUT_EYE}
+        />
       </TouchableOpacity>
     </View>
   );

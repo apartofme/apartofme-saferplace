@@ -20,7 +20,10 @@ import {
   useNavigatePrevQuest,
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
-import { IMAGES } from '../../../assets';
+import { SVG_ICONS } from '../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
 
 export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   navigation,
@@ -37,7 +40,6 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   const [currentAudioName, setCurrentAudioName] = useState(
     SOUND_CAROUSEL[0].id,
   );
-  const [duration, setDuration] = useState(0);
   const [isFinished, setIsFished] = useState(false);
 
   const navigatePrevQuest = useNavigatePrevQuest();
@@ -71,7 +73,7 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
         AudioPlayerHelper.start();
       }
     } else {
-      AudioPlayerHelper.play(currentAudioName, setDuration, setIsFished);
+      AudioPlayerHelper.play(currentAudioName, setIsFished);
     }
     setIsPause(!isPause);
   }, [currentAudioName, isFinished, isPause]);
@@ -95,16 +97,16 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
     if (crossHeader) {
       return (
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={onBackArrowPress}
-          rightIcon={IMAGES.WHITE_PENCIL}
+          rightIcon={<WhiteCrossIcon />}
           onRightIconPress={onCrossPress}
         />
       );
     }
     return (
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={onBackArrowPress}
       />
     );

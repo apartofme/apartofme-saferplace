@@ -18,7 +18,10 @@ import {
 } from '../../../../components';
 import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
 import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
-import { IMAGES } from '../../../../assets';
+import { SVG_ICONS } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
 
 export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   navigation,
@@ -38,9 +41,6 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
   const [isTimerEnd, setIsTimerEnd] = useState<boolean>(false);
 
-  const [songDuration, setSongDuration] = useState(0);
-  const [isFinished, setIsFished] = useState(false);
-
   const selectedSong = useAppSelector(state => state.cache.selectedSong);
 
   const navigateNextQuest = useNavigateNextQuest();
@@ -56,11 +56,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
 
     setIsTimerStart(true);
 
-    AudioPlayerHelper.play(
-      selectedSong ?? SOUND_CAROUSEL[0].id,
-      setSongDuration,
-      setIsFished,
-    );
+    AudioPlayerHelper.play(selectedSong ?? SOUND_CAROUSEL[0].id);
   }, [isTimerEnd, navigateNextQuest, selectedSong]);
 
   const onTimerComplete = useCallback(() => {
@@ -115,16 +111,16 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     if (crossHeader) {
       return (
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={onBackArrowPress}
-          rightIcon={IMAGES.WHITE_PENCIL}
+          rightIcon={<WhiteCrossIcon />}
           onRightIconPress={onCrossPress}
         />
       );
     }
     return (
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={onBackArrowPress}
       />
     );

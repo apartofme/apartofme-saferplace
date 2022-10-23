@@ -2,11 +2,11 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
 import {
   AvatarCarousel,
   BottomButtonView,
   ExtendedButton,
+  ExtendedKeyboardAvoidingView,
   ExtendedTextInput,
   MainHeader,
 } from '../../../components';
@@ -16,7 +16,9 @@ import { styles } from './EditProfile.styles';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { cacheSlice, userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
-import { ExtendedKeyboardAvoidingView } from '../../../components/ExtendedKeyboardAvoidingView/ExtendedKeyboardAvoidingView.android';
+import { SVG_ICONS } from '../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
@@ -59,7 +61,7 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
     <SafeAreaView style={generalStyles.flex}>
       <ExtendedKeyboardAvoidingView>
         <MainHeader
-          leftIcon={IMAGES.WHITE_BACK_ARROW}
+          leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView

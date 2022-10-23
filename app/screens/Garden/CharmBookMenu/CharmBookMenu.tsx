@@ -1,9 +1,10 @@
 import { values } from 'lodash';
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { ClosedBookIcon, OpenBookIcon } from '../../../assets/images/dummySVG';
+import { SVG_ICONS } from '../../../assets/svg';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { cacheSlice, questSlice } from '../../../redux/slices';
@@ -13,6 +14,8 @@ import {
   CharmBookMenuType,
   ICharmBookMenuScreenProps,
 } from './CharmBookMenu.types';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   navigation,
@@ -40,6 +43,9 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   const interruptedQuestLine = useAppSelector(
     state => state.quest.interruptedQuestLine,
   );
+  const completedQuestsId = useAppSelector(
+    state => state.quest.completedQuestsId,
+  );
 
   useMount(() => {
     dispatch(
@@ -50,8 +56,9 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
     );
   });
 
-  // TODO: add functional
-  const onCompletedPress = useCallback(() => {}, []);
+  const onCompletedPress = useCallback(() => {
+    navigation.push('SelectCharmCarousel');
+  }, [navigation]);
 
   const onPlayPress = useCallback(() => {
     if (type === CharmBookMenuType.NewCharm) {
@@ -113,15 +120,21 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
     type,
   ]);
 
-  // TODO: add functional
-  const onSkipPress = useCallback(() => {}, []);
+  const onSkipPress = useCallback(() => {
+    if (interruptedQuestLine) {
+      dispatch(
+        questSlice.actions.saveCompletedQuestsId(+interruptedQuestLine.id),
+      );
+      dispatch(questSlice.actions.updateInterruptedQuestLine(null));
+    }
+  }, [dispatch, interruptedQuestLine]);
 
   const menuContent = useMemo(() => {
     switch (type) {
       case CharmBookMenuType.InterruptedCharm:
         return (
           <View style={generalStyles.flex}>
-            <Image source={IMAGES.OPEN_BOOK} style={styles.image} />
+            <OpenBookIcon />
             <View style={styles.titleContainer}>
               <ExtendedText preset="heading" style={styles.title}>
                 {t('screens.garden.charm_book_menu.interrupted.title')}
@@ -129,9 +142,8 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
               <ExtendedText preset="body-regular" style={styles.title}>
                 {t('screens.garden.charm_book_menu.interrupted.description')}
               </ExtendedText>
-              <ExtendedButton title="Play" onPress={onPlayPress} />
-              <ExtendedButton title="Skip" onPress={onSkipPress} />
-              <ExtendedButton title="Completed" onPress={onCompletedPress} />
+              <ExtendedButton title={t('buttons.play')} onPress={onPlayPress} />
+              <ExtendedButton title={t('buttons.skip')} onPress={onSkipPress} />
             </View>
           </View>
         );
@@ -139,12 +151,12 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
       case CharmBookMenuType.NewCharm:
         return (
           <View style={generalStyles.flex}>
-            <Image source={IMAGES.OPEN_BOOK} style={styles.image} />
+            <OpenBookIcon />
             <View style={styles.titleContainer}>
               <ExtendedText preset="heading" style={styles.title}>
                 {t('screens.garden.charm_book_menu.new')}
               </ExtendedText>
-              <ExtendedButton title="Play" onPress={onPlayPress} />
+              <ExtendedButton title={t('buttons.play')} onPress={onPlayPress} />
             </View>
           </View>
         );
@@ -152,11 +164,15 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
       default:
         return (
           <View style={generalStyles.flex}>
-            <Image source={IMAGES.CLOSED_BOOK} style={styles.image} />
+            <ClosedBookIcon />
             <View style={styles.titleContainer}>
               <ExtendedText preset="heading" style={styles.title}>
                 {t('screens.garden.charm_book_menu.none')}
               </ExtendedText>
+              <ExtendedButton
+                title={t('buttons.completed_charms')}
+                onPress={onCompletedPress}
+              />
             </View>
           </View>
         );
@@ -164,17 +180,22 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   }, [onCompletedPress, onPlayPress, onSkipPress, t, type]);
 
   const button = useMemo(() => {
-    if (type === CharmBookMenuType.NewCharm) {
-      return <ExtendedButton title="Completed" onPress={onCompletedPress} />;
+    if (type !== CharmBookMenuType.NoneCharm && completedQuestsId.length >= 5) {
+      return (
+        <ExtendedButton
+          title={t('buttons.completed_charms')}
+          onPress={onCompletedPress}
+        />
+      );
     }
 
     return null;
-  }, [onCompletedPress, type]);
+  }, [completedQuestsId.length, onCompletedPress, t, type]);
 
   return (
     <SafeAreaView style={generalStyles.flex}>
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={navigation.goBack}
       />
       {menuContent}

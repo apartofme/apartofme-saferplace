@@ -20,7 +20,8 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   const isCurrentDayQuestsStackEmpty = useAppSelector(
     state => !state.quest.currentDayQuestsStack.length,
   );
-  const user = useAppSelector(state => state.user.parent);
+  const user = useAppSelector(state => state.user);
+  const cacheUser = useAppSelector(state => state.cache.auth);
   const [isStartLoading, setIsStartLoading] = useState(false);
 
   const isSaveAllQuestsLoading = useAppSelector(
@@ -41,7 +42,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
       nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
       !interruptedQuestLine &&
       isCurrentDayQuestsStackEmpty &&
-      user
+      user.parent
     ) {
       dispatch(questSlice.actions.setLastDayUpdate());
       dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
@@ -55,11 +56,15 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
       !isSaveTranslationsLoading &&
       isStartLoading
     ) {
-      if (user) {
+      if (user.parent && user.child) {
         navigation.replace('GardenStack');
-      } else {
-        navigation.replace('ParentsOnboardingStack');
+        return;
       }
+      if (cacheUser.parent?.avatar && !cacheUser.child?.avatar) {
+        navigation.replace('JointOnboardingStack');
+        return;
+      }
+      navigation.replace('ParentsOnboardingStack');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSaveAllQuestsLoading, isSaveTranslationsLoading]);

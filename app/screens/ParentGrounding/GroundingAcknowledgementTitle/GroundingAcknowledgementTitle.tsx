@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { SVG_ICONS } from '../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -11,6 +11,8 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './GroundingAcknowledgementTitle.styles';
 import { IGroundingAcknowledgementTitleScreenProps } from './GroundingAcknowledgementTitle.types';
+
+const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
 
 export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledgementTitleScreenProps> =
   ({ navigation, route }) => {
@@ -24,13 +26,10 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
     }, [navigation]);
 
     return (
-      <ImageBackground
-        // TODO: change to the real image
-        source={backgroundImage}
-        style={generalStyles.flex}>
+      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
-            leftIcon={IMAGES.WHITE_BACK_ARROW}
+            leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
           <BottomButtonView

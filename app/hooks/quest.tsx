@@ -4,13 +4,13 @@ import React, { useCallback } from 'react';
 import { TextStyle } from 'react-native';
 import _ from 'lodash';
 
-import { IMAGES } from '../assets';
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
 import { containsFirstPlayer, containsSecondPlayer, Nullable } from '../utils';
 import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
 import { DatoCMSTextVariables } from '../constants/quest';
+import { SVG_ICONS } from '../assets/svg';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
@@ -22,6 +22,9 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   );
   const currentQuestLine = useAppSelector(
     state => state.quest.currentQuestLine,
+  );
+  const isCurrentQuestCompleted = useAppSelector(
+    state => state.quest.isCurrentQuestCompleted,
   );
 
   const navigateNextQuest = useCallback(() => {
@@ -40,6 +43,13 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
           data: { ...nextQuest },
         });
       } else {
+        if (isCurrentQuestCompleted) {
+          dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+          navigation.push('GardenStack', {
+            screen: 'CompletedCharmEnd',
+          });
+        }
+
         if (interruptedQuestLine?.id === currentQuestLine.id) {
           dispatch(questSlice.actions.updateInterruptedQuestLine(null));
         }
@@ -65,6 +75,7 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
     currentQuestLine,
     dispatch,
     interruptedQuestLine?.id,
+    isCurrentQuestCompleted,
     navigation,
     questId,
   ]);
@@ -82,6 +93,9 @@ export const useNavigateNextQuest = () => {
   const interruptedQuestLine = useAppSelector(
     state => state.quest.interruptedQuestLine,
   );
+  const isCurrentQuestCompleted = useAppSelector(
+    state => state.quest.isCurrentQuestCompleted,
+  );
 
   const navigateNextQuest = useCallback(() => {
     if (currentQuestLine) {
@@ -96,6 +110,12 @@ export const useNavigateNextQuest = () => {
           data: { ...nextQuest },
         });
       } else {
+        if (isCurrentQuestCompleted) {
+          dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+          navigation.push('GardenStack', {
+            screen: 'CompletedCharmEnd',
+          });
+        }
         if (interruptedQuestLine?.id === currentQuestLine.id) {
           dispatch(questSlice.actions.updateInterruptedQuestLine(null));
         }
@@ -121,6 +141,7 @@ export const useNavigateNextQuest = () => {
     currentQuestLine,
     dispatch,
     interruptedQuestLine?.id,
+    isCurrentQuestCompleted,
     navigation,
   ]);
 
@@ -181,9 +202,9 @@ export const useParsedJSXTextNickname = ({
   text,
   textHasNickname,
   isChild,
-  preset,
+  preset = 'secondary-text',
   style,
-  variableStyle,
+  variableStyle = generalStyles.primaryOrange,
 }: {
   text: string;
   textHasNickname: boolean;
@@ -332,6 +353,9 @@ export const useRenderQuestHeader = (data: {
 
   const navigation = useNavigation();
 
+  const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+  const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+
   const onRightIconPress = useCallback(() => {
     navigation.navigate('EscapeMenu', {
       data: {
@@ -343,16 +367,16 @@ export const useRenderQuestHeader = (data: {
   if (data.crossHeader) {
     return () => (
       <MainHeader
-        leftIcon={IMAGES.WHITE_BACK_ARROW}
+        leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={goBack}
         // TODO: change to real image & function
-        rightIcon={IMAGES.WHITE_BACK_ARROW}
+        rightIcon={<WhiteCrossIcon />}
         onRightIconPress={onRightIconPress}
       />
     );
   } else {
     return () => (
-      <MainHeader leftIcon={IMAGES.WHITE_BACK_ARROW} onLeftIconPress={goBack} />
+      <MainHeader leftIcon={<WhiteBackArrowIcon />} onLeftIconPress={goBack} />
     );
   }
 };
