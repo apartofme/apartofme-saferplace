@@ -20,6 +20,10 @@ export interface IGeneralStyles {
   boldText: TextStyle;
   primaryOrange: TextStyle;
   brilliantWhite: TextStyle;
+  grey: TextStyle;
+  primaryOrangeCenter: TextStyle;
+  brilliantWhiteCenter: TextStyle;
+  greyCenter: TextStyle;
 }
 
 export const generalStyles = StyleSheet.create<IGeneralStyles>({
@@ -65,5 +69,20 @@ export const generalStyles = StyleSheet.create<IGeneralStyles>({
   },
   brilliantWhite: {
     color: COLORS.BRILLIANT_WHITE,
+  },
+  grey: {
+    color: COLORS.LIGHT_GREY,
+  },
+  primaryOrangeCenter: {
+    color: COLORS.PRIMARY_ORANGE,
+    textAlign: 'center',
+  },
+  brilliantWhiteCenter: {
+    color: COLORS.BRILLIANT_WHITE,
+    textAlign: 'center',
+  },
+  greyCenter: {
+    color: COLORS.LIGHT_GREY,
+    textAlign: 'center',
   },
 });
