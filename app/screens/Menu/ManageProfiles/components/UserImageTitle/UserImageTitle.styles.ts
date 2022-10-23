@@ -1,4 +1,5 @@
 import { ImageStyle, StyleSheet, TextStyle } from 'react-native';
+
 import { COLORS } from '../../../../../themes/colors';
 
 interface IUserImageTitleStyles {

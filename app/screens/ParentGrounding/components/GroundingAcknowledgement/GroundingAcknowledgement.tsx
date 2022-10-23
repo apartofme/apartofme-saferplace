@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   BottomButtonView,
@@ -9,7 +10,6 @@ import {
 } from '../../../../components';
 import { IGroundingAcknowledgementProps } from './GroundingAcknowledgement.types';
 import { styles } from './GroundingAcknowledgement.styles';
-import { useNavigation } from '@react-navigation/native';
 import { generalStyles } from '../../../../utils/styles';
 import { SVG } from '../../../../assets/svg';
 
