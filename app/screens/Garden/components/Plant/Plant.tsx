@@ -1,46 +1,31 @@
 import moment from 'moment';
-import React, { useCallback, useState } from 'react';
-import { Image, ImageSourcePropType } from 'react-native';
+import React, { useMemo } from 'react';
+import { View } from 'react-native';
 
-import { ONE_DAY_SECONDS } from '../../../../constants/time';
-import { IMAGES, PLANTS_IMAGES } from '../../../../assets';
-import { useMount } from '../../../../hooks';
+import { ONE_DAY_SECONDS, TWO_DAY_SECONDS } from '../../../../constants/time';
+import { PLANTS_SVG } from '../../../../assets/images/dummySVG';
 import { IPlantProps } from './Plant.types';
-import { Nullable } from '../../../../utils';
 import { styles } from './Plant.styles';
 
-export const Plant: React.FC<IPlantProps> = ({ plant, additionalStyle }) => {
-  const [plantImage, setPlantImage] =
-    useState<Nullable<ImageSourcePropType>>(null);
-
-  const setCorrectPlantImage = useCallback(
-    (growthSeconds: number) => {
-      if (growthSeconds < ONE_DAY_SECONDS) {
-        setPlantImage(PLANTS_IMAGES[`${plant.image}_START`]);
-      }
-      // TODO: uncomment when added images
-      //   else if (
-      //     growthSeconds >= ONE_DAY_SECONDS &&
-      //     growthSeconds < TWO_DAY_SECONDS
-      //   ) {
-      //     setPlantImage(PLANTS_IMAGES[`${plant.image}_MIDDLE`]);
-      //   } else if (growthSeconds >= TWO_DAY_SECONDS) {
-      //     setPlantImage(PLANTS_IMAGES[`${plant.image}_FINISH`]);
-      //   }
-    },
-    [plant.image],
-  );
-
-  useMount(() => {
+export const Plant: React.FC<IPlantProps> = ({ plant }) => {
+  const PlantImage = useMemo(() => {
     const nowSeconds = moment().format('X');
     const growthSeconds = +nowSeconds - +plant.plantedAt;
-    setCorrectPlantImage(growthSeconds);
-  });
+
+    if (growthSeconds < ONE_DAY_SECONDS) {
+      return PLANTS_SVG[plant.image];
+    }
+
+    if (growthSeconds >= ONE_DAY_SECONDS && growthSeconds < TWO_DAY_SECONDS) {
+      return PLANTS_SVG[plant.image];
+    }
+
+    return PLANTS_SVG[`${plant.image}Grown`];
+  }, [plant.image, plant.plantedAt]);
 
   return (
-    <Image
-      source={plantImage ? plantImage : IMAGES.LOGO}
-      style={[styles.plant, additionalStyle]}
-    />
+    <View style={styles.plantContainer}>
+      <PlantImage />
+    </View>
   );
 };
