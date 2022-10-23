@@ -3,10 +3,9 @@ import React, { useMemo } from 'react';
 import { View } from 'react-native';
 
 import { ONE_DAY_SECONDS, TWO_DAY_SECONDS } from '../../../../constants/time';
+import { PLANTS_SVG } from '../../../../assets/images/dummySVG';
 import { IPlantProps } from './Plant.types';
 import { styles } from './Plant.styles';
-import { PLANTS_SVG } from '../../../../assets/images/dummySVG';
-import { isIOS } from '../../../../utils';
 
 export const Plant: React.FC<IPlantProps> = ({ plant }) => {
   const PlantImage = useMemo(() => {
@@ -26,7 +25,7 @@ export const Plant: React.FC<IPlantProps> = ({ plant }) => {
 
   return (
     <View style={styles.plantContainer}>
-      <PlantImage width={isIOS ? 90 : 140} height={isIOS ? 90 : 140} />
+      <PlantImage />
     </View>
   );
 };

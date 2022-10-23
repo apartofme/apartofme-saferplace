@@ -39,7 +39,7 @@ export const GardenStackNavigator = () => (
       name="Garden"
       component={GardenScreen}
       initialParams={{
-        isPlanting: false,
+        isPlanting: true,
         isFirstTime: false,
         isFirstTimeGarden: false,
       }}
