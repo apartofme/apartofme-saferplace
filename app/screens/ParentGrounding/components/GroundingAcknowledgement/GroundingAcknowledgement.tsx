@@ -1,31 +1,31 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../../components';
+import { BottomButtonView, MainHeader } from '../../../../components';
 import { IGroundingAcknowledgementProps } from './GroundingAcknowledgement.types';
 import { styles } from './GroundingAcknowledgement.styles';
 import { generalStyles } from '../../../../utils/styles';
 import { SVG } from '../../../../assets/svg';
+import { useParsedJSXTextNickname } from '../../../../hooks';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GroundingAcknowledgement: React.FC<IGroundingAcknowledgementProps> =
-  ({ title, buttonTitle, image, backgroundImage, onSubmit }) => {
+  ({ title, buttonTitle, isButtonArrow, backgroundImage, onSubmit }) => {
     const navigation = useNavigation();
-
     const { t } = useTranslation();
 
+    const Title = useParsedJSXTextNickname({
+      text: t(title),
+      textHasNickname: true,
+      preset: 'body-regular',
+      style: styles.title,
+    });
+
     return (
-      <ImageBackground
-        // TODO: change to the real image
-        source={backgroundImage}
-        style={generalStyles.flex}>
+      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
             leftIcon={<WhiteBackArrowIcon />}
@@ -33,10 +33,10 @@ export const GroundingAcknowledgement: React.FC<IGroundingAcknowledgementProps> 
           />
           <BottomButtonView
             buttonTitle={t(buttonTitle)}
+            isArrow={isButtonArrow}
             onSubmit={onSubmit}
             style={styles.container}>
-            <Image source={image} style={styles.image} />
-            <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
+            <Title />
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

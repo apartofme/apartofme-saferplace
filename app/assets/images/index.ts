@@ -15,6 +15,7 @@ export const BACKGROUND_IMAGES = {
   MENU: require('./backgrounds/menuBackground.png'),
   ONBOARDING_DEFAULT: require('./backgrounds/onboardingDefaultBackground.png'),
   ALTERNATIVE_GARDEN_BACKGROUND: require('./backgrounds/alternativeGardenBackground.png'),
+  PARENT_GROUNDING_CLOSE_EYES: require('./backgrounds/parentGroundingCloseEyesBackground.png'),
   PARENT_GROUNDING_DEFAULT: require('./backgrounds/parentGroundingDefaultBackground.png'),
   PARENT_GROUNDING_WELCOME: require('./backgrounds/parentGroundingWelcomeBackground.png'),
   SPLASHSCREEN_ADULT: require('./backgrounds/splashscreenAdultBackground.png'),
