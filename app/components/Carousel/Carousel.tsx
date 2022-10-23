@@ -14,8 +14,13 @@ import {
   ProgressBarItem,
   ImageSubtitle,
   SubtitleImage,
+  Charm,
 } from './components';
-import { CarouselType, CAROUSEL_MODE_CONFIG } from './Carousel.data';
+import {
+  CarouselType,
+  CAROUSEL_MODE_CONFIG_AVATAR,
+  CAROUSEL_MODE_CONFIG_CHARM,
+} from './Carousel.data';
 
 export const Carousel: React.FC<ICarouselProps> = ({
   preset,
@@ -36,7 +41,17 @@ export const Carousel: React.FC<ICarouselProps> = ({
   const mode = useMemo(() => {
     switch (preset) {
       case CarouselType.Avatar:
+      case CarouselType.Charm:
         return 'parallax';
+    }
+  }, [preset]);
+
+  const modeConfig = useMemo(() => {
+    switch (preset) {
+      case CarouselType.Avatar:
+        return CAROUSEL_MODE_CONFIG_AVATAR;
+      case CarouselType.Charm:
+        return CAROUSEL_MODE_CONFIG_CHARM;
     }
   }, [preset]);
 
@@ -61,14 +76,15 @@ export const Carousel: React.FC<ICarouselProps> = ({
 
   const renderCarouselItem = useCallback(
     ({ item, index }: { item: ICarouselItem; index: number }) => {
+      const isActive = index === currentPosition;
       switch (preset) {
         case CarouselType.Avatar:
           return (
-            <Avatar
-              data={item}
-              isActive={index === currentPosition}
-              style={carouselItemStyle}
-            />
+            <Avatar data={item} isActive={isActive} style={carouselItemStyle} />
+          );
+        case CarouselType.Charm:
+          return (
+            <Charm data={item} isActive={isActive} style={carouselItemStyle} />
           );
         case CarouselType.ImageTitleSubtitle:
           return <ImageTitleSubtitle data={item} style={carouselItemStyle} />;
@@ -95,7 +111,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
         data={[...data]}
         defaultIndex={defaultIndex}
         mode={mode}
-        modeConfig={CAROUSEL_MODE_CONFIG}
+        modeConfig={modeConfig}
         renderItem={renderCarouselItem}
         onSnapToItem={setIndex && _.flow(Math.floor, setIndex)}
         onProgressChange={onProgressChange}

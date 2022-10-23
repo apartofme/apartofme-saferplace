@@ -25,3 +25,8 @@ export interface IAvatarCarouselItem {
   id: string;
   image: AvatarsNameType;
 }
+
+export interface ICarouselItemProps extends ViewProps {
+  data: ICarouselItem;
+  isActive?: boolean;
+}

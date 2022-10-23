@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 import { ExtendedText } from '../../../ExtendedText';
-import { IImageTitleSubtitleProps } from './ImageTitleSubtitle.types';
 import { styles } from './ImageTitleSubtitle.styles';
 import { generalStyles } from '../../../../utils/styles';
 import { SvgComponentType } from '../../../../utils/types';
+import { ICarouselItemProps } from '../../Carousel.types';
 
-export const ImageTitleSubtitle: React.FC<IImageTitleSubtitleProps> = ({
+export const ImageTitleSubtitle: React.FC<ICarouselItemProps> = ({
   data,
   style,
 }) => {

@@ -2,13 +2,17 @@ import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 
-import { IAvatarProps } from './Avatar.types';
 import { styles } from './Avatar.styles';
 import { generalStyles } from '../../../../utils/styles';
 import { AVATARS_SVG } from '../../../../assets/svg';
 import { AvatarsNameType } from '../../../../utils/types';
+import { ICarouselItemProps } from '../../Carousel.types';
 
-export const Avatar: React.FC<IAvatarProps> = ({ data, isActive, style }) => {
+export const Avatar: React.FC<ICarouselItemProps> = ({
+  data,
+  isActive,
+  style,
+}) => {
   const Icon = AVATARS_SVG[data.image as AvatarsNameType];
 
   return (
