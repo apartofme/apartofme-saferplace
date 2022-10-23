@@ -165,7 +165,7 @@ function* watchDeleteAccount({ payload: password }: PayloadAction<string>) {
     yield put(elixirSlice.actions.getInitialState());
     yield call(StaticNavigator.navigateTo, 'DeleteAccountSuccess');
   } else {
-    yield put(userSlice.actions.deleteAccountError('change password error'));
+    yield put(userSlice.actions.deleteAccountError('delete account error'));
   }
 }
 

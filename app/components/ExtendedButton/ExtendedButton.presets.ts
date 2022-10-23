@@ -109,10 +109,9 @@ export default StyleSheet.create<IExtendedButtonStyles>({
     borderWidth: 2,
     borderColor: COLORS.PRIMARY_ORANGE,
   },
-  // TODO: change to corret colors
   destructive: {
     ...BASE,
-    backgroundColor: '#EA0000',
+    backgroundColor: COLORS.RED,
     borderTopWidth: 2,
     borderLeftWidth: 1,
     borderRightWidth: 1,
@@ -123,6 +122,6 @@ export default StyleSheet.create<IExtendedButtonStyles>({
     },
     shadowOpacity: 1,
     shadowRadius: 1,
-    shadowColor: '#930404',
+    shadowColor: COLORS.SANGRIA,
   },
 });
