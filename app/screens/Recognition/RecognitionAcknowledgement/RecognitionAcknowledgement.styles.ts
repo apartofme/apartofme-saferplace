@@ -1,5 +1,7 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IElixirCarouselScreenStyles {
   container: ViewStyle;
   image: ImageStyle;
@@ -10,6 +12,7 @@ interface IElixirCarouselScreenStyles {
 export const styles = StyleSheet.create<IElixirCarouselScreenStyles>({
   container: {
     paddingHorizontal: 24,
+    paddingTop: 40,
     alignItems: 'center',
   },
   image: {
@@ -21,10 +24,12 @@ export const styles = StyleSheet.create<IElixirCarouselScreenStyles>({
     textAlign: 'center',
     maxWidth: 295,
     marginTop: 34,
+    color: COLORS.BRILLIANT_WHITE,
   },
   subtitle: {
     textAlign: 'center',
     maxWidth: 295,
     marginTop: 16,
+    color: COLORS.LIGHT_GREY,
   },
 });

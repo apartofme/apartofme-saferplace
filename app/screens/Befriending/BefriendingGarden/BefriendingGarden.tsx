@@ -4,7 +4,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { Image, ImageBackground, TouchableOpacity, View } from 'react-native';
 
 import { useAppSelector, useAppState } from '../../../hooks';
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../assets';
 import { Nullable } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
@@ -45,7 +45,7 @@ export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
 
     return (
       <ImageBackground
-        source={IMAGES.GARDEN_BACKGROUND}
+        source={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
         style={generalStyles.flex}>
         <View style={generalStyles.flex}>
           <TouchableOpacity

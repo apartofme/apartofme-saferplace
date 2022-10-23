@@ -30,9 +30,12 @@ import {
 } from './CharmIllustration';
 import { CircleExclamationMarkIcon } from './CircleExclamationMarkIcon';
 import { CircleQuestionMarkIcon } from './CircleQuestionMarkIcon';
+import { DialogNextButtonIcon } from './DialogNextButtonIcon';
 import { ExitIcon } from './ExitIcon';
 import { GearManIcon } from './GearManIcon';
+import { HappyGuideIcon } from './HappyGuideIcon';
 import { OrangeCirclePlussIcon } from './OrangeCirclePlussIcon';
+import { SadGuideIcon } from './SadGuideIcon';
 import { WhiteBackArrowIcon } from './WhiteBackArrowIcon';
 import { WhiteBinIcon } from './WhiteBinIcon';
 import { WhiteCrossIcon } from './WhiteCrossIcon';
@@ -50,6 +53,7 @@ import { PurpleCheckMarkIcon } from './PurpleCheckMarkIcon';
 import { CrossedOutEyeIcon } from './CrossedOutEyeIcon';
 import { OpenedEyeIcon } from './OpenedEyeIcon';
 import { CompassionateGuideIcon } from './CompassionateGuideIcon';
+import { ConcernedGuideIcon } from './ConcernedGuideIcon';
 
 export const SVG = {
   BirdOnBranchesIcon: BirdOnBranchesIcon,
@@ -58,6 +62,7 @@ export const SVG = {
   CircleExclamationMarkIcon: CircleExclamationMarkIcon,
   CircleQuestionMarkIcon: CircleQuestionMarkIcon,
   CompassionateGuideIcon: CompassionateGuideIcon,
+  ConcernedGuideIcon: ConcernedGuideIcon,
   CrossedOutEyeIcon: CrossedOutEyeIcon,
   ExitIcon: ExitIcon,
   GearManIcon: GearManIcon,
@@ -73,6 +78,11 @@ export const SVG = {
   WhiteGearIcon: WhiteGearIcon,
   WhitePencilIcon: WhitePencilIcon,
   WhiteRightArrowIcon: WhiteRightArrowIcon,
+
+  // TODO: sort
+  DialogNextButtonIcon: DialogNextButtonIcon,
+  HappyGuideIcon: HappyGuideIcon,
+  SadGuideIcon: SadGuideIcon,
 };
 
 export const AVATARS_SVG = {

@@ -1,11 +1,12 @@
 import { IMAGES } from '../assets';
-import { AVATARS_SVG } from '../assets/svg';
+import { AVATARS_SVG, SVG } from '../assets/svg';
 import { IPlantArea } from '../redux/types';
 import { IInterruptedQuestLine } from '../redux/types/questTypes';
 import { Nullable } from '../utils/index';
 
 export interface ISpeech {
   textKey: string;
+  iconKey?: SvgKeys;
 }
 
 export enum UserType {
@@ -50,6 +51,7 @@ export enum ElixirKeysType {
 
 export type AvatarsKeys = keyof typeof AVATARS_SVG;
 export type ImagesKeys = keyof typeof IMAGES;
+export type SvgKeys = keyof typeof SVG;
 export type SvgComponentType = (props: ISvgProps) => JSX.Element;
 
 export interface IElixirProgress {

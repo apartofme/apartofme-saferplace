@@ -1,8 +1,9 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IChooseReasonScreenStyles {
   container: ViewStyle;
-  title: TextStyle;
   subtitle: TextStyle;
   submitButton: ViewStyle;
   skipTitle: TextStyle;
@@ -13,13 +14,12 @@ export const styles = StyleSheet.create<IChooseReasonScreenStyles>({
     flex: 1,
     paddingHorizontal: 24,
     justifyContent: 'space-between',
-  },
-  title: {
-    marginTop: 48,
+    paddingTop: 40,
   },
   subtitle: {
     marginTop: 16,
     marginBottom: 36,
+    color: COLORS.BRILLIANT_WHITE,
   },
   submitButton: {
     marginBottom: 28,

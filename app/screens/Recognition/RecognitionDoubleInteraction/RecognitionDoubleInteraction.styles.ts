@@ -5,7 +5,6 @@ import { COLORS } from '../../../themes/colors';
 export interface IElixirDoubleInteractionSubtitleStyles {
   container: ViewStyle;
   buttonsContainer: ViewStyle;
-  button: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
   square: ViewStyle;
@@ -16,7 +15,7 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
   {
     container: {
       flex: 1,
-      justifyContent: 'flex-end',
+      justifyContent: 'space-between',
     },
     buttonsContainer: {
       flexDirection: 'row',
@@ -25,21 +24,18 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
       paddingBottom: 24,
     },
     // TODO: change to cerrect styles
-    button: {
-      height: 80,
-      width: 80,
-      borderRadius: 99,
-      backgroundColor: COLORS.PRIMARY,
-    },
     title: {
       textAlign: 'center',
-      marginBottom: 60,
+      marginTop: 70,
+      color: COLORS.BRILLIANT_WHITE,
     },
     subtitle: {
       textAlign: 'center',
       marginBottom: 40,
+      maxWidth: 295,
       marginTop: 40,
       marginHorizontal: 40,
+      color: COLORS.BRILLIANT_WHITE,
     },
     // TODO: remove when add animation
     square: {

@@ -9,16 +9,9 @@ import { ISidekickIntroScreenProps } from './SidekickIntro.types';
 
 export const SidekickIntroScreen: React.FC<ISidekickIntroScreenProps> = ({
   navigation,
-  route,
 }) => {
-  const isStart = route.params?.isStart;
-
-  const goToSignUpNickname = useCallback(() => {
+  const onSubmit = useCallback(() => {
     navigation.navigate('SignUpNickname');
-  }, [navigation]);
-
-  const onSabmit = useCallback(() => {
-    navigation.navigate('RecognitionStack');
   }, [navigation]);
 
   return (
@@ -26,17 +19,7 @@ export const SidekickIntroScreen: React.FC<ISidekickIntroScreenProps> = ({
       <DialogView
         backgroundImage={IMAGES.LOGO}
         dialog={INTRO_DIALOG}
-        // TODO: change _.noop to the real function
-        onSubmit={onSabmit}
-        navigateBetween={
-          isStart
-            ? {
-                index: 6,
-                onPress: goToSignUpNickname,
-              }
-            : null
-        }
-        initialIdx={isStart ? 0 : 7}
+        onSubmit={onSubmit}
       />
     </SafeAreaView>
   );

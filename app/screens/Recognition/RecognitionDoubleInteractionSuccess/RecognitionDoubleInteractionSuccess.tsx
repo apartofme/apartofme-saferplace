@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, SafeAreaView, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES, IMAGES } from '../../../assets';
 import { BottomButtonView } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { GARDEN_TRANSSITION_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
@@ -23,14 +23,19 @@ export const RecognitionDoubleInteractionSuccessScreen: React.FC<IRecognitionDou
     }, [navigation]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <BottomButtonView
-          buttonTitle={t('buttons.ok').toUpperCase()}
-          onSubmit={onSubmitPress}>
-          <View style={styles.container}>
-            <Image source={IMAGES.LOGO} style={styles.image} />
-          </View>
-        </BottomButtonView>
-      </SafeAreaView>
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <BottomButtonView
+            buttonTitle={t('buttons.next')}
+            onSubmit={onSubmitPress}
+            isArrow>
+            <View style={styles.container}>
+              <Image source={IMAGES.LOGO} style={styles.image} />
+            </View>
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

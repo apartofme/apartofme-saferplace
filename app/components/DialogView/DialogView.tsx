@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 
@@ -6,6 +6,9 @@ import { getKeyFromLocalizationString } from '../../utils';
 import { ExtendedText } from '../ExtendedText';
 import { IDialogViewProps } from './DialogView.types';
 import { styles } from './DialogView.styles';
+import { SVG } from '../../assets/svg';
+
+const DialogNextButtonIcon = SVG.DialogNextButtonIcon;
 
 export const DialogView: React.FC<IDialogViewProps> = ({
   backgroundImage,
@@ -21,9 +24,15 @@ export const DialogView: React.FC<IDialogViewProps> = ({
     setCurrentSpeechIdx(initialIdx);
   }, [initialIdx]);
 
-  const getCurrentSpeech = useCallback(() => {
-    return dialog[currentSpeechIdx];
-  }, [currentSpeechIdx, dialog]);
+  const currentSpeech = useMemo(
+    () => dialog[currentSpeechIdx],
+    [currentSpeechIdx, dialog],
+  );
+
+  const Icon = useMemo(
+    () => (currentSpeech.iconKey ? SVG[currentSpeech.iconKey] : null),
+    [currentSpeech.iconKey],
+  );
 
   const goToNextSpeech = useCallback(() => {
     setCurrentSpeechIdx(currentSpeechIdx + 1);
@@ -48,17 +57,20 @@ export const DialogView: React.FC<IDialogViewProps> = ({
 
   return (
     <ImageBackground source={backgroundImage} style={styles.container}>
+      {Icon && <Icon />}
+
       <View style={styles.dialogContainer}>
         <ExtendedText
-          key={getKeyFromLocalizationString(getCurrentSpeech().textKey)}
-          preset="heading">
-          {t(getCurrentSpeech().textKey)}
+          key={getKeyFromLocalizationString(currentSpeech.textKey)}
+          preset="heading"
+          style={styles.title}>
+          {t(currentSpeech.textKey)}
         </ExtendedText>
       </View>
-      <TouchableOpacity
-        onPress={getCorrectOnPress}
-        style={styles.roundButton}
-      />
+
+      <TouchableOpacity onPress={getCorrectOnPress} style={styles.roundButton}>
+        <DialogNextButtonIcon />
+      </TouchableOpacity>
     </ImageBackground>
   );
 };
