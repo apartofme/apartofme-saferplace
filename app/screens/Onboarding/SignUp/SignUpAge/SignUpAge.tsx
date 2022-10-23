@@ -15,9 +15,9 @@ import { cacheSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAgeScreenProps } from './SignUpAge.types';
 import { styles } from './SignUpAge.styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
   navigation,

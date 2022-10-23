@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 import {
   ExtendedButton,
   ExtendedText,
@@ -22,7 +22,7 @@ import { QUESTION_CARD } from './QuestionCard.data';
 import { styles } from './QuestionCard.styles';
 import { IQuestionCardScreenProps } from './QuestionCard.types';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
   navigation,

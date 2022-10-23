@@ -5,7 +5,6 @@ import { COLORS } from '../../../themes/colors';
 
 export interface IGardenScreenStyles {
   avatarContainer: ViewStyle;
-  avatar: ImageStyle;
   bookContainer: ViewStyle;
   book: ImageStyle;
   plantArea: ViewStyle;
@@ -21,10 +20,6 @@ export const styles = StyleSheet.create<IGardenScreenStyles>({
     right: 20,
     top: 40,
     zIndex: 100,
-  },
-  avatar: {
-    height: 80,
-    width: 80,
     borderRadius: 100,
   },
   zIndex10: {

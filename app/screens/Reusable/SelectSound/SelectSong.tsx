@@ -20,10 +20,10 @@ import {
   useNavigatePrevQuest,
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
-const WhiteCrossIcon = SVG_ICONS.WhiteCrossIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const WhiteCrossIcon = SVG.WhiteCrossIcon;
 
 export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   navigation,

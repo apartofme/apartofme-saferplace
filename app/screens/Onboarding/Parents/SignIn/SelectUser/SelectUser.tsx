@@ -10,9 +10,9 @@ import {
 } from '../../../../../components';
 import { generalStyles } from '../../../../../utils/styles';
 import { ISelectUserScreenProps } from './SelectUser.types';
-import { SVG_ICONS } from '../../../../../assets/svg';
+import { SVG } from '../../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
   navigation,

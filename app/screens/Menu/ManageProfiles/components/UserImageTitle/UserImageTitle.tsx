@@ -1,23 +1,20 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 
 import { IUserImageTitleProps } from './UserImageTitle.types';
 import { styles } from './UserImageTitle.styles';
-import { Image, TouchableOpacity } from 'react-native';
-import { IMAGES } from '../../../../../assets';
 import { ExtendedText } from '../../../../../components';
+import { AVATARS_SVG } from '../../../../../assets/svg';
 
 export const UserImageTitle: React.FC<IUserImageTitleProps> = ({
   image,
   title,
   onPress,
 }) => {
+  const AvatarIcon = AVATARS_SVG[image];
   return (
     <TouchableOpacity onPress={onPress}>
-      <Image
-        // TODO: change to the real image
-        source={IMAGES[image]}
-        style={styles.image}
-      />
+      <AvatarIcon width={140} height={140} />
       <ExtendedText style={styles.userName}>{title}</ExtendedText>
     </TouchableOpacity>
   );

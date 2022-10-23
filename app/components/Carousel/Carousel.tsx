@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -11,7 +11,6 @@ import { styles } from './Carousel.styles';
 import {
   Avatar,
   ImageTitleSubtitle,
-  OnlyImage,
   ProgressBarItem,
   ImageSubtitle,
   SubtitleImage,
@@ -21,6 +20,7 @@ import { CarouselType, CAROUSEL_MODE_CONFIG } from './Carousel.data';
 export const Carousel: React.FC<ICarouselProps> = ({
   preset,
   data,
+  defaultIndex = 0,
   setIndex,
   style,
   carouselStyle,
@@ -29,9 +29,12 @@ export const Carousel: React.FC<ICarouselProps> = ({
   const [progressValue, setProgressValue] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(0);
 
+  useEffect(() => {
+    setCurrentPosition(defaultIndex);
+  }, [defaultIndex]);
+
   const mode = useMemo(() => {
     switch (preset) {
-      case CarouselType.OnlyImage:
       case CarouselType.Avatar:
         return 'parallax';
     }
@@ -71,8 +74,6 @@ export const Carousel: React.FC<ICarouselProps> = ({
           return <ImageTitleSubtitle data={item} style={carouselItemStyle} />;
         case CarouselType.SubtitleImage:
           return <SubtitleImage data={item} style={carouselItemStyle} />;
-        case CarouselType.OnlyImage:
-          return <OnlyImage data={item} style={carouselItemStyle} />;
         case CarouselType.ImageSubtitle:
           return <ImageSubtitle data={item} style={carouselItemStyle} />;
         default:
@@ -92,7 +93,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
         loop={false}
         width={WINDOW_WIDTH}
         data={[...data]}
-        //* Set undefind for default mode
+        defaultIndex={defaultIndex}
         mode={mode}
         modeConfig={CAROUSEL_MODE_CONFIG}
         renderItem={renderCarouselItem}

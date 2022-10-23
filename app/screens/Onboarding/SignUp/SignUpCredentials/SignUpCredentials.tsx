@@ -25,9 +25,9 @@ import { ISignUpCredentialsScreenProps } from './SignUpCredentials.types';
 import { styles } from './SignUpCredentials.styles';
 import { SignUpCredentioalsValidationSchema } from './SignUpCredentials.validation';
 import { COLORS } from '../../../../themes/colors';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
   ({ navigation }) => {
@@ -55,7 +55,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+        source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader

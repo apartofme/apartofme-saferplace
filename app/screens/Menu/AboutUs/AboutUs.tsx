@@ -2,14 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IAboutUsScreenProps } from './AboutUs.types';
 import { styles } from './AboutUs.styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const AboutUsScreen: React.FC<IAboutUsScreenProps> = ({
   navigation,
@@ -17,9 +17,7 @@ export const AboutUsScreen: React.FC<IAboutUsScreenProps> = ({
   const { t } = useTranslation();
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
-      style={generalStyles.flex}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}

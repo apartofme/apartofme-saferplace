@@ -1,27 +1,29 @@
+import { SVG } from '../../../../assets/svg';
 import { ICarouselItem } from '../../../../components';
 
 export const CHARMS_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   {
     id: '1',
-    image: 'MUSHROOM_MAN_IN_TREES',
+    image: SVG.GuideInTreesIcon,
     titleKey: 'screens.onboarding.onboard_carousel.first.title',
     subtitleKey: 'screens.onboarding.onboard_carousel.first.description',
   },
   {
     id: '2',
-    image: 'BIRD_ON_BRANCHES',
+    image: SVG.BirdOnBranchesIcon,
     titleKey: 'screens.onboarding.onboard_carousel.second.title',
     subtitleKey: 'screens.onboarding.onboard_carousel.second.description',
   },
   {
     id: '3',
-    image: 'HAPPY_TREE_ON_GRASS',
+    image: SVG.HappyNadiyaTreeIcon,
     titleKey: 'screens.onboarding.onboard_carousel.third.title',
     subtitleKey: 'screens.onboarding.onboard_carousel.third.description',
   },
   {
     id: '4',
-    image: 'BOOK_ON_LEAVES',
+    // TODO: change to correct image
+    image: SVG.BirdOnBranchesIcon,
     titleKey: 'screens.onboarding.onboard_carousel.fourth.title',
     subtitleKey: 'screens.onboarding.onboard_carousel.fourth.description',
   },

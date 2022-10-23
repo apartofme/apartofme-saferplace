@@ -13,10 +13,10 @@ import {
   FURTHER_SUPPORT_MENU_ITEMS,
   IFurtherSupportMenuItem,
 } from './FurtherSupport.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
   navigation,
@@ -40,9 +40,7 @@ export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
   );
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
-      style={generalStyles.flex}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}

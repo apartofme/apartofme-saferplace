@@ -10,10 +10,10 @@ import { styles } from './HelpSupport.styles';
 import { useSpecificKeyExtractor } from '../../../hooks';
 import { IButtonsMenuItem } from '../components/MenuButton/MenuButton.data';
 import { HELP_SUPPORT_MENU_ITEMS } from './HelpSupport.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const HelpSupportScreen: React.FC<IHelpSupportScreenProps> = ({
   navigation,
@@ -40,9 +40,7 @@ export const HelpSupportScreen: React.FC<IHelpSupportScreenProps> = ({
   );
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
-      style={generalStyles.flex}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}

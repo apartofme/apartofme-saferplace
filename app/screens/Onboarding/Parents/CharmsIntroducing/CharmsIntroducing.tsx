@@ -15,9 +15,9 @@ import {
 } from './CharmsIntroducing.data';
 import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.types';
 import { styles } from './CharmsIntroducing.styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
   ({ navigation }) => {

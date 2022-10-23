@@ -17,9 +17,9 @@ import { useAppDispatch } from '../../../../../hooks';
 import { userSlice } from '../../../../../redux/slices';
 import { HIT_SLOP } from './Lodin.data';
 import { SignInValidationSchema } from './Login.validation';
-import { SVG_ICONS } from '../../../../../assets/svg';
+import { SVG } from '../../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();

@@ -11,9 +11,9 @@ import {
 import { IGroundingAcknowledgementTitleProps } from './GroundingAcknowledgementTitle.types';
 import { styles } from './GroundingAcknowledgementTitle.styles';
 import { generalStyles } from '../../../../utils/styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTitleProps> =
   ({

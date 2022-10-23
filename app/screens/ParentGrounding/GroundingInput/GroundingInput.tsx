@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, View } from 'react-native';
 
 import { IMAGES } from '../../../assets';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import {
   BottomButtonView,
   ExtendedText,
@@ -18,7 +18,7 @@ import { GROUNDING_RADIO_BUTTON_ITEMS } from './GroundingInput.data';
 import { styles } from './GroundingInput.styles';
 import { IGroundingStartScreenProps } from './GroundingInput.types';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
   navigation,

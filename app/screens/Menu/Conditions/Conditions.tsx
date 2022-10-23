@@ -6,10 +6,10 @@ import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IConditionsScreenProps } from './Conditions.types';
 import { styles } from './Conditions.styles';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ConditionsScreen: React.FC<IConditionsScreenProps> = ({
   navigation,
@@ -20,9 +20,7 @@ export const ConditionsScreen: React.FC<IConditionsScreenProps> = ({
   const { t } = useTranslation();
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
-      style={generalStyles.flex}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}

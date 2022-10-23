@@ -24,7 +24,7 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+        source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
         style={generalStyles.flex}>
         <SafeAreaView edges={['bottom']} style={generalStyles.flex}>
           <BottomButtonView

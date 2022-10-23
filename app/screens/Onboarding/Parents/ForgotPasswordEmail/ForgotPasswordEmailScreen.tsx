@@ -13,9 +13,9 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IForgotPasswordEmailScreenProps } from './ForgotPasswordEmailScreen.types';
 import { styles } from './ForgotPasswordEmailScreen.styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps> =
   ({ navigation }) => {

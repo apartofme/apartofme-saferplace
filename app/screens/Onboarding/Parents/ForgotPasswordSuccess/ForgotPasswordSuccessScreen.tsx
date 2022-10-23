@@ -11,9 +11,9 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IForgotPasswordSuccessScreenProps } from './ForgotPasswordSuccessScreen.types';
 import { styles } from './ForgotPasswordSuccessScreen.styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenProps> =
   ({ navigation }) => {

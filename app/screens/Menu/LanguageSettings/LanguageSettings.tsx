@@ -16,10 +16,10 @@ import i18n from '../../../services/localization';
 import { ILanguageSettingsScreenProps } from './LanguageSettings.types';
 import { styles } from './LanguageSettings.styles';
 import { generalStyles } from '../../../utils/styles';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
   navigation,
@@ -40,9 +40,7 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
   }, [disptach, selectedLanguage]);
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
-      style={generalStyles.flex}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <SafeAreaView style={styles.container}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}

@@ -16,9 +16,9 @@ import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.types';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { styles } from './SignUpAvatar.styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   navigation,
@@ -40,12 +40,16 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     navigation.navigate('SignUpSuccess');
     if (isChild) {
       dispatch(
-        cacheSlice.actions.saveSignUpDataChild({ avatar: `${avatar}Circle` }),
+        cacheSlice.actions.saveSignUpDataChild({
+          avatar: `Circle${avatar}`,
+        }),
       );
       dispatch(userSlice.actions.saveChild());
     } else {
       dispatch(
-        cacheSlice.actions.saveSignUpDataParent({ avatar: `${avatar}Circle` }),
+        cacheSlice.actions.saveSignUpDataParent({
+          avatar: `Circle${avatar}`,
+        }),
       );
       dispatch(userSlice.actions.registerParent());
     }
@@ -61,7 +65,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.NO_DETAIL_DEFAULT}
+      source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader

@@ -1,10 +1,10 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../../../themes/colors';
 
 interface IWelcomeParentScreenStyles {
   container: ViewStyle;
-  image: ImageStyle;
+  imageContainer: ViewStyle;
   signUpButton: ViewStyle;
   whiteColor: TextStyle;
 }
@@ -15,8 +15,8 @@ export const styles = StyleSheet.create<IWelcomeParentScreenStyles>({
     paddingTop: 72,
     paddingHorizontal: 24,
   },
-  image: {
-    marginVertical: 16,
+  imageContainer: {
+    paddingVertical: 16,
   },
   signUpButton: {
     marginBottom: 24,

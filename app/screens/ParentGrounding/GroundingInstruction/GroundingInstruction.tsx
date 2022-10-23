@@ -14,9 +14,9 @@ import {
   IGroundingInstructionItem,
   INSTRUCTION_LIST,
 } from './GroundingInstruction.data';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   navigation,

@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, View } from 'react-native';
+import { View } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
-import { ImagesKeys } from '../../../../utils/types';
+import { SvgComponentType } from '../../../../utils/types';
 import { ExtendedText } from '../../../ExtendedText';
 import { styles } from './ImageSubtitle.styles';
 import { IImageSubtitleProps } from './ImageSubtitle.types';
@@ -13,11 +12,11 @@ export const ImageSubtitle: React.FC<IImageSubtitleProps> = ({
   style,
 }) => {
   const { t } = useTranslation();
+  const Icon = data.image as SvgComponentType;
+
   return (
     <View style={style}>
-      {data.image && (
-        <Image source={IMAGES[data.image as ImagesKeys]} style={styles.image} />
-      )}
+      {data.image && <Icon />}
       {data.subtitleKey && (
         <ExtendedText style={styles.subtitle}>
           {t(data.subtitleKey)}

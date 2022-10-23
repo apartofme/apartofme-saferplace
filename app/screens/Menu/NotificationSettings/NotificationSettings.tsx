@@ -10,10 +10,10 @@ import { MenuSwitchRow } from '../components';
 import { INotificationSettingsScreenProps } from './NotificationSettings.types';
 import { styles } from './NotificationSettings.styles';
 import { openDeviceNotificationSettings } from '../../../services/firebase';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenProps> =
   ({ navigation }) => {
@@ -40,7 +40,7 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader

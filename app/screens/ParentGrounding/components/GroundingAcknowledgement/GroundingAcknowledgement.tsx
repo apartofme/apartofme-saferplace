@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   BottomButtonView,
@@ -9,11 +10,10 @@ import {
 } from '../../../../components';
 import { IGroundingAcknowledgementProps } from './GroundingAcknowledgement.types';
 import { styles } from './GroundingAcknowledgement.styles';
-import { useNavigation } from '@react-navigation/native';
 import { generalStyles } from '../../../../utils/styles';
-import { SVG_ICONS } from '../../../../assets/svg';
+import { SVG } from '../../../../assets/svg';
 
-const WhiteBackArrowIcon = SVG_ICONS.WhiteBackArrowIcon;
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GroundingAcknowledgement: React.FC<IGroundingAcknowledgementProps> =
   ({ title, buttonTitle, image, backgroundImage, onSubmit }) => {

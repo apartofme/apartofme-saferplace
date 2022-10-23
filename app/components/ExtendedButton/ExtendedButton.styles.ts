@@ -1,8 +1,8 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 
 interface IExrendedButtonStyles {
   container: ViewStyle;
-  image: ImageStyle;
+  imageContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IExrendedButtonStyles>({
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create<IExrendedButtonStyles>({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: {
+  imageContainer: {
     marginLeft: 20,
   },
 });
