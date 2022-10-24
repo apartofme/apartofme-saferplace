@@ -7,6 +7,7 @@ interface INotificationSettingsStyles {
   subtitle: TextStyle;
   button: ViewStyle;
   menuSwitchContainer: ViewStyle;
+  systemSettingsContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<INotificationSettingsStyles>({
@@ -30,5 +31,8 @@ export const styles = StyleSheet.create<INotificationSettingsStyles>({
     paddingBottom: 16,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.LIGHT_GREY,
+  },
+  systemSettingsContainer: {
+    marginBottom: -3,
   },
 });

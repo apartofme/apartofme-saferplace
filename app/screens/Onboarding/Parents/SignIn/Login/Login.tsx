@@ -15,9 +15,9 @@ import { ILoginScreenProps } from './Login.types';
 import { generalStyles } from '../../../../../utils/styles';
 import { useAppDispatch } from '../../../../../hooks';
 import { userSlice } from '../../../../../redux/slices';
-import { HIT_SLOP } from './Lodin.data';
 import { SignInValidationSchema } from './Login.validation';
 import { SVG } from '../../../../../assets/svg';
+import { HIT_SLOP } from '../../../../../constants/hitSlop';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 

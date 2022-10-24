@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, Pressable, SafeAreaView, View } from 'react-native';
 
 import { ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -12,6 +12,7 @@ import { styles } from './NotificationSettings.styles';
 import { openDeviceNotificationSettings } from '../../../services/firebase';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { HIT_SLOP } from '../../../constants/hitSlop';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -62,13 +63,21 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
               />
               <ExtendedText style={styles.subtitle} preset="secondary-text">
                 {t('screens.menu.notification_settings.description')}
-                <ExtendedText
-                  preset="secondary-text"
-                  style={[generalStyles.boldText, generalStyles.primaryOrange]}
-                  onPress={openDeviceNotificationSettings}>
-                  {t('labels.system_settings')}
-                </ExtendedText>
+                <Pressable
+                  onPress={openDeviceNotificationSettings}
+                  style={styles.systemSettingsContainer}
+                  hitSlop={HIT_SLOP}>
+                  <ExtendedText
+                    preset="secondary-text"
+                    style={[
+                      generalStyles.boldText,
+                      generalStyles.primaryOrange,
+                    ]}>
+                    {t('labels.system_settings')}
+                  </ExtendedText>
+                </Pressable>
               </ExtendedText>
+              <Pressable />
             </View>
           </View>
         </SafeAreaView>
