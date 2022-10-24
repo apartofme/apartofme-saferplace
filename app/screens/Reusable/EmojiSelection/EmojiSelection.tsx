@@ -3,11 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import moment from 'moment';
 
-import {
-  BottomButtonView,
-  EmojiSlider,
-  ExtendedText,
-} from '../../../components';
+import { EmojiButtons } from '../../../components';
 import {
   useAppDispatch,
   useNavigateNextQuest,
@@ -41,7 +37,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
     if (title.search('child') !== -1) {
       dispatch(
         questSlice.actions.saveDailyCheck({
-          [currentDate]: emoji.split('.')[2],
+          [currentDate]: emoji,
         }),
       );
     }
@@ -54,8 +50,6 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
     style: styles.title,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
   });
 
   const Header = useRenderQuestHeader({
@@ -72,14 +66,12 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Header />
-        <BottomButtonView
+        <Title />
+        <EmojiButtons
           buttonTitle={buttonTitle ?? t('buttons.select')}
           onSubmit={onSubmit}
-          style={styles.container}>
-          <Title />
-          <ExtendedText>{t(emoji)}</ExtendedText>
-          <EmojiSlider setEmojiKey={setEmoji} />
-        </BottomButtonView>
+          setEmojiKey={setEmoji}
+        />
       </SafeAreaView>
     </ImageBackground>
   );

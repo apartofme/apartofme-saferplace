@@ -27,7 +27,9 @@ export enum MixingElixirPhaseType {
 }
 
 export enum PlantsType {
-  SpourCompassion = 'SPOUR_COMPASSION',
+  Calm = 'calm',
+  Compassion = 'compassion',
+  Courage = 'courage',
 }
 
 export enum AvatarsNameType {
@@ -46,7 +48,7 @@ export enum ElixirKeysType {
   ElixirOneHalf = 'ElixirOneHalfIcon',
   ElixirTwo = 'ElixirTwoIcon',
   ElixirTwoHalf = 'ElixirTwoHalfIcon',
-  ElixirThree = 'ElixirThreeICon',
+  ElixirThree = 'ElixirThreeIcon',
 }
 
 export type AvatarsKeys = keyof typeof AVATARS_SVG;

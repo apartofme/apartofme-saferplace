@@ -7,6 +7,7 @@ export interface IGardenScreenStyles {
   avatarContainer: ViewStyle;
   bookContainer: ViewStyle;
   book: ImageStyle;
+  modal: ViewStyle;
   plantArea: ViewStyle;
   title: TextStyle;
   titleContainer: ViewStyle;
@@ -38,6 +39,9 @@ export const styles = StyleSheet.create<IGardenScreenStyles>({
   book: {
     height: 91,
     width: 100,
+  },
+  modal: {
+    margin: 0,
   },
   titleContainer: {
     borderWidth: 2,

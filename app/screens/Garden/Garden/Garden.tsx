@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Modal from 'react-native-modal';
 
 import {
   useAppDispatch,
@@ -28,6 +29,7 @@ import { styles } from './Garden.styles';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { AVATARS_SVG } from '../../../assets/svg';
+import { CharmBookMenuScreen, CharmBookMenuType } from '../CharmBookMenu';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
@@ -38,6 +40,10 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const { t } = useTranslation();
   const appStatus = useAppState();
   const dispatch = useAppDispatch();
+  const [isModal, setIsModal] = useState(false);
+  const [charmBookType, setCharmBookType] = useState(
+    CharmBookMenuType.NoneCharm,
+  );
 
   const isFocused = useIsFocused();
 
@@ -150,10 +156,24 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     t,
   ]);
 
+  const setModalStatus = useCallback(() => {
+    setIsModal(!isModal);
+  }, [isModal]);
+
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
+      source={BACKGROUND_IMAGES.GARDEN}
       style={generalStyles.flex}>
+      <Modal
+        isVisible={isModal}
+        animationIn="fadeIn"
+        animationOut="fadeOut"
+        style={styles.modal}>
+        <CharmBookMenuScreen
+          setModalStatus={setModalStatus}
+          type={charmBookType}
+        />
+      </Modal>
       <View style={generalStyles.flex}>
         <TouchableOpacity
           onPress={onAvatarPress}
@@ -172,7 +192,11 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       </View>
       <View>
         {title}
-        <Book isDisabled={isPlanting || isFirstTimeGarden} />
+        <Book
+          isDisabled={isPlanting || isFirstTimeGarden}
+          setModalStatus={setModalStatus}
+          setType={setCharmBookType}
+        />
       </View>
     </ImageBackground>
   );

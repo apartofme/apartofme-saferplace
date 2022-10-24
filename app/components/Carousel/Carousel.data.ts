@@ -3,15 +3,21 @@ import { IAvatarCarouselItem } from './Carousel.types';
 
 export enum CarouselType {
   Avatar = 'avatar',
+  Charm = 'charm',
   SubtitleImage = 'SubtitleImage',
   ImageTitleSubtitle = 'imageTitleSubtitle',
   ImageSubtitle = 'imageSubtitle',
 }
 
-export const CAROUSEL_MODE_CONFIG = {
+export const CAROUSEL_MODE_CONFIG_AVATAR = {
   parallaxScrollingScale: 1,
   parallaxScrollingOffset: 190,
   parallaxAdjacentItemScale: 0.8,
+};
+
+export const CAROUSEL_MODE_CONFIG_CHARM = {
+  parallaxScrollingScale: 1,
+  parallaxScrollingOffset: 110,
 };
 
 export const AVATAR_CAROUSEL: ReadonlyArray<IAvatarCarouselItem> = [

@@ -13,7 +13,7 @@ import { useAppSelector } from '../../../../hooks';
 import { IPlant } from '../../../../models/IPlant';
 import { generalStyles } from '../../../../utils/styles';
 import { MixingElixirPhaseType } from '../../../../utils/types';
-import { Plant } from '../Plant/Plant';
+import { Plant } from '../Plant';
 import { styles } from './PlantArea.styles';
 import { IPlantAreaProps, PlantAreaType } from './PlantArea.types';
 
@@ -48,7 +48,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
     (
       currentPlantArea: PlantAreaType,
       currentPlant: IPlant | null,
-      additionalStyles: ViewStyle[] | ViewStyle,
+      additionalStyles?: ViewStyle,
     ) => {
       if (isPlanting) {
         return (
@@ -56,6 +56,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
             style={[
               styles.plantArea,
               additionalStyles,
+              !currentPlant && styles.plantAreaBorder,
               activePlantArea === currentPlantArea && styles.activePlantArea,
             ]}
             disabled={!!currentPlant}
@@ -83,50 +84,34 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
       <TouchableOpacity disabled={!isBefriending} onPress={onTreePress}>
         <Image source={IMAGES.TREE} style={styles.tree} />
       </TouchableOpacity>
-      <View style={styles.plantingPlase}>
+      <View style={styles.plantingPlaсe}>
         <View style={generalStyles.row}>
-          <View style={styles.emptyPlantArea} />
           {/* //* TopLeft plant area */}
-          {renderPlantArea(PlantAreaType.TopLeft, plantArea?.TopLeft, [
-            styles.plantAreaBorder,
-            styles.plantAreaTop,
-          ])}
+          {renderPlantArea(PlantAreaType.TopLeft, plantArea?.TopLeft)}
 
           <View style={styles.emptyPlantArea} />
+
+          {/* //* TopRight plant area */}
+          {renderPlantArea(PlantAreaType.TopRight, plantArea?.TopRight)}
         </View>
 
-        <View style={generalStyles.row}>
-          {/* //* BottomLeft plant area */}
-          {renderPlantArea(
-            PlantAreaType.BottomLeft,
-            plantArea?.BottomLeft,
-            styles.plantAreaBorder,
-          )}
-
+        <View style={[generalStyles.row, generalStyles.jcCenter]}>
           {/* //* Center plant area */}
           {renderPlantArea(
             PlantAreaType.Center,
             plantArea?.Center,
             styles.plantAreaCenter,
           )}
-
-          {/* //* TopRight plant area */}
-          {renderPlantArea(
-            PlantAreaType.TopRight,
-            plantArea?.TopRight,
-            styles.plantAreaBorder,
-          )}
         </View>
+
         <View style={generalStyles.row}>
+          {/* //* BottomLeft plant area */}
+          {renderPlantArea(PlantAreaType.BottomLeft, plantArea?.BottomLeft)}
+
           <View style={styles.emptyPlantArea} />
 
           {/* //* BottomRight plant area */}
-          {renderPlantArea(PlantAreaType.BottomRight, plantArea?.BottomRight, [
-            styles.plantAreaBorder,
-            styles.plantAreaBottom,
-          ])}
-
-          <View style={styles.emptyPlantArea} />
+          {renderPlantArea(PlantAreaType.BottomRight, plantArea?.BottomRight)}
         </View>
       </View>
     </View>
