@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../../themes/colors';
+
 interface ILoginScreenStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -16,6 +18,7 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
     paddingHorizontal: 24,
   },
   title: {
+    color: COLORS.BRILLIANT_WHITE,
     paddingBottom: 68,
   },
   mb24: {
@@ -31,6 +34,7 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
     paddingBottom: 24,
   },
   signupButton: {
+    color: COLORS.PRIMARY_ORANGE,
     marginLeft: 4,
   },
 });

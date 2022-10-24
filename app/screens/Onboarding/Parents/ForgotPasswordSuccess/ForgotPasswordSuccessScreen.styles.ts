@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 interface IForgotPasswordSuccessScreenStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -11,13 +13,16 @@ export const styles = StyleSheet.create<IForgotPasswordSuccessScreenStyles>({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 40,
+    paddingBottom: 30,
   },
   title: {
-    marginTop: 47,
+    color: COLORS.BRILLIANT_WHITE,
+    marginTop: 56,
     marginBottom: 24,
     textAlign: 'center',
   },
   subtitle: {
+    color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
   },
 });

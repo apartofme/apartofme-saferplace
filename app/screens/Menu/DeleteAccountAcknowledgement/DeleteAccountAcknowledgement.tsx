@@ -11,8 +11,11 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IDeleteAccountAcknowledgementScreenProps } from './DeleteAccountAcknowledgement.types';
 import { styles } from './DeleteAccountAcknowledgement.styles';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { useAppSelector } from '../../../hooks';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const CelebrationGuideIcon = SVG.CelebrationGuideIcon;
 
 export const DeleteAccountAcknowledgementScreen: React.FC<IDeleteAccountAcknowledgementScreenProps> =
   ({ navigation }) => {
@@ -22,14 +25,11 @@ export const DeleteAccountAcknowledgementScreen: React.FC<IDeleteAccountAcknowle
       navigation.navigate('DeleteAccount');
     }, [navigation]);
 
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-    const CelebrationGuideIcon = SVG_ICONS.celebrationGuideIcon;
-
     const nickname = useAppSelector(state => state.user.parent?.nickname);
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader

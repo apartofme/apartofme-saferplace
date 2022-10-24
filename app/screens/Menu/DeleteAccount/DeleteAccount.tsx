@@ -17,8 +17,10 @@ import { styles } from './DeleteAccount.styles';
 import { useAppDispatch } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
 import { DeleteAccountValidationSchema } from './DeleteAccount.validation';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
   navigation,
@@ -34,12 +36,8 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
     [dispatch],
   );
 
-  const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.MENU_BACKGROUND}
-      style={generalStyles.flex}>
+    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Formik
           initialValues={{

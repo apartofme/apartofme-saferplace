@@ -7,7 +7,6 @@ import {
   INITIAL_PLANT_AREA,
   INITIAL_QUESTS,
 } from '../../constants/progress';
-import { IUser } from '../../models/IUser';
 import { IShortSignUpData, ISignUpData } from '../../redux/types';
 import {
   IElixirProgress,

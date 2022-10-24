@@ -1,5 +1,11 @@
-import React, { useMemo } from 'react';
-import { TextInput, TextInputProps, View } from 'react-native';
+import React, { useCallback, useMemo, useState } from 'react';
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputFocusEventData,
+  TextInputProps,
+  View,
+} from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
 import {
@@ -18,6 +24,8 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
   error,
   errorStyle,
   style,
+  onFocus: onFocusCallback,
+  onBlur: onBlurCallback,
   ...rest
 }) => {
   const initialInputProps = useMemo(
@@ -37,6 +45,24 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
     }
   }, [type]);
 
+  const [isFocus, setIsFocus] = useState(false);
+
+  const onFocus = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      setIsFocus(true);
+      onFocusCallback?.(e);
+    },
+    [onFocusCallback],
+  );
+
+  const onBlur = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      setIsFocus(false);
+      onBlurCallback?.(e);
+    },
+    [onBlurCallback],
+  );
+
   return (
     <View>
       {label && (
@@ -45,8 +71,10 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
       <InputComponent
         {...initialInputProps}
         {...rest}
-        style={[styles.input, style]}
+        style={[styles.input, style, isFocus && styles.inputActive]}
         selectionColor={COLORS.PRIMARY_ORANGE}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
       {error && (
         <ExtendedText style={[styles.error, errorStyle]}>{error}</ExtendedText>

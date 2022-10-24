@@ -6,6 +6,7 @@ import { hexTransparency, isIOS } from '../../utils';
 interface IExtendedTextInputStyles {
   label: TextStyle;
   input: TextStyle;
+  inputActive: TextStyle;
   error: TextStyle;
 }
 
@@ -19,6 +20,10 @@ export const styles = StyleSheet.create<IExtendedTextInputStyles>({
     borderColor: COLORS.PRIMARY_ORANGE,
     borderRadius: 24,
     color: COLORS.BRILLIANT_WHITE,
+  },
+  inputActive: {
+    borderWidth: 2,
+    backgroundColor: COLORS.DARK_PURPLE,
   },
   error: {},
 });
