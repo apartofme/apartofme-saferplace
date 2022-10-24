@@ -16,7 +16,7 @@ export const RecognitionDialogScreen: React.FC<IRecognitionDialogScreenProps> =
 
     return (
       <DialogView
-        backgroundImage={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
+        backgroundImage={BACKGROUND_IMAGES.GARDEN}
         dialog={[...speech]}
         onSubmit={onSubmit}
       />

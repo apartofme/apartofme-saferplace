@@ -45,7 +45,7 @@ export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
+        source={BACKGROUND_IMAGES.GARDEN}
         style={generalStyles.flex}>
         <View style={generalStyles.flex}>
           <TouchableOpacity
