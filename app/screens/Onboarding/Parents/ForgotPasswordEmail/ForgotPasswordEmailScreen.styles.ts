@@ -1,4 +1,5 @@
 import { StyleSheet, ViewStyle } from 'react-native';
+
 import { COLORS } from '../../../../themes/colors';
 
 interface IForgotPasswordEmailScreenStyles {
