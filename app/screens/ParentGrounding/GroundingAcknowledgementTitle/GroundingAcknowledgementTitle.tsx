@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { SVG } from '../../../assets/svg';
 import {
@@ -18,7 +18,7 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
   ({ navigation, route }) => {
     const { t } = useTranslation();
 
-    const { title, buttonTitle, image, backgroundImage, subtitle } =
+    const { title, buttonTitle, Icon, backgroundImage, subtitle } =
       route.params.data;
 
     const onSubmit = useCallback(() => {
@@ -36,7 +36,7 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
             buttonTitle={t(buttonTitle)}
             onSubmit={onSubmit}
             style={styles.container}>
-            <Image source={image} style={styles.image} />
+            <Icon />
             <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
             <ExtendedText>{t(subtitle)}</ExtendedText>
           </BottomButtonView>
