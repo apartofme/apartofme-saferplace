@@ -3,7 +3,7 @@ import Svg, { Defs, G, Path, RadialGradient, Stop } from 'react-native-svg';
 
 import { ISvgProps } from '../../utils/types';
 
-export const DialogNextButtonIcon = ({
+export const RoundTriangleButtonIcon = ({
   width = 80,
   height = 80,
 }: ISvgProps) => {

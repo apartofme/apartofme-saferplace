@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { GroundingAcknowledgement } from '../components';
 import { IImagineTreeRootScreenProps } from './ImagineTreeRoot.types';
 
@@ -15,8 +15,8 @@ export const ImagineTreeRootScreen: React.FC<IImagineTreeRootScreenProps> = ({
     <GroundingAcknowledgement
       title={'screens.parent_grounding_exercise.imagine_tree_root.title'}
       buttonTitle={'buttons.next'}
-      image={IMAGES.LOGO}
-      backgroundImage={IMAGES.WHITE_PENCIL}
+      isButtonArrow={true}
+      backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_IMAGINE_TREE_ROOT}
       onSubmit={onSubmit}
     />
   );

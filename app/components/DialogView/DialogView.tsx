@@ -8,7 +8,7 @@ import { IDialogViewProps } from './DialogView.types';
 import { styles } from './DialogView.styles';
 import { SVG } from '../../assets/svg';
 
-const DialogNextButtonIcon = SVG.DialogNextButtonIcon;
+const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 
 export const DialogView: React.FC<IDialogViewProps> = ({
   backgroundImage,
@@ -69,7 +69,7 @@ export const DialogView: React.FC<IDialogViewProps> = ({
       </View>
 
       <TouchableOpacity onPress={getCorrectOnPress} style={styles.roundButton}>
-        <DialogNextButtonIcon />
+        <RoundTriangleButtonIcon />
       </TouchableOpacity>
     </ImageBackground>
   );

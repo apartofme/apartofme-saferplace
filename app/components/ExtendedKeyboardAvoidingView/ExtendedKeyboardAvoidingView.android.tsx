@@ -6,10 +6,7 @@ import { generalStyles } from '../../utils/styles';
 export const ExtendedKeyboardAvoidingView: React.FC<KeyboardAvoidingViewProps> =
   ({ children, ...rest }) => {
     return (
-      <KeyboardAvoidingView
-        behavior="height"
-        style={generalStyles.flex}
-        {...rest}>
+      <KeyboardAvoidingView style={generalStyles.flex} {...rest}>
         {children}
       </KeyboardAvoidingView>
     );

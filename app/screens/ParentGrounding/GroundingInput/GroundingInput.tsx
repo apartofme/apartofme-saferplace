@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { SVG } from '../../../assets/svg';
 import {
   BottomButtonView,
@@ -12,7 +12,6 @@ import {
   RadioButtonListType,
   RadioButtonOption,
 } from '../../../components';
-import { useAppSelector } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { GROUNDING_RADIO_BUTTON_ITEMS } from './GroundingInput.data';
 import { styles } from './GroundingInput.styles';
@@ -25,10 +24,6 @@ export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const parentNickname = useAppSelector(
-    state => state.user.parent?.nickname,
-  ) as string;
-
   const [selected, setSelected] = useState<string[]>([]);
 
   const onSubmit = useCallback(() => {
@@ -36,50 +31,57 @@ export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
       if (selected[0] === RadioButtonOption.Positive) {
         navigation.push('GroundingAcknowledgementTitle', {
           data: {
-            title: `screens.parent_grounding_exercise.grounding_acknowledgement_title.second_title ${parentNickname}!`,
+            title:
+              'screens.parent_grounding_exercise.grounding_acknowledgement_title.first.title',
             subtitle:
-              'screens.parent_grounding_exercise.grounding_acknowledgement_title.first_description',
+              'screens.parent_grounding_exercise.grounding_acknowledgement_title.first.description',
             buttonTitle: 'buttons.next',
-            image: IMAGES.LOGO,
-            backgroundImage: IMAGES.WHITE_BACK_ARROW,
+            Icon: SVG.CelebrationGuideIcon,
+            backgroundImage: BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT,
           },
         });
         return;
       }
       navigation.push('GroundingAcknowledgementTitle', {
         data: {
-          title: `screens.parent_grounding_exercise.grounding_acknowledgement_title.second_title ${parentNickname}`,
+          title:
+            'screens.parent_grounding_exercise.grounding_acknowledgement_title.second.title',
           subtitle:
-            'screens.parent_grounding_exercise.grounding_acknowledgement_title.second_description',
+            'screens.parent_grounding_exercise.grounding_acknowledgement_title.second.description',
           buttonTitle: 'buttons.next',
-          image: IMAGES.LOGO,
-          backgroundImage: IMAGES.WHITE_BACK_ARROW,
+          Icon: SVG.CompassionateGuideIcon,
+          backgroundImage: BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT,
         },
       });
     }
-  }, [navigation, parentNickname, selected]);
+  }, [navigation, selected]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <MainHeader
-        leftIcon={<WhiteBackArrowIcon />}
-        onLeftIconPress={navigation.goBack}
-      />
-      <BottomButtonView
-        onSubmit={onSubmit}
-        buttonTitle={t('buttons.next')}
-        isDisabledButton={!selected.length}>
-        <View style={styles.container}>
-          <ExtendedText style={styles.title}>
-            {t('screens.parent_grounding_exercise.grounding_input.title')}
-          </ExtendedText>
-          <RadioButtonList
-            type={RadioButtonListType.Single}
-            setSelected={setSelected}
-            data={GROUNDING_RADIO_BUTTON_ITEMS}
-          />
-        </View>
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={<WhiteBackArrowIcon />}
+          onLeftIconPress={navigation.goBack}
+        />
+        <BottomButtonView
+          onSubmit={onSubmit}
+          buttonTitle={t('buttons.next')}
+          isArrow={true}
+          isDisabledButton={!selected.length}>
+          <View style={styles.container}>
+            <ExtendedText preset="title" style={styles.title}>
+              {t('screens.parent_grounding_exercise.grounding_input.title')}
+            </ExtendedText>
+            <RadioButtonList
+              type={RadioButtonListType.Single}
+              setSelected={setSelected}
+              data={GROUNDING_RADIO_BUTTON_ITEMS}
+            />
+          </View>
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

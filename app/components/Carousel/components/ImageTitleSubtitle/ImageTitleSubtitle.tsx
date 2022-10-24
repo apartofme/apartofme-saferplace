@@ -4,7 +4,6 @@ import { View } from 'react-native';
 
 import { ExtendedText } from '../../../ExtendedText';
 import { styles } from './ImageTitleSubtitle.styles';
-import { generalStyles } from '../../../../utils/styles';
 import { SvgComponentType } from '../../../../utils/types';
 import { ICarouselItemProps } from '../../Carousel.types';
 
@@ -18,18 +17,18 @@ export const ImageTitleSubtitle: React.FC<ICarouselItemProps> = ({
   return (
     <View style={[styles.container, style]}>
       {data.image && <Icon />}
-      <View style={generalStyles.flex} />
-
-      {data.titleKey && (
-        <ExtendedText preset="large-title" style={styles.title}>
-          {t(data.titleKey)}
-        </ExtendedText>
-      )}
-      {data.subtitleKey && (
-        <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {t(data.subtitleKey)}
-        </ExtendedText>
-      )}
+      <View>
+        {data.titleKey && (
+          <ExtendedText preset="large-title" style={styles.title}>
+            {t(data.titleKey)}
+          </ExtendedText>
+        )}
+        {data.subtitleKey && (
+          <ExtendedText preset="secondary-text" style={styles.subtitle}>
+            {t(data.subtitleKey)}
+          </ExtendedText>
+        )}
+      </View>
     </View>
   );
 };

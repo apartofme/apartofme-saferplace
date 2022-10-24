@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import {
   BottomButtonView,
@@ -12,6 +12,7 @@ import { IGroundingAcknowledgementTitleProps } from './GroundingAcknowledgementT
 import { styles } from './GroundingAcknowledgementTitle.styles';
 import { generalStyles } from '../../../../utils/styles';
 import { SVG } from '../../../../assets/svg';
+import { useParsedJSXTextNickname } from '../../../../hooks';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -20,7 +21,7 @@ export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTi
     title,
     subtitle,
     buttonTitle,
-    image,
+    Icon,
     backgroundImage,
     onNextRouteName,
   }) => {
@@ -32,11 +33,15 @@ export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTi
       navigation.navigate(onNextRouteName);
     }, [navigation, onNextRouteName]);
 
+    const Title = useParsedJSXTextNickname({
+      text: t(title),
+      textHasNickname: true,
+      preset: 'large-title',
+      style: styles.title,
+    });
+
     return (
-      <ImageBackground
-        // TODO: change to the real image
-        source={backgroundImage}
-        style={generalStyles.flex}>
+      <ImageBackground source={backgroundImage} style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
             leftIcon={<WhiteBackArrowIcon />}
@@ -44,11 +49,14 @@ export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTi
           />
           <BottomButtonView
             buttonTitle={t(buttonTitle)}
+            isArrow={true}
             onSubmit={onSubmit}
             style={styles.container}>
-            <Image source={image} style={styles.image} />
-            <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
-            <ExtendedText>{t(subtitle)}</ExtendedText>
+            {Icon && <Icon />}
+            <Title />
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {t(subtitle)}
+            </ExtendedText>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

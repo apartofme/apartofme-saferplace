@@ -12,17 +12,19 @@ interface IImageTitleSubtitleStyles {
 export const styles = StyleSheet.create<IImageTitleSubtitleStyles>({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingBottom: 40,
   },
 
   title: {
+    paddingTop: 32,
     paddingBottom: 24,
     textAlign: 'center',
     color: COLORS.BRILLIANT_WHITE,
   },
   subtitle: {
     minHeight: 100,
-    marginBottom: 40,
     textAlign: 'center',
     color: COLORS.LIGHT_GREY,
   },

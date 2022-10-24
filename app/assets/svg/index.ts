@@ -30,7 +30,7 @@ import {
 } from './CharmIllustration';
 import { CircleExclamationMarkIcon } from './CircleExclamationMarkIcon';
 import { CircleQuestionMarkIcon } from './CircleQuestionMarkIcon';
-import { DialogNextButtonIcon } from './DialogNextButtonIcon';
+import { RoundTriangleButtonIcon } from './RoundTriangleButtonIcon';
 import { ExitIcon } from './ExitIcon';
 import { GearManIcon } from './GearManIcon';
 import { HappyGuideIcon } from './HappyGuideIcon';
@@ -44,6 +44,7 @@ import { WhitePencilIcon } from './WhitePencilIcon';
 import { WhiteRightArrowIcon } from './WhiteRightArrowIcon';
 import {
   BirdOnBranchesIcon,
+  BookOnLeavesIcon,
   GuideInTreesIcon,
   HappyNadiyaTreeIcon,
   NadiyaTextIcon,
@@ -67,9 +68,16 @@ import {
   EmotionSuperRelaxedIcon,
   EmotionVeryStressedIcon,
 } from './emotions';
+import { WhiteBottomArrowIcon } from './WhiteBottomArrowIcon';
+import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
+import { BarefootIcon, QuietPlaceIcon, StandingUpIcon } from './grounding';
+import { RoundPauseButtonIcon } from './RoundPauseButtonIcon';
 
 export const SVG = {
+  BarefootIcon: BarefootIcon,
   BirdOnBranchesIcon: BirdOnBranchesIcon,
+  //! required fix on android
+  BookOnLeavesIcon: BookOnLeavesIcon,
   BrownTriangleIcon: BrownTriangleIcon,
   CelebrationGuideIcon: CelebrationGuideIcon,
   CircleExclamationMarkIcon: CircleExclamationMarkIcon,
@@ -80,22 +88,25 @@ export const SVG = {
   ExitIcon: ExitIcon,
   GearManIcon: GearManIcon,
   GuideInTreesIcon: GuideInTreesIcon,
+  HappyGuideIcon: HappyGuideIcon,
   HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
   NadiyaTextIcon: NadiyaTextIcon,
   OpenedEyeIcon: OpenedEyeIcon,
   OrangeCirclePlussIcon: OrangeCirclePlussIcon,
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
+  QuietPlaceIcon: QuietPlaceIcon,
+  RoundPauseButtonIcon: RoundPauseButtonIcon,
+  RoundTriangleButtonIcon: RoundTriangleButtonIcon,
+  SadGuideIcon: SadGuideIcon,
+  StandingUpIcon: StandingUpIcon,
   WhiteBackArrowIcon: WhiteBackArrowIcon,
   whiteBinIcon: WhiteBinIcon,
+  WhiteBottomArrowIcon: WhiteBottomArrowIcon,
   WhiteCrossIcon: WhiteCrossIcon,
   WhiteGearIcon: WhiteGearIcon,
   WhitePencilIcon: WhitePencilIcon,
   WhiteRightArrowIcon: WhiteRightArrowIcon,
-
-  // TODO: sort
-  DialogNextButtonIcon: DialogNextButtonIcon,
-  HappyGuideIcon: HappyGuideIcon,
-  SadGuideIcon: SadGuideIcon,
+  WhiteTopArrowIcon: WhiteTopArrowIcon,
 };
 
 export const AVATARS_SVG = {

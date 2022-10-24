@@ -26,6 +26,7 @@ import { styles } from './SignUpCredentials.styles';
 import { SignUpCredentioalsValidationSchema } from './SignUpCredentials.validation';
 import { COLORS } from '../../../../themes/colors';
 import { SVG } from '../../../../assets/svg';
+import { isIOS } from '../../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -62,7 +63,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
-          <ExtendedKeyboardAvoidingView>
+          <ExtendedKeyboardAvoidingView behavior={isIOS ? 'padding' : 'height'}>
             <Formik
               initialValues={{ email: '', password: '' }}
               validationSchema={SignUpCredentioalsValidationSchema}

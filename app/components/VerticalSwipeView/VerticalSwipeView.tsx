@@ -1,6 +1,11 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   Directions,
@@ -18,13 +23,14 @@ import { MainHeader } from '../MainHeader';
 import { SVG } from '../../assets/svg';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
+const WhiteTopArrowIcon = SVG.WhiteTopArrowIcon;
 
 export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   titleKey,
   subtitleKey,
   aboutTitleKey,
   aboutSubtitleKey,
-  image,
   topBackground,
   bottomBackground,
   onSubmit,
@@ -66,36 +72,43 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
               <ScrollView scrollEnabled={false} ref={scrollViewRef}>
                 <View
                   style={[
-                    styles.topContentContainer,
+                    generalStyles.jcSpaceBtw,
                     { height: scrollViewHeight },
                   ]}>
                   <MainHeader
                     leftIcon={<WhiteBackArrowIcon />}
                     onLeftIconPress={navigation.goBack}
                   />
-                  <View>
-                    {image && (
-                      <View style={generalStyles.aiCenter}>
-                        <Image source={image} style={styles.image} />
-                      </View>
-                    )}
-                    <ExtendedText style={styles.topTitle}>
+                  <View style={styles.topContentContainer}>
+                    <ExtendedText
+                      preset="large-title"
+                      style={generalStyles.brilliantWhiteCenter}>
                       {t(titleKey)}
                     </ExtendedText>
                     {subtitleKey && (
-                      <ExtendedText style={styles.topSubtitle}>
+                      <ExtendedText
+                        preset="secondary-text"
+                        style={[generalStyles.greyCenter, styles.topSubtitle]}>
                         {t(subtitleKey)}
                       </ExtendedText>
                     )}
                     <ExtendedButton
-                      title={t('buttons.ready')}
+                      title={t('buttons.start')}
                       style={styles.submitButton}
                       onPress={onSubmit}
                     />
-                    <ExtendedButton
-                      title={t('components.vertical_swipe_view.tell_more')}
+                    <TouchableOpacity
                       onPress={setScrollPosition}
-                    />
+                      style={generalStyles.asCenter}>
+                      <ExtendedText
+                        preset="secondary-text"
+                        style={generalStyles.brilliantWhite}>
+                        {t('buttons.learn_more').toUpperCase()}
+                      </ExtendedText>
+                      <View style={styles.learnMoreArrow}>
+                        <WhiteBottomArrowIcon />
+                      </View>
+                    </TouchableOpacity>
                   </View>
                 </View>
                 <View
@@ -103,18 +116,31 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
                     styles.bottomContentContainer,
                     { height: scrollViewHeight },
                   ]}>
-                  <ExtendedButton
-                    title={t('components.vertical_swipe_view.back')}
+                  <TouchableOpacity
                     onPress={setScrollPosition}
-                  />
+                    style={generalStyles.asCenter}>
+                    <View style={styles.backArrow}>
+                      <WhiteTopArrowIcon />
+                    </View>
+                    <ExtendedText
+                      preset="secondary-text"
+                      style={generalStyles.brilliantWhite}>
+                      {t('buttons.back').toUpperCase()}
+                    </ExtendedText>
+                  </TouchableOpacity>
+
                   {aboutTitleKey && (
-                    <ExtendedText style={styles.bottomTitle}>
+                    <ExtendedText
+                      preset="large-title"
+                      style={styles.bottomTitle}>
                       {t(aboutTitleKey)}
                     </ExtendedText>
                   )}
-                  <ScrollView>
+                  <ScrollView showsVerticalScrollIndicator={false}>
                     {aboutSubtitleKey && (
-                      <ExtendedText style={styles.bottomsubtitle}>
+                      <ExtendedText
+                        preset="body-regular"
+                        style={generalStyles.brilliantWhite}>
                         {t(aboutSubtitleKey)}
                       </ExtendedText>
                     )}

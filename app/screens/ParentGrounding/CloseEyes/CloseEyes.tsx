@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { GroundingAcknowledgement } from '../components';
 import { ICloseEyesScreenProps } from './CloseEyes.types';
 
@@ -14,9 +14,8 @@ export const CloseEyesScreen: React.FC<ICloseEyesScreenProps> = ({
   return (
     <GroundingAcknowledgement
       title={'screens.parent_grounding_exercise.close_eyes.title'}
-      buttonTitle={'buttons.next'}
-      image={IMAGES.LOGO}
-      backgroundImage={IMAGES.WHITE_PENCIL}
+      buttonTitle={'buttons.start_timer'}
+      backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_CLOSE_EYES}
       onSubmit={onSubmit}
     />
   );

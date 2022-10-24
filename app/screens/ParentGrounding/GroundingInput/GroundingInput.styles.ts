@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IGroundingInputScreenStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -8,10 +10,11 @@ interface IGroundingInputScreenStyles {
 export const styles = StyleSheet.create<IGroundingInputScreenStyles>({
   container: {
     flex: 1,
+    paddingTop: 40,
     paddingHorizontal: 24,
   },
   title: {
-    marginTop: 48,
-    marginBottom: 36,
+    paddingBottom: 36,
+    color: COLORS.BRILLIANT_WHITE,
   },
 });

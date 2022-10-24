@@ -1,23 +1,22 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../../themes/colors';
 
 interface IGroundingAcknowledgementStyles {
   container: ViewStyle;
   title: TextStyle;
-  image: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IGroundingAcknowledgementStyles>({
   container: {
-    paddingHorizontal: 24,
-    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingHorizontal: 40,
+    paddingBottom: 60,
   },
   title: {
-    marginTop: 30,
+    flex: 1,
+    maxHeight: 132,
+    color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
-  },
-  // TODO: change to correct style
-  image: {
-    height: 350,
-    width: 200,
   },
 });

@@ -1,9 +1,9 @@
 import { values } from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { SVG } from '../../../assets/svg';
 import { ExtendedButton, ExtendedText } from '../../../components';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 import {
@@ -15,6 +15,8 @@ import { IQuest } from '../../../models/IQuest';
 import { questSlice } from '../../../redux/slices';
 import { styles } from './EscapeMenu.styles';
 import { IEscapeMenuScreenProps } from './EscapeMenu.types';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
   navigation,
@@ -48,6 +50,9 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
   }, [navigateTo, navigation]);
 
   const goToTheCharmofGrounding = useCallback(() => {
+    if (isCurrentQuestCompleted) {
+      dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+    }
     const quests: IQuest[] = values(
       allQuests && allQuests[JOINT_GROUNDING_EXERCISE_ID].quests,
     );
@@ -66,7 +71,7 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
     });
 
     dispatch(questSlice.actions.clearQuestStack());
-  }, [allQuests, dispatch, navigation]);
+  }, [allQuests, dispatch, isCurrentQuestCompleted, navigation]);
 
   const goToGarden = useCallback(() => {
     if (!isCurrentQuestCompleted) {
@@ -78,6 +83,8 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
         }),
       );
     }
+
+    dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
     navigation.goBack();
     navigation.push('GardenStack', {
       screen: 'Garden',
@@ -98,8 +105,10 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={navigation.goBack}>
-        <Image source={IMAGES.WHITE_BACK_ARROW} style={styles.backArrowImage} />
+      <TouchableOpacity
+        onPress={navigation.goBack}
+        style={styles.backArrowImage}>
+        <WhiteBackArrowIcon />
       </TouchableOpacity>
 
       <View style={styles.contentContainer}>

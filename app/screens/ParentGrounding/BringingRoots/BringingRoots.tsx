@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { GroundingAcknowledgement } from '../components';
 import { IBringingRootsScreenProps } from './BringingRoots.types';
 
@@ -15,8 +15,8 @@ export const BringingRootsScreen: React.FC<IBringingRootsScreenProps> = ({
     <GroundingAcknowledgement
       title={'screens.parent_grounding_exercise.bringing_roots.title'}
       buttonTitle={'buttons.next'}
-      image={IMAGES.LOGO}
-      backgroundImage={IMAGES.WHITE_PENCIL}
+      isButtonArrow={true}
+      backgroundImage={BACKGROUND_IMAGES.PARENT_GROUDING_BRINGING_ROOTS}
       onSubmit={onSubmit}
     />
   );

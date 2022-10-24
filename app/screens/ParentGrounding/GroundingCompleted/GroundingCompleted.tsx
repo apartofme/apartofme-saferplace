@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { GroundingAcknowledgementTitle } from '../components';
 import { IGroundingCompletedScreenProps } from './GroundingCompleted.types';
 
@@ -13,8 +13,7 @@ export const GroundingCompletedScreen: React.FC<IGroundingCompletedScreenProps> 
           'screens.parent_grounding_exercise.grounding_completed.description'
         }
         buttonTitle={'buttons.next'}
-        image={IMAGES.LOGO}
-        backgroundImage={IMAGES.WHITE_PENCIL}
+        backgroundImage={BACKGROUND_IMAGES.PARENT_GROUDING_BRINGING_ROOTS}
         onNextRouteName={'JointOnboardingStack'}
       />
     );
