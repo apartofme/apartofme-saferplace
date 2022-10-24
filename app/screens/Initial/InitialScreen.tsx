@@ -64,7 +64,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
         navigation.replace('JointOnboardingStack');
         return;
       }
-      navigation.replace('ParentsOnboardingStack');
+      navigation.replace('JointOnboardingStack');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSaveAllQuestsLoading, isSaveTranslationsLoading]);

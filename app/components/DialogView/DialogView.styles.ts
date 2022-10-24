@@ -7,6 +7,7 @@ export interface IDialogViewStyles {
   dialogContainer: ViewStyle;
   roundButton: ViewStyle;
   title: TextStyle;
+  inactiveIconContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IDialogViewStyles>({
@@ -38,5 +39,8 @@ export const styles = StyleSheet.create<IDialogViewStyles>({
         translateY: -40,
       },
     ],
+  },
+  inactiveIconContainer: {
+    opacity: 0.3,
   },
 });

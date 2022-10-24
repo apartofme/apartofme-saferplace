@@ -31,18 +31,20 @@ export const Book: React.FC<IBookProps> = ({
   }, [isCompletedAllCurrentDayQuests]);
 
   const onBookPress = useCallback(() => {
-    if (interruptedQuestLine) {
-      setType(CharmBookMenuType.InterruptedCharm);
+    if (setType && setModalStatus) {
+      if (interruptedQuestLine) {
+        setType(CharmBookMenuType.InterruptedCharm);
+        setModalStatus();
+        return;
+      }
+      if (isCompletedAllCurrentDayQuests) {
+        setType(CharmBookMenuType.NoneCharm);
+        setModalStatus();
+        return;
+      }
+      setType(CharmBookMenuType.NewCharm);
       setModalStatus();
-      return;
     }
-    if (isCompletedAllCurrentDayQuests) {
-      setType(CharmBookMenuType.NoneCharm);
-      setModalStatus();
-      return;
-    }
-    setType(CharmBookMenuType.NewCharm);
-    setModalStatus();
   }, [
     interruptedQuestLine,
     isCompletedAllCurrentDayQuests,

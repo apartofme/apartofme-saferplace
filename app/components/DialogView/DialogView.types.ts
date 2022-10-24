@@ -4,7 +4,7 @@ import { ISpeech, SvgComponentType } from '../../utils/types';
 
 export interface IDialogViewProps {
   backgroundImage: ImageSourcePropType;
-  dialog: ISpeech[];
+  dialog: ReadonlyArray<ISpeech>;
   onSubmit: () => void;
   Icon?: SvgComponentType;
   initialIdx?: number;

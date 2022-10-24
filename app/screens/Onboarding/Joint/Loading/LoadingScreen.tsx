@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
@@ -7,6 +7,7 @@ import { generalStyles } from '../../../../utils/styles';
 import { ILoadingScreenProps } from './LoadingScreen.types';
 import { SPEECH_LIST, TIME_TO_NEXT_SPEECH } from './LoadingScreen.data';
 import { styles } from './LoadingScreen.styles';
+import { BACKGROUND_IMAGES } from '../../../../assets';
 
 export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   navigation,
@@ -35,20 +36,24 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   }, [goToNextSpeech]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <BottomButtonView
-        style={styles.container}
-        buttonTitle={t('buttons.we_ready')}
-        onSubmit={onSubmit}>
-        {/*// TODO: change to correnct time*/}
-        <Timer duration={10} isStart={true} style={styles.timer} />
-        <ExtendedText style={styles.title} preset="large-title">
-          {t(currentSpeech.titleKey)}
-        </ExtendedText>
-        <ExtendedText style={styles.subtitle} preset="secondary-text">
-          {t(currentSpeech.subtitleKey)}
-        </ExtendedText>
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.SPLASH_SCREEN_PARENT_CHILD}
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <BottomButtonView
+          style={styles.container}
+          buttonTitle={t('buttons.we_ready')}
+          onSubmit={onSubmit}>
+          {/*// TODO: change to correnct time*/}
+          <Timer duration={10} isStart={true} style={styles.timer} />
+          <ExtendedText style={styles.title} preset="large-title">
+            {t(currentSpeech.titleKey)}
+          </ExtendedText>
+          <ExtendedText style={styles.subtitle} preset="secondary-text">
+            {t(currentSpeech.subtitleKey)}
+          </ExtendedText>
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
