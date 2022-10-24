@@ -21,6 +21,7 @@ export const styles = StyleSheet.create<ICharmStyles>({
     alignItems: 'center',
     justifyContent: 'center',
     maxHeight: 240,
+    width: '100%',
     paddingVertical: 50,
     paddingHorizontal: 24,
     borderRadius: 24,
