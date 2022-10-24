@@ -30,7 +30,7 @@ import {
 } from './CharmIllustration';
 import { CircleExclamationMarkIcon } from './CircleExclamationMarkIcon';
 import { CircleQuestionMarkIcon } from './CircleQuestionMarkIcon';
-import { DialogNextButtonIcon } from './DialogNextButtonIcon';
+import { RoundTriangleButtonIcon } from './RoundTriangleButtonIcon';
 import { ExitIcon } from './ExitIcon';
 import { GearManIcon } from './GearManIcon';
 import { HappyGuideIcon } from './HappyGuideIcon';
@@ -71,6 +71,7 @@ import {
 import { WhiteBottomArrowIcon } from './WhiteBottomArrowIcon';
 import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
 import { BarefootIcon, QuietPlaceIcon, StandingUpIcon } from './grounding';
+import { RoundPauseButtonIcon } from './RoundPauseButtonIcon';
 
 export const SVG = {
   BarefootIcon: BarefootIcon,
@@ -87,11 +88,17 @@ export const SVG = {
   ExitIcon: ExitIcon,
   GearManIcon: GearManIcon,
   GuideInTreesIcon: GuideInTreesIcon,
+  HappyGuideIcon: HappyGuideIcon,
   HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
   NadiyaTextIcon: NadiyaTextIcon,
   OpenedEyeIcon: OpenedEyeIcon,
   OrangeCirclePlussIcon: OrangeCirclePlussIcon,
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
+  QuietPlaceIcon: QuietPlaceIcon,
+  RoundPauseButtonIcon: RoundPauseButtonIcon,
+  RoundTriangleButtonIcon: RoundTriangleButtonIcon,
+  SadGuideIcon: SadGuideIcon,
+  StandingUpIcon: StandingUpIcon,
   WhiteBackArrowIcon: WhiteBackArrowIcon,
   whiteBinIcon: WhiteBinIcon,
   WhiteBottomArrowIcon: WhiteBottomArrowIcon,
@@ -99,14 +106,7 @@ export const SVG = {
   WhiteGearIcon: WhiteGearIcon,
   WhitePencilIcon: WhitePencilIcon,
   WhiteRightArrowIcon: WhiteRightArrowIcon,
-
-  // TODO: sort
-  DialogNextButtonIcon: DialogNextButtonIcon,
-  HappyGuideIcon: HappyGuideIcon,
-  SadGuideIcon: SadGuideIcon,
   WhiteTopArrowIcon: WhiteTopArrowIcon,
-  QuietPlaceIcon: QuietPlaceIcon,
-  StandingUpIcon: StandingUpIcon,
 };
 
 export const AVATARS_SVG = {

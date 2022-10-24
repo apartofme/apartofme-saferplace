@@ -1,9 +1,11 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../themes/colors';
 
 interface IGroundingTimerScreenStyles {
   container: ViewStyle;
   image: ImageStyle;
-  button: ViewStyle;
+  seconds: TextStyle;
 }
 
 export const styles = StyleSheet.create<IGroundingTimerScreenStyles>({
@@ -11,13 +13,15 @@ export const styles = StyleSheet.create<IGroundingTimerScreenStyles>({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
+    paddingBottom: 24,
   },
   image: {
-    height: 350,
-    width: 200,
+    height: 280,
+    width: 155,
     marginBottom: 40,
   },
-  button: {
-    marginVertical: 24,
+  seconds: {
+    paddingVertical: 74,
+    color: COLORS.PRIMARY_ORANGE,
   },
 });
