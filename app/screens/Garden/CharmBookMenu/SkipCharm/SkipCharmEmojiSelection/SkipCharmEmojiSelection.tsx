@@ -1,15 +1,19 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { styles } from './SkipCharmEmojiSelection.styles';
 
 import { generalStyles } from '../../../../../utils/styles';
 import { ISkipCharmEmojiSelectionScreenProps } from './SkipCharmEmojiSelection.types';
-import { useParsedJSXTextNickname } from '../../../../../hooks';
-import {
-  BottomButtonView,
-  EmojiSlider,
-  ExtendedText,
-} from '../../../../../components';
+import { useAppDispatch, useParsedJSXTextNickname } from '../../../../../hooks';
+import { EmojiButtons, MainHeader } from '../../../../../components';
+import { SVG } from '../../../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../../../assets';
+import { questSlice } from '../../../../../redux/slices';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SkipCharmEmojiSelectionScreen: React.FC<ISkipCharmEmojiSelectionScreenProps> =
   ({ navigation, route }) => {
@@ -17,49 +21,51 @@ export const SkipCharmEmojiSelectionScreen: React.FC<ISkipCharmEmojiSelectionScr
     const { isChild } = route.params;
 
     const [emoji, setEmoji] = useState('');
+    const dispatch = useAppDispatch();
 
     const title = useMemo(() => {
       if (isChild) {
-        return t('screens.skip-charm-emoji-selection.child');
+        return t('screens.skip_charm_emoji_selection.child');
       }
-      return t('screens.skip-charm-emoji-selection.parent');
+      return t('screens.skip_charm_emoji_selection.parent');
     }, [isChild, t]);
 
     const onSubmit = useCallback(() => {
       if (isChild) {
+        const currentDate = moment().format('L');
+        dispatch(
+          questSlice.actions.saveDailyCheck({
+            [currentDate]: emoji,
+          }),
+        );
         navigation.push('SkipCharmJournal');
         return;
       }
       navigation.push('SkipCharmEmojiSelection', { isChild: true });
-    }, [isChild, navigation]);
+    }, [dispatch, emoji, isChild, navigation]);
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: true,
       preset: 'title',
-      //   style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
+      style: styles.title,
     });
 
     return (
       <ImageBackground
-        // TODO: change to real image
-        source={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
         style={generalStyles.flex}>
-        <SafeAreaView style={generalStyles.flex}>
-          {/* <Header /> */}
-          <BottomButtonView
+        <SafeAreaView edges={['top']} style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={navigation.goBack}
+          />
+          <Title />
+          <EmojiButtons
             buttonTitle={t('buttons.select')}
             onSubmit={onSubmit}
-            // style={styles.container}
-          >
-            <Title />
-            <ExtendedText>{t(emoji)}</ExtendedText>
-            <EmojiSlider setEmojiKey={setEmoji} />
-          </BottomButtonView>
+            setEmojiKey={setEmoji}
+          />
         </SafeAreaView>
       </ImageBackground>
     );

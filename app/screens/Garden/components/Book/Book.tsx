@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import { useAppSelector } from '../../../../hooks';
 import { IBookProps } from './Book.types';
@@ -11,9 +10,11 @@ import {
   OpenBookIcon,
 } from '../../../../assets/images/dummySVG';
 
-export const Book: React.FC<IBookProps> = ({ isDisabled }) => {
-  const navigation = useNavigation();
-
+export const Book: React.FC<IBookProps> = ({
+  isDisabled,
+  setType,
+  setModalStatus,
+}) => {
   const interruptedQuestLine = useAppSelector(
     state => state.quest.interruptedQuestLine,
   );
@@ -31,21 +32,23 @@ export const Book: React.FC<IBookProps> = ({ isDisabled }) => {
 
   const onBookPress = useCallback(() => {
     if (interruptedQuestLine) {
-      navigation.navigate('CharmBookMenu', {
-        type: CharmBookMenuType.InterruptedCharm,
-      });
+      setType(CharmBookMenuType.InterruptedCharm);
+      setModalStatus();
       return;
     }
     if (isCompletedAllCurrentDayQuests) {
-      navigation.navigate('CharmBookMenu', {
-        type: CharmBookMenuType.NoneCharm,
-      });
+      setType(CharmBookMenuType.NoneCharm);
+      setModalStatus();
       return;
     }
-    navigation.navigate('CharmBookMenu', {
-      type: CharmBookMenuType.NewCharm,
-    });
-  }, [interruptedQuestLine, isCompletedAllCurrentDayQuests, navigation]);
+    setType(CharmBookMenuType.NewCharm);
+    setModalStatus();
+  }, [
+    interruptedQuestLine,
+    isCompletedAllCurrentDayQuests,
+    setModalStatus,
+    setType,
+  ]);
 
   return (
     <TouchableOpacity

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import _, { values } from 'lodash';
 
@@ -8,12 +8,21 @@ import {
   BottomButtonView,
   Carousel,
   CarouselType,
+  MainHeader,
 } from '../../../../../components';
 import { generalStyles } from '../../../../../utils/styles';
-import { useAppDispatch, useAppSelector } from '../../../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useParsedJSXTextNickname,
+} from '../../../../../hooks';
 import { COMPLETED_CHARMS_CAROUSEL } from './SelectedCharmCarousel.data';
 import { styles } from './SelectCharmCarousel.styles';
 import { questSlice } from '../../../../../redux/slices';
+import { SVG } from '../../../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../../../assets';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps> =
   ({ navigation }) => {
@@ -64,18 +73,35 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
       [completedQuestsId],
     );
 
+    const Title = useParsedJSXTextNickname({
+      text: t('screens.completed_charm_carousel.title'),
+      textHasNickname: true,
+      preset: 'title',
+      style: generalStyles.brilliantWhite,
+    });
+
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <BottomButtonView
-          buttonTitle={t('buttons.select')}
-          onSubmit={onSubmitPress}>
-          <Carousel
-            data={[...filteredCarouselData]}
-            preset={CarouselType.ImageSubtitle}
-            setCurrentPossition={setCurrentPossition}
-            carouselItemStyle={styles.carouselItem}
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={navigation.goBack}
           />
-        </BottomButtonView>
-      </SafeAreaView>
+          <BottomButtonView
+            buttonTitle={t('buttons.select')}
+            onSubmit={onSubmitPress}
+            style={styles.container}>
+            <Title />
+            <Carousel
+              data={[...filteredCarouselData]}
+              preset={CarouselType.Charm}
+              setIndex={setCurrentPossition}
+              style={styles.carousel}
+            />
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

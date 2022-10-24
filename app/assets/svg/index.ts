@@ -54,6 +54,19 @@ import { CrossedOutEyeIcon } from './CrossedOutEyeIcon';
 import { OpenedEyeIcon } from './OpenedEyeIcon';
 import { CompassionateGuideIcon } from './CompassionateGuideIcon';
 import { ConcernedGuideIcon } from './ConcernedGuideIcon';
+import {
+  EmotionalBlobDefaultIcon,
+  EmotionalBlobOkIcon,
+  EmotionalBlobRelaxedIcon,
+  EmotionalBlobStressedIcon,
+  EmotionalBlobSuperRelaxedIcon,
+  EmotionalBlobVeryStressedIcon,
+  EmotionOkIcon,
+  EmotionRelaxedIcon,
+  EmotionStressedIcon,
+  EmotionSuperRelaxedIcon,
+  EmotionVeryStressedIcon,
+} from './emotions';
 
 export const SVG = {
   BirdOnBranchesIcon: BirdOnBranchesIcon,
@@ -99,6 +112,21 @@ export const AVATARS_SVG = {
   CircleMothIcon: MothCircleAvatarIcon,
   CircleOwlIcon: OwlCircleAvatarIcon,
   CircleRabbitIcon: RabbitCircleAvatarIcon,
+};
+
+export const EMOTIONS_SVG = {
+  EmotionalBlobDefaultIcon: EmotionalBlobDefaultIcon,
+  EmotionalBlobOkIcon: EmotionalBlobOkIcon,
+  EmotionalBlobRelaxedIcon: EmotionalBlobRelaxedIcon,
+  EmotionalBlobStressedIcon: EmotionalBlobStressedIcon,
+  EmotionalBlobSuperRelaxedIcon: EmotionalBlobSuperRelaxedIcon,
+  EmotionalBlobVeryStressedIcon: EmotionalBlobVeryStressedIcon,
+
+  EmotionOkIcon: EmotionOkIcon,
+  EmotionRelaxedIcon: EmotionRelaxedIcon,
+  EmotionStressedIcon: EmotionStressedIcon,
+  EmotionSuperRelaxedIcon: EmotionSuperRelaxedIcon,
+  EmotionVeryStressedIcon: EmotionVeryStressedIcon,
 };
 
 export const SVG_CHARM_ILLUSTRATIONS = {
