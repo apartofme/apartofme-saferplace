@@ -12,9 +12,6 @@ export const styles = StyleSheet.create<IMenuSwitchRowStyles>({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: 30,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.LIGHT_GREY,
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,

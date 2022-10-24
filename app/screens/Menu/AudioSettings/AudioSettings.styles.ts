@@ -20,5 +20,8 @@ export const styles = StyleSheet.create<IAudioSettingsStyles>({
   },
   menuSwitchContainer: {
     marginBottom: 28,
+    paddingBottom: 30,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.LIGHT_GREY,
   },
 });
