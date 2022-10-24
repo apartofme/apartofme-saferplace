@@ -62,12 +62,12 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
               />
               <ExtendedText style={styles.subtitle} preset="secondary-text">
                 {t('screens.menu.notification_settings.description')}
-              </ExtendedText>
-              <ExtendedText
-                preset="secondary-text"
-                style={[generalStyles.boldText, generalStyles.primaryOrange]}
-                onPress={openDeviceNotificationSettings}>
-                {t('labels.system_settings')}
+                <ExtendedText
+                  preset="secondary-text"
+                  style={[generalStyles.boldText, generalStyles.primaryOrange]}
+                  onPress={openDeviceNotificationSettings}>
+                  {t('labels.system_settings')}
+                </ExtendedText>
               </ExtendedText>
             </View>
           </View>
