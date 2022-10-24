@@ -11,7 +11,6 @@ interface ICharmStyles {
 export const styles = StyleSheet.create<ICharmStyles>({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'flex-end',
     paddingHorizontal: 64,
     paddingBottom: 80,
@@ -21,7 +20,6 @@ export const styles = StyleSheet.create<ICharmStyles>({
     alignItems: 'center',
     justifyContent: 'center',
     maxHeight: 240,
-    width: '100%',
     paddingVertical: 50,
     paddingHorizontal: 24,
     borderRadius: 24,
