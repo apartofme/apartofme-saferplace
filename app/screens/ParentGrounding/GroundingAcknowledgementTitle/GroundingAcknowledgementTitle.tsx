@@ -8,6 +8,7 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../components';
+import { useParsedJSXTextNickname } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './GroundingAcknowledgementTitle.styles';
 import { IGroundingAcknowledgementTitleScreenProps } from './GroundingAcknowledgementTitle.types';
@@ -25,6 +26,13 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
       navigation.push('StampFeet');
     }, [navigation]);
 
+    const Title = useParsedJSXTextNickname({
+      text: t(title),
+      textHasNickname: true,
+      preset: 'large-title',
+      style: styles.title,
+    });
+
     return (
       <ImageBackground source={backgroundImage} style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
@@ -37,8 +45,12 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
             onSubmit={onSubmit}
             style={styles.container}>
             <Icon />
-            <ExtendedText style={styles.title}>{t(title)}</ExtendedText>
-            <ExtendedText>{t(subtitle)}</ExtendedText>
+            <Title />
+            <ExtendedText
+              preset="secondary-text"
+              style={generalStyles.greyCenter}>
+              {t(subtitle)}
+            </ExtendedText>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>
