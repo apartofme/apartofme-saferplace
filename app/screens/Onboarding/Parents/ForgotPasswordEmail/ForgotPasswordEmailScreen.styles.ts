@@ -1,4 +1,5 @@
 import { StyleSheet, ViewStyle } from 'react-native';
+import { COLORS } from '../../../../themes/colors';
 
 interface IForgotPasswordEmailScreenStyles {
   container: ViewStyle;
@@ -11,6 +12,7 @@ export const styles = StyleSheet.create<IForgotPasswordEmailScreenStyles>({
     paddingHorizontal: 24,
   },
   subtitle: {
+    color: COLORS.BRILLIANT_WHITE,
     marginTop: 16,
     marginBottom: 48,
   },

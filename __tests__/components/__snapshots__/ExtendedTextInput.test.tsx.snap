@@ -24,7 +24,9 @@ exports[`UI: ExtendedTextInput should match snapshot 1`] = `
     test input
   </Text>
   <TextInput
+    onBlur={[Function]}
     onChangeText={[Function]}
+    onFocus={[Function]}
     selectionColor="#FFB452"
     style={
       Array [
@@ -40,6 +42,7 @@ exports[`UI: ExtendedTextInput should match snapshot 1`] = `
         Object {
           "backgroundColor": "yellow",
         },
+        false,
       ]
     }
     value="test input"
@@ -111,12 +114,15 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
           Object {
             "backgroundColor": "yellow",
           },
+          false,
         ],
       ]
     }
   >
     <TextInput
+      onBlur={[Function]}
       onChangeText={[Function]}
+      onFocus={[Function]}
       secureTextEntry={true}
       selectionColor="#FFB452"
       style={

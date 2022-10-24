@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import {
   BottomButtonView,
@@ -14,6 +14,7 @@ import { generalStyles } from '../../../../utils/styles';
 import { IForgotPasswordEmailScreenProps } from './ForgotPasswordEmailScreen.types';
 import { styles } from './ForgotPasswordEmailScreen.styles';
 import { SVG } from '../../../../assets/svg';
+import { BACKGROUND_IMAGES } from '../../../../assets';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -28,33 +29,39 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
     }, [navigation]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={<WhiteBackArrowIcon />}
-          onLeftIconPress={navigation.goBack}
-        />
-        <ExtendedKeyboardAvoidingView>
-          <BottomButtonView
-            buttonTitle={t('buttons.reset_password')}
-            onSubmit={onSubmit}
-            isDisabledButton={!email}
-            style={styles.container}>
-            <ExtendedText preset="large-title">
-              {t('screens.onboarding.forgot_password.email.title')}
-            </ExtendedText>
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={navigation.goBack}
+          />
+          <ExtendedKeyboardAvoidingView>
+            <BottomButtonView
+              buttonTitle={t('buttons.reset_password')}
+              onSubmit={onSubmit}
+              isDisabledButton={!email}
+              style={styles.container}>
+              <ExtendedText
+                preset="large-title"
+                style={generalStyles.brilliantWhite}>
+                {t('screens.onboarding.forgot_password.email.title')}
+              </ExtendedText>
 
-            <ExtendedText preset="secondary-text" style={styles.subtitle}>
-              {t('screens.onboarding.forgot_password.email.description')}
-            </ExtendedText>
+              <ExtendedText preset="secondary-text" style={styles.subtitle}>
+                {t('screens.onboarding.forgot_password.email.description')}
+              </ExtendedText>
 
-            <ExtendedTextInput
-              type={ExtendedTextInputType.Email}
-              value={email}
-              onChangeText={setEmail}
-              placeholder={t('placeholders.enter_email')}
-            />
-          </BottomButtonView>
-        </ExtendedKeyboardAvoidingView>
-      </SafeAreaView>
+              <ExtendedTextInput
+                type={ExtendedTextInputType.Email}
+                value={email}
+                onChangeText={setEmail}
+                placeholder={t('placeholders.enter_email')}
+              />
+            </BottomButtonView>
+          </ExtendedKeyboardAvoidingView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

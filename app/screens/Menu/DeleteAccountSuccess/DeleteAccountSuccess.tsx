@@ -11,7 +11,10 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IDeleteAccountSuccessScreenProps } from './DeleteAccountSuccess.types';
 import { styles } from './DeleteAccountSuccess.styles';
-import { SVG_ICONS } from '../../../assets/svg';
+import { SVG } from '../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const CelebrationGuideIcon = SVG.CelebrationGuideIcon;
 
 export const DeleteAccountSuccessScreen: React.FC<IDeleteAccountSuccessScreenProps> =
   ({ navigation }) => {
@@ -21,12 +24,9 @@ export const DeleteAccountSuccessScreen: React.FC<IDeleteAccountSuccessScreenPro
       navigation.navigate('ParentsOnboardingStack');
     }, [navigation]);
 
-    const WhiteBackArrowIcon = SVG_ICONS.whiteBackArrowIcon;
-    const CelebrationGuideIcon = SVG_ICONS.celebrationGuideIcon;
-
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.MENU_BACKGROUND}
+        source={BACKGROUND_IMAGES.MENU}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
