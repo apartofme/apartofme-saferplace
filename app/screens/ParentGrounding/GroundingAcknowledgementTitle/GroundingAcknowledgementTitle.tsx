@@ -42,6 +42,7 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
           />
           <BottomButtonView
             buttonTitle={t(buttonTitle)}
+            isArrow={true}
             onSubmit={onSubmit}
             style={styles.container}>
             <Icon />

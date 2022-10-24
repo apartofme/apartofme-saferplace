@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { GroundingAcknowledgement } from '../components';
 import { IImagineOakScreenProps } from './ImagineOak.types';
 
@@ -15,8 +15,8 @@ export const ImagineOakScreen: React.FC<IImagineOakScreenProps> = ({
     <GroundingAcknowledgement
       title={'screens.parent_grounding_exercise.imagine_oak.title'}
       buttonTitle={'buttons.next'}
-      image={IMAGES.LOGO}
-      backgroundImage={IMAGES.WHITE_PENCIL}
+      isButtonArrow={true}
+      backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_IMAGINE_OAK}
       onSubmit={onSubmit}
     />
   );

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { GroundingAcknowledgement } from '../components';
 import { IEarthConnectionScreenProps } from './EarthConnection.types';
 
@@ -15,8 +15,7 @@ export const EarthConnectionScreen: React.FC<IEarthConnectionScreenProps> = ({
     <GroundingAcknowledgement
       title={'screens.parent_grounding_exercise.earth_connection.title'}
       buttonTitle={'buttons.start_timer'}
-      image={IMAGES.LOGO}
-      backgroundImage={IMAGES.WHITE_PENCIL}
+      backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_EARTH_CONNECTION}
       onSubmit={onSubmit}
     />
   );

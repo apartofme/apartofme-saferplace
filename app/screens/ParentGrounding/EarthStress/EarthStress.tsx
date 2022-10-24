@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { GroundingAcknowledgement } from '../components';
 import { IEarthStressScreenProps } from './EarthStress.types';
 
@@ -15,8 +15,8 @@ export const EarthStressScreen: React.FC<IEarthStressScreenProps> = ({
     <GroundingAcknowledgement
       title={'screens.parent_grounding_exercise.earth_stress.title'}
       buttonTitle={'buttons.next'}
-      image={IMAGES.LOGO}
-      backgroundImage={IMAGES.WHITE_PENCIL}
+      isButtonArrow={true}
+      backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_EARTH_STRESS}
       onSubmit={onSubmit}
     />
   );
