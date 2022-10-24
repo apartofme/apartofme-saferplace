@@ -24,6 +24,7 @@ import { SignInValidationSchema } from './Login.validation';
 import { SVG } from '../../../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../../../assets';
 import { HIT_SLOP } from '../../../../../constants/hitSlop';
+import { COLORS } from '../../../../../themes/colors';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -80,8 +81,9 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
                   placeholder={t('placeholders.enter_email')}
+                  placeholderTextColor={COLORS.BRILLIANT_WHITE}
                   type={ExtendedTextInputType.Email}
-                  style={styles.mb24}
+                  style={styles.mb16}
                   error={errors.email}
                 />
                 <ExtendedTextInput
@@ -90,12 +92,12 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                   onChangeText={handleChange('password')}
                   onBlur={handleBlur('password')}
                   placeholder={t('placeholders.enter_password')}
-                  style={styles.mb24}
+                  placeholderTextColor={COLORS.BRILLIANT_WHITE}
                   error={errors.password}
                 />
                 <ExtendedButton
                   title={t('buttons.login')}
-                  style={styles.mb24}
+                  style={styles.button}
                   onPress={handleSubmit}
                   disabled={!isValid}
                 />
