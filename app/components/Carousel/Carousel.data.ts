@@ -17,7 +17,7 @@ export const CAROUSEL_MODE_CONFIG_AVATAR = {
 
 export const CAROUSEL_MODE_CONFIG_CHARM = {
   parallaxScrollingScale: 1,
-  parallaxScrollingOffset: 110,
+  parallaxScrollingOffset: 100,
 };
 
 export const AVATAR_CAROUSEL: ReadonlyArray<IAvatarCarouselItem> = [
