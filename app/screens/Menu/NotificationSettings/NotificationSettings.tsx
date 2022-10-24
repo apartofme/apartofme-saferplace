@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, Pressable, SafeAreaView, View } from 'react-native';
 
-import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
+import { ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
@@ -12,6 +12,7 @@ import { styles } from './NotificationSettings.styles';
 import { openDeviceNotificationSettings } from '../../../services/firebase';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { HIT_SLOP } from '../../../constants/hitSlop';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -52,18 +53,32 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
               {t('screens.menu.notification_settings.title')}
             </ExtendedText>
 
-            <MenuSwitchRow
-              title={t(
-                'screens.menu.notification_settings.is_allow_notifications',
-              )}
-              isEnabled={isNotificationsEnabled}
-              setIsEnabled={setNotificationEnabled}
-            />
-            <ExtendedButton
-              title="To device settings"
-              style={styles.button}
-              onPress={openDeviceNotificationSettings}
-            />
+            <View style={styles.menuSwitchContainer}>
+              <MenuSwitchRow
+                title={t(
+                  'screens.menu.notification_settings.is_allow_notifications',
+                )}
+                isEnabled={isNotificationsEnabled}
+                setIsEnabled={setNotificationEnabled}
+              />
+              <ExtendedText style={styles.subtitle} preset="secondary-text">
+                {t('screens.menu.notification_settings.description')}
+                <Pressable
+                  onPress={openDeviceNotificationSettings}
+                  style={styles.systemSettingsContainer}
+                  hitSlop={HIT_SLOP}>
+                  <ExtendedText
+                    preset="secondary-text"
+                    style={[
+                      generalStyles.boldText,
+                      generalStyles.primaryOrange,
+                    ]}>
+                    {t('labels.system_settings')}
+                  </ExtendedText>
+                </Pressable>
+              </ExtendedText>
+              <Pressable />
+            </View>
           </View>
         </SafeAreaView>
       </ImageBackground>
