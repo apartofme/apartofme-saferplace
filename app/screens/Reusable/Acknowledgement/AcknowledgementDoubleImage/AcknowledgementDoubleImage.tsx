@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
-import { IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
@@ -12,6 +12,7 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementDoubleImageScreenProps } from './AcknowledgementDoubleImage.types';
 import { styles } from './AcknowledgementDoubleImage.styles';
+import { DOUBLE_AVATARS_SVG } from '../../../../assets/svg';
 
 export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleImageScreenProps> =
   ({ route }) => {
@@ -19,6 +20,7 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
       title,
       description,
       buttonTitle,
+      backgroundImage,
       titleHasNickname,
       crossHeader,
       positiveNavigatesTo,
@@ -26,16 +28,19 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
     } = route.params.data;
 
     const { t } = useTranslation();
-
+    //const parentAvatar =
+    //  useAppSelector(state => state.user.parent?.avatar) ??
+    //  `Circle${AvatarsNameType.Rabbit}`;
+    //const childAvatar =
+    //  useAppSelector(state => state.user.child?.avatar) ??
+    //  `Circle${AvatarsNameType.Bear}`;
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
-      style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
+      style: generalStyles.brilliantWhiteCenter,
     });
 
     const Header = useRenderQuestHeader({
@@ -43,32 +48,27 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
       escapeMenuAlternativeNavigateTo,
     });
 
+    //const AvatarsIcon = DOUBLE_AVATARS_SVG[`${parentAvatar}${childAvatar}`];
+
     return (
       <ImageBackground
-        // TODO: change to the real image
-        source={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
             <View style={styles.imageContainer}>
-              <Image
-                // TODO: change to the real image
-                source={IMAGES.WHITE_PENCIL}
-                style={styles.image}
-              />
-              <Image
-                // TODO: change to the real image
-                source={IMAGES.WHITE_PENCIL}
-                style={[styles.image, styles.childImage]}
-              />
+              {/* // TODO: change to real icon */}
+              <DOUBLE_AVATARS_SVG.CircleFoxIconCircleMonkeyIcon />
             </View>
+            <View style={generalStyles.flex} />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>

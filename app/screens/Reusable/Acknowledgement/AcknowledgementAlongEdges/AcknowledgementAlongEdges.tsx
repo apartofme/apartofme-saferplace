@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
-import { IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import {
+  useAppSelector,
+  useIsChildMove,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
@@ -12,6 +14,7 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementAlongEdgesScreenProps } from './AcknowledgementAlongEdges.types';
 import { styles } from './AcknowledgementAlongEdges.styles';
+import { AVATARS_SVG, CHARMS_SVG } from '../../../../assets/svg';
 
 export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdgesScreenProps> =
   ({ route }) => {
@@ -28,14 +31,16 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
 
     const { t } = useTranslation();
     const onSubmit = useNavigateNextQuest();
+    const parentAvatar =
+      useAppSelector(state => state.user.parent?.avatar) ?? 'CircleRabbitIcon';
+    const childAvatar =
+      useAppSelector(state => state.user.child?.avatar) ?? 'CircleBearIcon';
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
-      style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
+      style: generalStyles.brilliantWhiteCenter,
     });
 
     const Header = useRenderQuestHeader({
@@ -43,27 +48,33 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       escapeMenuAlternativeNavigateTo,
     });
 
+    const isChild = useIsChildMove(title);
+
+    const Icon = useMemo(() => {
+      if (image) {
+        return CHARMS_SVG[image];
+      }
+      if (isChild) {
+        return AVATARS_SVG[childAvatar];
+      }
+      return AVATARS_SVG[parentAvatar];
+    }, [childAvatar, image, isChild, parentAvatar]);
+
     return (
       <ImageBackground
-        // TODO: change to real default image
         source={
-          (backgroundImage && IMAGES[backgroundImage]) ?? {
-            uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-          }
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            <Image
-              // TODO: change to real image
-              source={(image && IMAGES[image]) ?? IMAGES.LOGO}
-              style={styles.image}
-            />
+            <Icon />
             <ExtendedText style={styles.description}>
               {description}
             </ExtendedText>

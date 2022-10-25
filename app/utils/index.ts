@@ -4,7 +4,12 @@ import { Platform } from 'react-native';
 import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
-import { ElixirKeysType, ITranslations, ImagesKeys } from './types';
+import {
+  ElixirKeysType,
+  ITranslations,
+  CharmsBackgroundsKeys,
+  CharmsSvgKeys,
+} from './types';
 import { REGEXPS } from './regexps';
 
 export const isAndroid = Platform.OS === 'android';
@@ -80,12 +85,13 @@ export const questsToDictionary = (
       id: quest.id,
       title: quest.title,
       description: quest.description,
-      backgroundImage: (quest.backgroundimage?.path as ImagesKeys) ?? null,
-      image: (quest.image?.path as ImagesKeys) ?? null,
+      backgroundImage:
+        (quest.backgroundimage?.path as CharmsBackgroundsKeys) ?? null,
+      image: (quest.image?.path as CharmsSvgKeys) ?? null,
       tellMoreTitle: quest.tellmoretitle ?? null,
       tellMoreDescription: quest.tellmoredescription ?? null,
       tellMoreBackground:
-        (quest.tellmorebackground?.path as ImagesKeys) ?? null,
+        (quest.tellmorebackground?.path as CharmsBackgroundsKeys) ?? null,
       questLineId: quest.questlineid.id,
       type: quest.typeid.slug as keyof QuestStackParams,
       sort: quest.sort,

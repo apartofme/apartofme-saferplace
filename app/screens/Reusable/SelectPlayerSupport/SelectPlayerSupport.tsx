@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import {
   FlatList,
-  Image,
   ImageBackground,
+  Pressable,
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
@@ -15,7 +15,7 @@ import {
 import { styles } from './SelectPlayerSupport.styles';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IMAGES } from '../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { PLAYER_LIST } from './SelectPlayerSupport.data';
 import {
   useAppDispatch,
@@ -25,6 +25,9 @@ import {
   useRenderQuestHeader,
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
+import { AVATARS_SVG, SVG } from '../../../assets/svg';
+
+const OrangeQuestionMarkIcon = SVG.OrangeQuestionMarkIcon;
 
 export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps> =
   ({ navigation, route }) => {
@@ -32,7 +35,6 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
       title,
       description,
       buttonTitle,
-      image,
       backgroundImage,
       crossHeader,
       escapeMenuAlternativeNavigateTo,
@@ -46,12 +48,8 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
 
     const [playerList, setPlayerList] = useState(PLAYER_LIST);
 
-    const parentNickname = useAppSelector(
-      state => state.user.parent?.nickname,
-    ) as string;
-    const childNickname = useAppSelector(
-      state => state.user.child?.nickname,
-    ) as string;
+    const parent = useAppSelector(state => state.user.parent);
+    const child = useAppSelector(state => state.user.child);
 
     const Header = useRenderQuestHeader({
       crossHeader: crossHeader ?? false,
@@ -59,8 +57,16 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
     });
 
     useMount(() => {
-      const playerParent = { ...playerList[0], title: parentNickname };
-      const playerChild = { ...playerList[1], title: childNickname };
+      const playerParent: IPlayer = {
+        ...playerList[0],
+        title: parent?.nickname ?? '',
+        icon: AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'],
+      };
+      const playerChild: IPlayer = {
+        ...playerList[1],
+        title: child?.nickname ?? '',
+        icon: AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'],
+      };
       setPlayerList([playerParent, playerChild]);
     });
 
@@ -75,15 +81,17 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
           setSelectedPlayer(item.title);
         };
         return (
-          <TouchableOpacity
+          <Pressable
             onPress={onPlayerPress}
             style={[
               styles.playerContainer,
-              selectedPlayer === item.title && styles.activeBorder,
+              selectedPlayer === item.title && styles.activePlayerContainer,
             ]}>
-            <ExtendedText preset="title">{item.title}</ExtendedText>
-            <Image source={item.image} style={styles.playerImage} />
-          </TouchableOpacity>
+            <ExtendedText preset="title" style={generalStyles.brilliantWhite}>
+              {item.title}
+            </ExtendedText>
+            <item.icon width={80} height={80} />
+          </Pressable>
         );
       },
       [selectedPlayer],
@@ -96,15 +104,13 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
     return (
       <ImageBackground
         source={
-          (backgroundImage && IMAGES[backgroundImage]) ?? {
-            uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-          }
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.ready')}
+            buttonTitle={buttonTitle || t('buttons.select')}
             onSubmit={onSubmit}
             isDisabledButton={!selectedPlayer}
             style={styles.container}>
@@ -116,16 +122,14 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
               renderItem={renderItem}
               style={styles.playerList}
             />
-            <TouchableOpacity onPress={goToAlert}>
-              <Image
-                // TODO: change to correct image
-                source={(image && IMAGES[image]) ?? IMAGES.LOGO}
-                style={styles.infoImage}
-              />
+            <TouchableOpacity onPress={goToAlert} style={styles.info}>
+              <OrangeQuestionMarkIcon />
             </TouchableOpacity>
 
-            <ExtendedText preset="secondary-text" style={styles.footer}>
-              {description ?? t('screens.select_player.footer')}
+            <ExtendedText
+              preset="secondary-text"
+              style={generalStyles.brilliantWhiteCenter}>
+              {description || t('screens.select_player.footer')}
             </ExtendedText>
           </BottomButtonView>
         </SafeAreaView>

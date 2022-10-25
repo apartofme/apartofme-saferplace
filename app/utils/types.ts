@@ -1,5 +1,5 @@
-import { IMAGES } from '../assets';
-import { AVATARS_SVG, SVG } from '../assets/svg';
+import { CHARMS_BACKGROUNDS, IMAGES } from '../assets';
+import { AVATARS_SVG, CHARMS_SVG, SVG } from '../assets/svg';
 import { IPlantArea } from '../redux/types';
 import { IInterruptedQuestLine } from '../redux/types/questTypes';
 import { Nullable } from '../utils/index';
@@ -54,6 +54,8 @@ export enum ElixirKeysType {
 export type AvatarsKeys = keyof typeof AVATARS_SVG;
 export type ImagesKeys = keyof typeof IMAGES;
 export type SvgKeys = keyof typeof SVG;
+export type CharmsBackgroundsKeys = keyof typeof CHARMS_BACKGROUNDS;
+export type CharmsSvgKeys = keyof typeof CHARMS_SVG;
 export type SvgComponentType = (props: ISvgProps) => JSX.Element;
 
 export interface IElixirProgress {

@@ -73,11 +73,12 @@ import { WhiteBottomArrowIcon } from './WhiteBottomArrowIcon';
 import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
 import { BarefootIcon, QuietPlaceIcon, StandingUpIcon } from './grounding';
 import { RoundPauseButtonIcon } from './RoundPauseButtonIcon';
+import { CircleFoxIconCircleMonkeyIcon } from './doubleAvatars';
+import { OrangeQuestionMarkIcon } from './OrangeQuestionMarkIcon';
 
 export const SVG = {
   BarefootIcon: BarefootIcon,
   BirdOnBranchesIcon: BirdOnBranchesIcon,
-  //! required fix on android
   BookOnLeavesIcon: BookOnLeavesIcon,
   BrownTriangleIcon: BrownTriangleIcon,
   CelebrationGuideIcon: CelebrationGuideIcon,
@@ -95,6 +96,7 @@ export const SVG = {
   NadiyaTextIcon: NadiyaTextIcon,
   OpenedEyeIcon: OpenedEyeIcon,
   OrangeCirclePlussIcon: OrangeCirclePlussIcon,
+  OrangeQuestionMarkIcon: OrangeQuestionMarkIcon,
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
   QuietPlaceIcon: QuietPlaceIcon,
   RoundPauseButtonIcon: RoundPauseButtonIcon,
@@ -111,6 +113,11 @@ export const SVG = {
   WhiteTopArrowIcon: WhiteTopArrowIcon,
 };
 
+export const CHARMS_SVG = {
+  CelebrationGuideIcon: CelebrationGuideIcon,
+  CompassionateGuideIcon: CompassionateGuideIcon,
+};
+
 export const AVATARS_SVG = {
   BearIcon: BearAvatarIcon,
   FoxIcon: FoxAvatarIcon,
@@ -125,6 +132,10 @@ export const AVATARS_SVG = {
   CircleMothIcon: MothCircleAvatarIcon,
   CircleOwlIcon: OwlCircleAvatarIcon,
   CircleRabbitIcon: RabbitCircleAvatarIcon,
+};
+
+export const DOUBLE_AVATARS_SVG = {
+  CircleFoxIconCircleMonkeyIcon: CircleFoxIconCircleMonkeyIcon,
 };
 
 export const EMOTIONS_SVG = {
