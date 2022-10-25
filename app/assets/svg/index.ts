@@ -104,6 +104,12 @@ import {
 } from './garden';
 import { OpenBookIcon } from './OpenBookIcon';
 import { ClosedBookIcon } from './ClosedBookIcon';
+import { SkipNextIcon } from './SkipNextIcon';
+import { SkipPreviousIcon } from './SkipPreviousIcon';
+import { DancingFirstTrackIcon } from './DancingFirstTrackIcon';
+import { DancingSecondTrackIcon } from './DancingSecondTrackIcon';
+import { DancingThirdTrackIcon } from './DancingThirdTrackIcon';
+import { DancingFourthTrackIcon } from './DancingFourthTrackIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -132,6 +138,8 @@ export const SVG = {
   RoundPauseButtonIcon: RoundPauseButtonIcon,
   RoundTriangleButtonIcon: RoundTriangleButtonIcon,
   WiseGuideIcon: WiseGuideIcon,
+  SkipNextIcon: SkipNextIcon,
+  SkipPreviousIcon: SkipPreviousIcon,
   StandingUpIcon: StandingUpIcon,
   WhiteBackArrowIcon: WhiteBackArrowIcon,
   whiteBinIcon: WhiteBinIcon,
@@ -229,4 +237,11 @@ export const SVG_CHARM_ILLUSTRATIONS = {
   SlowWindIllustrationIcon: SlowWindIllustrationIcon,
   TruthIllustrationIcon: TruthIllustrationIcon,
   WeavingIllustrationIcon: WeavingIllustrationIcon,
+};
+
+export const SVG_DANCING_CHARM = {
+  DancingFirstTrackIcon: DancingFirstTrackIcon,
+  DancingSecondTrackIcon: DancingSecondTrackIcon,
+  DancingThirdTrackIcon: DancingThirdTrackIcon,
+  DancingFourthTrackIcon: DancingFourthTrackIcon,
 };
