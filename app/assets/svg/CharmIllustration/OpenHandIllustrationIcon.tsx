@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const OpenHandIllustrationIcon = ({
@@ -8,7 +9,11 @@ export const OpenHandIllustrationIcon = ({
   height = 300,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 213 300" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 213 300"
+      fill="none">
       <Path
         d="M161.609 269.938c-.552-3.269-1.741-6.391-2.931-9.485l-4.557 4.519a44.933 44.933 0 003.062 14.167 15.18 15.18 0 011.173-2.226l2.276 2.766c1.391-3.007 1.528-6.477.982-9.746l-.005.005z"
         fill="#CB2B1F"

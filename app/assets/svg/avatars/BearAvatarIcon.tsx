@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const BearAvatarIcon = ({ width = 208, height = 337 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 208 337" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 208 337"
+      fill="none">
       <Path
         d="M37.31 170.755L.93 189.263c-1.481 2.116.181 4.767 1.805 6.805l19.279 24.215c-.754-4.421 3.405-8.181 5.978-12.076 7.409-11.224 2.058-26.159 9.32-37.452zM206.265 191.007l-14.07-13.336c-5.825-.023-12.863.554-15.45 4.998-1.804 3.101-.557 6.785.423 10.144a59.218 59.218 0 01-.688 35.347c4.706-2.863 9.546-5.848 12.494-10.082 2.172-3.121 3.199-6.767 5.586-9.771 2.308-2.905 5.737-5.018 8.429-7.67 2.693-2.653 4.685-6.332 3.276-9.626v-.004z"
         fill="#2C9862"

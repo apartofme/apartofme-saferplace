@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const RabbitAvatarIcon = ({ width = 171, height = 368 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 171 368" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 171 368"
+      fill="none">
       <Path
         d="M143.299.194c-2.013-1.207-3.127 2.759-16.401 24.915-7.262 12.12-7.418 26.046-5.744 38.508l-2.096-4.255c-.958 8.134 1.058 16.585 5.582 23.41l.042-.55c.588 2.774 1.094 5.293 1.4 7.483 1.985 14.251-10.83 18.778-10.83 18.778l22.915 15.856c-9.729-26.268 6.459-42.044 17.565-68.659 11.105-26.617-10.42-54.275-12.433-55.483V.194z"
         fill="#DA9363"

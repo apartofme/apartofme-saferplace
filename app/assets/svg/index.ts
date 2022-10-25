@@ -12,7 +12,6 @@ import {
   RabbitAvatarIcon,
   RabbitCircleAvatarIcon,
 } from './avatars';
-import { CelebrationGuideIcon } from './CelebrationGuideIcon';
 import {
   AcceptanceIllustrationIcon,
   BefriendingIllustrationIcon,
@@ -33,9 +32,7 @@ import { CircleQuestionMarkIcon } from './CircleQuestionMarkIcon';
 import { RoundTriangleButtonIcon } from './RoundTriangleButtonIcon';
 import { ExitIcon } from './ExitIcon';
 import { GearManIcon } from './GearManIcon';
-import { HappyGuideIcon } from './HappyGuideIcon';
 import { OrangeCirclePlussIcon } from './OrangeCirclePlussIcon';
-import { SadGuideIcon } from './SadGuideIcon';
 import { WhiteBackArrowIcon } from './WhiteBackArrowIcon';
 import { WhiteBinIcon } from './WhiteBinIcon';
 import { WhiteCrossIcon } from './WhiteCrossIcon';
@@ -53,8 +50,6 @@ import { BrownTriangleIcon } from './BrownTriangleIcon';
 import { PurpleCheckMarkIcon } from './PurpleCheckMarkIcon';
 import { CrossedOutEyeIcon } from './CrossedOutEyeIcon';
 import { OpenedEyeIcon } from './OpenedEyeIcon';
-import { CompassionateGuideIcon } from './CompassionateGuideIcon';
-import { ConcernedGuideIcon } from './ConcernedGuideIcon';
 import { CheckYourEmailIcon } from './CheckYourEmailIcon';
 import {
   EmotionalBlobDefaultIcon,
@@ -76,6 +71,13 @@ import { RoundPauseButtonIcon } from './RoundPauseButtonIcon';
 import { AlertGuideIcon } from './AlertGuideIcon';
 import { CircleFoxIconCircleMonkeyIcon } from './doubleAvatars';
 import { OrangeQuestionMarkIcon } from './OrangeQuestionMarkIcon';
+import {
+  CelebrationGuideIcon,
+  CompassionateGuideIcon,
+  ConcernedGuideIcon,
+  HappySidekickGuideIcon,
+  WiseGuideIcon,
+} from './guide';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -93,7 +95,7 @@ export const SVG = {
   ExitIcon: ExitIcon,
   GearManIcon: GearManIcon,
   GuideInTreesIcon: GuideInTreesIcon,
-  HappyGuideIcon: HappyGuideIcon,
+  HappySidekickGuideIcon: HappySidekickGuideIcon,
   HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
   NadiyaTextIcon: NadiyaTextIcon,
   OpenedEyeIcon: OpenedEyeIcon,
@@ -103,7 +105,7 @@ export const SVG = {
   QuietPlaceIcon: QuietPlaceIcon,
   RoundPauseButtonIcon: RoundPauseButtonIcon,
   RoundTriangleButtonIcon: RoundTriangleButtonIcon,
-  SadGuideIcon: SadGuideIcon,
+  WiseGuideIcon: WiseGuideIcon,
   StandingUpIcon: StandingUpIcon,
   WhiteBackArrowIcon: WhiteBackArrowIcon,
   whiteBinIcon: WhiteBinIcon,

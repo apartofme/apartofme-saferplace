@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const FoxCircleAvatarIcon = ({
@@ -8,7 +9,11 @@ export const FoxCircleAvatarIcon = ({
   height = 240,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 225 240" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 225 240"
+      fill="none">
       <G clipPath="url(#clip0_2928_348438)">
         <Path
           d="M112.501 239.095c-30.05 0-58.302-11.701-79.55-32.95C11.702 184.896 0 156.645 0 126.596c0-30.049 11.701-58.302 32.95-79.55 21.249-21.25 49.5-32.95 79.551-32.95 30.05 0 58.3 11.7 79.549 32.95 21.249 21.248 32.95 49.5 32.95 79.548 0 30.049-11.701 58.302-32.95 79.549-21.249 21.249-49.5 32.951-79.549 32.951v.001z"

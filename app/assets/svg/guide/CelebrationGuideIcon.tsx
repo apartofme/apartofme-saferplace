@@ -1,14 +1,19 @@
 import * as React from 'react';
 import Svg, { Defs, G, LinearGradient, Path, Stop } from 'react-native-svg';
 
-import { ISvgProps } from '../../utils/types';
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
+import { ISvgProps } from '../../../utils/types';
 
 export const CelebrationGuideIcon = ({
   width = 295,
   height = 277,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 295 277" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 295 277"
+      fill="none">
       <Path
         d="M138.5 277c-36.994 0-71.776-14.407-97.934-40.566C14.406 210.276 0 175.494 0 138.5s14.406-71.774 40.566-97.934C66.724 14.406 101.506 0 138.5 0s71.774 14.406 97.934 40.566C262.593 66.726 277 101.506 277 138.5s-14.407 71.776-40.566 97.934C210.274 262.593 175.494 277 138.5 277z"
         fill="#FFB452"

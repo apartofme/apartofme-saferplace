@@ -8,14 +8,19 @@ import Svg, {
   Stop,
 } from 'react-native-svg';
 
-import { ISvgProps } from '../../utils/types';
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
+import { ISvgProps } from '../../../utils/types';
 
 export const CompassionateGuideIcon = ({
   width = 277,
   height = 277,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 277 277" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 277 277"
+      fill="none">
       <G clipPath="url(#clip0_3059_367104)">
         <Path
           d="M138.501 277c-36.994 0-71.774-14.406-97.933-40.565C14.406 210.276 0 175.495 0 138.501s14.406-71.777 40.565-97.936C66.725 14.405 101.505 0 138.501 0c36.997 0 71.775 14.406 97.934 40.565C262.594 66.725 277 101.505 277 138.5s-14.406 71.774-40.565 97.933c-26.159 26.16-60.94 40.565-97.934 40.565V277z"
