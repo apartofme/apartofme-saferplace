@@ -7,6 +7,7 @@ import { ExtendedText } from '../ExtendedText';
 import { IDialogViewProps } from './DialogView.types';
 import { styles } from './DialogView.styles';
 import { SVG } from '../../assets/svg';
+import { generalStyles } from '../../utils/styles';
 
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 
@@ -56,21 +57,29 @@ export const DialogView: React.FC<IDialogViewProps> = ({
   ]);
 
   return (
-    <ImageBackground source={backgroundImage} style={styles.container}>
-      {Icon && <Icon />}
+    <ImageBackground source={backgroundImage} style={[generalStyles.flex]}>
+      <View style={styles.container}>
+        {Icon && (
+          <View style={currentSpeech.isBlur && styles.inactiveIconContainer}>
+            <Icon />
+          </View>
+        )}
 
-      <View style={styles.dialogContainer}>
-        <ExtendedText
-          key={getKeyFromLocalizationString(currentSpeech.textKey)}
-          preset="heading"
-          style={styles.title}>
-          {t(currentSpeech.textKey)}
-        </ExtendedText>
+        <View style={styles.dialogContainer}>
+          <ExtendedText
+            key={getKeyFromLocalizationString(currentSpeech.textKey)}
+            preset="heading"
+            style={styles.title}>
+            {t(currentSpeech.textKey)}
+          </ExtendedText>
+        </View>
+
+        <TouchableOpacity
+          onPress={getCorrectOnPress}
+          style={styles.roundButton}>
+          <RoundTriangleButtonIcon />
+        </TouchableOpacity>
       </View>
-
-      <TouchableOpacity onPress={getCorrectOnPress} style={styles.roundButton}>
-        <RoundTriangleButtonIcon />
-      </TouchableOpacity>
     </ImageBackground>
   );
 };

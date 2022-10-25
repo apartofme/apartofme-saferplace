@@ -25,6 +25,9 @@ export const BACKGROUND_IMAGES = {
   PARENT_GROUNDING_STAMP_FEET: require('./backgrounds/parentGroundingStampFeetBackground.png'),
   PARENT_GROUNDING_WELCOME: require('./backgrounds/parentGroundingWelcomeBackground.png'),
   SPLASHSCREEN_ADULT: require('./backgrounds/splashscreenAdultBackground.png'),
+  CALM_DEFAULT: require('./backgrounds/calmDefaultBackground.png'),
+  ALTERNATIVE_GARDEN: require('./backgrounds/alternativeGardenBackground.png'),
+  SPLASH_SCREEN_PARENT_CHILD: require('./backgrounds/splashscreenParentChildBackground.png'),
 };
 
 export const CHARMS_BACKGROUNDS = {

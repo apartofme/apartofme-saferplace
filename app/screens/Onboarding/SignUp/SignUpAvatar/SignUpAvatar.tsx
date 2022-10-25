@@ -7,11 +7,10 @@ import {
   BottomButtonView,
   Carousel,
   CarouselType,
-  ExtendedText,
   MainHeader,
 } from '../../../../components';
 import { BACKGROUND_IMAGES } from '../../../../assets';
-import { useAppDispatch } from '../../../../hooks';
+import { useAppDispatch, useParsedJSXTextNickname } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpAvatarScreenProps } from './SignUpAvatar.types';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
@@ -55,18 +54,26 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     }
   }, [avatar, dispatch, isChild, navigation]);
 
-  const localizationPath = useMemo(() => {
+  const Title = useParsedJSXTextNickname({
+    text: t(
+      isChild
+        ? 'screens.onboarding.sign_up_avatar.child.title'
+        : 'screens.onboarding.sign_up_avatar.parent.title',
+    ),
+    textHasNickname: isChild ?? false,
+    style: styles.whiteColor,
+    preset: 'large-title',
+  });
+
+  const background = useMemo(() => {
     if (isChild) {
-      return 'screens.onboarding.sign_up_avatar.child';
-    } else {
-      return 'screens.onboarding.sign_up_avatar.parent';
+      return BACKGROUND_IMAGES.ALTERNATIVE_GARDEN;
     }
+    return BACKGROUND_IMAGES.ONBOARDING_DEFAULT;
   }, [isChild]);
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
-      style={generalStyles.flex}>
+    <ImageBackground source={background} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
@@ -77,9 +84,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
           onSubmit={onSubmitButtonPress}
           isDisabledButton={!avatar}
           style={styles.container}>
-          <ExtendedText preset="large-title" style={styles.whiteColor}>
-            {t(`${localizationPath}.title`)}
-          </ExtendedText>
+          <Title />
           <Carousel
             data={AVATAR_CAROUSEL}
             preset={CarouselType.Avatar}

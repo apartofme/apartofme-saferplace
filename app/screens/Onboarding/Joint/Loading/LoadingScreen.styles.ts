@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 interface ILoadingScreenStyles {
   container: ViewStyle;
   timer: ViewStyle;
@@ -18,10 +20,12 @@ export const styles = StyleSheet.create<ILoadingScreenStyles>({
     marginBottom: 74,
   },
   title: {
+    color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
     marginBottom: 24,
   },
   subtitle: {
+    color: COLORS.LIGHT_GREY,
     textAlign: 'center',
   },
 });

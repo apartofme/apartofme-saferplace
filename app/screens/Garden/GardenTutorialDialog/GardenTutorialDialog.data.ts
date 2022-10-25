@@ -1,6 +1,6 @@
 import { ISpeech } from '../../../utils/types';
 
-export const GARDEN_TUTORIAL_DIALOG: ISpeech[] = [
+export const GARDEN_TUTORIAL_DIALOG: ReadonlyArray<ISpeech> = [
   {
     textKey: 'screens.garden.tutorial_dialog.first',
   },
