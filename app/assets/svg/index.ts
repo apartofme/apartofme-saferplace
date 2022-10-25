@@ -168,3 +168,8 @@ export const SVG_CHARM_ILLUSTRATIONS = {
   TruthIllustrationIcon: TruthIllustrationIcon,
   WeavingIllustrationIcon: WeavingIllustrationIcon,
 };
+
+export const CHARMS_SVG = {
+  CelebrationGuideIcon: CelebrationGuideIcon,
+  CompassionateGuideIcon: CompassionateGuideIcon,
+};
