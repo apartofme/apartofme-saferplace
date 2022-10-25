@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const MonkeyAvatarIcon = ({ width = 196, height = 313 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 196 313" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 196 313"
+      fill="none">
       <Path
         d="M36.163 298.498c-1.464.595-3.289.132-4.291-1.088-.13-.159-.253-.342-.254-.548 0-.261.19-.478.379-.654 1.76-1.645 4.501-2.147 6.728-1.23 0 0 1.534 1.013.434 2.236-1.1 1.223-2.996 1.284-2.996 1.284z"
         fill="#32194C"

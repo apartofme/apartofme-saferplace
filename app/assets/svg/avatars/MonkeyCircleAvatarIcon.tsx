@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const MonkeyCircleAvatarIcon = ({
@@ -8,7 +9,11 @@ export const MonkeyCircleAvatarIcon = ({
   height = 227,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 225 227" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 225 227"
+      fill="none">
       <G clipPath="url(#clip0_2921_348223)">
         <Path
           d="M112.501 226.746c-30.05 0-58.302-11.702-79.55-32.95C11.702 172.547 0 144.295 0 114.245c0-30.05 11.701-58.3 32.95-79.55 21.249-21.248 49.5-32.95 79.551-32.95 30.05 0 58.3 11.702 79.549 32.95 21.249 21.25 32.95 49.501 32.95 79.55s-11.701 58.302-32.95 79.549c-21.249 21.249-49.5 32.95-79.549 32.95v.002z"

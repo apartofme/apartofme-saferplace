@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const SlowWindIllustrationIcon = ({
@@ -8,7 +9,11 @@ export const SlowWindIllustrationIcon = ({
   height = 220,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 187 220" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 187 220"
+      fill="none">
       <G clipPath="url(#clip0_370_24359)">
         <Path
           d="M23.163 148.482c-.08-8.244 1.75-20.39 8.46-28.4 2.2-2.63 7.32-6.537 10.018-8.65 6.704-5.241 11.337-13.064 12.705-21.466.923-5.662 2.396-12.447-1.205-16.914-3.605-4.461-12.15-13.848-23.651-6.15-7.211 4.83-9.1 12.668-11.601 20.979-1.272 4.227-1.554 10.1-5.867 11.036-1.33.287-2.726-.062-3.965-.626C2.075 95.556-.583 87.933.932 81.535c1.521-6.398 5.351-14.135 9.77-19.008 5.183-5.714 10.54-8.975 16.521-11.71 13.284-6.074 26.095-.14 34.339 5.915 8.081 5.93 10.157 19.242 8.818 29.179-1.34 9.932-2.774 15.527-9.301 23.13-3.037 3.538-11.706 12.031-13.447 13.528-4.858 4.184-6.948 10.285-8.583 16.229-2.29 8.316-.488 19.472 4.787 31.011"
