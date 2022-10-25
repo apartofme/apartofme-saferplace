@@ -1,21 +1,20 @@
 import React, { useCallback } from 'react';
-import { FlatList, Image, SafeAreaView, View } from 'react-native';
+import { FlatList, ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import {
-  IInstructionListItem,
-  IInstructionScreenProps,
-} from './Instruction.types';
+import { IInstructionScreenProps } from './Instruction.types';
 import { styles } from './Instruction.styles';
 import { BottomButtonView, ExtendedText } from '../../../components';
 
 import { generalStyles } from '../../../utils/styles';
-import { INSTRUCTION_LIST } from './Instruction.data';
 import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
+import { INSTRUCTION_LIST } from '../../../constants/quest';
+import { IInstructionItem } from '../../ParentGrounding';
 
 export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
   route,
@@ -25,6 +24,7 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
   const {
     title,
     titleHasNickname,
+    backgroundImage,
     crossHeader,
     buttonTitle,
     escapeMenuAlternativeNavigateTo,
@@ -37,8 +37,6 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
     style: styles.title,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
   });
 
   const Header = useRenderQuestHeader({
@@ -47,12 +45,10 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
   });
 
   const renderItem = useCallback(
-    ({ item }: { item: IInstructionListItem }) => (
+    ({ item }: { item: IInstructionItem }) => (
       <View style={styles.instructionContainer}>
-        <Image source={item.image} style={styles.instructionImage} />
-        <ExtendedText
-          preset="tertiary-text-medium"
-          style={styles.instructionTitle}>
+        <item.image />
+        <ExtendedText preset="heading" style={styles.instructionTitle}>
           {t(item.titleKey)}
         </ExtendedText>
       </View>
@@ -61,15 +57,22 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <Header />
-      <BottomButtonView
-        buttonTitle={buttonTitle ?? t('buttons.ready')}
-        onSubmit={onSubmit}
-        style={styles.container}>
-        <Title />
-        <FlatList data={INSTRUCTION_LIST} renderItem={renderItem} />
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <Header />
+        <BottomButtonView
+          buttonTitle={buttonTitle || t('buttons.next')}
+          isArrow={!buttonTitle}
+          onSubmit={onSubmit}
+          style={styles.container}>
+          <Title />
+          <FlatList data={INSTRUCTION_LIST} renderItem={renderItem} />
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

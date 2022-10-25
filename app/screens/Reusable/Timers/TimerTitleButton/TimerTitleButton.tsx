@@ -1,8 +1,13 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  Image,
+  ImageBackground,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
-import { BottomButtonView, Timer } from '../../../../components';
+import { ExtendedText } from '../../../../components';
 import { ITimerTitleButtonScreenProps } from './TimerTitleButton.types';
 import { styles } from './TimerTitleButton.styles';
 import { generalStyles } from '../../../../utils/styles';
@@ -11,62 +16,88 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../../hooks';
+import { CHARMS_BACKGROUNDS, IMAGES } from '../../../../assets';
+import { SVG } from '../../../../assets/svg';
+import { TEN_SECONDS } from '../../../../constants/time';
+
+const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
+const RoundPauseButtonIcon = SVG.RoundPauseButtonIcon;
 
 export const TimerTitleButtonScreen: React.FC<ITimerTitleButtonScreenProps> = ({
   route,
 }) => {
-  const { t } = useTranslation();
-  const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
-  const navigateNextQuest = useNavigateNextQuest();
   const {
     duration,
     title,
+    description,
+    backgroundImage,
     crossHeader,
     titleHasNickname,
     escapeMenuAlternativeNavigateTo,
   } = route.params.data;
+
+  const [timerValue, setTimerValue] = useState(duration ?? TEN_SECONDS);
+  const [isTimerPause, setIsTimerPause] = useState(true);
+  const navigateNextQuest = useNavigateNextQuest();
 
   const Header = useRenderQuestHeader({
     crossHeader: crossHeader ?? false,
     escapeMenuAlternativeNavigateTo,
   });
 
-  const correctButtonTitle = useMemo(() => {
-    if (isTimerStart) {
-      return 'buttons.timer_started';
-    } else {
-      return 'buttons.start_timer';
-    }
-  }, [isTimerStart]);
-
   const Title = useParsedJSXTextNickname({
     text: title,
     textHasNickname: titleHasNickname ?? true,
-    preset: 'heading',
+    preset: 'large-title',
     style: styles.title,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
   });
 
-  const onSubmitPress = useCallback(() => {
-    setIsTimerStart(true);
-  }, []);
+  const ButtonIcon = useMemo(() => {
+    if (isTimerPause) {
+      return RoundTriangleButtonIcon;
+    }
+    return RoundPauseButtonIcon;
+  }, [isTimerPause]);
+
+  const timerStatus = useCallback(() => {
+    setIsTimerPause(!isTimerPause);
+  }, [isTimerPause]);
+
+  useEffect(() => {
+    if (!isTimerPause) {
+      if (timerValue > 0 && !isTimerPause) {
+        const timer = setTimeout(() => setTimerValue(timerValue - 1), 1000);
+        return () => {
+          clearTimeout(timer);
+        };
+      }
+      return navigateNextQuest();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimerPause, timerValue]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      <Header />
-      <BottomButtonView
-        buttonTitle={t(correctButtonTitle)}
-        onSubmit={onSubmitPress}
-        isDisabledButton={isTimerStart}
-        style={styles.container}>
-        <Timer
-          duration={duration ?? 10}
-          isStart={isTimerStart}
-          onAnimationComplete={navigateNextQuest}
-        />
-        {title && <Title />}
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <Header />
+        <View style={styles.container}>
+          {/* //TODO: replace with animation */}
+          <Image source={IMAGES.LOGO} style={styles.image} />
+          {title && <Title />}
+          {description && (
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {description}
+            </ExtendedText>
+          )}
+          <TouchableOpacity onPress={timerStatus}>
+            <ButtonIcon />
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

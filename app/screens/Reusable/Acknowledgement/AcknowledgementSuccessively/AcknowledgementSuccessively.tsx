@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
-import { IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
@@ -12,6 +12,7 @@ import {
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementSuccessivelyScreenProps } from './AcknowledgementSuccessively.types';
 import { styles } from './AcknowledgementSuccessively.styles';
+import { CHARMS_SVG } from '../../../../assets/svg';
 
 export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccessivelyScreenProps> =
   ({ route }) => {
@@ -19,6 +20,8 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
       title,
       description,
       buttonTitle,
+      image,
+      backgroundImage,
       crossHeader,
       positiveNavigatesTo,
       titleHasNickname,
@@ -34,8 +37,6 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
       textHasNickname: titleHasNickname ?? true,
       preset: 'large-title',
       style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
     });
 
     const Header = useRenderQuestHeader({
@@ -43,26 +44,26 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
       escapeMenuAlternativeNavigateTo,
     });
 
+    const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
+
     return (
       <ImageBackground
-        // TODO: change to the real image
-        source={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
-            <Image
-              // TODO: change to the real image
-              source={IMAGES.LOGO}
-              style={styles.image}
-            />
+            {image && <Icon />}
             <Title />
-            <ExtendedText preset="secondary-text" style={styles.description}>
+            <ExtendedText
+              preset="secondary-text"
+              style={generalStyles.greyCenter}>
               {description}
             </ExtendedText>
           </BottomButtonView>

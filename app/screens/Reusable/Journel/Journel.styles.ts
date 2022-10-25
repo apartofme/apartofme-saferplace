@@ -12,10 +12,10 @@ export const styles = StyleSheet.create<IJournelScreenStyles>({
     paddingHorizontal: 24,
   },
   description: {
-    paddingTop: 16,
-    paddingBottom: 56,
+    marginTop: 16,
   },
   inputContainer: {
+    marginTop: 36,
     height: 160,
   },
 });

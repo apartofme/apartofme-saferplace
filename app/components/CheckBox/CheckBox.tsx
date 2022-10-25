@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Pressable } from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
 import { ICheckBoxProps } from './CheckBox.types';
@@ -12,11 +12,11 @@ export const CheckBox: React.FC<ICheckBoxProps> = ({
   onPress,
 }) => {
   return (
-    <TouchableOpacity
+    <Pressable
       style={[styles.container, isActive && styles.activeBackground]}
       onPress={onPress}>
       <ExtendedText style={styles.title}>{title}</ExtendedText>
       <Square isActive={isActive} />
-    </TouchableOpacity>
+    </Pressable>
   );
 };
