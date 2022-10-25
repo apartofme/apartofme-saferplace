@@ -73,8 +73,10 @@ import { WhiteBottomArrowIcon } from './WhiteBottomArrowIcon';
 import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
 import { BarefootIcon, QuietPlaceIcon, StandingUpIcon } from './grounding';
 import { RoundPauseButtonIcon } from './RoundPauseButtonIcon';
+import { AlertGuideIcon } from './AlertGuideIcon';
 
 export const SVG = {
+  AlertGuideIcon: AlertGuideIcon,
   BarefootIcon: BarefootIcon,
   BirdOnBranchesIcon: BirdOnBranchesIcon,
   //! required fix on android

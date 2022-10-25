@@ -150,7 +150,11 @@ export const QuestStackNavigator = () => (
       name="AcknowledgementTitle"
       component={AcknowledgementTitleScreen}
     />
-    <Stack.Screen name="Alert" component={AlertScreen} />
+    <Stack.Screen
+      options={TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS}
+      name="Alert"
+      component={AlertScreen}
+    />
     <Stack.Screen name="AnimationTitle" component={AnimationTitleScreen} />
     <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
     <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
