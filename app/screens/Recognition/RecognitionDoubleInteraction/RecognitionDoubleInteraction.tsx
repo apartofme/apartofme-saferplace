@@ -5,8 +5,10 @@ import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { ExtendedText } from '../../../components';
+import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
 import { AvatarsNameType } from '../../../utils/types';
 import { styles } from './RecognitionDoubleInteraction.styles';
@@ -19,8 +21,10 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
 
-    const [isСhildPress, setIsСhildPress] = useState(false);
+    const [isChildPress, setIsСhildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
+
+    const [isSoundStart, setIsSoundStart] = useState(false);
 
     const parentAvatar =
       useAppSelector(state => state.user.parent?.avatar) ??
@@ -34,21 +38,32 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
 
     const ChildAvatarIcon = AVATARS_SVG[childAvatar];
 
-    const setСhildPress = useCallback(() => {
-      setIsСhildPress(!isСhildPress);
-    }, [isСhildPress]);
+    const setChildPress = useCallback(() => {
+      setIsСhildPress(!isChildPress);
+    }, [isChildPress]);
 
     const setAdultPress = useCallback(() => {
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
 
     useEffect(() => {
-      if (isСhildPress && isAdultPress) {
+      if (isChildPress && isAdultPress && !isSoundStart) {
+        AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
+        setIsSoundStart(true);
+      } else if (isChildPress && isAdultPress) {
+        AudioPlayerHelper.start();
+      } else {
+        AudioPlayerHelper.pause();
+      }
+    }, [isAdultPress, isChildPress, isSoundStart]);
+
+    useEffect(() => {
+      if (isChildPress && isAdultPress) {
         dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir + 1));
         navigation.navigate('RecognitionDoubleInteractionSuccess');
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isAdultPress, isСhildPress]);
+    }, [isAdultPress, isChildPress]);
 
     return (
       <ImageBackground
@@ -62,14 +77,14 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
           <View
             style={[
               styles.square,
-              isСhildPress && isAdultPress && styles.redBackground,
+              isChildPress && isAdultPress && styles.redBackground,
             ]}
           />
           <ExtendedText style={styles.subtitle} preset="secondary-text">
             {t('screens.recognition.double_interaction.description')}
           </ExtendedText>
           <View style={styles.buttonsContainer}>
-            <View onTouchStart={setСhildPress} onTouchEnd={setСhildPress}>
+            <View onTouchStart={setChildPress} onTouchEnd={setChildPress}>
               <ParentAvatarIcon width={90} height={90} />
             </View>
             <View onTouchStart={setAdultPress} onTouchEnd={setAdultPress}>

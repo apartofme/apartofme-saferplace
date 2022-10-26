@@ -8,7 +8,6 @@ export interface IElixirDoubleInteractionStyles {
   button: ViewStyle;
   border: ViewStyle;
   title: TextStyle;
-  subtitle: TextStyle;
   square: ViewStyle;
   redBackground: ViewStyle;
 }
@@ -16,7 +15,7 @@ export interface IElixirDoubleInteractionStyles {
 export const styles = StyleSheet.create<IElixirDoubleInteractionStyles>({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -37,13 +36,11 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionStyles>({
     borderColor: COLORS.BORDER,
   },
   title: {
+    color: COLORS.BRILLIANT_WHITE,
+    paddingTop: 80,
+    maxWidth: 327,
     textAlign: 'center',
     marginBottom: 60,
-  },
-  subtitle: {
-    textAlign: 'center',
-    marginBottom: 40,
-    marginTop: 40,
   },
   // TODO: remove when add animation
   square: {
