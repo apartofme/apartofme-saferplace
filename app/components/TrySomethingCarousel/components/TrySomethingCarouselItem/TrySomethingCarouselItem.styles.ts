@@ -1,24 +1,32 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 export interface IOnlyImageStyles {
   container: ViewStyle;
-  contentContainer: ViewStyle;
   title: TextStyle;
+  subtitle: TextStyle;
 }
 
 export const styles = StyleSheet.create<IOnlyImageStyles>({
-  // TODO: change for correct styles
   container: {
-    flex: 1,
-    padding: 70,
-  },
-  contentContainer: {
-    flex: 1,
-    justifyContent: 'center',
+    height: 279,
+    width: 247,
     borderRadius: 24,
     paddingHorizontal: 24,
+    backgroundColor: COLORS.PRIMARY_PURPLE,
+    borderColor: COLORS.PRIMARY_ORANGE,
+    borderWidth: 2,
+    paddingVertical: 24,
+    alignItems: 'center',
   },
   title: {
-    marginBottom: 16,
+    marginVertical: 16,
+    color: COLORS.PRIMARY_ORANGE,
+    textAlign: 'center',
+  },
+  subtitle: {
+    color: COLORS.LIGHT_ORANGE,
+    textAlign: 'center',
   },
 });

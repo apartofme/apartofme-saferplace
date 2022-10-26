@@ -1,38 +1,42 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../../themes/colors';
 
 export interface IDialogscreenStyles {
+  header: ViewStyle;
   container: ViewStyle;
+  iconContainer: ViewStyle;
   dialogContainer: ViewStyle;
-  title: TextStyle;
   roundButton: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IDialogscreenStyles>({
+  header: {
+    zIndex: 100,
+  },
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'flex-end',
     paddingHorizontal: 40,
-    paddingBottom: 5,
+  },
+  iconContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    //backgroundColor: 'red',
+    top: -50,
   },
   dialogContainer: {
-    marginTop: 12,
-    minHeight: 304,
-    paddingTop: 40,
-    paddingBottom: 40,
+    flex: 1,
+    maxHeight: 304,
+    paddingVertical: 40,
     paddingHorizontal: 24,
     borderRadius: 24,
     borderWidth: 4,
     borderColor: COLORS.PRIMARY_ORANGE,
     backgroundColor: COLORS.PRIMARY_PURPLE,
   },
-  title: {
-    color: COLORS.BRILLIANT_WHITE,
-    width: 240,
-  },
   roundButton: {
+    alignSelf: 'center',
     transform: [
       {
         translateY: -40,

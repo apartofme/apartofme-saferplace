@@ -4,6 +4,7 @@ import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementDoubleImageScreenStyles {
   container: ViewStyle;
+  iconContainer: ViewStyle;
   description: TextStyle;
 }
 
@@ -11,10 +12,12 @@ export const styles =
   StyleSheet.create<IAcknowledgementDoubleImageScreenStyles>({
     container: {
       alignItems: 'center',
-      justifyContent: 'space-between',
       paddingTop: 40,
       paddingHorizontal: 40,
       paddingBottom: 70,
+    },
+    iconContainer: {
+      marginVertical: 56,
     },
     description: {
       flex: 1,

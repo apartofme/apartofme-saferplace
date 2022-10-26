@@ -26,7 +26,8 @@ export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
         <BottomButtonView
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmitPress}
-          isArrow={true}>
+          style={styles.container}
+          isArrow>
           <Carousel
             data={[...ELIXIR_CAROUSEL]}
             preset={CarouselType.ImageSubtitle}
