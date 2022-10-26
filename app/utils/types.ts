@@ -63,6 +63,7 @@ export type SvgKeys = keyof typeof SVG;
 export type CharmsBackgroundsKeys = keyof typeof CHARMS_BACKGROUNDS;
 export type CharmsSvgKeys = keyof typeof CHARMS_SVG;
 export type EmotionsCarouselSvgKeys = keyof typeof EMOTIONS_CAROUSEL_SVG;
+export type SvgDancingCharmKeys = keyof typeof SVG_DANCING_CHARM;
 export type SvgComponentType = (props: ISvgProps) => JSX.Element;
 
 export interface IElixirProgress {
