@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 
 import { SVG } from '../../../assets/svg';
+import { AlertGuideIcon } from '../../../assets/svg/AlertGuideIcon';
 import { ExtendedButton, ExtendedText } from '../../../components';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 import {
@@ -111,6 +112,9 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
         <WhiteBackArrowIcon />
       </TouchableOpacity>
 
+      <View style={styles.imageContainer}>
+        <AlertGuideIcon />
+      </View>
       <View style={styles.contentContainer}>
         <ExtendedText preset="heading" style={styles.title}>
           {t('screens.escape_menu.title')}

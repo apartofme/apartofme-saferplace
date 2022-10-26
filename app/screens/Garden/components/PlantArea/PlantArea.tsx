@@ -1,14 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback } from 'react';
-import {
-  Image,
-  Pressable,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import React, { useCallback, useMemo } from 'react';
+import { Pressable, TouchableOpacity, View, ViewStyle } from 'react-native';
 
-import { IMAGES } from '../../../../assets';
+import {
+  PainTreeRootIcon,
+  SadTreeRootIcon,
+} from '../../../../assets/svg/garden';
+import { HIT_SLOP, DOUBLE_HIT_SLOP } from '../../../../constants/hitSlop';
 import { useAppSelector } from '../../../../hooks';
 import { IPlant } from '../../../../models/IPlant';
 import { generalStyles } from '../../../../utils/styles';
@@ -60,6 +58,11 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
               activePlantArea === currentPlantArea && styles.activePlantArea,
             ]}
             disabled={!!currentPlant}
+            hitSlop={
+              currentPlantArea === PlantAreaType.Center
+                ? DOUBLE_HIT_SLOP
+                : HIT_SLOP
+            }
             onPress={() => selectPlantArea(currentPlantArea)}>
             {currentPlant && <Plant plant={currentPlant} />}
           </Pressable>
@@ -79,10 +82,21 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
     },
     [activePlantArea, isPlanting, selectPlantArea],
   );
+
+  const treeIcon = useMemo(() => {
+    if (isBefriending) {
+      return <PainTreeRootIcon />;
+    }
+    return <SadTreeRootIcon />;
+  }, [isBefriending]);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity disabled={!isBefriending} onPress={onTreePress}>
-        <Image source={IMAGES.TREE} style={styles.tree} />
+      <TouchableOpacity
+        disabled={!isBefriending}
+        onPress={onTreePress}
+        style={styles.tree}>
+        {treeIcon}
       </TouchableOpacity>
       <View style={styles.plantingPlaсe}>
         <View style={generalStyles.row}>

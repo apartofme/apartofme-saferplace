@@ -122,6 +122,7 @@ import {
   PostBoxIcon,
   PutHeartHandsIcon,
   PuzzledMothIcon,
+  ReliefHappyTreeIcon,
   StationeryIcon,
   StressedPlaceOnBodyIcon,
   ThoughtfulGhostIcon,
@@ -186,6 +187,8 @@ import {
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
+  // TODO: uncoment
+  // AnnoyedGuideIcon: AnnoyedGuideIcon,
   BarefootIcon: BarefootIcon,
   BirdOnBranchesIcon: BirdOnBranchesIcon,
   BookOnLeavesIcon: BookOnLeavesIcon,
@@ -200,6 +203,8 @@ export const SVG = {
   ExitIcon: ExitIcon,
   GearManIcon: GearManIcon,
   GuideInTreesIcon: GuideInTreesIcon,
+  // TODO: uncoment
+  // HappyGuideIcon: HappyGuideIcon,
   HappySidekickGuideIcon: HappySidekickGuideIcon,
   HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
   NadiyaTextIcon: NadiyaTextIcon,
@@ -209,6 +214,9 @@ export const SVG = {
   OrangeQuestionMarkIcon: OrangeQuestionMarkIcon,
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
   QuietPlaceIcon: QuietPlaceIcon,
+  ReliefHappyTreeIcon: ReliefHappyTreeIcon,
+  // TODO: uncoment
+  // PainedBirdTreeIcon: PainedBirdTreeIcon,
   RoundPauseButtonIcon: RoundPauseButtonIcon,
   RoundTriangleButtonIcon: RoundTriangleButtonIcon,
   WiseGuideIcon: WiseGuideIcon,

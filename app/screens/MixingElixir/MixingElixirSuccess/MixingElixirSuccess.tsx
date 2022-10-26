@@ -68,7 +68,8 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
         default:
           return 'screens.mixing_exixir.success.courage.title';
       }
-    }, [currentPlant]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const descriptionKey = useMemo(() => {
       switch (currentPlant) {
@@ -79,7 +80,8 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
         default:
           return 'screens.mixing_exixir.success.courage.description';
       }
-    }, [currentPlant]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const PlantIcon = useMemo(() => {
       switch (currentPlant) {
@@ -90,7 +92,8 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
         default:
           return PLANTS_SVG.courageGrown;
       }
-    }, [currentPlant]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
       if (isFocused && appStatus === 'active' && isSoundFXEnabled) {

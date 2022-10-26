@@ -4,6 +4,7 @@ import {
   CHARMS_SVG,
   EMOTIONS_CAROUSEL_SVG,
   SVG,
+  SVG_DANCING_CHARM,
 } from '../assets/svg';
 import { IPlantArea } from '../redux/types';
 import { IInterruptedQuestLine } from '../redux/types/questTypes';

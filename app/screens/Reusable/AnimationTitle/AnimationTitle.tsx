@@ -12,7 +12,7 @@ import { ElixirThreeIcon } from '../../../assets/svg/garden';
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
 }) => {
-  const { backgroundImage, description, duration, title } = route.params.data;
+  const { description, duration, title } = route.params.data;
   const onSubmit = useNavigateNextQuest();
 
   const animation = useMemo(() => {
@@ -32,9 +32,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
 
   return (
     <ImageBackground
-      source={
-        backgroundImage ?? BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND
-      }
+      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <View

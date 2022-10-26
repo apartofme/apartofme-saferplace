@@ -2,12 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { useIsFocused } from '@react-navigation/native';
-import {
-  ImageBackground,
-  Pressable,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 
 import {
@@ -91,7 +86,6 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
     if (appStatus === 'active' && isPrevStatusBackground) {
       const nowSeconds = +moment().format('X');
-
       if (
         nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
         !interruptedQuestLine &&
@@ -119,7 +113,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     navigation.navigate('MenuStack');
   }, [navigation]);
 
-  const onTitlePress = useCallback(() => {
+  const onTilePress = useCallback(() => {
     if (activePlantArea) {
       navigation.navigate('MixingElixirStack', {
         screen: 'ElixirInstruction',
@@ -132,29 +126,28 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     }
   }, [activePlantArea, isFirstTimeGarden, navigation]);
 
+  useEffect(() => {
+    if (activePlantArea) {
+      onTilePress();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePlantArea]);
+
   const title = useMemo(() => {
     const isDisplayNone =
       isCurrentDayQuestStackEmpty && isInterruptedQuestLineEmpty && !isPlanting;
 
     return (
-      <Pressable
-        onPress={onTitlePress}
-        style={[styles.titleContainer, isDisplayNone && styles.displayNone]}
-        disabled={!isPlanting}>
+      <View
+        style={[styles.titleContainer, isDisplayNone && styles.displayNone]}>
         <ExtendedText preset="tertiary-text-medium" style={styles.title}>
           {isPlanting
             ? t('screens.garden.tapTitle')
             : t('screens.garden.tapBook')}
         </ExtendedText>
-      </Pressable>
+      </View>
     );
-  }, [
-    isCurrentDayQuestStackEmpty,
-    isInterruptedQuestLineEmpty,
-    isPlanting,
-    onTitlePress,
-    t,
-  ]);
+  }, [isCurrentDayQuestStackEmpty, isInterruptedQuestLineEmpty, isPlanting, t]);
 
   const setModalStatus = useCallback(() => {
     setIsModal(!isModal);
