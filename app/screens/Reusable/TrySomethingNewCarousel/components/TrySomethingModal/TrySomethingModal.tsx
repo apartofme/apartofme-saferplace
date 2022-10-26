@@ -50,7 +50,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   });
 
   const onSubmitPress = useCallback(() => {
-    if (isDiscovery) {
+    if (!isDiscovery) {
       if (isChild) {
         dispatch(
           cacheSlice.actions.saveChildTrySomethingItem({

@@ -424,6 +424,7 @@ export const SVG_DANCING_CHARM = {
   DancingSecondTrackIcon: DancingSecondTrackIcon,
   DancingThirdTrackIcon: DancingThirdTrackIcon,
   DancingFourthTrackIcon: DancingFourthTrackIcon,
+};
 
 export const SVG_TRY_NEW = {
   AskForHelpIcon: AskForHelpIcon,
