@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -74,10 +74,12 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            <Icon />
-            <ExtendedText style={styles.description}>
-              {description}
-            </ExtendedText>
+            <View style={generalStyles.aiCenter}>
+              <Icon />
+              <ExtendedText style={styles.description}>
+                {description}
+              </ExtendedText>
+            </View>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

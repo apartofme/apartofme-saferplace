@@ -5,7 +5,6 @@ import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 
-import { OpenBookIcon } from '../../../assets/images/dummySVG';
 import { SVG } from '../../../assets/svg';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
@@ -18,6 +17,7 @@ import {
 } from './CharmBookMenu.types';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const OpenBookIcon = SVG.OpenBookIcon;
 
 export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   type,

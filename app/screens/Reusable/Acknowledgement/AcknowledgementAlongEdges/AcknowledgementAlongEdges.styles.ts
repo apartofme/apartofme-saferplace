@@ -24,6 +24,7 @@ export const styles = StyleSheet.create<IAcknowledgementAlongEdgesStyles>({
   description: {
     flex: 1,
     maxHeight: 100,
+    marginTop: 58,
     color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
   },
