@@ -2,9 +2,10 @@ import { useIsFocused } from '@react-navigation/native';
 import moment from 'moment';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { PLANTS_IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
+import { PLANTS_SVG } from '../../../assets/svg';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
@@ -21,7 +22,12 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
 
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const isFocused = useIsFocused();
+    const appStatus = useAppState();
 
+    const isSoundFXEnabled = useAppSelector(
+      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+    );
     const currentPlant = useAppSelector(
       state => state.plant.plantsStack?.[state.plant.plantsStack.length - 1],
     );
@@ -32,7 +38,7 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
       dispatch(
         plantSlice.actions.updatePlantArea({
           plantArea: selectedPlantArea,
-          image: currentPlant ?? PlantsType.SpourCompassion,
+          image: currentPlant ?? PlantsType.Compassion,
           plantedAt: nowSeconds,
         }),
       );
@@ -53,21 +59,38 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
       selectedPlantArea,
     ]);
 
-    const background = useMemo(() => {
+    const titleKey = useMemo(() => {
       switch (currentPlant) {
-        case PlantsType.SpourCompassion:
-          return {
-            uri: 'https://images.unsplash.com/photo-1547483238-2cbf881a559f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80',
-          };
+        case PlantsType.Compassion:
+          return 'screens.mixing_exixir.success.compassion.title';
+        case PlantsType.Calm:
+          return 'screens.mixing_exixir.success.calm.title';
+        default:
+          return 'screens.mixing_exixir.success.courage.title';
       }
     }, [currentPlant]);
 
-    const isFocused = useIsFocused();
-    const appStatus = useAppState();
+    const descriptionKey = useMemo(() => {
+      switch (currentPlant) {
+        case PlantsType.Compassion:
+          return 'screens.mixing_exixir.success.compassion.description';
+        case PlantsType.Calm:
+          return 'screens.mixing_exixir.success.calm.description';
+        default:
+          return 'screens.mixing_exixir.success.courage.description';
+      }
+    }, [currentPlant]);
 
-    const isSoundFXEnabled = useAppSelector(
-      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
-    );
+    const PlantIcon = useMemo(() => {
+      switch (currentPlant) {
+        case PlantsType.Compassion:
+          return PLANTS_SVG.compassionGrown;
+        case PlantsType.Calm:
+          return PLANTS_SVG.calmGrown;
+        default:
+          return PLANTS_SVG.courageGrown;
+      }
+    }, [currentPlant]);
 
     useEffect(() => {
       if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
@@ -78,25 +101,26 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
     }, [appStatus, isFocused, isSoundFXEnabled]);
 
     return (
-      <ImageBackground source={background} style={generalStyles.flex}>
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView
             buttonTitle={t('buttons.back_to_clearing')}
             onSubmit={onSubmit}>
-            <Image
-              source={
-                currentPlant
-                  ? PLANTS_IMAGES[`${currentPlant}_START`]
-                  : PLANTS_IMAGES.SPOUR_COMPASSION_START
-              }
-              style={styles.image}
-            />
-            <ExtendedText>
-              {t('screens.mixing_exixir.success.title')}
-            </ExtendedText>
-            <ExtendedText>
-              {t('screens.mixing_exixir.success.description')}
-            </ExtendedText>
+            <View style={styles.container}>
+              <PlantIcon height={200} width={200} />
+              <ExtendedText
+                preset="large-title"
+                style={[generalStyles.brilliantWhiteCenter, styles.title]}>
+                {t(titleKey)}
+              </ExtendedText>
+              <ExtendedText
+                preset="secondary-text"
+                style={generalStyles.brilliantWhiteCenter}>
+                {t(descriptionKey)}
+              </ExtendedText>
+            </View>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

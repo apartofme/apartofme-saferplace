@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { useMount } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
@@ -45,13 +46,21 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
     }, [navigation, phase, selectedPlantArea, isFirstTimeGarden]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <BottomButtonView buttonTitle={t(buttonTitleKey)} onSubmit={onSubmit}>
-          <ExtendedText>{t(titleKey)}</ExtendedText>
-          <View style={styles.container}>
-            <Image source={IMAGES.LOGO} style={styles.image} />
-          </View>
-        </BottomButtonView>
-      </SafeAreaView>
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <BottomButtonView buttonTitle={t(buttonTitleKey)} onSubmit={onSubmit}>
+            <View style={styles.container}>
+              <ExtendedText
+                preset="title"
+                style={[generalStyles.brilliantWhiteCenter, styles.title]}>
+                {t(titleKey)}
+              </ExtendedText>
+              <ElixirThreeIcon />
+            </View>
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

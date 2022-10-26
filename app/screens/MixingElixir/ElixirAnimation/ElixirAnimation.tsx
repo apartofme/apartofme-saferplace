@@ -1,12 +1,14 @@
 import React, { useEffect, useMemo } from 'react';
-import { Image, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IElixirAnimationScreenProps } from './ElixirAnimation.types';
 import { styles } from './ElixirAnimation.styles';
 import { ExtendedText } from '../../../components';
-import { IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { MixingElixirPhaseType } from '../../../utils/types';
+import { generalStyles } from '../../../utils/styles';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 
 export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,
@@ -23,6 +25,17 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
         return 'screens.mixing_exixir.elixir_animaion.open';
       default:
         return 'screens.mixing_exixir.elixir_animaion.pour';
+    }
+  }, [phase]);
+
+  const animation = useMemo(() => {
+    switch (phase) {
+      case MixingElixirPhaseType.Mix:
+        return <ElixirThreeIcon />;
+      case MixingElixirPhaseType.Open:
+        return <ElixirThreeIcon />;
+      default:
+        return <ElixirThreeIcon />;
     }
   }, [phase]);
 
@@ -46,9 +59,17 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   }, [phase]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Image source={IMAGES.LOGO} style={styles.image} />
-      <ExtendedText preset="title">{t(title)}</ExtendedText>
-    </SafeAreaView>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+      style={generalStyles.flex}>
+      <SafeAreaView style={styles.container}>
+        {animation}
+        <ExtendedText
+          preset="title"
+          style={[generalStyles.brilliantWhiteCenter, styles.title]}>
+          {t(title)}
+        </ExtendedText>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
