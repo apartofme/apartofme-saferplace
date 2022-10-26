@@ -2,8 +2,8 @@ import { useIsFocused } from '@react-navigation/native';
 import moment from 'moment';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { PLANTS_SVG } from '../../../assets/images/dummySVG';
 import { BottomButtonView, ExtendedText } from '../../../components';
