@@ -9,6 +9,8 @@ import { BACKGROUND_IMAGES } from '../../../assets';
 import { MixingElixirPhaseType } from '../../../utils/types';
 import { generalStyles } from '../../../utils/styles';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../constants/audio';
 
 export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,
@@ -20,10 +22,13 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   const title = useMemo(() => {
     switch (phase) {
       case MixingElixirPhaseType.Mix:
+        AudioPlayerHelper.play(AUDIO.MIXING_ELIXIR_ANIMATION);
         return 'screens.mixing_exixir.elixir_animaion.mix';
       case MixingElixirPhaseType.Open:
+        AudioPlayerHelper.play(AUDIO.OPENING_CHARMS_BOOK);
         return 'screens.mixing_exixir.elixir_animaion.open';
       default:
+        AudioPlayerHelper.play(AUDIO.POURING_ELIXIR_ANIMATION);
         return 'screens.mixing_exixir.elixir_animaion.pour';
     }
   }, [phase]);
