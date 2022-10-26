@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import Carousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSharedValue } from 'react-native-reanimated';
@@ -18,13 +18,14 @@ export const SoundCarousel: React.FC<ISoundCarouselItemProps> = ({
   carouselRef,
 }) => {
   const progressValue = useSharedValue(0);
+  const [currentPosition, setCurrentPosition] = useState(0);
 
   const onSnapToItem = useCallback(
     index => {
-      const currentPosition = Math.floor(index);
+      setCurrentPosition(Math.floor(index));
       setCurrentSong(data[currentPosition].id);
     },
-    [data, setCurrentSong],
+    [currentPosition, data, setCurrentSong],
   );
 
   const onProgressChange = useCallback(
@@ -38,10 +39,11 @@ export const SoundCarousel: React.FC<ISoundCarouselItemProps> = ({
   );
 
   const renderCarouselItem = useCallback(
-    ({ item }: { item: ISoundCarouselItem }) => {
-      return <OnlyImage data={item} />;
+    ({ item, index }: { item: ISoundCarouselItem; index: number }) => {
+      const isActive = index === currentPosition;
+      return <OnlyImage data={item} isActive={isActive} />;
     },
-    [],
+    [currentPosition],
   );
 
   return (
@@ -56,6 +58,7 @@ export const SoundCarousel: React.FC<ISoundCarouselItemProps> = ({
         renderItem={renderCarouselItem}
         style={generalStyles.flex}
         onSnapToItem={onSnapToItem}
+        onScrollEnd={setCurrentPosition}
         onProgressChange={onProgressChange}
       />
     </GestureHandlerRootView>
