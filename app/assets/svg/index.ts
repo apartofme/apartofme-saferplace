@@ -104,6 +104,7 @@ import {
 } from './garden';
 import { OpenBookIcon } from './OpenBookIcon';
 import { ClosedBookIcon } from './ClosedBookIcon';
+import { OrangeCircleCrossIcon } from './OrangeCircleCrossIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -125,6 +126,7 @@ export const SVG = {
   HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
   NadiyaTextIcon: NadiyaTextIcon,
   OpenedEyeIcon: OpenedEyeIcon,
+  OrangeCircleCrossIcon: OrangeCircleCrossIcon,
   OrangeCirclePlussIcon: OrangeCirclePlussIcon,
   OrangeQuestionMarkIcon: OrangeQuestionMarkIcon,
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
