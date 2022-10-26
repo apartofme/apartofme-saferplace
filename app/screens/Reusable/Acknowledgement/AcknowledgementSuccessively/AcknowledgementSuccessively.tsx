@@ -44,7 +44,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
       escapeMenuAlternativeNavigateTo,
     });
 
-    const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
+    const Icon = image && CHARMS_SVG[image];
 
     return (
       <ImageBackground
@@ -59,7 +59,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
             isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
-            {image && <Icon />}
+            {Icon && <Icon />}
             <Title />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}

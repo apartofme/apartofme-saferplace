@@ -1,11 +1,8 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
-
-import { COLORS } from '../../../../themes/colors';
+import { StyleSheet, ViewStyle } from 'react-native';
 
 interface ISignUpAvatarScreenStyles {
   container: ViewStyle;
   carousel: ViewStyle;
-  whiteColor: TextStyle;
 }
 
 export const styles = StyleSheet.create<ISignUpAvatarScreenStyles>({
@@ -16,8 +13,5 @@ export const styles = StyleSheet.create<ISignUpAvatarScreenStyles>({
   },
   carousel: {
     alignSelf: 'center',
-  },
-  whiteColor: {
-    color: COLORS.BRILLIANT_WHITE,
   },
 });

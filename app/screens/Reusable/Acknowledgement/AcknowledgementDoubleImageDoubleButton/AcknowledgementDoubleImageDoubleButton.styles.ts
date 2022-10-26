@@ -1,11 +1,10 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementDoubleImageDoubleButtonScreenStyles {
   container: ViewStyle;
-  imageContainer: ViewStyle;
-  image: ImageStyle;
-  childImage: ImageStyle;
-  title: TextStyle;
+  iconContainer: ViewStyle;
   description: TextStyle;
   bottomButton: ViewStyle;
 }
@@ -13,36 +12,22 @@ interface IAcknowledgementDoubleImageDoubleButtonScreenStyles {
 export const styles =
   StyleSheet.create<IAcknowledgementDoubleImageDoubleButtonScreenStyles>({
     container: {
-      justifyContent: 'space-between',
+      alignItems: 'center',
       paddingTop: 40,
       paddingHorizontal: 40,
-      paddingBottom: 60,
-    },
-    imageContainer: {
-      flexDirection: 'row',
-      justifyContent: 'center',
       paddingBottom: 70,
     },
-    // TODO: change to real styles
-    image: {
-      width: 152,
-      height: 152,
-      borderRadius: 100,
-      backgroundColor: '#712CA4',
-    },
-    // TODO: change to real styles
-    childImage: {
-      marginLeft: -26,
-      backgroundColor: '#00DBC0',
-    },
-    title: {
-      textAlign: 'center',
+    iconContainer: {
+      marginVertical: 80,
     },
     description: {
+      flex: 1,
+      maxHeight: 100,
+      color: COLORS.BRILLIANT_WHITE,
       textAlign: 'center',
     },
     bottomButton: {
-      marginBottom: 24,
+      marginVertical: 12,
       alignSelf: 'center',
     },
   });

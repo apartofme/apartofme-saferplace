@@ -67,7 +67,7 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
           isDisabledButton={!selectedAnswer.length}
           style={styles.container}>
           <Title />
-          {description && (
+          {!!description && (
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>

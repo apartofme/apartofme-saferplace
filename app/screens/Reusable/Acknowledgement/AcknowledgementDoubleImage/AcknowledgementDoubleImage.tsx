@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -8,11 +8,13 @@ import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
+  useAppSelector,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementDoubleImageScreenProps } from './AcknowledgementDoubleImage.types';
 import { styles } from './AcknowledgementDoubleImage.styles';
 import { DOUBLE_AVATARS_SVG } from '../../../../assets/svg';
+import { AVATAR_POSTFIX, AVATAR_PREFIX } from '../../../../constants/avatar';
 
 export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleImageScreenProps> =
   ({ route }) => {
@@ -28,12 +30,12 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
     } = route.params.data;
 
     const { t } = useTranslation();
-    //const parentAvatar =
-    //  useAppSelector(state => state.user.parent?.avatar) ??
-    //  `Circle${AvatarsNameType.Rabbit}`;
-    //const childAvatar =
-    //  useAppSelector(state => state.user.child?.avatar) ??
-    //  `Circle${AvatarsNameType.Bear}`;
+    const parentAvatar = useAppSelector(state => state.user.parent?.avatar)
+      ?.replace(AVATAR_PREFIX, '')
+      .replace(AVATAR_POSTFIX, '');
+    const childAvatar = useAppSelector(state => state.user.child?.avatar)
+      ?.replace(AVATAR_PREFIX, '')
+      .replace(AVATAR_POSTFIX, '');
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
     const Title = useParsedJSXTextNickname({
@@ -48,7 +50,10 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
       escapeMenuAlternativeNavigateTo,
     });
 
-    //const AvatarsIcon = DOUBLE_AVATARS_SVG[`${parentAvatar}${childAvatar}`];
+    const AvatarsIcon =
+      DOUBLE_AVATARS_SVG[
+        `${parentAvatar}${childAvatar}` as keyof typeof DOUBLE_AVATARS_SVG
+      ];
 
     return (
       <ImageBackground
@@ -64,11 +69,16 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            {/* // TODO: change to real icon */}
-            <DOUBLE_AVATARS_SVG.CircleFoxIconCircleMonkeyIcon />
-            <ExtendedText preset="secondary-text" style={styles.description}>
-              {description}
-            </ExtendedText>
+            {AvatarsIcon && (
+              <View style={styles.iconContainer}>
+                <AvatarsIcon />
+              </View>
+            )}
+            {description && (
+              <ExtendedText preset="secondary-text" style={styles.description}>
+                {description}
+              </ExtendedText>
+            )}
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

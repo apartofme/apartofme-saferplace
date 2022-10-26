@@ -40,10 +40,10 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
     text: title,
     textHasNickname: titleHasNickname ?? true,
     preset: 'heading',
-    style: styles.title,
+    style: generalStyles.brilliantWhite,
   });
 
-  const Icon = image ? CHARMS_SVG[image] : null;
+  const Icon = CHARMS_SVG[image ?? 'HappySidekickGuideIcon'];
 
   return (
     <ImageBackground
@@ -52,9 +52,11 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        <Header />
+        <View style={styles.header}>
+          <Header />
+        </View>
         <View style={styles.container}>
-          {Icon && <Icon />}
+          <View style={styles.iconContainer}>{Icon && <Icon />}</View>
           <View style={styles.dialogContainer}>
             <Title />
           </View>

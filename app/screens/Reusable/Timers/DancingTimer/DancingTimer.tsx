@@ -95,7 +95,8 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
       navigateNextQuest();
       AudioPlayerHelper.stop();
     }
-  }, [isTimerPause, navigateNextQuest, navigation, timerValue]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimerPause, timerValue]);
 
   const timerStatus = useCallback(() => {
     setIsTimerPause(!isTimerPause);
