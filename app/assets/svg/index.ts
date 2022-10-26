@@ -77,7 +77,6 @@ import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
 import { BarefootIcon, QuietPlaceIcon, StandingUpIcon } from './grounding';
 import { RoundPauseButtonIcon } from './RoundPauseButtonIcon';
 import { AlertGuideIcon } from './AlertGuideIcon';
-import { CircleFoxIconCircleMonkeyIcon } from './doubleAvatars';
 import { OrangeQuestionMarkIcon } from './OrangeQuestionMarkIcon';
 import {
   AngrySadSmokeGuideIcon,
@@ -152,6 +151,38 @@ import { DancingFirstTrackIcon } from './DancingFirstTrackIcon';
 import { DancingSecondTrackIcon } from './DancingSecondTrackIcon';
 import { DancingThirdTrackIcon } from './DancingThirdTrackIcon';
 import { DancingFourthTrackIcon } from './DancingFourthTrackIcon';
+import {
+  BearFoxIcon,
+  BearMonkeyIcon,
+  BearMothIcon,
+  BearOwlIcon,
+  BearRabbitIcon,
+  FoxBearIcon,
+  FoxMonkeyIcon,
+  FoxMothIcon,
+  FoxOwlIcon,
+  FoxRabbitIcon,
+  MonkeyBearIcon,
+  MonkeyFoxIcon,
+  MonkeyMothIcon,
+  MonkeyOwlIcon,
+  MonkeyRabbitIcon,
+  MothBearIcon,
+  MothFoxIcon,
+  MothMonkeyIcon,
+  MothOwlIcon,
+  MothRabbitIcon,
+  OwlBearIcon,
+  OwlFoxIcon,
+  OwlMonkeyIcon,
+  OwlMothIcon,
+  OwlRabbitIcon,
+  RabbitBearIcon,
+  RabbitFoxIcon,
+  RabbitMonkeyIcon,
+  RabbitMothIcon,
+  RabbitOwlIcon,
+} from './doubleAvatars';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -277,7 +308,41 @@ export const AVATARS_SVG = {
 };
 
 export const DOUBLE_AVATARS_SVG = {
-  CircleFoxIconCircleMonkeyIcon: CircleFoxIconCircleMonkeyIcon,
+  BearFox: BearFoxIcon,
+  BearMonkey: BearMonkeyIcon,
+  BearMoth: BearMothIcon,
+  BearOwl: BearOwlIcon,
+  BearRabbit: BearRabbitIcon,
+
+  FoxBear: FoxBearIcon,
+  FoxMonkey: FoxMonkeyIcon,
+  FoxMoth: FoxMothIcon,
+  FoxOwl: FoxOwlIcon,
+  FoxRabbit: FoxRabbitIcon,
+
+  MonkeyBear: MonkeyBearIcon,
+  MonkeyFox: MonkeyFoxIcon,
+  MonkeyMoth: MonkeyMothIcon,
+  MonkeyOwl: MonkeyOwlIcon,
+  MonkeyRabbit: MonkeyRabbitIcon,
+
+  MothBear: MothBearIcon,
+  MothFox: MothFoxIcon,
+  MothMonkey: MothMonkeyIcon,
+  MothOwl: MothOwlIcon,
+  MothRabbit: MothRabbitIcon,
+
+  OwlBear: OwlBearIcon,
+  OwlFox: OwlFoxIcon,
+  OwlMonkey: OwlMonkeyIcon,
+  OwlMoth: OwlMothIcon,
+  OwlRabbit: OwlRabbitIcon,
+
+  RabbitBear: RabbitBearIcon,
+  RabbitFox: RabbitFoxIcon,
+  RabbitMonkey: RabbitMonkeyIcon,
+  RabbitMoth: RabbitMothIcon,
+  RabbitOwl: RabbitOwlIcon,
 };
 
 export const PLANTS_SVG = {
