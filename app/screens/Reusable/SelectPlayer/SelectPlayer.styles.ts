@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
 import { COLORS } from '../../../themes/colors';
 import { hexTransparency } from '../../../utils';
 
