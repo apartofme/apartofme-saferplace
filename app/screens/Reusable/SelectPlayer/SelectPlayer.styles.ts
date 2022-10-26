@@ -1,15 +1,16 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
 import { COLORS } from '../../../themes/colors';
+import { hexTransparency } from '../../../utils';
 
 interface ISelectPlayerScreenStyles {
   container: ViewStyle;
   title: TextStyle;
+  playerList: ViewStyle;
   playerContainer: ViewStyle;
-  activeBorder: ViewStyle;
-  playerImage: ImageStyle;
+  activePlayerContainer: ViewStyle;
 }
 
-// TODO: change to correct style
 export const styles = StyleSheet.create<ISelectPlayerScreenStyles>({
   container: {
     paddingTop: 40,
@@ -17,25 +18,26 @@ export const styles = StyleSheet.create<ISelectPlayerScreenStyles>({
   },
   title: {
     paddingBottom: 36,
+    color: COLORS.BRILLIANT_WHITE,
   },
-
+  playerList: {
+    flexGrow: 0,
+  },
   playerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 24,
+    paddingVertical: 20,
+    paddingHorizontal: 24,
     marginBottom: 24,
-    borderRadius: 16,
-    borderWidth: 2,
-    borderColor: COLORS.BLACK,
+    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 80),
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: COLORS.PRIMARY_ORANGE,
   },
-  activeBorder: {
-    borderColor: '#AA82E0',
-  },
-  playerImage: {
-    width: 76,
-    height: 76,
-    borderRadius: 50,
-    backgroundColor: '#AA82E0',
+  activePlayerContainer: {
+    backgroundColor: COLORS.PRIMARY_PURPLE,
+    borderWidth: 4,
+    marginBottom: 20,
   },
 });

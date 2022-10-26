@@ -4,20 +4,26 @@ interface IDancingTimerScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   description: TextStyle;
+  button: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IDancingTimerScreenStyles>({
   container: {
-    paddingTop: 128,
+    flex: 1,
+    paddingTop: 24,
     paddingHorizontal: 40,
+    paddingBottom: 20,
     alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   title: {
-    paddingTop: 132,
     paddingBottom: 24,
     textAlign: 'center',
   },
   description: {
     textAlign: 'center',
+  },
+  button: {
+    marginTop: 122,
   },
 });

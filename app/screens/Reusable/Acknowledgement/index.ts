@@ -4,6 +4,7 @@ export * from './AcknowledgementDoubleImage';
 export * from './AcknowledgementDoubleImageDoubleButton';
 export * from './AcknowledgementLargeTitle';
 export * from './AcknowledgementNicknames';
+export * from './AcknowledgementReadLoud';
 export * from './AcknowledgementSuccessively';
 export * from './AcknowledgementSuccessivelyDoubleButton';
 export * from './AcknowledgementSupport';

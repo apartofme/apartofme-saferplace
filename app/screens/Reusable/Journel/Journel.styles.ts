@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IJournelScreenStyles {
   container: ViewStyle;
   description: TextStyle;
@@ -12,10 +14,11 @@ export const styles = StyleSheet.create<IJournelScreenStyles>({
     paddingHorizontal: 24,
   },
   description: {
-    paddingTop: 16,
-    paddingBottom: 56,
+    marginTop: 16,
+    color: COLORS.LIGHT_GREY,
   },
   inputContainer: {
+    marginTop: 36,
     height: 160,
   },
 });

@@ -1,20 +1,35 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../themes/colors';
 
 interface ISelectSoundScreenStyles {
   container: ViewStyle;
+  title: TextStyle;
   buttonsContainer: ViewStyle;
+  startButtonContainer: ViewStyle;
+  titleContainer: ViewStyle;
 }
 
-// TODO: change to correct styles
 export const styles = StyleSheet.create<ISelectSoundScreenStyles>({
   container: {
     paddingTop: 40,
     paddingHorizontal: 24,
   },
+  title: {
+    color: COLORS.BRILLIANT_WHITE,
+    marginBottom: 16,
+  },
   buttonsContainer: {
+    alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     marginBottom: 54,
-    marginTop: 32,
+  },
+  startButtonContainer: {
+    marginHorizontal: 25,
+  },
+  titleContainer: {
+    paddingVertical: 48,
+    paddingHorizontal: 24,
   },
 });

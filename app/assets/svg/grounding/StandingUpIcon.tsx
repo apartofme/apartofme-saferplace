@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const StandingUpIcon = ({ width = 80, height = 80 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 80 80" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 80 80"
+      fill="none">
       <G clipPath="url(#clip0_2913_368316)">
         <G clipPath="url(#clip1_2913_368316)">
           <Path

@@ -63,7 +63,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
     <GestureHandlerRootView style={generalStyles.flex}>
       <ImageBackground
         source={isTopPosition ? topBackground : bottomBackground}
-        style={generalStyles.flex}>
+        style={[generalStyles.flex, styles.blackBackground]}>
         <SafeAreaView style={generalStyles.flex}>
           <FlingGestureHandler
             onEnded={setScrollPosition}

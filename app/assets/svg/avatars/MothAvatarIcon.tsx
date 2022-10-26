@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const MothAvatarIcon = ({ width = 189, height = 338 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 189 338" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 189 338"
+      fill="none">
       <Path
         d="M135.149 303.63c-.617-3.676-1.96-7.187-3.295-10.668l-5.125 5.085a50.678 50.678 0 003.44 15.939c.371-.869.812-1.71 1.32-2.508l2.556 3.114c1.566-3.382 1.719-7.284 1.102-10.962h.002z"
         fill="#CC332C"

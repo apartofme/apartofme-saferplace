@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Pressable } from 'react-native';
 
 import { ExtendedText } from '../ExtendedText';
 import { IRadioButtonProps } from './RadioButton.types';
@@ -12,11 +12,11 @@ export const RadioButton: React.FC<IRadioButtonProps> = ({
   onPress,
 }) => {
   return (
-    <TouchableOpacity
+    <Pressable
       style={[styles.container, isActive && styles.activeBackground]}
       onPress={onPress}>
       <ExtendedText style={styles.title}>{title}</ExtendedText>
       <Circle isActive={isActive} />
-    </TouchableOpacity>
+    </Pressable>
   );
 };

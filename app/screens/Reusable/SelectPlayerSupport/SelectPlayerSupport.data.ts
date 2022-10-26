@@ -1,4 +1,4 @@
-import { IMAGES } from '../../../assets';
+import { AVATARS_SVG } from '../../../assets/svg';
 import { IPlayer } from './SelectPlayerSupport.types';
 
 export enum PlayerType {
@@ -9,11 +9,11 @@ export const PLAYER_LIST: ReadonlyArray<IPlayer> = [
   {
     id: PlayerType.Parent,
     title: '[Grown up]',
-    image: IMAGES.WHITE_PENCIL,
+    icon: AVATARS_SVG.CircleRabbitIcon,
   },
   {
     id: PlayerType.Child,
     title: '[Child]',
-    image: IMAGES.WHITE_PENCIL,
+    icon: AVATARS_SVG.BearIcon,
   },
 ];

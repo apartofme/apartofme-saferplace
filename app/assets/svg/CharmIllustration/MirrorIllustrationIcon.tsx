@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const MirrorIllustrationIcon = ({
@@ -8,7 +9,11 @@ export const MirrorIllustrationIcon = ({
   height = 300,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 151 300" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 151 300"
+      fill="none">
       <Path
         d="M50.977.158c1.643-.982 2.55 2.249 13.38 20.31 5.926 9.88 6.05 21.233 4.686 31.393.57-1.154 1.138-2.313 1.713-3.467.778 6.628-.865 13.52-4.552 19.086l-.032-.451c-.478 2.26-.891 4.315-1.143 6.097-1.621 11.615 8.834 15.308 8.834 15.308L55.17 101.358c7.938-21.415-5.265-34.275-14.325-55.97-9.066-21.7 8.49-44.248 10.133-45.23z"
         fill="#DD965E"

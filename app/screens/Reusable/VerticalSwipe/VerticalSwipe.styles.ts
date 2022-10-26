@@ -1,38 +1,56 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IVerticalSwipeScreenStyles {
+  blackBackground: ViewStyle;
   topContentContainer: ViewStyle;
-  topTitle: TextStyle;
+  iconContainer: ViewStyle;
   topSubtitle: TextStyle;
   submitButton: ViewStyle;
+  learnMoreArrow: ViewStyle;
+  backArrow: ViewStyle;
   bottomTitle: TextStyle;
-  bottomsubtitle: TextStyle;
   bottomContentContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IVerticalSwipeScreenStyles>({
-  topContentContainer: {
-    justifyContent: 'space-between',
+  blackBackground: {
+    backgroundColor: COLORS.BLACK,
   },
-  topTitle: {
-    textAlign: 'center',
+  topContentContainer: {
+    paddingHorizontal: 40,
+    justifyContent: 'flex-end',
+  },
+  iconContainer: {
+    alignSelf: 'center',
+    marginBottom: 46,
   },
   topSubtitle: {
-    textAlign: 'center',
     marginTop: 24,
+    minHeight: 80,
   },
   submitButton: {
-    marginTop: 90,
-    marginBottom: 24,
-    marginHorizontal: 40,
+    marginTop: 43,
+    marginBottom: 29,
+  },
+  learnMoreArrow: {
+    paddingTop: 15,
+    paddingBottom: 16,
+    alignSelf: 'center',
+  },
+  backArrow: {
+    paddingTop: 24,
+    paddingBottom: 17,
+    alignSelf: 'center',
   },
   bottomTitle: {
-    marginTop: 140,
-  },
-  bottomsubtitle: {
-    marginTop: 37,
+    paddingTop: 92,
+    paddingBottom: 40,
+    color: COLORS.BRILLIANT_WHITE,
   },
   bottomContentContainer: {
     paddingHorizontal: 24,
+    paddingBottom: 24,
   },
 });

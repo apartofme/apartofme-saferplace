@@ -12,7 +12,7 @@ export const BefriendingDialogScreen: React.FC<IBefriendingDialogScreenProps> =
 
     return (
       <DialogView
-        backgroundImage={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
+        backgroundImage={BACKGROUND_IMAGES.GARDEN}
         dialog={[{ textKey: 'screens.befriending.dialog' }]}
         onSubmit={onSubmit}
       />

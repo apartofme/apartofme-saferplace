@@ -1,9 +1,10 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementSuccessivelyScreenStyles {
   container: ViewStyle;
   title: TextStyle;
-  image: ImageStyle;
   description: TextStyle;
 }
 
@@ -16,16 +17,15 @@ export const styles =
       paddingHorizontal: 40,
     },
     title: {
-      marginTop: 32,
+      marginTop: 43,
       marginBottom: 24,
+      color: COLORS.BRILLIANT_WHITE,
       textAlign: 'center',
-    },
-    image: {
-      flex: 1,
-      width: '100%',
     },
     description: {
+      flex: 1,
+      maxHeight: 120,
+      color: COLORS.LIGHT_GREY,
       textAlign: 'center',
-      minHeight: 120,
     },
   });

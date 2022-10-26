@@ -2,6 +2,7 @@ export { AcceptanceIllustrationIcon } from './AcceptanceIllustrationIcon';
 export { BefriendingIllustrationIcon } from './BefriendingIllustrationIcon';
 export { DancingIllustrationIcon } from './DancingIllustrationIcon';
 export { DiscoveryIllustrationIcon } from './DiscoveryIllustrationIcon';
+export { DiscoverySecondIllustrationIcon } from './DiscoverySecondIllustrationIcon';
 export { GroundingIllustrationIcon } from './GroundingIllustrationIcon';
 export { HealingIllustrationIcon } from './HealingIllustrationIcon';
 export { KindnessIllustrationIcon } from './KindnessIllustrationIcon';

@@ -50,7 +50,7 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader

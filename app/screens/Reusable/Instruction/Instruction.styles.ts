@@ -1,11 +1,13 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../themes/colors';
+import { hexTransparency } from '../../../utils';
 
 interface IInstructionScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   instructionContainer: ViewStyle;
   instructionTitle: TextStyle;
-  instructionImage: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IInstructionScreenStyles>({
@@ -14,20 +16,21 @@ export const styles = StyleSheet.create<IInstructionScreenStyles>({
     paddingHorizontal: 24,
   },
   title: {
-    marginBottom: 47,
+    paddingBottom: 49,
+    color: COLORS.BRILLIANT_WHITE,
   },
   instructionContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 38,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    marginBottom: 16,
+    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
+    borderRadius: 24,
   },
   instructionTitle: {
-    marginTop: 15,
-  },
-  // TODO: change to correct styles
-  instructionImage: {
-    width: 72,
-    height: 72,
-    backgroundColor: '#036364',
-    borderRadius: 50,
+    flex: 1,
+    paddingLeft: 16,
+    color: COLORS.BRILLIANT_WHITE,
   },
 });

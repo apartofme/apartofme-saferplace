@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { View } from 'react-native';
 
 import { ONE_DAY_SECONDS, TWO_DAY_SECONDS } from '../../../../constants/time';
-import { PLANTS_SVG } from '../../../../assets/images/dummySVG';
+import { PLANTS_SVG } from '../../../../assets/svg';
 import { IPlantProps } from './Plant.types';
 import { styles } from './Plant.styles';
 
@@ -25,7 +25,7 @@ export const Plant: React.FC<IPlantProps> = ({ plant }) => {
 
   return (
     <View style={styles.plantContainer}>
-      <PlantImage />
+      <PlantImage width={120} height={120} />
     </View>
   );
 };

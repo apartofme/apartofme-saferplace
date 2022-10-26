@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -12,15 +12,14 @@ import {
   ExtendedTextInput,
   MainHeader,
 } from '../../../../../components';
-import { IMAGES } from '../../../../../assets';
 import { cacheSlice } from '../../../../../redux/slices';
 import {
   useAppDispatch,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
 } from '../../../../../hooks';
-import { ImagesKeys } from '../../../../../utils/types';
 import { SVG } from '../../../../../assets/svg';
+import { COLORS } from '../../../../../themes/colors';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
@@ -37,7 +36,12 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
   const [inputValue, setInputValue] = useState('');
 
   const onSubmit = useCallback(() => {
-    dispatch(cacheSlice.actions.saveEmotionItem(inputValue));
+    dispatch(
+      cacheSlice.actions.saveEmotionItem({
+        image: 'CreateYourOwnIcon',
+        title: inputValue,
+      }),
+    );
     setModalStatus();
     navigateToNextQuest();
   }, [dispatch, inputValue, navigateToNextQuest, setModalStatus]);
@@ -46,26 +50,11 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
     text: title,
     textHasNickname: true,
     preset: 'title',
-    style: styles.title,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
+    style: generalStyles.brilliantWhite,
   });
 
-  useEffect(() => {
-    if (inputValue.length > 50) {
-      setInputValue(prev => prev.slice(0, 50));
-    }
-  }, [inputValue]);
-
   return (
-    <ImageBackground
-      // TODO: change to real default image
-      source={
-        (backgroundImage && IMAGES[backgroundImage as ImagesKeys]) ?? {
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }
-      }
-      style={generalStyles.flex}>
+    <ImageBackground source={backgroundImage} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
@@ -73,17 +62,22 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
           onLeftIconPress={setModalStatus}
         />
         <ExtendedKeyboardAvoidingView>
-          <BottomButtonView buttonTitle={t('buttons.next')} onSubmit={onSubmit}>
+          <BottomButtonView
+            buttonTitle={t('buttons.next')}
+            isArrow={true}
+            onSubmit={onSubmit}>
             <View style={styles.container}>
               <Title />
               <ExtendedTextInput
-                value={inputValue}
                 placeholder={t('placeholders.enter_text')}
-                // TODO: change to correct color
-                placeholderTextColor={'white'}
+                placeholderTextColor={COLORS.BRILLIANT_WHITE}
                 onChangeText={setInputValue}
+                maxLength={30}
+                style={styles.input}
               />
-              <ExtendedText preset="tertiary-text-regular" style={styles.hint}>
+              <ExtendedText
+                preset="tertiary-text-regular"
+                style={generalStyles.brilliantWhite}>
                 {t('screens.emotion_carousel.maximum')}
               </ExtendedText>
             </View>
