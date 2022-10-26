@@ -1,6 +1,7 @@
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import _ from 'lodash';
 
 import {
   AVATAR_CAROUSEL,
@@ -17,7 +18,6 @@ import { ISignUpAvatarScreenProps } from './SignUpAvatar.types';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { styles } from './SignUpAvatar.styles';
 import { SVG } from '../../../../assets/svg';
-import _ from 'lodash';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;

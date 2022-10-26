@@ -14,6 +14,7 @@ import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementDoubleImageScreenProps } from './AcknowledgementDoubleImage.types';
 import { styles } from './AcknowledgementDoubleImage.styles';
 import { DOUBLE_AVATARS_SVG } from '../../../../assets/svg';
+import { AVATAR_POSTFIX, AVATAR_PREFIX } from '../../../../constants/avatar';
 
 export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleImageScreenProps> =
   ({ route }) => {
@@ -30,11 +31,11 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
 
     const { t } = useTranslation();
     const parentAvatar = useAppSelector(state => state.user.parent?.avatar)
-      ?.replace('Circle', '')
-      .replace('Icon', '');
+      ?.replace(AVATAR_PREFIX, '')
+      .replace(AVATAR_POSTFIX, '');
     const childAvatar = useAppSelector(state => state.user.child?.avatar)
-      ?.replace('Circle', '')
-      .replace('Icon', '');
+      ?.replace(AVATAR_PREFIX, '')
+      .replace(AVATAR_POSTFIX, '');
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
     const Title = useParsedJSXTextNickname({

@@ -20,6 +20,7 @@ import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementDoubleImageDoubleButtonScreenProps } from './AcknowledgementDoubleImageDoubleButton.types';
 import { styles } from './AcknowledgementDoubleImageDoubleButton.styles';
 import { DOUBLE_AVATARS_SVG } from '../../../../assets/svg';
+import { AVATAR_POSTFIX, AVATAR_PREFIX } from '../../../../constants/avatar';
 
 export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledgementDoubleImageDoubleButtonScreenProps> =
   ({ route }) => {
@@ -38,11 +39,11 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
 
     const { t } = useTranslation();
     const parentAvatar = useAppSelector(state => state.user.parent?.avatar)
-      ?.replace('Circle', '')
-      .replace('Icon', '');
+      ?.replace(AVATAR_PREFIX, '')
+      .replace(AVATAR_POSTFIX, '');
     const childAvatar = useAppSelector(state => state.user.child?.avatar)
-      ?.replace('Circle', '')
-      .replace('Icon', '');
+      ?.replace(AVATAR_PREFIX, '')
+      .replace(AVATAR_POSTFIX, '');
 
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
