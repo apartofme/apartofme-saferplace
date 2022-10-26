@@ -30,6 +30,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   subtitle,
   backgroundImage,
   titleHasNickname,
+  isDicovery,
   setModalStatus,
 }) => {
   const { t } = useTranslation();
@@ -49,25 +50,43 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   });
 
   const onSubmitPress = useCallback(() => {
-    if (isChild) {
-      dispatch(
-        cacheSlice.actions.saveChildTrySomethingItem({
-          title: t('labels.create_own'),
-          description: inputValue,
-        }),
-      );
+    if (isDicovery) {
+      if (isChild) {
+        dispatch(
+          cacheSlice.actions.saveChildTrySomethingItem({
+            title: t('labels.create_own'),
+            description: inputValue,
+          }),
+        );
+      } else {
+        dispatch(
+          cacheSlice.actions.saveParentTrySomethingItem({
+            title: t('labels.create_own'),
+            description: inputValue,
+          }),
+        );
+      }
     } else {
-      dispatch(
-        cacheSlice.actions.saveParentTrySomethingItem({
-          title: t('labels.create_own'),
-          description: inputValue,
-        }),
-      );
+      if (isChild) {
+        dispatch(
+          cacheSlice.actions.saveChildTrySomethingDiscoveryItem({
+            title: t('labels.create_own'),
+            description: inputValue,
+          }),
+        );
+      } else {
+        dispatch(
+          cacheSlice.actions.saveParentTrySomethingDiscoveryItem({
+            title: t('labels.create_own'),
+            description: inputValue,
+          }),
+        );
+      }
     }
 
     setModalStatus();
     onSubmit();
-  }, [dispatch, inputValue, isChild, onSubmit, setModalStatus, t]);
+  }, [dispatch, inputValue, isChild, isDicovery, onSubmit, setModalStatus, t]);
 
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>
