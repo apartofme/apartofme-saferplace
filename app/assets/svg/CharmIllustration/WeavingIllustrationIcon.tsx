@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const WeavingIllustrationIcon = ({
@@ -8,7 +9,11 @@ export const WeavingIllustrationIcon = ({
   height = 300,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 227 300" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 227 300"
+      fill="none">
       <Path
         d="M214.351 192.124c-21.338-2.748-43.84-4.227-67.104-4.227-23.264 0-44.17 1.372-64.833 3.937-18.002 5.262-34.027 11.302-35.277 16.406-2.936 11.993 31.29 18.794 29.821 30.787C75.886 247.784 27.404 282.105.92 300h204.684c5.359-7.375 29.248-41.931 17.052-56.173-13.689-15.995-61.115-17.194-51.338-32.386 5.578-8.671 26.281-15.254 43.028-19.312l.005-.005z"
         fill="#CE7E58"

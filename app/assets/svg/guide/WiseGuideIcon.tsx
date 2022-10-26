@@ -8,11 +8,16 @@ import Svg, {
   Stop,
 } from 'react-native-svg';
 
-import { ISvgProps } from '../../utils/types';
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
+import { ISvgProps } from '../../../utils/types';
 
-export const SadGuideIcon = ({ width = 318, height = 305 }: ISvgProps) => {
+export const WiseGuideIcon = ({ width = 318, height = 305 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 223 240" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 223 240"
+      fill="none">
       <G clipPath="url(#clip0_2913_349102)">
         <Path
           d="M220.221 223.896c-1.424-.757-3.118-.735-4.731-.692-14.205.367-28.409.734-42.611 1.104l2.868-2.467a3235.956 3235.956 0 00-96.765-2.986c-2.502-.04-5.471.163-6.777 2.301-.529.862-.753 2.009-1.645 2.493-.809.44-1.797.121-2.713.045-2.207-.181-4.225 1.105-6.302 1.867-3.484 1.277-7.306 1.093-11.016.992-13.891-.381-27.82.603-41.52 2.937-.383 3.408 4.147 4.896 7.566 5.147l22.323 1.637-1.734 3.007a715.469 715.469 0 0086.741-1.358l-9.114-1.991a123.3 123.3 0 0043.406-2.461l-3.761-2.271c21.048.042 42.1-.439 63.124-1.441 1.655-.078 3.616-.349 4.357-1.833.722-1.442-.271-3.268-1.696-4.026v-.004z"

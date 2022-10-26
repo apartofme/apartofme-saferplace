@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const DiscoveryIllustrationIcon = ({
@@ -8,7 +9,11 @@ export const DiscoveryIllustrationIcon = ({
   height = 300,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 219 300" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 219 300"
+      fill="none">
       <Path
         d="M126.101 218.595c4.37 4.375 10.027 7.247 16.143 8.135 4.149.603 8.28 1.549 12.435 2.158a77.713 77.713 0 0029.882-1.462c8.431-2.095 16.653-5.715 23.013-11.634 6.36-5.924 10.682-14.344 10.456-23.03-1.514 4.474-4.851 8.298-9.075 10.404 8.321-11.344 9.249-27.631 2.28-39.846-.162 5.681-3.342 11.188-8.181 14.164a15.327 15.327 0 012.872-7.23c-4.688-.742-9.272 1.863-12.852 4.973-3.586 3.116-6.685 6.864-10.805 9.22-4.015 2.298-8.68 3.087-13.183 4.155-4.201.992-10.862 4.59-13.694 7.909-15.434 18.109-23.053 9.87-29.291 22.09v-.006z"
         fill="#CFEAF1"

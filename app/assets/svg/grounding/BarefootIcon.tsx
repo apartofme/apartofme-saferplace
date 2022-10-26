@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const BarefootIcon = ({ width = 80, height = 80 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 80 80" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 80 80"
+      fill="none">
       <G clipPath="url(#clip0_2913_368246)">
         <Path
           d="M40 80c-10.684 0-20.73-4.16-28.284-11.716C4.16 60.73 0 50.684 0 40c0-10.684 4.16-20.73 11.716-28.284C19.27 4.16 29.316 0 40 0c10.684 0 20.73 4.16 28.284 11.716C75.84 19.27 80 29.316 80 40c0 10.685-4.16 20.73-11.716 28.284C60.73 75.84 50.684 80 40 80z"

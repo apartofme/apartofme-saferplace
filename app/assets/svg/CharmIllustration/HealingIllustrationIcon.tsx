@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const HealingIllustrationIcon = ({
@@ -8,7 +9,11 @@ export const HealingIllustrationIcon = ({
   height = 275,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 249 275" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 249 275"
+      fill="none">
       <G clipPath="url(#clip0_370_282111)">
         <Path
           d="M212.676 235.003c-.409-2.436-1.299-4.76-2.184-7.069l-3.398 3.369a33.655 33.655 0 002.28 10.561c.248-.579.54-1.133.875-1.663.564.685 1.128 1.376 1.697 2.061 1.041-2.241 1.138-4.828.73-7.264v.005z"
