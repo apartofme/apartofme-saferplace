@@ -1,3 +1,4 @@
+import { values } from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
@@ -12,11 +13,12 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../../../components';
-import { questSlice } from '../../../../../redux/slices';
+import { elixirSlice, questSlice } from '../../../../../redux/slices';
 import { COLORS } from '../../../../../themes/colors';
 import { generalStyles } from '../../../../../utils/styles';
 import { ISkipCharmAcknowledgementScreenProps } from './SkipCharmAcknowledgement.types';
 import { SVG } from '../../../../../assets/svg';
+import CONFIG from '../../../../../config/env';
 import { BACKGROUND_IMAGES } from '../../../../../assets';
 import { styles } from './SkipCharmAcknowledgement.styles';
 
@@ -29,6 +31,12 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
     const { t } = useTranslation();
     const { isFirst } = route.params;
     const dispatch = useAppDispatch();
+    const currentLanguage =
+      useAppSelector(state => state.settings.settings.language) ??
+      CONFIG.FALLBACK_LANGUAGE;
+    const allQuests = useAppSelector(
+      state => state.quest.allQuests?.[currentLanguage],
+    );
 
     const interruptedQuestLine = useAppSelector(
       state => state.quest.interruptedQuestLine,
@@ -41,7 +49,16 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
       }
       if (interruptedQuestLine) {
         dispatch(
-          questSlice.actions.saveCompletedQuestsId(+interruptedQuestLine?.id),
+          questSlice.actions.saveCompletedQuestsId(+interruptedQuestLine.id),
+        );
+
+        const interruptedQuests = values(
+          allQuests?.[+interruptedQuestLine.id].quests,
+        );
+        dispatch(
+          elixirSlice.actions.updateFullnessElixir(
+            interruptedQuests[interruptedQuests.length - 1].elixirReward,
+          ),
         );
         dispatch(questSlice.actions.updateCurrentDayQuestsStack());
         dispatch(questSlice.actions.updateInterruptedQuestLine(null));
@@ -52,7 +69,7 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
           isPlanting: false,
         });
       }
-    }, [dispatch, interruptedQuestLine, isFirst, navigation]);
+    }, [allQuests, dispatch, interruptedQuestLine, isFirst, navigation]);
 
     const Title = useParsedJSXTextNickname({
       text: t(

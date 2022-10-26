@@ -50,6 +50,7 @@ import {
   TroublesomeSpiritQuestionsCarouselScreen,
   TroublesomeSpiritQuestionScreen,
   LeaveFeedbackScreen,
+  ReusableElixirInstructionScreen,
 } from '../../screens';
 import {
   DEFAULT_STACK_OPTIONS,
@@ -102,6 +103,7 @@ export type QuestStackParams = {
   TroublesomeSpiritQuestionsCarousel: { data: IQuest };
   TroublesomeSpiritQuestion: { data: IQuest };
   LeaveFeedback: { data: IQuest };
+  ReusableElixirInstruction: { data: IQuest };
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
@@ -215,5 +217,9 @@ export const QuestStackNavigator = () => (
       component={TroublesomeSpiritQuestionScreen}
     />
     <Stack.Screen name="LeaveFeedback" component={LeaveFeedbackScreen} />
+    <Stack.Screen
+      name="ReusableElixirInstruction"
+      component={ReusableElixirInstructionScreen}
+    />
   </Stack.Navigator>
 );

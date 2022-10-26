@@ -1,8 +1,8 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 interface IElixirAnimationScreenStyles {
   container: ViewStyle;
-  image: ImageStyle;
+  title: TextStyle;
 }
 
 export const styles = StyleSheet.create<IElixirAnimationScreenStyles>({
@@ -10,11 +10,9 @@ export const styles = StyleSheet.create<IElixirAnimationScreenStyles>({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: -142,
   },
-  image: {
-    height: 264,
-    width: 200,
-    paddingTop: 255,
-    paddingBottom: 46,
+  title: {
+    marginTop: 83,
   },
 });
