@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 
@@ -19,7 +19,7 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
   ({ navigation, route }) => {
     const { t } = useTranslation();
 
-    const { title, buttonTitle, Icon, backgroundImage, subtitle } =
+    const { title, buttonTitle, iconKey, backgroundImage, subtitle } =
       route.params.data;
 
     const onSubmit = useCallback(() => {
@@ -32,6 +32,8 @@ export const GroundingAcknowledgementTitleScreen: React.FC<IGroundingAcknowledge
       preset: 'large-title',
       style: styles.title,
     });
+
+    const Icon = useMemo(() => SVG[iconKey], [iconKey]);
 
     return (
       <ImageBackground source={backgroundImage} style={generalStyles.flex}>

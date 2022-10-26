@@ -1,11 +1,22 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { ICarouselInstance } from 'react-native-reanimated-carousel';
 
 import {
   BottomButtonView,
-  ExtendedButton,
+  ExtendedText,
   MainHeader,
   SoundCarousel,
 } from '../../../components';
@@ -21,16 +32,27 @@ import {
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
 import { SVG } from '../../../assets/svg';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
+const RoundPauseButtonIcon = SVG.RoundPauseButtonIcon;
+const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
+const SkipPreviousIcon = SVG.SkipPreviousIcon;
+const SkipNextIcon = SVG.SkipNextIcon;
 
 export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   navigation,
   route,
 }) => {
   const { t } = useTranslation();
-  const { crossHeader, escapeMenuAlternativeNavigateTo } = route.params.data;
+  const {
+    title,
+    description,
+    crossHeader,
+    escapeMenuAlternativeNavigateTo,
+    backgroundImage,
+  } = route.params.data;
 
   const carouselRef = useRef<ICarouselInstance>(null);
 
@@ -112,21 +134,50 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
     );
   }, [crossHeader, onBackArrowPress, onCrossPress]);
 
+  const StartButton = useMemo(() => {
+    if (isPause) {
+      return RoundTriangleButtonIcon;
+    }
+    return RoundPauseButtonIcon;
+  }, [isPause]);
+
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      {renderHeader()}
-      <BottomButtonView buttonTitle={t('buttons.select')} onSubmit={onSubmit}>
-        <SoundCarousel
-          data={SOUND_CAROUSEL}
-          setCurrentSong={setCurrentAudioName}
-          carouselRef={carouselRef}
-        />
-        <View style={styles.buttonsContainer}>
-          <ExtendedButton title="<-" onPress={onPreviosPress} />
-          <ExtendedButton title="|>/||" onPress={setSoundStatus} />
-          <ExtendedButton title="->" onPress={onNextPress} />
-        </View>
-      </BottomButtonView>
-    </SafeAreaView>
+    <ImageBackground
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        {renderHeader()}
+        <BottomButtonView buttonTitle={t('buttons.select')} onSubmit={onSubmit}>
+          <View style={styles.titleContainer}>
+            <ExtendedText preset="title" style={styles.title}>
+              {title}
+            </ExtendedText>
+            <ExtendedText preset="secondary-text" style={generalStyles.grey}>
+              {description}
+            </ExtendedText>
+          </View>
+          <SoundCarousel
+            data={SOUND_CAROUSEL}
+            setCurrentSong={setCurrentAudioName}
+            carouselRef={carouselRef}
+          />
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity onPress={onPreviosPress}>
+              <SkipPreviousIcon />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={setSoundStatus}
+              style={styles.startButtonContainer}>
+              <StartButton />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onNextPress}>
+              <SkipNextIcon />
+            </TouchableOpacity>
+          </View>
+        </BottomButtonView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

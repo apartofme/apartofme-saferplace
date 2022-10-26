@@ -15,6 +15,7 @@ import { IForgotPasswordEmailScreenProps } from './ForgotPasswordEmailScreen.typ
 import { styles } from './ForgotPasswordEmailScreen.styles';
 import { SVG } from '../../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../../assets';
+import { COLORS } from '../../../../themes/colors';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -58,6 +59,7 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
                 value={email}
                 onChangeText={setEmail}
                 placeholder={t('placeholders.enter_email')}
+                placeholderTextColor={COLORS.BRILLIANT_WHITE}
               />
             </BottomButtonView>
           </ExtendedKeyboardAvoidingView>

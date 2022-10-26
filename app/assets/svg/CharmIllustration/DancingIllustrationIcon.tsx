@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const DancingIllustrationIcon = ({
@@ -8,7 +9,11 @@ export const DancingIllustrationIcon = ({
   height = 300,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 229 300" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 229 300"
+      fill="none">
       <Path
         d="M9.333 184.541c3.662-.822 7.325-1.644 10.987-2.464.284-.063.58-.127.862-.058.504.123.81.616 1.062 1.07 1.742 3.151 3.337 6.495 3.614 10.085.276 3.588-1.02 7.492-4.026 9.47l-1.695.275c-2.106 4.49-8.404 5.933-12.81 3.653-4.404-2.278-6.856-7.351-7.105-12.303-.101-1.999.141-4.107 1.274-5.757 1.7-2.475 4.907-3.313 7.837-3.971z"
         fill="#ED50C0"

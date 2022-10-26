@@ -14,6 +14,7 @@ import { generalStyles } from '../../../utils/styles';
 import { IEmojiSelectionScreenProps } from './EmojiSelection.types';
 import { styles } from './EmojiSelection.styles';
 import { questSlice } from '../../../redux/slices';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 
 export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   route,
@@ -22,6 +23,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   const {
     title,
     buttonTitle,
+    backgroundImage,
     crossHeader,
     titleHasNickname,
     escapeMenuAlternativeNavigateTo,
@@ -59,20 +61,19 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
       style={generalStyles.flex}>
-      <SafeAreaView style={generalStyles.flex}>
+      <SafeAreaView>
         <Header />
         <Title />
-        <EmojiButtons
-          buttonTitle={buttonTitle ?? t('buttons.select')}
-          onSubmit={onSubmit}
-          setEmojiKey={setEmoji}
-        />
       </SafeAreaView>
+      <EmojiButtons
+        buttonTitle={buttonTitle ?? t('buttons.select')}
+        onSubmit={onSubmit}
+        setEmojiKey={setEmoji}
+      />
     </ImageBackground>
   );
 };

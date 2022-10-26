@@ -5,10 +5,10 @@ import { useAppSelector } from '../../../../hooks';
 import { IBookProps } from './Book.types';
 import { styles } from './Book.styles';
 import { CharmBookMenuType } from '../../CharmBookMenu';
-import {
-  ClosedBookIcon,
-  OpenBookIcon,
-} from '../../../../assets/images/dummySVG';
+import { SVG } from '../../../../assets/svg';
+
+const ClosedBookIcon = SVG.ClosedBookIcon;
+const OpenBookIcon = SVG.OpenBookIcon;
 
 export const Book: React.FC<IBookProps> = ({
   isDisabled,
@@ -31,18 +31,20 @@ export const Book: React.FC<IBookProps> = ({
   }, [isCompletedAllCurrentDayQuests]);
 
   const onBookPress = useCallback(() => {
-    if (interruptedQuestLine) {
-      setType(CharmBookMenuType.InterruptedCharm);
+    if (setType && setModalStatus) {
+      if (interruptedQuestLine) {
+        setType(CharmBookMenuType.InterruptedCharm);
+        setModalStatus();
+        return;
+      }
+      if (isCompletedAllCurrentDayQuests) {
+        setType(CharmBookMenuType.NoneCharm);
+        setModalStatus();
+        return;
+      }
+      setType(CharmBookMenuType.NewCharm);
       setModalStatus();
-      return;
     }
-    if (isCompletedAllCurrentDayQuests) {
-      setType(CharmBookMenuType.NoneCharm);
-      setModalStatus();
-      return;
-    }
-    setType(CharmBookMenuType.NewCharm);
-    setModalStatus();
   }, [
     interruptedQuestLine,
     isCompletedAllCurrentDayQuests,

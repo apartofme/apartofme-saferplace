@@ -36,7 +36,7 @@ export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
             subtitle:
               'screens.parent_grounding_exercise.grounding_acknowledgement_title.first.description',
             buttonTitle: 'buttons.next',
-            Icon: SVG.CelebrationGuideIcon,
+            iconKey: 'CelebrationGuideIcon',
             backgroundImage: BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT,
           },
         });
@@ -49,7 +49,7 @@ export const GroundingInputScreen: React.FC<IGroundingStartScreenProps> = ({
           subtitle:
             'screens.parent_grounding_exercise.grounding_acknowledgement_title.second.description',
           buttonTitle: 'buttons.next',
-          Icon: SVG.CompassionateGuideIcon,
+          iconKey: 'CompassionateGuideIcon',
           backgroundImage: BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT,
         },
       });

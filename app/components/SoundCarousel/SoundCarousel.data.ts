@@ -1,12 +1,11 @@
-import { ImageSourcePropType } from 'react-native';
+import { SvgDancingCharmKeys } from '../../utils/types';
 
 export interface ISoundCarouselItem {
   id: string;
-  image: ImageSourcePropType;
+  iconKey: SvgDancingCharmKeys;
 }
 
 export const CAROUSEL_MODE_CONFIG = {
-  parallaxScrollingScale: 0.9,
-  parallaxScrollingOffset: 230,
-  parallaxAdjacentItemScale: 0.4,
+  parallaxScrollingScale: 1,
+  parallaxScrollingOffset: 140,
 };

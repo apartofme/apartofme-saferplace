@@ -50,10 +50,15 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
     return t('screens.onboarding.sign_up_nickname.parent.description');
   }, [isChild, t]);
 
+  const background = useMemo(() => {
+    if (isChild) {
+      return BACKGROUND_IMAGES.ALTERNATIVE_GARDEN;
+    }
+    return BACKGROUND_IMAGES.ONBOARDING_DEFAULT;
+  }, [isChild]);
+
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
-      style={generalStyles.flex}>
+    <ImageBackground source={background} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}

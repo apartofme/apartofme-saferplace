@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const FoxAvatarIcon = ({ width = 153, height = 329 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 153 329" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 153 329"
+      fill="none">
       <Path
         d="M69.077 223.739c-6.72 3.844-14.472 5.371-21.8 7.868a85.014 85.014 0 00-28.382 16.357c-7.17 6.254-13.37 13.891-16.608 22.841-3.237 8.949-3.244 19.32 1.31 27.674-.757-5.115.582-10.51 3.646-14.675-2.442 15.216 4.781 31.557 17.677 39.985-2.677-5.618-2.328-12.576.898-17.897a16.806 16.806 0 01.811 8.486c4.938-1.617 8.102-6.444 10.04-11.27 1.937-4.826 3.085-10.033 5.922-14.39 2.765-4.245 6.918-7.348 10.772-10.636 15.028-12.817 26.932-30.962 26.895-50.721l-11.181-3.622z"
         fill="#BAFBF9"

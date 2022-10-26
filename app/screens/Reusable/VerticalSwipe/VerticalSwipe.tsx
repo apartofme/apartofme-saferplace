@@ -1,6 +1,11 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {
   Directions,
   FlingGestureHandler,
@@ -13,7 +18,11 @@ import { generalStyles } from '../../../utils/styles';
 import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
 import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
-import { IMAGES } from '../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
+import { CHARMS_SVG, SVG } from '../../../assets/svg';
+
+const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
+const WhiteTopArrowIcon = SVG.WhiteTopArrowIcon;
 
 export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   route,
@@ -22,6 +31,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     title,
     description,
     buttonTitle,
+    image,
     backgroundImage,
     tellMoreTitle,
     tellMoreDescription,
@@ -54,17 +64,14 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
 
   const imageBackground = useMemo(() => {
     if (isTopPosition && backgroundImage) {
-      return IMAGES[backgroundImage];
+      return CHARMS_BACKGROUNDS[backgroundImage];
     }
 
     if (!isTopPosition && tellMoreBackground) {
-      return IMAGES[tellMoreBackground];
+      return CHARMS_BACKGROUNDS[tellMoreBackground];
     }
 
-    // TODO: change to real default image
-    return {
-      uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-    };
+    return CHARMS_BACKGROUNDS.GUIDE_ROOTS_STARS_BACKGROUND;
   }, [backgroundImage, isTopPosition, tellMoreBackground]);
 
   const Header = useRenderQuestHeader({
@@ -72,10 +79,14 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   });
 
+  const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
+
   return (
-    <ImageBackground source={imageBackground} style={generalStyles.flex}>
-      <SafeAreaView style={generalStyles.flex}>
-        <GestureHandlerRootView style={generalStyles.flex}>
+    <GestureHandlerRootView style={generalStyles.flex}>
+      <ImageBackground
+        source={imageBackground}
+        style={[generalStyles.flex, styles.blackBackground]}>
+        <SafeAreaView style={generalStyles.flex}>
           <FlingGestureHandler
             onEnded={setScrollPosition}
             direction={isTopPosition ? Directions.UP : Directions.DOWN}>
@@ -83,28 +94,41 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
               <ScrollView scrollEnabled={false} ref={scrollViewRef}>
                 <View
                   style={[
-                    styles.topContentContainer,
+                    generalStyles.jcSpaceBtw,
                     { height: scrollViewHeight },
                   ]}>
                   <Header />
-                  <View>
-                    <ExtendedText preset="large-title" style={styles.topTitle}>
+                  <View style={styles.topContentContainer}>
+                    <View style={styles.iconContainer}>
+                      {image && <Icon />}
+                    </View>
+                    <ExtendedText
+                      preset="large-title"
+                      style={generalStyles.brilliantWhiteCenter}>
                       {title}
                     </ExtendedText>
                     <ExtendedText
                       preset="secondary-text"
-                      style={styles.topSubtitle}>
+                      style={[generalStyles.greyCenter, styles.topSubtitle]}>
                       {description}
                     </ExtendedText>
                     <ExtendedButton
-                      title={buttonTitle ?? t('buttons.ready')}
+                      title={buttonTitle ?? t('buttons.start')}
                       style={styles.submitButton}
                       onPress={onSubmit}
                     />
-                    <ExtendedButton
-                      title={t('components.vertical_swipe_view.tell_more')}
+                    <TouchableOpacity
                       onPress={setScrollPosition}
-                    />
+                      style={generalStyles.asCenter}>
+                      <ExtendedText
+                        preset="secondary-text"
+                        style={generalStyles.brilliantWhite}>
+                        {t('buttons.learn_more').toUpperCase()}
+                      </ExtendedText>
+                      <View style={styles.learnMoreArrow}>
+                        <WhiteBottomArrowIcon />
+                      </View>
+                    </TouchableOpacity>
                   </View>
                 </View>
                 <View
@@ -112,15 +136,26 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                     styles.bottomContentContainer,
                     { height: scrollViewHeight },
                   ]}>
-                  <ExtendedButton
-                    title={t('components.vertical_swipe_view.back')}
+                  <TouchableOpacity
                     onPress={setScrollPosition}
-                  />
-                  <ExtendedText style={styles.bottomTitle}>
+                    style={generalStyles.asCenter}>
+                    <View style={styles.backArrow}>
+                      <WhiteTopArrowIcon />
+                    </View>
+                    <ExtendedText
+                      preset="secondary-text"
+                      style={generalStyles.brilliantWhite}>
+                      {t('buttons.back').toUpperCase()}
+                    </ExtendedText>
+                  </TouchableOpacity>
+
+                  <ExtendedText preset="large-title" style={styles.bottomTitle}>
                     {tellMoreTitle}
                   </ExtendedText>
-                  <ScrollView>
-                    <ExtendedText style={styles.bottomsubtitle}>
+                  <ScrollView showsVerticalScrollIndicator={false}>
+                    <ExtendedText
+                      preset="body-regular"
+                      style={generalStyles.brilliantWhite}>
                       {tellMoreDescription}
                     </ExtendedText>
                   </ScrollView>
@@ -128,8 +163,8 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
               </ScrollView>
             </View>
           </FlingGestureHandler>
-        </GestureHandlerRootView>
-      </SafeAreaView>
-    </ImageBackground>
+        </SafeAreaView>
+      </ImageBackground>
+    </GestureHandlerRootView>
   );
 };

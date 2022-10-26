@@ -20,7 +20,7 @@ export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.GARDEN_BACKGROUND}
+      source={BACKGROUND_IMAGES.GARDEN}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView

@@ -1,17 +1,17 @@
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { Nullable } from '../utils';
-import { ImagesKeys } from '../utils/types';
+import { CharmsBackgroundsKeys, CharmsSvgKeys } from '../utils/types';
 
 export interface IQuest {
   id: string;
   title: string;
   buttonTitle: Nullable<string>;
   description: Nullable<string>;
-  backgroundImage: Nullable<ImagesKeys>;
-  image: Nullable<ImagesKeys>;
+  backgroundImage: Nullable<CharmsBackgroundsKeys>;
+  image: Nullable<CharmsSvgKeys>;
   tellMoreTitle: Nullable<string>;
   tellMoreDescription: Nullable<string>;
-  tellMoreBackground: Nullable<ImagesKeys>;
+  tellMoreBackground: Nullable<CharmsBackgroundsKeys>;
   questLineId: string;
   type: keyof QuestStackParams;
   sort: number;

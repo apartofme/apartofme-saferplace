@@ -1,19 +1,17 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../../themes/colors';
+import { hexTransparency } from '../../../utils';
 
 interface ISelectPlayerSupportScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   playerList: ViewStyle;
   playerContainer: ViewStyle;
-  activeBorder: ViewStyle;
-  playerImage: ImageStyle;
-  infoImage: ImageStyle;
-  footer: TextStyle;
+  activePlayerContainer: ViewStyle;
+  info: ViewStyle;
 }
 
-// TODO: change to correct styles
 export const styles = StyleSheet.create<ISelectPlayerSupportScreenStyles>({
   container: {
     paddingTop: 40,
@@ -21,6 +19,7 @@ export const styles = StyleSheet.create<ISelectPlayerSupportScreenStyles>({
   },
   title: {
     paddingBottom: 36,
+    color: COLORS.BRILLIANT_WHITE,
   },
   playerList: {
     flexGrow: 0,
@@ -29,30 +28,21 @@ export const styles = StyleSheet.create<ISelectPlayerSupportScreenStyles>({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 24,
+    paddingVertical: 20,
+    paddingHorizontal: 24,
     marginBottom: 24,
-    borderRadius: 16,
-    borderWidth: 2,
-    borderColor: COLORS.BLACK,
+    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 80),
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: COLORS.PRIMARY_ORANGE,
   },
-  activeBorder: {
-    borderColor: '#AA82E0',
+  activePlayerContainer: {
+    backgroundColor: COLORS.PRIMARY_PURPLE,
+    borderWidth: 4,
+    marginBottom: 20,
   },
-  playerImage: {
-    width: 76,
-    height: 76,
-    borderRadius: 50,
-    backgroundColor: '#AA82E0',
-  },
-  infoImage: {
-    width: 20,
-    height: 20,
+  info: {
+    marginVertical: 20,
     alignSelf: 'center',
-    marginTop: 11,
-    marginBottom: 18,
-    backgroundColor: COLORS.BLACK,
-  },
-  footer: {
-    textAlign: 'center',
   },
 });
