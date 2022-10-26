@@ -72,10 +72,15 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
 
   const AvatarIcon = AVATARS_SVG[avatar];
 
+  const background = useMemo(() => {
+    if (isChild) {
+      return BACKGROUND_IMAGES.ALTERNATIVE_GARDEN;
+    }
+    return BACKGROUND_IMAGES.ONBOARDING_DEFAULT;
+  }, [isChild]);
+
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
-      style={generalStyles.flex}>
+    <ImageBackground source={background} style={generalStyles.flex}>
       <ImageBackground
         source={IMAGES.CONFETTI}
         style={generalStyles.flex}

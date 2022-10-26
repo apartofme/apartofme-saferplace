@@ -1,8 +1,10 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IRadioButtonScreenStyles {
   container: ViewStyle;
-  title: TextStyle;
+  description: TextStyle;
 }
 
 export const styles = StyleSheet.create<IRadioButtonScreenStyles>({
@@ -10,7 +12,9 @@ export const styles = StyleSheet.create<IRadioButtonScreenStyles>({
     paddingTop: 40,
     paddingHorizontal: 24,
   },
-  title: {
-    paddingBottom: 48,
+  description: {
+    paddingTop: 16,
+    paddingBottom: 35,
+    color: COLORS.LIGHT_GREY,
   },
 });

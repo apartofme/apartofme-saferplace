@@ -52,7 +52,7 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
         <SafeAreaView style={styles.container}>
           <ExtendedText style={styles.title} preset="title">

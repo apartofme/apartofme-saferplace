@@ -1,5 +1,7 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 interface ISignUpAgeScreenStyles {
   container: ViewStyle;
   subtitle: ViewStyle;
@@ -12,7 +14,8 @@ export const styles = StyleSheet.create<ISignUpAgeScreenStyles>({
     paddingHorizontal: 24,
   },
   subtitle: {
+    color: COLORS.BRILLIANT_WHITE,
     marginTop: 16,
-    marginBottom: 68,
+    marginBottom: 52,
   },
 });

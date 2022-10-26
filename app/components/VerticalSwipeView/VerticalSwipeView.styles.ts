@@ -3,6 +3,7 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import { COLORS } from '../../themes/colors';
 
 interface IMainHeaderStyles {
+  blackBackground: ViewStyle;
   topContentContainer: ViewStyle;
   topSubtitle: TextStyle;
   submitButton: ViewStyle;
@@ -13,6 +14,9 @@ interface IMainHeaderStyles {
 }
 
 export const styles = StyleSheet.create<IMainHeaderStyles>({
+  blackBackground: {
+    backgroundColor: COLORS.BLACK,
+  },
   topContentContainer: {
     paddingHorizontal: 40,
     justifyContent: 'flex-end',

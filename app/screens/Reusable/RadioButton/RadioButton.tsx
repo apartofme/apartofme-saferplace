@@ -17,12 +17,16 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 
 export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
   route,
 }) => {
   const {
     title,
+    description,
+    buttonTitle,
+    backgroundImage,
     crossHeader,
     titleHasNickname,
     negativeNavigatesTo,
@@ -40,9 +44,7 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
     text: title,
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
-    style: styles.title,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
+    style: generalStyles.brilliantWhite,
   });
 
   const Header = useRenderQuestHeader({
@@ -52,21 +54,24 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to the real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Header />
         <BottomButtonView
-          buttonTitle={t('buttons.next')}
+          buttonTitle={buttonTitle || t('buttons.next')}
+          isArrow={!buttonTitle}
           onSubmit={onSubmit}
           isDisabledButton={!selectedAnswer.length}
           style={styles.container}>
-          <ExtendedText preset="title" style={styles.title}>
-            <Title />
-          </ExtendedText>
+          <Title />
+          {description && (
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {description}
+            </ExtendedText>
+          )}
           <RadioButtonList
             data={RADIO_BUTTON_LIST}
             type={RadioButtonListType.Single}

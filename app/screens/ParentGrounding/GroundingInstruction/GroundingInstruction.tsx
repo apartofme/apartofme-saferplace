@@ -2,7 +2,10 @@ import React, { useCallback } from 'react';
 import { FlatList, ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { IInstructionScreenProps } from './GroundingInstruction.types';
+import {
+  IInstructionItem,
+  IInstructionScreenProps,
+} from './GroundingInstruction.types';
 import { styles } from './GroundingInstruction.styles';
 import {
   BottomButtonView,
@@ -10,12 +13,9 @@ import {
   MainHeader,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import {
-  IGroundingInstructionItem,
-  INSTRUCTION_LIST,
-} from './GroundingInstruction.data';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { INSTRUCTION_LIST } from '../../../constants/quest';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -25,7 +25,7 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
   const { t } = useTranslation();
 
   const renderItem = useCallback(
-    ({ item }: { item: IGroundingInstructionItem }) => (
+    ({ item }: { item: IInstructionItem }) => (
       <View style={styles.instructionContainer}>
         <item.image />
         <ExtendedText preset="heading" style={styles.instructionTitle}>
