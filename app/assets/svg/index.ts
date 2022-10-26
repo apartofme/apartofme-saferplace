@@ -52,6 +52,7 @@ import { CrossedOutEyeIcon } from './CrossedOutEyeIcon';
 import { OpenedEyeIcon } from './OpenedEyeIcon';
 import { CheckYourEmailIcon } from './CheckYourEmailIcon';
 import {
+  CreateYourOwnIcon,
   EmotionalBlobDefaultIcon,
   EmotionalBlobOkIcon,
   EmotionalBlobRelaxedIcon,
@@ -63,6 +64,12 @@ import {
   EmotionStressedIcon,
   EmotionSuperRelaxedIcon,
   EmotionVeryStressedIcon,
+  HowCanIHelpIcon,
+  IAmSorryIcon,
+  IFeelThatWayIcon,
+  ImHereForYouIcon,
+  ItsOkIcon,
+  YouAreSafeIcon,
 } from './emotions';
 import { WhiteBottomArrowIcon } from './WhiteBottomArrowIcon';
 import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
@@ -105,6 +112,12 @@ import {
 import { OpenBookIcon } from './OpenBookIcon';
 import { ClosedBookIcon } from './ClosedBookIcon';
 import { OrangeCircleCrossIcon } from './OrangeCircleCrossIcon';
+import { SkipNextIcon } from './SkipNextIcon';
+import { SkipPreviousIcon } from './SkipPreviousIcon';
+import { DancingFirstTrackIcon } from './DancingFirstTrackIcon';
+import { DancingSecondTrackIcon } from './DancingSecondTrackIcon';
+import { DancingThirdTrackIcon } from './DancingThirdTrackIcon';
+import { DancingFourthTrackIcon } from './DancingFourthTrackIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -134,6 +147,8 @@ export const SVG = {
   RoundPauseButtonIcon: RoundPauseButtonIcon,
   RoundTriangleButtonIcon: RoundTriangleButtonIcon,
   WiseGuideIcon: WiseGuideIcon,
+  SkipNextIcon: SkipNextIcon,
+  SkipPreviousIcon: SkipPreviousIcon,
   StandingUpIcon: StandingUpIcon,
   WhiteBackArrowIcon: WhiteBackArrowIcon,
   whiteBinIcon: WhiteBinIcon,
@@ -217,6 +232,16 @@ export const EMOTIONS_SVG = {
   EmotionVeryStressedIcon: EmotionVeryStressedIcon,
 };
 
+export const EMOTIONS_CAROUSEL_SVG = {
+  CreateYourOwnIcon: CreateYourOwnIcon,
+  HowCanIHelpIcon: HowCanIHelpIcon,
+  IAmSorryIcon: IAmSorryIcon,
+  IFeelThatWayIcon: IFeelThatWayIcon,
+  ImHereForYouIcon: ImHereForYouIcon,
+  ItsOkIcon: ItsOkIcon,
+  YouAreSafeIcon: YouAreSafeIcon,
+};
+
 export const SVG_CHARM_ILLUSTRATIONS = {
   AcceptanceIllustrationIcon: AcceptanceIllustrationIcon,
   BefriendingIllustrationIcon: BefriendingIllustrationIcon,
@@ -231,4 +256,11 @@ export const SVG_CHARM_ILLUSTRATIONS = {
   SlowWindIllustrationIcon: SlowWindIllustrationIcon,
   TruthIllustrationIcon: TruthIllustrationIcon,
   WeavingIllustrationIcon: WeavingIllustrationIcon,
+};
+
+export const SVG_DANCING_CHARM = {
+  DancingFirstTrackIcon: DancingFirstTrackIcon,
+  DancingSecondTrackIcon: DancingSecondTrackIcon,
+  DancingThirdTrackIcon: DancingThirdTrackIcon,
+  DancingFourthTrackIcon: DancingFourthTrackIcon,
 };

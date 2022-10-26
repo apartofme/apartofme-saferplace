@@ -15,6 +15,7 @@ import {
   ImageSubtitle,
   SubtitleImage,
   Charm,
+  Emotion,
 } from './components';
 import {
   CarouselType,
@@ -42,6 +43,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
     switch (preset) {
       case CarouselType.Avatar:
       case CarouselType.Charm:
+      case CarouselType.Emotion:
         return 'parallax';
     }
   }, [preset]);
@@ -51,6 +53,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
       case CarouselType.Avatar:
         return CAROUSEL_MODE_CONFIG_AVATAR;
       case CarouselType.Charm:
+      case CarouselType.Emotion:
         return CAROUSEL_MODE_CONFIG_CHARM;
     }
   }, [preset]);
@@ -85,6 +88,14 @@ export const Carousel: React.FC<ICarouselProps> = ({
         case CarouselType.Charm:
           return (
             <Charm data={item} isActive={isActive} style={carouselItemStyle} />
+          );
+        case CarouselType.Emotion:
+          return (
+            <Emotion
+              data={item}
+              isActive={isActive}
+              style={carouselItemStyle}
+            />
           );
         case CarouselType.ImageTitleSubtitle:
           return <ImageTitleSubtitle data={item} style={carouselItemStyle} />;

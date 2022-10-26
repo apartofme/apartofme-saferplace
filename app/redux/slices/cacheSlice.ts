@@ -3,6 +3,8 @@ import _ from 'lodash';
 
 import { Nullable } from '../../utils';
 import {
+  IEmotionItem,
+  IEmotionItemPayload,
   IEmotionPayload,
   IEmotions,
   IFavouriteCharmItem,
@@ -30,7 +32,7 @@ interface ICacheState {
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
   currentQuestionIndex: number;
-  emotionItem: Nullable<string>;
+  emotionItem: Nullable<IEmotionItem>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
   troublesomeSpiritQuestionsItem: Nullable<string>;
   childKindnessItem: Nullable<string>;
@@ -105,7 +107,7 @@ export const cacheSlice = createSlice({
       emotions.selected = null;
       emotions.completed = [];
     },
-    saveEmotionItem(state, { payload }: PayloadAction<string>) {
+    saveEmotionItem(state, { payload }: IEmotionItemPayload) {
       state.emotionItem = payload;
     },
     saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
