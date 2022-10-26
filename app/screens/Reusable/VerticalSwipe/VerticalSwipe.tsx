@@ -19,7 +19,7 @@ import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
 import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
-import { SVG } from '../../../assets/svg';
+import { CHARMS_SVG, SVG } from '../../../assets/svg';
 
 const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
 const WhiteTopArrowIcon = SVG.WhiteTopArrowIcon;
@@ -31,6 +31,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     title,
     description,
     buttonTitle,
+    image,
     backgroundImage,
     tellMoreTitle,
     tellMoreDescription,
@@ -78,6 +79,8 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   });
 
+  const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
+
   return (
     <GestureHandlerRootView style={generalStyles.flex}>
       <ImageBackground
@@ -96,6 +99,9 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                   ]}>
                   <Header />
                   <View style={styles.topContentContainer}>
+                    <View style={styles.iconContainer}>
+                      {image && <Icon />}
+                    </View>
                     <ExtendedText
                       preset="large-title"
                       style={generalStyles.brilliantWhiteCenter}>

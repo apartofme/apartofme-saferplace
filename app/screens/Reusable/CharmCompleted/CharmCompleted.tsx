@@ -17,6 +17,7 @@ import { styles } from './CharmCompleted.styles';
 import { useIsFocused } from '@react-navigation/native';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
+import { CHARMS_SVG } from '../../../assets/svg';
 
 export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   route,
@@ -25,6 +26,7 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     title,
     description,
     buttonTitle,
+    image,
     backgroundImage,
     crossHeader,
     titleHasNickname,
@@ -61,6 +63,8 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     }
   }, [appStatus, isFocused, isSoundFXEnabled]);
 
+  const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
+
   return (
     <ImageBackground
       source={
@@ -74,10 +78,9 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
           isArrow={!buttonTitle}
           onSubmit={onSubmit}
           style={styles.container}>
+          {image && <Icon />}
           <Title />
-          <ExtendedText
-            preset="secondary-text"
-            style={generalStyles.greyCenter}>
+          <ExtendedText preset="secondary-text" style={styles.description}>
             {description}
           </ExtendedText>
         </BottomButtonView>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
-import { ISvgProps } from '../../../utils/types';
+import { ISvgProps } from '../../utils/types';
 
 export const OpenBookIcon = ({ width = 111, height = 80 }: ISvgProps) => {
   return (

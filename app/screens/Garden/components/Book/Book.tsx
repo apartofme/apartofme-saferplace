@@ -5,10 +5,10 @@ import { useAppSelector } from '../../../../hooks';
 import { IBookProps } from './Book.types';
 import { styles } from './Book.styles';
 import { CharmBookMenuType } from '../../CharmBookMenu';
-import {
-  ClosedBookIcon,
-  OpenBookIcon,
-} from '../../../../assets/images/dummySVG';
+import { SVG } from '../../../../assets/svg';
+
+const ClosedBookIcon = SVG.ClosedBookIcon;
+const OpenBookIcon = SVG.OpenBookIcon;
 
 export const Book: React.FC<IBookProps> = ({
   isDisabled,

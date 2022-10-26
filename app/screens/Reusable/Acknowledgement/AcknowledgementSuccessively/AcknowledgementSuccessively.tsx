@@ -61,9 +61,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
             style={styles.container}>
             {image && <Icon />}
             <Title />
-            <ExtendedText
-              preset="secondary-text"
-              style={generalStyles.greyCenter}>
+            <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>
           </BottomButtonView>

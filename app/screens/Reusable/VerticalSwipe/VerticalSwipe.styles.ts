@@ -5,6 +5,7 @@ import { COLORS } from '../../../themes/colors';
 interface IVerticalSwipeScreenStyles {
   blackBackground: ViewStyle;
   topContentContainer: ViewStyle;
+  iconContainer: ViewStyle;
   topSubtitle: TextStyle;
   submitButton: ViewStyle;
   learnMoreArrow: ViewStyle;
@@ -20,6 +21,10 @@ export const styles = StyleSheet.create<IVerticalSwipeScreenStyles>({
   topContentContainer: {
     paddingHorizontal: 40,
     justifyContent: 'flex-end',
+  },
+  iconContainer: {
+    alignSelf: 'center',
+    marginBottom: 46,
   },
   topSubtitle: {
     marginTop: 24,

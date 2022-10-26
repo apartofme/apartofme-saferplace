@@ -78,6 +78,32 @@ import {
   HappySidekickGuideIcon,
   WiseGuideIcon,
 } from './guide';
+import {
+  ChangesOfBodyFeelsIcon,
+  DancingBearIcon,
+  DancingMonkeyIcon,
+  DancingMothIcon,
+  LyingOwlIcon,
+  PlaceHealingHandOnBodyIcon,
+  StressedPlaceOnBodyIcon,
+} from './charms';
+import {
+  CalmGrownIcon,
+  CalmIcon,
+  CompassionGrownIcon,
+  CompassionIcon,
+  CourageGrownIcon,
+  CourageIcon,
+  ElixirOneHalfIcon,
+  ElixirOneIcon,
+  ElixirThreeIcon,
+  ElixirTwoHalfIcon,
+  ElixirTwoIcon,
+  ElixirZeroHalfIcon,
+  ElixirZeroIcon,
+} from './garden';
+import { OpenBookIcon } from './OpenBookIcon';
+import { ClosedBookIcon } from './ClosedBookIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -115,11 +141,24 @@ export const SVG = {
   WhitePencilIcon: WhitePencilIcon,
   WhiteRightArrowIcon: WhiteRightArrowIcon,
   WhiteTopArrowIcon: WhiteTopArrowIcon,
+  OpenBookIcon: OpenBookIcon,
+  ClosedBookIcon: ClosedBookIcon,
 };
 
 export const CHARMS_SVG = {
+  CalmSeedlingIcon: CalmIcon,
   CelebrationGuideIcon: CelebrationGuideIcon,
+  ChangesOfBodyFeelsIcon: ChangesOfBodyFeelsIcon,
   CompassionateGuideIcon: CompassionateGuideIcon,
+  CompassionSeedlingIcon: CompassionIcon,
+  DancingBearIcon: DancingBearIcon,
+  DancingCharmIllustrationIcon: DancingIllustrationIcon,
+  DancingMonkeyIcon: DancingMonkeyIcon,
+  DancingMothIcon: DancingMothIcon,
+  HealingCharmIllustrationIcon: HealingIllustrationIcon,
+  LyingOwlIcon: LyingOwlIcon,
+  PlaceHealingHandOnBodyIcon: PlaceHealingHandOnBodyIcon,
+  StressedPlaceOnBodyIcon: StressedPlaceOnBodyIcon,
 };
 
 export const AVATARS_SVG = {
@@ -140,6 +179,25 @@ export const AVATARS_SVG = {
 
 export const DOUBLE_AVATARS_SVG = {
   CircleFoxIconCircleMonkeyIcon: CircleFoxIconCircleMonkeyIcon,
+};
+
+export const PLANTS_SVG = {
+  calm: CalmIcon,
+  calmGrown: CalmGrownIcon,
+  compassion: CompassionIcon,
+  compassionGrown: CompassionGrownIcon,
+  courage: CourageIcon,
+  courageGrown: CourageGrownIcon,
+};
+
+export const ELIXIR_SVG = {
+  ElixirOneHalfIcon: ElixirOneHalfIcon,
+  ElixirOneIcon: ElixirOneIcon,
+  ElixirThreeIcon: ElixirThreeIcon,
+  ElixirTwoHalfIcon: ElixirTwoHalfIcon,
+  ElixirTwoIcon: ElixirTwoIcon,
+  ElixirZeroHalfIcon: ElixirZeroHalfIcon,
+  ElixirZeroIcon: ElixirZeroIcon,
 };
 
 export const EMOTIONS_SVG = {
