@@ -52,6 +52,7 @@ import {
   LeaveFeedbackScreen,
   ReusableElixirInstructionScreen,
   AcknowledgementReadLoudScreen,
+  AcknowledgementStopShakingScreen,
 } from '../../screens';
 import {
   DEFAULT_STACK_OPTIONS,
@@ -70,6 +71,7 @@ export type QuestStackParams = {
   AcknowledgementNicknames: { data: IQuest };
   AcknowledgementSuccessively: { data: IQuest };
   AcknowledgementSuccessivelyDoubleButton: { data: IQuest };
+  AcknowledgementStopShaking: { data: IQuest };
   AcknowledgementSupport: { data: IQuest };
   AcknowledgementTitle: { data: IQuest };
   Alert: undefined;
@@ -133,6 +135,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen
       name="AcknowledgementLargeTitle"
       component={AcknowledgementLargeTitleScreen}
+    />
+    <Stack.Screen
+      name="AcknowledgementStopShaking"
+      component={AcknowledgementStopShakingScreen}
     />
     <Stack.Screen
       name="AcknowledgementNicknames"

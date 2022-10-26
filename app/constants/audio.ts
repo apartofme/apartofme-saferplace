@@ -6,4 +6,5 @@ export const AUDIO = {
   DANCING_THUNDER: 'dancing_track_thunder_016.mp3',
   FOREST_AMBIENCE_LOOP: 'forest_ambience_sfx_loop_2_001.mp3',
   PLANT_PLANTING: 'plant_planting_1_005.wav',
+  TIMER_SOUND_MAGIC: 'timer_sound_magic_015.wav',
 };
