@@ -1,5 +1,7 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 interface IAcknowledgementNicknamesScreenStyles {
   container: ViewStyle;
   image: ImageStyle;
@@ -11,17 +13,20 @@ export const styles = StyleSheet.create<IAcknowledgementNicknamesScreenStyles>({
   container: {
     alignItems: 'center',
     paddingHorizontal: 40,
+    paddingTop: 22,
   },
-  // TODO: change to real styles
   image: {
     width: 375,
     height: 345,
   },
   title: {
-    paddingVertical: 24,
+    color: COLORS.BRILLIANT_WHITE,
+    paddingTop: 32,
+    paddingBottom: 24,
     textAlign: 'center',
   },
   description: {
+    color: COLORS.LIGHT_GREY,
     textAlign: 'center',
   },
 });

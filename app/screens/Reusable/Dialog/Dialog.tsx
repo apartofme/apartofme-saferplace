@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
   ImageBackground,
   SafeAreaView,
@@ -43,7 +43,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
     style: styles.title,
   });
 
-  const Icon = useMemo(() => (image ? CHARMS_SVG[image] : null), [image]);
+  const Icon = image ? CHARMS_SVG[image] : null;
 
   return (
     <ImageBackground
@@ -54,7 +54,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
       <SafeAreaView style={generalStyles.flex}>
         <Header />
         <View style={styles.container}>
-          <Icon />
+          {Icon && <Icon />}
           <View style={styles.dialogContainer}>
             <Title />
           </View>
