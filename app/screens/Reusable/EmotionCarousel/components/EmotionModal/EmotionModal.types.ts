@@ -1,7 +1,7 @@
-import { Nullable } from '../../../../../utils';
+import { ImageSourcePropType } from 'react-native';
 
 export interface IEmotionModalProps {
   title: string;
-  backgroundImage: Nullable<string>;
+  backgroundImage: ImageSourcePropType;
   setModalStatus: () => void;
 }

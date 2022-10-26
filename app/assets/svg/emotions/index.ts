@@ -1,3 +1,4 @@
+export { CreateYourOwnIcon } from './CreateYourOwnIcon';
 export { EmotionalBlobDefaultIcon } from './EmotionalBlobDefaultIcon';
 export { EmotionalBlobOkIcon } from './EmotionalBlobOkIcon';
 export { EmotionalBlobRelaxedIcon } from './EmotionalBlobRelaxedIcon';
@@ -9,3 +10,9 @@ export { EmotionRelaxedIcon } from './EmotionRelaxedIcon';
 export { EmotionStressedIcon } from './EmotionStressedIcon';
 export { EmotionSuperRelaxedIcon } from './EmotionSuperRelaxedIcon';
 export { EmotionVeryStressedIcon } from './EmotionVeryStressedIcon';
+export { HowCanIHelpIcon } from './HowCanIHelpIcon';
+export { IAmSorryIcon } from './IAmSorryIcon';
+export { IFeelThatWayIcon } from './IFeelThatWayIcon';
+export { ImHereForYouIcon } from './ImHereForYouIcon';
+export { ItsOkIcon } from './ItsOkIcon';
+export { YouAreSafeIcon } from './YouAreSafeIcon';
