@@ -30,7 +30,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   subtitle,
   backgroundImage,
   titleHasNickname,
-  isDicovery,
+  isDiscovery,
   setModalStatus,
 }) => {
   const { t } = useTranslation();
@@ -50,7 +50,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   });
 
   const onSubmitPress = useCallback(() => {
-    if (isDicovery) {
+    if (isDiscovery) {
       if (isChild) {
         dispatch(
           cacheSlice.actions.saveChildTrySomethingItem({
@@ -86,7 +86,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
 
     setModalStatus();
     onSubmit();
-  }, [dispatch, inputValue, isChild, isDicovery, onSubmit, setModalStatus, t]);
+  }, [dispatch, inputValue, isChild, isDiscovery, onSubmit, setModalStatus, t]);
 
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>

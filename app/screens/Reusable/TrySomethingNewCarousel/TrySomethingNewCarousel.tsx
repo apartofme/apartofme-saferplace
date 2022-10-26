@@ -50,7 +50,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     );
 
     const carouselData =
-      THE_CHARM_OF_DISCOVERY_ID !== curentQuestLineId
+      THE_CHARM_OF_DISCOVERY_ID === curentQuestLineId
         ? TRY_SOMETHING_DISCOVERY_ITEMS
         : SECOND_TRY_SOMETHING_ITEMS;
 
@@ -119,6 +119,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
                   backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND'
                 ]
               }
+              isDiscovery={THE_CHARM_OF_DISCOVERY_ID === curentQuestLineId}
             />
           </Modal>
           <MainHeader
