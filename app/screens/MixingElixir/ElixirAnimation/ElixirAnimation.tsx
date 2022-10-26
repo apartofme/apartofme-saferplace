@@ -25,7 +25,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
         AudioPlayerHelper.play(AUDIO.MIXING_ELIXIR_ANIMATION);
         return 'screens.mixing_exixir.elixir_animaion.mix';
       case MixingElixirPhaseType.Open:
-        AudioPlayerHelper.play(AUDIO.OPENING_CHARMS_BOOK);
+        AudioPlayerHelper.play(AUDIO.OPENING_ELIXIR_ANIMATION);
         return 'screens.mixing_exixir.elixir_animaion.open';
       default:
         AudioPlayerHelper.play(AUDIO.POURING_ELIXIR_ANIMATION);

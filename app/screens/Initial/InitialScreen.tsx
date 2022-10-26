@@ -57,7 +57,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
       isStartLoading
     ) {
       if (user.parent && user.child) {
-        navigation.replace('GardenStack');
+        navigation.replace('MixingElixirStack');
         return;
       }
       if (cacheUser.parent?.avatar && !cacheUser.child?.avatar) {

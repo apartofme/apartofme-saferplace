@@ -22,10 +22,11 @@ export const SoundCarousel: React.FC<ISoundCarouselItemProps> = ({
 
   const onSnapToItem = useCallback(
     index => {
-      setCurrentPosition(Math.floor(index));
-      setCurrentSong(data[currentPosition].id);
+      console.log('pos', index);
+      setCurrentPosition(index);
+      setCurrentSong(data[index].id);
     },
-    [currentPosition, data, setCurrentSong],
+    [data, setCurrentSong],
   );
 
   const onProgressChange = useCallback(
