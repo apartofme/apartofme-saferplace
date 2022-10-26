@@ -1,1 +1,1 @@
-export * from './FAQSectionList';
+export * from './FAQListItem';
