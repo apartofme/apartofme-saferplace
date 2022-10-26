@@ -1,6 +1,10 @@
 import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
-import { AvatarsKeys, ImagesKeys } from '../../utils/types';
+import {
+  AvatarsKeys,
+  EmotionsCarouselSvgKeys,
+  ImagesKeys,
+} from '../../utils/types';
 
 export interface ISignUpData {
   email?: string;
@@ -24,6 +28,11 @@ export interface INicknames {
 export interface IEmotions {
   selected: Nullable<EmotionButtonType>;
   completed: Nullable<EmotionButtonType>[];
+}
+
+export interface IEmotionItem {
+  image: EmotionsCarouselSvgKeys;
+  title: string;
 }
 
 export interface IFavouriteCharmItem {
@@ -62,6 +71,10 @@ export interface INicknamesPayload {
 
 export interface IEmotionPayload {
   payload: Nullable<EmotionButtonType>;
+}
+
+export interface IEmotionItemPayload {
+  payload: IEmotionItem;
 }
 
 export interface IFavouriteCharmItemPayload {

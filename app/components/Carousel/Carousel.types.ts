@@ -1,6 +1,10 @@
 import { ViewProps, ViewStyle } from 'react-native';
 
-import { AvatarsNameType, SvgComponentType } from '../../utils/types';
+import {
+  AvatarsNameType,
+  EmotionsCarouselSvgKeys,
+  SvgComponentType,
+} from '../../utils/types';
 import { CarouselType } from './Carousel.data';
 
 export interface ICarouselProps extends ViewProps {
@@ -12,7 +16,10 @@ export interface ICarouselProps extends ViewProps {
   carouselItemStyle?: ViewStyle;
 }
 
-type CarouselImageType = SvgComponentType | AvatarsNameType;
+type CarouselImageType =
+  | SvgComponentType
+  | AvatarsNameType
+  | EmotionsCarouselSvgKeys;
 
 export interface ICarouselItem {
   id: string;

@@ -1,10 +1,11 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IEmotionCarouselScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   carousel: ViewStyle;
-  carouselItem: ViewStyle;
   bottomButton: ViewStyle;
   modal: ViewStyle;
 }
@@ -16,12 +17,10 @@ export const styles = StyleSheet.create<IEmotionCarouselScreenStyles>({
   },
   title: {
     paddingHorizontal: 24,
+    color: COLORS.BRILLIANT_WHITE,
   },
   carousel: {
-    paddingBottom: 41,
-  },
-  carouselItem: {
-    paddingBottom: 48,
+    paddingBottom: 70,
   },
   bottomButton: {
     marginHorizontal: 40,

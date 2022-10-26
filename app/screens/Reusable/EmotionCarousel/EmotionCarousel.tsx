@@ -14,17 +14,18 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
-import { IMAGES } from '../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
 import {
   BottomButtonView,
-  EmotionCarousel,
+  Carousel,
+  CarouselType,
+  EMOTION_CAROUSEL,
   ExtendedButton,
 } from '../../../components';
-import { EMOTION_CAROUSEL_ITEMS } from '../../../constants/emotionCarousel';
 import { cacheSlice } from '../../../redux/slices';
 import { EmotionModal } from './components';
-import { ImagesKeys } from '../../../utils/types';
+import { EmotionsCarouselSvgKeys } from '../../../utils/types';
 
 export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
   route,
@@ -41,9 +42,7 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
 
   const { t } = useTranslation();
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const [emotionData, setEmotionData] = useState(
-    _.cloneDeep(EMOTION_CAROUSEL_ITEMS),
-  );
+  const [emotionData, setEmotionData] = useState(_.cloneDeep(EMOTION_CAROUSEL));
   const [activeItem, setActiveItem] = useState(emotionData[0]);
   const [isModal, setIsModal] = useState(false);
   const dispatch = useAppDispatch();
@@ -57,8 +56,6 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
     style: styles.title,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
   });
 
   const Header = useRenderQuestHeader({
@@ -67,9 +64,14 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
   });
 
   const onSubmit = useCallback(() => {
-    dispatch(cacheSlice.actions.saveEmotionItem(t(activeItem.title)));
+    dispatch(
+      cacheSlice.actions.saveEmotionItem({
+        title: t(activeItem.titleKey ?? ''),
+        image: activeItem.image as EmotionsCarouselSvgKeys,
+      }),
+    );
     navigateToNextQuest();
-  }, [activeItem.title, dispatch, navigateToNextQuest, t]);
+  }, [activeItem.image, activeItem.titleKey, dispatch, navigateToNextQuest, t]);
 
   const setModalStatus = useCallback(() => {
     setIsModal(!isModal);
@@ -79,7 +81,7 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
     setEmotionData(prev =>
       _.map(prev, item =>
         _.merge(item, {
-          title: t(item.title).replace('|emotion|', playerEmotion),
+          titleKey: t(item.titleKey ?? '').replace('|emotion|', playerEmotion),
         }),
       ),
     );
@@ -91,18 +93,19 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to real default image
       source={
-        (backgroundImage && IMAGES[backgroundImage as ImagesKeys]) ?? {
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Modal isVisible={isModal} style={styles.modal}>
           <EmotionModal
             title={tellMoreTitle ?? ''}
-            backgroundImage={backgroundImage}
+            backgroundImage={
+              CHARMS_BACKGROUNDS[
+                backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND'
+              ]
+            }
             setModalStatus={setModalStatus}
           />
         </Modal>
@@ -112,17 +115,18 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
           onSubmit={onSubmit}
           style={styles.container}>
           <Title />
-          <EmotionCarousel
+          <Carousel
             data={emotionData}
+            preset={CarouselType.Emotion}
             setIndex={setActiveItemIndex}
             style={styles.carousel}
-            itemStyle={styles.carouselItem}
           />
         </BottomButtonView>
         <ExtendedButton
           title={t('buttons.write_your_own')}
           onPress={() => setIsModal(true)}
           style={styles.bottomButton}
+          preset="border"
         />
       </SafeAreaView>
     </ImageBackground>

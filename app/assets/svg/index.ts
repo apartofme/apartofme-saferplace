@@ -52,6 +52,7 @@ import { CrossedOutEyeIcon } from './CrossedOutEyeIcon';
 import { OpenedEyeIcon } from './OpenedEyeIcon';
 import { CheckYourEmailIcon } from './CheckYourEmailIcon';
 import {
+  CreateYourOwnIcon,
   EmotionalBlobDefaultIcon,
   EmotionalBlobOkIcon,
   EmotionalBlobRelaxedIcon,
@@ -63,6 +64,12 @@ import {
   EmotionStressedIcon,
   EmotionSuperRelaxedIcon,
   EmotionVeryStressedIcon,
+  HowCanIHelpIcon,
+  IAmSorryIcon,
+  IFeelThatWayIcon,
+  ImHereForYouIcon,
+  ItsOkIcon,
+  YouAreSafeIcon,
 } from './emotions';
 import { WhiteBottomArrowIcon } from './WhiteBottomArrowIcon';
 import { WhiteTopArrowIcon } from './WhiteTopArrowIcon';
@@ -213,6 +220,16 @@ export const EMOTIONS_SVG = {
   EmotionStressedIcon: EmotionStressedIcon,
   EmotionSuperRelaxedIcon: EmotionSuperRelaxedIcon,
   EmotionVeryStressedIcon: EmotionVeryStressedIcon,
+};
+
+export const EMOTIONS_CAROUSEL_SVG = {
+  CreateYourOwnIcon: CreateYourOwnIcon,
+  HowCanIHelpIcon: HowCanIHelpIcon,
+  IAmSorryIcon: IAmSorryIcon,
+  IFeelThatWayIcon: IFeelThatWayIcon,
+  ImHereForYouIcon: ImHereForYouIcon,
+  ItsOkIcon: ItsOkIcon,
+  YouAreSafeIcon: YouAreSafeIcon,
 };
 
 export const SVG_CHARM_ILLUSTRATIONS = {

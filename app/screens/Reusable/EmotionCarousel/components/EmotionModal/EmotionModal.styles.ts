@@ -2,8 +2,7 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 export interface IEmotionModalStyles {
   container: ViewStyle;
-  title: TextStyle;
-  hint: TextStyle;
+  input: TextStyle;
 }
 
 export const styles = StyleSheet.create<IEmotionModalStyles>({
@@ -12,10 +11,8 @@ export const styles = StyleSheet.create<IEmotionModalStyles>({
     paddingTop: 40,
     paddingHorizontal: 24,
   },
-  title: {
-    paddingBottom: 48,
-  },
-  hint: {
-    paddingTop: 16,
+  input: {
+    marginTop: 53,
+    marginBottom: 8,
   },
 });
