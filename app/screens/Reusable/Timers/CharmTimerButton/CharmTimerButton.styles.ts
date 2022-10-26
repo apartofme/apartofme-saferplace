@@ -1,21 +1,28 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../../themes/colors';
+import { hexTransparency } from '../../../../utils';
 
 interface ICharmTimerButtonScreenStyles {
   container: ViewStyle;
   timer: ViewStyle;
-  subtitle: TextStyle;
+  readLoudContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ICharmTimerButtonScreenStyles>({
   container: {
-    paddingTop: 40,
+    paddingTop: 8,
     paddingHorizontal: 40,
     alignItems: 'center',
   },
   timer: {
     paddingVertical: 86,
   },
-  subtitle: {
-    textAlign: 'center',
+  readLoudContainer: {
+    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 70),
+    paddingHorizontal: 32,
+    paddingVertical: 16,
+    borderRadius: 99,
+    marginTop: 8,
   },
 });
