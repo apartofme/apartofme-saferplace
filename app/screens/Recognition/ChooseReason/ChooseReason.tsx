@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, Pressable, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IChooseReasonScreenProps } from './ChooseReason.types';
@@ -26,7 +26,6 @@ export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
 
   const { t } = useTranslation();
 
-  // TODO: change to correct
   const onSubmitPress = useCallback(() => {
     navigation.navigate('RecognitionAcknowledgement', {
       data: {
@@ -38,7 +37,6 @@ export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
     });
   }, [navigation, selected]);
 
-  // TODO: change to correct
   const onSkipPress = useCallback(() => {
     navigation.navigate('ElixirCarousel');
   }, [navigation]);
@@ -74,9 +72,11 @@ export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
               style={styles.submitButton}
               disabled={!selected.length}
             />
-            <ExtendedText style={styles.skipTitle} onPress={onSkipPress}>
-              {t('buttons.skip')}
-            </ExtendedText>
+            <Pressable onPress={onSkipPress}>
+              <ExtendedText style={styles.skipTitle}>
+                {t('buttons.skip').toUpperCase()}
+              </ExtendedText>
+            </Pressable>
           </View>
         </View>
       </SafeAreaView>

@@ -29,10 +29,10 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
     state =>
       state.cache.auth[isChild ? 'child' : 'parent']?.avatar as AvatarsKeys,
   );
-  const parentNickname =
-    useAppSelector(state => state.cache.auth.parent?.nickname) ?? '';
-  const childNickname =
-    useAppSelector(state => state.cache.auth.child?.nickname) ?? '';
+  const nickname =
+    useAppSelector(
+      state => state.cache.auth[isChild ? 'child' : 'parent']?.nickname,
+    ) ?? '';
 
   const correctLocalizationPath = useMemo(() => {
     if (isChild) {
@@ -53,8 +53,10 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   }, [isChild, navigation]);
 
   const titleArray = _(title)
-    .replace(DatoCMSTextVariables.GrownUp, `$${parentNickname}`)
-    .replace(DatoCMSTextVariables.Child, `$${childNickname}`)
+    .replace(
+      DatoCMSTextVariables[isChild ? 'Child' : 'GrownUp'],
+      `$${nickname}`,
+    )
     .split('|')
     .map(value => {
       if (value.startsWith('$')) {

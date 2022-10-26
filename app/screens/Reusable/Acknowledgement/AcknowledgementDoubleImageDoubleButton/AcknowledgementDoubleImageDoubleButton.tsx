@@ -1,7 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Image,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
@@ -9,16 +8,18 @@ import {
 } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
-import { IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
   useNegativeNavigateTo,
+  useAppSelector,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementDoubleImageDoubleButtonScreenProps } from './AcknowledgementDoubleImageDoubleButton.types';
 import { styles } from './AcknowledgementDoubleImageDoubleButton.styles';
+import { DOUBLE_AVATARS_SVG } from '../../../../assets/svg';
 
 export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledgementDoubleImageDoubleButtonScreenProps> =
   ({ route }) => {
@@ -26,6 +27,8 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
       title,
       description,
       buttonTitle,
+      tellMoreTitle,
+      backgroundImage,
       titleHasNickname,
       crossHeader,
       positiveNavigatesTo,
@@ -34,6 +37,12 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
     } = route.params.data;
 
     const { t } = useTranslation();
+    const parentAvatar = useAppSelector(state => state.user.parent?.avatar)
+      ?.replace('Circle', '')
+      .replace('Icon', '');
+    const childAvatar = useAppSelector(state => state.user.child?.avatar)
+      ?.replace('Circle', '')
+      .replace('Icon', '');
 
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
@@ -41,9 +50,7 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
-      style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
+      style: generalStyles.brilliantWhiteCenter,
     });
 
     const Header = useRenderQuestHeader({
@@ -51,43 +58,33 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
       escapeMenuAlternativeNavigateTo,
     });
 
-    const correctButtonTitle = useMemo(() => {
-      if (/next/i.test(buttonTitle as string)) {
-        return t('buttons.finish').toUpperCase();
-      }
-
-      return t('buttons.not_now').toUpperCase();
-    }, [buttonTitle, t]);
+    const AvatarsIcon =
+      DOUBLE_AVATARS_SVG[
+        `${parentAvatar}${childAvatar}` as keyof typeof DOUBLE_AVATARS_SVG
+      ];
 
     const negativeNavigate = useNegativeNavigateTo(negativeNavigatesTo, true);
 
     return (
       <ImageBackground
-        // TODO: change to the real image
-        source={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
             <View>
-              <View style={styles.imageContainer}>
-                <Image
-                  // TODO: change to the real image
-                  source={IMAGES.WHITE_PENCIL}
-                  style={styles.image}
-                />
-                <Image
-                  // TODO: change to the real image
-                  source={IMAGES.WHITE_PENCIL}
-                  style={[styles.image, styles.childImage]}
-                />
-              </View>
+              {AvatarsIcon && (
+                <View style={styles.iconContainer}>
+                  <AvatarsIcon />
+                </View>
+              )}
               <ExtendedText preset="secondary-text" style={styles.description}>
                 {description}
               </ExtendedText>
@@ -96,8 +93,10 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
           <TouchableOpacity
             style={styles.bottomButton}
             onPress={negativeNavigate}>
-            <ExtendedText preset="secondary-text">
-              {correctButtonTitle}
+            <ExtendedText
+              preset="secondary-text"
+              style={generalStyles.brilliantWhite}>
+              {tellMoreTitle}
             </ExtendedText>
           </TouchableOpacity>
         </SafeAreaView>

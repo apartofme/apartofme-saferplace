@@ -25,6 +25,7 @@ export const styles = StyleSheet.create<IChooseReasonScreenStyles>({
     marginBottom: 28,
   },
   skipTitle: {
-    textAlign: 'center',
+    alignSelf: 'center',
+    color: COLORS.BRILLIANT_WHITE,
   },
 });

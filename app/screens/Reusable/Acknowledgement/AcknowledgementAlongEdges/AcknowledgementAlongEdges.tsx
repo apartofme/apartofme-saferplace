@@ -75,7 +75,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
             style={styles.container}>
             <Title />
             <View style={generalStyles.aiCenter}>
-              <Icon />
+              {Icon && <Icon />}
               <ExtendedText style={styles.description}>
                 {description}
               </ExtendedText>

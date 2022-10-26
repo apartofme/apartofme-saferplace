@@ -3,6 +3,7 @@ import {
   AVATARS_SVG,
   CHARMS_SVG,
   EMOTIONS_CAROUSEL_SVG,
+  SVG_DANCING_CHARM,
   SVG,
 } from '../assets/svg';
 import { IPlantArea } from '../redux/types';

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
-import { BACKGROUND_IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './AcknowledgementReadLoud.styles';
 import { IAcknowledgementReadLoudScreenProps } from './AcknowledgementReadLoud.types';
@@ -19,6 +19,7 @@ export const AcknowledgementReadLoudScreen: React.FC<IAcknowledgementReadLoudScr
 
     const {
       title,
+      description,
       titleHasNickname,
       crossHeader,
       buttonTitle,
@@ -41,14 +42,15 @@ export const AcknowledgementReadLoudScreen: React.FC<IAcknowledgementReadLoudScr
     });
 
     return (
-      // TODO: change to correct backgroundImage
       <ImageBackground
-        source={backgroundImage ?? BACKGROUND_IMAGES.CALM_DEFAULT_BACKGROUND}
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle || t('button.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
             isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
@@ -59,7 +61,15 @@ export const AcknowledgementReadLoudScreen: React.FC<IAcknowledgementReadLoudScr
                 {t('Read out loud')}
               </ExtendedText>
             </View>
+
             <Title />
+            {!!description && (
+              <ExtendedText
+                preset="tertiary-text-regular"
+                style={generalStyles.brilliantWhiteCenter}>
+                {description}
+              </ExtendedText>
+            )}
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

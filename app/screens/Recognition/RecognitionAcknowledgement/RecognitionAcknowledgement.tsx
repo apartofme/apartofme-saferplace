@@ -19,8 +19,7 @@ import { SVG } from '../../../assets/svg';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
-// TODO: change to correct
-const CelebrationGuideIcon = SVG.CelebrationGuideIcon;
+const CompassionateGuideIcon = SVG.CompassionateGuideIcon;
 
 export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgementScreenProps> =
   ({ navigation, route }) => {
@@ -63,7 +62,7 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
             onSubmit={onSubmitPress}
             isArrow={true}>
             <View style={styles.container}>
-              <CelebrationGuideIcon />
+              <CompassionateGuideIcon />
               <Title />
               <ExtendedText style={styles.subtitle} preset="secondary-text">
                 {t(
