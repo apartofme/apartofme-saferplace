@@ -30,6 +30,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   subtitle,
   backgroundImage,
   titleHasNickname,
+  isDiscovery,
   setModalStatus,
 }) => {
   const { t } = useTranslation();
@@ -45,30 +46,47 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
     text: title,
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
+    style: styles.title,
   });
 
   const onSubmitPress = useCallback(() => {
-    if (isChild) {
-      dispatch(
-        cacheSlice.actions.saveChildTrySomethingItem({
-          title: t('labels.create_own'),
-          description: inputValue,
-        }),
-      );
+    if (!isDiscovery) {
+      if (isChild) {
+        dispatch(
+          cacheSlice.actions.saveChildTrySomethingItem({
+            title: t('labels.create_own'),
+            description: inputValue,
+          }),
+        );
+      } else {
+        dispatch(
+          cacheSlice.actions.saveParentTrySomethingItem({
+            title: t('labels.create_own'),
+            description: inputValue,
+          }),
+        );
+      }
     } else {
-      dispatch(
-        cacheSlice.actions.saveParentTrySomethingItem({
-          title: t('labels.create_own'),
-          description: inputValue,
-        }),
-      );
+      if (isChild) {
+        dispatch(
+          cacheSlice.actions.saveChildTrySomethingDiscoveryItem({
+            title: t('labels.create_own'),
+            description: inputValue,
+          }),
+        );
+      } else {
+        dispatch(
+          cacheSlice.actions.saveParentTrySomethingDiscoveryItem({
+            title: t('labels.create_own'),
+            description: inputValue,
+          }),
+        );
+      }
     }
 
     setModalStatus();
     onSubmit();
-  }, [dispatch, inputValue, isChild, onSubmit, setModalStatus, t]);
+  }, [dispatch, inputValue, isChild, isDiscovery, onSubmit, setModalStatus, t]);
 
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>
@@ -82,7 +100,8 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
           <BottomButtonView
             buttonTitle={t('buttons.next')}
             isDisabledButton={!inputValue}
-            onSubmit={onSubmitPress}>
+            onSubmit={onSubmitPress}
+            isArrow>
             <View style={styles.container}>
               <Title />
               <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
@@ -90,6 +109,11 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
                 value={inputValue}
                 onChangeText={setInputValue}
               />
+              <ExtendedText
+                preset="tertiary-text-regular"
+                style={styles.maxCharacters}>
+                {t('labels.maximum_characters')}
+              </ExtendedText>
             </View>
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>

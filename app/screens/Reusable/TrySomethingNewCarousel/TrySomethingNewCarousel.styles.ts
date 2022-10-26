@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 export interface ITrySomethingNewCarouselStyles {
   container: ViewStyle;
   buttonsConainer: ViewStyle;
@@ -26,6 +28,7 @@ export const styles = StyleSheet.create<ITrySomethingNewCarouselStyles>({
   subtitle: {
     marginTop: 16,
     marginBottom: 36,
+    color: COLORS.LIGHT_GREY,
   },
   selectButton: {
     marginBottom: 24,

@@ -8,7 +8,7 @@ export interface ITrySomethingCarouselStyles {
 export const styles = StyleSheet.create<ITrySomethingCarouselStyles>({
   container: {
     flex: 1,
-    marginBottom: 24,
+    alignItems: 'center',
   },
   progressBar: {
     alignItems: 'center',

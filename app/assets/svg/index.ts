@@ -183,6 +183,20 @@ import {
   RabbitMothIcon,
   RabbitOwlIcon,
 } from './doubleAvatars';
+import { AskForHelpIcon } from './tryNew/AskForHelpIcon';
+import { ComplimentIcon } from './tryNew/ComplimentIcon';
+import { DressUpIcon } from './tryNew/DressUpIcon';
+import { ConnectIcon } from './tryNew/ConnectIcon';
+import { HelpOutIcon } from './tryNew/HelpOutIcon';
+import { HighFiveIcon } from './tryNew/HighFiveIcon';
+import { LearnJokeIcon } from './tryNew/LearnJokeIcon';
+import { MakePresentIcon } from './tryNew/MakePresentIcon';
+import { MistakeIcon } from './tryNew/MistakeIcon';
+import { PlayGameIcon } from './tryNew/PlayGameIcon';
+import { SayHelloIcon } from './tryNew/SayHelloIcon';
+import { ShareIcon } from './tryNew/ShareIcon';
+import { TryByYourselfIcon } from './tryNew/TryByYourselfIcon';
+import { WriteLetterIcon } from './tryNew/WriteLetterIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -410,4 +424,21 @@ export const SVG_DANCING_CHARM = {
   DancingSecondTrackIcon: DancingSecondTrackIcon,
   DancingThirdTrackIcon: DancingThirdTrackIcon,
   DancingFourthTrackIcon: DancingFourthTrackIcon,
+};
+
+export const SVG_TRY_NEW = {
+  AskForHelpIcon: AskForHelpIcon,
+  ComplimentIcon: ComplimentIcon,
+  ConnectIcon: ConnectIcon,
+  DressUpIcon: DressUpIcon,
+  HelpOutIcon: HelpOutIcon,
+  HighFiveIcon: HighFiveIcon,
+  LearnJokeIcon: LearnJokeIcon,
+  MakePresentIcon: MakePresentIcon,
+  MistakeIcon: MistakeIcon,
+  PlayGameIcon: PlayGameIcon,
+  SayHelloIcon: SayHelloIcon,
+  ShareIcon: ShareIcon,
+  TryByYourselfIcon: TryByYourselfIcon,
+  WriteLetterIcon: WriteLetterIcon,
 };

@@ -9,8 +9,8 @@ import {
   MainHeader,
   TrySomethingCarousel,
 } from '../../../components';
-import { IMAGES } from '../../../assets';
-import { useAppDispatch } from '../../../hooks';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import {
   useIsChildMove,
   useNavigateNextQuest,
@@ -21,9 +21,13 @@ import { cacheSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { TrySomethingModal } from './components';
 import { styles } from './TrySomethingNewCarousel.styles';
-import { TRY_SOMETHING_ITEMS } from './TrySomethingNewCarousel.data';
 import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.types';
 import { SVG } from '../../../assets/svg';
+import {
+  SECOND_TRY_SOMETHING_ITEMS,
+  TRY_SOMETHING_DISCOVERY_ITEMS,
+} from './TrySomethingNewCarousel.data';
+import { THE_CHARM_OF_DISCOVERY_ID } from '../../../constants/quest';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
@@ -41,7 +45,16 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
 
     const dispatch = useAppDispatch();
 
-    const [activeItem, setActiveItem] = useState(TRY_SOMETHING_ITEMS[0]);
+    const curentQuestLineId = useAppSelector(
+      state => state.quest.currentQuestLine?.id,
+    );
+
+    const carouselData =
+      THE_CHARM_OF_DISCOVERY_ID === curentQuestLineId
+        ? TRY_SOMETHING_DISCOVERY_ITEMS
+        : SECOND_TRY_SOMETHING_ITEMS;
+
+    const [activeItem, setActiveItem] = useState(carouselData[0]);
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
@@ -51,8 +64,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
+      style: generalStyles.brilliantWhite,
     });
 
     const { t } = useTranslation();
@@ -66,8 +78,8 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     }, [isModal]);
 
     useEffect(() => {
-      setActiveItem(TRY_SOMETHING_ITEMS[activeItemIndex]);
-    }, [activeItemIndex]);
+      setActiveItem(carouselData[activeItemIndex]);
+    }, [activeItemIndex, carouselData]);
 
     const onSubmitPress = useCallback(() => {
       if (isChild) {
@@ -91,13 +103,8 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
 
     return (
       <ImageBackground
-        // TODO: change to real image
         source={
-          backgroundImage
-            ? IMAGES[backgroundImage]
-            : {
-                uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-              }
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
@@ -107,14 +114,12 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
               setModalStatus={setModalStatus}
               title={tellMoreTitle ?? ''}
               subtitle={tellMoreDescription ?? ''}
-              // TODO: change to real image
               backgroundImage={
-                backgroundImage
-                  ? IMAGES[backgroundImage]
-                  : {
-                      uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-                    }
+                CHARMS_BACKGROUNDS[
+                  backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND'
+                ]
               }
+              isDiscovery={THE_CHARM_OF_DISCOVERY_ID === curentQuestLineId}
             />
           </Modal>
           <MainHeader
@@ -127,10 +132,12 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
               <Title />
               <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
             </View>
+
             <TrySomethingCarousel
-              data={TRY_SOMETHING_ITEMS}
+              data={carouselData}
               setIndex={setActiveItemIndex}
             />
+
             <View style={styles.buttonsConainer}>
               <ExtendedButton
                 style={styles.selectButton}
@@ -138,6 +145,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
                 onPress={onSubmitPress}
               />
               <ExtendedButton
+                preset="border"
                 title={t('buttons.create_your_own')}
                 onPress={() => setIsModal(true)}
               />
