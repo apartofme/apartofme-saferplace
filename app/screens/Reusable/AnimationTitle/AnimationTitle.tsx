@@ -1,50 +1,45 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { ExtendedText, Timer } from '../../../components';
 import { IAnimationTitleScreenProps } from './AnimationTitle.types';
 import { styles } from './AnimationTitle.styles';
 import { generalStyles } from '../../../utils/styles';
-import { IMAGES } from '../../../assets';
-import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
+import { BACKGROUND_IMAGES } from '../../../assets';
+import { useNavigateNextQuest } from '../../../hooks';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
 }) => {
-  const {
-    crossHeader,
-    backgroundImage,
-    duration,
-    title,
-    escapeMenuAlternativeNavigateTo,
-  } = route.params.data;
+  const { backgroundImage, description, duration, title } = route.params.data;
   const onSubmit = useNavigateNextQuest();
 
-  // TODO: remove
-  const Header = useRenderQuestHeader({
-    crossHeader: crossHeader ?? false,
-    escapeMenuAlternativeNavigateTo,
-  });
+  const animation = useMemo(() => {
+    if (description) {
+      // TODO: add swich for elixir animation
+      return <ElixirThreeIcon />;
+    }
+
+    return (
+      <Timer
+        duration={duration ?? 5}
+        isStart={true}
+        onAnimationComplete={onSubmit}
+      />
+    );
+  }, [description, duration, onSubmit]);
 
   return (
     <ImageBackground
-      // TODO: change to real default image
       source={
-        (backgroundImage && IMAGES[backgroundImage]) ?? {
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }
+        backgroundImage ?? BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        {/* // TODO: remove */}
-        <Header />
-        {/* // TODO: change to real animation */}
-        <View style={styles.container}>
-          <Timer
-            duration={duration ?? 5}
-            isStart={true}
-            onAnimationComplete={onSubmit}
-          />
+        <View
+          style={[styles.container, !!description && styles.elixirContainer]}>
+          {animation}
           <ExtendedText preset="large-title" style={styles.title}>
             {title}
           </ExtendedText>

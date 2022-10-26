@@ -1,8 +1,8 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 export interface IElixirInstructionStyles {
   container: ViewStyle;
-  image: ImageStyle;
+  title: TextStyle;
 }
 
 export const styles = StyleSheet.create<IElixirInstructionStyles>({
@@ -11,8 +11,10 @@ export const styles = StyleSheet.create<IElixirInstructionStyles>({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: {
-    height: 264,
-    width: 200,
+
+  title: {
+    marginBottom: 48,
+    width: 320,
+    height: 75,
   },
 });

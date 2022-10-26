@@ -50,6 +50,7 @@ import {
   TroublesomeSpiritQuestionsCarouselScreen,
   TroublesomeSpiritQuestionScreen,
   LeaveFeedbackScreen,
+  ReusableElixirInstructionScreen,
   AcknowledgementReadLoudScreen,
 } from '../../screens';
 import {
@@ -103,6 +104,7 @@ export type QuestStackParams = {
   TroublesomeSpiritQuestionsCarousel: { data: IQuest };
   TroublesomeSpiritQuestion: { data: IQuest };
   LeaveFeedback: { data: IQuest };
+  ReusableElixirInstruction: { data: IQuest };
   AcknowledgementReadLoud: { data: IQuest };
 };
 
@@ -221,6 +223,10 @@ export const QuestStackNavigator = () => (
       component={TroublesomeSpiritQuestionScreen}
     />
     <Stack.Screen name="LeaveFeedback" component={LeaveFeedbackScreen} />
+    <Stack.Screen
+      name="ReusableElixirInstruction"
+      component={ReusableElixirInstructionScreen}
+    />
     <Stack.Screen
       name="AcknowledgementReadLoud"
       component={AcknowledgementReadLoudScreen}

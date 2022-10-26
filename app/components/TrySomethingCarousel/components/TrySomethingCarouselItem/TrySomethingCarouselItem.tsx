@@ -1,7 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
 import Animated, {
-  interpolateColor,
+  interpolate,
   useAnimatedStyle,
   useDerivedValue,
   withTiming,
@@ -13,40 +12,41 @@ import { IOnlyImageProps } from './TrySomethingCarouselItem.types';
 import { styles } from './TrySomethingCarouselItem.styles';
 import { ExtendedText } from '../../../ExtendedText';
 import { generalStyles } from '../../../../utils/styles';
-import { CAROUSEL_COLORS } from './TrySomethingCarouselItem.colors';
+import { SVG_TRY_NEW } from '../../../../assets/svg';
 
 export const TrySomethingCarouselItem: React.FC<IOnlyImageProps> = ({
   data,
   isActive,
 }) => {
   const { t } = useTranslation();
-  // TODO: change to correct duration
+
   const progressValue = useDerivedValue(() => {
     return isActive
-      ? withTiming(1, { duration: 500 })
-      : withTiming(0, { duration: 1000 });
+      ? withTiming(1, { duration: 250 })
+      : withTiming(0, { duration: 500 });
   }, [isActive]);
 
-  // TODO: change to correct styles
-  const backgroundColorStyles = useAnimatedStyle(() => {
-    const backgroundColor = interpolateColor(
-      progressValue.value,
-      [0, 1],
-      [CAROUSEL_COLORS.INACTIVE, CAROUSEL_COLORS.ACTIVE],
-    );
+  const opacityContainer = useAnimatedStyle(() => {
+    const opacity = interpolate(progressValue.value, [0, 1], [0.5, 1]);
+
     return {
-      backgroundColor,
+      opacity,
     };
   });
 
+  const Icon = SVG_TRY_NEW[data.iconKey];
+
   return (
-    <GestureHandlerRootView style={generalStyles.flex}>
-      <View style={styles.container}>
-        <Animated.View style={[styles.contentContainer, backgroundColorStyles]}>
-          <ExtendedText style={styles.title}>{t(data.title)}</ExtendedText>
-          <ExtendedText>{t(data.subtitle)}</ExtendedText>
-        </Animated.View>
-      </View>
+    <GestureHandlerRootView style={generalStyles.aiCenter}>
+      <Animated.View style={[styles.container, opacityContainer]}>
+        <Icon />
+        <ExtendedText style={styles.title} preset="heading">
+          {t(data.title)}
+        </ExtendedText>
+        <ExtendedText style={styles.subtitle} preset="tertiary-text-regular">
+          {t(data.subtitle)}
+        </ExtendedText>
+      </Animated.View>
     </GestureHandlerRootView>
   );
 };

@@ -5,6 +5,8 @@ import {
   EMOTIONS_CAROUSEL_SVG,
   SVG_DANCING_CHARM,
   SVG,
+  SVG_DANCING_CHARM,
+  SVG_TRY_NEW,
 } from '../assets/svg';
 import { IPlantArea } from '../redux/types';
 import { IInterruptedQuestLine } from '../redux/types/questTypes';
@@ -65,6 +67,7 @@ export type CharmsBackgroundsKeys = keyof typeof CHARMS_BACKGROUNDS;
 export type CharmsSvgKeys = keyof typeof CHARMS_SVG;
 export type EmotionsCarouselSvgKeys = keyof typeof EMOTIONS_CAROUSEL_SVG;
 export type SvgDancingCharmKeys = keyof typeof SVG_DANCING_CHARM;
+export type TryNewSVG = keyof typeof SVG_TRY_NEW;
 export type SvgComponentType = (props: ISvgProps) => JSX.Element;
 
 export interface IElixirProgress {

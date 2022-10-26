@@ -29,6 +29,8 @@ interface ICacheState {
   translations: Nullable<ITranslations>;
   childTrySomethingItem: Nullable<ITrySomethingItem>;
   parentTrySomethingItem: Nullable<ITrySomethingItem>;
+  childTrySomethingDiscoveryItem: Nullable<ITrySomethingItem>;
+  parentTrySomethingDiscoveryItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
   currentQuestionIndex: number;
@@ -48,6 +50,8 @@ const INITIAL_STATE: ICacheState = {
   translations: null,
   childTrySomethingItem: null,
   parentTrySomethingItem: null,
+  childTrySomethingDiscoveryItem: null,
+  parentTrySomethingDiscoveryItem: null,
   nicknames: null,
   emotions: {
     selected: null,
@@ -82,6 +86,18 @@ export const cacheSlice = createSlice({
     },
     saveParentTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
       state.parentTrySomethingItem = payload;
+    },
+    saveChildTrySomethingDiscoveryItem(
+      state,
+      { payload }: ITrySomethingItemPayload,
+    ) {
+      state.childTrySomethingDiscoveryItem = payload;
+    },
+    saveParentTrySomethingDiscoveryItem(
+      state,
+      { payload }: ITrySomethingItemPayload,
+    ) {
+      state.parentTrySomethingDiscoveryItem = payload;
     },
     saveNicknames(state, { payload }: INicknamesPayload) {
       state.nicknames = _.merge(state.nicknames, payload);
