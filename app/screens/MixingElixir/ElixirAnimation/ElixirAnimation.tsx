@@ -7,8 +7,8 @@ import { styles } from './ElixirAnimation.styles';
 import { ExtendedText } from '../../../components';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { MixingElixirPhaseType } from '../../../utils/types';
-import { ElixirThreeIcon } from '../../../assets/images/dummySVG';
 import { generalStyles } from '../../../utils/styles';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 
 export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,

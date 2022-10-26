@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { PLANTS_SVG } from '../../../assets/images/dummySVG';
+import { PLANTS_SVG } from '../../../assets/svg';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';

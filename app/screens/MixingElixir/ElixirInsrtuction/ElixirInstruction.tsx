@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { ElixirThreeIcon } from '../../../assets/images/dummySVG';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { useMount } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';

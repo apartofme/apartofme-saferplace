@@ -226,10 +226,10 @@ export const QuestStackNavigator = () => (
     <Stack.Screen
       name="ReusableElixirInstruction"
       component={ReusableElixirInstructionScreen}
-      />
+    />
     <Stack.Screen
       name="AcknowledgementReadLoud"
       component={AcknowledgementReadLoudScreen}
-      />
+    />
   </Stack.Navigator>
 );
