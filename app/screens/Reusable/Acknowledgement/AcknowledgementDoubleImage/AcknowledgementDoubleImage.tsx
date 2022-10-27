@@ -75,7 +75,7 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
               </View>
             )}
             <ExtendedText preset="secondary-text" style={styles.description}>
-              {description && { description }}
+              {description}
             </ExtendedText>
           </BottomButtonView>
         </SafeAreaView>
