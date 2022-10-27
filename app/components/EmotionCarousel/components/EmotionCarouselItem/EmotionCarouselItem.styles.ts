@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 export interface IEmotionCarouselItemStyles {
   container: ViewStyle;
   contentContainer: ViewStyle;
@@ -7,7 +9,6 @@ export interface IEmotionCarouselItemStyles {
 }
 
 export const styles = StyleSheet.create<IEmotionCarouselItemStyles>({
-  // TODO: change for correct styles
   container: {
     flex: 1,
     paddingHorizontal: 64,
@@ -20,9 +21,13 @@ export const styles = StyleSheet.create<IEmotionCarouselItemStyles>({
     alignItems: 'center',
     paddingHorizontal: 24,
     borderRadius: 24,
-    backgroundColor: 'red',
+    backgroundColor: COLORS.PRIMARY_PURPLE,
+    borderColor: COLORS.PRIMARY_ORANGE,
+    borderWidth: 2,
   },
   title: {
+    color: COLORS.PRIMARY_ORANGE,
+    marginTop: 14,
     textAlign: 'center',
   },
 });

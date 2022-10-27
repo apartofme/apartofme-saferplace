@@ -16,7 +16,7 @@ import {
   ExtendedText,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IMAGES } from '../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { INadiyaEmotionCarouselScreenProps } from './NadiyaEmotionCarousel.types';
 import { EMOTION_CAROUSEL_ITEMS } from '../../../constants/emotionCarousel';
 
@@ -44,8 +44,6 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
       style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
     });
 
     const Header = useRenderQuestHeader({
@@ -73,11 +71,8 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
 
     return (
       <ImageBackground
-        // TODO: change to real default image
         source={
-          (backgroundImage && IMAGES[backgroundImage]) ?? {
-            uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-          }
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>

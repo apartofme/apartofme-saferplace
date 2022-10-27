@@ -1,14 +1,15 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 export interface IProgressBarItemStyles {
   container: ViewStyle;
   contentContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IProgressBarItemStyles>({
-  // TODO: change for correct styles
   container: {
-    borderColor: 'black',
+    borderColor: COLORS.LIGHT_GREY,
     borderWidth: 1,
     borderRadius: 99,
     width: 8,
@@ -16,10 +17,9 @@ export const styles = StyleSheet.create<IProgressBarItemStyles>({
     overflow: 'hidden',
     marginHorizontal: 4,
   },
-  // TODO: change for correct styles
   contentContainer: {
     borderRadius: 99,
-    backgroundColor: '#AA82E0',
+    backgroundColor: COLORS.PRIMARY_ORANGE,
     flex: 1,
   },
 });
