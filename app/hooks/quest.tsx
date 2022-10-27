@@ -225,18 +225,10 @@ export const useParsedJSXTextNickname = ({
     useAppSelector(state => state.cache.emotions.selected) ?? '';
   const troublesomeSpiritQuestion =
     useAppSelector(state => state.cache.troublesomeSpiritQuestionsItem) ?? '';
-  const childTrySomethingFirstItem = useAppSelector(
-    state => state.cache.childTrySomethingFirstItem,
-  );
-  const parentTrySomethingFirstItem = useAppSelector(
-    state => state.cache.parentTrySomethingFirstItem,
-  );
-  const childTrySomethingSecondItem = useAppSelector(
-    state => state.cache.childTrySomethingSecondItem,
-  );
-  const parentTrySomethingSecondItem = useAppSelector(
-    state => state.cache.parentTrySomethingSecondItem,
-  );
+  const { childTrySomethingFirstItem } = useAppSelector(state => state.cache);
+  const { parentTrySomethingFirstItem } = useAppSelector(state => state.cache);
+  const { childTrySomethingSecondItem } = useAppSelector(state => state.cache);
+  const { parentTrySomethingSecondItem } = useAppSelector(state => state.cache);
   const childKindness = useAppSelector(state => state.cache.childKindnessItem);
   const parentKindness = useAppSelector(
     state => state.cache.parentKindnessItem,
@@ -293,7 +285,7 @@ export const useParsedJSXTextNickname = ({
       <ExtendedText
         key={DatoCMSTextVariables.TrySomethingFirstDescription}
         preset={preset}
-        style={trySomethingDescription.startsWith('$') ? variableStyle : null}>
+        style={trySomethingDescription.startsWith('$') && variableStyle}>
         {correctTrySomethingDescription}
       </ExtendedText>
     );
@@ -325,7 +317,7 @@ export const useParsedJSXTextNickname = ({
       <ExtendedText
         key={DatoCMSTextVariables.TrySomethingSecondDescription}
         preset={preset}
-        style={trySomethingDescription.startsWith('$') ? variableStyle : null}>
+        style={trySomethingDescription.startsWith('$') && variableStyle}>
         {correctTrySomethingDescription}
       </ExtendedText>
     );
