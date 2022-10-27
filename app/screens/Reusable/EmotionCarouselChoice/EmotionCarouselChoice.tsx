@@ -10,9 +10,10 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
-import { IMAGES } from '../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
 import { BottomButtonView, ExtendedText } from '../../../components';
+import { EMOTIONS_CAROUSEL_SVG } from '../../../assets/svg';
 
 export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenProps> =
   ({ route }) => {
@@ -27,16 +28,18 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
     } = route.params.data;
 
     const { t } = useTranslation();
-    const emotionItem = useAppSelector(state => state.cache.emotionItem) ?? '';
+    const emotionTitle = useAppSelector(
+      state => state.cache.emotionItem?.title,
+    );
+    const iconKey = useAppSelector(state => state.cache.emotionItem?.image);
+
     const onSubmit = useNavigateNextQuest();
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
-      style: styles.textCenter,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
+      style: styles.title,
     });
 
     const Header = useRenderQuestHeader({
@@ -44,28 +47,29 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
       escapeMenuAlternativeNavigateTo,
     });
 
+    const Icon = iconKey && EMOTIONS_CAROUSEL_SVG[iconKey];
+
     return (
       <ImageBackground
-        // TODO: change to real default image
         source={
-          (backgroundImage && IMAGES[backgroundImage]) ?? {
-            uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-          }
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
             <View style={styles.card}>
-              <ExtendedText preset="heading" style={styles.textCenter}>
-                {emotionItem}
+              {Icon && <Icon />}
+              <ExtendedText preset="heading" style={styles.cardTitle}>
+                {emotionTitle}
               </ExtendedText>
             </View>
-            <ExtendedText preset="secondary-text" style={styles.textCenter}>
+            <ExtendedText preset="secondary-text" style={styles.subtitle}>
               {description}
             </ExtendedText>
           </BottomButtonView>
