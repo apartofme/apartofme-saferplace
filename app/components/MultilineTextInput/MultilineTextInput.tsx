@@ -27,6 +27,7 @@ export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
     if (setIsInputFocus) {
       setIsInputFocus(isFocus);
     }
+    // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocus]);
 
