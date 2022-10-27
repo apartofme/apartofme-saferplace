@@ -1,10 +1,12 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
 import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementSupportScreenStyles {
   container: ViewStyle;
   title: TextStyle;
-  image: ImageStyle;
+  subtitle: TextStyle;
+  imageContainer: ViewStyle;
   infoImage: ImageStyle;
 }
 
@@ -15,13 +17,19 @@ export const styles = StyleSheet.create<IAcknowledgementSupportScreenStyles>({
     alignItems: 'center',
   },
   title: {
-    marginBottom: 25,
+    maxWidth: 327,
+    color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
   },
+  subtitle: {
+    color: COLORS.LIGHT_GREY,
+    textAlign: 'center',
+    maxWidth: 295,
+    paddingTop: 20,
+  },
   // TODO: change to correct styles
-  image: {
-    flex: 1,
-    width: '100%',
+  imageContainer: {
+    paddingBottom: 34,
   },
   infoImage: {
     width: 20,
