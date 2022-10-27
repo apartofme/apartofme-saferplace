@@ -44,7 +44,7 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
     text: title,
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
-    style: generalStyles.brilliantWhite,
+    style: styles.title,
   });
 
   const Header = useRenderQuestHeader({

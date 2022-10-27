@@ -4,6 +4,7 @@ import { COLORS } from '../../../themes/colors';
 
 interface IRadioButtonScreenStyles {
   container: ViewStyle;
+  title: TextStyle;
   description: TextStyle;
   listContainer: ViewStyle;
 }
@@ -13,12 +14,16 @@ export const styles = StyleSheet.create<IRadioButtonScreenStyles>({
     paddingTop: 40,
     paddingHorizontal: 24,
   },
+  title: {
+    minHeight: 75,
+    color: COLORS.BRILLIANT_WHITE,
+  },
   description: {
-    paddingBottom: 35,
+    paddingTop: 16,
     color: COLORS.LIGHT_GREY,
   },
   listContainer: {
     flex: 1,
-    paddingTop: 16,
+    paddingTop: 35,
   },
 });

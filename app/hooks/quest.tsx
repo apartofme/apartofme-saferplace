@@ -225,16 +225,18 @@ export const useParsedJSXTextNickname = ({
     useAppSelector(state => state.cache.emotions.selected) ?? '';
   const troublesomeSpiritQuestion =
     useAppSelector(state => state.cache.troublesomeSpiritQuestionsItem) ?? '';
-  const childTrySomethingTitle =
-    useAppSelector(state => state.cache.childTrySomethingItem?.title) ?? '';
-  const childTrySomethingDescription =
-    useAppSelector(state => state.cache.childTrySomethingItem?.description) ??
-    '';
-  const parentTrySomethingTitle =
-    useAppSelector(state => state.cache.parentTrySomethingItem?.title) ?? '';
-  const parentTrySomethingDescription =
-    useAppSelector(state => state.cache.parentTrySomethingItem?.description) ??
-    '';
+  const childTrySomethingFirstItem = useAppSelector(
+    state => state.cache.childTrySomethingFirstItem,
+  );
+  const parentTrySomethingFirstItem = useAppSelector(
+    state => state.cache.parentTrySomethingFirstItem,
+  );
+  const childTrySomethingSecondItem = useAppSelector(
+    state => state.cache.childTrySomethingSecondItem,
+  );
+  const parentTrySomethingSecondItem = useAppSelector(
+    state => state.cache.parentTrySomethingSecondItem,
+  );
   const childKindness = useAppSelector(state => state.cache.childKindnessItem);
   const parentKindness = useAppSelector(
     state => state.cache.parentKindnessItem,
@@ -265,14 +267,14 @@ export const useParsedJSXTextNickname = ({
     </ExtendedText>
   );
 
-  const renderTrySomethingTitle = () => {
+  const renderTrySomethingFirstTitle = () => {
     const correctTrySomethingTitle = isChild
-      ? childTrySomethingTitle
-      : parentTrySomethingTitle;
+      ? childTrySomethingFirstItem?.title
+      : parentTrySomethingFirstItem?.title;
 
     return (
       <ExtendedText
-        key={DatoCMSTextVariables.TrySomethingTitle}
+        key={DatoCMSTextVariables.TrySomethingFirstTitle}
         preset={preset}
         style={variableStyle}>
         {correctTrySomethingTitle}
@@ -280,14 +282,48 @@ export const useParsedJSXTextNickname = ({
     );
   };
 
-  const renderTrySomethingDescription = (trySomethingDescription: string) => {
+  const renderTrySomethingFirstDescription = (
+    trySomethingDescription: string,
+  ) => {
     const correctTrySomethingDescription = isChild
-      ? childTrySomethingDescription
-      : parentTrySomethingDescription;
+      ? childTrySomethingFirstItem?.description
+      : parentTrySomethingFirstItem?.description;
 
     return (
       <ExtendedText
-        key={DatoCMSTextVariables.TrySomethingDescription}
+        key={DatoCMSTextVariables.TrySomethingFirstDescription}
+        preset={preset}
+        style={trySomethingDescription.startsWith('$') ? variableStyle : null}>
+        {correctTrySomethingDescription}
+      </ExtendedText>
+    );
+  };
+
+  const renderTrySomethingSecondTitle = () => {
+    const correctTrySomethingTitle = isChild
+      ? childTrySomethingSecondItem?.title
+      : parentTrySomethingSecondItem?.title;
+
+    return (
+      <ExtendedText
+        key={DatoCMSTextVariables.TrySomethingSecondTitle}
+        preset={preset}
+        style={variableStyle}>
+        {correctTrySomethingTitle}
+      </ExtendedText>
+    );
+  };
+
+  const renderTrySomethingSecondDescription = (
+    trySomethingDescription: string,
+  ) => {
+    const correctTrySomethingDescription = isChild
+      ? childTrySomethingSecondItem?.description
+      : parentTrySomethingSecondItem?.description;
+
+    return (
+      <ExtendedText
+        key={DatoCMSTextVariables.TrySomethingSecondDescription}
         preset={preset}
         style={trySomethingDescription.startsWith('$') ? variableStyle : null}>
         {correctTrySomethingDescription}
@@ -320,11 +356,21 @@ export const useParsedJSXTextNickname = ({
     .replace(DatoCMSTextVariables.PlayerEmotion, playerEmotion)
     .split('|')
     .map(value => {
-      if (_.includes(value, DatoCMSTextVariables.TrySomethingTitle)) {
-        return renderTrySomethingTitle();
+      if (_.includes(value, DatoCMSTextVariables.TrySomethingFirstTitle)) {
+        return renderTrySomethingFirstTitle();
       }
-      if (_.includes(value, DatoCMSTextVariables.TrySomethingDescription)) {
-        return renderTrySomethingDescription(value);
+      if (
+        _.includes(value, DatoCMSTextVariables.TrySomethingFirstDescription)
+      ) {
+        return renderTrySomethingFirstDescription(value);
+      }
+      if (_.includes(value, DatoCMSTextVariables.TrySomethingSecondTitle)) {
+        return renderTrySomethingSecondTitle();
+      }
+      if (
+        _.includes(value, DatoCMSTextVariables.TrySomethingSecondDescription)
+      ) {
+        return renderTrySomethingSecondDescription(value);
       }
       if (value === DatoCMSTextVariables.KindnessInput) {
         return renderKindnessInput();
@@ -369,7 +415,6 @@ export const useRenderQuestHeader = (data: {
       <MainHeader
         leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={goBack}
-        // TODO: change to real image & function
         rightIcon={<WhiteCrossIcon />}
         onRightIconPress={onRightIconPress}
       />

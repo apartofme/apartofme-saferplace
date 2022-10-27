@@ -3,7 +3,6 @@ import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { useSharedValue } from 'react-native-reanimated';
 
 import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
@@ -19,16 +18,12 @@ export const TrySomethingCarousel: React.FC<ITrySomethingCarouselProps> = ({
   data,
   setIndex,
 }) => {
-  const progressValue = useSharedValue(0);
-
+  const [progressValue, setProgressValue] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(0);
 
-  const onProgressChange = useCallback(
-    (item, absoluteProgress) => {
-      progressValue.value = absoluteProgress;
-    },
-    [progressValue],
-  );
+  const onProgressChange = useCallback((item, absoluteProgress) => {
+    setProgressValue(absoluteProgress);
+  }, []);
 
   const renderProgressBar = useCallback(() => {
     return (

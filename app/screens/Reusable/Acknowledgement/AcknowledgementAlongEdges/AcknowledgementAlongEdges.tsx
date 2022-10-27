@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { BottomButtonView, ExtendedText } from '../../../../components';
+import { BottomButtonView } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import {
   useAppSelector,
@@ -43,6 +43,13 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       style: generalStyles.brilliantWhiteCenter,
     });
 
+    const Description = useParsedJSXTextNickname({
+      text: description ?? '',
+      textHasNickname: titleHasNickname ?? true,
+      preset: 'secondary-text',
+      style: styles.description,
+    });
+
     const Header = useRenderQuestHeader({
       crossHeader: crossHeader ?? false,
       escapeMenuAlternativeNavigateTo,
@@ -76,9 +83,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
             <Title />
             <View style={generalStyles.aiCenter}>
               {Icon && <Icon />}
-              <ExtendedText style={styles.description}>
-                {description}
-              </ExtendedText>
+              <Description />
             </View>
           </BottomButtonView>
         </SafeAreaView>
