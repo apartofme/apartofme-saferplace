@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IJournelSupportScreenProps } from './JournelSupport.types';
@@ -10,13 +10,17 @@ import {
   ExtendedText,
   MultilineTextInput,
 } from '../../../components';
-import { IMAGES } from '../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
 import {
   useParsedJSXTextNickname,
   usePositiveNavigateTo,
   useRenderQuestHeader,
 } from '../../../hooks';
+import { SVG } from '../../../assets/svg';
+import { COLORS } from '../../../themes/colors';
+
+const CircleExclamationMarkIcon = SVG.CircleExclamationMarkIcon;
 
 export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
   route,
@@ -24,8 +28,8 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
   const {
     title,
     description,
-    image,
     buttonTitle,
+    backgroundImage,
     crossHeader,
     titleHasNickname,
     positiveNavigatesTo,
@@ -33,6 +37,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
   } = route.params.data;
 
   const [inputText, setInputText] = useState<string>('');
+  const [isFocus, setIsFocus] = useState(false);
   const { t } = useTranslation();
   const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
@@ -40,8 +45,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
     text: title,
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
+    style: generalStyles.brilliantWhite,
   });
 
   const Header = useRenderQuestHeader({
@@ -49,39 +53,49 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   });
 
+  const setFocused = useCallback(() => {
+    setIsFocus(!isFocus);
+  }, [isFocus]);
+
   return (
     <ImageBackground
-      // TODO: change to the real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Header />
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
             onSubmit={onSubmit}
             isDisabledButton={!inputText}
             style={styles.container}>
-            <Title />
+            {title ? (
+              <Title />
+            ) : (
+              <ExtendedText preset="title" style={generalStyles.brilliantWhite}>
+                {t('screens.journel.title')}
+              </ExtendedText>
+            )}
             <View style={styles.inputContainer}>
               <MultilineTextInput
                 placeholder={t('placeholders.enter_text')}
                 value={inputText}
                 onChangeText={setInputText}
+                onFocus={setFocused}
+                onBlur={setFocused}
               />
             </View>
 
             <View style={generalStyles.flex} />
-            <Image
-              // TODO: change to correct image
-              source={(image && IMAGES[image]) ?? IMAGES.LOGO}
-              style={styles.infoImage}
-            />
-            <ExtendedText preset="secondary-text" style={styles.description}>
-              {description ?? t('screens.journel.description')}
-            </ExtendedText>
+            <View style={[generalStyles.aiCenter, isFocus && styles.focused]}>
+              <CircleExclamationMarkIcon color={COLORS.PRIMARY_ORANGE} />
+              <ExtendedText preset="secondary-text" style={styles.description}>
+                {description ?? t('screens.journel.description')}
+              </ExtendedText>
+            </View>
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>

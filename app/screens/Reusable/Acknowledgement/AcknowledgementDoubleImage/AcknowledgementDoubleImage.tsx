@@ -74,11 +74,9 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
                 <AvatarsIcon />
               </View>
             )}
-            {description && (
-              <ExtendedText preset="secondary-text" style={styles.description}>
-                {description}
-              </ExtendedText>
-            )}
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {description}
+            </ExtendedText>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

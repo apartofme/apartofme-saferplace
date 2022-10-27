@@ -67,14 +67,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
             }}
             validationSchema={SignInValidationSchema}
             onSubmit={onLoginPress}>
-            {({
-              values,
-              handleChange,
-              handleSubmit,
-              handleBlur,
-              isValid,
-              errors,
-            }) => (
+            {({ values, handleChange, handleSubmit, handleBlur, isValid }) => (
               <>
                 <ExtendedTextInput
                   value={values.email}
@@ -84,7 +77,6 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                   placeholderTextColor={COLORS.BRILLIANT_WHITE}
                   type={ExtendedTextInputType.Email}
                   style={styles.mb16}
-                  error={errors.email}
                 />
                 <ExtendedTextInput
                   type={ExtendedTextInputType.PasswordToggle}
@@ -93,7 +85,6 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                   onBlur={handleBlur('password')}
                   placeholder={t('placeholders.enter_password')}
                   placeholderTextColor={COLORS.BRILLIANT_WHITE}
-                  error={errors.password}
                 />
                 <ExtendedButton
                   title={t('buttons.login')}
