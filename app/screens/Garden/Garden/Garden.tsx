@@ -86,6 +86,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
     if (appStatus === 'active' && isPrevStatusBackground) {
       const nowSeconds = +moment().format('X');
+
       if (
         nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
         !interruptedQuestLine &&
