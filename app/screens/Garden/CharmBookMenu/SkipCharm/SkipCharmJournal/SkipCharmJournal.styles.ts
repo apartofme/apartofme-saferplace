@@ -11,8 +11,8 @@ export const styles = StyleSheet.create<ISkipCharmJournalStyles>({
     paddingHorizontal: 24,
   },
   inputContainer: {
-    flex: 1,
-    maxHeight: 160,
+    height: 160,
     marginTop: 36,
+    marginBottom: 24,
   },
 });

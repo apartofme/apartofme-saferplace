@@ -95,6 +95,7 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
         style={generalStyles.flex}
         data={values(allQuests)}
         renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );

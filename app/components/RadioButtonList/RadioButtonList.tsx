@@ -74,6 +74,7 @@ export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
         data={data}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

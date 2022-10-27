@@ -19,7 +19,7 @@ export const styles = StyleSheet.create<IManageAccountMenuScreenStyles>({
     color: COLORS.LIGHT_GREY,
   },
   list: {
-    paddingTop: 50,
+    marginTop: 50,
     flex: 1,
   },
   menuButtonContainer: {

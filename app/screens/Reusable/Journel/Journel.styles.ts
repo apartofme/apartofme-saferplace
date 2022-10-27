@@ -20,5 +20,6 @@ export const styles = StyleSheet.create<IJournelScreenStyles>({
   inputContainer: {
     marginTop: 36,
     height: 160,
+    marginBottom: 24,
   },
 });

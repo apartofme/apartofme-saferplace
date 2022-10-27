@@ -5,7 +5,7 @@ import { COLORS } from '../../../themes/colors';
 interface IFAQSectionListStyles {
   container: ViewStyle;
   title: ViewStyle;
-  listContainer: ViewStyle;
+  list: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IFAQSectionListStyles>({
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create<IFAQSectionListStyles>({
     marginTop: 48,
     color: COLORS.BRILLIANT_WHITE,
   },
-  listContainer: {
+  list: {
     flex: 1,
     marginTop: 26,
   },

@@ -19,7 +19,7 @@ export const styles = StyleSheet.create<ISettingsPrivacyScreenStyles>({
     marginTop: 48,
   },
   list: {
-    paddingTop: 50,
+    marginTop: 48,
     flex: 1,
   },
   menuButtonContainer: {

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {
   ImageBackground,
   SafeAreaView,
+  ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -83,7 +84,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
       </View>
       <SafeAreaView style={generalStyles.flex}>
         <View style={styles.container}>
-          <View style={styles.menuItemsContainer}>
+          <ScrollView
+            style={styles.menuItemsContainer}
+            showsVerticalScrollIndicator={false}>
             {_.map(MAIN_MENU_ITEMS, (item, index) => (
               <View
                 key={`main-menu-${item.route}`}
@@ -99,7 +102,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
                 />
               </View>
             ))}
-          </View>
+          </ScrollView>
 
           <TouchableOpacity
             style={styles.logOutContainer}

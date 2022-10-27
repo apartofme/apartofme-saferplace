@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   NativeSyntheticEvent,
   TextInput,
@@ -18,9 +18,17 @@ export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
   placeholder,
   onFocus: onFocusCallback,
   onBlur: onBlurCallback,
+  setIsInputFocus,
   ...rest
 }) => {
   const [isFocus, setIsFocus] = useState(false);
+
+  useEffect(() => {
+    if (setIsInputFocus) {
+      setIsInputFocus(isFocus);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFocus]);
 
   const onFocus = useCallback(
     (e: NativeSyntheticEvent<TextInputFocusEventData>) => {

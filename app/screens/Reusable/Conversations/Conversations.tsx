@@ -33,7 +33,7 @@ export const ConversationsScreen: React.FC<IConversationsScreenProps> = ({
   return (
     <SafeAreaView style={generalStyles.flex}>
       <Header />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <ExtendedText style={styles.title}>{title}</ExtendedText>
           <ExtendedText style={styles.subtitle}>{description}</ExtendedText>

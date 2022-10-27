@@ -110,6 +110,7 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
             data={playerList}
             renderItem={renderItem}
             style={styles.playerList}
+            showsVerticalScrollIndicator={false}
           />
         </BottomButtonView>
       </SafeAreaView>

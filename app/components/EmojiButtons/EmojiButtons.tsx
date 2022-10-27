@@ -100,6 +100,7 @@ export const EmojiButtons: React.FC<IEmojiButtons> = ({
           renderItem={renderItem}
           horizontal={true}
           style={styles.emojiButtons}
+          showsVerticalScrollIndicator={false}
         />
       </BottomButtonView>
     </View>

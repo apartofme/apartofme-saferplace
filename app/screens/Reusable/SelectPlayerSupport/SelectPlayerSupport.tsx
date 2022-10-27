@@ -121,6 +121,7 @@ export const SelectPlayerSupportScreen: React.FC<ISelectPlayerSupportScreenProps
               data={playerList}
               renderItem={renderItem}
               style={styles.playerList}
+              showsVerticalScrollIndicator={false}
             />
             <TouchableOpacity onPress={goToAlert} style={styles.info}>
               <OrangeQuestionMarkIcon />

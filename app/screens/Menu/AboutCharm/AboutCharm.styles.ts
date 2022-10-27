@@ -16,10 +16,10 @@ export const styles = StyleSheet.create<IAboutCharmScreenStyles>({
   },
   title: {
     marginTop: 48,
+    marginBottom: 40,
     color: COLORS.BRILLIANT_WHITE,
   },
   subtitle: {
-    marginTop: 40,
     marginBottom: 40,
     color: COLORS.BRILLIANT_WHITE,
   },

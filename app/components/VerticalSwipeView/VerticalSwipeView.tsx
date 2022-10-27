@@ -69,7 +69,10 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
             onEnded={setScrollPosition}
             direction={isTopPosition ? Directions.UP : Directions.DOWN}>
             <View style={generalStyles.flex} onLayout={onLayout}>
-              <ScrollView scrollEnabled={false} ref={scrollViewRef}>
+              <ScrollView
+                scrollEnabled={false}
+                ref={scrollViewRef}
+                showsVerticalScrollIndicator={false}>
                 <View
                   style={[
                     generalStyles.jcSpaceBtw,

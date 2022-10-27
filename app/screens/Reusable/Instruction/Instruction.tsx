@@ -70,7 +70,11 @@ export const InstructionScreen: React.FC<IInstructionScreenProps> = ({
           onSubmit={onSubmit}
           style={styles.container}>
           <Title />
-          <FlatList data={INSTRUCTION_LIST} renderItem={renderItem} />
+          <FlatList
+            data={INSTRUCTION_LIST}
+            renderItem={renderItem}
+            showsVerticalScrollIndicator={false}
+          />
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>
