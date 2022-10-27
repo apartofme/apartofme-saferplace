@@ -6,14 +6,21 @@ import { IAnimationTitleScreenProps } from './AnimationTitle.types';
 import { styles } from './AnimationTitle.styles';
 import { generalStyles } from '../../../utils/styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { useNavigateNextQuest } from '../../../hooks';
+import { useMount, useNavigateNextQuest } from '../../../hooks';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
 
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
 }) => {
   const { description, duration, title } = route.params.data;
+
   const onSubmit = useNavigateNextQuest();
+
+  useMount(() => {
+    if (description) {
+      setTimeout(() => onSubmit(), 3000);
+    }
+  });
 
   const animation = useMemo(() => {
     if (description) {

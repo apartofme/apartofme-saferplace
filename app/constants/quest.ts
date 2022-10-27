@@ -5,6 +5,38 @@ export const THE_CHARM_OF_BEFRIENDING_ID = '55602872';
 export const JOINT_GROUNDING_EXERCISE_ID = '55785050';
 export const THE_CHARM_OF_THE_MIRROR_ID = '55602854';
 export const THE_CHARM_OF_DISCOVERY_ID = '55602834';
+export const DAY_13_CLOSING_DIALOGUE_ID = '55602873';
+export const DAY_14_CLOSING_DIALOGUE_ID = '55602887';
+export const THE_CHARM_OF_WEAVING_ID = '55602886';
+
+export const PLANTS_CHARM_IDS = [
+  '55602820', // FTUE - Compassion Exercises
+  '55712796', // FTUE Calm Charms
+  '55602833', // FTUE Courage Exercises
+];
+
+export const PLANTS_CHARM_NEXT_QUEST_LINE_IDS = [
+  '55602822', // Healing Hand - The Charm of Healing
+  '55602825', // The Dancing Charm
+  '55602834', // The Charm of Discovery Part One
+];
+
+export const OPEN_DIALOG_IDS = [
+  55785563, // Introduction to the Garden Narrative
+  55602818, // Day 2 - Opening Dialogue
+  55602824, // Day 3 - Opening Narrative
+  55602827, // Day 4 - Opening Narrative
+  55602830, // Day 5 - Opening Narrative
+  55648559, // Day 6 Opening - dialogue
+  55602843, // Day 7 Opening Dialogue
+  55602849, // Day 8 - Opening dialogue
+  55602853, // Day 9 - Opening Dialogue
+  55602856, // Day 10 - Opening Dialogue
+  55602862, // Day 11 - Opening Dialogue
+  55602865, // Day 12 - Opening dialogue
+  55602871, // Day 13 - Opening dialogue
+  55602874, // Day 14 - Opening dialogue
+];
 
 export enum DatoCMSTextVariables {
   FirstPlayer = 'firstPlayer',

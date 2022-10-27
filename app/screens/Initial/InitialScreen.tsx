@@ -18,7 +18,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
     state => state.quest.interruptedQuestLine,
   );
   const isCurrentDayQuestsStackEmpty = useAppSelector(
-    state => !state.quest.currentDayQuestsStack.length,
+    state => !state.quest.currentDayQuestsStack?.length ?? [],
   );
   const user = useAppSelector(state => state.user);
   const cacheUser = useAppSelector(state => state.cache.auth);
@@ -57,7 +57,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
       isStartLoading
     ) {
       if (user.parent && user.child) {
-        navigation.replace('MixingElixirStack');
+        navigation.replace('GardenStack');
         return;
       }
       if (cacheUser.parent?.avatar && !cacheUser.child?.avatar) {
