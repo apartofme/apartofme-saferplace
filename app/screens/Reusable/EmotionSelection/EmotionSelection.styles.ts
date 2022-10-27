@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IEmotionSelectionScreenStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -7,10 +9,12 @@ interface IEmotionSelectionScreenStyles {
 
 export const styles = StyleSheet.create<IEmotionSelectionScreenStyles>({
   container: {
-    paddingTop: 40,
-    paddingHorizontal: 24,
+    paddingLeft: 24,
   },
   title: {
-    paddingBottom: 48,
+    color: COLORS.LIGHT_GREY,
+    paddingBottom: 36,
+    paddingTop: 40,
+    paddingHorizontal: 24,
   },
 });

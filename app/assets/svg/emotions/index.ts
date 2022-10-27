@@ -1,3 +1,4 @@
+export { AngryCircleEmotionIcon } from './AngryCircleEmotionIcon';
 export { CreateYourOwnIcon } from './CreateYourOwnIcon';
 export { EmotionalBlobDefaultIcon } from './EmotionalBlobDefaultIcon';
 export { EmotionalBlobOkIcon } from './EmotionalBlobOkIcon';
@@ -15,4 +16,6 @@ export { IAmSorryIcon } from './IAmSorryIcon';
 export { IFeelThatWayIcon } from './IFeelThatWayIcon';
 export { ImHereForYouIcon } from './ImHereForYouIcon';
 export { ItsOkIcon } from './ItsOkIcon';
+export { LonelySorryEmotionIcon } from './LonelySorryEmotionIcon';
+export { ScaredCircleEmotionIcon } from './ScaredCircleEmotionIcon';
 export { YouAreSafeIcon } from './YouAreSafeIcon';
