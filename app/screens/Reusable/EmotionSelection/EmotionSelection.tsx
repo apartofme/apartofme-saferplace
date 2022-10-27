@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import _ from 'lodash';
 
 import { IEmotionSelectionScreenProps } from './EmotionSelection.types';
@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 import { EMOTION_BUTTON_LIST } from './EmotionSelection.data';
 import { Nullable } from '../../../utils';
 import { cacheSlice } from '../../../redux/slices';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 
 export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
   route,
@@ -32,6 +33,7 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
     titleHasNickname,
     crossHeader,
     escapeMenuAlternativeNavigateTo,
+    backgroundImage,
   } = route.params.data;
 
   const [selectedEmotion, setSelecredEmotion] =
@@ -56,8 +58,6 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
     style: styles.title,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
   });
 
   const Header = useRenderQuestHeader({
@@ -81,20 +81,20 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Header />
         <BottomButtonView
-          buttonTitle={buttonTitle ?? t('buttons.select')}
+          buttonTitle={buttonTitle || t('buttons.select')}
           onSubmit={onSubmit}
-          isDisabledButton={!selectedEmotion}
-          style={styles.container}>
+          isDisabledButton={!selectedEmotion}>
           <Title />
-          <EmotionButton data={emotions} setSelected={setSelecredEmotion} />
+          <View style={styles.container}>
+            <EmotionButton data={emotions} setSelected={setSelecredEmotion} />
+          </View>
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>

@@ -1,6 +1,5 @@
-import { ImageSourcePropType } from 'react-native';
-
 import { Nullable } from '../../utils';
+import { EmotionsButtonSvgKeys } from '../../utils/types';
 import { EmotionButtonType } from './EmotionButton.data';
 
 export interface IEmotionButtonProps {
@@ -10,6 +9,6 @@ export interface IEmotionButtonProps {
 
 export interface IEmotionButton {
   title: string;
-  image: ImageSourcePropType;
+  iconKey: EmotionsButtonSvgKeys;
   type: EmotionButtonType;
 }

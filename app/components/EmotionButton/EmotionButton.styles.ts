@@ -1,10 +1,14 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../themes/colors';
 
 interface IEmojiButtonsStyles {
   row: ViewStyle;
   buttonContainer: ViewStyle;
   buttonImage: ImageStyle;
+  emptyContainer: ViewStyle;
   activeButton: ViewStyle;
+  title: TextStyle;
 }
 
 export const styles = StyleSheet.create<IEmojiButtonsStyles>({
@@ -12,14 +16,26 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
     justifyContent: 'space-between',
     marginBottom: 24,
   },
-  // TODO: change to correct styles
-  buttonContainer: {
+  title: {
+    color: COLORS.LIGHT_GREY,
+    textAlign: 'center',
+    marginTop: 12,
+  },
+  emptyContainer: {
+    flex: 1,
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 40,
-    backgroundColor: '#3C415C75',
+    paddingHorizontal: 27,
+    marginRight: 25,
+  },
+  buttonContainer: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: 24,
+    paddingHorizontal: 27,
+    marginRight: 24,
+    backgroundColor: COLORS.PRIMARY_PURPLE,
     borderRadius: 24,
-    borderColor: '#00DBC0',
+    borderColor: COLORS.PRIMARY_ORANGE,
     borderWidth: 1,
   },
   buttonImage: {
@@ -28,7 +44,6 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
     marginBottom: 12,
   },
   activeButton: {
-    borderWidth: 2,
-    backgroundColor: '#3C415C',
+    borderWidth: 4,
   },
 });
