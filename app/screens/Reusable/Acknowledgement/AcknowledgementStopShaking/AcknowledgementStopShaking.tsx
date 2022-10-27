@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -18,7 +19,6 @@ import { styles } from './AcknowledgementStopShaking.styles';
 import { CHARMS_SVG } from '../../../../assets/svg';
 import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../../constants/audio';
-import { useIsFocused } from '@react-navigation/native';
 
 export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShakingScreenProps> =
   ({ route }) => {
