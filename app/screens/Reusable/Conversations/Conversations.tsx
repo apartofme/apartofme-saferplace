@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, ScrollView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
 
-import { ExtendedButton, ExtendedText } from '../../../components';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
+import { ExtendedButton, ExtendedText, RadioButton } from '../../../components';
 import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
-import { ConversationsCheckbox } from './components';
 import { styles } from './Conversations.styles';
 import { IConversationsScreenProps } from './Conversations.types';
 
@@ -18,6 +18,7 @@ export const ConversationsScreen: React.FC<IConversationsScreenProps> = ({
     buttonTitle,
     crossHeader,
     escapeMenuAlternativeNavigateTo,
+    backgroundImage,
   } = route.params.data;
 
   const { t } = useTranslation();
@@ -30,26 +31,44 @@ export const ConversationsScreen: React.FC<IConversationsScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   });
 
-  return (
-    <SafeAreaView style={generalStyles.flex}>
-      <Header />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
-          <ExtendedText style={styles.title}>{title}</ExtendedText>
-          <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
-          <ConversationsCheckbox
-            isConfirm={isConfirm}
-            setIsConfirm={setIsConfirm}
-          />
-        </View>
+  const onConfirmPress = useCallback(() => {
+    setIsConfirm(!isConfirm);
+  }, [isConfirm]);
 
-        <ExtendedButton
-          title={buttonTitle ?? t('buttons.next')}
-          style={styles.button}
-          disabled={!isConfirm}
-          onPress={onSubmit}
-        />
-      </ScrollView>
-    </SafeAreaView>
+  return (
+    <ImageBackground
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        <Header />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollView}>
+          <View style={styles.container}>
+            <ExtendedText style={styles.title} preset="large-title">
+              {title}
+            </ExtendedText>
+            <ExtendedText style={styles.subtitle} preset="body-regular">
+              {description}
+            </ExtendedText>
+            <RadioButton
+              title={t('buttons.confirm_read_guidance')}
+              isActive={isConfirm}
+              onPress={onConfirmPress}
+            />
+          </View>
+
+          <ExtendedButton
+            title={buttonTitle || t('buttons.next')}
+            style={styles.button}
+            disabled={!isConfirm}
+            isArrow
+            onPress={onSubmit}
+          />
+        </ScrollView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
