@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import {
   ImageBackground,
   SafeAreaView,
@@ -19,7 +20,6 @@ import { ExtendedText, MainHeader } from '../../../../components';
 import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
 import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
 import { SVG } from '../../../../assets/svg';
-import { useIsFocused } from '@react-navigation/native';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
