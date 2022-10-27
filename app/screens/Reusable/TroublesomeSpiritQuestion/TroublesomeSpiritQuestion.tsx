@@ -11,6 +11,8 @@ import {
   useRenderQuestHeader,
 } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
+import { CHARMS_SVG } from '../../../assets/svg';
 
 export const TroublesomeSpiritQuestionScreen: React.FC<ITroublesomeSpiritQuestionScreenProps> =
   ({ route }) => {
@@ -21,6 +23,8 @@ export const TroublesomeSpiritQuestionScreen: React.FC<ITroublesomeSpiritQuestio
       crossHeader,
       titleHasNickname,
       escapeMenuAlternativeNavigateTo,
+      backgroundImage,
+      image,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -31,8 +35,6 @@ export const TroublesomeSpiritQuestionScreen: React.FC<ITroublesomeSpiritQuestio
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
       style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
     });
 
     const Header = useRenderQuestHeader({
@@ -40,23 +42,26 @@ export const TroublesomeSpiritQuestionScreen: React.FC<ITroublesomeSpiritQuestio
       escapeMenuAlternativeNavigateTo,
     });
 
+    const Icon = image && CHARMS_SVG[image];
+
     return (
       <ImageBackground
-        // TODO: change to the real image
-        source={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.ready')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
             <View style={styles.cardContainer}>
               <View style={styles.card}>
-                <ExtendedText preset="heading" style={styles.description}>
+                {Icon && <Icon width={96} height={96} />}
+                <ExtendedText preset="heading" style={styles.subtitle}>
                   {description}
                 </ExtendedText>
               </View>
