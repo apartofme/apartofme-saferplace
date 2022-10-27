@@ -1,5 +1,6 @@
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface IFeedbackSuccessScreenStyles {
@@ -14,14 +15,14 @@ export const styles = StyleSheet.create<IFeedbackSuccessScreenStyles>({
     alignItems: 'center',
   },
   imageContainer: {
-    marginTop: 50,
+    marginTop: 50 * WINDOW_COEFFICIENT,
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 27,
+    marginTop: 27 * WINDOW_COEFFICIENT,
   },
   subtitle: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 24,
+    marginTop: 24 * WINDOW_COEFFICIENT,
   },
 });

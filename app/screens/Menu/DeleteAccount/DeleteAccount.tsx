@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, Pressable, SafeAreaView, View } from 'react-native';
 import { Formik } from 'formik';
 
 import {
@@ -29,6 +29,8 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
+
+  const [isActive, setIsActive] = useState(false);
 
   const onSubmit = useCallback(
     password => {
@@ -69,6 +71,7 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
                     onChangeText={handleChange('password')}
                     value={values.password}
                     placeholderTextColor={COLORS.LIGHT_GREY}
+                    setIsActive={setIsActive}
                   />
                 </View>
               </View>
@@ -80,9 +83,11 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
                   preset="destructive"
                 />
               </View>
-              <ExtendedText style={styles.forgotPassword} preset="body-bold">
-                {t('buttons.forgot_password')}
-              </ExtendedText>
+              <Pressable style={isActive && styles.displayNone}>
+                <ExtendedText style={styles.forgotPassword} preset="body-bold">
+                  {t('buttons.forgot_password')}
+                </ExtendedText>
+              </Pressable>
             </ExtendedKeyboardAvoidingView>
           )}
         </Formik>

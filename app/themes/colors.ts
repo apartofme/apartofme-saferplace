@@ -7,6 +7,7 @@ export const COLORS = {
   BLACK: '#333',
   BORDER: '#e2e2e2',
   BLACK_TRANSPARENT_95: 'rgba(26, 26, 26, 0.95)',
+  MENU_BACKGROUND: 'rgba(34,10,64, 0.4)',
 
   PRIMARY_ORANGE: '#FFB452',
   PRIMARY_PURPLE: '#3F1670',

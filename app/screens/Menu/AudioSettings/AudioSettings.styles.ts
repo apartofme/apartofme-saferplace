@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface IAudioSettingsStyles {
@@ -15,12 +16,12 @@ export const styles = StyleSheet.create<IAudioSettingsStyles>({
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 48,
-    marginBottom: 100,
+    marginTop: 48 * WINDOW_COEFFICIENT,
+    marginBottom: 100 * WINDOW_COEFFICIENT,
   },
   menuSwitchContainer: {
-    marginBottom: 28,
-    paddingBottom: 30,
+    marginBottom: 28 * WINDOW_COEFFICIENT,
+    paddingBottom: 30 * WINDOW_COEFFICIENT,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.LIGHT_GREY,
   },

@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
+
 import { COLORS } from '../../../themes/colors';
 
 interface IHelpSupportScreenStyles {
@@ -16,15 +18,15 @@ export const styles = StyleSheet.create<IHelpSupportScreenStyles>({
   },
   title: {
     color: COLORS.LIGHT_GREY,
-    marginTop: 48,
+    marginTop: 48 * WINDOW_COEFFICIENT,
   },
   list: {
-    marginTop: 50,
+    marginTop: 50 * WINDOW_COEFFICIENT,
     flex: 1,
   },
   menuButtonContainer: {
     borderBottomWidth: 1,
-    paddingVertical: 30,
+    paddingVertical: 30 * WINDOW_COEFFICIENT,
     borderBottomColor: COLORS.LIGHT_GREY,
   },
 });

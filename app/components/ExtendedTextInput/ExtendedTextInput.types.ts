@@ -10,4 +10,6 @@ export interface IExtendedTextInputProps extends TextInputProps {
 
   error?: string;
   errorStyle?: TextStyle;
+
+  setIsActive?: (value: boolean) => void;
 }

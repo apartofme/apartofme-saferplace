@@ -1,4 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface INotificationSettingsStyles {
@@ -16,19 +18,19 @@ export const styles = StyleSheet.create<INotificationSettingsStyles>({
     flex: 1,
   },
   title: {
-    marginTop: 48,
+    marginTop: 48 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
     marginBottom: 100,
   },
   subtitle: {
-    marginTop: 6,
+    marginTop: 6 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
   },
   button: {
-    marginTop: 24,
+    marginTop: 24 * WINDOW_COEFFICIENT,
   },
   menuSwitchContainer: {
-    paddingBottom: 16,
+    paddingBottom: 16 * WINDOW_COEFFICIENT,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.LIGHT_GREY,
   },

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   NativeSyntheticEvent,
   TextInput,
@@ -24,6 +24,7 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
   error,
   errorStyle,
   style,
+  setIsActive,
   onFocus: onFocusCallback,
   onBlur: onBlurCallback,
   ...rest
@@ -46,6 +47,14 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
   }, [type]);
 
   const [isFocus, setIsFocus] = useState(false);
+
+  useEffect(() => {
+    if (setIsActive) {
+      setIsActive(isFocus);
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFocus]);
 
   const onFocus = useCallback(
     (e: NativeSyntheticEvent<TextInputFocusEventData>) => {

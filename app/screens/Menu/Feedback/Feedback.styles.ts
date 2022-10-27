@@ -1,5 +1,6 @@
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface IFeedbackScreenStyles {
@@ -14,16 +15,16 @@ export const styles = StyleSheet.create<IFeedbackScreenStyles>({
     marginHorizontal: 24,
   },
   title: {
-    marginTop: 48,
+    marginTop: 48 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
   },
   subtitle: {
-    marginTop: 27,
+    marginTop: 27 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
   },
   inputContainer: {
-    marginTop: 30,
+    marginTop: 30 * WINDOW_COEFFICIENT,
     height: 160,
-    marginBottom: 24,
+    marginBottom: 24 * WINDOW_COEFFICIENT,
   },
 });

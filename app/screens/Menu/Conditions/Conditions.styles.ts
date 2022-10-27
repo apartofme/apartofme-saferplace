@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface IConditionsScreenStyles {
@@ -15,11 +16,11 @@ export const styles = StyleSheet.create<IConditionsScreenStyles>({
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 48,
+    marginTop: 48 * WINDOW_COEFFICIENT,
   },
   subtitle: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 20,
-    marginBottom: 40,
+    marginTop: 20 * WINDOW_COEFFICIENT,
+    marginBottom: 40 * WINDOW_COEFFICIENT,
   },
 });

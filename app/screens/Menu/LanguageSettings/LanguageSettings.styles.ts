@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface IHomeScreenStyles {
@@ -19,26 +20,25 @@ export const styles = StyleSheet.create<IHomeScreenStyles>({
   },
   contentContainer: {
     flex: 1,
-    paddingLeft: 27,
-    paddingRight: 21,
+    paddingHorizontal: 24,
   },
   listContainer: {
     flex: 1,
-    marginTop: 42,
+    marginTop: 42 * WINDOW_COEFFICIENT,
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 48,
+    marginTop: 48 * WINDOW_COEFFICIENT,
   },
   subtitle: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 24,
+    marginTop: 24 * WINDOW_COEFFICIENT,
   },
   buttonContainer: {
     paddingHorizontal: 41,
   },
   cancelButton: {
-    marginTop: 23,
-    marginBottom: 40,
+    marginTop: 23 * WINDOW_COEFFICIENT,
+    marginBottom: 40 * WINDOW_COEFFICIENT,
   },
 });

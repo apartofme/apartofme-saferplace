@@ -1,5 +1,7 @@
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
+
 interface IChangePasswordSuccessScreenStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -12,12 +14,12 @@ export const styles = StyleSheet.create<IChangePasswordSuccessScreenStyles>({
     alignItems: 'center',
   },
   imageContainer: {
-    marginTop: 50,
+    marginTop: 50 * WINDOW_COEFFICIENT,
   },
   title: {
-    marginTop: 46,
+    marginTop: 46 * WINDOW_COEFFICIENT,
   },
   subtitle: {
-    marginTop: 24,
+    marginTop: 24 * WINDOW_COEFFICIENT,
   },
 });
