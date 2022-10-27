@@ -48,6 +48,7 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
       }
       navigation.push(nextRouteName);
     }
+    // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimerPause, timerValue]);
 

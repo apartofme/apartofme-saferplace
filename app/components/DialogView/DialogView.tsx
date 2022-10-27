@@ -69,8 +69,8 @@ export const DialogView: React.FC<IDialogViewProps> = ({
         {Icon && (
           <View
             style={[
-              currentSpeech.isBlur && styles.inactiveIconContainer,
               styles.iconContainer,
+              currentSpeech.isBlur && styles.inactiveIconContainer,
             ]}>
             <Icon />
           </View>

@@ -99,6 +99,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       setIsPrevStatusBackground(false);
       return;
     }
+    // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatus]);
 
@@ -131,6 +132,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     if (activePlantArea) {
       onTilePress();
     }
+    // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePlantArea]);
 

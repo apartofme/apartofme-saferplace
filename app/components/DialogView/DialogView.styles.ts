@@ -13,7 +13,7 @@ export interface IDialogViewStyles {
 
 export const styles = StyleSheet.create<IDialogViewStyles>({
   container: {
-    marginTop: 48 + 40,
+    marginTop: 88,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
