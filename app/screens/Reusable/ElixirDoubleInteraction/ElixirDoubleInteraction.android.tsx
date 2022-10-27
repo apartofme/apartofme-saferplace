@@ -56,11 +56,13 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
       if (isChildPress && isAdultPress && !isSoundStart) {
         AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
         setIsSoundStart(true);
-      } else if (isChildPress && isAdultPress) {
-        AudioPlayerHelper.start();
-      } else {
-        AudioPlayerHelper.pause();
+        return;
       }
+      if (isChildPress && isAdultPress) {
+        AudioPlayerHelper.start();
+        return;
+      }
+      AudioPlayerHelper.pause();
     }, [isAdultPress, isChildPress, isSoundStart]);
 
     useEffect(() => {

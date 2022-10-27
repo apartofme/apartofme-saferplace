@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 
 import { useAppSelector, useAppState, useMount } from '../../../../hooks';
 import { IBookProps } from './Book.types';
 import { styles } from './Book.styles';
 import { CharmBookMenuType } from '../../CharmBookMenu';
 import { SVG } from '../../../../assets/svg';
-import { useIsFocused } from '@react-navigation/native';
 import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../../constants/audio';
 
