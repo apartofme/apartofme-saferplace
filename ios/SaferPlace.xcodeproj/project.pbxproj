@@ -17,12 +17,12 @@
 		4330647528C7B57900BF4095 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4330647228C7B57900BF4095 /* Poppins-Medium.ttf */; };
 		47291A6628D0773800008A2C /* Pods_SaferPlace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		860D91392909F398003F22C6 /* timer_sound_magic_015.wav in Resources */ = {isa = PBXBuildFile; fileRef = 860D91382909F398003F22C6 /* timer_sound_magic_015.wav */; };
 		860D912F2909CB03003F22C6 /* opening_book_of_charms_011.wav in Resources */ = {isa = PBXBuildFile; fileRef = 860D912E2909CB03003F22C6 /* opening_book_of_charms_011.wav */; };
 		860D91322909D36A003F22C6 /* cork_popping_sfx_1_021.wav in Resources */ = {isa = PBXBuildFile; fileRef = 860D91302909D369003F22C6 /* cork_popping_sfx_1_021.wav */; };
 		860D91332909D36A003F22C6 /* healing_potion_mixing_liquid_shaking_020.wav in Resources */ = {isa = PBXBuildFile; fileRef = 860D91312909D369003F22C6 /* healing_potion_mixing_liquid_shaking_020.wav */; };
 		860D91352909D477003F22C6 /* healing_potion_pouring_yes_017.wav in Resources */ = {isa = PBXBuildFile; fileRef = 860D91342909D477003F22C6 /* healing_potion_pouring_yes_017.wav */; };
 		860D91372909EA17003F22C6 /* healing_potion_bottle_filling_up_018.wav in Resources */ = {isa = PBXBuildFile; fileRef = 860D91362909EA16003F22C6 /* healing_potion_bottle_filling_up_018.wav */; };
+		860D91392909F398003F22C6 /* timer_sound_magic_015.wav in Resources */ = {isa = PBXBuildFile; fileRef = 860D91382909F398003F22C6 /* timer_sound_magic_015.wav */; };
 		86DA93C128FD82CF001B616D /* dancing_track_happy_dance_016.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93BD28FD82CF001B616D /* dancing_track_happy_dance_016.mp3 */; };
 		86DA93C228FD82CF001B616D /* dancing_track_first_dance_016.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93BE28FD82CF001B616D /* dancing_track_first_dance_016.mp3 */; };
 		86DA93C328FD82CF001B616D /* dancing_track_thunder_016.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93BF28FD82CF001B616D /* dancing_track_thunder_016.mp3 */; };
@@ -61,12 +61,12 @@
 		5C1DB5A6C519B91DEF75FD2D /* Pods_SaferPlace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752DBD64088926D77B3282BE /* Pods_SaferPlace_SaferPlaceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaferPlace_SaferPlaceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SaferPlace/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		860D91382909F398003F22C6 /* timer_sound_magic_015.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = timer_sound_magic_015.wav; sourceTree = "<group>"; };
 		860D912E2909CB03003F22C6 /* opening_book_of_charms_011.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = opening_book_of_charms_011.wav; sourceTree = "<group>"; };
 		860D91302909D369003F22C6 /* cork_popping_sfx_1_021.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cork_popping_sfx_1_021.wav; sourceTree = "<group>"; };
 		860D91312909D369003F22C6 /* healing_potion_mixing_liquid_shaking_020.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = healing_potion_mixing_liquid_shaking_020.wav; sourceTree = "<group>"; };
 		860D91342909D477003F22C6 /* healing_potion_pouring_yes_017.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = healing_potion_pouring_yes_017.wav; sourceTree = "<group>"; };
 		860D91362909EA16003F22C6 /* healing_potion_bottle_filling_up_018.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = healing_potion_bottle_filling_up_018.wav; sourceTree = "<group>"; };
+		860D91382909F398003F22C6 /* timer_sound_magic_015.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = timer_sound_magic_015.wav; sourceTree = "<group>"; };
 		86DA93BD28FD82CF001B616D /* dancing_track_happy_dance_016.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dancing_track_happy_dance_016.mp3; sourceTree = "<group>"; };
 		86DA93BE28FD82CF001B616D /* dancing_track_first_dance_016.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dancing_track_first_dance_016.mp3; sourceTree = "<group>"; };
 		86DA93BF28FD82CF001B616D /* dancing_track_thunder_016.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dancing_track_thunder_016.mp3; sourceTree = "<group>"; };
@@ -158,7 +158,6 @@
 				860D912E2909CB03003F22C6 /* opening_book_of_charms_011.wav */,
 				86DA93BF28FD82CF001B616D /* dancing_track_thunder_016.mp3 */,
 				860D91382909F398003F22C6 /* timer_sound_magic_015.wav */,
-				4335FAA428DCCA46003412F2 /* sound_one.mp3 */,
 				86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */,
 			);
 			path = audios;
@@ -317,7 +316,6 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				86DA93C128FD82CF001B616D /* dancing_track_happy_dance_016.mp3 in Resources */,
 				860D91392909F398003F22C6 /* timer_sound_magic_015.wav in Resources */,
-				43C236BE28DCB32800AAE549 /* sound_three.mp3 in Resources */,
 				860D91372909EA17003F22C6 /* healing_potion_bottle_filling_up_018.wav in Resources */,
 				9547DB2928B7B01A00C6720C /* GoogleService-Info.plist in Resources */,
 				86DA93C328FD82CF001B616D /* dancing_track_thunder_016.mp3 in Resources */,
