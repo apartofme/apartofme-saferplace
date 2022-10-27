@@ -1,30 +1,48 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IEmotionCarouselChoiceScreenStyles {
   container: ViewStyle;
   card: ViewStyle;
-  textCenter: TextStyle;
+  subtitle: TextStyle;
+  title: TextStyle;
+  cardTitle: TextStyle;
 }
 
 export const styles = StyleSheet.create<IEmotionCarouselChoiceScreenStyles>({
   container: {
     paddingTop: 40,
     paddingHorizontal: 24,
+    alignItems: 'center',
   },
   card: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    maxHeight: 240,
+    paddingVertical: 34,
     marginTop: 48,
     marginHorizontal: 40,
-    marginBottom: 37,
     paddingHorizontal: 24,
-    // TODO: change to correct styles
-    backgroundColor: '#712CA4',
+    backgroundColor: COLORS.PRIMARY_PURPLE,
+    borderColor: COLORS.PRIMARY_ORANGE,
+    borderWidth: 2,
     borderRadius: 24,
   },
-  textCenter: {
+  title: {
     textAlign: 'center',
+    color: COLORS.BRILLIANT_WHITE,
+    maxWidth: 327,
+  },
+  subtitle: {
+    textAlign: 'center',
+    color: COLORS.LIGHT_GREY,
+    maxWidth: 295,
+    marginTop: 57,
+  },
+  cardTitle: {
+    textAlign: 'center',
+    color: COLORS.PRIMARY_ORANGE,
+    maxWidth: 200,
+    marginTop: 14,
   },
 });
