@@ -1,5 +1,6 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface IMainMenuStyles {
@@ -21,18 +22,18 @@ interface IMainMenuStyles {
 
 export const styles = StyleSheet.create<IMainMenuStyles>({
   container: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 24 * WINDOW_COEFFICIENT,
     flex: 1,
     justifyContent: 'space-between',
   },
   title: {
     color: COLORS.LIGHT_GREY,
-    marginTop: 40,
-    marginBottom: 16,
+    marginTop: 40 * WINDOW_COEFFICIENT,
+    marginBottom: 16 * WINDOW_COEFFICIENT,
   },
   subtitle: {
     color: COLORS.LIGHT_GREY,
-    marginBottom: 12,
+    marginBottom: 12 * WINDOW_COEFFICIENT,
   },
   avatar: {
     height: 80,
@@ -45,27 +46,28 @@ export const styles = StyleSheet.create<IMainMenuStyles>({
     borderBottomColor: COLORS.LIGHT_GREY,
   },
   menuButtonContainer: {
-    marginBottom: 40,
+    marginBottom: 40 * WINDOW_COEFFICIENT,
   },
   menuButtonLineContainer: {
     borderBottomWidth: 1,
-    paddingBottom: 31,
+    paddingBottom: 31 * WINDOW_COEFFICIENT,
     borderBottomColor: COLORS.LIGHT_GREY,
   },
   menuItemsContainer: {
-    marginTop: 52,
+    marginTop: 52 * WINDOW_COEFFICIENT,
   },
   logOutContainer: {
     alignItems: 'center',
-    marginBottom: 34,
+    paddingTop: 20 * WINDOW_COEFFICIENT,
+    marginBottom: 34 * WINDOW_COEFFICIENT,
   },
   logOutTitle: {
     color: COLORS.PRIMARY_ORANGE,
-    marginTop: 11,
+    marginTop: 11 * WINDOW_COEFFICIENT,
   },
   topContainer: {
-    paddingBottom: 34,
-    backgroundColor: 'rgba(34,10,64, 0.4)',
+    paddingBottom: 34 * WINDOW_COEFFICIENT,
+    backgroundColor: COLORS.MENU_BACKGROUND,
   },
   topContentContainer: {
     paddingHorizontal: 24,
@@ -74,7 +76,7 @@ export const styles = StyleSheet.create<IMainMenuStyles>({
     color: COLORS.PRIMARY_ORANGE,
   },
   parentName: {
-    marginTop: 40,
+    marginTop: 40 * WINDOW_COEFFICIENT,
     color: COLORS.PRIMARY_ORANGE,
   },
 });

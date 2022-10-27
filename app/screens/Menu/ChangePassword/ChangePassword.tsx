@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
 import { Formik } from 'formik';
 
 import {
@@ -58,48 +58,52 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                 onSubmit={() =>
                   onSubmit(values.currentPassword, values.newPassword)
                 }>
-                <MainHeader
-                  leftIcon={<WhiteBackArrowIcon />}
-                  onLeftIconPress={navigation.goBack}
-                />
-                <View style={styles.container}>
-                  <ExtendedText style={styles.title} preset="large-title">
-                    {t('screens.menu.change_password.title')}
-                  </ExtendedText>
-                  <ExtendedText style={styles.subtitle} preset="secondary-text">
-                    {t('screens.menu.change_password.description')}
-                  </ExtendedText>
+                <ScrollView>
+                  <MainHeader
+                    leftIcon={<WhiteBackArrowIcon />}
+                    onLeftIconPress={navigation.goBack}
+                  />
+                  <View style={styles.container}>
+                    <ExtendedText style={styles.title} preset="large-title">
+                      {t('screens.menu.change_password.title')}
+                    </ExtendedText>
+                    <ExtendedText
+                      style={styles.subtitle}
+                      preset="secondary-text">
+                      {t('screens.menu.change_password.description')}
+                    </ExtendedText>
 
-                  <View style={styles.inputContainer}>
-                    <ExtendedTextInput
-                      error={errors.currentPassword}
-                      type={ExtendedTextInputType.Password}
-                      style={styles.input}
-                      placeholder={t('placeholders.enter_current_password')}
-                      onChangeText={handleChange('currentPassword')}
-                      placeholderTextColor={COLORS.LIGHT_GREY}
-                      value={values.currentPassword}
-                    />
-                    <ExtendedTextInput
-                      error={errors.newPassword}
-                      type={ExtendedTextInputType.Password}
-                      style={styles.input}
-                      placeholder={t('placeholders.enter_new_password')}
-                      onChangeText={handleChange('newPassword')}
-                      placeholderTextColor={COLORS.LIGHT_GREY}
-                      value={values.newPassword}
-                    />
-                    <ExtendedTextInput
-                      error={errors.confirmNewPassword}
-                      type={ExtendedTextInputType.Password}
-                      style={styles.input}
-                      placeholder={t('placeholders.confirm_new_password')}
-                      onChangeText={handleChange('confirmNewPassword')}
-                      placeholderTextColor={COLORS.LIGHT_GREY}
-                      value={values.confirmNewPassword}
-                    />
+                    <View style={styles.inputContainer}>
+                      <ExtendedTextInput
+                        error={errors.currentPassword}
+                        type={ExtendedTextInputType.Password}
+                        style={styles.input}
+                        placeholder={t('placeholders.enter_current_password')}
+                        onChangeText={handleChange('currentPassword')}
+                        placeholderTextColor={COLORS.LIGHT_GREY}
+                        value={values.currentPassword}
+                      />
+                      <ExtendedTextInput
+                        error={errors.newPassword}
+                        type={ExtendedTextInputType.Password}
+                        style={styles.input}
+                        placeholder={t('placeholders.enter_new_password')}
+                        onChangeText={handleChange('newPassword')}
+                        placeholderTextColor={COLORS.LIGHT_GREY}
+                        value={values.newPassword}
+                      />
+                      <ExtendedTextInput
+                        error={errors.confirmNewPassword}
+                        type={ExtendedTextInputType.Password}
+                        style={styles.input}
+                        placeholder={t('placeholders.confirm_new_password')}
+                        onChangeText={handleChange('confirmNewPassword')}
+                        placeholderTextColor={COLORS.LIGHT_GREY}
+                        value={values.confirmNewPassword}
+                      />
+                    </View>
                   </View>
-                </View>
+                </ScrollView>
               </BottomButtonView>
             </ExtendedKeyboardAvoidingView>
           )}
