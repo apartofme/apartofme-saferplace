@@ -27,7 +27,7 @@ import {
   SECOND_TRY_SOMETHING_ITEMS,
   TRY_SOMETHING_DISCOVERY_ITEMS,
 } from './TrySomethingNewCarousel.data';
-import { THE_CHARM_OF_DISCOVERY_ID } from '../../../constants/quest';
+import { TRY_SOMETHING_NEW_PART_ONE_ID } from '../../../constants/quest';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
@@ -48,11 +48,11 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     const curentQuestLineId = useAppSelector(
       state => state.quest.currentQuestLine?.id,
     );
+    const isFirstPart = TRY_SOMETHING_NEW_PART_ONE_ID === curentQuestLineId;
 
-    const carouselData =
-      THE_CHARM_OF_DISCOVERY_ID === curentQuestLineId
-        ? TRY_SOMETHING_DISCOVERY_ITEMS
-        : SECOND_TRY_SOMETHING_ITEMS;
+    const carouselData = isFirstPart
+      ? TRY_SOMETHING_DISCOVERY_ITEMS
+      : SECOND_TRY_SOMETHING_ITEMS;
 
     const [activeItem, setActiveItem] = useState(carouselData[0]);
 
@@ -82,24 +82,50 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     }, [activeItemIndex, carouselData]);
 
     const onSubmitPress = useCallback(() => {
-      if (isChild) {
-        dispatch(
-          cacheSlice.actions.saveChildTrySomethingItem({
-            title: t(activeItem.title),
-            description: t(activeItem.subtitle),
-          }),
-        );
+      if (isFirstPart) {
+        if (isChild) {
+          dispatch(
+            cacheSlice.actions.saveChildTrySomethingFirstItem({
+              title: t(activeItem.title),
+              description: t(activeItem.subtitle),
+            }),
+          );
+        } else {
+          dispatch(
+            cacheSlice.actions.saveParentTrySomethingFirstItem({
+              title: t(activeItem.title),
+              description: t(activeItem.subtitle),
+            }),
+          );
+        }
       } else {
-        dispatch(
-          cacheSlice.actions.saveParentTrySomethingItem({
-            title: t(activeItem.title),
-            description: t(activeItem.subtitle),
-          }),
-        );
+        if (isChild) {
+          dispatch(
+            cacheSlice.actions.saveChildTrySomethingSecondItem({
+              title: t(activeItem.title),
+              description: t(activeItem.subtitle),
+            }),
+          );
+        } else {
+          dispatch(
+            cacheSlice.actions.saveParentTrySomethingSecondItem({
+              title: t(activeItem.title),
+              description: t(activeItem.subtitle),
+            }),
+          );
+        }
       }
 
       onSubmit();
-    }, [activeItem.subtitle, activeItem.title, dispatch, isChild, onSubmit, t]);
+    }, [
+      activeItem.subtitle,
+      activeItem.title,
+      dispatch,
+      isChild,
+      isFirstPart,
+      onSubmit,
+      t,
+    ]);
 
     return (
       <ImageBackground
@@ -119,7 +145,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
                   backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND'
                 ]
               }
-              isDiscovery={THE_CHARM_OF_DISCOVERY_ID === curentQuestLineId}
+              isFirstPart={isFirstPart}
             />
           </Modal>
           <MainHeader

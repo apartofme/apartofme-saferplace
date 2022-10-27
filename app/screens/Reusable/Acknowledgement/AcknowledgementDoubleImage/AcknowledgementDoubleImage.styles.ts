@@ -12,17 +12,16 @@ export const styles =
   StyleSheet.create<IAcknowledgementDoubleImageScreenStyles>({
     container: {
       alignItems: 'center',
+      justifyContent: 'space-between',
       paddingTop: 40,
       paddingHorizontal: 40,
-      paddingBottom: 70,
+      paddingBottom: 50,
     },
-    iconContainer: {
-      marginVertical: 56,
-    },
+    iconContainer: {},
     description: {
       flex: 1,
-      maxHeight: 100,
-      color: COLORS.BRILLIANT_WHITE,
+      maxHeight: 120,
+      color: COLORS.LIGHT_GREY,
       textAlign: 'center',
     },
   });

@@ -27,10 +27,10 @@ interface ICacheState {
     child: Nullable<IShortSignUpData>;
   };
   translations: Nullable<ITranslations>;
-  childTrySomethingItem: Nullable<ITrySomethingItem>;
-  parentTrySomethingItem: Nullable<ITrySomethingItem>;
-  childTrySomethingDiscoveryItem: Nullable<ITrySomethingItem>;
-  parentTrySomethingDiscoveryItem: Nullable<ITrySomethingItem>;
+  childTrySomethingFirstItem: Nullable<ITrySomethingItem>;
+  parentTrySomethingFirstItem: Nullable<ITrySomethingItem>;
+  childTrySomethingSecondItem: Nullable<ITrySomethingItem>;
+  parentTrySomethingSecondItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
   emotions: IEmotions;
   currentQuestionIndex: number;
@@ -48,10 +48,10 @@ const INITIAL_STATE: ICacheState = {
     child: null,
   },
   translations: null,
-  childTrySomethingItem: null,
-  parentTrySomethingItem: null,
-  childTrySomethingDiscoveryItem: null,
-  parentTrySomethingDiscoveryItem: null,
+  childTrySomethingFirstItem: null,
+  parentTrySomethingFirstItem: null,
+  childTrySomethingSecondItem: null,
+  parentTrySomethingSecondItem: null,
   nicknames: null,
   emotions: {
     selected: null,
@@ -81,23 +81,29 @@ export const cacheSlice = createSlice({
     saveTranslationsSuccess(state, { payload }: ISaveTranslationsPayload) {
       state.translations = _.merge(state.translations, payload);
     },
-    saveChildTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
-      state.childTrySomethingItem = payload;
-    },
-    saveParentTrySomethingItem(state, { payload }: ITrySomethingItemPayload) {
-      state.parentTrySomethingItem = payload;
-    },
-    saveChildTrySomethingDiscoveryItem(
+    saveChildTrySomethingFirstItem(
       state,
       { payload }: ITrySomethingItemPayload,
     ) {
-      state.childTrySomethingDiscoveryItem = payload;
+      state.childTrySomethingFirstItem = payload;
     },
-    saveParentTrySomethingDiscoveryItem(
+    saveParentTrySomethingFirstItem(
       state,
       { payload }: ITrySomethingItemPayload,
     ) {
-      state.parentTrySomethingDiscoveryItem = payload;
+      state.parentTrySomethingFirstItem = payload;
+    },
+    saveChildTrySomethingSecondItem(
+      state,
+      { payload }: ITrySomethingItemPayload,
+    ) {
+      state.childTrySomethingSecondItem = payload;
+    },
+    saveParentTrySomethingSecondItem(
+      state,
+      { payload }: ITrySomethingItemPayload,
+    ) {
+      state.parentTrySomethingSecondItem = payload;
     },
     saveNicknames(state, { payload }: INicknamesPayload) {
       state.nicknames = _.merge(state.nicknames, payload);

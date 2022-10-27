@@ -34,10 +34,10 @@ export const EmojiButtons: React.FC<IEmojiButtons> = ({
         return EmotionalBlobDefaultIcon;
 
       case EmojiType.SuperRelaxed:
-        return EmotionalBlobRelaxedIcon;
+        return EmotionalBlobSuperRelaxedIcon;
 
       case EmojiType.Relaxed:
-        return EmotionalBlobSuperRelaxedIcon;
+        return EmotionalBlobRelaxedIcon;
 
       case EmojiType.Ok:
         return EmotionalBlobOkIcon;

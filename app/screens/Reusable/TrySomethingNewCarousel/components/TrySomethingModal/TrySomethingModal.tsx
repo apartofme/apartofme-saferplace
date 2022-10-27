@@ -30,7 +30,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   subtitle,
   backgroundImage,
   titleHasNickname,
-  isDiscovery,
+  isFirstPart,
   setModalStatus,
 }) => {
   const { t } = useTranslation();
@@ -50,17 +50,17 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   });
 
   const onSubmitPress = useCallback(() => {
-    if (!isDiscovery) {
+    if (isFirstPart) {
       if (isChild) {
         dispatch(
-          cacheSlice.actions.saveChildTrySomethingItem({
+          cacheSlice.actions.saveChildTrySomethingFirstItem({
             title: t('labels.create_own'),
             description: inputValue,
           }),
         );
       } else {
         dispatch(
-          cacheSlice.actions.saveParentTrySomethingItem({
+          cacheSlice.actions.saveParentTrySomethingFirstItem({
             title: t('labels.create_own'),
             description: inputValue,
           }),
@@ -69,14 +69,14 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
     } else {
       if (isChild) {
         dispatch(
-          cacheSlice.actions.saveChildTrySomethingDiscoveryItem({
+          cacheSlice.actions.saveChildTrySomethingSecondItem({
             title: t('labels.create_own'),
             description: inputValue,
           }),
         );
       } else {
         dispatch(
-          cacheSlice.actions.saveParentTrySomethingDiscoveryItem({
+          cacheSlice.actions.saveParentTrySomethingSecondItem({
             title: t('labels.create_own'),
             description: inputValue,
           }),
@@ -86,7 +86,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
 
     setModalStatus();
     onSubmit();
-  }, [dispatch, inputValue, isChild, isDiscovery, onSubmit, setModalStatus, t]);
+  }, [dispatch, inputValue, isChild, isFirstPart, onSubmit, setModalStatus, t]);
 
   return (
     <ImageBackground source={backgroundImage} style={generalStyles.flex}>
@@ -105,10 +105,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
             <View style={styles.container}>
               <Title />
               <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
-              <ExtendedTextInput
-                value={inputValue}
-                onChangeText={setInputValue}
-              />
+              <ExtendedTextInput onChangeText={setInputValue} maxLength={30} />
               <ExtendedText
                 preset="tertiary-text-regular"
                 style={styles.maxCharacters}>
