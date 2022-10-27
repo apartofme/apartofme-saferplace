@@ -96,6 +96,6 @@ export const ALL_QUESTS_STACK = [
   [
     55602887, // Day 14 - Closing dialogue
     55602886, // The Charm of Weaving
-    55602874, // Day 13 - Opening dialogue
+    55602874, // Day 14 - Opening dialogue
   ],
 ];

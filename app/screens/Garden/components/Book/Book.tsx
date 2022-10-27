@@ -23,7 +23,7 @@ export const Book: React.FC<IBookProps> = ({
   );
 
   const isCompletedAllCurrentDayQuests = useAppSelector(
-    state => !state.quest.currentDayQuestsStack.length,
+    state => !state.quest.currentDayQuestsStack?.length ?? false,
   );
 
   const bookImage = useMemo(() => {

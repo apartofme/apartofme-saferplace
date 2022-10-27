@@ -6,7 +6,7 @@ import { IAnimationTitleScreenProps } from './AnimationTitle.types';
 import { styles } from './AnimationTitle.styles';
 import { generalStyles } from '../../../utils/styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { useNavigateNextQuest } from '../../../hooks';
+import { useMount, useNavigateNextQuest } from '../../../hooks';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
@@ -15,8 +15,15 @@ import { ELIXIR_ANIMATION_TYPE } from '../../../constants/elixir';
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
 }) => {
-  const { backgroundImage, description, duration, title } = route.params.data;
+  const { description, duration, title } = route.params.data;
+
   const onSubmit = useNavigateNextQuest();
+
+  useMount(() => {
+    if (description) {
+      setTimeout(() => onSubmit(), 3000);
+    }
+  });
 
   const animation = useMemo(() => {
     if (description) {
@@ -44,9 +51,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
 
   return (
     <ImageBackground
-      source={
-        backgroundImage ?? BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND
-      }
+      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <View

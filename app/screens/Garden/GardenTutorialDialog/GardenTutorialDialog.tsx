@@ -26,9 +26,6 @@ export const GardenTutorialDialogScreen: React.FC<IGardenTutorialDialogScreenPro
 
     return (
       <DialogView
-        backgroundImage={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
         dialog={GARDEN_TUTORIAL_DIALOG}
         onSubmit={onSabmit}
         navigateBetween={

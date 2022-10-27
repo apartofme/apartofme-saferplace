@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { values } from 'lodash';
 
 import { IElixirAnimationScreenProps } from './ElixirAnimation.types';
 import { styles } from './ElixirAnimation.styles';
@@ -11,6 +12,12 @@ import { generalStyles } from '../../../utils/styles';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import {
+  DAY_13_CLOSING_DIALOGUE_ID,
+  THE_CHARM_OF_BEFRIENDING_ID,
+} from '../../../constants/quest';
+import { questSlice } from '../../../redux/slices';
 
 export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,
@@ -18,6 +25,17 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
 }) => {
   const { phase, selectedPlantArea, isFirstTimeGarden } = route.params;
   const { t } = useTranslation();
+
+  const dispatch = useAppDispatch();
+  const currentQuestLine = useAppSelector(
+    state => state.quest.currentQuestLine,
+  );
+  const currentLanguage = useAppSelector(
+    state => state.settings.settings.language ?? 'en',
+  );
+  const allQuests = useAppSelector(
+    state => state.quest.allQuests?.[currentLanguage],
+  );
 
   const title = useMemo(() => {
     switch (phase) {
@@ -51,6 +69,29 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
           phase: phase + 1,
           selectedPlantArea,
           isFirstTimeGarden,
+        });
+        return;
+      }
+
+      // *** Flow for static navigation day 13 closing dialog ***
+      if (currentQuestLine?.id === THE_CHARM_OF_BEFRIENDING_ID) {
+        const newQuestLineId = DAY_13_CLOSING_DIALOGUE_ID;
+        const newQuests = values(allQuests?.[newQuestLineId].quests);
+
+        dispatch(
+          questSlice.actions.saveCurrentQuestLine({
+            id: newQuests[0].questLineId,
+            quests: newQuests,
+          }),
+        );
+
+        dispatch(questSlice.actions.saveCurrentQuestIdx(0));
+
+        navigation.push('QuestStack', {
+          screen: newQuests[0].type,
+          params: {
+            data: { ...newQuests[0] },
+          },
         });
         return;
       }

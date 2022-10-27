@@ -9,7 +9,11 @@ import { questSlice } from '../redux/slices';
 import { containsFirstPlayer, containsSecondPlayer, Nullable } from '../utils';
 import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
-import { DatoCMSTextVariables } from '../constants/quest';
+import {
+  DatoCMSTextVariables,
+  PLANTS_CHARM_IDS,
+  PLANTS_CHARM_NEXT_QUEST_LINE_IDS,
+} from '../constants/quest';
 import { SVG } from '../assets/svg';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
@@ -96,6 +100,12 @@ export const useNavigateNextQuest = () => {
   const isCurrentQuestCompleted = useAppSelector(
     state => state.quest.isCurrentQuestCompleted,
   );
+  const currentLanguage = useAppSelector(
+    state => state.settings.settings.language,
+  );
+  const allQuests = useAppSelector(
+    state => state.quest.allQuests?.[currentLanguage ?? 'en'],
+  );
 
   const navigateNextQuest = useCallback(() => {
     if (currentQuestLine) {
@@ -110,12 +120,15 @@ export const useNavigateNextQuest = () => {
           data: { ...nextQuest },
         });
       } else {
+        // *** Flow for completed charms ***
         if (isCurrentQuestCompleted) {
           dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
           navigation.push('GardenStack', {
             screen: 'CompletedCharmEnd',
           });
         }
+
+        // *** Flow for interrupted charms ***
         if (interruptedQuestLine?.id === currentQuestLine.id) {
           dispatch(questSlice.actions.updateInterruptedQuestLine(null));
         }
@@ -124,19 +137,50 @@ export const useNavigateNextQuest = () => {
         );
         dispatch(questSlice.actions.updateCurrentDayQuestsStack());
 
-        if (!currentQuestLine?.quests[nextQuestIdx - 1].elixirReward) {
-          navigation.push('GardenStack', {
-            screen: 'Garden',
+        // ***  Flow for plant charms static navigation ***
+        const plantCharmIdx = _.findIndex(
+          PLANTS_CHARM_IDS,
+          item => item === currentQuestLine?.id,
+        );
+
+        if (plantCharmIdx !== -1) {
+          const newQuestLineId =
+            PLANTS_CHARM_NEXT_QUEST_LINE_IDS[plantCharmIdx];
+          const newQuests = _.values(allQuests?.[newQuestLineId].quests);
+
+          dispatch(
+            questSlice.actions.saveCurrentQuestLine({
+              id: newQuests[0].questLineId,
+              quests: newQuests,
+            }),
+          );
+          dispatch(questSlice.actions.saveCurrentQuestIdx(0));
+          navigation.push('QuestStack', {
+            screen: newQuests[0].type,
             params: {
-              isPlanting: false,
-              isFirstTime: false,
-              isFirstTimeGarden: false,
+              data: { ...newQuests[0] },
             },
           });
+          return;
+        }
+
+        // *** Flow for default charms
+        if (!currentQuestLine?.quests[nextQuestIdx - 1].elixirReward) {
+          setTimeout(() => {
+            navigation.push('GardenStack', {
+              screen: 'Garden',
+              params: {
+                isPlanting: false,
+                isFirstTime: false,
+                isFirstTimeGarden: false,
+              },
+            });
+          }, 1);
         }
       }
     }
   }, [
+    allQuests,
     currentQuestIdx,
     currentQuestLine,
     dispatch,

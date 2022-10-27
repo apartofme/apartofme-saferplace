@@ -13,7 +13,7 @@ import {
   ExtendedText,
   MainHeader,
 } from '../../../../../components';
-import { elixirSlice, questSlice } from '../../../../../redux/slices';
+import { questSlice } from '../../../../../redux/slices';
 import { COLORS } from '../../../../../themes/colors';
 import { generalStyles } from '../../../../../utils/styles';
 import { ISkipCharmAcknowledgementScreenProps } from './SkipCharmAcknowledgement.types';
@@ -21,6 +21,7 @@ import { SVG } from '../../../../../assets/svg';
 import CONFIG from '../../../../../config/env';
 import { BACKGROUND_IMAGES } from '../../../../../assets';
 import { styles } from './SkipCharmAcknowledgement.styles';
+import { IQuest } from '../../../../../models/IQuest';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const CompassionateGuideIcon = SVG.CompassionateGuideIcon;
@@ -48,21 +49,23 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
         return;
       }
       if (interruptedQuestLine) {
-        dispatch(
-          questSlice.actions.saveCompletedQuestsId(+interruptedQuestLine.id),
-        );
-
         const interruptedQuests = values(
           allQuests?.[+interruptedQuestLine.id].quests,
         );
-        dispatch(
-          elixirSlice.actions.updateFullnessElixir(
-            interruptedQuests[interruptedQuests.length - 1].elixirReward,
-          ),
-        );
+
         dispatch(questSlice.actions.updateCurrentDayQuestsStack());
         dispatch(questSlice.actions.updateInterruptedQuestLine(null));
 
+        navigation.push('QuestStack', {
+          screen: 'ElixirDoubleInteraction',
+          params: {
+            data: {
+              title: 'screens.recognition.double_interaction.title',
+              elixirReward:
+                interruptedQuests[interruptedQuests.length - 1].elixirReward,
+            } as IQuest,
+          },
+        });
         navigation.push('Garden', {
           isFirstTime: false,
           isFirstTimeGarden: false,

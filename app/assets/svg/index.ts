@@ -211,6 +211,7 @@ import { WriteLetterIcon } from './tryNew/WriteLetterIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
+  AnnoyedGuideIcon: AnnoyedGuideIcon,
   BarefootIcon: BarefootIcon,
   BirdOnBranchesIcon: BirdOnBranchesIcon,
   BookOnLeavesIcon: BookOnLeavesIcon,
@@ -229,6 +230,7 @@ export const SVG = {
   HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
   HappyGuideIcon: HappyGuideIcon,
   HappySidekickGuideIcon: HappySidekickGuideIcon,
+  HappySmokeSidekickGuideIcon: HappySmokeSidekickGuideIcon,
   NadiyaTextIcon: NadiyaTextIcon,
   OpenBookIcon: OpenBookIcon,
   OpenedEyeIcon: OpenedEyeIcon,
@@ -237,6 +239,8 @@ export const SVG = {
   OrangeQuestionMarkIcon: OrangeQuestionMarkIcon,
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
   QuietPlaceIcon: QuietPlaceIcon,
+  ReliefHappyTreeIcon: ReliefHappyTreeIcon,
+  PainedBirdTreeIcon: PainedBirdTreeIcon,
   RoundPauseButtonIcon: RoundPauseButtonIcon,
   RoundTriangleButtonIcon: RoundTriangleButtonIcon,
   SkipNextIcon: SkipNextIcon,

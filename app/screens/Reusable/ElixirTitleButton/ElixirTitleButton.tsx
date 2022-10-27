@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -10,6 +10,8 @@ import { generalStyles } from '../../../utils/styles';
 import { styles } from './ElixirTitleButton.styles';
 import { elixirSlice, questSlice } from '../../../redux/slices';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
+import { BACKGROUND_IMAGES } from '../../../assets';
+import { ELIXIR_SVG } from '../../../assets/svg';
 
 export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
@@ -25,7 +27,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     );
 
     const elixirAnimation = useMemo(
-      () => getElixirAnimationKeyByRange(fullnessElixir ?? 0),
+      () => ELIXIR_SVG[getElixirAnimationKeyByRange(fullnessElixir ?? 0)],
       [fullnessElixir],
     );
 
@@ -93,19 +95,22 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     ]);
 
     return (
-      <SafeAreaView style={generalStyles.flex}>
-        <BottomButtonView
-          buttonTitle={buttonTitle}
-          onSubmit={onSabmit}
-          style={styles.container}>
-          {title && (
-            <ExtendedText preset="title" style={styles.title}>
-              {title}
-            </ExtendedText>
-          )}
-          {/* // TODO: change text to image */}
-          <ExtendedText>{elixirAnimation}</ExtendedText>
-        </BottomButtonView>
-      </SafeAreaView>
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.flex}>
+        <SafeAreaView style={generalStyles.flex}>
+          <BottomButtonView
+            buttonTitle={buttonTitle}
+            onSubmit={onSabmit}
+            style={styles.container}>
+            {title && (
+              <ExtendedText preset="title" style={styles.title}>
+                {title}
+              </ExtendedText>
+            )}
+            {elixirAnimation}
+          </BottomButtonView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

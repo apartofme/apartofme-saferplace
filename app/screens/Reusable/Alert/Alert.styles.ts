@@ -14,7 +14,7 @@ export interface IAlertStyles {
 export const styles = StyleSheet.create<IAlertStyles>({
   modalContainer: {
     flex: 1,
-    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 95),
+    backgroundColor: hexTransparency(COLORS.DARK_PURPLE, 95),
   },
   container: {
     paddingHorizontal: 16,
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create<IAlertStyles>({
     textAlign: 'center',
     maxWidth: 279,
     marginBottom: 32,
-    color: COLORS.LIGHT_GREY,
+    color: COLORS.BRILLIANT_WHITE,
   },
   imageContainer: {
     zIndex: 10,

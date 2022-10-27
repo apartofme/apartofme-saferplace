@@ -33,7 +33,9 @@ export const GroundingTimer: React.FC<IGroundingTimerProps> = ({
     } else if (!isTimerPause) {
       navigation.navigate(onNextRouteName);
     }
-  }, [isTimerPause, navigation, onNextRouteName, timerValue]);
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimerPause, timerValue]);
 
   const timerStatus = useCallback(() => {
     setIsTimerPause(!isTimerPause);

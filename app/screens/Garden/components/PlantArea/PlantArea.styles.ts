@@ -1,5 +1,8 @@
 import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+import { hexTransparency } from '../../../../utils';
+
 export interface IPlantingPlantStyles {
   container: ViewStyle;
   tree: ImageStyle;
@@ -12,7 +15,6 @@ export interface IPlantingPlantStyles {
   emptyPlantArea: ViewStyle;
 }
 
-// const isCriticalHeight = WINDOW_HEIGHT < CRITICAL_HEIGHT;
 const plantAreaSize = 96;
 
 export const styles = StyleSheet.create<IPlantingPlantStyles>({
@@ -25,14 +27,13 @@ export const styles = StyleSheet.create<IPlantingPlantStyles>({
   tree: {
     position: 'absolute',
     alignSelf: 'center',
-    // height: isCriticalHeight ? 278 / 1.5 : 278,
-    // width: isCriticalHeight ? 212 / 1.5 : 212,
     zIndex: 0,
   },
   borderTransparent: {
     borderColor: 'transparent',
   },
   plantAreaBorder: {
+    borderColor: COLORS.BRILLIANT_WHITE,
     borderWidth: 2,
     borderStyle: 'dashed',
     zIndex: 0,
@@ -55,7 +56,7 @@ export const styles = StyleSheet.create<IPlantingPlantStyles>({
     marginVertical: (-plantAreaSize + 16) / 2,
   },
   activePlantArea: {
-    backgroundColor: 'blue',
+    backgroundColor: hexTransparency(COLORS.BRILLIANT_WHITE, 50),
   },
   emptyPlantArea: {
     height: plantAreaSize,

@@ -2,13 +2,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { useIsFocused } from '@react-navigation/native';
-import {
-  ImageBackground,
-  Pressable,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
+import _ from 'lodash';
 
 import {
   useAppDispatch,
@@ -30,6 +26,7 @@ import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { CharmBookMenuScreen, CharmBookMenuType } from '../CharmBookMenu';
+import { OPEN_DIALOG_IDS } from '../../../constants/quest';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
@@ -40,27 +37,21 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const { t } = useTranslation();
   const appStatus = useAppState();
   const dispatch = useAppDispatch();
+  const isFocused = useIsFocused();
+
   const [isModal, setIsModal] = useState(false);
   const [charmBookType, setCharmBookType] = useState(
     CharmBookMenuType.NoneCharm,
   );
-
-  const isFocused = useIsFocused();
+  const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);
+  const [activePlantArea, setActivePlantArea] =
+    useState<Nullable<PlantAreaType>>(null);
 
   const isBackgroundMusicEnabled = useAppSelector(
     state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
   );
-
-  useEffect(() => {
-    if (isFocused && appStatus === 'active' && isBackgroundMusicEnabled) {
-      AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
-    } else {
-      AudioPlayerHelper.stop();
-    }
-  }, [appStatus, isFocused, isBackgroundMusicEnabled]);
-
-  const isCurrentDayQuestStackEmpty = useAppSelector(
-    state => !state.quest.currentDayQuestsStack.length,
+  const currentDayQuestStack = useAppSelector(
+    state => state.quest.currentDayQuestsStack ?? [],
   );
   const isInterruptedQuestLineEmpty = useAppSelector(
     state => !state.quest.interruptedQuestLine,
@@ -70,18 +61,28 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const interruptedQuestLine = useAppSelector(
     state => state.quest.interruptedQuestLine,
   );
-  const isCurrentDayQuestsStackEmpty = useAppSelector(
-    state => !state.quest.currentQuestStack.length,
-  );
-
   const parentdAvatar =
     useAppSelector(state => state.user.parent?.avatar) ??
     `Circle${AvatarsNameType.Rabbit}`;
+  const currentLanguage = useAppSelector(
+    state => state.settings.settings.language ?? 'en',
+  );
+  const allQuests = useAppSelector(
+    state => state.quest.allQuests?.[currentLanguage],
+  );
+
   const AvatarIcon = AVATARS_SVG[parentdAvatar];
 
-  const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);
-  const [activePlantArea, setActivePlantArea] =
-    useState<Nullable<PlantAreaType>>(null);
+  useEffect(() => {
+    if (isFocused && appStatus === 'active' && isBackgroundMusicEnabled) {
+      AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
+      showDayOpenDialog();
+    } else {
+      AudioPlayerHelper.stop();
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appStatus, isFocused, isBackgroundMusicEnabled]);
 
   useEffect(() => {
     if (appStatus === 'background') {
@@ -95,15 +96,17 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       if (
         nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
         !interruptedQuestLine &&
-        !isCurrentDayQuestsStackEmpty
+        currentDayQuestStack.length
       ) {
         dispatch(questSlice.actions.setLastDayUpdate());
         dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
         dispatch(questSlice.actions.setCurrentDayQuestsStack());
+        showDayOpenDialog();
       }
       setIsPrevStatusBackground(false);
       return;
     }
+    // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatus]);
 
@@ -120,7 +123,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     navigation.navigate('MenuStack');
   }, [navigation]);
 
-  const onTitlePress = useCallback(() => {
+  const onTilePress = useCallback(() => {
     if (activePlantArea) {
       navigation.navigate('MixingElixirStack', {
         screen: 'ElixirInstruction',
@@ -133,33 +136,63 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     }
   }, [activePlantArea, isFirstTimeGarden, navigation]);
 
+  useEffect(() => {
+    if (activePlantArea) {
+      onTilePress();
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePlantArea]);
+
   const title = useMemo(() => {
     const isDisplayNone =
-      isCurrentDayQuestStackEmpty && isInterruptedQuestLineEmpty && !isPlanting;
+      !currentDayQuestStack.length &&
+      isInterruptedQuestLineEmpty &&
+      !isPlanting;
 
     return (
-      <Pressable
-        onPress={onTitlePress}
-        style={[styles.titleContainer, isDisplayNone && styles.displayNone]}
-        disabled={!isPlanting}>
+      <View
+        style={[styles.titleContainer, isDisplayNone && styles.displayNone]}>
         <ExtendedText preset="tertiary-text-medium" style={styles.title}>
           {isPlanting
             ? t('screens.garden.tapTitle')
             : t('screens.garden.tapBook')}
         </ExtendedText>
-      </Pressable>
+      </View>
     );
-  }, [
-    isCurrentDayQuestStackEmpty,
-    isInterruptedQuestLineEmpty,
-    isPlanting,
-    onTitlePress,
-    t,
-  ]);
+  }, [currentDayQuestStack, isInterruptedQuestLineEmpty, isPlanting, t]);
 
   const setModalStatus = useCallback(() => {
     setIsModal(!isModal);
   }, [isModal]);
+
+  const showDayOpenDialog = useCallback(() => {
+    const dayOpenDialogIdx = _.findIndex(
+      OPEN_DIALOG_IDS,
+      item => item === currentDayQuestStack[currentDayQuestStack.length - 1],
+    );
+
+    if (dayOpenDialogIdx !== -1) {
+      const newQuestLineId = OPEN_DIALOG_IDS[dayOpenDialogIdx];
+      const newQuests = _.values(allQuests?.[newQuestLineId].quests);
+
+      dispatch(
+        questSlice.actions.saveCurrentQuestLine({
+          id: newQuests[0].questLineId,
+          quests: newQuests,
+        }),
+      );
+
+      dispatch(questSlice.actions.saveCurrentQuestIdx(0));
+
+      navigation.push('QuestStack', {
+        screen: newQuests[0].type,
+        params: {
+          data: { ...newQuests[0] },
+        },
+      });
+    }
+  }, [allQuests, currentDayQuestStack, dispatch, navigation]);
 
   return (
     <ImageBackground

@@ -1,6 +1,6 @@
 import { useIsFocused } from '@react-navigation/native';
 import moment from 'moment';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
@@ -8,7 +8,12 @@ import { BACKGROUND_IMAGES } from '../../../assets';
 import { PLANTS_SVG } from '../../../assets/svg';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
-import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAppState,
+  useMount,
+} from '../../../hooks';
 import { plantSlice } from '../../../redux/slices/plantSlice';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
@@ -24,6 +29,10 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
     const dispatch = useAppDispatch();
     const isFocused = useIsFocused();
     const appStatus = useAppState();
+
+    const [titleKey, setTitleKey] = useState('');
+    const [descriptionKey, setDescriptionKey] = useState('');
+    const [PlantIcon, setPlantIcon] = useState(<PLANTS_SVG.compassionGrown />);
 
     const isSoundFXEnabled = useAppSelector(
       state => state.settings.settings.audioSettings?.isSoundFXEnabled,
@@ -59,38 +68,28 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
       selectedPlantArea,
     ]);
 
-    const titleKey = useMemo(() => {
+    useMount(() => {
       switch (currentPlant) {
         case PlantsType.Compassion:
-          return 'screens.mixing_exixir.success.compassion.title';
+          setTitleKey('screens.mixing_exixir.success.compassion.title');
+          setDescriptionKey(
+            'screens.mixing_exixir.success.compassion.description',
+          );
+          setPlantIcon(<PLANTS_SVG.compassionGrown height={200} width={200} />);
+          return;
         case PlantsType.Calm:
-          return 'screens.mixing_exixir.success.calm.title';
+          setTitleKey('screens.mixing_exixir.success.calm.title');
+          setDescriptionKey('screens.mixing_exixir.success.calm.description');
+          setPlantIcon(<PLANTS_SVG.calmGrown height={200} width={200} />);
+          return;
         default:
-          return 'screens.mixing_exixir.success.courage.title';
+          setTitleKey('screens.mixing_exixir.success.courage.title');
+          setDescriptionKey(
+            'screens.mixing_exixir.success.courage.description',
+          );
+          setPlantIcon(<PLANTS_SVG.courageGrown height={200} width={200} />);
       }
-    }, [currentPlant]);
-
-    const descriptionKey = useMemo(() => {
-      switch (currentPlant) {
-        case PlantsType.Compassion:
-          return 'screens.mixing_exixir.success.compassion.description';
-        case PlantsType.Calm:
-          return 'screens.mixing_exixir.success.calm.description';
-        default:
-          return 'screens.mixing_exixir.success.courage.description';
-      }
-    }, [currentPlant]);
-
-    const PlantIcon = useMemo(() => {
-      switch (currentPlant) {
-        case PlantsType.Compassion:
-          return PLANTS_SVG.compassionGrown;
-        case PlantsType.Calm:
-          return PLANTS_SVG.calmGrown;
-        default:
-          return PLANTS_SVG.courageGrown;
-      }
-    }, [currentPlant]);
+    });
 
     useEffect(() => {
       if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
@@ -109,7 +108,7 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
             buttonTitle={t('buttons.back_to_clearing')}
             onSubmit={onSubmit}>
             <View style={styles.container}>
-              <PlantIcon height={200} width={200} />
+              {PlantIcon}
               <ExtendedText
                 preset="large-title"
                 style={[generalStyles.brilliantWhiteCenter, styles.title]}>

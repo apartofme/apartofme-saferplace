@@ -1,6 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, TouchableOpacity, View } from 'react-native';
+import {
+  ImageBackground,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+} from 'react-native';
 
 import { getKeyFromLocalizationString } from '../../utils';
 import { ExtendedText } from '../ExtendedText';
@@ -8,11 +13,11 @@ import { IDialogViewProps } from './DialogView.types';
 import { styles } from './DialogView.styles';
 import { SVG } from '../../assets/svg';
 import { generalStyles } from '../../utils/styles';
+import { BACKGROUND_IMAGES } from '../../assets';
 
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 
 export const DialogView: React.FC<IDialogViewProps> = ({
-  backgroundImage,
   dialog,
   onSubmit,
   initialIdx = 0,
@@ -57,10 +62,16 @@ export const DialogView: React.FC<IDialogViewProps> = ({
   ]);
 
   return (
-    <ImageBackground source={backgroundImage} style={[generalStyles.flex]}>
-      <View style={styles.container}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.GARDEN}
+      style={generalStyles.flex}>
+      <SafeAreaView style={styles.container}>
         {Icon && (
-          <View style={currentSpeech.isBlur && styles.inactiveIconContainer}>
+          <View
+            style={[
+              styles.iconContainer,
+              currentSpeech.isBlur && styles.inactiveIconContainer,
+            ]}>
             <Icon />
           </View>
         )}
@@ -73,13 +84,12 @@ export const DialogView: React.FC<IDialogViewProps> = ({
             {t(currentSpeech.textKey)}
           </ExtendedText>
         </View>
-
         <TouchableOpacity
           onPress={getCorrectOnPress}
           style={styles.roundButton}>
           <RoundTriangleButtonIcon />
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     </ImageBackground>
   );
 };

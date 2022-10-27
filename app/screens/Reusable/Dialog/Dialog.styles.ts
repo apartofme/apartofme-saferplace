@@ -22,8 +22,7 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
   iconContainer: {
     position: 'absolute',
     alignSelf: 'center',
-    //backgroundColor: 'red',
-    top: -50,
+    top: -30,
   },
   dialogContainer: {
     flex: 1,
@@ -37,10 +36,7 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
   },
   roundButton: {
     alignSelf: 'center',
-    transform: [
-      {
-        translateY: -40,
-      },
-    ],
+    marginTop: -40,
+    marginBottom: 16,
   },
 });

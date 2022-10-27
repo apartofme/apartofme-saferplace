@@ -1,5 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface IAnimationTitleStyles {
   container: ViewStyle;
   title: TextStyle;
@@ -17,6 +19,7 @@ export const styles = StyleSheet.create<IAnimationTitleStyles>({
     marginBottom: -142,
   },
   title: {
+    color: COLORS.BRILLIANT_WHITE,
     marginTop: 134,
     textAlign: 'center',
   },

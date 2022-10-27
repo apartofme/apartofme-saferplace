@@ -11,3 +11,5 @@ export { ElixirTwoHalfIcon } from './ElixirTwoHalfIcon';
 export { ElixirTwoIcon } from './ElixirTwoIcon';
 export { ElixirZeroHalfIcon } from './ElixirZeroHalf';
 export { ElixirZeroIcon } from './ElixirZeroIcon';
+export { PainTreeRootIcon } from './PainTreeRootIcon';
+export { SadTreeRootIcon } from './SadTreeRootIcon';
