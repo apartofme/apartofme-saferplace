@@ -45,6 +45,5 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
   },
   activeButton: {
     borderWidth: 4,
-    backgroundColor: '#3C415C',
   },
 });
