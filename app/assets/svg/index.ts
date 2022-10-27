@@ -210,8 +210,7 @@ import { WriteLetterIcon } from './tryNew/WriteLetterIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
-  // TODO: uncoment
-  // AnnoyedGuideIcon: AnnoyedGuideIcon,
+  AnnoyedGuideIcon: AnnoyedGuideIcon,
   BarefootIcon: BarefootIcon,
   BirdOnBranchesIcon: BirdOnBranchesIcon,
   BookOnLeavesIcon: BookOnLeavesIcon,
@@ -230,6 +229,7 @@ export const SVG = {
   HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
   HappyGuideIcon: HappyGuideIcon,
   HappySidekickGuideIcon: HappySidekickGuideIcon,
+  HappySmokeSidekickGuideIcon: HappySmokeSidekickGuideIcon,
   NadiyaTextIcon: NadiyaTextIcon,
   OpenBookIcon: OpenBookIcon,
   OpenedEyeIcon: OpenedEyeIcon,
@@ -239,8 +239,7 @@ export const SVG = {
   PurpleCheckMarkIcon: PurpleCheckMarkIcon,
   QuietPlaceIcon: QuietPlaceIcon,
   ReliefHappyTreeIcon: ReliefHappyTreeIcon,
-  // TODO: uncoment
-  // PainedBirdTreeIcon: PainedBirdTreeIcon,
+  PainedBirdTreeIcon: PainedBirdTreeIcon,
   RoundPauseButtonIcon: RoundPauseButtonIcon,
   RoundTriangleButtonIcon: RoundTriangleButtonIcon,
   SkipNextIcon: SkipNextIcon,

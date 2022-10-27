@@ -8,11 +8,12 @@ import { IDialogViewProps } from './DialogView.types';
 import { styles } from './DialogView.styles';
 import { SVG } from '../../assets/svg';
 import { generalStyles } from '../../utils/styles';
+import { BACKGROUND_IMAGES } from '../../assets';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 
 export const DialogView: React.FC<IDialogViewProps> = ({
-  backgroundImage,
   dialog,
   onSubmit,
   initialIdx = 0,
@@ -57,10 +58,16 @@ export const DialogView: React.FC<IDialogViewProps> = ({
   ]);
 
   return (
-    <ImageBackground source={backgroundImage} style={[generalStyles.flex]}>
-      <View style={styles.container}>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.GARDEN}
+      style={generalStyles.flex}>
+      <SafeAreaView style={styles.container}>
         {Icon && (
-          <View style={currentSpeech.isBlur && styles.inactiveIconContainer}>
+          <View
+            style={[
+              currentSpeech.isBlur && styles.inactiveIconContainer,
+              styles.iconContainer,
+            ]}>
             <Icon />
           </View>
         )}
@@ -73,13 +80,12 @@ export const DialogView: React.FC<IDialogViewProps> = ({
             {t(currentSpeech.textKey)}
           </ExtendedText>
         </View>
-
         <TouchableOpacity
           onPress={getCorrectOnPress}
           style={styles.roundButton}>
           <RoundTriangleButtonIcon />
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     </ImageBackground>
   );
 };

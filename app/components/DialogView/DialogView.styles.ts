@@ -8,21 +8,26 @@ export interface IDialogViewStyles {
   roundButton: ViewStyle;
   title: TextStyle;
   inactiveIconContainer: ViewStyle;
+  iconContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IDialogViewStyles>({
   container: {
+    marginTop: 48 + 40,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
     paddingHorizontal: 40,
-    paddingBottom: 5,
+  },
+  iconContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: -30,
   },
   dialogContainer: {
-    marginTop: 12,
-    minHeight: 304,
-    paddingTop: 40,
-    paddingBottom: 40,
+    flex: 1,
+    maxHeight: 304,
+    paddingVertical: 40,
     paddingHorizontal: 24,
     borderRadius: 24,
     borderWidth: 4,
@@ -34,11 +39,14 @@ export const styles = StyleSheet.create<IDialogViewStyles>({
     width: 240,
   },
   roundButton: {
-    transform: [
-      {
-        translateY: -40,
-      },
-    ],
+    alignSelf: 'center',
+    // transform: [
+    //   {
+    //     translateY: -40,
+    //   },
+    // ],
+    marginTop: -40,
+    marginBottom: 16,
   },
   inactiveIconContainer: {
     opacity: 0.3,

@@ -31,7 +31,7 @@ export const GARDEN_TUTORIAL_DIALOG: ReadonlyArray<ISpeech> = [
   },
   {
     textKey: 'screens.garden.tutorial_dialog.eighth',
-    iconKey: 'HappySidekickSmokeGuideIcon',
+    iconKey: 'HappySmokeSidekickGuideIcon',
   },
   {
     textKey: 'screens.garden.tutorial_dialog.ninth',

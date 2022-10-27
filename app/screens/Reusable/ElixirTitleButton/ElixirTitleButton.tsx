@@ -95,7 +95,9 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     ]);
 
     return (
-      <ImageBackground source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}>
+      <ImageBackground
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView
             buttonTitle={buttonTitle}
