@@ -83,7 +83,7 @@ export const ALL_QUESTS_STACK = [
   //* DAY 12
   [
     55602870, // The Charm of The Open Hand
-    55602865, // Day 12 - Opening dialogue
+    55602869, // Day 12 - Opening dialogue
     55602867, // The Charm of Discovery 2 Part 2
   ],
   //* DAY 13

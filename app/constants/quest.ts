@@ -33,7 +33,7 @@ export const OPEN_DIALOG_IDS = [
   55602853, // Day 9 - Opening Dialogue
   55602856, // Day 10 - Opening Dialogue
   55602862, // Day 11 - Opening Dialogue
-  55602865, // Day 12 - Opening dialogue
+  55602869, // Day 12 - Opening dialogue
   55602871, // Day 13 - Opening dialogue
   55602874, // Day 14 - Opening dialogue
 ];

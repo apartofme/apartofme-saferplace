@@ -26,7 +26,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       state => state.quest.currentQuestLine,
     );
 
-    const elixirAnimation = useMemo(
+    const ElixirAnimation = useMemo(
       () => ELIXIR_SVG[getElixirAnimationKeyByRange(fullnessElixir ?? 0)],
       [fullnessElixir],
     );
@@ -66,6 +66,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
           });
           return;
         }
+        console.log(1);
 
         navigation.push('GardenStack', {
           screen: 'Garden',
@@ -108,7 +109,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
                 {title}
               </ExtendedText>
             )}
-            {elixirAnimation}
+            <ElixirAnimation />
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>
