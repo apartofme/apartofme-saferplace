@@ -1,6 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, TouchableOpacity, View } from 'react-native';
+import {
+  ImageBackground,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+} from 'react-native';
 
 import { getKeyFromLocalizationString } from '../../utils';
 import { ExtendedText } from '../ExtendedText';
@@ -9,7 +14,6 @@ import { styles } from './DialogView.styles';
 import { SVG } from '../../assets/svg';
 import { generalStyles } from '../../utils/styles';
 import { BACKGROUND_IMAGES } from '../../assets';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 

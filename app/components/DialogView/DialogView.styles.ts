@@ -40,11 +40,6 @@ export const styles = StyleSheet.create<IDialogViewStyles>({
   },
   roundButton: {
     alignSelf: 'center',
-    // transform: [
-    //   {
-    //     translateY: -40,
-    //   },
-    // ],
     marginTop: -40,
     marginBottom: 16,
   },
