@@ -1,14 +1,15 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface ITroublesomeSpiritQuestionScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   cardContainer: ViewStyle;
   card: ViewStyle;
-  description: TextStyle;
+  subtitle: TextStyle;
 }
 
-// TODO: change to correct styles
 export const styles = StyleSheet.create<ITroublesomeSpiritQuestionScreenStyles>(
   {
     container: {
@@ -17,6 +18,8 @@ export const styles = StyleSheet.create<ITroublesomeSpiritQuestionScreenStyles>(
     title: {
       paddingHorizontal: 24,
       paddingBottom: 80,
+      color: COLORS.BRILLIANT_WHITE,
+      textAlign: 'center',
     },
     cardContainer: {
       flex: 1,
@@ -28,12 +31,15 @@ export const styles = StyleSheet.create<ITroublesomeSpiritQuestionScreenStyles>(
       alignItems: 'center',
       maxHeight: 240,
       paddingHorizontal: 24,
-      backgroundColor: '#1A1A1A',
+      backgroundColor: COLORS.PRIMARY_PURPLE,
       borderRadius: 24,
+      borderColor: COLORS.PRIMARY_ORANGE,
+      borderWidth: 2,
     },
-    description: {
+    subtitle: {
       textAlign: 'center',
-      color: '#FFFFFF',
+      color: COLORS.PRIMARY_ORANGE,
+      marginTop: 16,
     },
   },
 );
