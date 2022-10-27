@@ -209,6 +209,7 @@ import { SayHelloIcon } from './tryNew/SayHelloIcon';
 import { ShareIcon } from './tryNew/ShareIcon';
 import { TryByYourselfIcon } from './tryNew/TryByYourselfIcon';
 import { WriteLetterIcon } from './tryNew/WriteLetterIcon';
+import { AngryTreeIcon } from './AngryTreeIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -262,6 +263,7 @@ export const CHARMS_SVG = {
   AcceptanceCharmIllustrationIcon: AcceptanceIllustrationIcon,
   AngrySadSmokeGuideIcon: AngrySadSmokeGuideIcon,
   AngrySmokeGuideIcon: AngrySmokeGuideIcon,
+  AngryTreeIcon: AngryTreeIcon,
   AnnoyedAngrySmokeGuideIcon: AnnoyedAngrySmokeGuideIcon,
   AnnoyedGuideIcon: AnnoyedGuideIcon,
   AnnoyedSidekickGuideIcon: AnnoyedSidekickGuideIcon,
