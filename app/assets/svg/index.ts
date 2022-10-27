@@ -92,6 +92,7 @@ import {
   HappySidekickGuideIcon,
   HappySmokeGuideIcon,
   HappySmokeSidekickGuideIcon,
+  ShockedSidekickGuideIcon,
   WiseGuideIcon,
 } from './guide';
 import {
@@ -318,6 +319,7 @@ export const CHARMS_SVG = {
   ReliefHappyTreeIcon: ReliefHappyTreeIcon,
   SadTreeIcon: SadTreeIcon,
   SanctuaryCharmIllustrationIcon: SanctuaryIllustrationIcon,
+  ShockedSidekickGuideIcon: ShockedSidekickGuideIcon,
   SoftBellyBreathingCharmIllustrationIcon: SlowWindIllustrationIcon,
   StationeryIcon: StationeryIcon,
   StressedPlaceOnBodyIcon: StressedPlaceOnBodyIcon,

@@ -10,5 +10,6 @@ export { HappyGuideIcon } from './HappyGuideIcon';
 export { HappySidekickGuideIcon } from './HappySidekickGuideIcon';
 export { HappySmokeSidekickGuideIcon } from './HappySmokeSidekickGuideIcon';
 export { AnnoyedGuideIcon } from './AnnoyedGuideIcon';
+export { ShockedSidekickGuideIcon } from './ShockedSidekickGuideIcon';
 export { WiseGuideIcon } from './WiseGuideIcon';
 export { HappySmokeGuideIcon } from './HappySmokeGuideIcon';
