@@ -24,5 +24,6 @@ export const styles = StyleSheet.create<IFeedbackScreenStyles>({
   inputContainer: {
     marginTop: 30,
     height: 160,
+    marginBottom: 24,
   },
 });

@@ -1,3 +1,5 @@
 import { TextInputProps } from 'react-native';
 
-export type IMultilineTextInputProps = TextInputProps;
+export interface IMultilineTextInputProps extends TextInputProps {
+  setIsInputFocus?: (value: boolean) => void;
+}

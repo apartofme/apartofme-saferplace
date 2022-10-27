@@ -39,7 +39,7 @@ export const FrequentlyAskedQuestionsScreen: React.FC<IFrequentlyAskedQuestionsS
               data={ASKED_QUESTIONS}
               renderItem={renderItem}
               showsVerticalScrollIndicator={false}
-              style={generalStyles.flex}
+              style={styles.list}
             />
           </View>
         </SafeAreaView>

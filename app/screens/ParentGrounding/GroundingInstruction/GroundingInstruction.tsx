@@ -56,7 +56,11 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
           <ExtendedText preset="title" style={styles.title}>
             {t('screens.parent_grounding_exercise.instruction.title')}
           </ExtendedText>
-          <FlatList data={INSTRUCTION_LIST} renderItem={renderItem} />
+          <FlatList
+            data={INSTRUCTION_LIST}
+            renderItem={renderItem}
+            showsVerticalScrollIndicator={false}
+          />
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>

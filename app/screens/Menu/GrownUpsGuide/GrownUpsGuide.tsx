@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
 
 import { ExtendedText, MainHeader } from '../../../components';
 import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
@@ -38,7 +38,7 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
           <ExtendedText preset="large-title" style={styles.title}>
             {t('screens.menu.grown_ups_guide.title')}
           </ExtendedText>
-          <View>
+          <ScrollView showsVerticalScrollIndicator={false}>
             {_.map(GROWN_UP_GUIDE_ITEMS, item => (
               <View
                 style={styles.menuButtonContainer}
@@ -49,7 +49,7 @@ export const GrownUpsGuideScreen: React.FC<IGrownUpsGuideScreenProps> = ({
                 />
               </View>
             ))}
-          </View>
+          </ScrollView>
         </View>
       </SafeAreaView>
     </ImageBackground>

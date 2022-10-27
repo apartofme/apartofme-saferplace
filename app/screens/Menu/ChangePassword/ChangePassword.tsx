@@ -19,6 +19,7 @@ import { userSlice } from '../../../redux/slices';
 import { ChangePasswordValidationSchema } from './ChangePassword.validation';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { COLORS } from '../../../themes/colors';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -76,6 +77,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                       style={styles.input}
                       placeholder={t('placeholders.enter_current_password')}
                       onChangeText={handleChange('currentPassword')}
+                      placeholderTextColor={COLORS.LIGHT_GREY}
                       value={values.currentPassword}
                     />
                     <ExtendedTextInput
@@ -84,6 +86,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                       style={styles.input}
                       placeholder={t('placeholders.enter_new_password')}
                       onChangeText={handleChange('newPassword')}
+                      placeholderTextColor={COLORS.LIGHT_GREY}
                       value={values.newPassword}
                     />
                     <ExtendedTextInput
@@ -92,6 +95,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                       style={styles.input}
                       placeholder={t('placeholders.confirm_new_password')}
                       onChangeText={handleChange('confirmNewPassword')}
+                      placeholderTextColor={COLORS.LIGHT_GREY}
                       value={values.confirmNewPassword}
                     />
                   </View>

@@ -100,7 +100,11 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
           <ExtendedText preset="title" style={styles.title}>
             {title ?? t('screens.select_draw_build.title')}
           </ExtendedText>
-          <FlatList data={SELECT_DRAW_BUILD_LIST} renderItem={renderItem} />
+          <FlatList
+            data={SELECT_DRAW_BUILD_LIST}
+            renderItem={renderItem}
+            showsVerticalScrollIndicator={false}
+          />
         </BottomButtonView>
 
         <ExtendedButton

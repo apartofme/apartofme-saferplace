@@ -7,16 +7,18 @@ interface IJournelSupportScreenStyles {
   description: TextStyle;
   inputContainer: ViewStyle;
   focused: ViewStyle;
+  supportContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IJournelSupportScreenStyles>({
   container: {
-    paddingVertical: 40,
+    paddingTop: 40,
     marginHorizontal: 24,
   },
   inputContainer: {
     marginTop: 36,
     height: 160,
+    marginBottom: 24,
   },
   description: {
     marginTop: 20,
@@ -25,5 +27,9 @@ export const styles = StyleSheet.create<IJournelSupportScreenStyles>({
   },
   focused: {
     display: 'none',
+  },
+  supportContainer: {
+    alignItems: 'center',
+    paddingBottom: 40,
   },
 });

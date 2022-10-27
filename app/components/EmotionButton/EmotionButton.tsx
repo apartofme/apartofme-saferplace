@@ -61,6 +61,7 @@ export const EmotionButton: React.FC<IEmotionButtonProps> = ({
       renderItem={renderItem}
       numColumns={2}
       columnWrapperStyle={styles.row}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

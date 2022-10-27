@@ -19,6 +19,7 @@ import { userSlice } from '../../../redux/slices';
 import { DeleteAccountValidationSchema } from './DeleteAccount.validation';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { COLORS } from '../../../themes/colors';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -67,6 +68,7 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
                     placeholder={t('placeholders.enter_current_password')}
                     onChangeText={handleChange('password')}
                     value={values.password}
+                    placeholderTextColor={COLORS.LIGHT_GREY}
                   />
                 </View>
               </View>

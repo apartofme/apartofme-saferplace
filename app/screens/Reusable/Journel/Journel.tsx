@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { ImageBackground, SafeAreaView, View, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IJournelScreenProps } from './Journel.types';
@@ -60,6 +60,13 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
     escapeMenuAlternativeNavigateTo,
   });
 
+  const [isInputFocus, setInputIsFocus] = useState(false);
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    scrollViewRef.current?.scrollToEnd();
+  }, [isInputFocus]);
+
   return (
     <ImageBackground
       source={
@@ -67,33 +74,43 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        <Header />
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
             isArrow={!buttonTitle}
             onSubmit={onSubmit}
-            isDisabledButton={!inputText}
-            style={styles.container}>
-            {title ? (
-              <Title />
-            ) : (
-              <ExtendedText preset="title" style={generalStyles.brilliantWhite}>
-                {t('screens.journel.title')}
-              </ExtendedText>
-            )}
-            {!!description && (
-              <ExtendedText preset="secondary-text" style={styles.description}>
-                {description ?? t('screens.journel.description')}
-              </ExtendedText>
-            )}
-            <View style={styles.inputContainer}>
-              <MultilineTextInput
-                placeholder={t('placeholders.enter_text')}
-                value={inputText}
-                onChangeText={setInputText}
-              />
-            </View>
+            isDisabledButton={!inputText}>
+            <ScrollView
+              ref={scrollViewRef}
+              showsVerticalScrollIndicator={false}>
+              <Header />
+              <View style={styles.container}>
+                {title ? (
+                  <Title />
+                ) : (
+                  <ExtendedText
+                    preset="title"
+                    style={generalStyles.brilliantWhite}>
+                    {t('screens.journel.title')}
+                  </ExtendedText>
+                )}
+                {!!description && (
+                  <ExtendedText
+                    preset="secondary-text"
+                    style={styles.description}>
+                    {description ?? t('screens.journel.description')}
+                  </ExtendedText>
+                )}
+                <View style={styles.inputContainer}>
+                  <MultilineTextInput
+                    placeholder={t('placeholders.enter_text')}
+                    value={inputText}
+                    onChangeText={setInputText}
+                    setIsInputFocus={setInputIsFocus}
+                  />
+                </View>
+              </View>
+            </ScrollView>
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>

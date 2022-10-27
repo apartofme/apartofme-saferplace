@@ -19,7 +19,7 @@ export const styles = StyleSheet.create<IHelpSupportScreenStyles>({
     marginTop: 48,
   },
   list: {
-    paddingTop: 50,
+    marginTop: 50,
     flex: 1,
   },
   menuButtonContainer: {
