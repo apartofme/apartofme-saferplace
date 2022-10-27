@@ -6,4 +6,10 @@ export const AUDIO = {
   DANCING_THUNDER: 'dancing_track_thunder_016.mp3',
   FOREST_AMBIENCE_LOOP: 'forest_ambience_sfx_loop_2_001.mp3',
   PLANT_PLANTING: 'plant_planting_1_005.wav',
+  TIMER_SOUND_MAGIC: 'timer_sound_magic_015.wav',
+  OPENING_CHARMS_BOOK: 'opening_book_of_charms_011.wav',
+  MIXING_ELIXIR_ANIMATION: 'healing_potion_mixing_liquid_shaking_020.wav',
+  OPENING_ELIXIR_ANIMATION: 'cork_popping_sfx_1_021.wav',
+  POURING_ELIXIR_ANIMATION: 'healing_potion_pouring_yes_017.wav',
+  BOTTLE_FILLING: 'healing_potion_bottle_filling_up_018.wav',
 };

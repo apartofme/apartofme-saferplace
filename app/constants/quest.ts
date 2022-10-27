@@ -4,7 +4,7 @@ import { IInstructionItem } from '../screens';
 export const THE_CHARM_OF_BEFRIENDING_ID = '55602872';
 export const JOINT_GROUNDING_EXERCISE_ID = '55785050';
 export const THE_CHARM_OF_THE_MIRROR_ID = '55602854';
-export const THE_CHARM_OF_DISCOVERY_ID = '55602834';
+export const TRY_SOMETHING_NEW_PART_ONE_ID = '55602834';
 export const DAY_13_CLOSING_DIALOGUE_ID = '55602873';
 export const DAY_14_CLOSING_DIALOGUE_ID = '55602887';
 export const THE_CHARM_OF_WEAVING_ID = '55602886';
@@ -45,8 +45,10 @@ export enum DatoCMSTextVariables {
   Child = 'child',
   TroublesomeSpiritQuestion = 'troublesomeSpiritQuestion',
   PlayerEmotion = 'playerEmotion',
-  TrySomethingTitle = 'trySomethingTitle',
-  TrySomethingDescription = 'trySomethingDescription',
+  TrySomethingFirstTitle = 'trySomethingFirstTitle',
+  TrySomethingFirstDescription = 'trySomethingFirstDescription',
+  TrySomethingSecondTitle = 'trySomethingSecondTitle',
+  TrySomethingSecondDescription = 'trySomethingSecondDescription',
   KindnessInput = 'kindnessInput',
 }
 

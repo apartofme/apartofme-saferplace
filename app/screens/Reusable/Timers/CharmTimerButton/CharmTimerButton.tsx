@@ -1,13 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import {
-  BottomButtonView,
-  ExtendedButton,
-  ExtendedText,
-  Timer,
-} from '../../../../components';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
+import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
 import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './CharmTimerButton.styles';
@@ -25,6 +21,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
     crossHeader,
     duration,
     escapeMenuAlternativeNavigateTo,
+    backgroundImage,
   } = route.params.data;
 
   const Header = useRenderQuestHeader({
@@ -34,25 +31,32 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to the real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Header />
         <BottomButtonView
-          buttonTitle={buttonTitle ?? t('buttons.next')}
-          // TODO: change to real function when adding logic
+          buttonTitle={buttonTitle || t('buttons.next')}
           onSubmit={onSubmit}
+          isArrow
           style={styles.container}>
-          <ExtendedButton title={t('buttons.read_out')} />
+          <View style={styles.readLoudContainer}>
+            <ExtendedText
+              preset="tertiary-text-medium"
+              style={generalStyles.brilliantWhite}>
+              {t('Read out loud')}
+            </ExtendedText>
+          </View>
           <Timer
             duration={duration ?? 10}
             isStart={true}
             style={styles.timer}
           />
-          <ExtendedText preset="secondary-text" style={styles.subtitle}>
+          <ExtendedText
+            preset="secondary-text"
+            style={generalStyles.greyCenter}>
             {title}
           </ExtendedText>
         </BottomButtonView>

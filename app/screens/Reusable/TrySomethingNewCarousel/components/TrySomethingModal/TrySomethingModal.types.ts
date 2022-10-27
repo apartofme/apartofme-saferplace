@@ -5,6 +5,6 @@ export interface ITrySomethingModalProps {
   subtitle: string;
   titleHasNickname: boolean;
   backgroundImage: ImageSourcePropType;
-  isDiscovery: boolean;
+  isFirstPart: boolean;
   setModalStatus: () => void;
 }

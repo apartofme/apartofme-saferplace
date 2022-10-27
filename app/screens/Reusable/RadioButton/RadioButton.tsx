@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IRadioButtonScreenProps } from './RadioButton.types';
@@ -44,7 +44,7 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
     text: title,
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
-    style: generalStyles.brilliantWhite,
+    style: styles.title,
   });
 
   const Header = useRenderQuestHeader({
@@ -72,11 +72,13 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
               {description}
             </ExtendedText>
           )}
-          <RadioButtonList
-            data={RADIO_BUTTON_LIST}
-            type={RadioButtonListType.Single}
-            setSelected={setSelectedAnswer}
-          />
+          <View style={styles.listContainer}>
+            <RadioButtonList
+              data={RADIO_BUTTON_LIST}
+              type={RadioButtonListType.Single}
+              setSelected={setSelectedAnswer}
+            />
+          </View>
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>

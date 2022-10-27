@@ -2,22 +2,26 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../../../themes/colors';
 
-interface IAcknowledgementDoubleImageScreenStyles {
+interface IAcknowledgementStopShakingScreenStyles {
   container: ViewStyle;
-  iconContainer: ViewStyle;
+  title: TextStyle;
   description: TextStyle;
 }
 
 export const styles =
-  StyleSheet.create<IAcknowledgementDoubleImageScreenStyles>({
+  StyleSheet.create<IAcknowledgementStopShakingScreenStyles>({
     container: {
       alignItems: 'center',
-      justifyContent: 'space-between',
-      paddingTop: 40,
+      justifyContent: 'flex-end',
+      paddingBottom: 60,
       paddingHorizontal: 40,
-      paddingBottom: 50,
     },
-    iconContainer: {},
+    title: {
+      marginTop: 43,
+      marginBottom: 24,
+      color: COLORS.BRILLIANT_WHITE,
+      textAlign: 'center',
+    },
     description: {
       flex: 1,
       maxHeight: 120,

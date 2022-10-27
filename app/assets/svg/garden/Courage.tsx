@@ -3,7 +3,7 @@ import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
 
 import { ISvgProps } from '../../../utils/types';
 
-export const CourageIcon = ({ width = 120, height = 120 }: ISvgProps) => {
+export const CourageIcon = ({ width = 300, height = 300 }: ISvgProps) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 120 120" fill="none">
       <G clipPath="url(#clip0_2934_414121)">

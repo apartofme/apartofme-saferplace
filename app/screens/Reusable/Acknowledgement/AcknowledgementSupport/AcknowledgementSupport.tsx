@@ -1,18 +1,21 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Image,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
+  View,
 } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
-import { IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './AcknowledgementSupport.styles';
 import { IAcknowledgementSupportScreenProps } from './AcknowledgementSupport.types';
 import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
+import { CHARMS_SVG, SVG } from '../../../../assets/svg';
+
+const OrangeQuestionMarkIcon = SVG.OrangeQuestionMarkIcon;
 
 export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScreenProps> =
   ({ navigation, route }) => {
@@ -23,6 +26,7 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
       description,
       image,
       escapeMenuAlternativeNavigateTo,
+      backgroundImage,
     } = route.params.data;
 
     const onSubmit = useNavigateNextQuest();
@@ -38,33 +42,35 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
       escapeMenuAlternativeNavigateTo,
     });
 
+    const Icon = image && CHARMS_SVG[image];
+
     return (
       <ImageBackground
-        // TODO: change to the real image
-        source={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
             onSubmit={onSubmit}
+            isArrow
             style={styles.container}>
             <ExtendedText preset="body-regular" style={styles.title}>
               {title}
             </ExtendedText>
-            <Image
-              source={(image && IMAGES[image]) ?? IMAGES.LOGO}
-              style={styles.image}
-            />
+            {Icon && (
+              <View style={styles.imageContainer}>
+                <Icon width={280} height={300} />
+              </View>
+            )}
             <TouchableOpacity onPress={goToAlert}>
-              <Image
-                source={(image && IMAGES[image]) ?? IMAGES.LOGO}
-                style={styles.infoImage}
-              />
+              <OrangeQuestionMarkIcon />
             </TouchableOpacity>
-            <ExtendedText preset="secondary-text">{description}</ExtendedText>
+            <ExtendedText preset="secondary-text" style={styles.subtitle}>
+              {description}
+            </ExtendedText>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

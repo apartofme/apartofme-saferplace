@@ -116,6 +116,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         navigation.navigate('GardenTutorialDialog', { isStart: false });
       }, 3000);
     }
+    dispatch(questSlice.actions.clearQuestStack());
   });
 
   const onAvatarPress = useCallback(() => {

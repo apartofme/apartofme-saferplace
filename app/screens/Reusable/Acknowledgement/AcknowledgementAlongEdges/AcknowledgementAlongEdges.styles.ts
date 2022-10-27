@@ -25,7 +25,7 @@ export const styles = StyleSheet.create<IAcknowledgementAlongEdgesStyles>({
     flex: 1,
     maxHeight: 100,
     marginTop: 58,
-    color: COLORS.BRILLIANT_WHITE,
+    color: COLORS.LIGHT_GREY,
     textAlign: 'center',
   },
 });

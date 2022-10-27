@@ -1,12 +1,15 @@
 import { values } from 'lodash';
 import React, { useCallback, useEffect, useState } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import {
   GestureHandlerRootView,
   PanGestureHandler,
 } from 'react-native-gesture-handler';
 
+import { CHARMS_BACKGROUNDS } from '../../../assets';
+import { AVATARS_SVG } from '../../../assets/svg';
 import { ExtendedText } from '../../../components';
+import { AUDIO } from '../../../constants/audio';
 import {
   DAY_14_CLOSING_DIALOGUE_ID,
   THE_CHARM_OF_BEFRIENDING_ID,
@@ -14,12 +17,15 @@ import {
 } from '../../../constants/quest';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { elixirSlice, questSlice } from '../../../redux/slices';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { generalStyles } from '../../../utils/styles';
+import { AvatarsNameType } from '../../../utils/types';
 import { styles } from './ElixirDoubleInteraction.styles';
 import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.types';
 
 export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScreenProps> =
   ({ navigation, route }) => {
-    const { title, description, elixirReward } = route.params.data;
+    const { title, elixirReward, backgroundImage } = route.params.data;
     const dispatch = useAppDispatch();
 
     const currentQuestLine = useAppSelector(
@@ -39,6 +45,20 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
 
+    const [isSoundStart, setIsSoundStart] = useState(false);
+
+    const parentAvatar =
+      useAppSelector(state => state.user.parent?.avatar) ??
+      `Circle${AvatarsNameType.Rabbit}`;
+
+    const ParentAvatarIcon = AVATARS_SVG[parentAvatar];
+
+    const childAvatar =
+      useAppSelector(state => state.user.child?.avatar) ??
+      `Circle${AvatarsNameType.Rabbit}`;
+
+    const ChildAvatarIcon = AVATARS_SVG[childAvatar];
+
     const setChildPress = useCallback(() => {
       setIsChildPress(!isChildPress);
     }, [isChildPress]);
@@ -46,6 +66,19 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const setAdultPress = useCallback(() => {
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
+
+    useEffect(() => {
+      if (isChildPress && isAdultPress && !isSoundStart) {
+        AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
+        setIsSoundStart(true);
+        return;
+      }
+      if (isChildPress && isAdultPress) {
+        AudioPlayerHelper.start();
+        return;
+      }
+      AudioPlayerHelper.pause();
+    }, [isAdultPress, isChildPress, isSoundStart]);
 
     useEffect(() => {
       if (isChildPress && isAdultPress) {
@@ -104,26 +137,33 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     }, [isChildPress, isAdultPress]);
 
     return (
-      <SafeAreaView style={styles.container}>
-        <ExtendedText style={styles.title}>{title}</ExtendedText>
-        {/* // TODO: change to animation */}
-        <View
-          style={[
-            styles.square,
-            isChildPress && isAdultPress && styles.redBackground,
-          ]}
-        />
-        <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
+      <ImageBackground
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
+        style={generalStyles.flex}>
+        <SafeAreaView style={styles.container}>
+          <View style={generalStyles.aiCenter}>
+            <ExtendedText style={styles.title}>{title}</ExtendedText>
+          </View>
+          {/* // TODO: change to animation */}
+          <View
+            style={[
+              styles.square,
+              isChildPress && isAdultPress && styles.redBackground,
+            ]}
+          />
 
-        <GestureHandlerRootView style={styles.buttonsContainer}>
-          <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
-            <View style={[styles.button, isChildPress && styles.border]} />
-          </PanGestureHandler>
+          <GestureHandlerRootView style={styles.buttonsContainer}>
+            <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
+              <ParentAvatarIcon width={90} height={90} />
+            </PanGestureHandler>
 
-          <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
-            <View style={[styles.button, isAdultPress && styles.border]} />
-          </PanGestureHandler>
-        </GestureHandlerRootView>
-      </SafeAreaView>
+            <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
+              <ChildAvatarIcon width={90} height={90} />
+            </PanGestureHandler>
+          </GestureHandlerRootView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };
