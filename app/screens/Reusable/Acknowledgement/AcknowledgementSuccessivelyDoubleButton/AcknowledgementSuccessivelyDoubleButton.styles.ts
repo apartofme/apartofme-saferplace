@@ -1,8 +1,9 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementSuccessivelyDoubleButtonScreenStyles {
   container: ViewStyle;
-  image: ImageStyle;
   title: TextStyle;
   description: TextStyle;
   bottomButton: ViewStyle;
@@ -12,26 +13,25 @@ export const styles =
   StyleSheet.create<IAcknowledgementSuccessivelyDoubleButtonScreenStyles>({
     container: {
       alignItems: 'center',
-      paddingTop: 107,
+      justifyContent: 'flex-end',
+      paddingBottom: 30,
       paddingHorizontal: 40,
     },
-    // TODO: change to real styles
-    image: {
-      width: 191,
-      height: 191,
-      borderRadius: 100,
-      backgroundColor: '#712CA4',
-    },
     title: {
-      marginTop: 54,
+      marginTop: 43,
       marginBottom: 24,
+      color: COLORS.BRILLIANT_WHITE,
       textAlign: 'center',
     },
     description: {
+      flex: 1,
+      maxHeight: 120,
+      color: COLORS.LIGHT_GREY,
       textAlign: 'center',
     },
     bottomButton: {
       alignSelf: 'center',
-      marginBottom: 24,
+      marginVertical: 10,
+      color: COLORS.BRILLIANT_WHITE,
     },
   });

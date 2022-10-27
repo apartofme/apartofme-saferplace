@@ -1,22 +1,17 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Image,
-  ImageBackground,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
+import { ImageBackground, SafeAreaView, TouchableOpacity } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
-import { IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
-  useNavigateNextQuest,
   useAppSelector,
   useAppDispatch,
   useNegativeNavigateTo,
+  useNavigateNextQuest,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementSuccessivelyDoubleButtonScreenProps } from './AcknowledgementSuccessivelyDoubleButton.types';
@@ -24,6 +19,7 @@ import { styles } from './AcknowledgementSuccessivelyDoubleButton.styles';
 import { cacheSlice } from '../../../../redux/slices';
 import { THE_CHARM_OF_THE_MIRROR_ID } from '../../../../constants/quest';
 import { EMOTION_BUTTON_LIST } from '../../EmotionSelection';
+import { CHARMS_SVG } from '../../../../assets/svg';
 
 export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledgementSuccessivelyDoubleButtonScreenProps> =
   ({ route }) => {
@@ -31,6 +27,9 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
       title,
       description,
       buttonTitle,
+      image,
+      backgroundImage,
+      tellMoreTitle,
       crossHeader,
       positiveNavigatesTo,
       negativeNavigatesTo,
@@ -38,12 +37,12 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
       escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
-    const isNextButtonTitle = /next/i.test(buttonTitle as string);
-
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const navigateToNextQuest = useNavigateNextQuest();
+    const negativeNavigate = useNegativeNavigateTo(negativeNavigatesTo, true);
     const positiveNavigate = usePositiveNavigateTo(positiveNavigatesTo);
+
     const currentQuestLineId = useAppSelector(
       state => state.quest.currentQuestLine?.id,
     );
@@ -53,18 +52,13 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
 
     const isAllEmotionsCompleted =
       completedEmotionsCount < EMOTION_BUTTON_LIST.length - 1;
-    const negativeNavigate = useNegativeNavigateTo(
-      negativeNavigatesTo,
-      isAllEmotionsCompleted,
-    );
+    const isMirrorCharm = currentQuestLineId === THE_CHARM_OF_THE_MIRROR_ID;
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'large-title',
       style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
     });
 
     const Header = useRenderQuestHeader({
@@ -72,68 +66,46 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
       escapeMenuAlternativeNavigateTo,
     });
 
-    const correctButtonTitle = useMemo(() => {
-      if (isNextButtonTitle) {
-        return t('buttons.skip').toUpperCase();
-      }
-      return t('buttons.i_finished').toUpperCase();
-    }, [isNextButtonTitle, t]);
-
     const onSubmit = useCallback(() => {
-      if (isNextButtonTitle) {
-        navigateToNextQuest();
-        return;
-      }
-      if (currentQuestLineId === THE_CHARM_OF_THE_MIRROR_ID) {
+      if (isMirrorCharm) {
         dispatch(cacheSlice.actions.completeSelectedEmotion());
-        negativeNavigate();
-        return;
+        if (isAllEmotionsCompleted) {
+          navigateToNextQuest();
+          return;
+        }
       }
       positiveNavigate();
     }, [
-      currentQuestLineId,
       dispatch,
-      isNextButtonTitle,
+      isAllEmotionsCompleted,
+      isMirrorCharm,
       navigateToNextQuest,
-      negativeNavigate,
       positiveNavigate,
     ]);
 
     const onBottomButtonPress = useCallback(() => {
-      if (isNextButtonTitle) {
-        positiveNavigate();
-        return;
-      }
-      if (currentQuestLineId === THE_CHARM_OF_THE_MIRROR_ID) {
+      if (isMirrorCharm) {
         dispatch(cacheSlice.actions.clearEmotions());
       }
-      navigateToNextQuest();
-    }, [
-      currentQuestLineId,
-      dispatch,
-      isNextButtonTitle,
-      navigateToNextQuest,
-      positiveNavigate,
-    ]);
+      negativeNavigate();
+    }, [dispatch, isMirrorCharm, negativeNavigate]);
+
+    const Icon = image && CHARMS_SVG[image];
 
     return (
       <ImageBackground
-        // TODO: change to the real image
-        source={{
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }}
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
-            <Image
-              // TODO: change to the real image
-              source={IMAGES.WHITE_PENCIL}
-              style={styles.image}
-            />
+            {Icon && <Icon />}
             <Title />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
@@ -142,8 +114,8 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
           <TouchableOpacity
             onPress={onBottomButtonPress}
             style={styles.bottomButton}>
-            <ExtendedText preset="secondary-text">
-              {correctButtonTitle}
+            <ExtendedText preset="secondary-text" style={styles.bottomButton}>
+              {tellMoreTitle}
             </ExtendedText>
           </TouchableOpacity>
         </SafeAreaView>
