@@ -1,11 +1,14 @@
 import React, { useCallback, useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 
-import { useAppSelector } from '../../../../hooks';
+import { useAppSelector, useAppState, useMount } from '../../../../hooks';
 import { IBookProps } from './Book.types';
 import { styles } from './Book.styles';
 import { CharmBookMenuType } from '../../CharmBookMenu';
 import { SVG } from '../../../../assets/svg';
+import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../../constants/audio';
 
 const ClosedBookIcon = SVG.ClosedBookIcon;
 const OpenBookIcon = SVG.OpenBookIcon;
@@ -29,6 +32,24 @@ export const Book: React.FC<IBookProps> = ({
     }
     return <OpenBookIcon />;
   }, [isCompletedAllCurrentDayQuests]);
+
+  const isFocused = useIsFocused();
+  const appStatus = useAppState();
+  const isSoundFXEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+  );
+
+  useMount(() => {
+    if (
+      !isCompletedAllCurrentDayQuests &&
+      !interruptedQuestLine &&
+      isFocused &&
+      appStatus === 'active' &&
+      isSoundFXEnabled
+    ) {
+      AudioPlayerHelper.play(AUDIO.OPENING_CHARMS_BOOK);
+    }
+  });
 
   const onBookPress = useCallback(() => {
     if (setType && setModalStatus) {

@@ -8,6 +8,9 @@ import { generalStyles } from '../../../utils/styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { useNavigateNextQuest } from '../../../hooks';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../constants/audio';
+import { ELIXIR_ANIMATION_TYPE } from '../../../constants/elixir';
 
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
@@ -17,8 +20,17 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
 
   const animation = useMemo(() => {
     if (description) {
-      // TODO: add swich for elixir animation
-      return <ElixirThreeIcon />;
+      switch (description) {
+        case ELIXIR_ANIMATION_TYPE.Mix:
+          AudioPlayerHelper.play(AUDIO.MIXING_ELIXIR_ANIMATION);
+          return <ElixirThreeIcon />;
+        case ELIXIR_ANIMATION_TYPE.Open:
+          AudioPlayerHelper.play(AUDIO.OPENING_ELIXIR_ANIMATION);
+          return <ElixirThreeIcon />;
+        default:
+          AudioPlayerHelper.play(AUDIO.POURING_ELIXIR_ANIMATION);
+          return <ElixirThreeIcon />;
+      }
     }
 
     return (
