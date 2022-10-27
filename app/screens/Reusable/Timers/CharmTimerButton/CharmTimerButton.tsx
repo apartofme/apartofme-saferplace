@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
-import { CHARMS_BACKGROUNDS } from '../../../../assets';
 
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
 import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
