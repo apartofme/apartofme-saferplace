@@ -1,5 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import { IDancingTimerScreenProps } from './DancingTimer.types';
 import { styles } from './DancingTimer.styles';
@@ -14,7 +20,7 @@ import { ExtendedText, MainHeader } from '../../../../components';
 import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
 import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
 import { SVG } from '../../../../assets/svg';
-import { useIsFocused } from '@react-navigation/native';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
@@ -31,6 +37,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     duration,
     crossHeader,
     escapeMenuAlternativeNavigateTo,
+    backgroundImage,
   } = route.params.data;
 
   const selectedSong = useAppSelector(state => state.cache.selectedSong);
@@ -118,25 +125,33 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   }, [isTimerPause]);
 
   return (
-    <SafeAreaView style={generalStyles.flex}>
-      {renderHeader()}
-      <View style={styles.container}>
-        {/* //TODO: replace with animation */}
-        {/* <Image source={IMAGES.LOGO} /> */}
-        {title && (
-          <ExtendedText preset="large-title" style={styles.title}>
-            {title}
-          </ExtendedText>
-        )}
-        {description && (
-          <ExtendedText preset="secondary-text" style={styles.description}>
-            {description}
-          </ExtendedText>
-        )}
-        <TouchableOpacity onPress={timerStatus} style={styles.button}>
-          <ButtonIcon />
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+    <ImageBackground
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
+      style={generalStyles.flex}>
+      <SafeAreaView style={generalStyles.flex}>
+        {renderHeader()}
+        <View style={styles.container}>
+          {/* //TODO: replace with animation */}
+          {/* <Image source={IMAGES.LOGO} /> */}
+          {title && (
+            <ExtendedText preset="large-title" style={styles.title}>
+              {title}
+            </ExtendedText>
+          )}
+          {description && (
+            <ExtendedText
+              preset="secondary-text"
+              style={generalStyles.greyCenter}>
+              {description}
+            </ExtendedText>
+          )}
+          <TouchableOpacity onPress={timerStatus} style={styles.button}>
+            <ButtonIcon />
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };

@@ -1,9 +1,10 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 interface IDancingTimerScreenStyles {
   container: ViewStyle;
   title: TextStyle;
-  description: TextStyle;
   button: ViewStyle;
 }
 
@@ -17,10 +18,8 @@ export const styles = StyleSheet.create<IDancingTimerScreenStyles>({
     justifyContent: 'flex-end',
   },
   title: {
+    color: COLORS.BRILLIANT_WHITE,
     paddingBottom: 24,
-    textAlign: 'center',
-  },
-  description: {
     textAlign: 'center',
   },
   button: {
