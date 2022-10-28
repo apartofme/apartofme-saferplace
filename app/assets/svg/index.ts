@@ -136,6 +136,7 @@ import {
   PostBoxIcon,
   PutHeartHandsIcon,
   PuzzledMothIcon,
+  ReliefHappyBirdTreeIcon,
   ReliefHappyTreeIcon,
   SadTreeIcon,
   StationeryIcon,
@@ -353,6 +354,7 @@ export const CHARMS_SVG = {
   WeavingCharmIllustrationIcon: WeavingIllustrationIcon,
   WiseGuideIcon: WiseGuideIcon,
   AloneTreeIcon: AloneTreeIcon,
+  ReliefHappyBirdTreeIcon: ReliefHappyBirdTreeIcon,
 };
 
 export const AVATARS_SVG = {
