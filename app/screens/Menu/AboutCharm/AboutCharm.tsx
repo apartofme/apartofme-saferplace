@@ -6,7 +6,7 @@ import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IAboutCharmScreenProps } from './AboutCharm.types';
 import { styles } from './AboutCharm.styles';
-import { SVG } from '../../../assets/svg';
+import { SVG, SVG_CHARM_ILLUSTRATIONS } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
@@ -18,6 +18,8 @@ export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
   const { data } = route.params;
 
   const { t } = useTranslation();
+
+  const Icon = SVG_CHARM_ILLUSTRATIONS[data.iconKey];
 
   return (
     <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
@@ -35,7 +37,7 @@ export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
               {t(data.subtitle)}
             </ExtendedText>
             <View style={styles.imageContainer}>
-              <data.IconSvgComponent />
+              <Icon />
             </View>
           </ScrollView>
         </View>

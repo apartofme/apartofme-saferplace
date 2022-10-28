@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -9,9 +8,9 @@ import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
-  useMount,
   useAppSelector,
   useAppState,
+  useMount,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementStopShakingScreenProps } from './AcknowledgementStopShaking.types';
@@ -38,20 +37,23 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
 
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
-    const appStatus = useAppState();
-    const isFocused = useIsFocused();
-
     const isSoundFXEnabled = useAppSelector(
       state => state.settings.settings.audioSettings?.isSoundFXEnabled,
     );
 
+    useMount(() => {
+      if (isSoundFXEnabled) {
+        AudioPlayerHelper.play(AUDIO.TIMER_SOUND_MAGIC);
+      }
+    });
+
+    const appStatus = useAppState();
+
     useEffect(() => {
-      if (isFocused && appStatus === 'active' && isSoundFXEnabled) {
-        AudioPlayerHelper.play(AUDIO.FOREST_AMBIENCE_LOOP);
-      } else {
+      if (appStatus !== 'active') {
         AudioPlayerHelper.stop();
       }
-    }, [appStatus, isFocused, isSoundFXEnabled]);
+    }, [appStatus]);
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -66,10 +68,6 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
     });
 
     const Icon = image && CHARMS_SVG[image];
-
-    useMount(() => {
-      AudioPlayerHelper.play(AUDIO.TIMER_SOUND_MAGIC);
-    });
 
     return (
       <ImageBackground

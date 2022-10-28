@@ -50,7 +50,6 @@ export const Book: React.FC<IBookProps> = ({
       AudioPlayerHelper.play(AUDIO.OPENING_CHARMS_BOOK);
     }
   });
-
   const onBookPress = useCallback(() => {
     if (setType && setModalStatus) {
       if (interruptedQuestLine) {

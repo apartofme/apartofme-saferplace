@@ -16,7 +16,7 @@ import {
   THE_CHARM_OF_BEFRIENDING_ID,
   THE_CHARM_OF_WEAVING_ID,
 } from '../../../constants/quest';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import { elixirSlice, questSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
@@ -68,18 +68,30 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
 
+    const isSoundFXEnabled = useAppSelector(
+      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+    );
+
     useEffect(() => {
-      if (isChildPress && isAdultPress && !isSoundStart) {
+      if (isChildPress && isAdultPress && !isSoundStart && isSoundFXEnabled) {
         AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
         setIsSoundStart(true);
         return;
       }
-      if (isChildPress && isAdultPress) {
+      if (isChildPress && isAdultPress && isSoundFXEnabled) {
         AudioPlayerHelper.start();
         return;
       }
       AudioPlayerHelper.pause();
-    }, [isAdultPress, isChildPress, isSoundStart]);
+    }, [isAdultPress, isChildPress, isSoundFXEnabled, isSoundStart]);
+
+    const appStatus = useAppState();
+
+    useEffect(() => {
+      if (appStatus !== 'active') {
+        AudioPlayerHelper.stop();
+      }
+    }, [appStatus]);
 
     useEffect(() => {
       if (isChildPress && isAdultPress) {

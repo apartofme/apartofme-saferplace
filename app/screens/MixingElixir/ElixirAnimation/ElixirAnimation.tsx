@@ -12,7 +12,7 @@ import { generalStyles } from '../../../utils/styles';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import {
   DAY_13_CLOSING_DIALOGUE_ID,
   THE_CHARM_OF_BEFRIENDING_ID,
@@ -37,19 +37,25 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
     state => state.quest.allQuests?.[currentLanguage],
   );
 
+  const isSoundFXEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+  );
+
   const title = useMemo(() => {
-    switch (phase) {
-      case MixingElixirPhaseType.Mix:
-        AudioPlayerHelper.play(AUDIO.MIXING_ELIXIR_ANIMATION);
-        return 'screens.mixing_exixir.elixir_animaion.mix';
-      case MixingElixirPhaseType.Open:
-        AudioPlayerHelper.play(AUDIO.OPENING_ELIXIR_ANIMATION);
-        return 'screens.mixing_exixir.elixir_animaion.open';
-      default:
-        AudioPlayerHelper.play(AUDIO.POURING_ELIXIR_ANIMATION);
-        return 'screens.mixing_exixir.elixir_animaion.pour';
+    if (isSoundFXEnabled) {
+      switch (phase) {
+        case MixingElixirPhaseType.Mix:
+          AudioPlayerHelper.play(AUDIO.MIXING_ELIXIR_ANIMATION);
+          return 'screens.mixing_exixir.elixir_animaion.mix';
+        case MixingElixirPhaseType.Open:
+          AudioPlayerHelper.play(AUDIO.OPENING_ELIXIR_ANIMATION);
+          return 'screens.mixing_exixir.elixir_animaion.open';
+        default:
+          AudioPlayerHelper.play(AUDIO.POURING_ELIXIR_ANIMATION);
+          return 'screens.mixing_exixir.elixir_animaion.pour';
+      }
     }
-  }, [phase]);
+  }, [isSoundFXEnabled, phase]);
 
   const animation = useMemo(() => {
     switch (phase) {
@@ -61,6 +67,14 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
         return <ElixirThreeIcon />;
     }
   }, [phase]);
+
+  const appStatus = useAppState();
+
+  useEffect(() => {
+    if (appStatus !== 'active') {
+      AudioPlayerHelper.stop();
+    }
+  }, [appStatus]);
 
   useEffect(() => {
     setTimeout(() => {
