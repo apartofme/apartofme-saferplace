@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
 
 export interface IEmotionCarouselItemStyles {
@@ -15,8 +16,7 @@ export const styles = StyleSheet.create<IEmotionCarouselItemStyles>({
     justifyContent: 'flex-end',
   },
   contentContainer: {
-    flex: 1,
-    maxHeight: 240,
+    height: 240 * WINDOW_COEFFICIENT,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 24,
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create<IEmotionCarouselItemStyles>({
   },
   title: {
     color: COLORS.PRIMARY_ORANGE,
-    marginTop: 14,
+    marginTop: 14 * WINDOW_COEFFICIENT,
     textAlign: 'center',
   },
 });

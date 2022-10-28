@@ -14,6 +14,7 @@ import {
 } from '../../../hooks';
 import { IQuest } from '../../../models/IQuest';
 import { questSlice } from '../../../redux/slices';
+import { generalStyles } from '../../../utils/styles';
 import { styles } from './EscapeMenu.styles';
 import { IEscapeMenuScreenProps } from './EscapeMenu.types';
 
@@ -111,34 +112,35 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
         style={styles.backArrowImage}>
         <WhiteBackArrowIcon />
       </TouchableOpacity>
-
-      <View style={styles.imageContainer}>
-        <AlertGuideIcon />
-      </View>
-      <View style={styles.contentContainer}>
-        <ExtendedText preset="heading" style={styles.title}>
-          {t('screens.escape_menu.title')}
-        </ExtendedText>
-        <ExtendedText preset="secondary-text" style={styles.subtitle}>
-          {t('screens.escape_menu.description')}
-        </ExtendedText>
-        <ExtendedButton
-          onPress={goToTheCharmofGrounding}
-          title={t('buttons.the_charm_of_grounding')}
-          style={styles.button}
-        />
-        {escapeMenuAlternativeNavigateTo && (
+      <View style={[generalStyles.flex, generalStyles.jcCenter]}>
+        <View style={styles.imageContainer}>
+          <AlertGuideIcon />
+        </View>
+        <View style={styles.contentContainer}>
+          <ExtendedText preset="heading" style={styles.title}>
+            {t('screens.escape_menu.title')}
+          </ExtendedText>
+          <ExtendedText preset="secondary-text" style={styles.subtitle}>
+            {t('screens.escape_menu.description')}
+          </ExtendedText>
           <ExtendedButton
-            title={t('buttons.try_an_alternative')}
+            onPress={goToTheCharmofGrounding}
+            title={t('buttons.the_charm_of_grounding')}
             style={styles.button}
-            onPress={useNavigateQuestById}
           />
-        )}
-        <ExtendedButton
-          title={t('buttons.back_to_clearing')}
-          style={styles.button}
-          onPress={goToGarden}
-        />
+          {escapeMenuAlternativeNavigateTo && (
+            <ExtendedButton
+              title={t('buttons.try_an_alternative')}
+              style={styles.button}
+              onPress={useNavigateQuestById}
+            />
+          )}
+          <ExtendedButton
+            title={t('buttons.back_to_clearing')}
+            style={styles.button}
+            onPress={goToGarden}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

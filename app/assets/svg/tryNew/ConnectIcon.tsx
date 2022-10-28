@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const ConnectIcon = ({ width = 96, height = 96 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 97" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 97"
+      fill="none">
       <Path
         d="M47.998 96c-12.82 0-24.874-4.992-33.94-14.057C4.994 72.877.002 60.823.002 48.003c0-12.82 4.992-24.874 14.058-33.94C23.124 4.999 35.178.007 47.999.007c12.82 0 24.873 4.992 33.939 14.058 9.065 9.065 14.058 21.118 14.058 33.94 0 12.82-4.993 24.873-14.058 33.939C72.872 91.008 60.818 96 47.998 96z"
         fill="#FFB552"

@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import _ from 'lodash';
 
 import { BottomButtonView } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -15,6 +16,10 @@ import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementAlongEdgesScreenProps } from './AcknowledgementAlongEdges.types';
 import { styles } from './AcknowledgementAlongEdges.styles';
 import { AVATARS_SVG, CHARMS_SVG } from '../../../../assets/svg';
+import {
+  DatoCMSTextVariables,
+  THE_CHARM_OF_ACCEPTANCE_ID,
+} from '../../../../constants/quest';
 
 export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdgesScreenProps> =
   ({ route }) => {
@@ -35,6 +40,12 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       useAppSelector(state => state.user.parent?.avatar) ?? 'CircleRabbitIcon';
     const childAvatar =
       useAppSelector(state => state.user.child?.avatar) ?? 'CircleBearIcon';
+    const currentQuestLineId = useAppSelector(
+      state => state.quest.currentQuestLine?.id,
+    );
+    const { troublesomeSpiritQuestionsItem } = useAppSelector(
+      state => state.cache,
+    );
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -61,11 +72,29 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       if (image) {
         return CHARMS_SVG[image];
       }
+      if (
+        currentQuestLineId === THE_CHARM_OF_ACCEPTANCE_ID &&
+        _.includes(t(title), DatoCMSTextVariables.TroublesomeSpiritQuestion)
+      ) {
+        return CHARMS_SVG[
+          troublesomeSpiritQuestionsItem?.image ?? 'LoveRabbitIcon'
+        ];
+      }
       if (isChild) {
         return AVATARS_SVG[childAvatar];
       }
+
       return AVATARS_SVG[parentAvatar];
-    }, [childAvatar, image, isChild, parentAvatar]);
+    }, [
+      childAvatar,
+      currentQuestLineId,
+      image,
+      isChild,
+      parentAvatar,
+      t,
+      title,
+      troublesomeSpiritQuestionsItem?.image,
+    ]);
 
     return (
       <ImageBackground

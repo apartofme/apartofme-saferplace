@@ -46,6 +46,7 @@ export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
     },
     [onBlurCallback],
   );
+
   return (
     <View
       style={[styles.inputContainer, isFocus && styles.inputActiveContainer]}>

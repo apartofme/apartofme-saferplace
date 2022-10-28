@@ -268,7 +268,9 @@ export const useParsedJSXTextNickname = ({
   const playerEmotion =
     useAppSelector(state => state.cache.emotions.selected) ?? '';
   const troublesomeSpiritQuestion =
-    useAppSelector(state => state.cache.troublesomeSpiritQuestionsItem) ?? '';
+    useAppSelector(
+      state => state.cache.troublesomeSpiritQuestionsItem?.title,
+    ) ?? '';
   const { childTrySomethingFirstItem } = useAppSelector(state => state.cache);
   const { parentTrySomethingFirstItem } = useAppSelector(state => state.cache);
   const { childTrySomethingSecondItem } = useAppSelector(state => state.cache);
@@ -281,7 +283,7 @@ export const useParsedJSXTextNickname = ({
 
   if (!textHasNickname) {
     return () => (
-      <ExtendedText preset={preset} style={style}>
+      <ExtendedText key={text} preset={preset} style={style}>
         {text}
       </ExtendedText>
     );
@@ -418,10 +420,14 @@ export const useParsedJSXTextNickname = ({
         return renderBoldText(value);
       }
 
-      return value;
+      return (
+        <ExtendedText key={value} preset={preset}>
+          {value}
+        </ExtendedText>
+      );
     });
   return () => (
-    <ExtendedText preset={preset} style={style}>
+    <ExtendedText key={text} preset={preset} style={style}>
       {textArray}
     </ExtendedText>
   );

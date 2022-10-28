@@ -15,7 +15,7 @@ export const styles = StyleSheet.create<IExtendedTextInputStyles>({
   input: {
     paddingHorizontal: 24,
     paddingVertical: isIOS ? 20 : 16,
-    backgroundColor: hexTransparency(COLORS.DARK_PURPLE, 90),
+    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
     borderWidth: 1,
     borderColor: COLORS.PRIMARY_ORANGE,
     borderRadius: 24,
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create<IExtendedTextInputStyles>({
   },
   inputActive: {
     borderWidth: 2,
-    backgroundColor: COLORS.DARK_PURPLE,
+    backgroundColor: COLORS.PRIMARY_PURPLE,
   },
   error: {},
 });

@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const DancingBearIcon = ({ width = 240, height = 240 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 240 240" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 240 240"
+      fill="none">
       <Path
         opacity={0.35}
         d="M119.999 239.998c66.273 0 119.999-53.726 119.999-119.999C239.998 53.725 186.272 0 119.999 0 53.725 0 0 53.725 0 119.999c0 66.273 53.725 119.999 119.999 119.999z"

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ImageBackground } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -56,11 +56,13 @@ export const SkipCharmEmojiSelectionScreen: React.FC<ISkipCharmEmojiSelectionScr
         source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
         style={generalStyles.flex}>
         <SafeAreaView edges={['top']} style={generalStyles.flex}>
-          <MainHeader
-            leftIcon={<WhiteBackArrowIcon />}
-            onLeftIconPress={navigation.goBack}
-          />
-          <Title />
+          <View style={styles.topContainer}>
+            <MainHeader
+              leftIcon={<WhiteBackArrowIcon />}
+              onLeftIconPress={navigation.goBack}
+            />
+            <Title />
+          </View>
           <EmojiButtons
             buttonTitle={t('buttons.select')}
             onSubmit={onSubmit}

@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const PlayGameIcon = ({ width = 96, height = 96 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 97" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 97"
+      fill="none">
       <G clipPath="url(#clip0_2913_347677)">
         <Path
           d="M48 96.07c-12.82 0-24.875-4.992-33.941-14.058C4.993 72.945 0 60.892 0 48.07c0-12.82 4.993-24.875 14.059-33.94C23.125 5.062 35.179.07 48 .07c12.82 0 24.875 4.993 33.941 14.06C91.007 23.194 96 35.247 96 48.07s-4.993 24.875-14.059 33.942C72.875 91.078 60.821 96.07 48 96.07z"

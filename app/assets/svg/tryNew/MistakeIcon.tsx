@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const MistakeIcon = ({ width = 96, height = 96 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 97" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 97"
+      fill="none">
       <Path
         d="M47.998 96.038c-12.82 0-24.874-4.993-33.94-14.058C4.994 72.914.002 60.86.002 48.04 0 35.22 4.993 23.167 14.059 14.1 23.124 5.036 35.178.044 47.999.044c12.82 0 24.873 4.992 33.939 14.058 9.065 9.065 14.058 21.118 14.058 33.94 0 12.82-4.993 24.873-14.058 33.939-9.066 9.065-21.12 14.058-33.94 14.058z"
         fill="#FFB552"

@@ -1,4 +1,4 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
@@ -7,16 +7,17 @@ interface IAboutCharmScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
-  imageContainer: ImageStyle;
+  imageContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IAboutCharmScreenStyles>({
   container: {
     flex: 1,
     paddingHorizontal: 24,
+    paddingTop: 10,
   },
   title: {
-    marginTop: 48 * WINDOW_COEFFICIENT,
+    marginTop: 38 * WINDOW_COEFFICIENT,
     marginBottom: 40 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
   },
@@ -26,5 +27,6 @@ export const styles = StyleSheet.create<IAboutCharmScreenStyles>({
   },
   imageContainer: {
     alignSelf: 'center',
+    marginBottom: 24,
   },
 });

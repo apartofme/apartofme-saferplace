@@ -27,10 +27,10 @@ export const AboutCharmScreen: React.FC<IAboutCharmScreenProps> = ({
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>
-          <ExtendedText style={styles.title}>{t(data.title)}</ExtendedText>
           <ScrollView
             style={generalStyles.flex}
             showsVerticalScrollIndicator={false}>
+            <ExtendedText style={styles.title}>{t(data.title)}</ExtendedText>
             <ExtendedText style={styles.subtitle}>
               {t(data.subtitle)}
             </ExtendedText>

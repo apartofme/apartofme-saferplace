@@ -1,5 +1,6 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementSupportScreenStyles {
@@ -7,12 +8,11 @@ interface IAcknowledgementSupportScreenStyles {
   title: TextStyle;
   subtitle: TextStyle;
   imageContainer: ViewStyle;
-  infoImage: ImageStyle;
 }
 
 export const styles = StyleSheet.create<IAcknowledgementSupportScreenStyles>({
   container: {
-    paddingVertical: 40,
+    paddingVertical: 40 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
     alignItems: 'center',
   },
@@ -25,18 +25,9 @@ export const styles = StyleSheet.create<IAcknowledgementSupportScreenStyles>({
     color: COLORS.LIGHT_GREY,
     textAlign: 'center',
     maxWidth: 295,
-    paddingTop: 20,
+    paddingTop: 20 * WINDOW_COEFFICIENT,
   },
-  // TODO: change to correct styles
   imageContainer: {
-    paddingBottom: 34,
-  },
-  infoImage: {
-    width: 20,
-    height: 20,
-    alignSelf: 'center',
-    marginTop: 28,
-    marginBottom: 20,
-    backgroundColor: COLORS.BLACK,
+    paddingBottom: 34 * WINDOW_COEFFICIENT,
   },
 });

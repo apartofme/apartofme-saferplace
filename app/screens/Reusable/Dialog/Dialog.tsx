@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ImageBackground,
   SafeAreaView,
+  ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -58,7 +59,9 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
         <View style={styles.container}>
           <View style={styles.iconContainer}>{Icon && <Icon />}</View>
           <View style={styles.dialogContainer}>
-            <Title />
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <Title />
+            </ScrollView>
           </View>
           <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
             <RoundTriangleButtonIcon />

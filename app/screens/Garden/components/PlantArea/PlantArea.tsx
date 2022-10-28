@@ -6,6 +6,7 @@ import {
   PainTreeRootIcon,
   SadTreeRootIcon,
 } from '../../../../assets/svg/garden';
+import { HappyTreeRootIcon } from '../../../../assets/svg/garden/HappyTreeRootIcon';
 import { HIT_SLOP, DOUBLE_HIT_SLOP } from '../../../../constants/hitSlop';
 import { useAppSelector } from '../../../../hooks';
 import { IPlant } from '../../../../models/IPlant';
@@ -22,6 +23,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
   isBefriending,
 }) => {
   const plantArea = useAppSelector(state => state.plant.plantArea);
+  const currentDay = useAppSelector(state => state.quest.currentDay);
   const navigation = useNavigation();
 
   const selectPlantArea = useCallback(
@@ -87,8 +89,11 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
     if (isBefriending) {
       return <PainTreeRootIcon />;
     }
+    if (currentDay >= 14) {
+      return <HappyTreeRootIcon />;
+    }
     return <SadTreeRootIcon />;
-  }, [isBefriending]);
+  }, [currentDay, isBefriending]);
 
   return (
     <View style={styles.container}>

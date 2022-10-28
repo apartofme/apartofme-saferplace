@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const SayHelloIcon = ({ width = 96, height = 96 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 96" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 96"
+      fill="none">
       <Path
         d="M47.998 95.994c-12.82 0-24.874-4.993-33.94-14.058C4.994 72.87.002 60.818.002 47.997c0-12.82 4.992-24.873 14.058-33.939C23.124 4.992 35.178 0 47.999 0c12.82 0 24.873 4.992 33.938 14.058 9.066 9.066 14.058 21.118 14.058 33.94 0 12.82-4.992 24.873-14.058 33.939-9.065 9.065-21.119 14.058-33.939 14.058v-.001z"
         fill="#FFB552"

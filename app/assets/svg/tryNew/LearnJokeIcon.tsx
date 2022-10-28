@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const LearnJokeIcon = ({ width = 96, height = 96 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 97" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 97"
+      fill="none">
       <Path
         d="M47.998 96.027c-12.82 0-24.874-4.993-33.94-14.058C4.994 72.903.002 60.849.002 48.029 0 35.21 4.993 23.157 14.059 14.09 23.124 5.025 35.178.032 47.999.032c12.82 0 24.873 4.993 33.939 14.058 9.065 9.066 14.058 21.119 14.058 33.94 0 12.82-4.993 24.873-14.058 33.939-9.066 9.066-21.12 14.058-33.94 14.058z"
         fill="#FFB552"

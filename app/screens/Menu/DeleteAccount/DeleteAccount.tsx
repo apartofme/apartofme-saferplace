@@ -48,7 +48,7 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
           }}
           validationSchema={DeleteAccountValidationSchema}
           onSubmit={onSubmit}>
-          {({ values, handleChange, isValid, dirty, errors }) => (
+          {({ values, handleChange, isValid, dirty }) => (
             <ExtendedKeyboardAvoidingView>
               <MainHeader
                 leftIcon={<WhiteBackArrowIcon />}
@@ -64,7 +64,6 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
 
                 <View style={styles.inputContainer}>
                   <ExtendedTextInput
-                    error={errors.password}
                     type={ExtendedTextInputType.Password}
                     style={styles.input}
                     placeholder={t('placeholders.enter_current_password')}

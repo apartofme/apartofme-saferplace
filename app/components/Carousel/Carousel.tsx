@@ -16,6 +16,7 @@ import {
   SubtitleImage,
   Charm,
   Emotion,
+  TroublesomeSpiritQuestion,
 } from './components';
 import {
   CarouselType,
@@ -44,6 +45,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
       case CarouselType.Avatar:
       case CarouselType.Charm:
       case CarouselType.Emotion:
+      case CarouselType.TroublesomeSpiritQuestion:
         return 'parallax';
     }
   }, [preset]);
@@ -54,6 +56,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
         return CAROUSEL_MODE_CONFIG_AVATAR;
       case CarouselType.Charm:
       case CarouselType.Emotion:
+      case CarouselType.TroublesomeSpiritQuestion:
         return CAROUSEL_MODE_CONFIG_CHARM;
     }
   }, [preset]);
@@ -92,6 +95,14 @@ export const Carousel: React.FC<ICarouselProps> = ({
         case CarouselType.Emotion:
           return (
             <Emotion
+              data={item}
+              isActive={isActive}
+              style={carouselItemStyle}
+            />
+          );
+        case CarouselType.TroublesomeSpiritQuestion:
+          return (
+            <TroublesomeSpiritQuestion
               data={item}
               isActive={isActive}
               style={carouselItemStyle}

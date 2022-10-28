@@ -1,23 +1,26 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
-  Image,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IAcknowledgementAlongEdgesDoubleButtonScreenProps } from './AcknowledgementAlongEdgesDoubleButton.types';
 import { styles } from './AcknowledgementAlongEdgesDoubleButton.styles';
 import {
-  useNavigateNextQuest,
+  useAppSelector,
+  useIsChildMove,
+  useNegativeNavigateTo,
   useParsedJSXTextNickname,
   usePositiveNavigateTo,
   useRenderQuestHeader,
 } from '../../../../hooks';
-import { IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { BottomButtonView, ExtendedText } from '../../../../components';
+import { AVATARS_SVG, CHARMS_SVG } from '../../../../assets/svg';
 
 export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgementAlongEdgesDoubleButtonScreenProps> =
   ({ route }) => {
@@ -25,27 +28,36 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
       title,
       description,
       buttonTitle,
+      tellMoreTitle,
       image,
       backgroundImage,
       crossHeader,
       titleHasNickname,
       positiveNavigatesTo,
+      negativeNavigatesTo,
       escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
-    const isNextButtonTitle = /next/i.test(buttonTitle as string);
-
     const { t } = useTranslation();
-    const navigateToNextQuest = useNavigateNextQuest();
     const positiveNavigate = usePositiveNavigateTo(positiveNavigatesTo);
+    const negativeNavigate = useNegativeNavigateTo(negativeNavigatesTo, true);
+    const parentAvatar =
+      useAppSelector(state => state.user.parent?.avatar) ?? 'CircleRabbitIcon';
+    const childAvatar =
+      useAppSelector(state => state.user.child?.avatar) ?? 'CircleBearIcon';
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
-      style: styles.title,
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
+      style: generalStyles.brilliantWhiteCenter,
+    });
+
+    const Description = useParsedJSXTextNickname({
+      text: description ?? '',
+      textHasNickname: titleHasNickname ?? true,
+      preset: 'secondary-text',
+      style: styles.description,
     });
 
     const Header = useRenderQuestHeader({
@@ -53,60 +65,46 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
       escapeMenuAlternativeNavigateTo,
     });
 
-    const correctButtonTitle = useMemo(() => {
-      if (isNextButtonTitle) {
-        return t('buttons.skip').toUpperCase();
+    const isChild = useIsChildMove(title);
+
+    const Icon = useMemo(() => {
+      if (image) {
+        return CHARMS_SVG[image];
       }
 
-      return t('buttons.finish').toUpperCase();
-    }, [isNextButtonTitle, t]);
-
-    const onSubmit = useCallback(() => {
-      if (isNextButtonTitle) {
-        navigateToNextQuest();
-        return;
+      if (isChild) {
+        return AVATARS_SVG[childAvatar];
       }
-      positiveNavigate();
-    }, [isNextButtonTitle, navigateToNextQuest, positiveNavigate]);
 
-    const onBottomButtonPress = useCallback(() => {
-      if (isNextButtonTitle) {
-        positiveNavigate();
-        return;
-      }
-      navigateToNextQuest();
-    }, [isNextButtonTitle, navigateToNextQuest, positiveNavigate]);
+      return AVATARS_SVG[parentAvatar];
+    }, [childAvatar, image, isChild, parentAvatar]);
 
     return (
       <ImageBackground
-        // TODO: change to real default image
         source={
-          (backgroundImage && IMAGES[backgroundImage]) ?? {
-            uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-          }
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.next')}
-            onSubmit={onSubmit}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
+            onSubmit={positiveNavigate}
             style={styles.container}>
             <Title />
-            <Image
-              // TODO: change to real image
-              source={(image && IMAGES[image]) ?? IMAGES.LOGO}
-              style={styles.image}
-            />
-            <ExtendedText style={styles.description}>
-              {description}
-            </ExtendedText>
+            <View style={generalStyles.aiCenter}>
+              {Icon && <Icon />}
+              <Description />
+            </View>
           </BottomButtonView>
           <TouchableOpacity
-            onPress={onBottomButtonPress}
+            onPress={negativeNavigate}
             style={styles.bottomButton}>
-            <ExtendedText preset="secondary-text">
-              {correctButtonTitle}
+            <ExtendedText
+              preset="secondary-text"
+              style={generalStyles.brilliantWhite}>
+              {tellMoreTitle}
             </ExtendedText>
           </TouchableOpacity>
         </SafeAreaView>

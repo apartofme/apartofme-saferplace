@@ -27,7 +27,7 @@ export const WelcomeChildScreen: React.FC<IWelcomeChildScreenProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView
-          buttonTitle={t('buttons.signup')}
+          buttonTitle={t('buttons.enter')}
           onSubmit={goToSidekickIntro}
           style={styles.container}>
           <ExtendedText preset="tertiary-text-medium" style={styles.title}>

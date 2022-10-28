@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   TouchableOpacity,
@@ -26,7 +26,6 @@ import { styles } from './SignUpCredentials.styles';
 import { SignUpCredentioalsValidationSchema } from './SignUpCredentials.validation';
 import { COLORS } from '../../../../themes/colors';
 import { SVG } from '../../../../assets/svg';
-import { isIOS } from '../../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -34,6 +33,11 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const [isFocus, setIsFocus] = useState(false);
+
+    const setFocused = useCallback(() => {
+      setIsFocus(!isFocus);
+    }, [isFocus]);
 
     const onSignUpPress = useCallback(
       ({ email, password }) => {
@@ -63,21 +67,12 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
           />
-          <ExtendedKeyboardAvoidingView behavior={isIOS ? 'padding' : 'height'}>
+          <ExtendedKeyboardAvoidingView>
             <Formik
               initialValues={{ email: '', password: '' }}
               validationSchema={SignUpCredentioalsValidationSchema}
               onSubmit={onSignUpPress}>
-              {({
-                values,
-                handleChange,
-                handleSubmit,
-                setFieldTouched,
-                touched,
-                isValid,
-                dirty,
-                errors,
-              }) => (
+              {({ values, handleChange, handleSubmit, isValid, dirty }) => (
                 <BottomButtonView
                   buttonTitle={t('buttons.signup')}
                   onSubmit={handleSubmit}
@@ -115,7 +110,8 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         type={ExtendedTextInputType.Email}
                         value={values.email}
                         onChangeText={handleChange('email')}
-                        onBlur={() => setFieldTouched('email')}
+                        onFocus={setFocused}
+                        onBlur={setFocused}
                         placeholder={t('placeholders.enter_email')}
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.input}
@@ -125,20 +121,13 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         type={ExtendedTextInputType.PasswordToggle}
                         value={values.password}
                         onChangeText={handleChange('password')}
-                        onBlur={() => setFieldTouched('password')}
+                        onFocus={setFocused}
+                        onBlur={setFocused}
                         placeholder={t('placeholders.create_password')}
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.input}
                         maxLength={30}
                       />
-                      {!!Object.entries(errors).length &&
-                        (touched.email || touched.password) && (
-                          <ExtendedText
-                            preset="secondary-text"
-                            style={styles.error}>
-                            {Object.entries(errors)[0][1]}
-                          </ExtendedText>
-                        )}
                     </View>
                   </View>
                 </BottomButtonView>
@@ -146,7 +135,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             </Formik>
           </ExtendedKeyboardAvoidingView>
 
-          <View style={styles.bottomConatainer}>
+          <View style={[styles.bottomConatainer, isFocus && styles.focused]}>
             <ExtendedText
               preset="tertiary-text-regular"
               style={styles.whiteColor}>

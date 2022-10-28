@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  Image,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
@@ -16,9 +15,10 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../../hooks';
-import { CHARMS_BACKGROUNDS, IMAGES } from '../../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { SVG } from '../../../../assets/svg';
 import { TEN_SECONDS } from '../../../../constants/time';
+import { SandglassIcon } from '../../../../assets/svg/SandglassIcon';
 
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 const RoundPauseButtonIcon = SVG.RoundPauseButtonIcon;
@@ -86,7 +86,7 @@ export const TimerTitleButtonScreen: React.FC<ITimerTitleButtonScreenProps> = ({
         <Header />
         <View style={styles.container}>
           {/* //TODO: replace with animation */}
-          <Image source={IMAGES.LOGO} style={styles.image} />
+          <SandglassIcon />
           {title && <Title />}
           {description && (
             <ExtendedText preset="secondary-text" style={styles.description}>

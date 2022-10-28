@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const ShareIcon = ({ width = 96, height = 96 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 97" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 97"
+      fill="none">
       <Path
         d="M47.998 96.01c-12.82 0-24.874-4.992-33.94-14.058C4.994 72.887.002 60.833.002 48.013s4.992-24.874 14.058-33.94C23.124 5.009 35.178.017 47.999.017c12.82 0 24.873 4.992 33.939 14.058 9.065 9.065 14.058 21.118 14.058 33.939 0 12.821-4.993 24.874-14.058 33.94-9.066 9.065-21.12 14.057-33.94 14.057z"
         fill="#FFB552"

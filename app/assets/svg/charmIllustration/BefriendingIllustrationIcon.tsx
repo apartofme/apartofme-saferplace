@@ -10,8 +10,8 @@ export const BefriendingIllustrationIcon = ({
 }: ISvgProps) => {
   return (
     <Svg
-      width={width * WINDOW_COEFFICIENT}
-      height={height * WINDOW_COEFFICIENT}
+      width={width * WINDOW_COEFFICIENT * 0.85}
+      height={height * WINDOW_COEFFICIENT * 0.85}
       viewBox="0 0 321 275"
       fill="none">
       <Path

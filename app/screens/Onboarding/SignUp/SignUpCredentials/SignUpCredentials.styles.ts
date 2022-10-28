@@ -7,6 +7,7 @@ interface ISignUpCredentialsScreenStyles {
   subtitle: ViewStyle;
   input: ViewStyle;
   bottomConatainer: ViewStyle;
+  focused: ViewStyle;
   whiteColor: TextStyle;
   greyColor: TextStyle;
   error: TextStyle;
@@ -31,6 +32,9 @@ export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
     justifyContent: 'center',
     paddingHorizontal: 40,
     marginBottom: 24,
+  },
+  focused: {
+    display: 'none',
   },
   whiteColor: {
     color: COLORS.BRILLIANT_WHITE,

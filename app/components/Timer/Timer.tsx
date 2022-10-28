@@ -8,6 +8,7 @@ import {
 import { SECOND } from './Timer.data';
 import { ITimerProps } from './Timer.types';
 import { styles } from './Timer.styles';
+import { WINDOW_COEFFICIENT } from '../../constants/window';
 
 export const Timer: React.FC<ITimerProps> = ({
   duration,
@@ -32,7 +33,7 @@ export const Timer: React.FC<ITimerProps> = ({
       <CircularProgressBase
         ref={timerRef}
         value={maxValue}
-        radius={104}
+        radius={104 * WINDOW_COEFFICIENT}
         activeStrokeColor="#AA82E0"
         activeStrokeWidth={5}
         inActiveStrokeWidth={0}

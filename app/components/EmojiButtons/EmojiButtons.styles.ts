@@ -24,6 +24,7 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
     position: 'absolute',
     bottom: 0,
     left: 0,
+    zIndex: 0,
   },
   indicator: {
     flex: 1,

@@ -1,15 +1,15 @@
 import { useIsFocused } from '@react-navigation/native';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  Image,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
   View,
 } from 'react-native';
 
-import { BACKGROUND_IMAGES, IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { SVG } from '../../../assets/svg';
+import { SandglassIcon } from '../../../assets/svg/SandglassIcon';
 import { ExtendedText, MainHeader } from '../../../components';
 import { TEN_SECONDS } from '../../../constants/time';
 import { generalStyles } from '../../../utils/styles';
@@ -74,7 +74,7 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
         />
         <View style={styles.container}>
           {/* //TODO: replace with animation */}
-          <Image source={IMAGES.LOGO} style={styles.image} />
+          <SandglassIcon />
           <ExtendedText preset="large-title" style={styles.seconds}>
             {(timerValue < 10 ? '00:0' : '00:') + timerValue}
           </ExtendedText>

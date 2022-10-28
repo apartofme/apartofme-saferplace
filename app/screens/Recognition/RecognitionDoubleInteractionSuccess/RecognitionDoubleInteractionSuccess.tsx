@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 
-import { BACKGROUND_IMAGES, IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { BottomButtonView } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { GARDEN_TRANSSITION_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
@@ -32,7 +33,7 @@ export const RecognitionDoubleInteractionSuccessScreen: React.FC<IRecognitionDou
             onSubmit={onSubmitPress}
             isArrow>
             <View style={styles.container}>
-              <Image source={IMAGES.LOGO} style={styles.image} />
+              <ElixirThreeIcon />
             </View>
           </BottomButtonView>
         </SafeAreaView>

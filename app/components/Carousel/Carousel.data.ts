@@ -1,11 +1,16 @@
 import { AvatarsNameType } from '../../utils/types';
-import { IAvatarCarouselItem, ICarouselItem } from './Carousel.types';
+import {
+  IAvatarCarouselItem,
+  ICarouselItem,
+  ITroublesomeCarouselItem,
+} from './Carousel.types';
 
 export enum CarouselType {
   Avatar = 'avatar',
   Charm = 'charm',
   Emotion = 'emotion',
   SubtitleImage = 'SubtitleImage',
+  TroublesomeSpiritQuestion = 'troublesomeSpiritQuestion',
   ImageTitleSubtitle = 'imageTitleSubtitle',
   ImageSubtitle = 'imageSubtitle',
 }
@@ -80,3 +85,22 @@ export const EMOTION_CAROUSEL: ReadonlyArray<ICarouselItem> = [
     image: 'ImHereForYouIcon',
   },
 ];
+
+export const TROUBLESOME_SPIRIT_QUESTIONS: ReadonlyArray<ITroublesomeCarouselItem> =
+  [
+    {
+      id: '1',
+      image: 'DistressedFoxIcon',
+      titleKey: 'screens.troublesome_spirit_questions_carousel.first',
+    },
+    {
+      id: '2',
+      image: 'PuzzledMothIcon',
+      titleKey: 'screens.troublesome_spirit_questions_carousel.second',
+    },
+    {
+      id: '3',
+      image: 'LoveRabbitIcon',
+      titleKey: 'screens.troublesome_spirit_questions_carousel.third',
+    },
+  ];

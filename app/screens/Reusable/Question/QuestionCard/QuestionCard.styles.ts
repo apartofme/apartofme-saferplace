@@ -1,33 +1,32 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../../themes/colors';
+
 interface IQuestionCardScreenStyles {
   container: ViewStyle;
-  contentContainer: ViewStyle;
   title: TextStyle;
-  button: ViewStyle;
+  description: TextStyle;
   skip: TextStyle;
 }
 
 export const styles = StyleSheet.create<IQuestionCardScreenStyles>({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
-  },
-  contentContainer: {
-    flex: 1,
-    paddingHorizontal: 24,
+    justifyContent: 'space-evenly',
+    paddingHorizontal: 40,
   },
   title: {
     textAlign: 'center',
-    marginTop: 48,
-    marginBottom: 75,
+    color: COLORS.BRILLIANT_WHITE,
   },
-  button: {
-    marginHorizontal: 40,
-    marginBottom: 28,
+  description: {
+    color: COLORS.BRILLIANT_WHITE,
+    marginTop: 20,
+    textAlign: 'center',
   },
   skip: {
     textAlign: 'center',
+    color: COLORS.BRILLIANT_WHITE,
     marginBottom: 24,
   },
 });

@@ -5,13 +5,16 @@ import { View } from 'react-native';
 import { IQuestionViewProps } from './QuestionView.types';
 import { styles } from './QuestionView.styles';
 import { ExtendedText } from '../../../../../../components';
+import { generalStyles } from '../../../../../../utils/styles';
 
 export const QuestionView: React.FC<IQuestionViewProps> = ({ title }) => {
   const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
-      <ExtendedText>{t(title)}</ExtendedText>
+      <ExtendedText preset="heading" style={generalStyles.brilliantWhiteCenter}>
+        {t(title)}
+      </ExtendedText>
     </View>
   );
 };

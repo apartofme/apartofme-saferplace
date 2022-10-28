@@ -18,7 +18,6 @@ export const styles = StyleSheet.create<IImageTitleSubtitleStyles>({
   },
 
   title: {
-    paddingTop: 32,
     paddingBottom: 24,
     textAlign: 'center',
     color: COLORS.BRILLIANT_WHITE,

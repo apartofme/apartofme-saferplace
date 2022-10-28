@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const ImHereForYouIcon = ({ width = 96, height = 97 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 97" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 97"
+      fill="none">
       <G clipPath="url(#clip0_2939_352250)">
         <Path
           d="M48 96.183c-12.82 0-24.875-4.993-33.94-14.059C4.992 73.058 0 61.004 0 48.184 0 35.361 4.993 23.306 14.059 14.24 23.125 5.175 35.179.183 48 .183c12.822 0 24.875 4.992 33.941 14.058C91.007 23.307 96 35.361 96 48.182c0 12.821-4.993 24.875-14.059 33.941-9.066 9.066-21.12 14.059-33.94 14.059z"

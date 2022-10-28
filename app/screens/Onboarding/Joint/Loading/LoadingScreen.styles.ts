@@ -13,10 +13,11 @@ export const styles = StyleSheet.create<ILoadingScreenStyles>({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'flex-end',
     paddingHorizontal: 40,
+    paddingBottom: 60,
   },
   timer: {
-    marginTop: 176,
     marginBottom: 74,
   },
   title: {

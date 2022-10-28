@@ -1,7 +1,7 @@
 import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
-import { ImageSourcePropType } from 'react-native';
 
 import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
+import { SvgComponentType } from '../../../utils/types';
 import { SelectDrawBuildType } from './SelectDrawBuild.data';
 
 type NavigationProps = StackNavigationProp<
@@ -18,5 +18,5 @@ export interface ISelectDrawBuildListItem {
   id: SelectDrawBuildType;
   titleKey: string;
   descriptionKey: string;
-  image: ImageSourcePropType;
+  image: SvgComponentType;
 }

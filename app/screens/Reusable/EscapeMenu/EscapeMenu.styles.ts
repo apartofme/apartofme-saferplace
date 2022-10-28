@@ -1,5 +1,6 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 import { hexTransparency } from '../../../utils';
 
@@ -26,33 +27,30 @@ export const styles = StyleSheet.create<IEscapeMenuStyles>({
   },
   backArrowImage: {
     marginLeft: 15,
-    marginTop: 24,
-    marginBottom: 34,
   },
   contentContainer: {
     paddingHorizontal: 12,
     marginHorizontal: 24,
-    paddingBottom: 32,
+    paddingBottom: 32 * WINDOW_COEFFICIENT,
     backgroundColor: COLORS.PRIMARY_PURPLE,
     borderWidth: 4,
     borderColor: COLORS.PRIMARY_ORANGE,
-
     borderRadius: 24,
   },
   button: {
-    marginBottom: 16,
+    marginBottom: 16 * WINDOW_COEFFICIENT,
   },
   title: {
     width: 279,
     color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
-    marginTop: 52,
+    marginTop: 52 * WINDOW_COEFFICIENT,
   },
   subtitle: {
     color: COLORS.BRILLIANT_WHITE,
     paddingHorizontal: 12,
     textAlign: 'center',
-    marginTop: 16,
-    marginBottom: 32,
+    marginTop: 16 * WINDOW_COEFFICIENT,
+    marginBottom: 32 * WINDOW_COEFFICIENT,
   },
 });
