@@ -27,6 +27,7 @@ import { styles } from './SelectSong.styles';
 import { ISelectSoundScreenProps } from './SelectSong.types';
 import {
   useAppDispatch,
+  useAppState,
   useNavigateNextQuest,
   useNavigatePrevQuest,
 } from '../../../hooks';
@@ -86,6 +87,15 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
     dispatch(cacheSlice.actions.setSelectedSong(currentAudioName));
     navigateNextQuest();
   }, [currentAudioName, dispatch, navigateNextQuest]);
+
+  const appStatus = useAppState();
+
+  useEffect(() => {
+    if (appStatus !== 'active') {
+      setIsPause(true);
+      AudioPlayerHelper.pause();
+    }
+  }, [appStatus]);
 
   const setSoundStatus = useCallback(() => {
     if (!isFinished && AudioPlayerHelper.filepath === currentAudioName) {

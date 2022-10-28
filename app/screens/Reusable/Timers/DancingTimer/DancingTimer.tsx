@@ -11,6 +11,7 @@ import { IDancingTimerScreenProps } from './DancingTimer.types';
 import { styles } from './DancingTimer.styles';
 import {
   useAppSelector,
+  useAppState,
   useMount,
   useNavigateNextQuest,
   useNavigatePrevQuest,
@@ -108,6 +109,15 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   const timerStatus = useCallback(() => {
     setIsTimerPause(!isTimerPause);
   }, [isTimerPause]);
+
+  const appStatus = useAppState();
+
+  useEffect(() => {
+    if (appStatus !== 'active') {
+      setIsTimerPause(true);
+      AudioPlayerHelper.pause();
+    }
+  }, [appStatus]);
 
   useEffect(() => {
     if (isTimerPause) {
