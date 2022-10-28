@@ -4,62 +4,62 @@ export const FAVOURITE_CHARM_LIST: ReadonlyArray<IFavouriteCharmCarouselItem> =
   [
     {
       id: '1',
-      iconKey: 'BarefootIcon',
+      iconKey: 'TheCharmOfGroundingIcon',
       title: 'screens.favourite_charm_carousel.first',
     },
     {
       id: '2',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfHealingHandIcon',
       title: 'screens.favourite_charm_carousel.second',
     },
     {
       id: '3',
-      iconKey: 'BarefootIcon',
+      iconKey: 'DancingCharmIcon',
       title: 'screens.favourite_charm_carousel.third',
     },
     {
       id: '4',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfSlowWindIcon',
       title: 'screens.favourite_charm_carousel.fourth',
     },
     {
       id: '5',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfDiscoveryIcon',
       title: 'screens.favourite_charm_carousel.fifth',
     },
     {
       id: '6',
-      iconKey: 'BarefootIcon',
+      iconKey: 'TheCharmOfSanctuaryIcon',
       title: 'screens.favourite_charm_carousel.sixth',
     },
     {
       id: '7',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfKindnessIcon',
       title: 'screens.favourite_charm_carousel.seventh',
     },
     {
       id: '8',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfAcceptanceIcon',
       title: 'screens.favourite_charm_carousel.eighth',
     },
     {
       id: '9',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfMirrorIcon',
       title: 'screens.favourite_charm_carousel.ninth',
     },
     {
       id: '10',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfTruthIcon',
       title: 'screens.favourite_charm_carousel.tenth',
     },
     {
       id: '11',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfOpenHandIcon',
       title: 'screens.favourite_charm_carousel.eleventh',
     },
     {
       id: '12',
-      iconKey: 'BarefootIcon',
+      iconKey: 'CharmOfBefriendingIcon',
       title: 'screens.favourite_charm_carousel.twelfth',
     },
   ];

@@ -13,7 +13,7 @@ import { IFavouriteCharmCarouselItemProps } from './FavouriteCharmCarouselItem.t
 import { styles } from './FavouriteCharmCarouselItem.styles';
 import { ExtendedText } from '../../../ExtendedText';
 import { generalStyles } from '../../../../utils/styles';
-import { SVG } from '../../../../assets/svg';
+import { SVG_FAVORITE_CHARM } from '../../../../assets/svg';
 
 export const FavouriteCharmCarouselItem: React.FC<IFavouriteCharmCarouselItemProps> =
   ({ data, isActive }) => {
@@ -36,7 +36,7 @@ export const FavouriteCharmCarouselItem: React.FC<IFavouriteCharmCarouselItemPro
       };
     });
 
-    const Icon = SVG[data.iconKey];
+    const Icon = SVG_FAVORITE_CHARM[data.iconKey];
     return (
       <GestureHandlerRootView style={generalStyles.flex}>
         <View style={styles.container}>

@@ -1,6 +1,6 @@
 import { ViewProps } from 'react-native';
 
-import { SvgKeys } from '../../utils/types';
+import { FavoriteCharmSvgKeys } from '../../utils/types';
 
 export interface IFavouriteCharmCarouselProps extends ViewProps {
   data: ReadonlyArray<IFavouriteCharmCarouselItem>;
@@ -9,6 +9,6 @@ export interface IFavouriteCharmCarouselProps extends ViewProps {
 
 export interface IFavouriteCharmCarouselItem {
   id: string;
-  iconKey: SvgKeys;
+  iconKey: FavoriteCharmSvgKeys;
   title: string;
 }

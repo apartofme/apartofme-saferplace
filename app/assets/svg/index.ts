@@ -27,7 +27,7 @@ import {
   SlowWindIllustrationIcon,
   TruthIllustrationIcon,
   WeavingIllustrationIcon,
-} from './CharmIllustration';
+} from './charmIllustration';
 import { CircleExclamationMarkIcon } from './CircleExclamationMarkIcon';
 import { CircleQuestionMarkIcon } from './CircleQuestionMarkIcon';
 import { RoundTriangleButtonIcon } from './RoundTriangleButtonIcon';
@@ -213,6 +213,18 @@ import { ShareIcon } from './tryNew/ShareIcon';
 import { TryByYourselfIcon } from './tryNew/TryByYourselfIcon';
 import { WriteLetterIcon } from './tryNew/WriteLetterIcon';
 import { AngryTreeIcon } from './AngryTreeIcon';
+import { CharmOfAcceptanceIcon } from './favoriteCharms/CharmOfAcceptanceIcon';
+import { CharmOfBefriendingIcon } from './favoriteCharms/CharmOfBefriendingIcon';
+import { CharmOfDiscoveryIcon } from './favoriteCharms/CharmOfDiscoveryIcon';
+import { CharmOfHealingHandIcon } from './favoriteCharms/CharmOfHealingHandIcon';
+import { CharmOfSlowWindIcon } from './favoriteCharms/CharmOfSlowWindIcon';
+import { CharmOfMirrorIcon } from './favoriteCharms/CharmOfMirrorIcon';
+import { CharmOfKindnessIcon } from './favoriteCharms/CharmOfKindnessIcon';
+import { CharmOfOpenHandIcon } from './favoriteCharms/CharmOfOpenHandIcon';
+import { CharmOfTruthIcon } from './favoriteCharms/CharmOfTruthIcon';
+import { DancingCharmIcon } from './favoriteCharms/DancingCharmIcon';
+import { TheCharmOfGroundingIcon } from './favoriteCharms/TheCharmOfGroundingIcon';
+import { TheCharmOfSanctuaryIcon } from './favoriteCharms/TheCharmOfSanctuaryIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -481,4 +493,19 @@ export const SVG_TRY_NEW = {
   ShareIcon: ShareIcon,
   TryByYourselfIcon: TryByYourselfIcon,
   WriteLetterIcon: WriteLetterIcon,
+};
+
+export const SVG_FAVORITE_CHARM = {
+  CharmOfAcceptanceIcon: CharmOfAcceptanceIcon,
+  CharmOfBefriendingIcon: CharmOfBefriendingIcon,
+  CharmOfDiscoveryIcon: CharmOfDiscoveryIcon,
+  CharmOfHealingHandIcon: CharmOfHealingHandIcon,
+  CharmOfKindnessIcon: CharmOfKindnessIcon,
+  CharmOfMirrorIcon: CharmOfMirrorIcon,
+  CharmOfOpenHandIcon: CharmOfOpenHandIcon,
+  CharmOfSlowWindIcon: CharmOfSlowWindIcon,
+  CharmOfTruthIcon: CharmOfTruthIcon,
+  DancingCharmIcon: DancingCharmIcon,
+  TheCharmOfGroundingIcon: TheCharmOfGroundingIcon,
+  TheCharmOfSanctuaryIcon: TheCharmOfSanctuaryIcon,
 };
