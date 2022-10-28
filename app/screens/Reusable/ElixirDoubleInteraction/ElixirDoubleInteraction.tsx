@@ -116,7 +116,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
               quests: newQuests,
             }),
           );
-
+          dispatch(questSlice.actions.updateCurrentDayQuestsStack());
           dispatch(questSlice.actions.saveCurrentQuestIdx(0));
 
           navigation.push('QuestStack', {

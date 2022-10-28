@@ -1,6 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { WINDOW_COEFFICIENT } from '../../../constants/window';
+import { COLORS } from '../../../themes/colors';
 
 interface IElixirTitleButtonScreenStyles {
   container: ViewStyle;
@@ -11,11 +12,11 @@ export const styles = StyleSheet.create<IElixirTitleButtonScreenStyles>({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 128 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
   },
   title: {
     paddingBottom: 77 * WINDOW_COEFFICIENT,
     textAlign: 'center',
+    color: COLORS.BRILLIANT_WHITE,
   },
 });

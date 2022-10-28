@@ -184,13 +184,14 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       );
 
       dispatch(questSlice.actions.saveCurrentQuestIdx(0));
-
-      navigation.push('QuestStack', {
-        screen: newQuests[0].type,
-        params: {
-          data: { ...newQuests[0] },
-        },
-      });
+      setTimeout(() => {
+        navigation.push('QuestStack', {
+          screen: newQuests[0].type,
+          params: {
+            data: { ...newQuests[0] },
+          },
+        });
+      }, 50);
     }
   }, [allQuests, currentDayQuestStack, dispatch, navigation]);
 

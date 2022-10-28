@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import { useIsFocused } from '@react-navigation/native';
+import React, { useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { ExtendedText, Timer } from '../../../components';
@@ -11,17 +12,45 @@ import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { ELIXIR_ANIMATION_TYPE } from '../../../constants/elixir';
+import { useTranslation } from 'react-i18next';
 
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
 }) => {
   const { description, duration, title } = route.params.data;
 
+  const isFocused = useIsFocused();
+  const { t } = useTranslation();
   const onSubmit = useNavigateNextQuest();
+
+  useEffect(() => {
+    if (!isFocused) {
+      AudioPlayerHelper.stop();
+    }
+  }, [isFocused]);
+
+  const audio = useMemo(() => {
+    if (description) {
+      switch (description) {
+        case ELIXIR_ANIMATION_TYPE.Mix:
+          return AUDIO.MIXING_ELIXIR_ANIMATION;
+
+        case ELIXIR_ANIMATION_TYPE.Open:
+          return AUDIO.OPENING_ELIXIR_ANIMATION;
+
+        default:
+          return AUDIO.POURING_ELIXIR_ANIMATION;
+      }
+    }
+  }, [description]);
 
   useMount(() => {
     if (description) {
       setTimeout(() => onSubmit(), 3000);
+    }
+
+    if (audio) {
+      AudioPlayerHelper.play(audio);
     }
   });
 
@@ -29,13 +58,10 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
     if (description) {
       switch (description) {
         case ELIXIR_ANIMATION_TYPE.Mix:
-          AudioPlayerHelper.play(AUDIO.MIXING_ELIXIR_ANIMATION);
           return <ElixirThreeIcon />;
         case ELIXIR_ANIMATION_TYPE.Open:
-          AudioPlayerHelper.play(AUDIO.OPENING_ELIXIR_ANIMATION);
           return <ElixirThreeIcon />;
         default:
-          AudioPlayerHelper.play(AUDIO.POURING_ELIXIR_ANIMATION);
           return <ElixirThreeIcon />;
       }
     }
@@ -53,15 +79,24 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
     <ImageBackground
       source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
       style={generalStyles.flex}>
-      <SafeAreaView style={generalStyles.flex}>
-        <View
-          style={[styles.container, !!description && styles.elixirContainer]}>
+      {description === ELIXIR_ANIMATION_TYPE.Pour ? (
+        <View style={styles.alertContainer}>
           {animation}
-          <ExtendedText preset="large-title" style={styles.title}>
-            {title}
+          <ExtendedText style={styles.alertTitle}>
+            {t('labels.wait').toUpperCase()}
           </ExtendedText>
         </View>
-      </SafeAreaView>
+      ) : (
+        <SafeAreaView style={generalStyles.flex}>
+          <View
+            style={[styles.container, !!description && styles.elixirContainer]}>
+            {animation}
+            <ExtendedText preset="large-title" style={styles.title}>
+              {title}
+            </ExtendedText>
+          </View>
+        </SafeAreaView>
+      )}
     </ImageBackground>
   );
 };
