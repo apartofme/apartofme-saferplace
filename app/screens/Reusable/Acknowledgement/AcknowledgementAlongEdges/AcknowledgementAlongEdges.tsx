@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import _ from 'lodash';
 
 import { BottomButtonView } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -19,7 +20,6 @@ import {
   DatoCMSTextVariables,
   THE_CHARM_OF_ACCEPTANCE_ID,
 } from '../../../../constants/quest';
-import _ from 'lodash';
 
 export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdgesScreenProps> =
   ({ route }) => {

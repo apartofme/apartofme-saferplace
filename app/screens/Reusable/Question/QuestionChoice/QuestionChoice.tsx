@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { SVG } from '../../../../assets/svg';
-
 import { BottomButtonView } from '../../../../components';
 import {
   useAppDispatch,

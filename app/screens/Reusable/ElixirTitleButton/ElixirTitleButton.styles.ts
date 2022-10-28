@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
 import { WINDOW_COEFFICIENT } from '../../../constants/window';
 
 interface IElixirTitleButtonScreenStyles {

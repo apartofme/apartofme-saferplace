@@ -1,4 +1,5 @@
 import { StyleSheet, ViewStyle } from 'react-native';
+
 import { WINDOW_COEFFICIENT } from '../../constants/window';
 
 interface ITimerScreenStyles {
@@ -6,7 +7,6 @@ interface ITimerScreenStyles {
 }
 
 export const styles = StyleSheet.create<ITimerScreenStyles>({
-  // TODO: change to real styles
   circle: {
     width: 174 * WINDOW_COEFFICIENT,
     height: 174 * WINDOW_COEFFICIENT,
