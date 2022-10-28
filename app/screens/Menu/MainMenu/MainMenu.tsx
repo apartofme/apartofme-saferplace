@@ -19,7 +19,6 @@ import { MenuButton } from '../components';
 import { MAIN_MENU_ITEMS } from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.types';
 import { styles } from './MainMenu.styles';
-import { AvatarsNameType } from '../../../utils/types';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
 
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
@@ -31,12 +30,15 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const parentNickname = useAppSelector(state => state.user.parent?.nickname);
-  const childNickname = useAppSelector(state => state.user.child?.nickname);
-  const avatar =
-    useAppSelector(state => state.user.parent?.avatar) ??
-    `Circle${AvatarsNameType.Rabbit}`;
-  const AvatarIcon = AVATARS_SVG[avatar];
+  const parentNickname = useAppSelector(
+    state => state.user.parent?.nickname ?? '',
+  );
+  const childNickname = useAppSelector(
+    state => state.user.child?.nickname ?? '',
+  );
+  const avatar = useAppSelector(state => state.user.parent?.avatar);
+
+  const AvatarIcon = avatar && AVATARS_SVG[avatar];
 
   const onMenuItemPress = useCallback(
     (item: NavigationRouteNames) => {
@@ -59,7 +61,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
           />
           <View style={styles.topContentContainer}>
             <View style={styles.avatar}>
-              <AvatarIcon width={80} height={80} />
+              {AvatarIcon && <AvatarIcon width={80} height={80} />}
             </View>
 
             <View style={generalStyles.row}>
