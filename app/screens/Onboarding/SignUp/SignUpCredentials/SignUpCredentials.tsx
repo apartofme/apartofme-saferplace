@@ -1,11 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  TouchableOpacity,
-  View,
-  SafeAreaView,
-  ImageBackground,
-} from 'react-native';
+import { TouchableOpacity, View, SafeAreaView, Image } from 'react-native';
 import { Formik } from 'formik';
 import moment from 'moment';
 
@@ -59,9 +54,11 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     }, [navigation]);
 
     return (
-      <ImageBackground
-        source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
-        style={generalStyles.flex}>
+      <View style={generalStyles.flex}>
+        <Image
+          source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
+          style={generalStyles.backgroundImage}
+        />
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
             leftIcon={<WhiteBackArrowIcon />}
@@ -162,6 +159,6 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             </TouchableOpacity>
           </View>
         </SafeAreaView>
-      </ImageBackground>
+      </View>
     );
   };

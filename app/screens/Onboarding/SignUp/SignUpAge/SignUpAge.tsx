@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { Image, SafeAreaView, View } from 'react-native';
 
 import {
   BottomButtonView,
@@ -42,9 +42,11 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
   });
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
-      style={generalStyles.flex}>
+    <View style={generalStyles.flex}>
+      <Image
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
+        style={generalStyles.backgroundImage}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <ExtendedKeyboardAvoidingView>
           <MainHeader
@@ -70,6 +72,6 @@ export const SignUpAgeScreen: React.FC<ISignUpAgeScreenProps> = ({
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

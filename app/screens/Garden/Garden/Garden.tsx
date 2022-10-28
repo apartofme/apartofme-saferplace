@@ -96,7 +96,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       if (
         nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
         !interruptedQuestLine &&
-        currentDayQuestStack.length
+        !currentDayQuestStack.length
       ) {
         dispatch(questSlice.actions.setLastDayUpdate());
         dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));

@@ -9,6 +9,7 @@ import {
   EMOTION_BUTTON_SVG,
   SVG_FAVORITE_CHARM,
   SVG_CHARM_ILLUSTRATIONS,
+  ELIXIR_SVG,
 } from '../assets/svg';
 import { IPlantArea } from '../redux/types';
 import { IInterruptedQuestLine } from '../redux/types/questTypes';
@@ -62,6 +63,7 @@ export enum ElixirKeysType {
   ElixirThree = 'ElixirThreeIcon',
 }
 
+export type ElixirKeys = keyof typeof ELIXIR_SVG;
 export type AvatarsKeys = keyof typeof AVATARS_SVG;
 export type ImagesKeys = keyof typeof IMAGES;
 export type SvgKeys = keyof typeof SVG;

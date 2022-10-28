@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { Image, SafeAreaView, View } from 'react-native';
 
 import {
   BottomButtonView,
@@ -30,9 +30,11 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
     }, [navigation]);
 
     return (
-      <ImageBackground
-        source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
-        style={generalStyles.flex}>
+      <View style={generalStyles.flex}>
+        <Image
+          source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
+          style={generalStyles.backgroundImage}
+        />
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
             leftIcon={<WhiteBackArrowIcon />}
@@ -64,6 +66,6 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
             </BottomButtonView>
           </ExtendedKeyboardAvoidingView>
         </SafeAreaView>
-      </ImageBackground>
+      </View>
     );
   };

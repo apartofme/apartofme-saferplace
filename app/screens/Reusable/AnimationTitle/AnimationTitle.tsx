@@ -7,7 +7,12 @@ import { IAnimationTitleScreenProps } from './AnimationTitle.types';
 import { styles } from './AnimationTitle.styles';
 import { generalStyles } from '../../../utils/styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { useMount, useNavigateNextQuest } from '../../../hooks';
+import {
+  useAppSelector,
+  useAppState,
+  useMount,
+  useNavigateNextQuest,
+} from '../../../hooks';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
@@ -22,6 +27,10 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   const isFocused = useIsFocused();
   const { t } = useTranslation();
   const onSubmit = useNavigateNextQuest();
+
+  const isSoundFXEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+  );
 
   useEffect(() => {
     if (!isFocused) {
@@ -49,10 +58,18 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
       setTimeout(() => onSubmit(), 3000);
     }
 
-    if (audio) {
+    if (audio && isSoundFXEnabled) {
       AudioPlayerHelper.play(audio);
     }
   });
+
+  const appStatus = useAppState();
+
+  useEffect(() => {
+    if (appStatus !== 'active') {
+      AudioPlayerHelper.stop();
+    }
+  }, [appStatus]);
 
   const animation = useMemo(() => {
     if (description) {

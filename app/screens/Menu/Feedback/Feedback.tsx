@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View, ScrollView } from 'react-native';
+import { SafeAreaView, View, ScrollView, Image } from 'react-native';
 
 import {
   BottomButtonView,
@@ -35,7 +35,11 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
   }, [isInputFocus]);
 
   return (
-    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
+    <View style={generalStyles.flex}>
+      <Image
+        source={BACKGROUND_IMAGES.MENU}
+        style={generalStyles.backgroundImage}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
@@ -70,6 +74,6 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

@@ -1,16 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import {
   GestureHandlerRootView,
   PanGestureHandler,
 } from 'react-native-gesture-handler';
 
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
@@ -50,16 +51,28 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
 
+    const isSoundFXEnabled = useAppSelector(
+      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+    );
+
     useEffect(() => {
-      if (isChildPress && isAdultPress && !isSoundStart) {
+      if (isChildPress && isAdultPress && !isSoundStart && isSoundFXEnabled) {
         AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
         setIsSoundStart(true);
-      } else if (isChildPress && isAdultPress) {
+      } else if (isChildPress && isAdultPress && isSoundFXEnabled) {
         AudioPlayerHelper.start();
       } else {
         AudioPlayerHelper.pause();
       }
-    }, [isAdultPress, isChildPress, isSoundStart]);
+    }, [isAdultPress, isChildPress, isSoundFXEnabled, isSoundStart]);
+
+    const appStatus = useAppState();
+
+    useEffect(() => {
+      if (appStatus !== 'active') {
+        AudioPlayerHelper.stop();
+      }
+    }, [appStatus]);
 
     useEffect(() => {
       if (isChildPress && isAdultPress) {
@@ -70,25 +83,33 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     }, [isAdultPress, isChildPress]);
 
     return (
-      <SafeAreaView style={styles.container}>
-        <ExtendedText style={styles.title}>
-          {t('screens.recognition.double_interaction.title')}
-        </ExtendedText>
-        {/* // TODO: change to animation */}
-        <View style={generalStyles.aiCenter}>
-          <ElixirThreeIcon />
-        </View>
-        <ExtendedText style={styles.subtitle}>
-          {t('screens.recognition.double_interaction.description')}
-        </ExtendedText>
-        <GestureHandlerRootView style={styles.buttonsContainer}>
-          <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
-            <ParentAvatarIcon width={90} height={90} />
-          </PanGestureHandler>
-          <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
-            <ChildAvatarIcon width={90} height={90} />
-          </PanGestureHandler>
-        </GestureHandlerRootView>
-      </SafeAreaView>
+      <ImageBackground
+        source={CHARMS_BACKGROUNDS.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.flex}>
+        <SafeAreaView style={styles.container}>
+          <ExtendedText style={styles.title}>
+            {t('screens.recognition.double_interaction.title')}
+          </ExtendedText>
+          {/* // TODO: change to animation */}
+          <View style={generalStyles.aiCenter}>
+            <ElixirThreeIcon />
+          </View>
+          <ExtendedText style={styles.subtitle}>
+            {t('screens.recognition.double_interaction.description')}
+          </ExtendedText>
+          <GestureHandlerRootView style={styles.buttonsContainer}>
+            <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
+              <View>
+                <ParentAvatarIcon width={90} height={90} />
+              </View>
+            </PanGestureHandler>
+            <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
+              <View>
+                <ChildAvatarIcon width={90} height={90} />
+              </View>
+            </PanGestureHandler>
+          </GestureHandlerRootView>
+        </SafeAreaView>
+      </ImageBackground>
     );
   };

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
 import _ from 'lodash';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
@@ -8,6 +8,7 @@ import {
   AVATAR_CAROUSEL,
   BottomButtonView,
   ExtendedButton,
+  ExtendedKeyboardAvoidingView,
   ExtendedTextInput,
   MainHeader,
 } from '../../../components';
@@ -48,6 +49,8 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
     UserType.Child === type ? childAvatar : parentAvatar,
   );
   const [avatarIndex, setAvatarIndex] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  // const [isShow, setIsShow] = useState(true);
 
   useMount(() => {
     setAvatarIndex(
@@ -72,32 +75,39 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   const Icon = avatar && AVATARS_SVG[avatar];
 
   return (
-    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
+    <View style={generalStyles.flex}>
+      <Image
+        source={BACKGROUND_IMAGES.MENU}
+        style={generalStyles.backgroundImage}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
-        <BottomButtonView
-          buttonTitle={t('buttons.cancel')}
-          onSubmit={navigation.goBack}>
-          {Icon && (
-            <View style={generalStyles.aiCenter}>
-              <Icon />
+        <ExtendedKeyboardAvoidingView>
+          <BottomButtonView buttonTitle={t('buttons.save')} onSubmit={onSubmit}>
+            {Icon && !isActive && (
+              <View style={generalStyles.aiCenter}>
+                <Icon />
+              </View>
+            )}
+            <View style={styles.inputContainer}>
+              <ExtendedTextInput
+                value={nickname}
+                onChangeText={setNickname}
+                setIsActive={setIsActive}
+              />
             </View>
-          )}
-          <View style={styles.inputContainer}>
-            <ExtendedTextInput value={nickname} onChangeText={setNickname} />
-          </View>
-          <View style={[generalStyles.jcEnd, generalStyles.flex]}>
-            <ExtendedButton
-              title={t('buttons.save')}
-              style={styles.button}
-              onPress={onSubmit}
-            />
-          </View>
-        </BottomButtonView>
+          </BottomButtonView>
+          <ExtendedButton
+            preset="border"
+            title={t('buttons.cancel')}
+            style={styles.button}
+            onPress={navigation.goBack}
+          />
+        </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

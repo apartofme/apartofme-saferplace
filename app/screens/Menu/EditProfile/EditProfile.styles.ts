@@ -11,7 +11,7 @@ export const styles = StyleSheet.create<IEditProfileScreenStyles>({
     paddingTop: 48,
   },
   button: {
-    marginVertical: 24,
+    marginBottom: 24,
     marginHorizontal: 40,
   },
 });

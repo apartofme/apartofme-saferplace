@@ -63,6 +63,12 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     }
   }, [appStatus, isFocused, isSoundFXEnabled]);
 
+  useEffect(() => {
+    if (appStatus !== 'active') {
+      AudioPlayerHelper.stop();
+    }
+  }, [appStatus]);
+
   const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
 
   return (

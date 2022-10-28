@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, Pressable, SafeAreaView, View } from 'react-native';
+import { Image, Pressable, SafeAreaView, View } from 'react-native';
 import { Formik } from 'formik';
 
 import {
@@ -40,7 +40,11 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
   );
 
   return (
-    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
+    <View style={generalStyles.flex}>
+      <Image
+        source={BACKGROUND_IMAGES.MENU}
+        style={generalStyles.backgroundImage}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <Formik
           initialValues={{
@@ -91,6 +95,6 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
           )}
         </Formik>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

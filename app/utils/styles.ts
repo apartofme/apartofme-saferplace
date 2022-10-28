@@ -1,9 +1,12 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../constants/window';
 import { COLORS } from '../themes/colors';
 
 export interface IGeneralStyles {
   flex: ViewStyle;
+  backgroundImage: ImageStyle;
+
   whFlex: ViewStyle;
 
   jcCenter: ViewStyle;
@@ -31,6 +34,11 @@ export interface IGeneralStyles {
 export const generalStyles = StyleSheet.create<IGeneralStyles>({
   flex: {
     flex: 1,
+  },
+  backgroundImage: {
+    height: WINDOW_HEIGHT,
+    width: WINDOW_WIDTH,
+    position: 'absolute',
   },
   whFlex: {
     flex: 1,

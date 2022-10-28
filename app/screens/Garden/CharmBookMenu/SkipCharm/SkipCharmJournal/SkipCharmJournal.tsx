@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, View } from 'react-native';
 
 import { BACKGROUND_IMAGES } from '../../../../../assets';
 import { SVG } from '../../../../../assets/svg';
@@ -37,9 +37,11 @@ export const SkipCharmJournalScreen: React.FC<ISkipCharmJournalScreenProps> = ({
   }, [isInputFocus]);
 
   return (
-    <ImageBackground
-      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
-      style={generalStyles.flex}>
+    <View style={generalStyles.flex}>
+      <Image
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        style={generalStyles.backgroundImage}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
@@ -71,6 +73,6 @@ export const SkipCharmJournalScreen: React.FC<ISkipCharmJournalScreenProps> = ({
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };
