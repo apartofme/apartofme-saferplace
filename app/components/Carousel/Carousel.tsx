@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { useSharedValue } from 'react-native-reanimated';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
@@ -33,7 +34,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   carouselStyle,
   carouselItemStyle,
 }) => {
-  const [progressValue, setProgressValue] = useState(0);
+  const progressValue = useSharedValue<number>(0);
   const [currentPosition, setCurrentPosition] = useState(0);
 
   useEffect(() => {
@@ -61,9 +62,12 @@ export const Carousel: React.FC<ICarouselProps> = ({
     }
   }, [preset]);
 
-  const onProgressChange = useCallback((item, absoluteProgress) => {
-    setProgressValue(absoluteProgress);
-  }, []);
+  const onProgressChange = useCallback(
+    (item, absoluteProgress) => {
+      progressValue.value = absoluteProgress;
+    },
+    [progressValue],
+  );
 
   const renderProgressBar = useCallback(() => {
     return (

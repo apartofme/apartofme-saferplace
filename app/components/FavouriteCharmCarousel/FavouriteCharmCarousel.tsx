@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useSharedValue } from 'react-native-reanimated';
 
 import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
@@ -19,12 +20,15 @@ export const FavouriteCharmCarousel: React.FC<IFavouriteCharmCarouselProps> = ({
   setIndex,
   style,
 }) => {
-  const [progressValue, setProgressValue] = useState(0);
+  const progressValue = useSharedValue(0);
   const [currentPosition, setCurrentPosition] = useState(0);
 
-  const onProgressChange = useCallback((item, absoluteProgress) => {
-    setProgressValue(absoluteProgress);
-  }, []);
+  const onProgressChange = useCallback(
+    (item, absoluteProgress) => {
+      progressValue.value = absoluteProgress;
+    },
+    [progressValue],
+  );
 
   const onScrollBegin = useCallback(() => {
     setCurrentPosition(-1);
