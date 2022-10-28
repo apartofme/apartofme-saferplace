@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View } from 'react-native';
 import Animated, {
   Extrapolate,
@@ -20,7 +20,7 @@ export const ProgressBarItem: React.FC<IProgressBarItemProps> = ({
     let inputRange = [index - 1, index, index + 1];
     let outputRange = [-DOT_WIDTH, 0, DOT_WIDTH];
 
-    if (index === 0 && animValue?.value > length - 1) {
+    if (index === 0 && animValue > length - 1) {
       inputRange = [length - 1, length, length + 1];
       outputRange = [-DOT_WIDTH, 0, DOT_WIDTH];
     }
@@ -29,7 +29,7 @@ export const ProgressBarItem: React.FC<IProgressBarItemProps> = ({
       transform: [
         {
           translateX: interpolate(
-            animValue?.value,
+            animValue,
             inputRange,
             outputRange,
             Extrapolate.CLAMP,
@@ -39,8 +39,28 @@ export const ProgressBarItem: React.FC<IProgressBarItemProps> = ({
     };
   }, [animValue, index, length]);
 
+  const isActive = useMemo(() => {
+    let inputRange = [index - 1, index, index + 1];
+    let outputRange = [-DOT_WIDTH, 0, DOT_WIDTH];
+
+    if (index === 0 && animValue > length - 1) {
+      inputRange = [length - 1, length, length + 1];
+      outputRange = [-DOT_WIDTH, 0, DOT_WIDTH];
+    }
+    const interpolateValue = interpolate(
+      animValue,
+      inputRange,
+      outputRange,
+      Extrapolate.CLAMP,
+    );
+
+    return (
+      interpolateValue >= -DOT_WIDTH / 2 && interpolateValue <= DOT_WIDTH / 2
+    );
+  }, [animValue, index, length]);
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isActive && styles.active]}>
       <Animated.View style={[styles.contentContainer, animationStyle]} />
     </View>
   );

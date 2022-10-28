@@ -6,7 +6,7 @@ import { IFavouriteCharmCarouselScreenProps } from './FavouriteCharmCarousel.typ
 import { styles } from './FavouriteCharmCarousel.styles';
 import { BottomButtonView, FavouriteCharmCarousel } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { IMAGES } from '../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 import {
   useAppDispatch,
   useNavigateNextQuest,
@@ -24,6 +24,7 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
       backgroundImage,
       crossHeader,
       titleHasNickname,
+      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -37,11 +38,12 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
       textHasNickname: titleHasNickname ?? true,
       style: styles.title,
       preset: 'title',
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
     });
 
-    const Header = useRenderQuestHeader(crossHeader ?? false);
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
 
     useEffect(() => {
       setActiveItem(FAVOURITE_CHARM_LIST[activeItemIndex]);
@@ -54,11 +56,8 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
 
     return (
       <ImageBackground
-        // TODO: change to real default image
         source={
-          (backgroundImage && IMAGES[backgroundImage]) ?? {
-            uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-          }
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
@@ -68,6 +67,7 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
+
             <FavouriteCharmCarousel
               data={FAVOURITE_CHARM_LIST}
               setIndex={setActiveItemIndex}

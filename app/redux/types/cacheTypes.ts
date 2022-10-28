@@ -3,7 +3,7 @@ import { Nullable } from '../../utils';
 import {
   AvatarsKeys,
   EmotionsCarouselSvgKeys,
-  ImagesKeys,
+  FavoriteCharmSvgKeys,
 } from '../../utils/types';
 
 export interface ISignUpData {
@@ -37,7 +37,7 @@ export interface IEmotionItem {
 
 export interface IFavouriteCharmItem {
   id: string;
-  image: ImagesKeys;
+  iconKey: FavoriteCharmSvgKeys;
   title: string;
 }
 
