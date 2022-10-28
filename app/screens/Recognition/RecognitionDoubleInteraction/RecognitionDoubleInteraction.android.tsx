@@ -11,7 +11,7 @@ import { AVATARS_SVG } from '../../../assets/svg';
 import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
@@ -51,16 +51,28 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
 
+    const isSoundFXEnabled = useAppSelector(
+      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+    );
+
     useEffect(() => {
-      if (isChildPress && isAdultPress && !isSoundStart) {
+      if (isChildPress && isAdultPress && !isSoundStart && isSoundFXEnabled) {
         AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
         setIsSoundStart(true);
-      } else if (isChildPress && isAdultPress) {
+      } else if (isChildPress && isAdultPress && isSoundFXEnabled) {
         AudioPlayerHelper.start();
       } else {
         AudioPlayerHelper.pause();
       }
-    }, [isAdultPress, isChildPress, isSoundStart]);
+    }, [isAdultPress, isChildPress, isSoundFXEnabled, isSoundStart]);
+
+    const appStatus = useAppState();
+
+    useEffect(() => {
+      if (appStatus !== 'active') {
+        AudioPlayerHelper.stop();
+      }
+    }, [appStatus]);
 
     useEffect(() => {
       if (isChildPress && isAdultPress) {
