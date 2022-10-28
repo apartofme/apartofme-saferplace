@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 
 interface IElixirTitleButtonScreenStyles {
   container: ViewStyle;
@@ -7,11 +8,13 @@ interface IElixirTitleButtonScreenStyles {
 
 export const styles = StyleSheet.create<IElixirTitleButtonScreenStyles>({
   container: {
-    paddingTop: 128,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 128 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
   },
   title: {
-    paddingBottom: 77,
+    paddingBottom: 77 * WINDOW_COEFFICIENT,
     textAlign: 'center',
   },
 });

@@ -1,13 +1,15 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, Pressable, SafeAreaView, View } from 'react-native';
 
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { SVG } from '../../../../assets/svg';
 import {
-  ExtendedButton,
+  BottomButtonView,
   ExtendedText,
   MainHeader,
 } from '../../../../components';
+import { HIT_SLOP } from '../../../../constants/hitSlop';
 import {
   useAppDispatch,
   useAppSelector,
@@ -16,6 +18,7 @@ import {
   usePositiveNavigateTo,
 } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
+import { COLORS } from '../../../../themes/colors';
 import { generalStyles } from '../../../../utils/styles';
 import { QuestionView } from './components';
 import { QUESTION_CARD } from './QuestionCard.data';
@@ -23,6 +26,7 @@ import { styles } from './QuestionCard.styles';
 import { IQuestionCardScreenProps } from './QuestionCard.types';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
+const CircleExclamationMarkIcon = SVG.CircleExclamationMarkIcon;
 
 export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
   navigation,
@@ -59,32 +63,36 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to the real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={CHARMS_BACKGROUNDS.COURAGE_STAGE_TWO_BACKGROUND}
       style={generalStyles.flex}>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={goBack}
         />
-        <View style={styles.contentContainer}>
+        <BottomButtonView
+          buttonTitle={t('buttons.we_are_finished')}
+          onSubmit={onSubmit}
+          style={styles.container}>
           <ExtendedText preset="body-regular" style={styles.title}>
             {t('screens.question_card.title')}
           </ExtendedText>
           <QuestionView title={QUESTION_CARD[currentQuestionIndex].titleKey} />
-        </View>
-        <View>
-          <ExtendedButton
-            title={t('buttons.we_are_finished')}
-            style={styles.button}
-            onPress={onSubmit}
-          />
-          <ExtendedText style={styles.skip} onPress={onSkipPress}>
-            {t('buttons.skip')}
+          <View style={generalStyles.aiCenter}>
+            <CircleExclamationMarkIcon color={COLORS.PRIMARY_ORANGE} />
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {t('screens.question_card.description')}
+            </ExtendedText>
+          </View>
+        </BottomButtonView>
+        <Pressable
+          onPress={onSkipPress}
+          style={generalStyles.asCenter}
+          hitSlop={HIT_SLOP}>
+          <ExtendedText style={styles.skip}>
+            {t('buttons.skip').toUpperCase()}
           </ExtendedText>
-        </View>
+        </Pressable>
       </SafeAreaView>
     </ImageBackground>
   );

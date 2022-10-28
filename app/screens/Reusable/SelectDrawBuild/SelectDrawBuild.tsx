@@ -1,10 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import {
   FlatList,
-  Image,
   ImageBackground,
+  Pressable,
   SafeAreaView,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -19,16 +18,13 @@ import {
   usePositiveNavigateTo,
   useRenderQuestHeader,
 } from '../../../hooks';
-import {
-  BottomButtonView,
-  ExtendedButton,
-  ExtendedText,
-} from '../../../components';
+import { BottomButtonView, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import {
   SelectDrawBuildType,
   SELECT_DRAW_BUILD_LIST,
 } from './SelectDrawBuild.data';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 
 export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
   route,
@@ -37,6 +33,7 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
     title,
     buttonTitle,
     crossHeader,
+    backgroundImage,
     negativeNavigatesTo,
     positiveNavigatesTo,
     escapeMenuAlternativeNavigateTo,
@@ -56,23 +53,24 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
       };
 
       return (
-        <TouchableOpacity
+        <Pressable
           onPress={onPlayerPress}
           style={[
             styles.listItemContainer,
-            selectedAnswer === item.id && styles.activeBorder,
+            selectedAnswer === item.id && styles.activeItem,
           ]}>
           <View style={styles.maw200}>
             <ExtendedText preset="heading" style={styles.listItemTitle}>
               {t(item.titleKey)}
             </ExtendedText>
-            <ExtendedText preset="tertiary-text-regular">
+            <ExtendedText
+              preset="tertiary-text-regular"
+              style={generalStyles.brilliantWhite}>
               {t(item.descriptionKey)}
             </ExtendedText>
           </View>
-
-          <Image source={item.image} style={styles.listItemImage} />
-        </TouchableOpacity>
+          <item.image width={80} height={80} />
+        </Pressable>
       );
     },
     [selectedAnswer, t],
@@ -85,10 +83,9 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
 
   return (
     <ImageBackground
-      // TODO: change to the real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Header />
@@ -107,11 +104,15 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
           />
         </BottomButtonView>
 
-        <ExtendedButton
+        <Pressable
           onPress={usePositiveNavigateTo(positiveNavigatesTo)}
-          title={t('buttons.not_now')}
-          style={styles.button}
-        />
+          style={styles.bottomButton}>
+          <ExtendedText
+            preset="secondary-text"
+            style={generalStyles.brilliantWhite}>
+            {t('buttons.not_now')}
+          </ExtendedText>
+        </Pressable>
       </SafeAreaView>
     </ImageBackground>
   );

@@ -18,8 +18,8 @@ export const TEXTS = {
   HEADING: {
     fontFamily: FONTS.POPPINS_MEDIUM,
     fontSize: 17,
-    lineHeight: 22,
-    letterSpacing: 0.37,
+    lineHeight: 30,
+    letterSpacing: 0.34,
   } as TextStyle,
 
   BODY_REGULAR: {

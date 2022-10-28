@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const ChangesOfBodyFeelsIcon = ({
@@ -8,7 +9,11 @@ export const ChangesOfBodyFeelsIcon = ({
   height = 240,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 240 240" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 240 240"
+      fill="none">
       <G clipPath="url(#clip0_2913_351477)">
         <Path
           d="M120 240c-32.052 0-62.188-12.482-84.853-35.147C12.482 182.188 0 152.052 0 120c0-32.052 12.482-62.188 35.147-84.853C57.812 12.482 87.947 0 120 0c32.052 0 62.188 12.482 84.853 35.147C227.518 57.812 240 87.945 240 120c0 32.055-12.482 62.188-35.147 84.853C182.188 227.518 152.052 240 120 240z"

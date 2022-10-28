@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const HowCanIHelpIcon = ({ width = 96, height = 97 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 97" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 97"
+      fill="none">
       <G clipPath="url(#clip0_2939_352303)">
         <Path
           d="M48 96.161c-12.82 0-24.875-4.993-33.94-14.058C4.992 73.037 0 60.983 0 48.162 0 35.34 4.993 23.286 14.059 14.22 23.125 5.154 35.179.16 48 .16c12.822 0 24.875 4.993 33.941 14.059C91.007 23.286 96 35.34 96 48.16c0 12.822-4.993 24.876-14.059 33.942-9.066 9.066-21.12 14.058-33.94 14.058v.001z"

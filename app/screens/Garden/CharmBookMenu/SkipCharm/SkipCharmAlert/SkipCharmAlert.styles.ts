@@ -21,5 +21,6 @@ export const styles = StyleSheet.create<ISkipCharmAlertStyles>({
   },
   bottomButton: {
     marginHorizontal: 40,
+    marginBottom: 16,
   },
 });

@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const HighFiveIcon = ({ width = 96, height = 96 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 96 97" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 96 97"
+      fill="none">
       <Path
         d="M47.998 96.022c-12.82 0-24.874-4.992-33.94-14.058C4.994 72.898.002 60.844.002 48.024c0-12.82 4.992-24.873 14.058-33.939C23.124 5.02 35.178.027 47.999.027c12.82 0 24.873 4.993 33.939 14.058 9.065 9.066 14.058 21.119 14.058 33.94 0 12.82-4.993 24.873-14.058 33.94-9.066 9.065-21.12 14.057-33.94 14.057z"
         fill="#FFB552"

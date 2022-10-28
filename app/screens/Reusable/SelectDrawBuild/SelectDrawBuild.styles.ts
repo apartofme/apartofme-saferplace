@@ -1,27 +1,29 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
+import { hexTransparency } from '../../../utils';
 
 interface ISelectDrawBuildScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   listItemContainer: ViewStyle;
   listItemTitle: TextStyle;
-  listItemImage: ImageStyle;
-  activeBorder: ViewStyle;
+  activeItem: ViewStyle;
   button: ViewStyle;
   maw200: ViewStyle;
+  bottomButton: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ISelectDrawBuildScreenStyles>({
   container: {
-    paddingTop: 40,
+    paddingTop: 40 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
   },
   title: {
-    paddingBottom: 36,
+    color: COLORS.BRILLIANT_WHITE,
+    paddingBottom: 36 * WINDOW_COEFFICIENT,
   },
-  // TODO: change to correct styles
   listItemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -29,23 +31,18 @@ export const styles = StyleSheet.create<ISelectDrawBuildScreenStyles>({
     padding: 24,
     marginBottom: 24,
     borderRadius: 16,
-    borderWidth: 2,
-    borderColor: COLORS.BLACK,
-    backgroundColor: '#3C415C',
+    borderWidth: 1,
+    borderColor: COLORS.PRIMARY_ORANGE,
+    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
   },
   listItemTitle: {
     paddingBottom: 12,
+    color: COLORS.PRIMARY_ORANGE,
   },
-  // TODO: change to correct styles
-  listItemImage: {
-    width: 76,
-    height: 76,
-    borderRadius: 50,
-    backgroundColor: '#AA82E0',
-  },
-  // TODO: change to correct styles
-  activeBorder: {
-    borderColor: '#AA82E0',
+  activeItem: {
+    marginBottom: 20,
+    borderWidth: 4,
+    backgroundColor: COLORS.PRIMARY_PURPLE,
   },
   button: {
     marginHorizontal: 40,
@@ -53,5 +50,10 @@ export const styles = StyleSheet.create<ISelectDrawBuildScreenStyles>({
   },
   maw200: {
     maxWidth: 200,
+  },
+  bottomButton: {
+    alignSelf: 'center',
+    color: COLORS.BRILLIANT_WHITE,
+    marginBottom: 24 * WINDOW_COEFFICIENT,
   },
 });

@@ -62,14 +62,16 @@ export const AcknowledgementReadLoudScreen: React.FC<IAcknowledgementReadLoudScr
               </ExtendedText>
             </View>
 
-            <Title />
-            {!!description && (
-              <ExtendedText
-                preset="tertiary-text-regular"
-                style={generalStyles.brilliantWhiteCenter}>
-                {description}
-              </ExtendedText>
-            )}
+            <View>
+              <Title />
+              {!!description && (
+                <ExtendedText
+                  preset="tertiary-text-regular"
+                  style={generalStyles.brilliantWhiteCenter}>
+                  {description}
+                </ExtendedText>
+              )}
+            </View>
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

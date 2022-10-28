@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface INadiyaEmotionCarouselScreenStyles {
@@ -12,7 +13,7 @@ interface INadiyaEmotionCarouselScreenStyles {
 
 export const styles = StyleSheet.create<INadiyaEmotionCarouselScreenStyles>({
   container: {
-    paddingTop: 40,
+    paddingTop: 40 * WINDOW_COEFFICIENT,
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
@@ -20,14 +21,14 @@ export const styles = StyleSheet.create<INadiyaEmotionCarouselScreenStyles>({
   },
   description: {
     color: COLORS.BRILLIANT_WHITE,
-    paddingTop: 16,
+    paddingTop: 16 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
-    paddingBottom: 72,
+    paddingBottom: 72 * WINDOW_COEFFICIENT,
   },
   carousel: {
-    paddingBottom: 73,
+    paddingBottom: 73 * WINDOW_COEFFICIENT,
   },
   carouselItem: {
-    paddingBottom: 72,
+    paddingBottom: 72 * WINDOW_COEFFICIENT,
   },
 });

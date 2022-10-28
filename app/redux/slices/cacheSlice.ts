@@ -17,6 +17,8 @@ import {
   ISignUpData,
   ISignUpDataPayload,
   ITranslations,
+  ITroublesomeSpiritQuestionsItem,
+  ITroublesomeSpiritQuestionsItemPayload,
   ITrySomethingItem,
   ITrySomethingItemPayload,
 } from '../types';
@@ -36,7 +38,7 @@ interface ICacheState {
   currentQuestionIndex: number;
   emotionItem: Nullable<IEmotionItem>;
   favouriteCharmItem: Nullable<IFavouriteCharmItem>;
-  troublesomeSpiritQuestionsItem: Nullable<string>;
+  troublesomeSpiritQuestionsItem: Nullable<ITroublesomeSpiritQuestionsItem>;
   childKindnessItem: Nullable<string>;
   parentKindnessItem: Nullable<string>;
   selectedSong: Nullable<string>;
@@ -137,7 +139,7 @@ export const cacheSlice = createSlice({
     },
     saveTroublesomeSpiritQuestionsItem(
       state,
-      { payload }: PayloadAction<string>,
+      { payload }: ITroublesomeSpiritQuestionsItemPayload,
     ) {
       state.troublesomeSpiritQuestionsItem = payload;
     },

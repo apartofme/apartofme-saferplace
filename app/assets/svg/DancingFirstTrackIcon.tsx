@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Svg, { Defs, G, Path, RadialGradient, Stop } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../constants/window';
 import { ISvgProps } from '../../utils/types';
 
 export const DancingFirstTrackIcon = ({
@@ -8,7 +9,11 @@ export const DancingFirstTrackIcon = ({
   height = 284,
 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 280 284" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 280 284"
+      fill="none">
       <G filter="url(#filter0_d_2913_344610)">
         <Path
           d="M244.431 19H42.569C30.104 19 20 29.105 20 41.57V243.43C20 255.895 30.105 266 42.57 266H244.43C256.895 266 267 255.895 267 243.431V41.569C267 29.104 256.895 19 244.431 19z"

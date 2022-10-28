@@ -10,8 +10,8 @@ export const AcceptanceIllustrationIcon = ({
 }: ISvgProps) => {
   return (
     <Svg
-      width={width * WINDOW_COEFFICIENT}
-      height={height * WINDOW_COEFFICIENT}
+      width={width * WINDOW_COEFFICIENT * 0.85}
+      height={height * WINDOW_COEFFICIENT * 0.85}
       viewBox="0 0 263 300"
       fill="none">
       <G clipPath="url(#clip0_370_90681)">

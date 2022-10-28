@@ -60,8 +60,8 @@ export const ALL_QUESTS_STACK = [
   ],
   //* DAY 8
   [
-    55780109, // The Charm of Acceptance Part 1
     55602851, // The Charm of Acceptance Part 2
+    55780109, // The Charm of Acceptance Part 1
     55602849, // Day 8 - Opening dialogue
     55602848, // The Charm of Kindness Part 2
   ],

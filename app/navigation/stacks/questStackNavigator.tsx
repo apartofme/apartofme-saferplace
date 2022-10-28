@@ -7,7 +7,6 @@ import {
   AcknowledgementAlongEdgesScreen,
   AcknowledgementDoubleImageDoubleButtonScreen,
   AcknowledgementDoubleImageScreen,
-  AcknowledgementLargeTitleScreen,
   AcknowledgementNicknamesScreen,
   AcknowledgementSuccessivelyDoubleButtonScreen,
   AcknowledgementSuccessivelyScreen,
@@ -131,10 +130,6 @@ export const QuestStackNavigator = () => (
     <Stack.Screen
       name="AcknowledgementDoubleImageDoubleButton"
       component={AcknowledgementDoubleImageDoubleButtonScreen}
-    />
-    <Stack.Screen
-      name="AcknowledgementLargeTitle"
-      component={AcknowledgementLargeTitleScreen}
     />
     <Stack.Screen
       name="AcknowledgementStopShaking"

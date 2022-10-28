@@ -2,6 +2,7 @@ import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
 import {
   AvatarsKeys,
+  CharmsSvgKeys,
   EmotionsCarouselSvgKeys,
   FavoriteCharmSvgKeys,
 } from '../../utils/types';
@@ -32,6 +33,11 @@ export interface IEmotions {
 
 export interface IEmotionItem {
   image: EmotionsCarouselSvgKeys;
+  title: string;
+}
+
+export interface ITroublesomeSpiritQuestionsItem {
+  image: CharmsSvgKeys;
   title: string;
 }
 
@@ -71,6 +77,9 @@ export interface INicknamesPayload {
 
 export interface IEmotionPayload {
   payload: Nullable<EmotionButtonType>;
+}
+export interface ITroublesomeSpiritQuestionsItemPayload {
+  payload: Nullable<ITroublesomeSpiritQuestionsItem>;
 }
 
 export interface IEmotionItemPayload {

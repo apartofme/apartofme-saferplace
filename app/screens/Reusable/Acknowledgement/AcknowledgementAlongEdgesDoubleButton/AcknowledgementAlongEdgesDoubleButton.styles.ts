@@ -1,9 +1,10 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
+import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementAlongEdgesDoubleButtonScreenStyles {
   container: ViewStyle;
-  title: TextStyle;
-  image: ImageStyle;
   description: TextStyle;
   bottomButton: ViewStyle;
 }
@@ -13,19 +14,15 @@ export const styles =
     container: {
       paddingTop: 40,
       paddingHorizontal: 24,
+      paddingBottom: 50 * WINDOW_COEFFICIENT,
       alignItems: 'center',
-    },
-    title: {
-      textAlign: 'center',
-    },
-    image: {
-      width: 191,
-      height: 191,
-      marginTop: 76,
-      marginBottom: 54,
-      borderRadius: 100,
+      justifyContent: 'space-between',
     },
     description: {
+      flex: 1,
+      maxHeight: 100,
+      marginTop: 58 * WINDOW_COEFFICIENT,
+      color: COLORS.LIGHT_GREY,
       textAlign: 'center',
     },
     bottomButton: {

@@ -31,7 +31,7 @@ exports[`UI: ExtendedTextInput should match snapshot 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#220A40E6",
+          "backgroundColor": "#3F1670E6",
           "borderColor": "#FFB452",
           "borderRadius": 24,
           "borderWidth": 1,
@@ -103,7 +103,7 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
         },
         Array [
           Object {
-            "backgroundColor": "#220A40E6",
+            "backgroundColor": "#3F1670E6",
             "borderColor": "#FFB452",
             "borderRadius": 24,
             "borderWidth": 1,

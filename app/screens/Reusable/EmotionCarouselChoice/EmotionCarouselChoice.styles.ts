@@ -14,7 +14,6 @@ export const styles = StyleSheet.create<IEmotionCarouselChoiceScreenStyles>({
   container: {
     paddingTop: 40,
     paddingHorizontal: 24,
-    alignItems: 'center',
   },
   card: {
     justifyContent: 'center',
@@ -36,7 +35,6 @@ export const styles = StyleSheet.create<IEmotionCarouselChoiceScreenStyles>({
   subtitle: {
     textAlign: 'center',
     color: COLORS.LIGHT_GREY,
-    maxWidth: 295,
     marginTop: 57,
   },
   cardTitle: {

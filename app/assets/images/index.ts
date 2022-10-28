@@ -40,14 +40,17 @@ export const CHARMS_BACKGROUNDS = {
   GLOWING_ROOTS_BACKGROUND: require('./charmBackgrounds/glowingRootsBackground.png'),
   GROUND_STARRY_SKY_BACKGROUND: require('./charmBackgrounds/groundStarrySkyBackground.png'),
 
+  CALM_BLUR_BACKGROUND: require('./charmBackgrounds/calmBlurBackground.png'),
   CALM_STAGE_ONE_BACKGROUND: require('./charmBackgrounds/calmStageOneBackground.png'),
   CALM_STAGE_TWO_BACKGROUND: require('./charmBackgrounds/calmStageTwoBackground.png'),
   CALM_STAGE_THREE_BACKGROUND: require('./charmBackgrounds/calmStageThreeBackground.png'),
 
+  COURAGE_BLUR_BACKGROUND: require('./charmBackgrounds/courageBlurBackground.png'),
   COURAGE_STAGE_ONE_BACKGROUND: require('./charmBackgrounds/courageStageOneBackground.png'),
   COURAGE_STAGE_TWO_BACKGROUND: require('./charmBackgrounds/courageStageTwoBackground.png'),
   COURAGE_STAGE_THREE_BACKGROUND: require('./charmBackgrounds/courageStageThreeBackground.png'),
 
+  COMPASSION_BLUR_BACKGROUND: require('./charmBackgrounds/compassionBlurBackground.png'),
   COMPASSION_STAGE_ONE_BACKGROUND: require('./charmBackgrounds/compassionStageOneBackground.png'),
   COMPASSION_STAGE_TWO_BACKGROUND: require('./charmBackgrounds/compassionStageTwoBackground.png'),
   COMPASSION_STAGE_THREE_BACKGROUND: require('./charmBackgrounds/compassionStageThreeBackground.png'),

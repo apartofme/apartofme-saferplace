@@ -10,8 +10,8 @@ export const OpenHandIllustrationIcon = ({
 }: ISvgProps) => {
   return (
     <Svg
-      width={width * WINDOW_COEFFICIENT}
-      height={height * WINDOW_COEFFICIENT}
+      width={width * WINDOW_COEFFICIENT * 0.85}
+      height={height * WINDOW_COEFFICIENT * 0.85}
       viewBox="0 0 213 300"
       fill="none">
       <Path

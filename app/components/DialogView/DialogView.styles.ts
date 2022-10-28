@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { WINDOW_COEFFICIENT } from '../../constants/window';
 
 import { COLORS } from '../../themes/colors';
 
@@ -26,7 +27,7 @@ export const styles = StyleSheet.create<IDialogViewStyles>({
   },
   dialogContainer: {
     flex: 1,
-    maxHeight: 304,
+    maxHeight: 304 * WINDOW_COEFFICIENT,
     paddingVertical: 40,
     paddingHorizontal: 24,
     borderRadius: 24,

@@ -12,10 +12,11 @@ interface IAcknowledgementReadLoudScreenStyles {
 export const styles = StyleSheet.create<IAcknowledgementReadLoudScreenStyles>({
   container: {
     paddingHorizontal: 24,
+    paddingBottom: 40,
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   title: {
-    marginTop: 360,
     marginBottom: 32,
     color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',

@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
 
 import { ITroublesomeSpiritQuestionsCarouselScreenProps } from './TroublesomeSpiritQuestionsCarousel.types';
 import { styles } from './TroublesomeSpiritQuestionsCarousel.styles';
 import {
   useAppDispatch,
+  useMount,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
@@ -14,11 +16,12 @@ import { cacheSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import {
   BottomButtonView,
+  Carousel,
+  CarouselType,
   ExtendedText,
-  TroublesomeSpiritQuestionsCarousel,
+  TROUBLESOME_SPIRIT_QUESTIONS,
 } from '../../../components';
-import { TROUBLESOME_SPIRIT_QUESTIONS_LIST } from './TroublesomeSpiritQuestionsCarousel.data';
-import { IMAGES } from '../../../assets';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
 
 export const TroublesomeSpiritQuestionsCarouselScreen: React.FC<ITroublesomeSpiritQuestionsCarouselScreenProps> =
   ({ route }) => {
@@ -35,18 +38,29 @@ export const TroublesomeSpiritQuestionsCarouselScreen: React.FC<ITroublesomeSpir
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const navigateToNextQuest = useNavigateNextQuest();
-    const [activeItem, setActiveItem] = useState(
-      TROUBLESOME_SPIRIT_QUESTIONS_LIST[0],
+    const [troublesomeData, setTroublesomeData] = useState(
+      _.cloneDeep(TROUBLESOME_SPIRIT_QUESTIONS),
     );
     const [activeItemIndex, setActiveItemIndex] = useState(0);
+    const [activeItem, setActiveItem] = useState(
+      troublesomeData[activeItemIndex],
+    );
+
+    useMount(() => {
+      setTroublesomeData(prev =>
+        _.map(prev, item =>
+          _.merge(item, {
+            titleKey: t(item.titleKey ?? ''),
+          }),
+        ),
+      );
+    });
 
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
       style: styles.title,
       preset: 'title',
-      // TODO: remove
-      variableStyle: { color: '#00dbc0' },
     });
 
     const Header = useRenderQuestHeader({
@@ -55,39 +69,39 @@ export const TroublesomeSpiritQuestionsCarouselScreen: React.FC<ITroublesomeSpir
     });
 
     useEffect(() => {
-      setActiveItem(TROUBLESOME_SPIRIT_QUESTIONS_LIST[activeItemIndex]);
-    }, [activeItemIndex]);
+      setActiveItem(troublesomeData[activeItemIndex]);
+    }, [activeItemIndex, troublesomeData]);
 
     const onSubmit = useCallback(() => {
       dispatch(
-        cacheSlice.actions.saveTroublesomeSpiritQuestionsItem(
-          t(activeItem.titleKey),
-        ),
+        cacheSlice.actions.saveTroublesomeSpiritQuestionsItem({
+          title: activeItem.titleKey ?? '',
+          image: activeItem.image,
+        }),
       );
       navigateToNextQuest();
-    }, [activeItem.titleKey, dispatch, navigateToNextQuest, t]);
+    }, [activeItem.image, activeItem.titleKey, dispatch, navigateToNextQuest]);
 
     return (
       <ImageBackground
-        // TODO: change to real default image
         source={
-          (backgroundImage && IMAGES[backgroundImage]) ?? {
-            uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-          }
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView
-            buttonTitle={buttonTitle ?? t('buttons.select')}
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>
-            <TroublesomeSpiritQuestionsCarousel
-              data={TROUBLESOME_SPIRIT_QUESTIONS_LIST}
+            <Carousel
+              preset={CarouselType.TroublesomeSpiritQuestion}
+              data={troublesomeData}
               setIndex={setActiveItemIndex}
             />
           </BottomButtonView>

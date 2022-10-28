@@ -1,3 +1,4 @@
+export { AloneTreeIcon } from './AloneTreeIcon';
 export { BreathingGuideIcon } from './BreathingGuideIcon';
 export { BreathingPlaceIcon } from './BreathingPlaceIcon';
 export { BuildItIcon } from './BuildItIcon';

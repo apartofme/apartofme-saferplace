@@ -99,6 +99,7 @@ import {
   WiseGuideIcon,
 } from './guide';
 import {
+  AloneTreeIcon,
   BreathingGuideIcon,
   BreathingPlaceIcon,
   BuildItIcon,
@@ -225,6 +226,7 @@ import { CharmOfTruthIcon } from './favoriteCharms/CharmOfTruthIcon';
 import { DancingCharmIcon } from './favoriteCharms/DancingCharmIcon';
 import { TheCharmOfGroundingIcon } from './favoriteCharms/TheCharmOfGroundingIcon';
 import { TheCharmOfSanctuaryIcon } from './favoriteCharms/TheCharmOfSanctuaryIcon';
+import { TruthCards } from './TruthCards';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -272,6 +274,7 @@ export const SVG = {
   WhiteRightArrowIcon: WhiteRightArrowIcon,
   WhiteTopArrowIcon: WhiteTopArrowIcon,
   WiseGuideIcon: WiseGuideIcon,
+  TruthCards: TruthCards,
 };
 
 export const CHARMS_SVG = {
@@ -349,6 +352,7 @@ export const CHARMS_SVG = {
   TruthCharmIllustrationIcon: TruthIllustrationIcon,
   WeavingCharmIllustrationIcon: WeavingIllustrationIcon,
   WiseGuideIcon: WiseGuideIcon,
+  AloneTreeIcon: AloneTreeIcon,
 };
 
 export const AVATARS_SVG = {

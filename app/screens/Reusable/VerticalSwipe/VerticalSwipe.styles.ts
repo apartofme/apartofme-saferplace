@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 
 import { COLORS } from '../../../themes/colors';
 
@@ -24,15 +25,15 @@ export const styles = StyleSheet.create<IVerticalSwipeScreenStyles>({
   },
   iconContainer: {
     alignSelf: 'center',
-    marginBottom: 46,
+    marginBottom: 46 * WINDOW_COEFFICIENT,
   },
   topSubtitle: {
     marginTop: 24,
     minHeight: 80,
   },
   submitButton: {
-    marginTop: 43,
-    marginBottom: 29,
+    marginTop: 43 * WINDOW_COEFFICIENT,
+    marginBottom: 29 * WINDOW_COEFFICIENT,
   },
   learnMoreArrow: {
     paddingTop: 15,

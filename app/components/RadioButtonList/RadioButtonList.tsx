@@ -46,6 +46,7 @@ export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
       if (type === RadioButtonListType.Single) {
         return (
           <RadioButton
+            key={item.id}
             title={t(item.title)}
             isActive={selectedItems[0] === item.id}
             onPress={onSelectedPress}
@@ -54,6 +55,7 @@ export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
       }
       return (
         <CheckBox
+          key={item.id}
           title={t(item.title)}
           isActive={!!_.find(selectedItems, findItem => findItem === item.id)}
           onPress={onSelectedPress}
@@ -75,6 +77,7 @@ export const RadioButtonList: React.FC<IRadioButtonListProps> = ({
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
+        scrollEnabled={false}
       />
     </View>
   );

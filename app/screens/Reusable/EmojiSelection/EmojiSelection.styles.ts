@@ -1,9 +1,10 @@
-import { StyleSheet, TextStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../../themes/colors';
 
 interface IEmojiSelectionScreenStyles {
   title: TextStyle;
+  container: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IEmojiSelectionScreenStyles>({
@@ -13,5 +14,8 @@ export const styles = StyleSheet.create<IEmojiSelectionScreenStyles>({
     marginBottom: 24,
     color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
+  },
+  container: {
+    zIndex: 10,
   },
 });

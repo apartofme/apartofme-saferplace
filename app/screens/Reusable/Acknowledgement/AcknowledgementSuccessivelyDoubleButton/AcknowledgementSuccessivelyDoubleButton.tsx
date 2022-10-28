@@ -51,7 +51,7 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
     );
 
     const isAllEmotionsCompleted =
-      completedEmotionsCount < EMOTION_BUTTON_LIST.length - 1;
+      completedEmotionsCount >= EMOTION_BUTTON_LIST.length - 1;
     const isMirrorCharm = currentQuestLineId === THE_CHARM_OF_THE_MIRROR_ID;
 
     const Title = useParsedJSXTextNickname({
@@ -69,8 +69,10 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
     const onSubmit = useCallback(() => {
       if (isMirrorCharm) {
         dispatch(cacheSlice.actions.completeSelectedEmotion());
+
         if (isAllEmotionsCompleted) {
           navigateToNextQuest();
+          dispatch(cacheSlice.actions.clearEmotions());
           return;
         }
       }

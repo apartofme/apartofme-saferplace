@@ -1,4 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 
 import { COLORS } from '../../../themes/colors';
 import { hexTransparency } from '../../../utils';
@@ -22,14 +23,14 @@ export const styles = StyleSheet.create<ICharmBookMenuScreenStyles>({
   contentContainer: {
     flex: 1,
     justifyContent: 'space-between',
-    paddingTop: 78,
-    paddingBottom: 24,
+    paddingTop: 78 * WINDOW_COEFFICIENT,
+    paddingBottom: 24 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
   },
   dialogueContainer: {
-    paddingTop: 60,
+    paddingTop: 60 * WINDOW_COEFFICIENT,
     paddingHorizontal: 16,
-    paddingBottom: 48,
+    paddingBottom: 48 * WINDOW_COEFFICIENT,
     backgroundColor: COLORS.PRIMARY_PURPLE,
     borderRadius: 24,
     borderWidth: 4,
@@ -45,13 +46,13 @@ export const styles = StyleSheet.create<ICharmBookMenuScreenStyles>({
     textAlign: 'center',
   },
   description: {
-    paddingTop: 16,
-    paddingBottom: 32,
+    paddingTop: 16 * WINDOW_COEFFICIENT,
+    paddingBottom: 32 * WINDOW_COEFFICIENT,
     color: COLORS.LIGHT_GREY,
     textAlign: 'center',
   },
   skipButton: {
-    marginTop: 30,
+    marginTop: 30 * WINDOW_COEFFICIENT,
     alignSelf: 'center',
   },
   buttonCompleted: {

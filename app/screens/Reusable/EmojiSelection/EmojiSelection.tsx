@@ -65,7 +65,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
         CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
       }
       style={generalStyles.flex}>
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <Header />
         <Title />
       </SafeAreaView>

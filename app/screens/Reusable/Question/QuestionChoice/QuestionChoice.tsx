@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { CHARMS_BACKGROUNDS } from '../../../../assets';
+import { SVG } from '../../../../assets/svg';
 
 import { BottomButtonView } from '../../../../components';
 import {
@@ -21,6 +23,7 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
     title,
     buttonTitle,
     crossHeader,
+    backgroundImage,
     escapeMenuAlternativeNavigateTo,
     titleHasNickname,
     positiveNavigatesTo,
@@ -47,17 +50,14 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
     text: title,
     textHasNickname: titleHasNickname ?? true,
     preset: 'title',
-    style: styles.title,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
+    style: generalStyles.brilliantWhiteCenter,
   });
 
   return (
     <ImageBackground
-      // TODO: change to the real image
-      source={{
-        uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-      }}
+      source={
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+      }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <Header />
@@ -66,7 +66,9 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
           onSubmit={onSubmit}
           style={styles.container}>
           <Title />
-          {/* //TODO: add animation */}
+          <View style={generalStyles.flex} />
+          <SVG.TruthCards />
+          <View style={generalStyles.flex} />
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>
