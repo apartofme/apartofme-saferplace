@@ -7,10 +7,7 @@ import { BACKGROUND_IMAGES } from '../../../assets';
 import {
   AVATAR_CAROUSEL,
   BottomButtonView,
-  Carousel,
-  CarouselType,
   ExtendedButton,
-  ExtendedKeyboardAvoidingView,
   ExtendedTextInput,
   MainHeader,
 } from '../../../components';
@@ -20,7 +17,7 @@ import { styles } from './EditProfile.styles';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { cacheSlice, userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
-import { SVG } from '../../../assets/svg';
+import { AVATARS_SVG, SVG } from '../../../assets/svg';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -72,35 +69,34 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
     }
   }, [avatar, dispatch, nickname, type]);
 
+  const Icon = avatar && AVATARS_SVG[avatar];
+
   return (
     <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        <ExtendedKeyboardAvoidingView>
-          <MainHeader
-            leftIcon={<WhiteBackArrowIcon />}
-            onLeftIconPress={navigation.goBack}
-          />
-          <BottomButtonView
-            buttonTitle={t('buttons.cancel')}
-            onSubmit={navigation.goBack}>
-            <Carousel
-              data={AVATAR_CAROUSEL}
-              preset={CarouselType.Avatar}
-              defaultIndex={avatarIndex === -1 ? 0 : avatarIndex}
-              setIndex={setAvatarIndex}
-            />
-
-            <View style={styles.container}>
-              <ExtendedTextInput value={nickname} onChangeText={setNickname} />
+        <MainHeader
+          leftIcon={<WhiteBackArrowIcon />}
+          onLeftIconPress={navigation.goBack}
+        />
+        <BottomButtonView
+          buttonTitle={t('buttons.cancel')}
+          onSubmit={navigation.goBack}>
+          {Icon && (
+            <View style={generalStyles.aiCenter}>
+              <Icon />
             </View>
-
+          )}
+          <View style={styles.inputContainer}>
+            <ExtendedTextInput value={nickname} onChangeText={setNickname} />
+          </View>
+          <View style={[generalStyles.jcEnd, generalStyles.flex]}>
             <ExtendedButton
               title={t('buttons.save')}
               style={styles.button}
               onPress={onSubmit}
             />
-          </BottomButtonView>
-        </ExtendedKeyboardAvoidingView>
+          </View>
+        </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>
   );
