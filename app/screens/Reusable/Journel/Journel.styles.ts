@@ -21,6 +21,5 @@ export const styles = StyleSheet.create<IJournelScreenStyles>({
     marginTop: 36,
     marginBottom: 24,
     height: 160,
-    marginBottom: 24,
   },
 });

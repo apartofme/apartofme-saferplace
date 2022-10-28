@@ -1,5 +1,5 @@
-import React from 'react';
-import { ImageBackground, SafeAreaView, TouchableOpacity } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { ILeaveFeedbackScreenProps } from './LeaveFeedback.types';
@@ -10,8 +10,13 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
-import { IMAGES } from '../../../assets';
-import { BottomButtonView, ExtendedText } from '../../../components';
+import { CHARMS_BACKGROUNDS } from '../../../assets';
+import {
+  BottomButtonView,
+  ExtendedKeyboardAvoidingView,
+  ExtendedText,
+  MultilineTextInput,
+} from '../../../components';
 
 export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
   route,
@@ -26,16 +31,16 @@ export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   } = route.params.data;
 
+  const [inputText, setInputText] = useState<string>('');
+
   const { t } = useTranslation();
   const onSubmit = useNavigateNextQuest();
 
   const Title = useParsedJSXTextNickname({
     text: title,
     textHasNickname: titleHasNickname ?? true,
-    preset: 'large-title',
-    style: styles.textCenter,
-    // TODO: remove
-    variableStyle: { color: '#00dbc0' },
+    preset: 'title',
+    style: generalStyles.brilliantWhite,
   });
 
   const Header = useRenderQuestHeader({
@@ -43,31 +48,59 @@ export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   });
 
+  const [isInputFocus, setInputIsFocus] = useState(false);
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    scrollViewRef.current?.scrollToEnd();
+  }, [isInputFocus]);
+
   return (
     <ImageBackground
-      // TODO: change to real default image
       source={
-        (backgroundImage && IMAGES[backgroundImage]) ?? {
-          uri: 'https://i0.wp.com/artisthue.com/wp-content/uploads/2020/12/Aesthetic-Full-Moon-Wallpaper.jpg?resize=576%2C1024&ssl=1',
-        }
+        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        <Header />
-        <BottomButtonView
-          buttonTitle={buttonTitle ?? t('buttons.next')}
-          onSubmit={onSubmit}
-          style={styles.container}>
-          <Title />
-          <ExtendedText
-            preset="secondary-text"
-            style={[styles.description, styles.textCenter]}>
-            {description}
-          </ExtendedText>
-        </BottomButtonView>
-        <TouchableOpacity style={styles.bottomButton}>
-          <ExtendedText>{t('buttons.not_now').toUpperCase()}</ExtendedText>
-        </TouchableOpacity>
+        <ExtendedKeyboardAvoidingView>
+          <BottomButtonView
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
+            onSubmit={onSubmit}
+            isDisabledButton={!inputText}>
+            <ScrollView
+              ref={scrollViewRef}
+              showsVerticalScrollIndicator={false}>
+              <Header />
+              <View style={styles.container}>
+                {title ? (
+                  <Title />
+                ) : (
+                  <ExtendedText
+                    preset="title"
+                    style={generalStyles.brilliantWhite}>
+                    {t('screens.journel.title')}
+                  </ExtendedText>
+                )}
+                {!!description && (
+                  <ExtendedText
+                    preset="secondary-text"
+                    style={styles.description}>
+                    {description ?? t('screens.journel.description')}
+                  </ExtendedText>
+                )}
+                <View style={styles.inputContainer}>
+                  <MultilineTextInput
+                    placeholder={t('placeholders.enter_text')}
+                    value={inputText}
+                    onChangeText={setInputText}
+                    setIsInputFocus={setInputIsFocus}
+                  />
+                </View>
+              </View>
+            </ScrollView>
+          </BottomButtonView>
+        </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
     </ImageBackground>
   );

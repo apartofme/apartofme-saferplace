@@ -1,26 +1,25 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { COLORS } from '../../../themes/colors';
+
 interface ILeaveFeedbackScreenStyles {
   container: ViewStyle;
   description: TextStyle;
-  textCenter: TextStyle;
-  bottomButton: ViewStyle;
+  inputContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ILeaveFeedbackScreenStyles>({
   container: {
-    paddingHorizontal: 40,
-    justifyContent: 'flex-end',
+    paddingTop: 40,
+    paddingHorizontal: 24,
   },
   description: {
-    paddingTop: 24,
-    paddingBottom: 64,
+    marginTop: 16,
+    color: COLORS.LIGHT_GREY,
   },
-  textCenter: {
-    textAlign: 'center',
-  },
-  bottomButton: {
-    alignSelf: 'center',
+  inputContainer: {
+    marginTop: 36,
     marginBottom: 24,
+    height: 160,
   },
 });
