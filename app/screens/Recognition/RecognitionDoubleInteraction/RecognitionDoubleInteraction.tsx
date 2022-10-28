@@ -4,6 +4,7 @@ import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { AVATARS_SVG } from '../../../assets/svg';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -74,12 +75,9 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
             {t('screens.recognition.double_interaction.title')}
           </ExtendedText>
           {/* // TODO: change to animation */}
-          <View
-            style={[
-              styles.square,
-              isChildPress && isAdultPress && styles.redBackground,
-            ]}
-          />
+          <View style={generalStyles.aiCenter}>
+            <ElixirThreeIcon />
+          </View>
           <ExtendedText style={styles.subtitle} preset="secondary-text">
             {t('screens.recognition.double_interaction.description')}
           </ExtendedText>
