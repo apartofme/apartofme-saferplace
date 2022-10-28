@@ -10,6 +10,8 @@ interface ILoginScreenStyles {
   footer: ViewStyle;
   signupButton: ViewStyle;
   button: ViewStyle;
+  errorTitle: TextStyle;
+  mb50: TextStyle;
 }
 
 export const styles = StyleSheet.create<ILoginScreenStyles>({
@@ -20,7 +22,10 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    paddingBottom: 68,
+    paddingBottom: 16,
+  },
+  mb50: {
+    marginBottom: 50,
   },
   mb16: {
     marginBottom: 16,
@@ -41,5 +46,9 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
   button: {
     marginTop: 30,
     marginBottom: 36,
+  },
+  errorTitle: {
+    color: COLORS.ERROR,
+    paddingBottom: 30,
   },
 });

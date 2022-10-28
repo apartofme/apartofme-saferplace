@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ImageBackground,
@@ -18,7 +18,7 @@ import {
 import { styles } from './Login.styles';
 import { ILoginScreenProps } from './Login.types';
 import { generalStyles } from '../../../../../utils/styles';
-import { useAppDispatch } from '../../../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks';
 import { userSlice } from '../../../../../redux/slices';
 import { SignInValidationSchema } from './Login.validation';
 import { SVG } from '../../../../../assets/svg';
@@ -47,6 +47,26 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
     navigation.navigate('SignUpCredentials');
   }, [navigation]);
 
+  const loginUserError = useAppSelector(state => state.app.errors.loginUser);
+  const isLoginUser = useAppSelector(state => state.app.loading.isLoginUser);
+
+  const [isOnLoginPress, setIsOnLoginPress] = useState(false);
+  const [isErrorShow, setIsErrorShow] = useState(false);
+
+  useEffect(() => {
+    if (isLoginUser) {
+      setIsOnLoginPress(true);
+    }
+  }, [isLoginUser]);
+
+  const title = useMemo(() => {
+    if (isOnLoginPress && loginUserError) {
+      setIsErrorShow(true);
+      return 'screens.onboarding.login.error_title';
+    }
+    return 'screens.onboarding.login.title';
+  }, [isOnLoginPress, loginUserError]);
+
   return (
     <ImageBackground
       source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
@@ -57,9 +77,17 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>
-          <ExtendedText preset="large-title" style={styles.title}>
-            {t('screens.onboarding.login.title')}
+          <ExtendedText
+            preset="large-title"
+            style={[styles.title, !isErrorShow && styles.mb50]}>
+            {t(title)}
           </ExtendedText>
+          {isErrorShow && (
+            <ExtendedText preset="secondary-text" style={styles.errorTitle}>
+              {t('screens.onboarding.login.error')}
+            </ExtendedText>
+          )}
+
           <Formik
             initialValues={{
               email: __DEV__ ? 'emberglazer@gmail.com' : '',
