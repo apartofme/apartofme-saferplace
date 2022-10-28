@@ -1,13 +1,14 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
 interface IEditProfileScreenStyles {
-  container: ViewStyle;
+  inputContainer: ViewStyle;
   button: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IEditProfileScreenStyles>({
-  container: {
-    paddingHorizontal: 40,
+  inputContainer: {
+    paddingHorizontal: 24,
+    paddingTop: 48,
   },
   button: {
     marginVertical: 24,
