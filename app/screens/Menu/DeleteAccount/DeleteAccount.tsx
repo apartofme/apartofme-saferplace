@@ -64,7 +64,7 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
 
                 <View style={styles.inputContainer}>
                   <ExtendedTextInput
-                    type={ExtendedTextInputType.Password}
+                    type={ExtendedTextInputType.PasswordToggle}
                     style={styles.input}
                     placeholder={t('placeholders.enter_current_password')}
                     onChangeText={handleChange('password')}

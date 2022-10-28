@@ -18,6 +18,9 @@ const INITIAL_STATE: IAppState = {
     isSaveTranslations: false,
     isUpdateChild: false,
     isUpdateParent: false,
+    isDeleteAccount: false,
+    isChangePassword: false,
+    isSaveChild: false,
   },
   errors: {
     getUser: null,
@@ -27,6 +30,9 @@ const INITIAL_STATE: IAppState = {
     saveTranslations: null,
     updateChild: null,
     updateParent: null,
+    deleteAccount: null,
+    changePassword: null,
+    saveChild: null,
   },
 };
 
@@ -110,6 +116,45 @@ export const appSlice = createSlice({
     builder.addCase(userSlice.actions.updateParentError, (state, action) => {
       state.loading[LoadingType.isUpdateParent] = false;
       state.errors[ErrorType.updateParent] = action.payload;
+    });
+
+    // Save child
+    builder.addCase(userSlice.actions.saveChild, state => {
+      state.loading[LoadingType.isSaveChild] = true;
+      state.errors[ErrorType.saveChild] = null;
+    });
+    builder.addCase(userSlice.actions.saveChildSuccess, state => {
+      state.loading[LoadingType.isSaveChild] = false;
+    });
+    builder.addCase(userSlice.actions.saveChildError, (state, action) => {
+      state.loading[LoadingType.isSaveChild] = false;
+      state.errors[ErrorType.saveChild] = action.payload;
+    });
+
+    // Delete account
+    builder.addCase(userSlice.actions.deleteAccount, state => {
+      state.loading[LoadingType.isDeleteAccount] = true;
+      state.errors[ErrorType.deleteAccount] = null;
+    });
+    builder.addCase(userSlice.actions.deleteAccountSuccess, state => {
+      state.loading[LoadingType.isDeleteAccount] = false;
+    });
+    builder.addCase(userSlice.actions.deleteAccountError, (state, action) => {
+      state.loading[LoadingType.isDeleteAccount] = false;
+      state.errors[ErrorType.deleteAccount] = action.payload;
+    });
+
+    // Update password
+    builder.addCase(userSlice.actions.changePassword, state => {
+      state.loading[LoadingType.isChangePassword] = true;
+      state.errors[ErrorType.changePassword] = null;
+    });
+    builder.addCase(userSlice.actions.changePasswordSuccess, state => {
+      state.loading[LoadingType.isChangePassword] = false;
+    });
+    builder.addCase(userSlice.actions.changePasswordError, (state, action) => {
+      state.loading[LoadingType.isChangePassword] = false;
+      state.errors[ErrorType.changePassword] = action.payload;
     });
 
     // Save translations
