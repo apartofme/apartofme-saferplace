@@ -24,7 +24,7 @@ exports[`UI: ExtendedButton should match snapshot 1`] = `
       "borderTopWidth": 2,
       "flexDirection": "row",
       "justifyContent": "center",
-      "maxHeight": 60,
+      "maxHeight": 66,
       "opacity": 1,
       "paddingHorizontal": 24,
       "paddingVertical": 16,
