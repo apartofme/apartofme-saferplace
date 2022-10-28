@@ -41,3 +41,4 @@ export { ThoughtfulGhostIcon } from './ThoughtfulGhostIcon';
 export { ThoughtfulPersonIcon } from './ThoughtfulPersonIcon';
 export { HeartInHandsIcon } from './HeartInHandsIcon';
 export { PainedBirdTreeIcon } from './PainedBirdTreeIcon';
+export { ReliefHappyBirdTreeIcon } from './ReliefHappyBirdTreeIcon';
