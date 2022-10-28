@@ -7,11 +7,13 @@ import {
 } from 'react-native-gesture-handler';
 
 import { AVATARS_SVG } from '../../../assets/svg';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { generalStyles } from '../../../utils/styles';
 import { AvatarsNameType } from '../../../utils/types';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
@@ -73,12 +75,9 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
           {t('screens.recognition.double_interaction.title')}
         </ExtendedText>
         {/* // TODO: change to animation */}
-        <View
-          style={[
-            styles.square,
-            isChildPress && isAdultPress && styles.redBackground,
-          ]}
-        />
+        <View style={generalStyles.aiCenter}>
+          <ElixirThreeIcon />
+        </View>
         <ExtendedText style={styles.subtitle}>
           {t('screens.recognition.double_interaction.description')}
         </ExtendedText>

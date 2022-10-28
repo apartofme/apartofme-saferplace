@@ -4,6 +4,7 @@ import { ImageBackground, SafeAreaView, View } from 'react-native';
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { AVATARS_SVG } from '../../../assets/svg';
+import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
 import {
@@ -143,12 +144,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
             <ExtendedText style={styles.title}>{title}</ExtendedText>
           </View>
           {/* // TODO: change to animation */}
-          <View
-            style={[
-              styles.square,
-              isChildPress && isAdultPress && styles.redBackground,
-            ]}
-          />
+          <View style={generalStyles.aiCenter}>
+            <ElixirThreeIcon />
+          </View>
 
           <View style={styles.buttonsContainer}>
             <View onTouchStart={setChildPress} onTouchEnd={setChildPress}>

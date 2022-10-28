@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 import moment from 'moment';
 
 import { IInitialScreenProps } from './InitialScreen.types';
@@ -7,6 +7,9 @@ import { styles } from './InitialScreen.styles';
 import { useAppDispatch, useAppSelector, useMount } from '../../hooks';
 import { cacheSlice, questSlice } from '../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../constants/time';
+import { BACKGROUND_IMAGES } from '../../assets';
+import { generalStyles } from '../../utils/styles';
+import { NadiyaTextIcon } from '../../assets/svg/onboarding';
 
 export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,
@@ -70,8 +73,12 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   }, [isSaveAllQuestsLoading, isSaveTranslationsLoading]);
 
   return (
-    <SafeAreaView style={styles.root}>
-      <ActivityIndicator size="large" />
-    </SafeAreaView>
+    <ImageBackground
+      source={BACKGROUND_IMAGES.SPLASHSCREEN_ADULT}
+      style={generalStyles.flex}>
+      <SafeAreaView style={styles.container}>
+        <NadiyaTextIcon />
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
