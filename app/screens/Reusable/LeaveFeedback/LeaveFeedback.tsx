@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { ILeaveFeedbackScreenProps } from './LeaveFeedback.types';
@@ -56,11 +56,13 @@ export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
   }, [isInputFocus]);
 
   return (
-    <ImageBackground
-      source={
-        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
-      }
-      style={generalStyles.flex}>
+    <View>
+      <Image
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
+        style={generalStyles.backgroundImage}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
@@ -102,6 +104,6 @@ export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

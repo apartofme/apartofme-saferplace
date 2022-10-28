@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, View } from 'react-native';
 import { Formik } from 'formik';
 
 import {
@@ -40,7 +40,12 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
   );
 
   return (
-    <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
+    <View style={generalStyles.backgroundImage}>
+      <Image
+        source={BACKGROUND_IMAGES.MENU}
+        style={generalStyles.backgroundImage}
+      />
+
       <SafeAreaView style={generalStyles.flex}>
         <Formik
           initialValues={{
@@ -109,6 +114,6 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
           )}
         </Formik>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

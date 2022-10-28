@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { ImageBackground, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -89,7 +89,8 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   }, [dispatch, inputValue, isChild, isFirstPart, onSubmit, setModalStatus, t]);
 
   return (
-    <ImageBackground source={backgroundImage} style={generalStyles.flex}>
+    <View>
+      <Image source={backgroundImage} style={generalStyles.backgroundImage} />
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
@@ -115,6 +116,6 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

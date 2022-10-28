@@ -3,6 +3,7 @@ import { ViewProps, ViewStyle } from 'react-native';
 import {
   AvatarsNameType,
   CharmsSvgKeys,
+  ElixirKeys,
   EmotionsCarouselSvgKeys,
   SvgComponentType,
 } from '../../utils/types';
@@ -21,6 +22,7 @@ type CarouselImageType =
   | SvgComponentType
   | AvatarsNameType
   | EmotionsCarouselSvgKeys
+  | ElixirKeys
   | CharmsSvgKeys;
 
 export interface ICarouselItem {

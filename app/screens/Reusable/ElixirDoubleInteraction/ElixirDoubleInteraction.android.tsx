@@ -155,11 +155,14 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
           <GestureHandlerRootView style={styles.buttonsContainer}>
             <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
-              <ParentAvatarIcon width={90} height={90} />
+              <View>
+                <ParentAvatarIcon width={90} height={90} />
+              </View>
             </PanGestureHandler>
-
             <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
-              <ChildAvatarIcon width={90} height={90} />
+              <View>
+                <ChildAvatarIcon width={90} height={90} />
+              </View>
             </PanGestureHandler>
           </GestureHandlerRootView>
         </SafeAreaView>

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { Image, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { styles } from './EmotionModal.styles';
@@ -54,7 +54,8 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
   });
 
   return (
-    <ImageBackground source={backgroundImage} style={generalStyles.flex}>
+    <View style={generalStyles.flex}>
+      <Image source={backgroundImage} style={generalStyles.backgroundImage} />
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
@@ -84,6 +85,6 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

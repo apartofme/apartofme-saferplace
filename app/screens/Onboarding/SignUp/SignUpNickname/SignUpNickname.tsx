@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { Image, SafeAreaView, View } from 'react-native';
 import { Formik } from 'formik';
 
 import {
@@ -58,7 +58,8 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
   }, [isChild]);
 
   return (
-    <ImageBackground source={background} style={generalStyles.flex}>
+    <View style={generalStyles.flex}>
+      <Image source={background} style={generalStyles.backgroundImage} />
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
@@ -94,6 +95,6 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
           </Formik>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };

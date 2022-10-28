@@ -42,6 +42,7 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
     paddingBottom: 27,
   },
   emojiButton: {
+    marginVertical: 12,
     marginHorizontal: 8,
     opacity: 0.75,
   },
@@ -60,7 +61,7 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
   },
   emojiButtons: {
     flexGrow: 0,
-    paddingVertical: 12,
+    // paddingVertical: 12,
     paddingHorizontal: 4,
     backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
     borderWidth: 1,

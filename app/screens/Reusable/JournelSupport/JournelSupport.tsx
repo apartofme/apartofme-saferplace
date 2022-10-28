@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { Image, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IJournelSupportScreenProps } from './JournelSupport.types';
@@ -66,11 +66,13 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
   }, [isInputFocus]);
 
   return (
-    <ImageBackground
-      source={
-        CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
-      }
-      style={generalStyles.flex}>
+    <View>
+      <Image
+        source={
+          CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
+        }
+        style={generalStyles.backgroundImage}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
@@ -113,6 +115,6 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
           </BottomButtonView>
         </ExtendedKeyboardAvoidingView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };
