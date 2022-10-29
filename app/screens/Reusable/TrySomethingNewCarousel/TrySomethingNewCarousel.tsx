@@ -6,7 +6,6 @@ import Modal from 'react-native-modal';
 import {
   ExtendedButton,
   ExtendedText,
-  MainHeader,
   TrySomethingCarousel,
 } from '../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
@@ -14,23 +13,19 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import {
   useIsChildMove,
   useNavigateNextQuest,
-  useNavigatePrevQuest,
   useParsedJSXTextNickname,
+  useRenderQuestHeader,
 } from '../../../hooks/quest';
 import { cacheSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { TrySomethingModal } from './components';
 import { styles } from './TrySomethingNewCarousel.styles';
 import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.types';
-import { SVG } from '../../../assets/svg';
 import {
   SECOND_TRY_SOMETHING_ITEMS,
   TRY_SOMETHING_DISCOVERY_ITEMS,
 } from './TrySomethingNewCarousel.data';
 import { TRY_SOMETHING_NEW_PART_ONE_ID } from '../../../constants/quest';
-
-const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
-const WhiteCrossIcon = SVG.WhiteCrossIcon;
 
 export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScreenProps> =
   ({ route }) => {
@@ -41,6 +36,8 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
       tellMoreDescription,
       backgroundImage,
       titleHasNickname,
+      crossHeader,
+      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const dispatch = useAppDispatch();
@@ -69,7 +66,6 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
 
     const { t } = useTranslation();
 
-    const goBack = useNavigatePrevQuest();
     const onSubmit = useNavigateNextQuest();
     const isChild = useIsChildMove(title);
 
@@ -127,6 +123,11 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
       t,
     ]);
 
+    const Header = useRenderQuestHeader({
+      crossHeader: crossHeader ?? false,
+      escapeMenuAlternativeNavigateTo,
+    });
+
     return (
       <ImageBackground
         source={
@@ -148,11 +149,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
               isFirstPart={isFirstPart}
             />
           </Modal>
-          <MainHeader
-            leftIcon={<WhiteBackArrowIcon />}
-            rightIcon={<WhiteCrossIcon />}
-            onLeftIconPress={goBack}
-          />
+          <Header />
           <View style={styles.container}>
             <View style={styles.titleContainer}>
               <Title />

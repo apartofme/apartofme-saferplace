@@ -89,7 +89,7 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   }, [dispatch, inputValue, isChild, isFirstPart, onSubmit, setModalStatus, t]);
 
   return (
-    <View>
+    <View style={generalStyles.flex}>
       <Image source={backgroundImage} style={generalStyles.backgroundImage} />
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader

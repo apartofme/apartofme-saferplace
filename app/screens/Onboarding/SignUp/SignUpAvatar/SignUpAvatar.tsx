@@ -118,6 +118,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
             data={avatarsData}
             preset={CarouselType.Avatar}
             setIndex={setCurrentIndex}
+            carouselItemStyle={generalStyles.aiCenter}
           />
         </BottomButtonView>
       </SafeAreaView>

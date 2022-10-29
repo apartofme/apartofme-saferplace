@@ -12,6 +12,7 @@ interface IGrownUpsGuideScreenStyles {
 
 export const styles = StyleSheet.create<IGrownUpsGuideScreenStyles>({
   container: {
+    flex: 1,
     marginHorizontal: 24,
   },
   title: {

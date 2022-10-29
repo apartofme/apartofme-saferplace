@@ -110,10 +110,8 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            <View style={generalStyles.aiCenter}>
-              {Icon && <Icon />}
-              <Description />
-            </View>
+            {Icon && <Icon />}
+            <Description />
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>
