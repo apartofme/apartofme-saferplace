@@ -52,6 +52,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
 
   const [isOnLoginPress, setIsOnLoginPress] = useState(false);
   const [isErrorShow, setIsErrorShow] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     if (isLoginUser) {
@@ -105,6 +106,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                   placeholderTextColor={COLORS.BRILLIANT_WHITE}
                   type={ExtendedTextInputType.Email}
                   style={styles.mb16}
+                  setIsActive={setIsActive}
                 />
                 <ExtendedTextInput
                   type={ExtendedTextInputType.PasswordToggle}
@@ -113,6 +115,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                   onBlur={handleBlur('password')}
                   placeholder={t('placeholders.enter_password')}
                   placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                  setIsActive={setIsActive}
                 />
                 <ExtendedButton
                   title={t('buttons.login')}
@@ -123,30 +126,34 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
               </>
             )}
           </Formik>
-          <TouchableOpacity
-            onPress={onForgotPusswordPress}
-            style={styles.forgotButton}
-            hitSlop={HIT_SLOP}>
-            <ExtendedText
-              preset="body-bold"
-              style={generalStyles.primaryOrange}>
-              {t('buttons.forgot_password')}
-            </ExtendedText>
-          </TouchableOpacity>
+          {!isActive && (
+            <TouchableOpacity
+              onPress={onForgotPusswordPress}
+              style={styles.forgotButton}
+              hitSlop={HIT_SLOP}>
+              <ExtendedText
+                preset="body-bold"
+                style={generalStyles.primaryOrange}>
+                {t('buttons.forgot_password')}
+              </ExtendedText>
+            </TouchableOpacity>
+          )}
         </View>
 
-        <View style={styles.footer}>
-          <ExtendedText
-            preset="secondary-text"
-            style={generalStyles.brilliantWhite}>
-            {t('screens.onboarding.login.footer')}
-          </ExtendedText>
-          <TouchableOpacity hitSlop={HIT_SLOP} onPress={onSignUpPress}>
-            <ExtendedText preset="body-bold" style={styles.signupButton}>
-              {t('buttons.signup')}!
+        {!isActive && (
+          <View style={styles.footer}>
+            <ExtendedText
+              preset="secondary-text"
+              style={generalStyles.brilliantWhite}>
+              {t('screens.onboarding.login.footer')}
             </ExtendedText>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity hitSlop={HIT_SLOP} onPress={onSignUpPress}>
+              <ExtendedText preset="body-bold" style={styles.signupButton}>
+                {t('buttons.signup')}!
+              </ExtendedText>
+            </TouchableOpacity>
+          </View>
+        )}
       </SafeAreaView>
     </ImageBackground>
   );
