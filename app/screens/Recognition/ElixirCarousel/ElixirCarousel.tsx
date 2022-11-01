@@ -20,7 +20,7 @@ export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.GARDEN}
+      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView
@@ -30,8 +30,7 @@ export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
           isArrow>
           <Carousel
             data={[...ELIXIR_CAROUSEL]}
-            preset={CarouselType.ImageSubtitle}
-            carouselItemStyle={styles.carouselItem}
+            preset={CarouselType.IconDescription}
           />
         </BottomButtonView>
       </SafeAreaView>

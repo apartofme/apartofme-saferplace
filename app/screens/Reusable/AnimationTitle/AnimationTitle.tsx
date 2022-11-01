@@ -94,12 +94,12 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
       style={generalStyles.flex}>
       {description === ELIXIR_ANIMATION_TYPE.Pour ? (
-        <View style={styles.alertContainer}>
+        <View style={styles.elixirContainer}>
           {animation}
-          <ExtendedText style={styles.alertTitle}>
+          <ExtendedText style={styles.title}>
             {t('labels.wait').toUpperCase()}
           </ExtendedText>
         </View>

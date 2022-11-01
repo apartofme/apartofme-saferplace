@@ -1,11 +1,6 @@
-import { EmotionButtonType } from '../../components';
+import { EmotionButtonType, ITrySomethingItem } from '../../components';
 import { Nullable } from '../../utils';
-import {
-  AvatarsKeys,
-  CharmsSvgKeys,
-  EmotionsCarouselSvgKeys,
-  FavoriteCharmSvgKeys,
-} from '../../utils/types';
+import { AvatarsKeys } from '../../utils/types';
 
 export interface ISignUpData {
   email?: string;
@@ -26,30 +21,15 @@ export interface INicknames {
   secondPlayer: string;
 }
 
+export interface IPlayer {
+  trySomethingFirstItem: Nullable<ITrySomethingItem>;
+  trySomethingSecondItem: Nullable<ITrySomethingItem>;
+  kindnessItem: Nullable<string>;
+}
+
 export interface IEmotions {
   selected: Nullable<EmotionButtonType>;
   completed: Nullable<EmotionButtonType>[];
-}
-
-export interface IEmotionItem {
-  image: EmotionsCarouselSvgKeys;
-  title: string;
-}
-
-export interface ITroublesomeSpiritQuestionsItem {
-  image: CharmsSvgKeys;
-  title: string;
-}
-
-export interface IFavouriteCharmItem {
-  id: string;
-  iconKey: FavoriteCharmSvgKeys;
-  title: string;
-}
-
-export interface ITrySomethingItem {
-  title: string;
-  description: string;
 }
 
 export interface ISignUpDataPayload {
@@ -70,26 +50,3 @@ export type ITranslations = Record<
     translations: Record<string, string>;
   }
 >;
-
-export interface INicknamesPayload {
-  payload: INicknames;
-}
-
-export interface IEmotionPayload {
-  payload: Nullable<EmotionButtonType>;
-}
-export interface ITroublesomeSpiritQuestionsItemPayload {
-  payload: Nullable<ITroublesomeSpiritQuestionsItem>;
-}
-
-export interface IEmotionItemPayload {
-  payload: IEmotionItem;
-}
-
-export interface IFavouriteCharmItemPayload {
-  payload: IFavouriteCharmItem;
-}
-
-export interface ITrySomethingItemPayload {
-  payload: ITrySomethingItem;
-}

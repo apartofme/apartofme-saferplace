@@ -1,5 +1,7 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../../constants/window';
+
 interface ISelectCharmCarouselScreenStyles {
   container: ViewStyle;
   carousel: ViewStyle;
@@ -11,6 +13,7 @@ export const styles = StyleSheet.create<ISelectCharmCarouselScreenStyles>({
     paddingHorizontal: 24,
   },
   carousel: {
-    paddingBottom: 75,
+    paddingTop: 64 * WINDOW_COEFFICIENT,
+    paddingBottom: 75 * WINDOW_COEFFICIENT,
   },
 });

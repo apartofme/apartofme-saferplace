@@ -11,6 +11,7 @@ import {
   ExtendedKeyboardAvoidingView,
   ExtendedText,
   ExtendedTextInput,
+  ITrySomethingItem,
   MainHeader,
 } from '../../../../../components';
 import { cacheSlice } from '../../../../../redux/slices';
@@ -50,43 +51,30 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
   });
 
   const onSubmitPress = useCallback(() => {
+    const item: ITrySomethingItem = {
+      id: 'createOwn',
+      titleKey: 'labels.create_own',
+      descriptionKey: inputValue,
+      iconKey: 'AskForHelpIcon',
+    };
+
     if (isFirstPart) {
       if (isChild) {
-        dispatch(
-          cacheSlice.actions.saveChildTrySomethingFirstItem({
-            title: t('labels.create_own'),
-            description: inputValue,
-          }),
-        );
+        dispatch(cacheSlice.actions.saveChildTrySomethingFirstItem(item));
       } else {
-        dispatch(
-          cacheSlice.actions.saveParentTrySomethingFirstItem({
-            title: t('labels.create_own'),
-            description: inputValue,
-          }),
-        );
+        dispatch(cacheSlice.actions.saveParentTrySomethingFirstItem(item));
       }
     } else {
       if (isChild) {
-        dispatch(
-          cacheSlice.actions.saveChildTrySomethingSecondItem({
-            title: t('labels.create_own'),
-            description: inputValue,
-          }),
-        );
+        dispatch(cacheSlice.actions.saveChildTrySomethingSecondItem(item));
       } else {
-        dispatch(
-          cacheSlice.actions.saveParentTrySomethingSecondItem({
-            title: t('labels.create_own'),
-            description: inputValue,
-          }),
-        );
+        dispatch(cacheSlice.actions.saveParentTrySomethingSecondItem(item));
       }
     }
 
     setModalStatus();
     onSubmit();
-  }, [dispatch, inputValue, isChild, isFirstPart, onSubmit, setModalStatus, t]);
+  }, [dispatch, inputValue, isChild, isFirstPart, onSubmit, setModalStatus]);
 
   return (
     <View style={generalStyles.flex}>

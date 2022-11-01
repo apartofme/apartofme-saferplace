@@ -1,43 +1,44 @@
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, {
+  Extrapolate,
   interpolate,
   useAnimatedStyle,
-  useDerivedValue,
-  withTiming,
 } from 'react-native-reanimated';
 
 import { styles } from './Avatar.styles';
 import { generalStyles } from '../../../../utils/styles';
 import { AVATARS_SVG } from '../../../../assets/svg';
-import { AvatarsNameType } from '../../../../utils/types';
-import { ICarouselItemProps } from '../../Carousel.types';
+import { IAvatarItem, ICarouselItemProps } from '../../Carousel.types';
+import { OPACITY_RANGE } from '../../Carousel.data';
 
-export const Avatar: React.FC<ICarouselItemProps> = ({
+export const Avatar: React.FC<ICarouselItemProps<IAvatarItem>> = ({
   data,
-  isActive,
+  animValue,
+  index,
   style,
 }) => {
-  const Icon = AVATARS_SVG[data.image as AvatarsNameType];
+  const Icon = AVATARS_SVG[data.iconKey];
 
-  const progressValue = useDerivedValue(() => {
-    return isActive
-      ? withTiming(1, { duration: 250 })
-      : withTiming(0, { duration: 500 });
-  }, [isActive]);
+  const animationStyle = useAnimatedStyle(() => {
+    const inputRange = [index - 1, index, index + 1];
 
-  const avatarStyles = useAnimatedStyle(() => {
-    const opacity = interpolate(progressValue.value, [0, 1], [0.5, 1]);
+    const opacity = interpolate(
+      animValue.value,
+      inputRange,
+      OPACITY_RANGE,
+      Extrapolate.CLAMP,
+    );
 
     return {
       opacity,
     };
-  });
+  }, [animValue, index]);
 
   return (
     <GestureHandlerRootView style={[generalStyles.flex]}>
-      <Animated.View style={[styles.container, style, avatarStyles]}>
-        <Icon />
+      <Animated.View style={[styles.container, style, animationStyle]}>
+        {Icon && <Icon />}
       </Animated.View>
     </GestureHandlerRootView>
   );

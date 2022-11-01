@@ -1,18 +1,16 @@
 import { AvatarsNameType } from '../../utils/types';
 import {
-  IAvatarCarouselItem,
-  ICarouselItem,
-  ITroublesomeCarouselItem,
+  IAvatarItem,
+  ICharmItem,
+  IEmotionItem,
+  ITroublesomeItem,
 } from './Carousel.types';
 
 export enum CarouselType {
   Avatar = 'avatar',
-  Charm = 'charm',
-  Emotion = 'emotion',
-  SubtitleImage = 'SubtitleImage',
-  TroublesomeSpiritQuestion = 'troublesomeSpiritQuestion',
-  ImageTitleSubtitle = 'imageTitleSubtitle',
-  ImageSubtitle = 'imageSubtitle',
+  Card = 'card',
+  IconDescription = 'iconDescription',
+  IconTitleDescription = 'iconTitleDescription',
 }
 
 export const CAROUSEL_MODE_CONFIG_AVATAR = {
@@ -21,86 +19,150 @@ export const CAROUSEL_MODE_CONFIG_AVATAR = {
   parallaxAdjacentItemScale: 0.8,
 };
 
-export const CAROUSEL_MODE_CONFIG_CHARM = {
+export const CAROUSEL_MODE_CONFIG_DEFAULT = {
   parallaxScrollingScale: 1,
   parallaxScrollingOffset: 100,
 };
 
-export const AVATAR_CAROUSEL: ReadonlyArray<IAvatarCarouselItem> = [
+export const OPACITY_RANGE = [0.5, 1, 0.5];
+
+export const AVATAR_CAROUSEL: ReadonlyArray<IAvatarItem> = [
   {
     id: '1',
-    image: AvatarsNameType.Rabbit,
+    iconKey: AvatarsNameType.Rabbit,
   },
   {
     id: '2',
-    image: AvatarsNameType.Owl,
+    iconKey: AvatarsNameType.Owl,
   },
   {
     id: '3',
-    image: AvatarsNameType.Moth,
+    iconKey: AvatarsNameType.Moth,
   },
   {
     id: '4',
-    image: AvatarsNameType.Fox,
+    iconKey: AvatarsNameType.Fox,
   },
   {
     id: '5',
-    image: AvatarsNameType.Bear,
+    iconKey: AvatarsNameType.Bear,
   },
   {
     id: '6',
-    image: AvatarsNameType.Monkey,
+    iconKey: AvatarsNameType.Monkey,
   },
 ];
 
-export const EMOTION_CAROUSEL: ReadonlyArray<ICarouselItem> = [
+export const EMOTION_CAROUSEL: ReadonlyArray<IEmotionItem> = [
   {
     id: '1',
     titleKey: 'screens.emotion_carousel.first',
-    image: 'IAmSorryIcon',
+    iconKey: 'IAmSorryIcon',
   },
   {
     id: '2',
     titleKey: 'screens.emotion_carousel.second',
-    image: 'HowCanIHelpIcon',
+    iconKey: 'HowCanIHelpIcon',
   },
   {
     id: '3',
     titleKey: 'screens.emotion_carousel.third',
-    image: 'ItsOkIcon',
+    iconKey: 'ItsOkIcon',
   },
   {
     id: '4',
     titleKey: 'screens.emotion_carousel.fourth',
-    image: 'YouAreSafeIcon',
+    iconKey: 'YouAreSafeIcon',
   },
   {
     id: '5',
     titleKey: 'screens.emotion_carousel.fifth',
-    image: 'IFeelThatWayIcon',
+    iconKey: 'IFeelThatWayIcon',
   },
   {
     id: '6',
     titleKey: 'screens.emotion_carousel.sixth',
-    image: 'ImHereForYouIcon',
+    iconKey: 'ImHereForYouIcon',
   },
 ];
 
-export const TROUBLESOME_SPIRIT_QUESTIONS: ReadonlyArray<ITroublesomeCarouselItem> =
-  [
-    {
-      id: '1',
-      image: 'DistressedFoxIcon',
-      titleKey: 'screens.troublesome_spirit_questions_carousel.first',
-    },
-    {
-      id: '2',
-      image: 'PuzzledMothIcon',
-      titleKey: 'screens.troublesome_spirit_questions_carousel.second',
-    },
-    {
-      id: '3',
-      image: 'LoveRabbitIcon',
-      titleKey: 'screens.troublesome_spirit_questions_carousel.third',
-    },
-  ];
+export const TROUBLESOME_SPIRIT_QUESTIONS: ReadonlyArray<ITroublesomeItem> = [
+  {
+    id: '1',
+    iconKey: 'DistressedFoxIcon',
+    titleKey: 'screens.troublesome_spirit_questions_carousel.first',
+  },
+  {
+    id: '2',
+    iconKey: 'PuzzledMothIcon',
+    titleKey: 'screens.troublesome_spirit_questions_carousel.second',
+  },
+  {
+    id: '3',
+    iconKey: 'LoveRabbitIcon',
+    titleKey: 'screens.troublesome_spirit_questions_carousel.third',
+  },
+];
+
+export const FAVOURITE_CHARM: ReadonlyArray<ICharmItem> = [
+  {
+    id: '1',
+    iconKey: 'TheCharmOfGroundingIcon',
+    titleKey: 'screens.favourite_charm_carousel.first',
+  },
+  {
+    id: '2',
+    iconKey: 'CharmOfHealingHandIcon',
+    titleKey: 'screens.favourite_charm_carousel.second',
+  },
+  {
+    id: '3',
+    iconKey: 'DancingCharmIcon',
+    titleKey: 'screens.favourite_charm_carousel.third',
+  },
+  {
+    id: '4',
+    iconKey: 'CharmOfSlowWindIcon',
+    titleKey: 'screens.favourite_charm_carousel.fourth',
+  },
+  {
+    id: '5',
+    iconKey: 'CharmOfDiscoveryIcon',
+    titleKey: 'screens.favourite_charm_carousel.fifth',
+  },
+  {
+    id: '6',
+    iconKey: 'TheCharmOfSanctuaryIcon',
+    titleKey: 'screens.favourite_charm_carousel.sixth',
+  },
+  {
+    id: '7',
+    iconKey: 'CharmOfKindnessIcon',
+    titleKey: 'screens.favourite_charm_carousel.seventh',
+  },
+  {
+    id: '8',
+    iconKey: 'CharmOfAcceptanceIcon',
+    titleKey: 'screens.favourite_charm_carousel.eighth',
+  },
+  {
+    id: '9',
+    iconKey: 'CharmOfMirrorIcon',
+    titleKey: 'screens.favourite_charm_carousel.ninth',
+  },
+  {
+    id: '10',
+    iconKey: 'CharmOfTruthIcon',
+    titleKey: 'screens.favourite_charm_carousel.tenth',
+  },
+  {
+    id: '11',
+    iconKey: 'CharmOfOpenHandIcon',
+    titleKey: 'screens.favourite_charm_carousel.eleventh',
+  },
+  {
+    id: '12',
+    iconKey: 'CharmOfBefriendingIcon',
+    titleKey: 'screens.favourite_charm_carousel.twelfth',
+  },
+];

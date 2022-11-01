@@ -38,14 +38,14 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
       state => state.cache.auth[isChild ? 'child' : 'parent']?.nickname,
     ) ?? '';
 
-  const [avatarsData, setAvatarsData] = useState(
-    _.filter(AVATAR_CAROUSEL, item => item.image !== parentAvatar),
+  const [avatarsData] = useState(
+    _.filter(AVATAR_CAROUSEL, item => item.iconKey !== parentAvatar),
   );
-  const [avatar, setAvatar] = useState(avatarsData[0].image);
+  const [avatar, setAvatar] = useState(avatarsData[0].iconKey);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    setAvatar(avatarsData[currentIndex].image);
+    setAvatar(avatarsData[currentIndex].iconKey);
   }, [avatarsData, currentIndex]);
 
   const onSubmitButtonPress = useCallback(() => {
@@ -118,7 +118,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
             data={avatarsData}
             preset={CarouselType.Avatar}
             setIndex={setCurrentIndex}
-            carouselItemStyle={generalStyles.aiCenter}
+            style={styles.carousel}
           />
         </BottomButtonView>
       </SafeAreaView>

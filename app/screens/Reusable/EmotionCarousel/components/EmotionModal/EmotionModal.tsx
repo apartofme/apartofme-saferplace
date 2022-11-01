@@ -38,8 +38,9 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
   const onSubmit = useCallback(() => {
     dispatch(
       cacheSlice.actions.saveEmotionItem({
-        image: 'CreateYourOwnIcon',
-        title: inputValue,
+        id: 'createOwn',
+        iconKey: 'CreateYourOwnIcon',
+        titleKey: inputValue,
       }),
     );
     setModalStatus();
@@ -61,12 +62,14 @@ export const EmotionModal: React.FC<IEmotionModalProps> = ({
           leftIcon={<WhiteBackArrowIcon />}
           rightIcon={<WhiteCrossIcon />}
           onLeftIconPress={setModalStatus}
+          onRightIconPress={setModalStatus}
         />
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
             buttonTitle={t('buttons.next')}
             isArrow={true}
-            onSubmit={onSubmit}>
+            onSubmit={onSubmit}
+            isDisabledButton={!inputValue}>
             <View style={styles.container}>
               <Title />
               <ExtendedTextInput

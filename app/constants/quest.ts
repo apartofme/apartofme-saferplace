@@ -9,6 +9,7 @@ export const DAY_13_CLOSING_DIALOGUE_ID = '55602873';
 export const DAY_14_CLOSING_DIALOGUE_ID = '55602887';
 export const THE_CHARM_OF_WEAVING_ID = '55602886';
 export const THE_CHARM_OF_ACCEPTANCE_ID = '55602851';
+export const THE_CHARM_OF_KINDNESS_ID = '55602844';
 
 export const PLANTS_CHARM_IDS = [
   '55602820', // FTUE - Compassion Exercises

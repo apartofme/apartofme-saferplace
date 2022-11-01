@@ -3,6 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useCallback } from 'react';
 import { TextStyle } from 'react-native';
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
@@ -257,6 +258,7 @@ export const useParsedJSXTextNickname = ({
   style?: TextStyle;
   variableStyle?: TextStyle;
 }): React.FC => {
+  const { t } = useTranslation();
   const firstPlayer =
     useAppSelector(state => state.cache.nicknames?.firstPlayer) ?? '';
   const secondPlayer =
@@ -268,17 +270,10 @@ export const useParsedJSXTextNickname = ({
   const playerEmotion =
     useAppSelector(state => state.cache.emotions.selected) ?? '';
   const troublesomeSpiritQuestion =
-    useAppSelector(
-      state => state.cache.troublesomeSpiritQuestionsItem?.title,
-    ) ?? '';
-  const { childTrySomethingFirstItem } = useAppSelector(state => state.cache);
-  const { parentTrySomethingFirstItem } = useAppSelector(state => state.cache);
-  const { childTrySomethingSecondItem } = useAppSelector(state => state.cache);
-  const { parentTrySomethingSecondItem } = useAppSelector(state => state.cache);
-  const childKindness = useAppSelector(state => state.cache.childKindnessItem);
-  const parentKindness = useAppSelector(
-    state => state.cache.parentKindnessItem,
-  );
+    useAppSelector(state => state.cache.troublesomeItem?.titleKey) ?? '';
+  const { child } = useAppSelector(state => state.cache);
+  const { parent } = useAppSelector(state => state.cache);
+
   const isChildMove = useIsChildMove(text);
 
   if (!textHasNickname) {
@@ -306,16 +301,16 @@ export const useParsedJSXTextNickname = ({
   );
 
   const renderTrySomethingFirstTitle = () => {
-    const correctTrySomethingTitle = isChild
-      ? childTrySomethingFirstItem?.title
-      : parentTrySomethingFirstItem?.title;
+    const correctKey = isChild
+      ? child.trySomethingFirstItem?.titleKey
+      : parent.trySomethingFirstItem?.titleKey;
 
     return (
       <ExtendedText
         key={DatoCMSTextVariables.TrySomethingFirstTitle}
         preset={preset}
         style={variableStyle}>
-        {correctTrySomethingTitle}
+        {correctKey && t(correctKey)}
       </ExtendedText>
     );
   };
@@ -323,31 +318,31 @@ export const useParsedJSXTextNickname = ({
   const renderTrySomethingFirstDescription = (
     trySomethingDescription: string,
   ) => {
-    const correctTrySomethingDescription = isChild
-      ? childTrySomethingFirstItem?.description
-      : parentTrySomethingFirstItem?.description;
+    const correctKey = isChild
+      ? child.trySomethingFirstItem?.descriptionKey
+      : parent.trySomethingFirstItem?.descriptionKey;
 
     return (
       <ExtendedText
         key={DatoCMSTextVariables.TrySomethingFirstDescription}
         preset={preset}
         style={trySomethingDescription.startsWith('$') && variableStyle}>
-        {correctTrySomethingDescription}
+        {correctKey && t(correctKey)}
       </ExtendedText>
     );
   };
 
   const renderTrySomethingSecondTitle = () => {
-    const correctTrySomethingTitle = isChild
-      ? childTrySomethingSecondItem?.title
-      : parentTrySomethingSecondItem?.title;
+    const correctKey = isChild
+      ? child.trySomethingSecondItem?.titleKey
+      : parent.trySomethingSecondItem?.titleKey;
 
     return (
       <ExtendedText
         key={DatoCMSTextVariables.TrySomethingSecondTitle}
         preset={preset}
         style={variableStyle}>
-        {correctTrySomethingTitle}
+        {correctKey && t(correctKey)}
       </ExtendedText>
     );
   };
@@ -355,29 +350,29 @@ export const useParsedJSXTextNickname = ({
   const renderTrySomethingSecondDescription = (
     trySomethingDescription: string,
   ) => {
-    const correctTrySomethingDescription = isChild
-      ? childTrySomethingSecondItem?.description
-      : parentTrySomethingSecondItem?.description;
+    const correctKey = isChild
+      ? child.trySomethingSecondItem?.descriptionKey
+      : parent.trySomethingSecondItem?.descriptionKey;
 
     return (
       <ExtendedText
         key={DatoCMSTextVariables.TrySomethingSecondDescription}
         preset={preset}
         style={trySomethingDescription.startsWith('$') && variableStyle}>
-        {correctTrySomethingDescription}
+        {correctKey && t(correctKey)}
       </ExtendedText>
     );
   };
 
   const renderKindnessInput = () => {
-    const correctKindnessInput = isChild ? childKindness : parentKindness;
+    const correctValue = isChild ? child.kindnessItem : parent.kindnessItem;
 
     return (
       <ExtendedText
         key={DatoCMSTextVariables.KindnessInput}
         preset={preset}
         style={variableStyle}>
-        {correctKindnessInput}
+        {correctValue}
       </ExtendedText>
     );
   };

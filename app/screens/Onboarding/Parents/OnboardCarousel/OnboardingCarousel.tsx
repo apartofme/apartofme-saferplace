@@ -25,9 +25,8 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
         style={generalStyles.flex}>
         <SafeAreaView edges={['bottom']} style={generalStyles.flex}>
           <Carousel
-            data={[...CHARMS_CAROUSEL]}
-            preset={CarouselType.ImageTitleSubtitle}
-            carouselItemStyle={styles.carouselItem}
+            data={CHARMS_CAROUSEL}
+            preset={CarouselType.IconTitleDescription}
           />
           <Pressable
             onPress={onSubmit}

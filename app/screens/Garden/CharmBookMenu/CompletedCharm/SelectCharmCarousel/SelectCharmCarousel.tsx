@@ -42,7 +42,6 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
     const [currentPossition, setCurrentPossition] = useState<number>(0);
 
     const onSubmitPress = useCallback(() => {
-      //   console.log(currentPossition);
       dispatch(questSlice.actions.setIsCurrentQuestCompleted(true));
 
       const completedQuestLineId =
@@ -82,7 +81,7 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
@@ -96,7 +95,7 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
             <Title />
             <Carousel
               data={[...filteredCarouselData]}
-              preset={CarouselType.Charm}
+              preset={CarouselType.Card}
               setIndex={setCurrentPossition}
               style={styles.carousel}
             />

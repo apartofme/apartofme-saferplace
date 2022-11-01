@@ -121,14 +121,14 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+      source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
       style={generalStyles.flex}>
       <SafeAreaView style={styles.container}>
         {animation}
         <ExtendedText
           preset="title"
           style={[generalStyles.brilliantWhiteCenter, styles.title]}>
-          {t(title)}
+          {title && t(title)}
         </ExtendedText>
       </SafeAreaView>
     </ImageBackground>

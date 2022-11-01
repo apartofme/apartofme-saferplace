@@ -10,7 +10,7 @@ interface IAcknowledgementAlongEdgesStyles {
 
 export const styles = StyleSheet.create<IAcknowledgementAlongEdgesStyles>({
   container: {
-    paddingTop: 40,
+    paddingTop: 40 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
     paddingBottom: 50 * WINDOW_COEFFICIENT,
     alignItems: 'center',
@@ -19,7 +19,6 @@ export const styles = StyleSheet.create<IAcknowledgementAlongEdgesStyles>({
   description: {
     flex: 1,
     maxHeight: 100,
-    marginTop: 58 * WINDOW_COEFFICIENT,
     color: COLORS.LIGHT_GREY,
     textAlign: 'center',
   },
