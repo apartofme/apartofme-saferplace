@@ -21,7 +21,7 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data }) => {
   const renderItem = useCallback(
     ({ item, index }: { item: IChild; index: number }) => {
       const onAddChildPress = () => {
-        navigation.navigate('JointOnboardingStack');
+        navigation.navigate('SelectUserAcknowledgement');
       };
 
       const onChildPress = () => {

@@ -15,6 +15,7 @@ import {
   SignUpSuccessScreen,
   ForgotPasswordEmailScreen,
   ForgotPasswordSuccessScreen,
+  SelectUserAcknowledgementScreen,
 } from '../../screens';
 import { DEFAULT_STACK_OPTIONS } from '../options';
 
@@ -32,6 +33,7 @@ export type ParentsOnboardingStackParams = {
   SelectUser: undefined;
   ForgotPasswordEmail: undefined;
   ForgotPasswordSuccess: undefined;
+  SelectUserAcknowledgement: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParentsOnboardingStackParams>();
@@ -80,6 +82,10 @@ export const ParentsOnboardingStackNavigator = () => (
     <Stack.Screen
       name="ForgotPasswordSuccess"
       component={ForgotPasswordSuccessScreen}
+    />
+    <Stack.Screen
+      name="SelectUserAcknowledgement"
+      component={SelectUserAcknowledgementScreen}
     />
   </Stack.Navigator>
 );
