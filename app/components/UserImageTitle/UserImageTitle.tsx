@@ -5,6 +5,9 @@ import { IUserImageTitleProps } from './UserImageTitle.types';
 import { styles } from './UserImageTitle.styles';
 import { AVATARS_SVG, SVG } from '../../assets/svg';
 import { ExtendedText } from '../ExtendedText';
+import { useTranslation } from 'react-i18next';
+
+const RoundPlussIcon = SVG.RoundPlussIcon;
 
 export const UserImageTitle: React.FC<IUserImageTitleProps> = ({
   image,
@@ -12,15 +15,19 @@ export const UserImageTitle: React.FC<IUserImageTitleProps> = ({
   onPress,
 }) => {
   const AvatarIcon = image && AVATARS_SVG[image];
-  const RoundPlussIcon = SVG.RoundPlussIcon;
+
+  const { t } = useTranslation();
+
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       {AvatarIcon ? (
-        <AvatarIcon width={140} height={140} />
+        <AvatarIcon width={120} height={120} />
       ) : (
-        <RoundPlussIcon width={140} height={140} />
+        <RoundPlussIcon />
       )}
-      <ExtendedText style={styles.userName}>{title}</ExtendedText>
+      <ExtendedText style={styles.userName} preset="heading">
+        {title ? title : t('screens.sign_in.select_user')}
+      </ExtendedText>
     </TouchableOpacity>
   );
 };
