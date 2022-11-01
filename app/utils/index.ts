@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Platform } from 'react-native';
+import { Platform, ViewStyle } from 'react-native';
 
 import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
@@ -11,6 +11,7 @@ import {
   CharmsSvgKeys,
 } from './types';
 import { REGEXPS } from './regexps';
+import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../constants/window';
 
 export const isAndroid = Platform.OS === 'android';
 
@@ -150,4 +151,13 @@ export const hexTransparency = (color: string, transparency: number) => {
   const intValue = Math.round((percent / 100) * 255);
   const hexValue = intValue.toString(16);
   return `${color}${hexValue.padStart(2, '0').toUpperCase()}`;
+};
+
+export const LottieStyles = (height = 100, styles?: ViewStyle): ViewStyle => {
+  return {
+    width: WINDOW_WIDTH,
+    position: 'absolute',
+    top: WINDOW_COEFFICIENT * height - height,
+    ...styles,
+  };
 };
