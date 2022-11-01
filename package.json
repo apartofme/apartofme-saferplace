@@ -15,8 +15,7 @@
   },
   "pre-commit": [
     "pre-commit-message",
-    "lint",
-    "test"
+    "lint"
   ],
   "dependencies": {
     "@apollo/client": "^3.6.9",
