@@ -228,6 +228,7 @@ import { DancingCharmIcon } from './favoriteCharms/DancingCharmIcon';
 import { TheCharmOfGroundingIcon } from './favoriteCharms/TheCharmOfGroundingIcon';
 import { TheCharmOfSanctuaryIcon } from './favoriteCharms/TheCharmOfSanctuaryIcon';
 import { TruthCards } from './TruthCards';
+import { RoundPlussIcon } from './RoundPlussIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -263,6 +264,7 @@ export const SVG = {
   PainedBirdTreeIcon: PainedBirdTreeIcon,
   RoundPauseButtonIcon: RoundPauseButtonIcon,
   RoundTriangleButtonIcon: RoundTriangleButtonIcon,
+  RoundPlussIcon: RoundPlussIcon,
   SkipNextIcon: SkipNextIcon,
   SkipPreviousIcon: SkipPreviousIcon,
   StandingUpIcon: StandingUpIcon,

@@ -10,10 +10,10 @@ import {
   BottomButtonView,
   ExtendedText,
   MainHeader,
+  UserImageTitle,
 } from '../../../components';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
-import { UserImageTitle } from './components';
 import { AvatarsNameType, UserType } from '../../../utils/types';
 import { SVG } from '../../../assets/svg';
 

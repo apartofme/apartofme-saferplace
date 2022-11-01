@@ -57,7 +57,7 @@ function* watchLoginUser({
     );
 
     // TODO: change to real stack
-    yield call(StaticNavigator.navigateTo, 'GardenStack');
+    yield call(StaticNavigator.navigateTo, 'SelectUser');
     yield call(firestoreSaveDeviceToken);
   } else {
     yield put(userSlice.actions.loginUserError(loginUserResponse.error));

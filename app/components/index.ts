@@ -20,4 +20,5 @@ export * from './SoundCarousel';
 export * from './Timer';
 export * from './TroublesomeSpiritQuestionsCarousel';
 export * from './TrySomethingCarousel';
+export * from './UserImageTitle';
 export * from './VerticalSwipeView';
