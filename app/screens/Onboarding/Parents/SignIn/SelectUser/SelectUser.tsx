@@ -23,7 +23,7 @@ export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
   const { t } = useTranslation();
 
   const goToManageProfile = useCallback(() => {
-    navigation.navigate('ManageProfiles');
+    navigation.navigate('EditProfileStack');
   }, [navigation]);
 
   return (

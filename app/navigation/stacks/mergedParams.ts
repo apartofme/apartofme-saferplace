@@ -8,6 +8,7 @@ import { GardenStackParams } from './gardenStackNavigator';
 import { MixingElixirStackParams } from './mixingElixirStackNavigator';
 import { ParentGroundingStackParams } from './parentGroundingStackNavigator';
 import { BefriendingStackParams } from './befriendingStackNavigator';
+import { EditProfileStackParams } from './editProfileStackNavigator';
 
 export type MergedStackParams = RootParams &
   MenuStackParams &
@@ -18,6 +19,7 @@ export type MergedStackParams = RootParams &
   MixingElixirStackParams &
   GardenStackParams &
   ParentGroundingStackParams &
-  BefriendingStackParams;
+  BefriendingStackParams &
+  EditProfileStackParams;
 
 export type NavigationRouteNames = keyof MergedStackParams;

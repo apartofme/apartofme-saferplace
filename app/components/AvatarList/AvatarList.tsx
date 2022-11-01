@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FlatList, View } from 'react-native';
 import _ from 'lodash';
 
@@ -10,9 +10,20 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { userSlice } from '../../redux/slices';
 
-export const AvatarList: React.FC<IAvatarListProps> = ({ data }) => {
-  const listData =
-    data.length % 2 !== 0 ? [...data, data[0]] : [...data, data[0], data[0]];
+export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
+  const listData = useMemo(() => {
+    if (data.length % 2 === 0) {
+      if (parent) {
+        return [data[0], ...data, data[0], data[0]];
+      }
+      return [...data, data[0], data[0]];
+    } else {
+      if (parent) {
+        return [data[0], ...data, data[0]];
+      }
+      return [...data, data[0]];
+    }
+  }, [data, parent]);
 
   const navigation = useNavigation();
 
@@ -25,9 +36,27 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data }) => {
       };
 
       const onChildPress = () => {
-        dispatch(userSlice.actions.setChildSuccess(item));
-        navigation.navigate('GardenStack');
+        if (!parent) {
+          dispatch(userSlice.actions.setChildSuccess(item));
+          navigation.navigate('GardenStack');
+          return;
+        }
+        navigation.navigate('EditProfile', {});
       };
+
+      const onParentPress = () => {
+        navigation.navigate('EditProfile', {});
+      };
+
+      if (parent && index === 0) {
+        return (
+          <UserImageTitle
+            onPress={onParentPress}
+            image={parent.avatar}
+            title={parent.nickname}
+          />
+        );
+      }
 
       if (data.length % 2 === 0) {
         if (index === listData.length - 1) {
@@ -59,7 +88,7 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data }) => {
         </View>
       );
     },
-    [data.length, dispatch, listData.length, navigation],
+    [data.length, dispatch, listData.length, navigation, parent],
   );
 
   return (
