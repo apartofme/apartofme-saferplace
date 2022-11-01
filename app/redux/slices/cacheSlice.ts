@@ -1,26 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
+import { EmotionButtonType } from '../../components';
 import { Nullable } from '../../utils';
 import {
   IEmotionItem,
-  IEmotionItemPayload,
-  IEmotionPayload,
   IEmotions,
   IFavouriteCharmItem,
-  IFavouriteCharmItemPayload,
   INicknames,
-  INicknamesPayload,
-  ISaveTranslationsPayload,
   IShortSignUpData,
-  IShortSignUpDataPayload,
   ISignUpData,
-  ISignUpDataPayload,
   ITranslations,
   ITroublesomeSpiritQuestionsItem,
-  ITroublesomeSpiritQuestionsItemPayload,
   ITrySomethingItem,
-  ITrySomethingItemPayload,
 } from '../types';
 
 interface ICacheState {
@@ -73,41 +65,47 @@ export const cacheSlice = createSlice({
   name: 'cache',
   initialState: INITIAL_STATE,
   reducers: {
-    saveSignUpDataParent(state, { payload }: ISignUpDataPayload) {
+    saveSignUpDataParent(
+      state,
+      { payload }: PayloadAction<Partial<ISignUpData>>,
+    ) {
       state.auth.parent = _.merge(state.auth.parent, payload);
     },
-    saveSignUpDataChild(state, { payload }: IShortSignUpDataPayload) {
+    saveSignUpDataChild(
+      state,
+      { payload }: PayloadAction<Partial<IShortSignUpData>>,
+    ) {
       state.auth.child = _.merge(state.auth.child, payload);
     },
     saveTranslations() {},
-    saveTranslationsSuccess(state, { payload }: ISaveTranslationsPayload) {
+    saveTranslationsSuccess(state, { payload }: PayloadAction<ITranslations>) {
       state.translations = _.merge(state.translations, payload);
     },
     saveChildTrySomethingFirstItem(
       state,
-      { payload }: ITrySomethingItemPayload,
+      { payload }: PayloadAction<ITrySomethingItem>,
     ) {
       state.childTrySomethingFirstItem = payload;
     },
     saveParentTrySomethingFirstItem(
       state,
-      { payload }: ITrySomethingItemPayload,
+      { payload }: PayloadAction<ITrySomethingItem>,
     ) {
       state.parentTrySomethingFirstItem = payload;
     },
     saveChildTrySomethingSecondItem(
       state,
-      { payload }: ITrySomethingItemPayload,
+      { payload }: PayloadAction<ITrySomethingItem>,
     ) {
       state.childTrySomethingSecondItem = payload;
     },
     saveParentTrySomethingSecondItem(
       state,
-      { payload }: ITrySomethingItemPayload,
+      { payload }: PayloadAction<ITrySomethingItem>,
     ) {
       state.parentTrySomethingSecondItem = payload;
     },
-    saveNicknames(state, { payload }: INicknamesPayload) {
+    saveNicknames(state, { payload }: PayloadAction<INicknames>) {
       state.nicknames = _.merge(state.nicknames, payload);
     },
     saveChosenNickname(state, { payload }: PayloadAction<string>) {
@@ -118,7 +116,10 @@ export const cacheSlice = createSlice({
     },
 
     saveTranslationsError(state, action: PayloadAction<string>) {},
-    saveSelectedEmotion(state, { payload }: IEmotionPayload) {
+    saveSelectedEmotion(
+      state,
+      { payload }: PayloadAction<Nullable<EmotionButtonType>>,
+    ) {
       state.emotions.selected = payload;
     },
     completeSelectedEmotion({ emotions }) {
@@ -131,15 +132,18 @@ export const cacheSlice = createSlice({
       emotions.selected = null;
       emotions.completed = [];
     },
-    saveEmotionItem(state, { payload }: IEmotionItemPayload) {
+    saveEmotionItem(state, { payload }: PayloadAction<IEmotionItem>) {
       state.emotionItem = payload;
     },
-    saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
+    saveFavouriteCharmItem(
+      state,
+      { payload }: PayloadAction<IFavouriteCharmItem>,
+    ) {
       state.favouriteCharmItem = _.merge(state.favouriteCharmItem, payload);
     },
     saveTroublesomeSpiritQuestionsItem(
       state,
-      { payload }: ITroublesomeSpiritQuestionsItemPayload,
+      { payload }: PayloadAction<Nullable<ITroublesomeSpiritQuestionsItem>>,
     ) {
       state.troublesomeSpiritQuestionsItem = payload;
     },

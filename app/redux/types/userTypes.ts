@@ -1,22 +1,21 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { IUser } from '../../models/IUser';
-import { IShortSignUpData } from './cacheTypes';
+import { AvatarsKeys } from '../../utils/types';
 
 export type IAuthUserActionPayload = PayloadAction<{
   email: string;
   password: string;
 }>;
 
-export type ILoginUserSuccessActionPayload = PayloadAction<{
-  parent: IUser;
-  child: IShortSignUpData;
-}>;
-
 export type IChangePasswordActionPayload = PayloadAction<{
   newPassword: string;
   currentPassword: string;
 }>;
+
+export interface IEditUser {
+  nickname: string;
+  avatar: AvatarsKeys;
+}
 
 export type IDeleteAccountActionPayload = PayloadAction<{
   password: string;

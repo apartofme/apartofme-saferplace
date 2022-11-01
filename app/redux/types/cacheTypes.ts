@@ -8,17 +8,16 @@ import {
 } from '../../utils/types';
 
 export interface ISignUpData {
-  email?: string;
-  password?: string;
-  nickname?: string;
-  avatar?: AvatarsKeys;
-  createdAt?: string;
+  email: string;
+  password: string;
+  nickname: string;
+  avatar: AvatarsKeys;
 }
 
 export interface IShortSignUpData {
-  nickname?: string;
-  age?: string;
-  avatar?: AvatarsKeys;
+  nickname: string;
+  age: number;
+  avatar: AvatarsKeys;
 }
 
 export interface INicknames {
@@ -52,44 +51,9 @@ export interface ITrySomethingItem {
   description: string;
 }
 
-export interface ISignUpDataPayload {
-  payload: ISignUpData;
-}
-
-export interface IShortSignUpDataPayload {
-  payload: IShortSignUpData;
-}
-
-export interface ISaveTranslationsPayload {
-  payload: ITranslations;
-}
-
 export type ITranslations = Record<
   string,
   {
     translations: Record<string, string>;
   }
 >;
-
-export interface INicknamesPayload {
-  payload: INicknames;
-}
-
-export interface IEmotionPayload {
-  payload: Nullable<EmotionButtonType>;
-}
-export interface ITroublesomeSpiritQuestionsItemPayload {
-  payload: Nullable<ITroublesomeSpiritQuestionsItem>;
-}
-
-export interface IEmotionItemPayload {
-  payload: IEmotionItem;
-}
-
-export interface IFavouriteCharmItemPayload {
-  payload: IFavouriteCharmItem;
-}
-
-export interface ITrySomethingItemPayload {
-  payload: ITrySomethingItem;
-}

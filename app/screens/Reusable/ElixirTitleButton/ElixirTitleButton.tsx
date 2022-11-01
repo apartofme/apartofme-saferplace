@@ -66,7 +66,6 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
           });
           return;
         }
-        console.log(1);
 
         navigation.push('GardenStack', {
           screen: 'Garden',

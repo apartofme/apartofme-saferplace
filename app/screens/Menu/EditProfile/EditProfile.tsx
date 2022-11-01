@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
+import { Image, SafeAreaView, View } from 'react-native';
 import _ from 'lodash';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
@@ -16,8 +16,8 @@ import { generalStyles } from '../../../utils/styles';
 import { IEditProfileScreenProps } from './EditProfile.types';
 import { styles } from './EditProfile.styles';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
-import { cacheSlice, userSlice } from '../../../redux/slices';
-import { UserType } from '../../../utils/types';
+import { userSlice } from '../../../redux/slices';
+import { AvatarsKeys, UserType } from '../../../utils/types';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
@@ -27,9 +27,7 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   route,
 }) => {
   const { type } = route.params.data;
-
   const { t } = useTranslation();
-
   const dispatch = useAppDispatch();
 
   const parentNickname = useAppSelector(
@@ -39,8 +37,12 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
     state => state.user.child?.nickname,
   ) as string;
 
-  const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
-  const childAvatar = useAppSelector(state => state.user.child?.avatar);
+  const parentAvatar = useAppSelector(
+    state => state.user.parent?.avatar,
+  ) as AvatarsKeys;
+  const childAvatar = useAppSelector(
+    state => state.user.child?.avatar,
+  ) as AvatarsKeys;
 
   const [nickname, setNickname] = useState(
     UserType.Child === type ? childNickname : parentNickname,
@@ -50,7 +52,6 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   );
   const [avatarIndex, setAvatarIndex] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  // const [isShow, setIsShow] = useState(true);
 
   useMount(() => {
     setAvatarIndex(
@@ -64,12 +65,11 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
 
   const onSubmit = useCallback(() => {
     if (type === UserType.Parent) {
-      dispatch(cacheSlice.actions.saveSignUpDataParent({ avatar, nickname }));
-      dispatch(userSlice.actions.updateParent());
-    } else {
-      dispatch(cacheSlice.actions.saveSignUpDataChild({ avatar, nickname }));
-      dispatch(userSlice.actions.updateChild());
+      dispatch(userSlice.actions.editParent({ avatar, nickname }));
+      return;
     }
+
+    dispatch(userSlice.actions.editChild({ avatar, nickname }));
   }, [avatar, dispatch, nickname, type]);
 
   const Icon = avatar && AVATARS_SVG[avatar];

@@ -42,7 +42,6 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
     const [currentPossition, setCurrentPossition] = useState<number>(0);
 
     const onSubmitPress = useCallback(() => {
-      //   console.log(currentPossition);
       dispatch(questSlice.actions.setIsCurrentQuestCompleted(true));
 
       const completedQuestLineId =

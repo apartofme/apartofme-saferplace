@@ -1,6 +1,7 @@
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import uuid from 'react-native-uuid';
 import _ from 'lodash';
 
 import {
@@ -19,6 +20,7 @@ import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { styles } from './SignUpAvatar.styles';
 import { SVG } from '../../../../assets/svg';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
+import { IParent } from '../../../../models/IParent';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -30,42 +32,53 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const parentAvatar = useAppSelector(
-    state => state.user.parent?.avatar,
-  )?.replace('Circle', '');
-  const nickname =
-    useAppSelector(
-      state => state.cache.auth[isChild ? 'child' : 'parent']?.nickname,
-    ) ?? '';
 
-  const [avatarsData, setAvatarsData] = useState(
+  const parent = useAppSelector(
+    state => state.user.parent ?? state.cache.auth.parent,
+  ) as IParent;
+  const child = useAppSelector(state => state.cache.auth.child);
+  const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
+
+  const [avatarsData] = useState(
     _.filter(AVATAR_CAROUSEL, item => item.image !== parentAvatar),
   );
   const [avatar, setAvatar] = useState(avatarsData[0].image);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nickname = useMemo(
+    () => (isChild && child ? child.nickname : parent.nickname),
+    [child, isChild, parent.nickname],
+  );
 
   useEffect(() => {
     setAvatar(avatarsData[currentIndex].image);
   }, [avatarsData, currentIndex]);
 
   const onSubmitButtonPress = useCallback(() => {
-    navigation.navigate('SignUpSuccess');
-    if (isChild) {
+    if (isChild && child) {
       dispatch(
         cacheSlice.actions.saveSignUpDataChild({
           avatar: `Circle${avatar}`,
         }),
       );
-      dispatch(userSlice.actions.saveChild());
-    } else {
       dispatch(
-        cacheSlice.actions.saveSignUpDataParent({
+        userSlice.actions.createChild({
+          ...child,
+          uid: uuid.v4().toString(),
+          parentId: parent.uid,
           avatar: `Circle${avatar}`,
         }),
       );
-      dispatch(userSlice.actions.registerParent());
+      return;
     }
-  }, [avatar, dispatch, isChild, navigation]);
+
+    dispatch(
+      cacheSlice.actions.saveSignUpDataParent({
+        avatar: `Circle${avatar}`,
+      }),
+    );
+    dispatch(userSlice.actions.registerParent());
+  }, [avatar, child, dispatch, isChild, parent.uid]);
 
   const title = t(
     `screens.onboarding.sign_up_avatar.${isChild ? 'child' : 'parent'}.title`,
