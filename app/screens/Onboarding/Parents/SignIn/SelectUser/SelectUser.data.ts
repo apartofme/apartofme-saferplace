@@ -1,11 +1,13 @@
 import { IChild } from '../../../../../models/IChild';
 import { Nullable } from '../../../../../utils';
 
+// TODO: remove
 export interface IUserState {
   child: Nullable<IChild>;
   children: IChild[];
 }
 
+// TODO: remove
 export const DUMMY_CHILD: IUserState = {
   child: {
     age: 12,
@@ -20,28 +22,28 @@ export const DUMMY_CHILD: IUserState = {
       parentId: 'string',
       avatar: 'CircleFoxIcon',
       nickname: 'string1',
-      uid: 'string',
+      uid: '1fsdf',
     },
     {
       age: 13,
       parentId: 'string',
-      avatar: 'CircleFoxIcon',
+      avatar: 'CircleMothIcon',
       nickname: 'string2',
-      uid: 'string',
+      uid: '2fds',
     },
     {
       age: 14,
       parentId: 'string',
       avatar: 'CircleFoxIcon',
       nickname: 'string3',
-      uid: 'string',
+      uid: '3fdsf',
     },
     {
       age: 14,
       parentId: 'string',
       avatar: 'CircleFoxIcon',
       nickname: 'string4',
-      uid: 'string',
+      uid: '4fd',
     },
   ],
 };

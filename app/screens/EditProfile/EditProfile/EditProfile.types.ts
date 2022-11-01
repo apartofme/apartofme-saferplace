@@ -10,4 +10,5 @@ export interface IEditProfileScreenProps extends NavigationProps, RouteProps {}
 
 export interface IEditProfileRoute {
   type: UserType;
+  userId?: string;
 }

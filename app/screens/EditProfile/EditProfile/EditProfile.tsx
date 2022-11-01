@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, View } from 'react-native';
 import _ from 'lodash';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
 import {
-  AVATAR_CAROUSEL,
   BottomButtonView,
   ExtendedButton,
   ExtendedKeyboardAvoidingView,
@@ -15,10 +14,11 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IEditProfileScreenProps } from './EditProfile.types';
 import { styles } from './EditProfile.styles';
-import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
-import { AvatarsKeys, UserType } from '../../../utils/types';
+import { UserType } from '../../../utils/types';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
+import { DUMMY_CHILD } from '../../Onboarding/Parents/SignIn/SelectUser/SelectUser.data';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -26,53 +26,37 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { type } = route.params.data;
   const { t } = useTranslation();
+
+  const { type, userId } = route.params?.data;
+
   const dispatch = useAppDispatch();
 
-  const parentNickname = useAppSelector(
-    state => state.user.parent?.nickname,
-  ) as string;
-  const childNickname = useAppSelector(
-    state => state.user.child?.nickname,
-  ) as string;
+  const parentData = useAppSelector(state => state.user.parent);
+  const children = useAppSelector(state => state.user.children);
 
-  const parentAvatar = useAppSelector(
-    state => state.user.parent?.avatar,
-  ) as AvatarsKeys;
-  const childAvatar = useAppSelector(
-    state => state.user.child?.avatar,
-  ) as AvatarsKeys;
+  const user = useMemo(() => {
+    if (type === UserType.Child) {
+      // TODO: change to children
+      return _.find(DUMMY_CHILD.children, item => item.uid === userId);
+    }
+    return parentData;
+  }, [parentData, type, userId]);
 
-  const [nickname, setNickname] = useState(
-    UserType.Child === type ? childNickname : parentNickname,
-  );
-  const [avatar, setAvatar] = useState(
-    UserType.Child === type ? childAvatar : parentAvatar,
-  );
-  const [avatarIndex, setAvatarIndex] = useState(0);
-  const [isActive, setIsActive] = useState(false);
+  const [nickname, setNickname] = useState(user ? user.nickname : '');
+  const [active, setIsActive] = useState(false);
 
-  useMount(() => {
-    setAvatarIndex(
-      _.findIndex(AVATAR_CAROUSEL, item => `Circle${item.image}` === avatar),
-    );
-  });
-
-  useEffect(() => {
-    setAvatar(`Circle${AVATAR_CAROUSEL[avatarIndex].image}`);
-  }, [avatarIndex]);
+  const Icon = user && AVATARS_SVG[user?.avatar];
 
   const onSubmit = useCallback(() => {
     if (type === UserType.Parent) {
-      dispatch(userSlice.actions.editParent({ avatar, nickname }));
+      dispatch(userSlice.actions.editParent({ nickname }));
       return;
     }
-
-    dispatch(userSlice.actions.editChild({ avatar, nickname }));
-  }, [avatar, dispatch, nickname, type]);
-
-  const Icon = avatar && AVATARS_SVG[avatar];
+    if (user?.uid) {
+      dispatch(userSlice.actions.editChild({ nickname, userId: user?.uid }));
+    }
+  }, [dispatch, nickname, type, user?.uid]);
 
   return (
     <View style={generalStyles.flex}>
@@ -87,7 +71,7 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
         />
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView buttonTitle={t('buttons.save')} onSubmit={onSubmit}>
-            {Icon && !isActive && (
+            {Icon && !active && (
               <View style={generalStyles.aiCenter}>
                 <Icon />
               </View>

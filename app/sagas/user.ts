@@ -106,11 +106,9 @@ function* watchRegisterParent() {
   }
 }
 
-function* watchEditParent({
-  payload: { nickname, avatar },
-}: PayloadAction<IEditUser>) {
+function* watchEditParent({ payload: { nickname } }: PayloadAction<IEditUser>) {
   const parent: IParent = yield select(state => state.user.parent);
-  const newParent: IParent = { ...parent, nickname, avatar };
+  const newParent: IParent = { ...parent, nickname };
   const EditParentResponse: IFirestoreErrorResponse = yield call(
     firestoreUpdateUser,
     FirestoreCollections.Parents,
@@ -124,11 +122,9 @@ function* watchEditParent({
   }
 }
 
-function* watchEditChild({
-  payload: { nickname, avatar },
-}: PayloadAction<IEditUser>) {
+function* watchEditChild({ payload: { nickname } }: PayloadAction<IEditUser>) {
   const child: IChild = yield select(state => state.user.child);
-  const newChild: IChild = { ...child, nickname, avatar };
+  const newChild: IChild = { ...child, nickname };
   const EditChildResponse: IFirestoreErrorResponse = yield call(
     firestoreUpdateUser,
     FirestoreCollections.Children,

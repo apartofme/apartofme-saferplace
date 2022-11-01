@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   IAuthUserActionPayload,
   IChangePasswordActionPayload,
+  IEdiParent,
   IEditUser,
   IResetPasswordActionPayload,
 } from '../types';
@@ -62,7 +63,7 @@ export const userSlice = createSlice({
     changePasswordSuccess() {},
     changePasswordError(state, action: PayloadAction<string>) {},
 
-    editParent(state, action: PayloadAction<IEditUser>) {},
+    editParent(state, action: PayloadAction<IEdiParent>) {},
     editParentSuccess(state, { payload }: PayloadAction<IParent>) {
       state.parent = payload;
     },

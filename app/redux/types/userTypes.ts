@@ -1,7 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { AvatarsKeys } from '../../utils/types';
-
 export type IAuthUserActionPayload = PayloadAction<{
   email: string;
   password: string;
@@ -14,8 +12,10 @@ export type IChangePasswordActionPayload = PayloadAction<{
 
 export interface IEditUser {
   nickname: string;
-  avatar: AvatarsKeys;
+  userId: string;
 }
+
+export type IEdiParent = Omit<IEditUser, 'userId'>;
 
 export type IDeleteAccountActionPayload = PayloadAction<{
   password: string;

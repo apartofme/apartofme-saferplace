@@ -9,6 +9,7 @@ import { IChild } from '../../models/IChild';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { userSlice } from '../../redux/slices';
+import { UserType } from '../../utils/types';
 
 export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
   const listData = useMemo(() => {
@@ -41,20 +42,24 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
           navigation.navigate('GardenStack');
           return;
         }
-        navigation.navigate('EditProfile', {});
+        navigation.navigate('EditProfile', {
+          data: { type: UserType.Child, userId: item.uid },
+        });
       };
 
       const onParentPress = () => {
-        navigation.navigate('EditProfile', {});
+        navigation.navigate('EditProfile', { data: { type: UserType.Parent } });
       };
 
       if (parent && index === 0) {
         return (
-          <UserImageTitle
-            onPress={onParentPress}
-            image={parent.avatar}
-            title={parent.nickname}
-          />
+          <View style={styles.childContainer}>
+            <UserImageTitle
+              onPress={onParentPress}
+              image={parent.avatar}
+              title={parent.nickname}
+            />
+          </View>
         );
       }
 

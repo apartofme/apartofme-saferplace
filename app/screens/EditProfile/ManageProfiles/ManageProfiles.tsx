@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -25,6 +24,7 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
   const { t } = useTranslation();
 
   const parentData = useAppSelector(state => state.user.parent);
+  const children = useAppSelector(state => state.user.children);
 
   return (
     <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
@@ -33,11 +33,14 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
-        <BottomButtonView buttonTitle={t('buttons.done')} onSubmit={_.noop}>
+        <BottomButtonView
+          buttonTitle={t('buttons.done')}
+          onSubmit={navigation.goBack}>
           <View style={styles.container}>
             <ExtendedText preset="large-title" style={styles.title}>
               {t('screens.menu.manage_profiles.title')}
             </ExtendedText>
+            {/* // TODO: change to children */}
             <AvatarList data={DUMMY_CHILD.children} parent={parentData} />
           </View>
         </BottomButtonView>
