@@ -1,34 +1,29 @@
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, View } from 'react-native';
-import _ from 'lodash';
+import { useNavigation } from '@react-navigation/native';
 
 import { IAvatarListProps } from './AvatarList.types';
 import { styles } from './AvatarList.styles';
 import { UserImageTitle } from '../UserImageTitle';
 import { IChild } from '../../models/IChild';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
-import { userSlice } from '../../redux/slices';
 import { UserType } from '../../utils/types';
+import { userSlice } from '../../redux/slices';
+import { useAppDispatch } from '../../hooks';
 
 export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
   const listData = useMemo(() => {
-    if (data.length % 2 === 0) {
-      if (parent) {
-        return [data[0], ...data, data[0], data[0]];
-      }
-      return [...data, data[0], data[0]];
-    } else {
-      if (parent) {
-        return [data[0], ...data, data[0], data[0]];
-      }
-      return [...data, data[0]];
+    if (parent) {
+      return [data[0], ...data, data[0], data[0]];
     }
+    if (data.length % 2 === 0) {
+      return [...data, data[0], data[0]];
+    }
+    return [...data, data[0]];
   }, [data, parent]);
 
   const navigation = useNavigation();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onAddChildPress = useCallback(() => {
     navigation.navigate('SelectUserAcknowledgement');
@@ -63,7 +58,7 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
         );
       }
 
-      if (data.length % 2 === 0) {
+      if (data.length % 2 === 0 || parent) {
         if (index === listData.length - 1) {
           return <View style={styles.childContainer} />;
         }
@@ -74,25 +69,13 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
             </View>
           );
         }
-      } else if (parent) {
-        if (index === listData.length - 1) {
-          return <View style={styles.childContainer} />;
-        }
-        if (index === listData.length - 2) {
-          return (
-            <View style={styles.childContainer}>
-              <UserImageTitle onPress={_.noop} />
-            </View>
-          );
-        }
-      } else {
-        if (index === listData.length - 1) {
-          return (
-            <View style={styles.childContainer}>
-              <UserImageTitle onPress={_.noop} />
-            </View>
-          );
-        }
+      }
+      if (index === listData.length - 1) {
+        return (
+          <View style={styles.childContainer}>
+            <UserImageTitle onPress={onAddChildPress} />
+          </View>
+        );
       }
       return (
         <View style={styles.childContainer}>
