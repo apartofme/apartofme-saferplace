@@ -20,7 +20,7 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
       return [...data, data[0], data[0]];
     } else {
       if (parent) {
-        return [data[0], ...data, data[0]];
+        return [data[0], ...data, data[0], data[0]];
       }
       return [...data, data[0]];
     }
@@ -30,12 +30,12 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
 
   const dispatch = useDispatch();
 
+  const onAddChildPress = useCallback(() => {
+    navigation.navigate('SelectUserAcknowledgement');
+  }, [navigation]);
+
   const renderItem = useCallback(
     ({ item, index }: { item: IChild; index: number }) => {
-      const onAddChildPress = () => {
-        navigation.navigate('SelectUserAcknowledgement');
-      };
-
       const onChildPress = () => {
         if (!parent) {
           dispatch(userSlice.actions.setChildSuccess(item));
@@ -74,6 +74,17 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
             </View>
           );
         }
+      } else if (parent) {
+        if (index === listData.length - 1) {
+          return <View style={styles.childContainer} />;
+        }
+        if (index === listData.length - 2) {
+          return (
+            <View style={styles.childContainer}>
+              <UserImageTitle onPress={_.noop} />
+            </View>
+          );
+        }
       } else {
         if (index === listData.length - 1) {
           return (
@@ -93,7 +104,14 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
         </View>
       );
     },
-    [data.length, dispatch, listData.length, navigation, parent],
+    [
+      data.length,
+      dispatch,
+      listData.length,
+      navigation,
+      onAddChildPress,
+      parent,
+    ],
   );
 
   return (
