@@ -18,7 +18,6 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
-import { DUMMY_CHILD } from '../../Onboarding/Parents/SignIn/SelectUser/SelectUser.data';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -37,11 +36,10 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
 
   const user = useMemo(() => {
     if (type === UserType.Child) {
-      // TODO: change to children
-      return _.find(DUMMY_CHILD.children, item => item.uid === userId);
+      return _.find(children, item => item.uid === userId);
     }
     return parentData;
-  }, [parentData, type, userId]);
+  }, [children, parentData, type, userId]);
 
   const [nickname, setNickname] = useState(user ? user.nickname : '');
   const [active, setIsActive] = useState(false);

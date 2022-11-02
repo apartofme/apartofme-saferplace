@@ -39,9 +39,17 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   const child = useAppSelector(state => state.cache.auth.child);
   const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
 
-  const [avatarsData] = useState(
-    _.filter(AVATAR_CAROUSEL, item => item.image !== parentAvatar),
-  );
+  const avatarsData = useMemo(() => {
+    if (isChild) {
+      console.log(parentAvatar);
+      return _.filter(
+        AVATAR_CAROUSEL,
+        item => `Circle${item.image}` !== parentAvatar,
+      );
+    }
+    return AVATAR_CAROUSEL;
+  }, [isChild, parentAvatar]);
+
   const [avatar, setAvatar] = useState(avatarsData[0].image);
   const [currentIndex, setCurrentIndex] = useState(0);
 
