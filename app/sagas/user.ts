@@ -172,7 +172,6 @@ function* watchCreateChild({ payload: child }: PayloadAction<IChild>) {
     const FirestoreCreateChildProgressResponse: IFirestoreErrorResponse =
       yield call(firestoreCreateChildProgress, child.uid);
     if (!FirestoreCreateChildProgressResponse.error) {
-      console.log('ne error');
       yield put(userSlice.actions.createChildSuccess(child));
       yield put(questSlice.actions.updateCurrentDay(1));
       yield put(questSlice.actions.setCurrentDayQuestsStack());
