@@ -12,13 +12,14 @@ import {
 } from '../../../hooks';
 import {
   BottomButtonView,
-  EmotionCarousel,
+  Carousel,
+  CarouselType,
   ExtendedText,
 } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { INadiyaEmotionCarouselScreenProps } from './NadiyaEmotionCarousel.types';
-import { EMOTION_CAROUSEL_ITEMS } from '../../../constants/emotionCarousel';
+import { EMOTION_CAROUSEL } from '../../../components';
 
 export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenProps> =
   ({ route }) => {
@@ -34,7 +35,7 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
 
     const { t } = useTranslation();
     const [nadiyaEmotionData, setNadiyaEmotionData] = useState(
-      _.cloneDeep(EMOTION_CAROUSEL_ITEMS),
+      _.cloneDeep(EMOTION_CAROUSEL),
     );
 
     const navigateToNextQuest = useNavigateNextQuest();
@@ -63,7 +64,7 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
       setNadiyaEmotionData(prev =>
         _.map(prev, item =>
           _.merge(item, {
-            title: t(item.title).replace('|emotion|', nadiyaEmotion),
+            titleKey: t(item.titleKey).replace('|emotion|', nadiyaEmotion),
           }),
         ),
       );
@@ -85,11 +86,10 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>
-            <EmotionCarousel
+            <Carousel
               data={nadiyaEmotionData}
-              setIndex={_.noop}
-              style={styles.carousel}
-              itemStyle={styles.carouselItem}
+              preset={CarouselType.Card}
+              carouselStyle={styles.carousel}
             />
           </BottomButtonView>
         </SafeAreaView>

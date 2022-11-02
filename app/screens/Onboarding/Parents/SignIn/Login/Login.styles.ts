@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../../constants/window';
 import { COLORS } from '../../../../../themes/colors';
 
 interface ILoginScreenStyles {
@@ -17,7 +18,7 @@ interface ILoginScreenStyles {
 export const styles = StyleSheet.create<ILoginScreenStyles>({
   container: {
     flex: 1,
-    paddingTop: 40,
+    paddingTop: 40 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
   },
   title: {
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
     marginBottom: 50,
   },
   mb16: {
-    marginBottom: 16,
+    marginBottom: 16 * WINDOW_COEFFICIENT,
   },
   forgotButton: {
     alignSelf: 'center',
@@ -44,7 +45,7 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
     marginLeft: 4,
   },
   button: {
-    marginTop: 30,
+    marginTop: 30 * WINDOW_COEFFICIENT,
     marginBottom: 36,
   },
   errorTitle: {

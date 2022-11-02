@@ -73,14 +73,9 @@ export const TroublesomeSpiritQuestionsCarouselScreen: React.FC<ITroublesomeSpir
     }, [activeItemIndex, troublesomeData]);
 
     const onSubmit = useCallback(() => {
-      dispatch(
-        cacheSlice.actions.saveTroublesomeSpiritQuestionsItem({
-          title: activeItem.titleKey ?? '',
-          image: activeItem.image,
-        }),
-      );
+      dispatch(cacheSlice.actions.saveTroublesomeItem(activeItem));
       navigateToNextQuest();
-    }, [activeItem.image, activeItem.titleKey, dispatch, navigateToNextQuest]);
+    }, [activeItem, dispatch, navigateToNextQuest]);
 
     return (
       <ImageBackground
@@ -100,9 +95,10 @@ export const TroublesomeSpiritQuestionsCarouselScreen: React.FC<ITroublesomeSpir
               {description}
             </ExtendedText>
             <Carousel
-              preset={CarouselType.TroublesomeSpiritQuestion}
+              preset={CarouselType.Card}
               data={troublesomeData}
               setIndex={setActiveItemIndex}
+              carouselStyle={styles.carousel}
             />
           </BottomButtonView>
         </SafeAreaView>

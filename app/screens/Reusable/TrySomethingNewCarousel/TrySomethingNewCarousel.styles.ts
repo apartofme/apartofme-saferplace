@@ -5,33 +5,33 @@ import { COLORS } from '../../../themes/colors';
 
 export interface ITrySomethingNewCarouselStyles {
   container: ViewStyle;
-  buttonsConainer: ViewStyle;
-  titleContainer: ViewStyle;
+  title: TextStyle;
   subtitle: TextStyle;
-  selectButton: ViewStyle;
+  carousel: ViewStyle;
+  bottomButton: ViewStyle;
   modal: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ITrySomethingNewCarouselStyles>({
   container: {
     flex: 1,
-    paddingBottom: 24 * WINDOW_COEFFICIENT,
+    paddingTop: 40 * WINDOW_COEFFICIENT,
+    paddingHorizontal: 24,
     justifyContent: 'space-between',
   },
-  buttonsConainer: {
-    marginTop: 50 * WINDOW_COEFFICIENT,
-    paddingHorizontal: 24,
-  },
-  titleContainer: {
-    paddingHorizontal: 24,
-    marginTop: 48 * WINDOW_COEFFICIENT,
+  title: {
+    color: COLORS.BRILLIANT_WHITE,
   },
   subtitle: {
     marginTop: 16 * WINDOW_COEFFICIENT,
     marginBottom: 36 * WINDOW_COEFFICIENT,
     color: COLORS.LIGHT_GREY,
   },
-  selectButton: {
+  carousel: {
+    maxHeight: 305 * WINDOW_COEFFICIENT,
+  },
+  bottomButton: {
+    marginHorizontal: 40,
     marginBottom: 24 * WINDOW_COEFFICIENT,
   },
   modal: {

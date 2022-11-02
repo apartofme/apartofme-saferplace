@@ -1,28 +1,30 @@
 import _ from 'lodash';
 import { useSharedValue } from 'react-native-reanimated';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 import ReanimatedCarousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { WINDOW_WIDTH } from '../../constants/window';
 import { generalStyles } from '../../utils/styles';
-import { ICarouselItem, ICarouselProps } from './Carousel.types';
+import {
+  IAvatarItem,
+  ICarouselItem,
+  ICarouselProps,
+  IIconDescription,
+} from './Carousel.types';
 import { styles } from './Carousel.styles';
 import {
   Avatar,
-  ImageTitleSubtitle,
   ProgressBarItem,
-  ImageSubtitle,
-  SubtitleImage,
-  Charm,
-  Emotion,
-  TroublesomeSpiritQuestion,
+  IconTitleDescription,
+  IconDescription,
+  Card,
 } from './components';
 import {
   CarouselType,
   CAROUSEL_MODE_CONFIG_AVATAR,
-  CAROUSEL_MODE_CONFIG_CHARM,
+  CAROUSEL_MODE_CONFIG_DEFAULT,
 } from './Carousel.data';
 
 export const Carousel: React.FC<ICarouselProps> = ({
@@ -35,18 +37,11 @@ export const Carousel: React.FC<ICarouselProps> = ({
   carouselItemStyle,
 }) => {
   const progressValue = useSharedValue<number>(0);
-  const [currentPosition, setCurrentPosition] = useState(0);
-
-  useEffect(() => {
-    setCurrentPosition(defaultIndex);
-  }, [defaultIndex]);
 
   const mode = useMemo(() => {
     switch (preset) {
       case CarouselType.Avatar:
-      case CarouselType.Charm:
-      case CarouselType.Emotion:
-      case CarouselType.TroublesomeSpiritQuestion:
+      case CarouselType.Card:
         return 'parallax';
     }
   }, [preset]);
@@ -55,10 +50,8 @@ export const Carousel: React.FC<ICarouselProps> = ({
     switch (preset) {
       case CarouselType.Avatar:
         return CAROUSEL_MODE_CONFIG_AVATAR;
-      case CarouselType.Charm:
-      case CarouselType.Emotion:
-      case CarouselType.TroublesomeSpiritQuestion:
-        return CAROUSEL_MODE_CONFIG_CHARM;
+      default:
+        return CAROUSEL_MODE_CONFIG_DEFAULT;
     }
   }, [preset]);
 
@@ -86,48 +79,53 @@ export const Carousel: React.FC<ICarouselProps> = ({
 
   const renderCarouselItem = useCallback(
     ({ item, index }: { item: ICarouselItem; index: number }) => {
-      const isActive = index === currentPosition;
       switch (preset) {
         case CarouselType.Avatar:
           return (
-            <Avatar data={item} isActive={isActive} style={carouselItemStyle} />
-          );
-        case CarouselType.Charm:
-          return (
-            <Charm data={item} isActive={isActive} style={carouselItemStyle} />
-          );
-        case CarouselType.Emotion:
-          return (
-            <Emotion
-              data={item}
-              isActive={isActive}
+            <Avatar
+              key={item.id}
+              data={item as IAvatarItem}
+              index={index}
+              animValue={progressValue}
               style={carouselItemStyle}
             />
           );
-        case CarouselType.TroublesomeSpiritQuestion:
+        case CarouselType.Card:
           return (
-            <TroublesomeSpiritQuestion
+            <Card
+              key={item.id}
               data={item}
-              isActive={isActive}
+              index={index}
+              animValue={progressValue}
               style={carouselItemStyle}
             />
           );
-        case CarouselType.ImageTitleSubtitle:
-          return <ImageTitleSubtitle data={item} style={carouselItemStyle} />;
-        case CarouselType.SubtitleImage:
-          return <SubtitleImage data={item} style={carouselItemStyle} />;
-        case CarouselType.ImageSubtitle:
-          return <ImageSubtitle data={item} style={carouselItemStyle} />;
+        case CarouselType.IconTitleDescription:
+          return (
+            <IconTitleDescription
+              key={item.id}
+              data={item}
+              index={index}
+              animValue={progressValue}
+              style={carouselItemStyle}
+            />
+          );
+        case CarouselType.IconDescription:
+          return (
+            <IconDescription
+              key={item.id}
+              data={item as IIconDescription}
+              index={index}
+              animValue={progressValue}
+              style={carouselItemStyle}
+            />
+          );
         default:
           return <View />;
       }
     },
-    [carouselItemStyle, currentPosition, preset],
+    [carouselItemStyle, preset, progressValue],
   );
-
-  const onScrollBegin = useCallback(() => {
-    setCurrentPosition(-1);
-  }, []);
 
   return (
     <GestureHandlerRootView style={[styles.container, style]}>
@@ -141,8 +139,6 @@ export const Carousel: React.FC<ICarouselProps> = ({
         renderItem={renderCarouselItem}
         onSnapToItem={setIndex && _.flow(Math.floor, setIndex)}
         onProgressChange={onProgressChange}
-        onScrollBegin={onScrollBegin}
-        onScrollEnd={setCurrentPosition}
         style={[generalStyles.flex, carouselStyle]}
       />
       <View style={styles.progressBar}>{renderProgressBar()}</View>

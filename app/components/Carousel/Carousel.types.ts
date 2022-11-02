@@ -1,11 +1,15 @@
 import { ViewProps, ViewStyle } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 import {
   AvatarsNameType,
+  CharmIllustrationsSvgKeys,
   CharmsSvgKeys,
   ElixirKeys,
   EmotionsCarouselSvgKeys,
-  SvgComponentType,
+  FavoriteCharmSvgKeys,
+  SvgKeys,
+  TryNewSVG,
 } from '../../utils/types';
 import { CarouselType } from './Carousel.data';
 
@@ -19,30 +23,59 @@ export interface ICarouselProps extends ViewProps {
 }
 
 type CarouselImageType =
-  | SvgComponentType
   | AvatarsNameType
   | EmotionsCarouselSvgKeys
   | ElixirKeys
-  | CharmsSvgKeys;
+  | CharmsSvgKeys
+  | FavoriteCharmSvgKeys
+  | TryNewSVG
+  | SvgKeys
+  | CharmIllustrationsSvgKeys;
 
 export interface ICarouselItem {
   id: string;
-  image?: CarouselImageType;
+  iconKey: CarouselImageType;
   titleKey?: string;
-  subtitleKey?: string;
+  descriptionKey?: string;
 }
 
-export interface IAvatarCarouselItem {
+export interface IIconDescription {
   id: string;
-  image: AvatarsNameType;
+  iconKey: ElixirKeys;
+  descriptionKey: string;
 }
-export interface ITroublesomeCarouselItem {
+
+export interface IAvatarItem {
   id: string;
-  image: CharmsSvgKeys;
+  iconKey: AvatarsNameType;
+}
+
+export interface ICharmItem {
+  id: string;
+  iconKey: FavoriteCharmSvgKeys;
   titleKey: string;
 }
 
-export interface ICarouselItemProps extends ViewProps {
-  data: ICarouselItem;
-  isActive?: boolean;
+export interface ITrySomethingItem {
+  id: string;
+  iconKey: TryNewSVG;
+  titleKey: string;
+  descriptionKey: string;
+}
+
+export interface IEmotionItem {
+  id: string;
+  iconKey: EmotionsCarouselSvgKeys;
+  titleKey: string;
+}
+export interface ITroublesomeItem {
+  id: string;
+  iconKey: CharmsSvgKeys;
+  titleKey: string;
+}
+
+export interface ICarouselItemProps<DataType> extends ViewProps {
+  data: DataType;
+  animValue: Animated.SharedValue<number>;
+  index: number;
 }

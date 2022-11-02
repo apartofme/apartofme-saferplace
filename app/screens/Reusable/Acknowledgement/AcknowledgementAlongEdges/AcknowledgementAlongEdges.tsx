@@ -43,9 +43,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
     const currentQuestLineId = useAppSelector(
       state => state.quest.currentQuestLine?.id,
     );
-    const { troublesomeSpiritQuestionsItem } = useAppSelector(
-      state => state.cache,
-    );
+    const { troublesomeItem } = useAppSelector(state => state.cache);
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -74,11 +72,10 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       }
       if (
         currentQuestLineId === THE_CHARM_OF_ACCEPTANCE_ID &&
-        _.includes(t(title), DatoCMSTextVariables.TroublesomeSpiritQuestion)
+        _.includes(t(title), DatoCMSTextVariables.TroublesomeSpiritQuestion) &&
+        troublesomeItem
       ) {
-        return CHARMS_SVG[
-          troublesomeSpiritQuestionsItem?.image ?? 'LoveRabbitIcon'
-        ];
+        return CHARMS_SVG[troublesomeItem.iconKey];
       }
       if (isChild) {
         return AVATARS_SVG[childAvatar];
@@ -93,7 +90,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       parentAvatar,
       t,
       title,
-      troublesomeSpiritQuestionsItem?.image,
+      troublesomeItem,
     ]);
 
     return (

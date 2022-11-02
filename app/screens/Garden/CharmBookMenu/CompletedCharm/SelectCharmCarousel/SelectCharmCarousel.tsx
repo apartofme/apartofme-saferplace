@@ -81,7 +81,7 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
@@ -95,7 +95,7 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
             <Title />
             <Carousel
               data={[...filteredCarouselData]}
-              preset={CarouselType.Charm}
+              preset={CarouselType.Card}
               setIndex={setCurrentPossition}
               style={styles.carousel}
             />

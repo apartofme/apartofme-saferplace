@@ -2,11 +2,14 @@ import { StyleSheet, ViewStyle } from 'react-native';
 
 interface ICharmsIntroducingScreenStyles {
   container: ViewStyle;
+  carousel: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ICharmsIntroducingScreenStyles>({
   container: {
-    justifyContent: 'space-evenly',
-    paddingHorizontal: 40,
+    paddingBottom: 50,
+  },
+  carousel: {
+    justifyContent: 'flex-end',
   },
 });

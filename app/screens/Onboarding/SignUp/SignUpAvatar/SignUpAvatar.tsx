@@ -43,13 +43,13 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     if (isChild) {
       return _.filter(
         AVATAR_CAROUSEL,
-        item => `Circle${item.image}` !== parentAvatar,
+        item => `Circle${item.iconKey}` !== parentAvatar,
       );
     }
     return AVATAR_CAROUSEL;
   }, [isChild, parentAvatar]);
 
-  const [avatar, setAvatar] = useState(avatarsData[0].image);
+  const [avatar, setAvatar] = useState(avatarsData[0].iconKey);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nickname = useMemo(
@@ -58,7 +58,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   );
 
   useEffect(() => {
-    setAvatar(avatarsData[currentIndex].image);
+    setAvatar(avatarsData[currentIndex].iconKey);
   }, [avatarsData, currentIndex]);
 
   const onSubmitButtonPress = useCallback(() => {
@@ -138,7 +138,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
             data={avatarsData}
             preset={CarouselType.Avatar}
             setIndex={setCurrentIndex}
-            carouselItemStyle={generalStyles.aiCenter}
+            style={styles.carousel}
           />
         </BottomButtonView>
       </SafeAreaView>

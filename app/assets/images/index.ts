@@ -10,7 +10,6 @@ export const PLANTS_IMAGES = {
 };
 
 export const BACKGROUND_IMAGES = {
-  ALTERNATIVE_GARDEN_BACKGROUND: require('./backgrounds/alternativeGardenBackground.png'),
   CALM_DEFAULT_BACKGROUND: require('./backgrounds/calmDefaultBackground.png'),
   GARDEN: require('./backgrounds/gardenBackground.png'),
   MENU: require('./backgrounds/menuBackground.png'),

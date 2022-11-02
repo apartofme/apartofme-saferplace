@@ -1,11 +1,6 @@
-import { EmotionButtonType } from '../../components';
+import { EmotionButtonType, ITrySomethingItem } from '../../components';
 import { Nullable } from '../../utils';
-import {
-  AvatarsKeys,
-  CharmsSvgKeys,
-  EmotionsCarouselSvgKeys,
-  FavoriteCharmSvgKeys,
-} from '../../utils/types';
+import { AvatarsKeys } from '../../utils/types';
 
 export interface ISignUpData {
   email: string;
@@ -25,30 +20,15 @@ export interface INicknames {
   secondPlayer: string;
 }
 
+export interface IPlayer {
+  trySomethingFirstItem: Nullable<ITrySomethingItem>;
+  trySomethingSecondItem: Nullable<ITrySomethingItem>;
+  kindnessItem: Nullable<string>;
+}
+
 export interface IEmotions {
   selected: Nullable<EmotionButtonType>;
   completed: Nullable<EmotionButtonType>[];
-}
-
-export interface IEmotionItem {
-  image: EmotionsCarouselSvgKeys;
-  title: string;
-}
-
-export interface ITroublesomeSpiritQuestionsItem {
-  image: CharmsSvgKeys;
-  title: string;
-}
-
-export interface IFavouriteCharmItem {
-  id: string;
-  iconKey: FavoriteCharmSvgKeys;
-  title: string;
-}
-
-export interface ITrySomethingItem {
-  title: string;
-  description: string;
 }
 
 export type ITranslations = Record<

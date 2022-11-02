@@ -37,11 +37,12 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
           <BottomButtonView
             buttonTitle={t('buttons.next')}
             isArrow={true}
-            onSubmit={onSubmit}>
+            onSubmit={onSubmit}
+            style={styles.container}>
             <Carousel
               data={CHARMS_CAROUSEL}
-              preset={CarouselType.ImageTitleSubtitle}
-              carouselItemStyle={styles.container}
+              preset={CarouselType.IconTitleDescription}
+              carouselItemStyle={styles.carousel}
             />
           </BottomButtonView>
         </SafeAreaView>

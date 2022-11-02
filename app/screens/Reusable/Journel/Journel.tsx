@@ -13,6 +13,7 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import {
   useAppDispatch,
+  useAppSelector,
   useIsChildMove,
   useParsedJSXTextNickname,
   usePositiveNavigateTo,
@@ -20,6 +21,7 @@ import {
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
+import { THE_CHARM_OF_KINDNESS_ID } from '../../../constants/quest';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
   const {
@@ -36,17 +38,22 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
   const [inputText, setInputText] = useState<string>('');
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const currentQuestLineId = useAppSelector(
+    state => state.quest.currentQuestLine?.id,
+  );
   const isChild = useIsChildMove(title);
   const positiveNavigate = usePositiveNavigateTo(positiveNavigatesTo);
 
   const onSubmit = useCallback(() => {
-    if (isChild) {
-      dispatch(cacheSlice.actions.saveChildKindnessItem(inputText));
-    } else {
-      dispatch(cacheSlice.actions.saveParentKindnessItem(inputText));
+    if (currentQuestLineId === THE_CHARM_OF_KINDNESS_ID) {
+      if (isChild) {
+        dispatch(cacheSlice.actions.saveChildKindnessItem(inputText));
+      } else {
+        dispatch(cacheSlice.actions.saveParentKindnessItem(inputText));
+      }
     }
     positiveNavigate();
-  }, [dispatch, inputText, isChild, positiveNavigate]);
+  }, [currentQuestLineId, dispatch, inputText, isChild, positiveNavigate]);
 
   const Title = useParsedJSXTextNickname({
     text: title,
