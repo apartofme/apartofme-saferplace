@@ -1,1 +1,0 @@
-export { ImageSubtitle } from './ImageSubtitle';

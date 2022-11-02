@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -17,31 +16,43 @@ export const ProgressBarItem: React.FC<IProgressBarItemProps> = ({
 }) => {
   // This function provides transition animation of point progress across all points
   const animationStyle = useAnimatedStyle(() => {
-    let inputRange = [index - 1, index, index + 1];
-    let outputRange = [-DOT_WIDTH, 0, DOT_WIDTH];
+    const inputRange = [index - 1, index, index + 1];
+    const outputRange = [-DOT_WIDTH, 0, DOT_WIDTH];
 
-    if (index === 0 && animValue.value > length - 1) {
-      inputRange = [length - 1, length, length + 1];
-      outputRange = [-DOT_WIDTH, 0, DOT_WIDTH];
-    }
+    const translateX = interpolate(
+      animValue.value,
+      inputRange,
+      outputRange,
+      Extrapolate.CLAMP,
+    );
 
     return {
       transform: [
         {
-          translateX: interpolate(
-            animValue.value,
-            inputRange,
-            outputRange,
-            Extrapolate.CLAMP,
-          ),
+          translateX,
         },
       ],
     };
   }, [animValue, index, length]);
 
+  const animationContainerStyle = useAnimatedStyle(() => {
+    const inputRange = [index - 1, index, index + 1];
+    const outputRange = [1, 0, 1];
+
+    const borderWidth = interpolate(
+      animValue.value,
+      inputRange,
+      outputRange,
+      Extrapolate.CLAMP,
+    );
+    return {
+      borderWidth,
+    };
+  });
+
   return (
-    <View style={[styles.container]}>
+    <Animated.View style={[styles.container, animationContainerStyle]}>
       <Animated.View style={[styles.contentContainer, animationStyle]} />
-    </View>
+    </Animated.View>
   );
 };

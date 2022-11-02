@@ -1,1 +1,0 @@
-export { TroublesomeSpiritQuestion } from './TroublesomeSpiritQuestion';

@@ -8,7 +8,6 @@ interface INadiyaEmotionCarouselScreenStyles {
   title: TextStyle;
   description: TextStyle;
   carousel: ViewStyle;
-  carouselItem: ViewStyle;
 }
 
 export const styles = StyleSheet.create<INadiyaEmotionCarouselScreenStyles>({
@@ -26,9 +25,6 @@ export const styles = StyleSheet.create<INadiyaEmotionCarouselScreenStyles>({
     paddingBottom: 72 * WINDOW_COEFFICIENT,
   },
   carousel: {
-    paddingBottom: 73 * WINDOW_COEFFICIENT,
-  },
-  carouselItem: {
-    paddingBottom: 72 * WINDOW_COEFFICIENT,
+    maxHeight: 290,
   },
 });

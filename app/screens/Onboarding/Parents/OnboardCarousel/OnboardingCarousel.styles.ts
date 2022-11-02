@@ -1,17 +1,14 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
+
 interface IOnboardingCarouselScreenStyles {
-  carouselItem: ViewStyle;
   button: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IOnboardingCarouselScreenStyles>({
-  carouselItem: {
-    paddingHorizontal: 24,
-  },
   button: {
     alignSelf: 'center',
-    marginTop: -24,
-    marginBottom: 24,
+    marginVertical: 24 * WINDOW_COEFFICIENT,
   },
 });

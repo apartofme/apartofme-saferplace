@@ -1,20 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { IFavouriteCharmCarouselScreenProps } from './FavouriteCharmCarousel.types';
 import { styles } from './FavouriteCharmCarousel.styles';
-import { BottomButtonView, FavouriteCharmCarousel } from '../../../components';
+import {
+  BottomButtonView,
+  Carousel,
+  CarouselType,
+  FAVOURITE_CHARM,
+} from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import {
-  useAppDispatch,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
-import { FAVOURITE_CHARM_LIST } from './FavouriteCharmCarousel.data';
-import { cacheSlice } from '../../../redux/slices';
 
 export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScreenProps> =
   ({ route }) => {
@@ -28,10 +30,7 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
     } = route.params.data;
 
     const { t } = useTranslation();
-    const dispatch = useAppDispatch();
     const navigateToNextQuest = useNavigateNextQuest();
-    const [activeItem, setActiveItem] = useState(FAVOURITE_CHARM_LIST[0]);
-    const [activeItemIndex, setActiveItemIndex] = useState(0);
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -45,14 +44,9 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
       escapeMenuAlternativeNavigateTo,
     });
 
-    useEffect(() => {
-      setActiveItem(FAVOURITE_CHARM_LIST[activeItemIndex]);
-    }, [activeItemIndex]);
-
     const onSubmit = useCallback(() => {
-      dispatch(cacheSlice.actions.saveFavouriteCharmItem(activeItem));
       navigateToNextQuest();
-    }, [activeItem, dispatch, navigateToNextQuest]);
+    }, [navigateToNextQuest]);
 
     return (
       <ImageBackground
@@ -67,10 +61,10 @@ export const FavouriteCharmCarouselScreen: React.FC<IFavouriteCharmCarouselScree
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-
-            <FavouriteCharmCarousel
-              data={FAVOURITE_CHARM_LIST}
-              setIndex={setActiveItemIndex}
+            <Carousel
+              data={FAVOURITE_CHARM}
+              preset={CarouselType.Card}
+              carouselStyle={styles.carousel}
             />
           </BottomButtonView>
         </SafeAreaView>

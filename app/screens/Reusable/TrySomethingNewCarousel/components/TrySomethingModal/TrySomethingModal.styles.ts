@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../../constants/window';
 import { COLORS } from '../../../../../themes/colors';
 
 export interface ITrySomethingModalStyles {
@@ -12,19 +13,19 @@ export interface ITrySomethingModalStyles {
 export const styles = StyleSheet.create<ITrySomethingModalStyles>({
   container: {
     flex: 1,
+    paddingTop: 40 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 48,
   },
   subtitle: {
-    marginTop: 16,
-    marginBottom: 24,
+    marginTop: 16 * WINDOW_COEFFICIENT,
+    marginBottom: 24 * WINDOW_COEFFICIENT,
     color: COLORS.LIGHT_GREY,
   },
   maxCharacters: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 8,
+    marginTop: 8 * WINDOW_COEFFICIENT,
   },
 });

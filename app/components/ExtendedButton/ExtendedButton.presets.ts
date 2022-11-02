@@ -1,11 +1,12 @@
 import { ViewStyle, StyleSheet, TextStyle } from 'react-native';
 
 import { FONTS } from '../../assets';
+import { WINDOW_COEFFICIENT } from '../../constants/window';
 import { COLORS } from '../../themes/colors';
 import { hexTransparency } from '../../utils';
 
 const BASE: ViewStyle = {
-  paddingVertical: 16,
+  paddingVertical: 16 * WINDOW_COEFFICIENT,
   paddingHorizontal: 24,
   borderRadius: 40,
 };

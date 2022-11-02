@@ -1,0 +1,1 @@
+export { IconTitleDescription } from './IconTitleDescription';
