@@ -1,5 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import moment from 'moment';
+import _ from 'lodash';
 
 import {
   INITIAL_ELIXIR,
@@ -13,7 +14,11 @@ import {
   IQuestProgress,
 } from '../../utils/types';
 import { getCurrentUser } from './auth';
-import { FirestoreCollections } from './types';
+import {
+  FirestoreCollections,
+  IFirestoreChild,
+  IFirestoreChildrenData,
+} from './types';
 import { IFirestoreErrorResponse } from './types';
 import { IChild } from '../../models/IChild';
 import { IParent } from '../../models/IParent';
@@ -96,7 +101,7 @@ export const firestoreUpdateChildProgress = async (
   try {
     childDocument.update({ [directory]: values });
   } catch {
-    FirestoreUpdateChildProgressResponse.error = 'firestoreUpdateUserProgress';
+    FirestoreUpdateChildProgressResponse.error = 'firestoreUpdateChildProgress';
   }
   return FirestoreUpdateChildProgressResponse;
 };
@@ -106,7 +111,7 @@ export const firestoreGetChildProgress = async (childId: string) => {
     error: null,
   };
   try {
-    await firestore()
+    return await firestore()
       .collection(FirestoreCollections.NewProgress)
       .doc(childId)
       .get();
@@ -143,10 +148,18 @@ export const firestoreGetParent = async () => {
 
 export const firestoreGetParentChildren = async () => {
   const parentId = getCurrentUser();
-  return await firestore()
+
+  const childrenData: IFirestoreChildrenData = await firestore()
     .collection(FirestoreCollections.Children)
     .where('parentId', '==', parentId)
     .get();
+
+  const children = _.map(
+    childrenData._docs,
+    (item: IFirestoreChild) => item._data,
+  );
+
+  return children;
 };
 
 export const firestoreGetChildByUid = async (childId: string) => {

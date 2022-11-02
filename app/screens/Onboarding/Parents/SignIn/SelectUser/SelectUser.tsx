@@ -13,7 +13,6 @@ import { ISelectUserScreenProps } from './SelectUser.types';
 import { SVG } from '../../../../../assets/svg';
 import { styles } from './SelectUser.styles';
 import { BACKGROUND_IMAGES } from '../../../../../assets';
-import { DUMMY_CHILD } from './SelectUser.data';
 import { useAppSelector } from '../../../../../hooks';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
@@ -45,7 +44,7 @@ export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
             {t('screens.onboarding.select_user.title')}
           </ExtendedText>
           {/* // TODO: change to children */}
-          <AvatarList data={DUMMY_CHILD.children} />
+          <AvatarList data={children} />
         </BottomButtonView>
       </SafeAreaView>
     </ImageBackground>

@@ -2,7 +2,6 @@ import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import { IChild } from '../../models/IChild';
 import { IParent } from '../../models/IParent';
-
 import { Nullable } from '../../utils';
 import {
   IElixirProgress,
@@ -40,11 +39,9 @@ export interface IFirestoreParent {
 export interface IFirestoreChild {
   _data: IChild;
 }
-
-export interface IFirestoreChildren {
-  _data: IChild[];
+export interface IFirestoreChildrenData {
+  _docs: IFirestoreChild[];
 }
-
 export interface IFirestoreUserProgress {
   _data: {
     quests: IQuestProgress;

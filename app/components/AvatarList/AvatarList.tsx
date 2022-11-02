@@ -22,7 +22,6 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
   }, [data, parent]);
 
   const navigation = useNavigation();
-
   const dispatch = useAppDispatch();
 
   const onAddChildPress = useCallback(() => {
@@ -33,7 +32,7 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
     ({ item, index }: { item: IChild; index: number }) => {
       const onChildPress = () => {
         if (!parent) {
-          dispatch(userSlice.actions.setChildSuccess(item));
+          dispatch(userSlice.actions.setChild(item));
           navigation.navigate('GardenStack');
           return;
         }

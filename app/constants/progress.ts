@@ -2,8 +2,8 @@ import { PlantsType } from '../utils/types';
 
 export const INITIAL_PLANTS_STACK = [
   PlantsType.Courage,
-  PlantsType.Compassion,
   PlantsType.Courage,
+  PlantsType.Compassion,
   PlantsType.Calm,
   PlantsType.Calm,
 ];

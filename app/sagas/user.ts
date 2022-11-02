@@ -16,7 +16,6 @@ import {
   firestoreSaveDeviceToken,
   firestoreUpdateUser,
   IFirebaseAuthResponse,
-  IFirestoreChildren,
   IFirestoreErrorResponse,
   IFirestoreParent,
   IFirestoreUserProgress,
@@ -36,6 +35,8 @@ import {
 import { StaticNavigator } from '../services/navigator';
 import { IParent } from '../models/IParent';
 import { IChild } from '../models/IChild';
+import moment from 'moment';
+import { ONE_DAY_SECONDS } from '../constants/time';
 
 function* watchLoginUser({
   payload: { email, password },
@@ -47,12 +48,12 @@ function* watchLoginUser({
   );
   if (!loginUserResponse.error) {
     const parent: IFirestoreParent = yield call(firestoreGetParent);
-    const children: IFirestoreChildren = yield call(firestoreGetParentChildren);
+    const children: IChild[] = yield call(firestoreGetParentChildren);
 
     yield put(
       userSlice.actions.loginUserSuccess({
         parent: parent._data,
-        children: children._data,
+        children: children,
       }),
     );
 
@@ -71,9 +72,26 @@ function* watchSetChild({ payload: child }: PayloadAction<IChild>) {
   );
   if (childProgress._data) {
     yield put(userSlice.actions.setChildSuccess(child));
-    yield put(plantSlice.actions.setPlantState(childProgress._data.plants));
-    yield put(questSlice.actions.setQuestState(childProgress._data.quests));
-    yield put(elixirSlice.actions.setElixirState(childProgress._data.elixir));
+
+    const nowSeconds = +moment().format('X');
+    if (
+      nowSeconds - childProgress._data.quests.lastDayUpdate >=
+        ONE_DAY_SECONDS &&
+      !childProgress._data.quests.interruptedQuestLine &&
+      !childProgress._data.quests.currentDayQuestsStack.length
+    ) {
+      yield put(questSlice.actions.setLastDayUpdate());
+      yield put(
+        questSlice.actions.updateCurrentDay(
+          childProgress._data.quests.currentDay + 1,
+        ),
+      );
+      yield put(questSlice.actions.setCurrentDayQuestsStack());
+    } else {
+      yield put(plantSlice.actions.setPlantState(childProgress._data.plants));
+      yield put(questSlice.actions.setQuestState(childProgress._data.quests));
+      yield put(elixirSlice.actions.setElixirState(childProgress._data.elixir));
+    }
   } else {
     yield put(userSlice.actions.setChildError('Set child error'));
   }
@@ -154,10 +172,11 @@ function* watchCreateChild({ payload: child }: PayloadAction<IChild>) {
     const FirestoreCreateChildProgressResponse: IFirestoreErrorResponse =
       yield call(firestoreCreateChildProgress, child.uid);
     if (!FirestoreCreateChildProgressResponse.error) {
+      console.log('ne error');
+      yield put(userSlice.actions.createChildSuccess(child));
       yield put(questSlice.actions.updateCurrentDay(1));
       yield put(questSlice.actions.setCurrentDayQuestsStack());
       yield put(questSlice.actions.setLastDayUpdate());
-      yield put(userSlice.actions.createChildSuccess(child));
     }
   } else {
     yield put(userSlice.actions.createChildError('Create child error'));

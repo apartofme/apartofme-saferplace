@@ -14,7 +14,6 @@ import {
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { SVG } from '../../../assets/svg';
-import { DUMMY_CHILD } from '../../Onboarding/Parents/SignIn/SelectUser/SelectUser.data';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -41,7 +40,7 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
               {t('screens.menu.manage_profiles.title')}
             </ExtendedText>
             {/* // TODO: change to children */}
-            <AvatarList data={DUMMY_CHILD.children} parent={parentData} />
+            <AvatarList data={children} parent={parentData} />
           </View>
         </BottomButtonView>
       </SafeAreaView>
