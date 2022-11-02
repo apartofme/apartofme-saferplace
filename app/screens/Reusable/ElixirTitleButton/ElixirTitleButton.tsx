@@ -19,11 +19,8 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     const dispatch = useAppDispatch();
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
-    const interruptedQuestLine = useAppSelector(
-      state => state.quest.interruptedQuestLine,
-    );
-    const currentQuestLine = useAppSelector(
-      state => state.quest.currentQuestLine,
+    const { interruptedQuestLine, currentQuestLine } = useAppSelector(
+      state => state.quest,
     );
 
     const ElixirAnimation = useMemo(

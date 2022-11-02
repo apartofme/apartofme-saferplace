@@ -47,8 +47,9 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
     navigation.navigate('SignUpCredentials');
   }, [navigation]);
 
-  const loginUserError = useAppSelector(state => state.app.errors.loginUser);
-  const isLoginUser = useAppSelector(state => state.app.loading.isLoginUser);
+  const app = useAppSelector(state => state.app);
+  const loginUserError = app.errors.loginUser;
+  const isLoginUser = app.loading.isLoginUser;
 
   const [isOnLoginPress, setIsOnLoginPress] = useState(false);
   const [isErrorShow, setIsErrorShow] = useState(false);

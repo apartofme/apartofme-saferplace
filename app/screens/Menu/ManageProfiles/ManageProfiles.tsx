@@ -14,8 +14,8 @@ import {
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { UserImageTitle } from './components';
-import { AvatarsNameType, UserType } from '../../../utils/types';
 import { SVG } from '../../../assets/svg';
+import { UserType } from '../../../utils/types';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -24,19 +24,7 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const parentNickname = useAppSelector(
-    state => state.user.parent?.nickname,
-  ) as string;
-  const childNickname = useAppSelector(
-    state => state.user.child?.nickname,
-  ) as string;
-
-  const childAvatar =
-    useAppSelector(state => state.user.child?.avatar) ??
-    `Circle${AvatarsNameType.Fox}`;
-  const parentAvatar =
-    useAppSelector(state => state.user.parent?.avatar) ??
-    `Circle${AvatarsNameType.Rabbit}`;
+  const { parent, child } = useAppSelector(state => state.user);
 
   const goToEditProfile = useCallback(
     (type: UserType) => {
@@ -59,13 +47,13 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
             </ExtendedText>
             <View style={styles.imageContainer}>
               <UserImageTitle
-                title={parentNickname}
-                image={parentAvatar}
+                title={parent?.nickname ?? ''}
+                image={parent?.avatar ?? 'CircleRabbitIcon'}
                 onPress={() => goToEditProfile(UserType.Parent)}
               />
               <UserImageTitle
-                title={childNickname}
-                image={childAvatar}
+                title={child?.nickname ?? ''}
+                image={child?.avatar ?? 'CircleBearIcon'}
                 onPress={() => goToEditProfile(UserType.Child)}
               />
             </View>

@@ -17,10 +17,10 @@ export const DummyQuestsScreen: React.FC<IDummyQuestsScreenProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector(
-    state => state.settings.settings.language,
+    state => state.settings.settings.language ?? 'en',
   );
   const allQuests = useAppSelector(
-    state => state.quest.allQuests?.[currentLanguage as string],
+    state => state.quest.allQuests?.[currentLanguage],
   );
 
   const parentNickname = useAppSelector(

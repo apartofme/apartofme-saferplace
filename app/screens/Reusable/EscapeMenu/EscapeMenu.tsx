@@ -29,19 +29,16 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
   const dispatch = useAppDispatch();
 
   const currentLanguage = useAppSelector(
-    state => state.settings.settings.language,
+    state => state.settings.settings.language ?? 'en',
   );
-  const allQuests = useAppSelector(
-    state => state.quest.allQuests?.[currentLanguage as string],
-  );
-  const currentQuestLine = useAppSelector(
-    state => state.quest.currentQuestLine,
-  );
-  const currentDay = useAppSelector(state => state.quest.currentDay);
-  const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
-  const isCurrentQuestCompleted = useAppSelector(
-    state => state.quest.isCurrentQuestCompleted,
-  );
+  const {
+    currentDay,
+    currentQuestIdx,
+    currentQuestLine,
+    isCurrentQuestCompleted,
+    allQuests,
+  } = useAppSelector(state => state.quest);
+  const allLocalizedQuests = allQuests?.[currentLanguage];
 
   const navigateTo = usePositiveNavigateTo(escapeMenuAlternativeNavigateTo);
 
@@ -56,7 +53,8 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
       dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
     }
     const quests: IQuest[] = values(
-      allQuests && allQuests[JOINT_GROUNDING_EXERCISE_ID].quests,
+      allLocalizedQuests &&
+        allLocalizedQuests[JOINT_GROUNDING_EXERCISE_ID].quests,
     );
 
     dispatch(
@@ -73,7 +71,7 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
     });
 
     dispatch(questSlice.actions.clearQuestStack());
-  }, [allQuests, dispatch, isCurrentQuestCompleted, navigation]);
+  }, [allLocalizedQuests, dispatch, isCurrentQuestCompleted, navigation]);
 
   const goToGarden = useCallback(() => {
     if (!isCurrentQuestCompleted) {
