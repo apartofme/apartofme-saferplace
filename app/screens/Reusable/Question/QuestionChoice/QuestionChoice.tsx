@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
-import { SVG } from '../../../../assets/svg';
+import { ANIMATIONS } from '../../../../assets/animations';
 import { BottomButtonView } from '../../../../components';
 import {
   useAppDispatch,
@@ -11,6 +12,7 @@ import {
   useRenderQuestHeader,
 } from '../../../../hooks';
 import { cacheSlice } from '../../../../redux/slices';
+import { LottieStyles } from '../../../../utils';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './QuestionChoice.styles';
 import { IQuestionChoiceScreenProps } from './QuestionChoice.types';
@@ -67,7 +69,12 @@ export const QuestionChoiceScreen: React.FC<IQuestionChoiceScreenProps> = ({
           style={styles.container}>
           <Title />
           <View style={generalStyles.flex} />
-          <SVG.TruthCards />
+          <Lottie
+            source={ANIMATIONS.CARD_SHUFFLE}
+            autoPlay
+            loop
+            style={LottieStyles(100, { top: -20 })}
+          />
           <View style={generalStyles.flex} />
         </BottomButtonView>
       </SafeAreaView>
