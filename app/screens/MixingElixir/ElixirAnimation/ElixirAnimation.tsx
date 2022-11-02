@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Lottie from 'lottie-react-native';
 import { values } from 'lodash';
 
 import { IElixirAnimationScreenProps } from './ElixirAnimation.types';
@@ -9,7 +10,6 @@ import { ExtendedText } from '../../../components';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { MixingElixirPhaseType } from '../../../utils/types';
 import { generalStyles } from '../../../utils/styles';
-import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
@@ -18,6 +18,8 @@ import {
   THE_CHARM_OF_BEFRIENDING_ID,
 } from '../../../constants/quest';
 import { questSlice } from '../../../redux/slices';
+import { ANIMATIONS } from '../../../assets/animations';
+import { LottieStyles } from '../../../utils';
 
 export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,
@@ -53,11 +55,32 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   const animation = useMemo(() => {
     switch (phase) {
       case MixingElixirPhaseType.Mix:
-        return <ElixirThreeIcon />;
+        return (
+          <Lottie
+            source={ANIMATIONS.POTION_MIX}
+            autoPlay
+            loop
+            style={LottieStyles(90)}
+          />
+        );
       case MixingElixirPhaseType.Open:
-        return <ElixirThreeIcon />;
+        return (
+          <Lottie
+            source={ANIMATIONS.POTION_OPEN_BOTTLE}
+            autoPlay
+            loop
+            style={LottieStyles(90)}
+          />
+        );
       default:
-        return <ElixirThreeIcon />;
+        return (
+          <Lottie
+            source={ANIMATIONS.POTION_POUR}
+            autoPlay
+            loop
+            style={LottieStyles(90)}
+          />
+        );
     }
   }, [phase]);
 

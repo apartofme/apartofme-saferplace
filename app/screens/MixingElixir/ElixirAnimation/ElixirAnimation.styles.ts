@@ -13,6 +13,6 @@ export const styles = StyleSheet.create<IElixirAnimationScreenStyles>({
     marginBottom: -142,
   },
   title: {
-    marginTop: 83,
+    marginTop: 120,
   },
 });
