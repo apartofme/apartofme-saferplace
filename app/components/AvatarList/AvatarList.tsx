@@ -10,10 +10,11 @@ import { UserType } from '../../utils/types';
 import { userSlice } from '../../redux/slices';
 import { useAppDispatch } from '../../hooks';
 
+// TODO: refactor to type + swich
 export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
   const listData = useMemo(() => {
     if (parent) {
-      return [data[0], ...data, data[0], data[0]];
+      return [data[0], ...data];
     }
     if (data.length % 2 === 0) {
       return [...data, data[0], data[0]];

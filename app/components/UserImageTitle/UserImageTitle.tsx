@@ -26,7 +26,7 @@ export const UserImageTitle: React.FC<IUserImageTitleProps> = ({
         <RoundPlussIcon />
       )}
       <ExtendedText style={styles.userName} preset="heading">
-        {title ? title : t('screens.sign_in.select_user')}
+        {title ?? t('screens.sign_in.select_user')}
       </ExtendedText>
     </TouchableOpacity>
   );

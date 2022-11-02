@@ -43,7 +43,6 @@ export const SelectUserScreen: React.FC<ISelectUserScreenProps> = ({
           <ExtendedText preset="large-title" style={styles.title}>
             {t('screens.onboarding.select_user.title')}
           </ExtendedText>
-          {/* // TODO: change to children */}
           <AvatarList data={children} />
         </BottomButtonView>
       </SafeAreaView>
