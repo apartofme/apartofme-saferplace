@@ -41,7 +41,6 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const avatarsData = useMemo(() => {
     if (isChild) {
-      console.log(parentAvatar);
       return _.filter(
         AVATAR_CAROUSEL,
         item => `Circle${item.image}` !== parentAvatar,
