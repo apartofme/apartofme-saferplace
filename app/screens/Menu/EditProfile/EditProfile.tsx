@@ -1,11 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, SafeAreaView, View } from 'react-native';
-import _ from 'lodash';
+import { Image, SafeAreaView, View } from 'react-native';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
 import {
-  AVATAR_CAROUSEL,
   BottomButtonView,
   ExtendedButton,
   ExtendedKeyboardAvoidingView,
@@ -15,7 +13,7 @@ import {
 import { generalStyles } from '../../../utils/styles';
 import { IEditProfileScreenProps } from './EditProfile.types';
 import { styles } from './EditProfile.styles';
-import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { cacheSlice, userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
@@ -32,35 +30,16 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
 
   const dispatch = useAppDispatch();
 
-  const parentNickname = useAppSelector(
-    state => state.user.parent?.nickname,
-  ) as string;
-  const childNickname = useAppSelector(
-    state => state.user.child?.nickname,
+  const oldNickname = useAppSelector(
+    state => state.user[UserType.Child === type ? 'child' : 'parent']?.nickname,
   ) as string;
 
-  const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
-  const childAvatar = useAppSelector(state => state.user.child?.avatar);
+  const avatar = useAppSelector(
+    state => state.user[UserType.Child === type ? 'child' : 'parent']?.avatar,
+  );
 
-  const [nickname, setNickname] = useState(
-    UserType.Child === type ? childNickname : parentNickname,
-  );
-  const [avatar, setAvatar] = useState(
-    UserType.Child === type ? childAvatar : parentAvatar,
-  );
-  const [avatarIndex, setAvatarIndex] = useState(0);
+  const [nickname, setNickname] = useState(oldNickname);
   const [isActive, setIsActive] = useState(false);
-  // const [isShow, setIsShow] = useState(true);
-
-  useMount(() => {
-    setAvatarIndex(
-      _.findIndex(AVATAR_CAROUSEL, item => `Circle${item.image}` === avatar),
-    );
-  });
-
-  useEffect(() => {
-    setAvatar(`Circle${AVATAR_CAROUSEL[avatarIndex].image}`);
-  }, [avatarIndex]);
 
   const onSubmit = useCallback(() => {
     if (type === UserType.Parent) {

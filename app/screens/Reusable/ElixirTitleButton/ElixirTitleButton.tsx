@@ -66,7 +66,6 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
           });
           return;
         }
-        console.log(1);
 
         navigation.push('GardenStack', {
           screen: 'Garden',
@@ -97,7 +96,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN_BACKGROUND}
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView

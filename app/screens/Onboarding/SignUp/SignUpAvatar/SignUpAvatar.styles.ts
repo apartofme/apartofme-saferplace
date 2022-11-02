@@ -12,6 +12,6 @@ export const styles = StyleSheet.create<ISignUpAvatarScreenStyles>({
     paddingHorizontal: 24,
   },
   carousel: {
-    alignSelf: 'center',
+    paddingBottom: 45,
   },
 });

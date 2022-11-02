@@ -1,1 +1,0 @@
-export { FavouriteCharmCarouselItem } from './FavouriteCharmCarouselItem';

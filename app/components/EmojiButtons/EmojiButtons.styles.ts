@@ -1,5 +1,6 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../constants/window';
 import { COLORS } from '../../themes/colors';
 import { hexTransparency } from '../../utils';
 
@@ -22,7 +23,7 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
   },
   blobIcon: {
     position: 'absolute',
-    bottom: 0,
+    bottom: WINDOW_COEFFICIENT * 350 - 350,
     left: 0,
     zIndex: 0,
   },

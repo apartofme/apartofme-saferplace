@@ -25,7 +25,6 @@ import {
 } from '../../../components';
 import { cacheSlice } from '../../../redux/slices';
 import { EmotionModal } from './components';
-import { EmotionsCarouselSvgKeys } from '../../../utils/types';
 
 export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
   route,
@@ -64,14 +63,9 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
   });
 
   const onSubmit = useCallback(() => {
-    dispatch(
-      cacheSlice.actions.saveEmotionItem({
-        title: t(activeItem.titleKey ?? ''),
-        image: activeItem.image as EmotionsCarouselSvgKeys,
-      }),
-    );
+    dispatch(cacheSlice.actions.saveEmotionItem(activeItem));
     navigateToNextQuest();
-  }, [activeItem.image, activeItem.titleKey, dispatch, navigateToNextQuest, t]);
+  }, [activeItem, dispatch, navigateToNextQuest]);
 
   const setModalStatus = useCallback(() => {
     setIsModal(!isModal);
@@ -117,9 +111,10 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
           <Title />
           <Carousel
             data={emotionData}
-            preset={CarouselType.Emotion}
+            preset={CarouselType.Card}
             setIndex={setActiveItemIndex}
-            style={styles.carousel}
+            style={styles.carouselContainer}
+            carouselStyle={styles.carousel}
           />
         </BottomButtonView>
         <ExtendedButton

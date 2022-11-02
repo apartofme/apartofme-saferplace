@@ -29,9 +29,9 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
 
     const { t } = useTranslation();
     const emotionTitle = useAppSelector(
-      state => state.cache.emotionItem?.title,
+      state => state.cache.emotionItem?.titleKey,
     );
-    const iconKey = useAppSelector(state => state.cache.emotionItem?.image);
+    const iconKey = useAppSelector(state => state.cache.emotionItem?.iconKey);
 
     const onSubmit = useNavigateNextQuest();
 

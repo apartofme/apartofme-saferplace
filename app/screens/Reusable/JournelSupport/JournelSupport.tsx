@@ -66,7 +66,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
   }, [isInputFocus]);
 
   return (
-    <View>
+    <View style={generalStyles.flex}>
       <Image
         source={
           CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']

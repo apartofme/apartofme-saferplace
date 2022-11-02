@@ -6,6 +6,7 @@ import { COLORS } from '../../../themes/colors';
 interface IEmotionCarouselScreenStyles {
   container: ViewStyle;
   title: TextStyle;
+  carouselContainer: ViewStyle;
   carousel: ViewStyle;
   bottomButton: ViewStyle;
   modal: ViewStyle;
@@ -18,11 +19,15 @@ export const styles = StyleSheet.create<IEmotionCarouselScreenStyles>({
   },
   title: {
     paddingHorizontal: 24,
-    paddingBottom: 24 * WINDOW_COEFFICIENT,
+    paddingBottom: 48 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
   },
+  carouselContainer: {
+    paddingBottom: 24,
+  },
   carousel: {
-    paddingBottom: 70 * WINDOW_COEFFICIENT,
+    paddingBottom: 10 * WINDOW_COEFFICIENT,
+    maxHeight: 300,
   },
   bottomButton: {
     marginHorizontal: 40,

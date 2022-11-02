@@ -1,26 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
+import {
+  EmotionButtonType,
+  IEmotionItem,
+  ITroublesomeItem,
+  ITrySomethingItem,
+} from '../../components';
 import { Nullable } from '../../utils';
 import {
-  IEmotionItem,
-  IEmotionItemPayload,
-  IEmotionPayload,
   IEmotions,
-  IFavouriteCharmItem,
-  IFavouriteCharmItemPayload,
   INicknames,
-  INicknamesPayload,
+  IPlayer,
   ISaveTranslationsPayload,
   IShortSignUpData,
   IShortSignUpDataPayload,
   ISignUpData,
   ISignUpDataPayload,
   ITranslations,
-  ITroublesomeSpiritQuestionsItem,
-  ITroublesomeSpiritQuestionsItemPayload,
-  ITrySomethingItem,
-  ITrySomethingItemPayload,
 } from '../types';
 
 interface ICacheState {
@@ -29,18 +26,13 @@ interface ICacheState {
     child: Nullable<IShortSignUpData>;
   };
   translations: Nullable<ITranslations>;
-  childTrySomethingFirstItem: Nullable<ITrySomethingItem>;
-  parentTrySomethingFirstItem: Nullable<ITrySomethingItem>;
-  childTrySomethingSecondItem: Nullable<ITrySomethingItem>;
-  parentTrySomethingSecondItem: Nullable<ITrySomethingItem>;
   nicknames: Nullable<INicknames>;
+  child: IPlayer;
+  parent: IPlayer;
   emotions: IEmotions;
   currentQuestionIndex: number;
   emotionItem: Nullable<IEmotionItem>;
-  favouriteCharmItem: Nullable<IFavouriteCharmItem>;
-  troublesomeSpiritQuestionsItem: Nullable<ITroublesomeSpiritQuestionsItem>;
-  childKindnessItem: Nullable<string>;
-  parentKindnessItem: Nullable<string>;
+  troublesomeItem: Nullable<ITroublesomeItem>;
   selectedSong: Nullable<string>;
 }
 
@@ -50,21 +42,24 @@ const INITIAL_STATE: ICacheState = {
     child: null,
   },
   translations: null,
-  childTrySomethingFirstItem: null,
-  parentTrySomethingFirstItem: null,
-  childTrySomethingSecondItem: null,
-  parentTrySomethingSecondItem: null,
   nicknames: null,
+  child: {
+    kindnessItem: null,
+    trySomethingFirstItem: null,
+    trySomethingSecondItem: null,
+  },
+  parent: {
+    kindnessItem: null,
+    trySomethingFirstItem: null,
+    trySomethingSecondItem: null,
+  },
   emotions: {
     selected: null,
     completed: [],
   },
   currentQuestionIndex: -1,
   emotionItem: null,
-  favouriteCharmItem: null,
-  troublesomeSpiritQuestionsItem: null,
-  childKindnessItem: null,
-  parentKindnessItem: null,
+  troublesomeItem: null,
   selectedSong: null,
 };
 
@@ -83,42 +78,36 @@ export const cacheSlice = createSlice({
     saveTranslationsSuccess(state, { payload }: ISaveTranslationsPayload) {
       state.translations = _.merge(state.translations, payload);
     },
+    saveTranslationsError(state, action: PayloadAction<string>) {},
+
     saveChildTrySomethingFirstItem(
       state,
-      { payload }: ITrySomethingItemPayload,
+      { payload }: PayloadAction<ITrySomethingItem>,
     ) {
-      state.childTrySomethingFirstItem = payload;
+      state.child.trySomethingFirstItem = payload;
     },
     saveParentTrySomethingFirstItem(
       state,
-      { payload }: ITrySomethingItemPayload,
+      { payload }: PayloadAction<ITrySomethingItem>,
     ) {
-      state.parentTrySomethingFirstItem = payload;
+      state.parent.trySomethingFirstItem = payload;
     },
     saveChildTrySomethingSecondItem(
       state,
-      { payload }: ITrySomethingItemPayload,
+      { payload }: PayloadAction<ITrySomethingItem>,
     ) {
-      state.childTrySomethingSecondItem = payload;
+      state.child.trySomethingSecondItem = payload;
     },
     saveParentTrySomethingSecondItem(
       state,
-      { payload }: ITrySomethingItemPayload,
+      { payload }: PayloadAction<ITrySomethingItem>,
     ) {
-      state.parentTrySomethingSecondItem = payload;
+      state.parent.trySomethingSecondItem = payload;
     },
-    saveNicknames(state, { payload }: INicknamesPayload) {
-      state.nicknames = _.merge(state.nicknames, payload);
-    },
-    saveChosenNickname(state, { payload }: PayloadAction<string>) {
-      if (state.nicknames && payload !== state.nicknames.firstPlayer) {
-        state.nicknames.secondPlayer = state.nicknames.firstPlayer;
-        state.nicknames.firstPlayer = payload;
-      }
-    },
-
-    saveTranslationsError(state, action: PayloadAction<string>) {},
-    saveSelectedEmotion(state, { payload }: IEmotionPayload) {
+    saveSelectedEmotion(
+      state,
+      { payload }: PayloadAction<Nullable<EmotionButtonType>>,
+    ) {
       state.emotions.selected = payload;
     },
     completeSelectedEmotion({ emotions }) {
@@ -131,17 +120,27 @@ export const cacheSlice = createSlice({
       emotions.selected = null;
       emotions.completed = [];
     },
-    saveEmotionItem(state, { payload }: IEmotionItemPayload) {
+    saveEmotionItem(state, { payload }: PayloadAction<IEmotionItem>) {
       state.emotionItem = payload;
     },
-    saveFavouriteCharmItem(state, { payload }: IFavouriteCharmItemPayload) {
-      state.favouriteCharmItem = _.merge(state.favouriteCharmItem, payload);
+    saveTroublesomeItem(state, { payload }: PayloadAction<ITroublesomeItem>) {
+      state.troublesomeItem = payload;
     },
-    saveTroublesomeSpiritQuestionsItem(
-      state,
-      { payload }: ITroublesomeSpiritQuestionsItemPayload,
-    ) {
-      state.troublesomeSpiritQuestionsItem = payload;
+    saveChildKindnessItem(state, { payload }: PayloadAction<string>) {
+      state.child.kindnessItem = payload;
+    },
+    saveParentKindnessItem(state, { payload }: PayloadAction<string>) {
+      state.parent.kindnessItem = payload;
+    },
+
+    saveNicknames(state, { payload }: PayloadAction<INicknames>) {
+      state.nicknames = _.merge(state.nicknames, payload);
+    },
+    saveChosenNickname(state, { payload }: PayloadAction<string>) {
+      if (state.nicknames && payload !== state.nicknames.firstPlayer) {
+        state.nicknames.secondPlayer = state.nicknames.firstPlayer;
+        state.nicknames.firstPlayer = payload;
+      }
     },
     incrementCurrentQuestionIndex(state) {
       state.currentQuestionIndex = state.currentQuestionIndex + 1;
@@ -154,13 +153,6 @@ export const cacheSlice = createSlice({
     setDefaultCurrentQuestionIndex(state) {
       state.currentQuestionIndex = -1;
     },
-    saveChildKindnessItem(state, { payload }: PayloadAction<string>) {
-      state.childKindnessItem = payload;
-    },
-    saveParentKindnessItem(state, { payload }: PayloadAction<string>) {
-      state.parentKindnessItem = payload;
-    },
-
     setSelectedSong(state, { payload }: PayloadAction<string>) {
       state.selectedSong = payload;
     },

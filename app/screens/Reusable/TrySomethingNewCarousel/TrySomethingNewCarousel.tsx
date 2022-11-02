@@ -1,12 +1,14 @@
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Modal from 'react-native-modal';
 
 import {
+  BottomButtonView,
+  Carousel,
+  CarouselType,
   ExtendedButton,
   ExtendedText,
-  TrySomethingCarousel,
 } from '../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -22,8 +24,8 @@ import { TrySomethingModal } from './components';
 import { styles } from './TrySomethingNewCarousel.styles';
 import { ITrySomethingNewCarouselScreenProps } from './TrySomethingNewCarousel.types';
 import {
-  SECOND_TRY_SOMETHING_ITEMS,
-  TRY_SOMETHING_DISCOVERY_ITEMS,
+  TRY_SOMETHING_FIRST,
+  TRY_SOMETHING_SECOND,
 } from './TrySomethingNewCarousel.data';
 import { TRY_SOMETHING_NEW_PART_ONE_ID } from '../../../constants/quest';
 
@@ -31,6 +33,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
   ({ route }) => {
     const {
       title,
+      buttonTitle,
       description,
       tellMoreTitle,
       tellMoreDescription,
@@ -48,8 +51,8 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
     const isFirstPart = TRY_SOMETHING_NEW_PART_ONE_ID === curentQuestLineId;
 
     const carouselData = isFirstPart
-      ? TRY_SOMETHING_DISCOVERY_ITEMS
-      : SECOND_TRY_SOMETHING_ITEMS;
+      ? TRY_SOMETHING_FIRST
+      : TRY_SOMETHING_SECOND;
 
     const [activeItem, setActiveItem] = useState(carouselData[0]);
 
@@ -61,7 +64,7 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
       text: title,
       textHasNickname: titleHasNickname ?? true,
       preset: 'title',
-      style: generalStyles.brilliantWhite,
+      style: styles.title,
     });
 
     const { t } = useTranslation();
@@ -81,47 +84,27 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
       if (isFirstPart) {
         if (isChild) {
           dispatch(
-            cacheSlice.actions.saveChildTrySomethingFirstItem({
-              title: t(activeItem.title),
-              description: t(activeItem.subtitle),
-            }),
+            cacheSlice.actions.saveChildTrySomethingFirstItem(activeItem),
           );
         } else {
           dispatch(
-            cacheSlice.actions.saveParentTrySomethingFirstItem({
-              title: t(activeItem.title),
-              description: t(activeItem.subtitle),
-            }),
+            cacheSlice.actions.saveParentTrySomethingFirstItem(activeItem),
           );
         }
       } else {
         if (isChild) {
           dispatch(
-            cacheSlice.actions.saveChildTrySomethingSecondItem({
-              title: t(activeItem.title),
-              description: t(activeItem.subtitle),
-            }),
+            cacheSlice.actions.saveChildTrySomethingSecondItem(activeItem),
           );
         } else {
           dispatch(
-            cacheSlice.actions.saveParentTrySomethingSecondItem({
-              title: t(activeItem.title),
-              description: t(activeItem.subtitle),
-            }),
+            cacheSlice.actions.saveParentTrySomethingSecondItem(activeItem),
           );
         }
       }
 
       onSubmit();
-    }, [
-      activeItem.subtitle,
-      activeItem.title,
-      dispatch,
-      isChild,
-      isFirstPart,
-      onSubmit,
-      t,
-    ]);
+    }, [activeItem, dispatch, isChild, isFirstPart, onSubmit]);
 
     const Header = useRenderQuestHeader({
       crossHeader: crossHeader ?? false,
@@ -150,30 +133,26 @@ export const TrySomethingNewCarouselScreen: React.FC<ITrySomethingNewCarouselScr
             />
           </Modal>
           <Header />
-          <View style={styles.container}>
-            <View style={styles.titleContainer}>
-              <Title />
-              <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
-            </View>
-
-            <TrySomethingCarousel
+          <BottomButtonView
+            buttonTitle={buttonTitle || t('buttons.next')}
+            isArrow={!buttonTitle}
+            onSubmit={onSubmitPress}
+            style={styles.container}>
+            <Title />
+            <ExtendedText style={styles.subtitle}>{description}</ExtendedText>
+            <Carousel
+              preset={CarouselType.Card}
               data={carouselData}
               setIndex={setActiveItemIndex}
+              carouselStyle={styles.carousel}
             />
-
-            <View style={styles.buttonsConainer}>
-              <ExtendedButton
-                style={styles.selectButton}
-                title={t('buttons.select')}
-                onPress={onSubmitPress}
-              />
-              <ExtendedButton
-                preset="border"
-                title={t('buttons.create_your_own')}
-                onPress={() => setIsModal(true)}
-              />
-            </View>
-          </View>
+          </BottomButtonView>
+          <ExtendedButton
+            preset="border"
+            title={t('buttons.create_your_own')}
+            onPress={() => setIsModal(true)}
+            style={styles.bottomButton}
+          />
         </SafeAreaView>
       </ImageBackground>
     );
