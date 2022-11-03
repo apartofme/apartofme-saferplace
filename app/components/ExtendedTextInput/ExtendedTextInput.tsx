@@ -6,6 +6,7 @@ import {
   TextInputProps,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ExtendedText } from '../ExtendedText';
 import {
@@ -36,6 +37,8 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
     () => ExtendedTextInputPresetProps[type],
     [type],
   );
+
+  const { t } = useTranslation();
 
   const InputComponent: React.ComponentType<TextInputProps> = useMemo(() => {
     switch (type) {
@@ -99,7 +102,7 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
           <ExtendedText
             style={[styles.error, errorStyle]}
             preset="tertiary-text-regular">
-            {error}
+            {t(error)}
           </ExtendedText>
         </View>
       )}

@@ -32,13 +32,14 @@ export const styles = StyleSheet.create<IExtendedTextInputStyles>({
     alignItems: 'center',
     backgroundColor: COLORS.RED,
     paddingVertical: 8,
-    paddingHorizontal: 11,
+    paddingHorizontal: 12,
     borderRadius: 12,
     marginVertical: 8,
   },
   error: {
     color: COLORS.BRILLIANT_WHITE,
     marginLeft: 11,
+    maxWidth: 276,
   },
   inputError: {
     borderColor: COLORS.RED,
