@@ -119,6 +119,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                     type={ExtendedTextInputType.Email}
                     style={styles.mb16}
                     setIsActive={setIsActive}
+                    maxLength={30}
                   />
                   <ExtendedTextInput
                     type={ExtendedTextInputType.PasswordToggle}
@@ -128,6 +129,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                     placeholder={t('placeholders.enter_password')}
                     placeholderTextColor={COLORS.BRILLIANT_WHITE}
                     setIsActive={setIsActive}
+                    maxLength={30}
                   />
                   <ExtendedButton
                     title={t('buttons.login')}
