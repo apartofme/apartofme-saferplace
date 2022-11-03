@@ -29,8 +29,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   const { isSaveAllQuests, isSaveTranslations } = useAppSelector(
     state => state.app.loading,
   );
-  //dispatch(questSlice.actions.updateCurrentDay(13));
-  //dispatch(questSlice.actions.setCurrentDayQuestsStack());
+
   useMount(() => {
     dispatch(questSlice.actions.saveAllQuests());
     dispatch(cacheSlice.actions.saveTranslations());
