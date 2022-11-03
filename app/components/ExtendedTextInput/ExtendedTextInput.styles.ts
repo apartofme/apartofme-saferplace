@@ -34,7 +34,7 @@ export const styles = StyleSheet.create<IExtendedTextInputStyles>({
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 12,
-    marginVertical: 8,
+    marginTop: 8,
   },
   error: {
     color: COLORS.BRILLIANT_WHITE,

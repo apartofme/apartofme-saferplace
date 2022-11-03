@@ -132,7 +132,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       value={values.password}
                       onChangeText={handleChange('password')}
                       onBlur={handleBlur('password')}
-                      style={styles.mt16}
+                      style={styles.mt8}
                       placeholder={t('placeholders.enter_password')}
                       placeholderTextColor={COLORS.BRILLIANT_WHITE}
                       setIsActive={setIsActive}
