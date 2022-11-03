@@ -30,8 +30,8 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
     const dispatch = useAppDispatch();
 
     const currentLanguage = useAppSelector(
-      state => state.settings.settings.language,
-    ) as string;
+      state => state.settings.settings.language ?? 'en',
+    );
     const allQuests = useAppSelector(
       state => state.quest.allQuests?.[currentLanguage],
     );

@@ -26,7 +26,7 @@ interface ICacheState {
     child: Nullable<IShortSignUpData>;
   };
   translations: Nullable<ITranslations>;
-  nicknames: Nullable<INicknames>;
+  nicknames: INicknames;
   child: IPlayer;
   parent: IPlayer;
   emotions: IEmotions;
@@ -42,7 +42,10 @@ const INITIAL_STATE: ICacheState = {
     child: null,
   },
   translations: null,
-  nicknames: null,
+  nicknames: {
+    firstPlayer: '',
+    secondPlayer: '',
+  },
   child: {
     kindnessItem: null,
     trySomethingFirstItem: null,
@@ -134,12 +137,12 @@ export const cacheSlice = createSlice({
     },
 
     saveNicknames(state, { payload }: PayloadAction<INicknames>) {
-      state.nicknames = _.merge(state.nicknames, payload);
+      state.nicknames = payload;
     },
-    saveChosenNickname(state, { payload }: PayloadAction<string>) {
-      if (state.nicknames && payload !== state.nicknames.firstPlayer) {
-        state.nicknames.secondPlayer = state.nicknames.firstPlayer;
-        state.nicknames.firstPlayer = payload;
+    saveChosenNickname({ nicknames }, { payload }: PayloadAction<string>) {
+      if (nicknames && payload !== nicknames.firstPlayer) {
+        nicknames.secondPlayer = nicknames.firstPlayer;
+        nicknames.firstPlayer = payload;
       }
     },
     incrementCurrentQuestionIndex(state) {

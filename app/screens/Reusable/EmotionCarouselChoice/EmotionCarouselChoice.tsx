@@ -28,10 +28,7 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
     } = route.params.data;
 
     const { t } = useTranslation();
-    const emotionTitle = useAppSelector(
-      state => state.cache.emotionItem?.titleKey,
-    );
-    const iconKey = useAppSelector(state => state.cache.emotionItem?.iconKey);
+    const { emotionItem } = useAppSelector(state => state.cache);
 
     const onSubmit = useNavigateNextQuest();
 
@@ -47,7 +44,7 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
       escapeMenuAlternativeNavigateTo,
     });
 
-    const Icon = iconKey && EMOTIONS_CAROUSEL_SVG[iconKey];
+    const Icon = emotionItem && EMOTIONS_CAROUSEL_SVG[emotionItem.iconKey];
 
     return (
       <ImageBackground
@@ -66,7 +63,7 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
             <View style={styles.card}>
               {Icon && <Icon />}
               <ExtendedText preset="heading" style={styles.cardTitle}>
-                {emotionTitle}
+                {emotionItem && t(emotionItem.titleKey)}
               </ExtendedText>
             </View>
             <ExtendedText preset="secondary-text" style={styles.subtitle}>

@@ -48,8 +48,9 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
     navigation.navigate('SignUpCredentials');
   }, [navigation]);
 
-  const loginUserError = useAppSelector(state => state.app.errors.loginUser);
-  const isLoginUser = useAppSelector(state => state.app.loading.isLoginUser);
+  const app = useAppSelector(state => state.app);
+  const loginUserError = app.errors.loginUser;
+  const isLoginUser = app.loading.isLoginUser;
 
   const [isOnLoginPress, setIsOnLoginPress] = useState(false);
   const [isErrorShow, setIsErrorShow] = useState(false);
@@ -119,6 +120,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                     type={ExtendedTextInputType.Email}
                     style={styles.mb16}
                     setIsActive={setIsActive}
+                    maxLength={30}
                   />
                   <ExtendedTextInput
                     type={ExtendedTextInputType.PasswordToggle}
@@ -128,6 +130,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                     placeholder={t('placeholders.enter_password')}
                     placeholderTextColor={COLORS.BRILLIANT_WHITE}
                     setIsActive={setIsActive}
+                    maxLength={30}
                   />
                   <ExtendedButton
                     title={t('buttons.login')}

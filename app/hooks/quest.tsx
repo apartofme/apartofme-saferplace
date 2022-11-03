@@ -21,16 +21,12 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
-  const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
-  const interruptedQuestLine = useAppSelector(
-    state => state.quest.interruptedQuestLine,
-  );
-  const currentQuestLine = useAppSelector(
-    state => state.quest.currentQuestLine,
-  );
-  const isCurrentQuestCompleted = useAppSelector(
-    state => state.quest.isCurrentQuestCompleted,
-  );
+  const {
+    currentQuestIdx,
+    interruptedQuestLine,
+    currentQuestLine,
+    isCurrentQuestCompleted,
+  } = useAppSelector(state => state.quest);
 
   const navigateNextQuest = useCallback(() => {
     if (currentQuestLine) {
@@ -91,16 +87,13 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
 export const useNavigateNextQuest = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
-  const currentQuestLine = useAppSelector(
-    state => state.quest.currentQuestLine,
-  );
-  const interruptedQuestLine = useAppSelector(
-    state => state.quest.interruptedQuestLine,
-  );
-  const isCurrentQuestCompleted = useAppSelector(
-    state => state.quest.isCurrentQuestCompleted,
-  );
+  const {
+    currentQuestIdx,
+    currentQuestLine,
+    interruptedQuestLine,
+    isCurrentQuestCompleted,
+  } = useAppSelector(state => state.quest);
+
   const currentLanguage = useAppSelector(
     state => state.settings.settings.language,
   );
@@ -219,7 +212,7 @@ export const useNegativeNavigateTo = (
 export const useNavigatePrevQuest = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const currentQuestIdx = useAppSelector(state => state.quest.currentQuestIdx);
+  const { currentQuestIdx } = useAppSelector(state => state.quest);
 
   const previousQuestIdx = useAppSelector(state => {
     const questStack = state.quest.currentQuestStack;
@@ -259,10 +252,9 @@ export const useParsedJSXTextNickname = ({
   variableStyle?: TextStyle;
 }): React.FC => {
   const { t } = useTranslation();
-  const firstPlayer =
-    useAppSelector(state => state.cache.nicknames?.firstPlayer) ?? '';
-  const secondPlayer =
-    useAppSelector(state => state.cache.nicknames?.secondPlayer) ?? '';
+  const { firstPlayer, secondPlayer } = useAppSelector(
+    state => state.cache.nicknames,
+  );
   const parentNickname =
     useAppSelector(state => state.user.parent?.nickname) ?? '';
   const childNickname =
@@ -271,8 +263,7 @@ export const useParsedJSXTextNickname = ({
     useAppSelector(state => state.cache.emotions.selected) ?? '';
   const troublesomeSpiritQuestion =
     useAppSelector(state => state.cache.troublesomeItem?.titleKey) ?? '';
-  const { child } = useAppSelector(state => state.cache);
-  const { parent } = useAppSelector(state => state.cache);
+  const { child, parent } = useAppSelector(state => state.cache);
 
   const isChildMove = useIsChildMove(text);
 
@@ -465,11 +456,8 @@ export const useRenderQuestHeader = (data: {
 
 export const useIsChildMove = (text: string): boolean => {
   const childNickname = useAppSelector(state => state.user.child?.nickname);
-  const firstPlayer = useAppSelector(
-    state => state.cache.nicknames?.firstPlayer,
-  );
-  const secondPlayer = useAppSelector(
-    state => state.cache.nicknames?.secondPlayer,
+  const { firstPlayer, secondPlayer } = useAppSelector(
+    state => state.cache.nicknames,
   );
 
   const isChild =

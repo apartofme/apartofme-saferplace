@@ -14,7 +14,6 @@ import { useAppSelector } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpSuccessScreenProps } from './SignUpSuccess.types';
 import { styles } from './SignUpSuccess.styles';
-import { AvatarsKeys } from '../../../../utils/types';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
@@ -25,14 +24,9 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const isChild = route.params?.isChild;
-  const avatar = useAppSelector(
-    state =>
-      state.cache.auth[isChild ? 'child' : 'parent']?.avatar as AvatarsKeys,
+  const player = useAppSelector(
+    state => state.cache.auth[isChild ? 'child' : 'parent'],
   );
-  const nickname =
-    useAppSelector(
-      state => state.cache.auth[isChild ? 'child' : 'parent']?.nickname,
-    ) ?? '';
 
   const correctLocalizationPath = useMemo(() => {
     if (isChild) {
@@ -55,7 +49,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   const titleArray = _(title)
     .replace(
       DatoCMSTextVariables[isChild ? 'Child' : 'GrownUp'],
-      `$${nickname}`,
+      `$${player?.nickname}`,
     )
     .split('|')
     .map(value => {
@@ -72,7 +66,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
       return value;
     });
 
-  const AvatarIcon = AVATARS_SVG[avatar];
+  const AvatarIcon = AVATARS_SVG[player?.avatar ?? 'CircleRabbitIcon'];
 
   const background = useMemo(() => {
     if (isChild) {

@@ -18,13 +18,10 @@ export const Book: React.FC<IBookProps> = ({
   setType,
   setModalStatus,
 }) => {
-  const interruptedQuestLine = useAppSelector(
-    state => state.quest.interruptedQuestLine,
+  const { interruptedQuestLine, currentDayQuestsStack } = useAppSelector(
+    state => state.quest,
   );
-
-  const isCompletedAllCurrentDayQuests = useAppSelector(
-    state => !state.quest.currentDayQuestsStack?.length ?? false,
-  );
+  const isCompletedAllCurrentDayQuests = currentDayQuestsStack?.length ?? false;
 
   const bookImage = useMemo(() => {
     if (isCompletedAllCurrentDayQuests) {

@@ -15,7 +15,6 @@ import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
-import { AvatarsNameType } from '../../../utils/types';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
 
@@ -31,17 +30,11 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
 
     const [isSoundStart, setIsSoundStart] = useState(false);
 
-    const parentAvatar =
-      useAppSelector(state => state.user.parent?.avatar) ??
-      `Circle${AvatarsNameType.Rabbit}`;
+    const { parent, child } = useAppSelector(state => state.user);
 
-    const ParentAvatarIcon = AVATARS_SVG[parentAvatar];
+    const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
 
-    const childAvatar =
-      useAppSelector(state => state.user.child?.avatar) ??
-      `Circle${AvatarsNameType.Rabbit}`;
-
-    const ChildAvatarIcon = AVATARS_SVG[childAvatar];
+    const ChildAvatarIcon = AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'];
 
     const setChildPress = useCallback(() => {
       setIsChildPress(!isChildPress);

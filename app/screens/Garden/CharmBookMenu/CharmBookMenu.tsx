@@ -28,32 +28,20 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const currentLanguage = useAppSelector(
-    state => state.settings.settings.language,
-  ) as string;
+    state => state.settings.settings.language ?? 'en',
+  );
   const allQuests = useAppSelector(
     state => state.quest.allQuests?.[currentLanguage],
   );
-  const currentDayQuestStack = useAppSelector(
-    state => state.quest.currentDayQuestsStack,
-  );
-  const parentNickname = useAppSelector(
-    state => state.user.parent?.nickname,
-  ) as string;
-  const childNickname = useAppSelector(
-    state => state.user.child?.nickname,
-  ) as string;
-  const interruptedQuestLine = useAppSelector(
-    state => state.quest.interruptedQuestLine,
-  );
-  const completedQuestsId = useAppSelector(
-    state => state.quest.completedQuestsId,
-  );
+  const { currentDayQuestsStack, interruptedQuestLine, completedQuestsId } =
+    useAppSelector(state => state.quest);
+  const { parent, child } = useAppSelector(state => state.user);
 
   useMount(() => {
     dispatch(
       cacheSlice.actions.saveNicknames({
-        firstPlayer: parentNickname,
-        secondPlayer: childNickname,
+        firstPlayer: parent?.nickname ?? '',
+        secondPlayer: child?.nickname ?? '',
       }),
     );
   });
@@ -66,7 +54,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   const onPlayPress = useCallback(() => {
     if (type === CharmBookMenuType.NewCharm) {
       const newQuestLineId =
-        currentDayQuestStack[currentDayQuestStack.length - 1];
+        currentDayQuestsStack[currentDayQuestsStack.length - 1];
       const newQuests = values(allQuests?.[newQuestLineId].quests);
 
       dispatch(
@@ -116,7 +104,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
     dispatch(cacheSlice.actions.clearEmotions());
   }, [
     allQuests,
-    currentDayQuestStack,
+    currentDayQuestsStack,
     dispatch,
     interruptedQuestLine,
     navigation,

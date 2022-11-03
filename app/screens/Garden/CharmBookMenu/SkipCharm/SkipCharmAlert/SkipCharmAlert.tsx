@@ -12,7 +12,6 @@ import {
 } from '../../../../../components';
 import { useAppSelector } from '../../../../../hooks';
 import { generalStyles } from '../../../../../utils/styles';
-import { AvatarsNameType } from '../../../../../utils/types';
 import { styles } from './SkipCharmAlert.styles';
 import { ISkipCharmAlertScreenProps } from './SkipCharmAlert.types';
 
@@ -22,11 +21,9 @@ export const SkipCharmAlertScreen: React.FC<ISkipCharmAlertScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-  const parentAvatar =
-    useAppSelector(state => state.user.parent?.avatar) ??
-    `Circle${AvatarsNameType.Rabbit}`;
+  const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
 
-  const AvatarIcon = AVATARS_SVG[parentAvatar];
+  const AvatarIcon = AVATARS_SVG[parentAvatar ?? 'CircleRabbitIcon'];
 
   const onSubmit = useCallback(() => {
     navigation.push('SkipCharmAcknowledgement', {
