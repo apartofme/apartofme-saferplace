@@ -3,14 +3,15 @@ import { useTranslation } from 'react-i18next';
 import {
   Image,
   SafeAreaView,
+  ScrollView,
   TouchableOpacity,
   View,
-  ScrollView,
 } from 'react-native';
 import { Formik } from 'formik';
 
 import {
   ExtendedButton,
+  ExtendedKeyboardAvoidingView,
   ExtendedText,
   ExtendedTextInput,
   ExtendedTextInputType,
@@ -82,66 +83,72 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>
-          <ScrollView
-            scrollEnabled={isActive}
-            showsVerticalScrollIndicator={false}>
-            <ExtendedText
-              preset="large-title"
-              style={[styles.title, !isErrorShow && styles.mb50]}>
-              {t(title)}
-            </ExtendedText>
-            {isErrorShow && (
-              <ExtendedText preset="secondary-text" style={styles.errorTitle}>
-                {t('screens.onboarding.login.error')}
-              </ExtendedText>
-            )}
-
-            <Formik
-              initialValues={{
-                email: __DEV__ ? 'emberglazer@gmail.com' : '',
-                password: __DEV__ ? 'Test1111' : '',
-              }}
-              validationSchema={SignInValidationSchema}
-              onSubmit={onLoginPress}>
-              {({
-                values,
-                handleChange,
-                handleSubmit,
-                handleBlur,
-                isValid,
-              }) => (
-                <>
-                  <ExtendedTextInput
-                    value={values.email}
-                    onChangeText={handleChange('email')}
-                    onBlur={handleBlur('email')}
-                    placeholder={t('placeholders.enter_email')}
-                    placeholderTextColor={COLORS.BRILLIANT_WHITE}
-                    type={ExtendedTextInputType.Email}
-                    style={styles.mb16}
-                    setIsActive={setIsActive}
-                    maxLength={30}
-                  />
-                  <ExtendedTextInput
-                    type={ExtendedTextInputType.PasswordToggle}
-                    value={values.password}
-                    onChangeText={handleChange('password')}
-                    onBlur={handleBlur('password')}
-                    placeholder={t('placeholders.enter_password')}
-                    placeholderTextColor={COLORS.BRILLIANT_WHITE}
-                    setIsActive={setIsActive}
-                    maxLength={30}
-                  />
-                  <ExtendedButton
-                    title={t('buttons.login')}
-                    style={styles.button}
-                    onPress={handleSubmit}
-                    disabled={!isValid}
-                  />
-                </>
+          <ExtendedKeyboardAvoidingView>
+            <ScrollView
+              scrollEnabled={isActive}
+              showsVerticalScrollIndicator={false}
+              style={generalStyles.flex}>
+              {!isActive && (
+                <ExtendedText
+                  preset="large-title"
+                  style={[styles.title, !isErrorShow && styles.mb50]}>
+                  {t(title)}
+                </ExtendedText>
               )}
-            </Formik>
-          </ScrollView>
+              {isErrorShow && (
+                <ExtendedText preset="secondary-text" style={styles.errorTitle}>
+                  {t('screens.onboarding.login.error')}
+                </ExtendedText>
+              )}
+
+              <Formik
+                initialValues={{
+                  email: __DEV__ ? 'emberglazer@gmail.com' : '',
+                  password: __DEV__ ? 'Test1111' : '',
+                }}
+                validationSchema={SignInValidationSchema}
+                onSubmit={onLoginPress}>
+                {({
+                  values,
+                  handleChange,
+                  handleSubmit,
+                  handleBlur,
+                  isValid,
+                  errors,
+                }) => (
+                  <>
+                    <ExtendedTextInput
+                      value={values.email}
+                      onChangeText={handleChange('email')}
+                      onBlur={handleBlur('email')}
+                      placeholder={t('placeholders.enter_email')}
+                      placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                      type={ExtendedTextInputType.Email}
+                      setIsActive={setIsActive}
+                      error={errors.email}
+                    />
+                    <ExtendedTextInput
+                      type={ExtendedTextInputType.PasswordToggle}
+                      value={values.password}
+                      onChangeText={handleChange('password')}
+                      onBlur={handleBlur('password')}
+                      style={styles.mt16}
+                      placeholder={t('placeholders.enter_password')}
+                      placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                      setIsActive={setIsActive}
+                      error={errors.password}
+                    />
+                    <ExtendedButton
+                      title={t('buttons.login')}
+                      style={styles.button}
+                      onPress={handleSubmit}
+                      disabled={!isValid}
+                    />
+                  </>
+                )}
+              </Formik>
+            </ScrollView>
+          </ExtendedKeyboardAvoidingView>
           {!isActive && (
             <TouchableOpacity
               onPress={onForgotPusswordPress}

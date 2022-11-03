@@ -6,7 +6,7 @@ import { COLORS } from '../../../../../themes/colors';
 interface ILoginScreenStyles {
   container: ViewStyle;
   title: TextStyle;
-  mb16: TextStyle;
+  mt16: TextStyle;
   forgotButton: ViewStyle;
   footer: ViewStyle;
   signupButton: ViewStyle;
@@ -28,8 +28,8 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
   mb50: {
     marginBottom: 50,
   },
-  mb16: {
-    marginBottom: 16 * WINDOW_COEFFICIENT,
+  mt16: {
+    marginTop: 16 * WINDOW_COEFFICIENT,
   },
   forgotButton: {
     alignSelf: 'center',
