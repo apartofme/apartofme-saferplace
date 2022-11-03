@@ -8,7 +8,6 @@ interface IOnboardingCarouselScreenStyles {
 
 export const styles = StyleSheet.create<IOnboardingCarouselScreenStyles>({
   button: {
-    alignSelf: 'center',
     marginVertical: 24 * WINDOW_COEFFICIENT,
   },
 });

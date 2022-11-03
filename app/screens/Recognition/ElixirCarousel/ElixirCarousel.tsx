@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { ICarouselInstance } from 'react-native-reanimated-carousel';
 
 import { ELIXIR_CAROUSEL } from './ElixirCarousel.data';
 import { IElixirCarouselScreenProps } from './ElixirCarousel.types';
@@ -13,10 +14,16 @@ export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
+  const [index, setIndex] = useState(0);
+  const carouselRef = useRef<ICarouselInstance>(null);
 
   const onSubmitPress = useCallback(() => {
-    navigation.navigate('RecognitionDoubleInteraction');
-  }, [navigation]);
+    if (index >= ELIXIR_CAROUSEL.length - 1) {
+      navigation.navigate('RecognitionDoubleInteraction');
+      return;
+    }
+    carouselRef.current?.next();
+  }, [navigation, index]);
 
   return (
     <ImageBackground
@@ -29,6 +36,8 @@ export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
           style={styles.container}
           isArrow>
           <Carousel
+            carouselRef={carouselRef}
+            setIndex={setIndex}
             data={[...ELIXIR_CAROUSEL]}
             preset={CarouselType.IconDescription}
           />
