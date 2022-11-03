@@ -41,8 +41,7 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
 
   const [playerList, setPlayerList] = useState(PLAYER_LIST);
 
-  const parent = useAppSelector(state => state.user.parent);
-  const child = useAppSelector(state => state.user.child);
+  const { parent, child } = useAppSelector(state => state.user);
 
   const Header = useRenderQuestHeader({
     crossHeader: crossHeader ?? false,

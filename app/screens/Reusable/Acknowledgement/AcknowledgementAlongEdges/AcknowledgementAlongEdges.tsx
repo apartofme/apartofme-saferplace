@@ -36,10 +36,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
 
     const { t } = useTranslation();
     const onSubmit = useNavigateNextQuest();
-    const parentAvatar =
-      useAppSelector(state => state.user.parent?.avatar) ?? 'CircleRabbitIcon';
-    const childAvatar =
-      useAppSelector(state => state.user.child?.avatar) ?? 'CircleBearIcon';
+    const { parent, child } = useAppSelector(state => state.user);
     const currentQuestLineId = useAppSelector(
       state => state.quest.currentQuestLine?.id,
     );
@@ -78,16 +75,16 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
         return CHARMS_SVG[troublesomeItem.iconKey];
       }
       if (isChild) {
-        return AVATARS_SVG[childAvatar];
+        return AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'];
       }
 
-      return AVATARS_SVG[parentAvatar];
+      return AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
     }, [
-      childAvatar,
+      child?.avatar,
       currentQuestLineId,
       image,
       isChild,
-      parentAvatar,
+      parent?.avatar,
       t,
       title,
       troublesomeItem,

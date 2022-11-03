@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useIsFocused } from '@react-navigation/native';
-import { Image, ImageBackground, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, TouchableOpacity, View } from 'react-native';
 
 import { useAppSelector, useAppState } from '../../../hooks';
-import { BACKGROUND_IMAGES, IMAGES } from '../../../assets';
+import { BACKGROUND_IMAGES } from '../../../assets';
 import { Nullable } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
@@ -17,6 +17,7 @@ import {
   PlantAreaType,
 } from '../../Garden/components';
 import { styles } from './BefriendingGarden.styles';
+import { AVATARS_SVG } from '../../../assets/svg';
 
 export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
   ({ navigation }) => {
@@ -32,9 +33,9 @@ export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
       }
     }, [appStatus, isFocused]);
 
-    const childAvatar = useAppSelector(
-      state => state.user.child?.avatar,
-    ) as keyof typeof IMAGES;
+    const avatar = useAppSelector(state => state.user.parent?.avatar);
+
+    const Avatar = AVATARS_SVG[avatar ?? 'CircleRabbitIcon'];
 
     const [activePlantArea, setActivePlantArea] =
       useState<Nullable<PlantAreaType>>(null);
@@ -45,14 +46,16 @@ export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.GARDEN}
+        source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
         <View style={generalStyles.flex}>
           <TouchableOpacity
             onPress={onAvatarPress}
             style={styles.avatarContainer}
             disabled={true}>
-            <Image source={IMAGES[childAvatar]} style={styles.avatar} />
+            <View style={styles.avatar}>
+              <Avatar width={80} height={80} />
+            </View>
           </TouchableOpacity>
           <Elixir />
           <View style={styles.plantArea}>

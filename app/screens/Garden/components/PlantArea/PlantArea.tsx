@@ -2,11 +2,9 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useMemo } from 'react';
 import { Pressable, TouchableOpacity, View, ViewStyle } from 'react-native';
 
-import {
-  PainTreeRootIcon,
-  SadTreeRootIcon,
-} from '../../../../assets/svg/garden';
+import { SadTreeRootIcon } from '../../../../assets/svg/garden';
 import { HappyTreeRootIcon } from '../../../../assets/svg/garden/HappyTreeRootIcon';
+import { AnnoyedAngrySmokeGuideIcon } from '../../../../assets/svg/guide';
 import { HIT_SLOP, DOUBLE_HIT_SLOP } from '../../../../constants/hitSlop';
 import { useAppSelector } from '../../../../hooks';
 import { IPlant } from '../../../../models/IPlant';
@@ -22,8 +20,8 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
   isPlanting,
   isBefriending,
 }) => {
-  const plantArea = useAppSelector(state => state.plant.plantArea);
-  const currentDay = useAppSelector(state => state.quest.currentDay);
+  const { plantArea } = useAppSelector(state => state.plant);
+  const { currentDay } = useAppSelector(state => state.quest);
   const navigation = useNavigation();
 
   const selectPlantArea = useCallback(
@@ -87,7 +85,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
 
   const treeIcon = useMemo(() => {
     if (isBefriending) {
-      return <PainTreeRootIcon />;
+      return <AnnoyedAngrySmokeGuideIcon />;
     }
     if (currentDay >= 14) {
       return <HappyTreeRootIcon />;

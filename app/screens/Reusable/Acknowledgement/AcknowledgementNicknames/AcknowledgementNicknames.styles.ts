@@ -1,10 +1,10 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementNicknamesScreenStyles {
   container: ViewStyle;
-  image: ImageStyle;
   title: TextStyle;
   description: TextStyle;
 }
@@ -12,17 +12,13 @@ interface IAcknowledgementNicknamesScreenStyles {
 export const styles = StyleSheet.create<IAcknowledgementNicknamesScreenStyles>({
   container: {
     alignItems: 'center',
-    paddingHorizontal: 40,
-    paddingTop: 22,
-  },
-  image: {
-    width: 375,
-    height: 345,
+    paddingHorizontal: 24,
+    paddingTop: 60 * WINDOW_COEFFICIENT,
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    paddingTop: 32,
-    paddingBottom: 24,
+    paddingTop: 50 * WINDOW_COEFFICIENT,
+    paddingBottom: 24 * WINDOW_COEFFICIENT,
     textAlign: 'center',
   },
   description: {

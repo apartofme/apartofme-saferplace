@@ -17,7 +17,7 @@ import { Nullable } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { Book, Elixir, PlantArea, PlantAreaType } from '../components';
-import { AvatarsNameType, MixingElixirPhaseType } from '../../../utils/types';
+import { MixingElixirPhaseType } from '../../../utils/types';
 import { questSlice } from '../../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
@@ -50,20 +50,14 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const isBackgroundMusicEnabled = useAppSelector(
     state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
   );
-  const currentDayQuestStack = useAppSelector(
-    state => state.quest.currentDayQuestsStack ?? [],
-  );
-  const isInterruptedQuestLineEmpty = useAppSelector(
-    state => !state.quest.interruptedQuestLine,
-  );
-  const currentDay = useAppSelector(state => state.quest.currentDay);
-  const lastDayUpdate = useAppSelector(state => state.quest.lastDayUpdate);
-  const interruptedQuestLine = useAppSelector(
-    state => state.quest.interruptedQuestLine,
-  );
-  const parentdAvatar =
-    useAppSelector(state => state.user.parent?.avatar) ??
-    `Circle${AvatarsNameType.Rabbit}`;
+  const {
+    currentDayQuestsStack,
+    interruptedQuestLine,
+    currentDay,
+    lastDayUpdate,
+  } = useAppSelector(state => state.quest);
+  const isInterruptedQuestLineEmpty = !interruptedQuestLine;
+  const parentdAvatar = useAppSelector(state => state.user.parent?.avatar);
   const currentLanguage = useAppSelector(
     state => state.settings.settings.language ?? 'en',
   );
@@ -71,7 +65,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     state => state.quest.allQuests?.[currentLanguage],
   );
 
-  const AvatarIcon = AVATARS_SVG[parentdAvatar];
+  const AvatarIcon = AVATARS_SVG[parentdAvatar ?? 'CircleRabbitIcon'];
 
   useEffect(() => {
     if (isFocused && appStatus === 'active' && isBackgroundMusicEnabled) {
@@ -96,7 +90,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       if (
         nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
         !interruptedQuestLine &&
-        !currentDayQuestStack.length
+        !currentDayQuestsStack.length
       ) {
         dispatch(questSlice.actions.setLastDayUpdate());
         dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
@@ -146,7 +140,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   const title = useMemo(() => {
     const isDisplayNone =
-      !currentDayQuestStack.length &&
+      !currentDayQuestsStack.length &&
       isInterruptedQuestLineEmpty &&
       !isPlanting;
 
@@ -160,7 +154,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         </ExtendedText>
       </View>
     );
-  }, [currentDayQuestStack, isInterruptedQuestLineEmpty, isPlanting, t]);
+  }, [currentDayQuestsStack, isInterruptedQuestLineEmpty, isPlanting, t]);
 
   const setModalStatus = useCallback(() => {
     setIsModal(!isModal);
@@ -169,7 +163,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const showDayOpenDialog = useCallback(() => {
     const dayOpenDialogIdx = _.findIndex(
       OPEN_DIALOG_IDS,
-      item => item === currentDayQuestStack[currentDayQuestStack.length - 1],
+      item => item === currentDayQuestsStack[currentDayQuestsStack.length - 1],
     );
 
     if (dayOpenDialogIdx !== -1) {
@@ -193,7 +187,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         });
       }, 50);
     }
-  }, [allQuests, currentDayQuestStack, dispatch, navigation]);
+  }, [allQuests, currentDayQuestsStack, dispatch, navigation]);
 
   return (
     <ImageBackground
