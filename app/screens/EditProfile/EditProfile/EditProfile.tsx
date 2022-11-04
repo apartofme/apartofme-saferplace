@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, View } from 'react-native';
+import _ from 'lodash';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
 import {
@@ -14,7 +15,7 @@ import { generalStyles } from '../../../utils/styles';
 import { IEditProfileScreenProps } from './EditProfile.types';
 import { styles } from './EditProfile.styles';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { cacheSlice, userSlice } from '../../../redux/slices';
+import { userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
 
@@ -24,34 +25,36 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { type } = route.params.data;
-
   const { t } = useTranslation();
+
+  const { type, userId } = route.params?.data;
 
   const dispatch = useAppDispatch();
 
-  const oldNickname = useAppSelector(
-    state => state.user[UserType.Child === type ? 'child' : 'parent']?.nickname,
-  ) as string;
+  const parentData = useAppSelector(state => state.user.parent);
+  const children = useAppSelector(state => state.user.children);
 
-  const avatar = useAppSelector(
-    state => state.user[UserType.Child === type ? 'child' : 'parent']?.avatar,
-  );
+  const user = useMemo(() => {
+    if (type === UserType.Child) {
+      return _.find(children, item => item.uid === userId);
+    }
+    return parentData;
+  }, [children, parentData, type, userId]);
 
-  const [nickname, setNickname] = useState(oldNickname);
-  const [isActive, setIsActive] = useState(false);
+  const [nickname, setNickname] = useState(user ? user.nickname : '');
+  const [active, setIsActive] = useState(false);
+
+  const Icon = user && AVATARS_SVG[user?.avatar];
 
   const onSubmit = useCallback(() => {
     if (type === UserType.Parent) {
-      dispatch(cacheSlice.actions.saveSignUpDataParent({ avatar, nickname }));
-      dispatch(userSlice.actions.updateParent());
-    } else {
-      dispatch(cacheSlice.actions.saveSignUpDataChild({ avatar, nickname }));
-      dispatch(userSlice.actions.updateChild());
+      dispatch(userSlice.actions.editParent({ nickname }));
+      return;
     }
-  }, [avatar, dispatch, nickname, type]);
-
-  const Icon = avatar && AVATARS_SVG[avatar];
+    if (user?.uid) {
+      dispatch(userSlice.actions.editChild({ nickname, userId: user?.uid }));
+    }
+  }, [dispatch, nickname, type, user?.uid]);
 
   return (
     <View style={generalStyles.flex}>
@@ -66,7 +69,7 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
         />
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView buttonTitle={t('buttons.save')} onSubmit={onSubmit}>
-            {Icon && !isActive && (
+            {Icon && !active && (
               <View style={generalStyles.aiCenter}>
                 <Icon />
               </View>

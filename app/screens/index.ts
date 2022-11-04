@@ -2,6 +2,7 @@ export * from './Befriending';
 export * from './ParentGrounding';
 export * from './Initial';
 export * from './DummyQuests';
+export * from './EditProfile';
 export * from './Garden';
 export * from './ParentGrounding';
 export * from './Menu';

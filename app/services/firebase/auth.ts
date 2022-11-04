@@ -1,11 +1,13 @@
 import auth, { firebase } from '@react-native-firebase/auth';
 
+import { store } from '../../redux';
 import { parseFirebaseError } from '../../utils';
-import { firestoreCreateUser } from './firestore';
+import { AvatarsKeys } from '../../utils/types';
+import { firestoreCreateParent } from './firestore';
 import {
   IFirebaseAuthError,
   IFirebaseAuthResponse,
-  IFirebaseChangePasswordResponse,
+  IFirestoreErrorResponse,
 } from './types';
 
 export const getCurrentUser = () => auth().currentUser?.uid;
@@ -25,7 +27,15 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
       (error as IFirebaseAuthError).code,
     );
   }
-  await firestoreCreateUser();
+  const cacheParent = store.getState().cache.auth.parent;
+
+  await firestoreCreateParent({
+    email: email,
+    uid: registerUserResponse.user?.uid as string,
+    nickname: cacheParent?.nickname as string,
+    avatar: cacheParent?.avatar as AvatarsKeys,
+    emailVerified: !!registerUserResponse.user?.emailVerified,
+  });
   return registerUserResponse;
 };
 
@@ -59,7 +69,7 @@ export const firebaseChangePassword = async (
   currentPassword: string,
   newPassword: string,
 ) => {
-  const changePasswordResponse: IFirebaseChangePasswordResponse = {
+  const changePasswordResponse: IFirestoreErrorResponse = {
     error: null,
   };
 
@@ -82,7 +92,7 @@ export const firebaseChangePassword = async (
 };
 
 export const firebaseDeleteAccount = async (password: string) => {
-  const changePasswordResponse: IFirebaseChangePasswordResponse = {
+  const changePasswordResponse: IFirestoreErrorResponse = {
     error: null,
   };
   const user = auth().currentUser;

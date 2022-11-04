@@ -8,10 +8,10 @@ export enum RadioButtonType {
 export const RADIO_BUTTON_LIST: ReadonlyArray<IRadioButtonListItem> = [
   {
     id: RadioButtonType.Yes,
-    title: 'Yes',
+    title: 'labels.yes',
   },
   {
     id: RadioButtonType.No,
-    title: 'No',
+    title: 'labels.no',
   },
 ];

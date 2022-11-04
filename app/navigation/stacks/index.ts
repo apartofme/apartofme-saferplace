@@ -1,4 +1,5 @@
 export * from './befriendingStackNavigator';
+export * from './editProfileStackNavigator';
 export * from './gardenStackNavigator';
 export * from './jointOnboardingStackNavigator';
 export * from './menuStackNavigator';
