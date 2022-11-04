@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useIsFocused } from '@react-navigation/native';
 import {
   ImageBackground,
@@ -6,6 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { IDancingTimerScreenProps } from './DancingTimer.types';
 import { styles } from './DancingTimer.styles';
@@ -22,6 +29,8 @@ import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelpe
 import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
 import { SVG } from '../../../../assets/svg';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
+import { ANIMATIONS } from '../../../../assets/animations';
+import { LottieAbsoluteStyles } from '../../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
@@ -40,6 +49,8 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
     backgroundImage,
   } = route.params.data;
+
+  const lottieRef = useRef<Lottie>(null);
 
   const selectedSong = useAppSelector(state => state.cache.selectedSong);
 
@@ -122,8 +133,10 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   useEffect(() => {
     if (isTimerPause) {
       AudioPlayerHelper.pause();
+      lottieRef.current?.pause();
     } else {
       AudioPlayerHelper.start();
+      lottieRef.current?.play();
     }
   }, [isTimerPause]);
 
@@ -140,11 +153,16 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
         CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
       }
       style={generalStyles.flex}>
+      <Lottie
+        source={ANIMATIONS.DANCING_MOTH}
+        autoPlay
+        loop
+        ref={lottieRef}
+        style={LottieAbsoluteStyles(-30)}
+      />
       <SafeAreaView style={generalStyles.flex}>
         {renderHeader()}
         <View style={styles.container}>
-          {/* //TODO: replace with animation */}
-          {/* <Image source={IMAGES.LOGO} /> */}
           {title && (
             <ExtendedText preset="large-title" style={styles.title}>
               {title}

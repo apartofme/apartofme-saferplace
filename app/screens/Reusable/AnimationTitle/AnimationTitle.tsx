@@ -100,7 +100,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
           return (
             <Lottie
               onAnimationFinish={onSubmit}
-              source={ANIMATIONS.POTION_POUR}
+              source={ANIMATIONS.POTION_POUR_CALM}
               autoPlay
               loop={false}
               style={LottieAbsoluteStyles(0)}

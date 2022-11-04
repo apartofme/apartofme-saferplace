@@ -1,17 +1,22 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { BottomButtonView, ExtendedText } from '../../../components';
-import { getElixirAnimationKeyByRange } from '../../../utils';
+import {
+  getElixirAnimationKeyByRange,
+  LottieAbsoluteStyles,
+} from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './ElixirTitleButton.styles';
 import { elixirSlice, questSlice } from '../../../redux/slices';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { ELIXIR_SVG } from '../../../assets/svg';
+import { ANIMATIONS } from '../../../assets/animations';
 
 export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
@@ -95,6 +100,12 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       <ImageBackground
         source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
+        <Lottie
+          source={ANIMATIONS.LEAF_CONFETTI}
+          autoPlay
+          loop={false}
+          style={LottieAbsoluteStyles(-30)}
+        />
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView
             buttonTitle={buttonTitle}
