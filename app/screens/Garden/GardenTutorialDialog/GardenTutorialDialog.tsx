@@ -36,7 +36,7 @@ export const GardenTutorialDialogScreen: React.FC<IGardenTutorialDialogScreenPro
               }
             : null
         }
-        initialIdx={isStart ? 0 : 7}
+        initialIdx={isStart ? 0 : 8}
       />
     );
   };

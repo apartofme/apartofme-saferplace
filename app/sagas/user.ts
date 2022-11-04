@@ -7,17 +7,17 @@ import {
   firebaseLoginUser,
   firebaseLogout,
   firebaseRegisterUser,
-  firestoreCreateUserProgress,
-  firestoreGetUser,
-  firestoreGetUserProgress,
+  FirestoreCollections,
+  firestoreCreateChild,
+  firestoreCreateChildProgress,
+  firestoreGetChildProgress,
+  firestoreGetParent,
+  firestoreGetParentChildren,
   firestoreSaveDeviceToken,
   firestoreUpdateUser,
   IFirebaseAuthResponse,
-  IFirebaseChangePasswordResponse,
-  IFirebaseSaveChildResponse,
-  IFirebaseUpdateUserResponse,
   IFirestoreErrorResponse,
-  IFirestoreUser,
+  IFirestoreParent,
   IFirestoreUserProgress,
 } from '../services/firebase';
 import {
@@ -29,11 +29,14 @@ import {
 import {
   IAuthUserActionPayload,
   IChangePasswordActionPayload,
-  IShortSignUpData,
+  IEditUser,
   ISignUpData,
 } from '../redux/types';
 import { StaticNavigator } from '../services/navigator';
-import { IUser } from '../models/IUser';
+import { IParent } from '../models/IParent';
+import { IChild } from '../models/IChild';
+import moment from 'moment';
+import { ONE_DAY_SECONDS } from '../constants/time';
 
 function* watchLoginUser({
   payload: { email, password },
@@ -44,25 +47,59 @@ function* watchLoginUser({
     password,
   );
   if (!loginUserResponse.error) {
-    const user: IFirestoreUser = yield call(firestoreGetUser);
-    const userProgress: IFirestoreUserProgress = yield call(
-      firestoreGetUserProgress,
+    const parent: IFirestoreParent = yield call(firestoreGetParent);
+    const children: IChild[] = yield call(firestoreGetParentChildren);
+
+    yield put(
+      userSlice.actions.loginUserSuccess({
+        parent: parent._data,
+        children: children,
+      }),
     );
-    yield put(userSlice.actions.loginUserSuccess(user._data));
-    yield put(plantSlice.actions.setPlantState(userProgress._data.plants));
-    yield put(questSlice.actions.setQuestState(userProgress._data.quests));
-    yield put(elixirSlice.actions.setElixirState(userProgress._data.elixir));
 
     // TODO: change to real stack
-    yield call(StaticNavigator.navigateTo, 'GardenStack');
+    yield call(StaticNavigator.navigateTo, 'SelectUser');
     yield call(firestoreSaveDeviceToken);
   } else {
     yield put(userSlice.actions.loginUserError(loginUserResponse.error));
   }
 }
 
+function* watchSetChild({ payload: child }: PayloadAction<IChild>) {
+  const childProgress: IFirestoreUserProgress = yield call(
+    firestoreGetChildProgress,
+    child.uid,
+  );
+  if (childProgress._data) {
+    yield put(userSlice.actions.setChildSuccess(child));
+
+    const nowSeconds = +moment().format('X');
+    if (
+      nowSeconds - childProgress._data.quests.lastDayUpdate >=
+        ONE_DAY_SECONDS &&
+      !childProgress._data.quests.interruptedQuestLine &&
+      !childProgress._data.quests.currentDayQuestsStack.length
+    ) {
+      yield put(questSlice.actions.setLastDayUpdate());
+      yield put(
+        questSlice.actions.updateCurrentDay(
+          childProgress._data.quests.currentDay + 1,
+        ),
+      );
+      yield put(questSlice.actions.setCurrentDayQuestsStack());
+    } else {
+      yield put(plantSlice.actions.setPlantState(childProgress._data.plants));
+      yield put(questSlice.actions.setQuestState(childProgress._data.quests));
+      yield put(elixirSlice.actions.setElixirState(childProgress._data.elixir));
+    }
+  } else {
+    yield put(userSlice.actions.setChildError('Set child error'));
+  }
+}
+
 function* watchRegisterParent() {
   const parent: ISignUpData = yield select(state => state.cache.auth.parent);
+
   const registerUserResponse: IFirebaseAuthResponse = yield call(
     firebaseRegisterUser,
     parent.email as string,
@@ -70,25 +107,16 @@ function* watchRegisterParent() {
   );
   if (!registerUserResponse.error) {
     const user = {
+      uid: registerUserResponse.user?.uid,
       email: parent.email,
       avatar: parent.avatar,
       nickname: parent.nickname,
       emailVerified: registerUserResponse.user?.emailVerified,
-      uid: registerUserResponse.user?.uid,
-      createdAt: parent.createdAt,
-    } as IUser;
+    } as IParent;
 
-    yield call(firestoreUpdateUser, {
-      parent: user,
-    });
-    const firestoreCreateUserProgressResponse: IFirestoreErrorResponse =
-      yield call(firestoreCreateUserProgress);
-    if (!firestoreCreateUserProgressResponse.error) {
-      yield put(questSlice.actions.updateCurrentDay(1));
-      yield put(questSlice.actions.setCurrentDayQuestsStack());
-      yield put(questSlice.actions.setLastDayUpdate());
-      yield put(userSlice.actions.registerParentSuccess(user));
-    }
+    yield put(userSlice.actions.registerParentSuccess(user));
+
+    yield call(StaticNavigator.navigateTo, 'SignUpSuccess');
   } else {
     yield put(
       userSlice.actions.registerParentError(registerUserResponse.error),
@@ -96,76 +124,92 @@ function* watchRegisterParent() {
   }
 }
 
-function* watchUpdateParentData() {
-  const parent: ISignUpData = yield select(state => state.cache.auth.parent);
-  const updateParentResponse: IFirebaseUpdateUserResponse = yield call(
+function* watchEditParent({ payload: { nickname } }: PayloadAction<IEditUser>) {
+  const parent: IParent = yield select(state => state.user.parent);
+  const newParent: IParent = { ...parent, nickname };
+  const EditParentResponse: IFirestoreErrorResponse = yield call(
     firestoreUpdateUser,
-    { parent },
+    FirestoreCollections.Parents,
+    newParent,
   );
 
-  if (!updateParentResponse.error) {
-    yield put(userSlice.actions.updateParentSuccess(parent as IUser));
+  if (!EditParentResponse.error) {
+    yield put(userSlice.actions.editParentSuccess(newParent));
   } else {
-    yield put(userSlice.actions.updateParentError('update parent error'));
+    yield put(userSlice.actions.editParentError('Edit parent error'));
   }
 }
 
-function* watchUpdateChildData() {
-  const child: IShortSignUpData = yield select(state => state.cache.auth.child);
-  const updateChildResponse: IFirebaseUpdateUserResponse = yield call(
+function* watchEditChild({ payload: { nickname } }: PayloadAction<IEditUser>) {
+  const child: IChild = yield select(state => state.user.child);
+  const newChild: IChild = { ...child, nickname };
+  const EditChildResponse: IFirestoreErrorResponse = yield call(
     firestoreUpdateUser,
-    { child },
+    FirestoreCollections.Children,
+    newChild,
   );
 
-  if (!updateChildResponse.error) {
-    yield put(userSlice.actions.updateChildSuccess(child as IUser));
+  if (!EditChildResponse.error) {
+    yield put(userSlice.actions.editChildSuccess(newChild));
   } else {
-    yield put(userSlice.actions.updateChildError('update child error'));
+    yield put(userSlice.actions.editChildError('Edit child error'));
   }
 }
 
-function* watchSaveChild() {
-  const child: IShortSignUpData = yield select(state => state.cache.auth.child);
-  const saveChildResponse: IFirebaseSaveChildResponse = yield call(
-    firestoreUpdateUser,
-    { child },
+function* watchCreateChild({ payload: child }: PayloadAction<IChild>) {
+  const isFirstChild: boolean = yield select(state => !state.user.child);
+  const CreateChildResponse: IFirestoreErrorResponse = yield call(
+    firestoreCreateChild,
+    child,
   );
 
-  if (!saveChildResponse.error) {
-    yield put(userSlice.actions.saveChildSuccess(child));
+  if (!CreateChildResponse.error) {
+    if (isFirstChild) {
+      yield call(StaticNavigator.navigateTo, 'SignUpSuccess', {
+        isChild: true,
+      });
+    }
+    const FirestoreCreateChildProgressResponse: IFirestoreErrorResponse =
+      yield call(firestoreCreateChildProgress, child.uid);
+    if (!FirestoreCreateChildProgressResponse.error) {
+      yield put(userSlice.actions.createChildSuccess(child));
+      yield put(questSlice.actions.updateCurrentDay(1));
+      yield put(questSlice.actions.setCurrentDayQuestsStack());
+      yield put(questSlice.actions.setLastDayUpdate());
+    }
   } else {
-    yield put(userSlice.actions.saveChildError('save child error'));
+    yield put(userSlice.actions.createChildError('Create child error'));
   }
 }
 
 function* watchChangePassword({
   payload: { newPassword, currentPassword },
 }: IChangePasswordActionPayload) {
-  const changePasswordResponse: IFirebaseChangePasswordResponse = yield call(
+  const ChangePasswordResponse: IFirestoreErrorResponse = yield call(
     firebaseChangePassword,
     currentPassword,
     newPassword,
   );
 
-  if (!changePasswordResponse.error) {
+  if (!ChangePasswordResponse.error) {
     yield call(StaticNavigator.navigateTo, 'ChangePasswordSuccess');
   } else {
-    yield put(userSlice.actions.changePasswordError('change password error'));
+    yield put(userSlice.actions.changePasswordError('Change password error'));
   }
 }
 
 function* watchDeleteAccount({ payload: password }: PayloadAction<string>) {
-  const changePasswordResponse: IFirebaseChangePasswordResponse = yield call(
+  const ChangePasswordResponse: IFirestoreErrorResponse = yield call(
     firebaseDeleteAccount,
     password,
   );
-  if (!changePasswordResponse.error) {
+  if (!ChangePasswordResponse.error) {
     yield put(questSlice.actions.getInitialState());
     yield put(plantSlice.actions.getInitialState());
     yield put(elixirSlice.actions.getInitialState());
     yield call(StaticNavigator.navigateTo, 'DeleteAccountSuccess');
   } else {
-    yield put(userSlice.actions.deleteAccountError('delete account error'));
+    yield put(userSlice.actions.deleteAccountError('Delete account error'));
   }
 }
 
@@ -180,11 +224,12 @@ function* watchLogout() {
 
 export function* userSaga() {
   yield takeLatest(userSlice.actions.loginUser, watchLoginUser);
+  yield takeLatest(userSlice.actions.setChild, watchSetChild);
   yield takeLatest(userSlice.actions.registerParent, watchRegisterParent);
-  yield takeLatest(userSlice.actions.saveChild, watchSaveChild);
+  yield takeLatest(userSlice.actions.createChild, watchCreateChild);
   yield takeLatest(userSlice.actions.changePassword, watchChangePassword);
-  yield takeLatest(userSlice.actions.updateParent, watchUpdateParentData);
-  yield takeLatest(userSlice.actions.updateChild, watchUpdateChildData);
+  yield takeLatest(userSlice.actions.editParent, watchEditParent);
+  yield takeLatest(userSlice.actions.editChild, watchEditChild);
   yield takeLatest(userSlice.actions.deleteAccount, watchDeleteAccount);
 
   yield takeLatest(userSlice.actions.logout, watchLogout);

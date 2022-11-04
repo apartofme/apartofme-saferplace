@@ -15,7 +15,7 @@ export const styles = StyleSheet.create<IIconTitleDescriptionStyles>({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 40 * WINDOW_COEFFICIENT,
+    paddingHorizontal: 24 * WINDOW_COEFFICIENT,
     paddingBottom: 55 * WINDOW_COEFFICIENT,
   },
 

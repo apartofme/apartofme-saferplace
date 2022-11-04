@@ -1,6 +1,7 @@
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import uuid from 'react-native-uuid';
 import _ from 'lodash';
 
 import {
@@ -19,6 +20,7 @@ import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { styles } from './SignUpAvatar.styles';
 import { SVG } from '../../../../assets/svg';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
+import { IParent } from '../../../../models/IParent';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -30,34 +32,57 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const parentAvatar = useAppSelector(
-    state => state.user.parent?.avatar,
-  )?.replace('Circle', '');
-  const nickname =
-    useAppSelector(
-      state => state.cache.auth[isChild ? 'child' : 'parent']?.nickname,
-    ) ?? '';
-
-  const [avatarsData] = useState(
-    _.filter(AVATAR_CAROUSEL, item => item.iconKey !== parentAvatar),
+  const { isRegisterUser, isCreateChild } = useAppSelector(
+    state => state.app.loading,
   );
+
+  const parent = useAppSelector(
+    state => state.user.parent ?? state.cache.auth.parent,
+  ) as IParent;
+  const child = useAppSelector(state => state.cache.auth.child);
+  const parentAvatar = useAppSelector(state => state.user.parent?.avatar);
+
+  const avatarsData = useMemo(() => {
+    if (isChild) {
+      return _.filter(
+        AVATAR_CAROUSEL,
+        item => `Circle${item.iconKey}` !== parentAvatar,
+      );
+    }
+    return AVATAR_CAROUSEL;
+  }, [isChild, parentAvatar]);
+
   const [avatar, setAvatar] = useState(avatarsData[0].iconKey);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nickname = useMemo(
+    () => (isChild && child ? child.nickname : parent.nickname),
+    [child, isChild, parent.nickname],
+  );
 
   useEffect(() => {
     setAvatar(avatarsData[currentIndex].iconKey);
   }, [avatarsData, currentIndex]);
 
   const onSubmitButtonPress = useCallback(() => {
-    navigation.navigate('SignUpSuccess');
-    if (isChild) {
+    if (isChild && child && !isCreateChild) {
       dispatch(
         cacheSlice.actions.saveSignUpDataChild({
           avatar: `Circle${avatar}`,
         }),
       );
-      dispatch(userSlice.actions.saveChild());
-    } else {
+      dispatch(
+        userSlice.actions.createChild({
+          ...child,
+          uid: uuid.v4().toString(),
+          parentId: parent.uid,
+          avatar: `Circle${avatar}`,
+        }),
+      );
+      return;
+    }
+
+    if (!isRegisterUser && !isChild) {
       dispatch(
         cacheSlice.actions.saveSignUpDataParent({
           avatar: `Circle${avatar}`,
@@ -65,7 +90,15 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
       );
       dispatch(userSlice.actions.registerParent());
     }
-  }, [avatar, dispatch, isChild, navigation]);
+  }, [
+    avatar,
+    child,
+    dispatch,
+    isChild,
+    isCreateChild,
+    isRegisterUser,
+    parent.uid,
+  ]);
 
   const title = t(
     `screens.onboarding.sign_up_avatar.${isChild ? 'child' : 'parent'}.title`,
@@ -107,7 +140,6 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
         <BottomButtonView
           buttonTitle={t('buttons.select')}
           onSubmit={onSubmitButtonPress}
-          isDisabledButton={!avatar}
           style={styles.container}>
           <ExtendedText
             preset="large-title"

@@ -3,17 +3,16 @@ import { Nullable } from '../../utils';
 import { AvatarsKeys } from '../../utils/types';
 
 export interface ISignUpData {
-  email?: string;
-  password?: string;
-  nickname?: string;
-  avatar?: AvatarsKeys;
-  createdAt?: string;
+  email: string;
+  password: string;
+  nickname: string;
+  avatar: AvatarsKeys;
 }
 
 export interface IShortSignUpData {
-  nickname?: string;
-  age?: string;
-  avatar?: AvatarsKeys;
+  nickname: string;
+  age: number;
+  avatar: AvatarsKeys;
 }
 
 export interface INicknames {
@@ -30,18 +29,6 @@ export interface IPlayer {
 export interface IEmotions {
   selected: Nullable<EmotionButtonType>;
   completed: Nullable<EmotionButtonType>[];
-}
-
-export interface ISignUpDataPayload {
-  payload: ISignUpData;
-}
-
-export interface IShortSignUpDataPayload {
-  payload: IShortSignUpData;
-}
-
-export interface ISaveTranslationsPayload {
-  payload: ITranslations;
 }
 
 export type ITranslations = Record<
