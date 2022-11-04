@@ -1,7 +1,5 @@
 export const IMAGES = {
   LOGO: require('./beyondCodelineLogo.png'),
-
-  CONFETTI: require('./confetti.png'),
   TREE: require('./tree.png'),
 };
 

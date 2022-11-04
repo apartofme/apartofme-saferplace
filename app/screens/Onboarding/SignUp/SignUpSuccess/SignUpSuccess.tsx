@@ -1,16 +1,25 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import Lottie from 'lottie-react-native';
 import _ from 'lodash';
 
-import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
-import { AVATARS_SVG } from '../../../../assets/svg';
-import { BottomButtonView, ExtendedText } from '../../../../components';
+import { BACKGROUND_IMAGES } from '../../../../assets';
+import { AVATARS_SVG, SVG } from '../../../../assets/svg';
+import {
+  BottomButtonView,
+  ExtendedText,
+  MainHeader,
+} from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpSuccessScreenProps } from './SignUpSuccess.types';
 import { styles } from './SignUpSuccess.styles';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
+import { ANIMATIONS } from '../../../../assets/animations';
+import { LottieAbsoluteStyles } from '../../../../utils';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   navigation,
@@ -71,26 +80,30 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
 
   return (
     <ImageBackground source={background} style={generalStyles.flex}>
-      <ImageBackground
-        source={IMAGES.CONFETTI}
-        style={generalStyles.flex}
-        imageStyle={styles.background}>
-        <SafeAreaView style={generalStyles.flex}>
-          <BottomButtonView
-            buttonTitle={t('buttons.next')}
-            isArrow={true}
-            onSubmit={onSubmit}
-            style={styles.container}>
-            <AvatarIcon />
-            <ExtendedText preset="large-title" style={styles.title}>
-              {titleArray}
-            </ExtendedText>
-            <ExtendedText preset="secondary-text" style={styles.subtitle}>
-              {t(`${correctLocalizationPath}.description`)}
-            </ExtendedText>
-          </BottomButtonView>
-        </SafeAreaView>
-      </ImageBackground>
+      <Lottie
+        source={ANIMATIONS.LEAF_CONFETTI}
+        autoPlay
+        loop={false}
+        style={LottieAbsoluteStyles(-30)}
+      />
+      <SafeAreaView style={generalStyles.flex}>
+        <MainHeader
+          leftIcon={<WhiteBackArrowIcon />}
+          onLeftIconPress={navigation.goBack}
+        />
+        <BottomButtonView
+          buttonTitle={t('buttons.next')}
+          onSubmit={onSubmit}
+          style={styles.container}>
+          <AvatarIcon />
+          <ExtendedText preset="large-title" style={styles.title}>
+            {titleArray}
+          </ExtendedText>
+          <ExtendedText preset="secondary-text" style={styles.subtitle}>
+            {t(`${correctLocalizationPath}.description`)}
+          </ExtendedText>
+        </BottomButtonView>
+      </SafeAreaView>
     </ImageBackground>
   );
 };
