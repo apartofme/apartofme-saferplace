@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../themes/colors';
 import { hexTransparency, isIOS } from '../../utils';
@@ -7,7 +7,9 @@ interface IExtendedTextInputStyles {
   label: TextStyle;
   input: TextStyle;
   inputActive: TextStyle;
+  errorContainer: ViewStyle;
   error: TextStyle;
+  inputError: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IExtendedTextInputStyles>({
@@ -25,5 +27,21 @@ export const styles = StyleSheet.create<IExtendedTextInputStyles>({
     borderWidth: 2,
     backgroundColor: COLORS.PRIMARY_PURPLE,
   },
-  error: {},
+  errorContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: COLORS.RED,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    marginTop: 8,
+  },
+  error: {
+    color: COLORS.BRILLIANT_WHITE,
+    marginLeft: 11,
+    maxWidth: 276,
+  },
+  inputError: {
+    borderColor: COLORS.RED,
+  },
 });

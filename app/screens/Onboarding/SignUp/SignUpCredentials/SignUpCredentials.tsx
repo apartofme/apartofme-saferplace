@@ -69,7 +69,14 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
               initialValues={{ email: '', password: '' }}
               validationSchema={SignUpCredentioalsValidationSchema}
               onSubmit={onSignUpPress}>
-              {({ values, handleChange, handleSubmit, isValid, dirty }) => (
+              {({
+                values,
+                handleChange,
+                handleSubmit,
+                isValid,
+                dirty,
+                errors,
+              }) => (
                 <BottomButtonView
                   buttonTitle={t('buttons.signup')}
                   onSubmit={handleSubmit}
@@ -113,6 +120,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.input}
                         maxLength={30}
+                        error={errors.email}
                       />
                       <ExtendedTextInput
                         type={ExtendedTextInputType.PasswordToggle}
@@ -124,6 +132,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.input}
                         maxLength={30}
+                        error={errors.password}
                       />
                     </View>
                   </View>

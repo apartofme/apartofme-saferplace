@@ -15,23 +15,19 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,
 }) => {
   const dispatch = useAppDispatch();
-  const currentDay = useAppSelector(state => state.quest.currentDay);
-  const lastDayUpdate = useAppSelector(state => state.quest.lastDayUpdate);
-  const interruptedQuestLine = useAppSelector(
-    state => state.quest.interruptedQuestLine,
-  );
-  const isCurrentDayQuestsStackEmpty = useAppSelector(
-    state => !state.quest.currentDayQuestsStack?.length ?? [],
-  );
+  const {
+    currentDay,
+    lastDayUpdate,
+    interruptedQuestLine,
+    currentDayQuestsStack,
+  } = useAppSelector(state => state.quest);
+  const isCurrentDayQuestsStackEmpty = !currentDayQuestsStack;
   const user = useAppSelector(state => state.user);
   const cacheUser = useAppSelector(state => state.cache.auth);
   const [isStartLoading, setIsStartLoading] = useState(false);
 
-  const isSaveAllQuestsLoading = useAppSelector(
-    state => state.app.loading.isSaveAllQuests,
-  );
-  const isSaveTranslationsLoading = useAppSelector(
-    state => state.app.loading.isSaveTranslations,
+  const { isSaveAllQuests, isSaveTranslations } = useAppSelector(
+    state => state.app.loading,
   );
 
   useMount(() => {
@@ -54,11 +50,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   });
 
   useEffect(() => {
-    if (
-      !isSaveAllQuestsLoading &&
-      !isSaveTranslationsLoading &&
-      isStartLoading
-    ) {
+    if (!isSaveAllQuests && !isSaveTranslations && isStartLoading) {
       if (user.parent && user.child) {
         navigation.replace('GardenStack');
         return;
@@ -70,7 +62,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
       navigation.replace('ParentsOnboardingStack');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSaveAllQuestsLoading, isSaveTranslationsLoading]);
+  }, [isSaveAllQuests, isSaveTranslations]);
 
   return (
     <ImageBackground

@@ -20,7 +20,6 @@ import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import { elixirSlice, questSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
-import { AvatarsNameType } from '../../../utils/types';
 import { styles } from './ElixirDoubleInteraction.styles';
 import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.types';
 
@@ -29,36 +28,22 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const { title, elixirReward, backgroundImage } = route.params.data;
     const dispatch = useAppDispatch();
 
-    const currentQuestLine = useAppSelector(
-      state => state.quest.currentQuestLine,
-    );
+    const { currentQuestLine, isCurrentQuestCompleted, allQuests } =
+      useAppSelector(state => state.quest);
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
-    const isCurrentQuestCompleted = useAppSelector(
-      state => state.quest.isCurrentQuestCompleted,
-    );
-    const currentLanguage = useAppSelector(
-      state => state.settings.settings.language ?? 'en',
-    );
-    const allQuests = useAppSelector(
-      state => state.quest.allQuests?.[currentLanguage],
-    );
+    const { settings } = useAppSelector(state => state.settings);
+    const currentLanguage = settings.language ?? 'en';
+    const isSoundFXEnabled = settings.audioSettings?.isSoundFXEnabled;
+    const quests = allQuests?.[currentLanguage];
+    const { parent, child } = useAppSelector(state => state.user);
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
 
     const [isSoundStart, setIsSoundStart] = useState(false);
 
-    const parentAvatar =
-      useAppSelector(state => state.user.parent?.avatar) ??
-      `Circle${AvatarsNameType.Rabbit}`;
-
-    const ParentAvatarIcon = AVATARS_SVG[parentAvatar];
-
-    const childAvatar =
-      useAppSelector(state => state.user.child?.avatar) ??
-      `Circle${AvatarsNameType.Rabbit}`;
-
-    const ChildAvatarIcon = AVATARS_SVG[childAvatar];
+    const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
+    const ChildAvatarIcon = AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'];
 
     const setChildPress = useCallback(() => {
       setIsChildPress(!isChildPress);
@@ -67,10 +52,6 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const setAdultPress = useCallback(() => {
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
-
-    const isSoundFXEnabled = useAppSelector(
-      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
-    );
 
     useEffect(() => {
       if (isChildPress && isAdultPress && !isSoundStart && isSoundFXEnabled) {
@@ -125,7 +106,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           currentQuestLine.id === THE_CHARM_OF_WEAVING_ID
         ) {
           const newQuestLineId = DAY_14_CLOSING_DIALOGUE_ID;
-          const newQuests = values(allQuests?.[newQuestLineId].quests);
+          const newQuests = values(quests?.[newQuestLineId].quests);
 
           dispatch(
             questSlice.actions.saveCurrentQuestLine({

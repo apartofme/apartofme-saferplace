@@ -41,10 +41,7 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
     const { t } = useTranslation();
     const positiveNavigate = usePositiveNavigateTo(positiveNavigatesTo);
     const negativeNavigate = useNegativeNavigateTo(negativeNavigatesTo, true);
-    const parentAvatar =
-      useAppSelector(state => state.user.parent?.avatar) ?? 'CircleRabbitIcon';
-    const childAvatar =
-      useAppSelector(state => state.user.child?.avatar) ?? 'CircleBearIcon';
+    const { parent, child } = useAppSelector(state => state.user);
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -73,11 +70,11 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
       }
 
       if (isChild) {
-        return AVATARS_SVG[childAvatar];
+        return AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'];
       }
 
-      return AVATARS_SVG[parentAvatar];
-    }, [childAvatar, image, isChild, parentAvatar]);
+      return AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
+    }, [child?.avatar, image, isChild, parent?.avatar]);
 
     return (
       <ImageBackground

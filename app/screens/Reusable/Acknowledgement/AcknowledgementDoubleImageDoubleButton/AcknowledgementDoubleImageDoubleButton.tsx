@@ -38,10 +38,11 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
     } = route.params.data;
 
     const { t } = useTranslation();
-    const parentAvatar = useAppSelector(state => state.user.parent?.avatar)
+    const { parent, child } = useAppSelector(state => state.user);
+    const parentAvatar = parent?.avatar
       ?.replace(AVATAR_PREFIX, '')
       .replace(AVATAR_POSTFIX, '');
-    const childAvatar = useAppSelector(state => state.user.child?.avatar)
+    const childAvatar = child?.avatar
       ?.replace(AVATAR_PREFIX, '')
       .replace(AVATAR_POSTFIX, '');
 

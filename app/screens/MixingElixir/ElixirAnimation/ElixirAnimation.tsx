@@ -27,19 +27,12 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
-  const currentQuestLine = useAppSelector(
-    state => state.quest.currentQuestLine,
-  );
-  const currentLanguage = useAppSelector(
-    state => state.settings.settings.language ?? 'en',
-  );
-  const allQuests = useAppSelector(
-    state => state.quest.allQuests?.[currentLanguage],
-  );
+  const { currentQuestLine, allQuests } = useAppSelector(state => state.quest);
+  const settings = useAppSelector(state => state.settings.settings);
+  const currentLanguage = settings.language ?? 'en';
+  const quests = allQuests?.[currentLanguage];
 
-  const isSoundFXEnabled = useAppSelector(
-    state => state.settings.settings.audioSettings?.isSoundFXEnabled,
-  );
+  const isSoundFXEnabled = settings.audioSettings?.isSoundFXEnabled;
 
   const title = useMemo(() => {
     if (isSoundFXEnabled) {
@@ -90,7 +83,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       // *** Flow for static navigation day 13 closing dialog ***
       if (currentQuestLine?.id === THE_CHARM_OF_BEFRIENDING_ID) {
         const newQuestLineId = DAY_13_CLOSING_DIALOGUE_ID;
-        const newQuests = values(allQuests?.[newQuestLineId].quests);
+        const newQuests = values(quests?.[newQuestLineId].quests);
 
         dispatch(
           questSlice.actions.saveCurrentQuestLine({

@@ -54,7 +54,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
       escapeMenuAlternativeNavigateTo,
     });
 
-    const Icon = image ? CHARMS_SVG[image] : null;
+    const Icon = image && CHARMS_SVG[image];
 
     return (
       <ImageBackground

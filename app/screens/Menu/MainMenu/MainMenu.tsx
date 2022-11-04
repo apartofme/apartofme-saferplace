@@ -30,15 +30,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const parentNickname = useAppSelector(
-    state => state.user.parent?.nickname ?? '',
-  );
-  const childNickname = useAppSelector(
-    state => state.user.child?.nickname ?? '',
-  );
-  const avatar = useAppSelector(state => state.user.parent?.avatar);
+  const { parent, child } = useAppSelector(state => state.user);
 
-  const AvatarIcon = avatar && AVATARS_SVG[avatar];
+  const AvatarIcon = parent?.avatar && AVATARS_SVG[parent.avatar];
 
   const onMenuItemPress = useCallback(
     (item: NavigationRouteNames) => {
@@ -69,7 +63,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
                 {t('screens.menu.main_menu.title')}
               </ExtendedText>
               <ExtendedText preset="title" style={styles.parentName}>
-                {` ${parentNickname}`}
+                {` ${parent?.nickname}`}
               </ExtendedText>
             </View>
             <View style={generalStyles.row}>
@@ -77,7 +71,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
                 {t('screens.menu.main_menu.description')}
               </ExtendedText>
               <ExtendedText preset="secondary-text" style={styles.childName}>
-                {` ${childNickname}`}
+                {` ${child?.nickname}`}
               </ExtendedText>
             </View>
             <View style={styles.line} />
