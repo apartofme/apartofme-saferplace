@@ -39,7 +39,6 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
             <ExtendedText preset="large-title" style={styles.title}>
               {t('screens.menu.manage_profiles.title')}
             </ExtendedText>
-            {/* // TODO: change to children */}
             <AvatarList data={children} parent={parentData} />
           </View>
         </BottomButtonView>
