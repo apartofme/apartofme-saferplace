@@ -3,7 +3,7 @@ import React, { useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import Lottie from 'lottie-react-native';
 
-import { ExtendedText, Timer } from '../../../components';
+import { ExtendedText } from '../../../components';
 import { IAnimationTitleScreenProps } from './AnimationTitle.types';
 import { styles } from './AnimationTitle.styles';
 import { generalStyles } from '../../../utils/styles';
@@ -24,7 +24,7 @@ import { ANIMATIONS } from '../../../assets/animations';
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
 }) => {
-  const { description, duration, title } = route.params.data;
+  const { description, title } = route.params.data;
 
   const isFocused = useIsFocused();
   const { t } = useTranslation();
@@ -100,8 +100,8 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
           return (
             <Lottie
               onAnimationFinish={onSubmit}
-              source={ANIMATIONS.POTION_POUR_CALM}
-              autoPlay
+              source={ANIMATIONS.POTION_OPEN_BOTTLE}
+              progress={1}
               loop={false}
               style={LottieAbsoluteStyles(0)}
             />
@@ -109,13 +109,15 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
       }
     }
     return (
-      <Timer
-        duration={duration ?? 3}
-        isStart={true}
-        onAnimationComplete={onSubmit}
+      <Lottie
+        onAnimationFinish={onSubmit}
+        source={ANIMATIONS.FINDING_RIGHT_CHARM}
+        autoPlay
+        loop={false}
+        style={LottieAbsoluteStyles(-15)}
       />
     );
-  }, [description, duration, onSubmit]);
+  }, [description, onSubmit]);
 
   return (
     <ImageBackground
@@ -129,15 +131,20 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
           </ExtendedText>
         </View>
       ) : (
-        <SafeAreaView style={generalStyles.flex}>
-          <View
-            style={[styles.container, !!description && styles.elixirContainer]}>
-            {animation}
-            <ExtendedText preset="large-title" style={styles.title}>
-              {title}
-            </ExtendedText>
-          </View>
-        </SafeAreaView>
+        <>
+          {animation}
+          <SafeAreaView style={generalStyles.flex}>
+            <View
+              style={[
+                styles.container,
+                !!description && styles.elixirContainer,
+              ]}>
+              <ExtendedText preset="large-title" style={styles.title}>
+                {title}
+              </ExtendedText>
+            </View>
+          </SafeAreaView>
+        </>
       )}
     </ImageBackground>
   );
