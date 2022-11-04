@@ -3,7 +3,7 @@ import Svg, { Path } from 'react-native-svg';
 
 import { ISvgProps } from '../../utils/types';
 
-export const WhitePencilIcon = ({ width = 24, height = 24 }: ISvgProps) => {
+export const PencilIcon = ({ width = 24, height = 24 }: ISvgProps) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
       <Path

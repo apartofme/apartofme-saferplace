@@ -80,6 +80,10 @@ export const questSlice = createSlice({
       state.dailyChecks = { ...state.dailyChecks, ...payload };
     },
 
+    saveProgress() {},
+    saveProgressSuccess() {},
+    saveProgressError(state, action: PayloadAction<string>) {},
+
     setCurrentDayQuestsStack() {},
     setCurrentDayQuestsStackSuccess(state) {
       state.currentDayQuestsStack = state.allQuestsStack[state.currentDay - 1];

@@ -59,6 +59,7 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
                 onPress={onParentPress}
                 image={item.parent?.avatar}
                 title={item.parent?.nickname}
+                isEdit={!!parent}
               />
             </View>
           );
@@ -69,13 +70,14 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
                 onPress={onPress}
                 image={item.user?.avatar}
                 title={item.user?.nickname}
+                isEdit={!!parent}
               />
             </View>
           );
         case AvatarListType.AddChild:
           return (
             <View style={styles.childContainer}>
-              <UserImageTitle onPress={onAddChildPress} />
+              <UserImageTitle onPress={onAddChildPress} isEdit={!!parent} />
             </View>
           );
         default:

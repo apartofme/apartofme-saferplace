@@ -38,7 +38,7 @@ import { WhiteBackArrowIcon } from './WhiteBackArrowIcon';
 import { WhiteBinIcon } from './WhiteBinIcon';
 import { WhiteCrossIcon } from './WhiteCrossIcon';
 import { WhiteGearIcon } from './WhiteGearIcon';
-import { WhitePencilIcon } from './WhitePencilIcon';
+import { PencilIcon } from './PencilIcon';
 import { WhiteRightArrowIcon } from './WhiteRightArrowIcon';
 import {
   BirdOnBranchesIcon,
@@ -273,7 +273,7 @@ export const SVG = {
   WhiteBottomArrowIcon: WhiteBottomArrowIcon,
   WhiteCrossIcon: WhiteCrossIcon,
   WhiteGearIcon: WhiteGearIcon,
-  WhitePencilIcon: WhitePencilIcon,
+  PencilIcon: PencilIcon,
   WhiteRightArrowIcon: WhiteRightArrowIcon,
   WhiteTopArrowIcon: WhiteTopArrowIcon,
   WiseGuideIcon: WiseGuideIcon,
