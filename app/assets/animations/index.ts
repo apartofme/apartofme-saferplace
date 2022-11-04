@@ -18,6 +18,8 @@ export const ANIMATIONS = {
   POTION_POUR_COMPASSION: require('./potionPourCompassion.json'),
   POTION_POUR_COURAGE: require('./potionPourCourage.json'),
   TIMER: require('./timer.json'),
+  TROUBLE_SOME_SPIRIT_ENDING: require('./troubleSomeSpiritEnding.json'),
+  TROUBLE_SOME_SPIRIT_ENTERS: require('./troubleSomeSpiritEnters.json'),
 
   OPEN_HAND_STEP_FIRST: require('./openHand/openHandStepFirst.json'),
   OPEN_HAND_STEP_SECOND: require('./openHand/openHandStepSecond.json'),

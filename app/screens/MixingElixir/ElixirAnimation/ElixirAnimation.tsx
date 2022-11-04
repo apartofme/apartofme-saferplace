@@ -104,6 +104,9 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   }, [isSoundFXEnabled, phase]);
 
   const pourAnimation = useMemo(() => {
+    if (currentQuestLine?.id === THE_CHARM_OF_BEFRIENDING_ID) {
+      return ANIMATIONS.TROUBLE_SOME_SPIRIT_ENDING;
+    }
     switch (currentPlant) {
       case PlantsType.Compassion:
         return ANIMATIONS.POTION_POUR_COMPASSION;
@@ -112,7 +115,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       default:
         return ANIMATIONS.POTION_POUR_COURAGE;
     }
-  }, [currentPlant]);
+  }, [currentPlant, currentQuestLine?.id]);
 
   const animation = useMemo(() => {
     switch (phase) {
