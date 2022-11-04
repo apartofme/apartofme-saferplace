@@ -3,6 +3,7 @@ export * from './ParentGrounding';
 export * from './Initial';
 export * from './DummyQuests';
 export * from './Garden';
+export * from './NotificationAlert';
 export * from './ParentGrounding';
 export * from './Menu';
 export * from './MixingElixir';
