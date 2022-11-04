@@ -9,7 +9,7 @@ import { ILoadingScreenProps } from './LoadingScreen.types';
 import { styles } from './LoadingScreen.styles';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { ANIMATIONS } from '../../../../assets/animations';
-import { LottieStyles } from '../../../../utils';
+import { LottieAbsoluteStyles } from '../../../../utils';
 
 export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   navigation,
@@ -28,7 +28,7 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
         source={ANIMATIONS.LOADING_FOREST}
         autoPlay
         loop
-        style={LottieStyles(-30)}
+        style={LottieAbsoluteStyles(-30)}
       />
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView

@@ -18,7 +18,7 @@ import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { ELIXIR_ANIMATION_TYPE } from '../../../constants/elixir';
 import { useTranslation } from 'react-i18next';
-import { LottieStyles } from '../../../utils';
+import { LottieAbsoluteStyles } from '../../../utils';
 import { ANIMATIONS } from '../../../assets/animations';
 
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
@@ -83,7 +83,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_MIX}
               autoPlay
               loop={false}
-              style={LottieStyles(0)}
+              style={LottieAbsoluteStyles(0)}
             />
           );
         case ELIXIR_ANIMATION_TYPE.Open:
@@ -93,7 +93,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               autoPlay
               loop={false}
-              style={LottieStyles(0)}
+              style={LottieAbsoluteStyles(0)}
             />
           );
         default:
@@ -103,7 +103,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_POUR}
               autoPlay
               loop={false}
-              style={LottieStyles(0)}
+              style={LottieAbsoluteStyles(0)}
             />
           );
       }
