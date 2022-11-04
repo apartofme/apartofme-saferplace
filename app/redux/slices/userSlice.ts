@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
 import {
   IAuthUserActionPayload,
@@ -71,8 +72,19 @@ export const userSlice = createSlice({
 
     editChild(state, action: PayloadAction<IEditUser>) {},
     editChildSuccess(state, { payload }: PayloadAction<IChild>) {
-      state.child = payload;
+      if (state.child?.uid === payload.uid) {
+        state.child = payload;
+      } else {
+        const editedChildIdx = _.findIndex(
+          state.children,
+          (item: IChild) => item.uid === payload.uid,
+        );
+        if (editedChildIdx !== -1) {
+          state.children[editedChildIdx] = payload;
+        }
+      }
     },
+
     editChildError(state, action: PayloadAction<string>) {},
 
     resetPassword(state, action: IResetPasswordActionPayload) {},
