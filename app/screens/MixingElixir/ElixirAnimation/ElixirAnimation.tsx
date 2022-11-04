@@ -49,7 +49,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
     // *** Flow for static navigation day 13 closing dialog ***
     if (currentQuestLine?.id === THE_CHARM_OF_BEFRIENDING_ID) {
       const newQuestLineId = DAY_13_CLOSING_DIALOGUE_ID;
-      const newQuests = values(allQuests?.[newQuestLineId].quests);
+      const newQuests = values(quests?.[newQuestLineId].quests);
 
       dispatch(
         questSlice.actions.saveCurrentQuestLine({
@@ -75,12 +75,12 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       isFirstTimeGarden,
     });
   }, [
-    allQuests,
     currentQuestLine?.id,
     dispatch,
     isFirstTimeGarden,
     navigation,
     phase,
+    quests,
     selectedPlantArea,
   ]);
 
@@ -126,7 +126,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
         return (
           <Lottie
             onAnimationFinish={onAnimationFinish}
-            source={ANIMATIONS.POTION_POUR}
+            source={ANIMATIONS.POTION_POUR_CALM}
             autoPlay
             loop={false}
             style={LottieAbsoluteStyles(0)}
