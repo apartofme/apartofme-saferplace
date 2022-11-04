@@ -32,6 +32,9 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { isRegisterUser, isCreateChild } = useAppSelector(
+    state => state.app.loading,
+  );
 
   const parent = useAppSelector(
     state => state.user.parent ?? state.cache.auth.parent,
@@ -62,7 +65,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   }, [avatarsData, currentIndex]);
 
   const onSubmitButtonPress = useCallback(() => {
-    if (isChild && child) {
+    if (isChild && child && !isCreateChild) {
       dispatch(
         cacheSlice.actions.saveSignUpDataChild({
           avatar: `Circle${avatar}`,
@@ -79,13 +82,23 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
       return;
     }
 
-    dispatch(
-      cacheSlice.actions.saveSignUpDataParent({
-        avatar: `Circle${avatar}`,
-      }),
-    );
-    dispatch(userSlice.actions.registerParent());
-  }, [avatar, child, dispatch, isChild, parent.uid]);
+    if (!isRegisterUser && !isChild) {
+      dispatch(
+        cacheSlice.actions.saveSignUpDataParent({
+          avatar: `Circle${avatar}`,
+        }),
+      );
+      dispatch(userSlice.actions.registerParent());
+    }
+  }, [
+    avatar,
+    child,
+    dispatch,
+    isChild,
+    isCreateChild,
+    isRegisterUser,
+    parent.uid,
+  ]);
 
   const title = t(
     `screens.onboarding.sign_up_avatar.${isChild ? 'child' : 'parent'}.title`,
@@ -127,7 +140,6 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
         <BottomButtonView
           buttonTitle={t('buttons.select')}
           onSubmit={onSubmitButtonPress}
-          isDisabledButton={!avatar}
           style={styles.container}>
           <ExtendedText
             preset="large-title"

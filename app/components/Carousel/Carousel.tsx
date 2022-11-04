@@ -31,6 +31,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   preset,
   data,
   defaultIndex = 0,
+  carouselRef,
   setIndex,
   style,
   carouselStyle,
@@ -130,6 +131,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   return (
     <GestureHandlerRootView style={[styles.container, style]}>
       <ReanimatedCarousel
+        ref={carouselRef}
         loop={false}
         width={WINDOW_WIDTH}
         data={[...data]}

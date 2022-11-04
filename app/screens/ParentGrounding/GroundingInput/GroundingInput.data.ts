@@ -4,10 +4,10 @@ export const GROUNDING_RADIO_BUTTON_ITEMS: ReadonlyArray<IRadioButtonListItem> =
   [
     {
       id: RadioButtonOption.Positive,
-      title: 'Yes',
+      title: 'labels.yes',
     },
     {
       id: RadioButtonOption.Negative,
-      title: 'No',
+      title: 'labels.no',
     },
   ];
