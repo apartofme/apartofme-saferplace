@@ -7,7 +7,7 @@ import { BACKGROUND_IMAGES } from '../../../assets';
 import { ANIMATIONS } from '../../../assets/animations';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { useMount } from '../../../hooks';
-import { LottieStyles } from '../../../utils';
+import { LottieAbsoluteStyles } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { MixingElixirPhaseType } from '../../../utils/types';
 import { styles } from './ElixirInstruction.styles';
@@ -55,7 +55,7 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
               source={ANIMATIONS.POTION_MIX}
               progress={1}
               loop={false}
-              style={LottieStyles(0)}
+              style={LottieAbsoluteStyles(0)}
             />
           );
         case MixingElixirPhaseType.Open:
@@ -64,7 +64,7 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
               source={ANIMATIONS.POTION_MIX}
               progress={1}
               loop={false}
-              style={LottieStyles(0)}
+              style={LottieAbsoluteStyles(0)}
             />
           );
         default:
@@ -73,7 +73,7 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               progress={1}
               loop={false}
-              style={LottieStyles(0)}
+              style={LottieAbsoluteStyles(0)}
             />
           );
       }

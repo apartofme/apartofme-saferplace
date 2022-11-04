@@ -153,11 +153,18 @@ export const hexTransparency = (color: string, transparency: number) => {
   return `${color}${hexValue.padStart(2, '0').toUpperCase()}`;
 };
 
-export const LottieStyles = (height = 100, styles?: ViewStyle): ViewStyle => {
+export const LottieAbsoluteStyles = (
+  verticalShift = 0,
+  styles?: ViewStyle,
+): ViewStyle => {
+  const shift =
+    WINDOW_COEFFICIENT === 1
+      ? verticalShift
+      : verticalShift / (WINDOW_COEFFICIENT - 1);
   return {
     width: WINDOW_WIDTH,
     position: 'absolute',
-    top: WINDOW_COEFFICIENT * height - height,
+    top: WINDOW_COEFFICIENT * shift - shift,
     ...styles,
   };
 };

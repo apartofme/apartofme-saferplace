@@ -19,7 +19,7 @@ import {
 } from '../../../constants/quest';
 import { questSlice } from '../../../redux/slices';
 import { ANIMATIONS } from '../../../assets/animations';
-import { LottieStyles } from '../../../utils';
+import { LottieAbsoluteStyles } from '../../../utils';
 
 export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,
@@ -109,7 +109,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
             source={ANIMATIONS.POTION_MIX}
             autoPlay
             loop={false}
-            style={LottieStyles(0)}
+            style={LottieAbsoluteStyles(0)}
           />
         );
       case MixingElixirPhaseType.Open:
@@ -119,7 +119,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
             source={ANIMATIONS.POTION_OPEN_BOTTLE}
             autoPlay
             loop={false}
-            style={LottieStyles(0)}
+            style={LottieAbsoluteStyles(0)}
           />
         );
       default:
@@ -129,7 +129,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
             source={ANIMATIONS.POTION_POUR}
             autoPlay
             loop={false}
-            style={LottieStyles(0)}
+            style={LottieAbsoluteStyles(0)}
           />
         );
     }
