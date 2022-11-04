@@ -9,6 +9,7 @@ import {
   ITranslations,
   CharmsBackgroundsKeys,
   CharmsSvgKeys,
+  AnimationsKeys,
 } from './types';
 import { REGEXPS } from './regexps';
 import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../constants/window';
@@ -88,7 +89,7 @@ export const questsToDictionary = (
       description: quest.description,
       backgroundImage:
         (quest.backgroundimage?.path as CharmsBackgroundsKeys) ?? null,
-      image: (quest.image?.path as CharmsSvgKeys) ?? null,
+      image: (quest.image?.path as CharmsSvgKeys | AnimationsKeys) ?? null,
       tellMoreTitle: quest.tellmoretitle ?? null,
       tellMoreDescription: quest.tellmoredescription ?? null,
       tellMoreBackground:

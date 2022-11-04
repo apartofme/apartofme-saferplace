@@ -1,6 +1,10 @@
 import { QuestStackParams } from '../navigation/stacks/questStackNavigator';
 import { Nullable } from '../utils';
-import { CharmsBackgroundsKeys, CharmsSvgKeys } from '../utils/types';
+import {
+  AnimationsKeys,
+  CharmsBackgroundsKeys,
+  CharmsSvgKeys,
+} from '../utils/types';
 
 export interface IQuest {
   id: string;
@@ -8,7 +12,7 @@ export interface IQuest {
   buttonTitle: Nullable<string>;
   description: Nullable<string>;
   backgroundImage: Nullable<CharmsBackgroundsKeys>;
-  image: Nullable<CharmsSvgKeys>;
+  image: Nullable<CharmsSvgKeys | AnimationsKeys>;
   tellMoreTitle: Nullable<string>;
   tellMoreDescription: Nullable<string>;
   tellMoreBackground: Nullable<CharmsBackgroundsKeys>;

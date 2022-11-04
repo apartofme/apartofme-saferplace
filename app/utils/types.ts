@@ -1,4 +1,5 @@
 import { CHARMS_BACKGROUNDS, IMAGES } from '../assets';
+import { ANIMATIONS } from '../assets/animations';
 import {
   AVATARS_SVG,
   CHARMS_SVG,
@@ -76,6 +77,8 @@ export type EmotionsButtonSvgKeys = keyof typeof EMOTION_BUTTON_SVG;
 export type FavoriteCharmSvgKeys = keyof typeof SVG_FAVORITE_CHARM;
 export type CharmIllustrationsSvgKeys = keyof typeof SVG_CHARM_ILLUSTRATIONS;
 export type SvgComponentType = (props: ISvgProps) => JSX.Element;
+
+export type AnimationsKeys = keyof typeof ANIMATIONS;
 
 export interface IElixirProgress {
   fullnessElixir: number;
