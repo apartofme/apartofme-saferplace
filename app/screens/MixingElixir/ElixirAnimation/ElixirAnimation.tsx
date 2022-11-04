@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Lottie from 'lottie-react-native';
@@ -36,6 +36,54 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
 
   const isSoundFXEnabled = settings.audioSettings?.isSoundFXEnabled;
 
+  const onAnimationFinish = useCallback(() => {
+    if (phase < MixingElixirPhaseType.Pour) {
+      navigation.push('ElixirInstruction', {
+        phase: phase + 1,
+        selectedPlantArea,
+        isFirstTimeGarden,
+      });
+      return;
+    }
+
+    // *** Flow for static navigation day 13 closing dialog ***
+    if (currentQuestLine?.id === THE_CHARM_OF_BEFRIENDING_ID) {
+      const newQuestLineId = DAY_13_CLOSING_DIALOGUE_ID;
+      const newQuests = values(allQuests?.[newQuestLineId].quests);
+
+      dispatch(
+        questSlice.actions.saveCurrentQuestLine({
+          id: newQuests[0].questLineId,
+          quests: newQuests,
+        }),
+      );
+
+      dispatch(questSlice.actions.updateCurrentDayQuestsStack());
+      dispatch(questSlice.actions.saveCurrentQuestIdx(0));
+
+      navigation.push('QuestStack', {
+        screen: newQuests[0].type,
+        params: {
+          data: { ...newQuests[0] },
+        },
+      });
+      return;
+    }
+
+    navigation.push('MixingElixirSuccess', {
+      selectedPlantArea,
+      isFirstTimeGarden,
+    });
+  }, [
+    allQuests,
+    currentQuestLine?.id,
+    dispatch,
+    isFirstTimeGarden,
+    navigation,
+    phase,
+    selectedPlantArea,
+  ]);
+
   const title = useMemo(() => {
     if (isSoundFXEnabled) {
       switch (phase) {
@@ -57,32 +105,35 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       case MixingElixirPhaseType.Mix:
         return (
           <Lottie
+            onAnimationFinish={onAnimationFinish}
             source={ANIMATIONS.POTION_MIX}
             autoPlay
-            loop
-            style={LottieStyles(90)}
+            loop={false}
+            style={LottieStyles(0)}
           />
         );
       case MixingElixirPhaseType.Open:
         return (
           <Lottie
+            onAnimationFinish={onAnimationFinish}
             source={ANIMATIONS.POTION_OPEN_BOTTLE}
             autoPlay
-            loop
-            style={LottieStyles(90)}
+            loop={false}
+            style={LottieStyles(0)}
           />
         );
       default:
         return (
           <Lottie
+            onAnimationFinish={onAnimationFinish}
             source={ANIMATIONS.POTION_POUR}
             autoPlay
-            loop
-            style={LottieStyles(90)}
+            loop={false}
+            style={LottieStyles(0)}
           />
         );
     }
-  }, [phase]);
+  }, [onAnimationFinish, phase]);
 
   const appStatus = useAppState();
 
@@ -91,49 +142,6 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       AudioPlayerHelper.stop();
     }
   }, [appStatus]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (phase < MixingElixirPhaseType.Pour) {
-        navigation.push('ElixirInstruction', {
-          phase: phase + 1,
-          selectedPlantArea,
-          isFirstTimeGarden,
-        });
-        return;
-      }
-
-      // *** Flow for static navigation day 13 closing dialog ***
-      if (currentQuestLine?.id === THE_CHARM_OF_BEFRIENDING_ID) {
-        const newQuestLineId = DAY_13_CLOSING_DIALOGUE_ID;
-        const newQuests = values(quests?.[newQuestLineId].quests);
-
-        dispatch(
-          questSlice.actions.saveCurrentQuestLine({
-            id: newQuests[0].questLineId,
-            quests: newQuests,
-          }),
-        );
-
-        dispatch(questSlice.actions.updateCurrentDayQuestsStack());
-        dispatch(questSlice.actions.saveCurrentQuestIdx(0));
-
-        navigation.push('QuestStack', {
-          screen: newQuests[0].type,
-          params: {
-            data: { ...newQuests[0] },
-          },
-        });
-        return;
-      }
-
-      navigation.push('MixingElixirSuccess', {
-        selectedPlantArea,
-        isFirstTimeGarden,
-      });
-    }, 3000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase]);
 
   return (
     <ImageBackground

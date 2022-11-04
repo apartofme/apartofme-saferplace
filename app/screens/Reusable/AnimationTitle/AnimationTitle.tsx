@@ -1,6 +1,7 @@
 import { useIsFocused } from '@react-navigation/native';
 import React, { useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { ExtendedText, Timer } from '../../../components';
 import { IAnimationTitleScreenProps } from './AnimationTitle.types';
@@ -13,11 +14,12 @@ import {
   useMount,
   useNavigateNextQuest,
 } from '../../../hooks';
-import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { ELIXIR_ANIMATION_TYPE } from '../../../constants/elixir';
 import { useTranslation } from 'react-i18next';
+import { LottieStyles } from '../../../utils';
+import { ANIMATIONS } from '../../../assets/animations';
 
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
@@ -75,17 +77,40 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
     if (description) {
       switch (description) {
         case ELIXIR_ANIMATION_TYPE.Mix:
-          return <ElixirThreeIcon />;
+          return (
+            <Lottie
+              onAnimationFinish={onSubmit}
+              source={ANIMATIONS.POTION_MIX}
+              autoPlay
+              loop={false}
+              style={LottieStyles(0)}
+            />
+          );
         case ELIXIR_ANIMATION_TYPE.Open:
-          return <ElixirThreeIcon />;
+          return (
+            <Lottie
+              onAnimationFinish={onSubmit}
+              source={ANIMATIONS.POTION_OPEN_BOTTLE}
+              autoPlay
+              loop={false}
+              style={LottieStyles(0)}
+            />
+          );
         default:
-          return <ElixirThreeIcon />;
+          return (
+            <Lottie
+              onAnimationFinish={onSubmit}
+              source={ANIMATIONS.POTION_POUR}
+              autoPlay
+              loop={false}
+              style={LottieStyles(0)}
+            />
+          );
       }
     }
-
     return (
       <Timer
-        duration={duration ?? 5}
+        duration={duration ?? 3}
         isStart={true}
         onAnimationComplete={onSubmit}
       />
