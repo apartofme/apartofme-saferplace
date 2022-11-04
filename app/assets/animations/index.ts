@@ -18,4 +18,11 @@ export const ANIMATIONS = {
   POTION_POUR_COMPASSION: require('./potionPourCompassion.json'),
   POTION_POUR_COURAGE: require('./potionPourCourage.json'),
   TIMER: require('./timer.json'),
+
+  OPEN_HAND_STEP_FIRST: require('./openHand/openHandStepFirst.json'),
+  OPEN_HAND_STEP_SECOND: require('./openHand/openHandStepSecond.json'),
+  OPEN_HAND_STEP_THIRD: require('./openHand/openHandStepThird.json'),
+  OPEN_HAND_STEP_FOURTH: require('./openHand/openHandStepFourth.json'),
+  OPEN_HAND_STEP_FIFTH: require('./openHand/openHandStepFifth.json'),
+  OPEN_HAND_STEP_SIXTH: require('./openHand/openHandStepSixth.json'),
 };
