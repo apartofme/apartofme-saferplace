@@ -8,7 +8,7 @@ import { IElixirAnimationScreenProps } from './ElixirAnimation.types';
 import { styles } from './ElixirAnimation.styles';
 import { ExtendedText } from '../../../components';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { MixingElixirPhaseType } from '../../../utils/types';
+import { MixingElixirPhaseType, PlantsType } from '../../../utils/types';
 import { generalStyles } from '../../../utils/styles';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
@@ -33,6 +33,9 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   const settings = useAppSelector(state => state.settings.settings);
   const currentLanguage = settings.language ?? 'en';
   const quests = allQuests?.[currentLanguage];
+  const currentPlant = useAppSelector(
+    state => state.plant.plantsStack?.[state.plant.plantsStack.length - 1],
+  );
 
   const isSoundFXEnabled = settings.audioSettings?.isSoundFXEnabled;
 
@@ -100,6 +103,17 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
     }
   }, [isSoundFXEnabled, phase]);
 
+  const pourAnimation = useMemo(() => {
+    switch (currentPlant) {
+      case PlantsType.Compassion:
+        return ANIMATIONS.POTION_POUR_COMPASSION;
+      case PlantsType.Calm:
+        return ANIMATIONS.POTION_POUR_CALM;
+      default:
+        return ANIMATIONS.POTION_POUR_COURAGE;
+    }
+  }, [currentPlant]);
+
   const animation = useMemo(() => {
     switch (phase) {
       case MixingElixirPhaseType.Mix:
@@ -109,7 +123,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
             source={ANIMATIONS.POTION_MIX}
             autoPlay
             loop={false}
-            style={LottieAbsoluteStyles(0)}
+            style={LottieAbsoluteStyles(-15)}
           />
         );
       case MixingElixirPhaseType.Open:
@@ -119,21 +133,21 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
             source={ANIMATIONS.POTION_OPEN_BOTTLE}
             autoPlay
             loop={false}
-            style={LottieAbsoluteStyles(0)}
+            style={LottieAbsoluteStyles(-15)}
           />
         );
       default:
         return (
           <Lottie
             onAnimationFinish={onAnimationFinish}
-            source={ANIMATIONS.POTION_POUR_CALM}
+            source={pourAnimation}
             autoPlay
             loop={false}
-            style={LottieAbsoluteStyles(0)}
+            style={LottieAbsoluteStyles(-15)}
           />
         );
     }
-  }, [onAnimationFinish, phase]);
+  }, [onAnimationFinish, phase, pourAnimation]);
 
   const appStatus = useAppState();
 

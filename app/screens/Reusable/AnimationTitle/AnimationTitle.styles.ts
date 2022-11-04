@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface IAnimationTitleStyles {
@@ -11,9 +12,10 @@ interface IAnimationTitleStyles {
 export const styles = StyleSheet.create<IAnimationTitleStyles>({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingHorizontal: 40,
+    paddingBottom: 120 * WINDOW_COEFFICIENT,
   },
   elixirContainer: {
     marginBottom: -142,
