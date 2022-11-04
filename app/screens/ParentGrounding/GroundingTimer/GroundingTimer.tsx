@@ -1,20 +1,28 @@
 import { useIsFocused } from '@react-navigation/native';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
   View,
 } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { ANIMATIONS } from '../../../assets/animations';
 import { SVG } from '../../../assets/svg';
-import { SandglassIcon } from '../../../assets/svg/SandglassIcon';
 import { ExtendedText, MainHeader } from '../../../components';
 import { TEN_SECONDS } from '../../../constants/time';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './GroundingTimer.styles';
 import { IGroundingTimerScreenProps } from './GroundingTimer.types';
+import { LottieAbsoluteStyles } from '../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
@@ -26,10 +34,10 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
 }) => {
   const { nextRouteName } = route.params;
 
+  const lottieRef = useRef<Lottie>(null);
+
   const [timerValue, setTimerValue] = useState(TEN_SECONDS);
-
   const [isTimerPause, setIsTimerPause] = useState(false);
-
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -58,8 +66,10 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
 
   const ButtonIcon = useMemo(() => {
     if (isTimerPause) {
+      lottieRef.current?.pause();
       return RoundTriangleButtonIcon;
     }
+    lottieRef.current?.play();
     return RoundPauseButtonIcon;
   }, [isTimerPause]);
 
@@ -67,14 +77,19 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
     <ImageBackground
       source={BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT}
       style={generalStyles.flex}>
+      <Lottie
+        source={ANIMATIONS.TIMER}
+        loop={false}
+        autoPlay
+        style={LottieAbsoluteStyles(-30)}
+        ref={lottieRef}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
         <View style={styles.container}>
-          {/* //TODO: replace with animation */}
-          <SandglassIcon />
           <ExtendedText preset="large-title" style={styles.seconds}>
             {(timerValue < 10 ? '00:0' : '00:') + timerValue}
           </ExtendedText>

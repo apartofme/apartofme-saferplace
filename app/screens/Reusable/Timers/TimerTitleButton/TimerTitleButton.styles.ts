@@ -1,10 +1,11 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
 
 interface ITimerTitleButtonScreenStyles {
   container: ViewStyle;
-  image: ImageStyle;
+  animation: ViewStyle;
   title: TextStyle;
   description: TextStyle;
 }
@@ -17,10 +18,10 @@ export const styles = StyleSheet.create<ITimerTitleButtonScreenStyles>({
     paddingHorizontal: 40,
     paddingBottom: 24,
   },
-  // TODO: remove
-  image: {
-    height: 280,
-    width: 155,
+  animation: {
+    width: WINDOW_WIDTH,
+    position: 'absolute',
+    top: WINDOW_COEFFICIENT * 75 - 100,
   },
   title: {
     marginTop: 40,
