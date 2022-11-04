@@ -14,3 +14,10 @@ export const trackScreenView = (screenName: string, screenClass: string) => {
     screen_class: screenClass,
   });
 };
+
+export const trackEvent = (
+  eventName: string,
+  payload: Record<string, string>,
+) => {
+  analytics().logEvent(eventName, payload);
+};
