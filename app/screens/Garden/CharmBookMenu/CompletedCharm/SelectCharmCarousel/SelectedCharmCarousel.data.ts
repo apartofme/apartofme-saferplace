@@ -1,6 +1,5 @@
 import { ICarouselItem } from '../../../../../components';
 
-// TODO: change image for correct
 export const COMPLETED_CHARMS_CAROUSEL: ReadonlyArray<ICarouselItem> = [
   {
     id: '55602822',
