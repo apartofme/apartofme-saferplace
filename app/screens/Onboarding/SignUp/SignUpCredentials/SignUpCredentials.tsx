@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View, SafeAreaView, Image } from 'react-native';
 import { Formik } from 'formik';
-import moment from 'moment';
 
 import {
   BottomButtonView,
@@ -36,12 +35,10 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
 
     const onSignUpPress = useCallback(
       ({ email, password }) => {
-        const createdAt = moment().format('L');
         dispatch(
           cacheSlice.actions.saveSignUpDataParent({
             email,
             password,
-            createdAt,
           }),
         );
         navigation.navigate('SignUpNickname');
@@ -69,7 +66,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
               initialValues={{ email: '', password: '' }}
               validationSchema={SignUpCredentioalsValidationSchema}
               onSubmit={onSignUpPress}>
-              {({ handleChange, handleSubmit, isValid, dirty }) => (
+              {({ handleChange, handleSubmit, isValid, dirty, errors }) => (
                 <BottomButtonView
                   buttonTitle={t('buttons.signup')}
                   onSubmit={handleSubmit}
@@ -112,6 +109,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.input}
                         maxLength={30}
+                        error={errors.email}
                       />
                       <ExtendedTextInput
                         type={ExtendedTextInputType.PasswordToggle}
@@ -122,6 +120,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.input}
                         maxLength={30}
+                        error={errors.password}
                       />
                     </View>
                   </View>

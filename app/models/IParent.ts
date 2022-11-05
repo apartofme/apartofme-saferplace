@@ -1,10 +1,9 @@
 import { AvatarsKeys } from '../utils/types';
 
-export interface IUser {
+export interface IParent {
   email: string;
-  nickname: string;
   avatar: AvatarsKeys;
-  emailVerified: boolean;
+  nickname: string;
   uid: string;
-  createdAt: string;
+  emailVerified: boolean;
 }

@@ -6,6 +6,7 @@ import {
   TextInputProps,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ExtendedText } from '../ExtendedText';
 import {
@@ -16,6 +17,9 @@ import { IExtendedTextInputProps } from './ExtendedTextInput.types';
 import { TextInputPasswordToggle } from './inputs';
 import { styles } from './ExtendedTextInput.styles';
 import { COLORS } from '../../themes/colors';
+import { SVG } from '../../assets/svg';
+
+const CircleExclamationMarkIcon = SVG.CircleExclamationMarkIcon;
 
 export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
   label,
@@ -33,6 +37,8 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
     () => ExtendedTextInputPresetProps[type],
     [type],
   );
+
+  const { t } = useTranslation();
 
   const InputComponent: React.ComponentType<TextInputProps> = useMemo(() => {
     switch (type) {
@@ -80,13 +86,25 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
       <InputComponent
         {...initialInputProps}
         {...rest}
-        style={[styles.input, style, isFocus && styles.inputActive]}
+        style={[
+          styles.input,
+          style,
+          isFocus && styles.inputActive,
+          !!error && styles.inputError,
+        ]}
         selectionColor={COLORS.PRIMARY_ORANGE}
         onFocus={onFocus}
         onBlur={onBlur}
       />
       {error && (
-        <ExtendedText style={[styles.error, errorStyle]}>{error}</ExtendedText>
+        <View style={styles.errorContainer}>
+          <CircleExclamationMarkIcon />
+          <ExtendedText
+            style={[styles.error, errorStyle]}
+            preset="tertiary-text-regular">
+            {t(error)}
+          </ExtendedText>
+        </View>
       )}
     </View>
   );

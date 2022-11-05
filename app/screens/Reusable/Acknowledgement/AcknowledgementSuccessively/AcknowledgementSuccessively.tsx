@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -8,11 +9,15 @@ import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
+  useAppSelector,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementSuccessivelyScreenProps } from './AcknowledgementSuccessively.types';
 import { styles } from './AcknowledgementSuccessively.styles';
 import { CHARMS_SVG } from '../../../../assets/svg';
+import { ANIMATIONS } from '../../../../assets/animations';
+import { LottieAbsoluteStyles } from '../../../../utils';
+import { DAY_14_CLOSING_DIALOGUE_ID } from '../../../../constants/quest';
 
 export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccessivelyScreenProps> =
   ({ route }) => {
@@ -31,6 +36,8 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
     const { t } = useTranslation();
 
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
+
+    const currentQuest = useAppSelector(state => state.quest.currentQuestLine);
 
     const Title = useParsedJSXTextNickname({
       text: title,
@@ -52,6 +59,14 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
           CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
         }
         style={generalStyles.flex}>
+        {currentQuest?.id === DAY_14_CLOSING_DIALOGUE_ID && (
+          <Lottie
+            source={ANIMATIONS.LEAF_CONFETTI}
+            autoPlay
+            loop={false}
+            style={LottieAbsoluteStyles(-30)}
+          />
+        )}
         <SafeAreaView style={generalStyles.flex}>
           <Header />
           <BottomButtonView

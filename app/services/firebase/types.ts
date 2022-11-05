@@ -1,7 +1,7 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
-import { IUser } from '../../models/IUser';
-import { IShortSignUpData } from '../../redux/types';
+import { IChild } from '../../models/IChild';
+import { IParent } from '../../models/IParent';
 import { Nullable } from '../../utils';
 import {
   IElixirProgress,
@@ -9,26 +9,21 @@ import {
   IQuestProgress,
 } from '../../utils/types';
 
+export enum FirestoreCollections {
+  Children = 'children',
+  Parents = 'parents',
+  Progress = 'progress',
+  // TODO: remove
+  NewProgress = 'new_progress',
+}
+export interface IFirestoreErrorResponse {
+  error: Nullable<string>;
+}
+
 export interface IFirebaseAuthResponse {
   user: Nullable<FirebaseAuthTypes.User>;
   error: Nullable<string>;
 }
-
-export interface IFirebaseChangePasswordResponse {
-  error: Nullable<string>;
-}
-
-export interface IFirebaseDeleteAccountResponse {
-  error: Nullable<string>;
-}
-
-export type IFirebaseUpdateUserResponse = {
-  error: Nullable<string>;
-};
-
-export type IFirebaseSaveChildResponse = {
-  error: Nullable<string>;
-};
 
 export interface IFirebaseAuthError {
   code: string;
@@ -37,22 +32,20 @@ export interface IFirebaseAuthError {
 export enum FirebaseAnalyticsEventsType {
   ButtonPress = 'buttonPress',
 }
-export interface IFirestoreUser {
-  _data: {
-    tokens: string[];
-    parent: IUser;
-    child: IShortSignUpData;
-  };
+export interface IFirestoreParent {
+  _data: IParent;
 }
 
+export interface IFirestoreChild {
+  _data: IChild;
+}
+export interface IFirestoreChildrenData {
+  _docs: IFirestoreChild[];
+}
 export interface IFirestoreUserProgress {
   _data: {
     quests: IQuestProgress;
     plants: IPlantProgress;
     elixir: IElixirProgress;
   };
-}
-
-export interface IFirestoreErrorResponse {
-  error: Nullable<string>;
 }

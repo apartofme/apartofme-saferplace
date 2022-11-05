@@ -5,12 +5,8 @@ import Lottie from 'lottie-react-native';
 import _ from 'lodash';
 
 import { BACKGROUND_IMAGES } from '../../../../assets';
-import { AVATARS_SVG, SVG } from '../../../../assets/svg';
-import {
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../../components';
+import { AVATARS_SVG } from '../../../../assets/svg';
+import { BottomButtonView, ExtendedText } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpSuccessScreenProps } from './SignUpSuccess.types';
@@ -18,8 +14,6 @@ import { styles } from './SignUpSuccess.styles';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
 import { ANIMATIONS } from '../../../../assets/animations';
 import { LottieAbsoluteStyles } from '../../../../utils';
-
-const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   navigation,
@@ -87,10 +81,6 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
         style={LottieAbsoluteStyles(-30)}
       />
       <SafeAreaView style={generalStyles.flex}>
-        <MainHeader
-          leftIcon={<WhiteBackArrowIcon />}
-          onLeftIconPress={navigation.goBack}
-        />
         <BottomButtonView
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}

@@ -12,11 +12,8 @@ import {
   IEmotions,
   INicknames,
   IPlayer,
-  ISaveTranslationsPayload,
   IShortSignUpData,
-  IShortSignUpDataPayload,
   ISignUpData,
-  ISignUpDataPayload,
   ITranslations,
 } from '../types';
 
@@ -71,14 +68,20 @@ export const cacheSlice = createSlice({
   name: 'cache',
   initialState: INITIAL_STATE,
   reducers: {
-    saveSignUpDataParent(state, { payload }: ISignUpDataPayload) {
+    saveSignUpDataParent(
+      state,
+      { payload }: PayloadAction<Partial<ISignUpData>>,
+    ) {
       state.auth.parent = _.merge(state.auth.parent, payload);
     },
-    saveSignUpDataChild(state, { payload }: IShortSignUpDataPayload) {
+    saveSignUpDataChild(
+      state,
+      { payload }: PayloadAction<Partial<IShortSignUpData>>,
+    ) {
       state.auth.child = _.merge(state.auth.child, payload);
     },
     saveTranslations() {},
-    saveTranslationsSuccess(state, { payload }: ISaveTranslationsPayload) {
+    saveTranslationsSuccess(state, { payload }: PayloadAction<ITranslations>) {
       state.translations = _.merge(state.translations, payload);
     },
     saveTranslationsError(state, action: PayloadAction<string>) {},

@@ -4,11 +4,11 @@ export enum ErrorType {
   getUser = 'getUser',
   saveAllQuests = 'saveAllQuests',
   saveTranslations = 'saveTranslations',
-  updateChild = 'updateChild',
-  updateParent = 'updateParent',
+  editChild = 'editChild',
+  editParent = 'editParent',
   deleteAccount = 'deleteAccount',
   changePassword = 'changePassword',
-  saveChild = 'saveChild',
+  createChild = 'createChild',
 }
 
 export enum LoadingType {
@@ -17,9 +17,9 @@ export enum LoadingType {
   isGetUser = 'isGetUser',
   isSaveAllQuests = 'isSaveAllQuests',
   isSaveTranslations = 'isSaveTranslations',
-  isUpdateChild = 'isUpdateChild',
-  isUpdateParent = 'isUpdateParent',
+  isEditChild = 'isEditChild',
+  isEditParent = 'isEditParent',
   isDeleteAccount = 'isDeleteAccount',
   isChangePassword = 'isChangePassword',
-  isSaveChild = 'isSaveChild',
+  isCreateChild = 'isCreateChild',
 }

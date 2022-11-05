@@ -20,9 +20,6 @@ import {
   SettingsPrivacyScreen,
   ConditionsScreen,
   AudioSettingsScreen,
-  ManageProfilesScreen,
-  EditProfileScreen,
-  IEditProfileRoute,
   DeleteAccountScreen,
   DeleteAccountAcknowledgementScreen,
   DeleteAccountSuccessScreen,
@@ -50,8 +47,6 @@ export type MenuStackParams = {
   SettingsPrivacy: undefined;
   Conditions: { data: ConditionsScreenData };
   AudioSettings: undefined;
-  ManageProfiles: undefined;
-  EditProfile: { data: IEditProfileRoute };
   DeleteAccount: undefined;
   DeleteAccountAcknowledgement: undefined;
   DeleteAccountSuccess: undefined;
@@ -92,8 +87,6 @@ export const MenuStackNavigator = () => (
     <Stack.Screen name="SettingsPrivacy" component={SettingsPrivacyScreen} />
     <Stack.Screen name="Conditions" component={ConditionsScreen} />
     <Stack.Screen name="AudioSettings" component={AudioSettingsScreen} />
-    <Stack.Screen name="ManageProfiles" component={ManageProfilesScreen} />
-    <Stack.Screen name="EditProfile" component={EditProfileScreen} />
     <Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} />
     <Stack.Screen
       name="DeleteAccountAcknowledgement"
