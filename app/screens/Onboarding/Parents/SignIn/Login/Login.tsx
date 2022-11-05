@@ -115,8 +115,9 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                   handleBlur,
                   isValid,
                   errors,
+                  touched,
                 }) => (
-                  <>
+                  <View>
                     <ExtendedTextInput
                       value={values.email}
                       onChangeText={handleChange('email')}
@@ -125,7 +126,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       placeholderTextColor={COLORS.BRILLIANT_WHITE}
                       type={ExtendedTextInputType.Email}
                       setIsActive={setIsActive}
-                      error={errors.email}
+                      error={errors.email && touched.email ? errors.email : ''}
                     />
                     <ExtendedTextInput
                       type={ExtendedTextInputType.PasswordToggle}
@@ -136,7 +137,11 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       placeholder={t('placeholders.enter_password')}
                       placeholderTextColor={COLORS.BRILLIANT_WHITE}
                       setIsActive={setIsActive}
-                      error={errors.password}
+                      error={
+                        errors.password && touched.password
+                          ? errors.password
+                          : ''
+                      }
                     />
                     <ExtendedButton
                       title={t('buttons.login')}
@@ -144,7 +149,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       onPress={handleSubmit}
                       disabled={!isValid}
                     />
-                  </>
+                  </View>
                 )}
               </Formik>
             </ScrollView>

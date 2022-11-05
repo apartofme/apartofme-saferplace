@@ -6,8 +6,8 @@ import { COLORS } from '../../../themes/colors';
 interface IChangePasswordScreenStyles {
   container: ViewStyle;
   title: TextStyle;
-  inputContainer: ViewStyle;
-  input: TextStyle;
+  mt4: ViewStyle;
+  mt16: TextStyle;
   subtitle: TextStyle;
 }
 
@@ -24,10 +24,10 @@ export const styles = StyleSheet.create<IChangePasswordScreenStyles>({
   subtitle: {
     color: COLORS.BRILLIANT_WHITE,
   },
-  inputContainer: {
-    marginTop: 19 * WINDOW_COEFFICIENT,
+  mt4: {
+    marginTop: 4,
   },
-  input: {
-    marginBottom: 16 * WINDOW_COEFFICIENT,
+  mt16: {
+    marginTop: 16 * WINDOW_COEFFICIENT,
   },
 });
