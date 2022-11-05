@@ -2,6 +2,7 @@ import { useIsFocused } from '@react-navigation/native';
 import React, { useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import Lottie from 'lottie-react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ExtendedText } from '../../../components';
 import { IAnimationTitleScreenProps } from './AnimationTitle.types';
@@ -17,7 +18,6 @@ import {
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { ELIXIR_ANIMATION_TYPE } from '../../../constants/elixir';
-import { useTranslation } from 'react-i18next';
 import { LottieAbsoluteStyles } from '../../../utils';
 import { ANIMATIONS } from '../../../assets/animations';
 

@@ -10,6 +10,7 @@ import {
   CharmsBackgroundsKeys,
   CharmsSvgKeys,
   AnimationsKeys,
+  ElixirNumbers,
 } from './types';
 import { REGEXPS } from './regexps';
 import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../constants/window';
@@ -168,4 +169,23 @@ export const LottieAbsoluteStyles = (
     top: WINDOW_COEFFICIENT * shift - shift,
     ...styles,
   };
+};
+
+export const convertElixirNumberToString = (fullnessElixir: number) => {
+  switch (fullnessElixir) {
+    case 0:
+      return ElixirNumbers.Zero;
+    case 0.5:
+      return ElixirNumbers.ZeroHalf;
+    case 1:
+      return ElixirNumbers.One;
+    case 1.5:
+      return ElixirNumbers.OneHalf;
+    case 2:
+      return ElixirNumbers.Two;
+    case 2.5:
+      return ElixirNumbers.TwoHalf;
+    default:
+      return ElixirNumbers.Three;
+  }
 };

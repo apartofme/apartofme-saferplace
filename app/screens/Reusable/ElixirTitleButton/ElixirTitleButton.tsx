@@ -7,7 +7,7 @@ import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import {
-  getElixirAnimationKeyByRange,
+  convertElixirNumberToString,
   LottieAbsoluteStyles,
 } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
@@ -15,8 +15,7 @@ import { styles } from './ElixirTitleButton.styles';
 import { elixirSlice, questSlice } from '../../../redux/slices';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { ELIXIR_SVG } from '../../../assets/svg';
-import { ANIMATIONS } from '../../../assets/animations';
+import { ANIMATIONS, POTION_FILL_ANIMATIONS } from '../../../assets/animations';
 
 export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
@@ -28,10 +27,14 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       state => state.quest,
     );
 
-    const ElixirAnimation = useMemo(
-      () => ELIXIR_SVG[getElixirAnimationKeyByRange(fullnessElixir ?? 0)],
-      [fullnessElixir],
-    );
+    const animation = useMemo(() => {
+      const from = convertElixirNumberToString(fullnessElixir - 1);
+      const to = convertElixirNumberToString(fullnessElixir);
+
+      return POTION_FILL_ANIMATIONS[
+        `${from}To${to}` as keyof typeof POTION_FILL_ANIMATIONS
+      ];
+    }, [fullnessElixir]);
 
     const buttonTitle = useMemo(() => {
       if (fullnessElixir && fullnessElixir >= 3) {
@@ -106,6 +109,12 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
           loop={false}
           style={LottieAbsoluteStyles(-30)}
         />
+        <Lottie
+          source={animation}
+          progress={1}
+          loop={false}
+          style={LottieAbsoluteStyles()}
+        />
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView
             buttonTitle={buttonTitle}
@@ -116,7 +125,6 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
                 {title}
               </ExtendedText>
             )}
-            <ElixirAnimation />
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>

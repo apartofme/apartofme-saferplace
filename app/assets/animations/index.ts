@@ -19,3 +19,17 @@ export const ANIMATIONS = {
   POTION_POUR_COURAGE: require('./potionPourCourage.json'),
   TIMER: require('./timer.json'),
 };
+
+export const POTION_FILL_ANIMATIONS = {
+  OneHalfToTwo: require('./potionFill/potionFill1.5-2.json'),
+  OneHalfToTwoHalf: require('./potionFill/potionFill1.5-2.5.json'),
+  OneToOneHalf: require('./potionFill/potionFill1-1.5.json'),
+  OneToTwo: require('./potionFill/potionFill1-2.json'),
+  TwoHalfToThree: require('./potionFill/potionFill2.5-3.json'),
+  TwoToThree: require('./potionFill/potionFill2-3.json'),
+  TwoToTwoHalf: require('./potionFill/potionFill2-2.5.json'),
+  ZeroHalfToOne: require('./potionFill/potionFill0.5-1.json'),
+  ZeroHalfToOneHalf: require('./potionFill/potionFill0.5-1.5.json'),
+  ZeroToOne: require('./potionFill/potionFill0-1.json'),
+  ZeroToThree: require('./potionFill/potionFill0-3.json'),
+};

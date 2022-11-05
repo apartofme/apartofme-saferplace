@@ -1,15 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
 import { AVATARS_SVG } from '../../../assets/svg';
-import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { LottieAbsoluteStyles } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
@@ -18,6 +20,8 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
   ({ navigation }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const appStatus = useAppState();
+    const animationRef = useRef<Lottie>(null);
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
 
@@ -55,15 +59,22 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
       }
     }, [isAdultPress, isChildPress, isSoundFXEnabled, isSoundStart]);
 
-    const appStatus = useAppState();
+    useEffect(() => {
+      if (isChildPress && isAdultPress) {
+        animationRef.current?.play();
+        return;
+      }
+      animationRef.current?.pause();
+    }, [isAdultPress, isChildPress]);
 
     useEffect(() => {
       if (appStatus !== 'active') {
         AudioPlayerHelper.stop();
+        animationRef.current?.pause();
       }
     }, [appStatus]);
 
-    useEffect(() => {
+    const onSubmit = useCallback(() => {
       if (isChildPress && isAdultPress) {
         dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir + 1));
         navigation.navigate('RecognitionDoubleInteractionSuccess');
@@ -75,26 +86,29 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
       <ImageBackground
         source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
+        <Lottie
+          ref={animationRef}
+          source={POTION_FILL_ANIMATIONS.OneToTwo}
+          onAnimationFinish={onSubmit}
+          loop={false}
+          style={LottieAbsoluteStyles(-30)}
+        />
         <SafeAreaView style={styles.container}>
           <ExtendedText style={styles.title} preset="title">
             {t('screens.recognition.double_interaction.title')}
           </ExtendedText>
-          {/* // TODO: change to animation */}
-          <View style={generalStyles.aiCenter}>
-            <ElixirThreeIcon />
-          </View>
           <ExtendedText style={styles.subtitle} preset="secondary-text">
             {t('screens.recognition.double_interaction.description')}
           </ExtendedText>
-          <View style={styles.buttonsContainer}>
-            <View onTouchStart={setChildPress} onTouchEnd={setChildPress}>
-              <ParentAvatarIcon width={90} height={90} />
-            </View>
-            <View onTouchStart={setAdultPress} onTouchEnd={setAdultPress}>
-              <ChildAvatarIcon width={90} height={90} />
-            </View>
-          </View>
         </SafeAreaView>
+        <View style={styles.buttonsContainer}>
+          <View onTouchStart={setChildPress} onTouchEnd={setChildPress}>
+            <ParentAvatarIcon width={90} height={90} reduceSize={false} />
+          </View>
+          <View onTouchStart={setAdultPress} onTouchEnd={setAdultPress}>
+            <ChildAvatarIcon width={90} height={90} reduceSize={false} />
+          </View>
+        </View>
       </ImageBackground>
     );
   };

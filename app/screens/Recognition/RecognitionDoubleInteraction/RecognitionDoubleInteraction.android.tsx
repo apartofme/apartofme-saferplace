@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import {
   GestureHandlerRootView,
   PanGestureHandler,
 } from 'react-native-gesture-handler';
+import Lottie from 'lottie-react-native';
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { AVATARS_SVG } from '../../../assets/svg';
-import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
 import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
@@ -17,11 +17,15 @@ import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
+import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
+import { LottieAbsoluteStyles } from '../../../utils';
 
 export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInteractionScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const appStatus = useAppState();
+    const animationRef = useRef<Lottie>(null);
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
 
@@ -59,7 +63,13 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
       }
     }, [isAdultPress, isChildPress, isSoundFXEnabled, isSoundStart]);
 
-    const appStatus = useAppState();
+    useEffect(() => {
+      if (isChildPress && isAdultPress) {
+        animationRef.current?.play();
+        return;
+      }
+      animationRef.current?.pause();
+    }, [isAdultPress, isChildPress]);
 
     useEffect(() => {
       if (appStatus !== 'active') {
@@ -67,7 +77,7 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
       }
     }, [appStatus]);
 
-    useEffect(() => {
+    const onSubmit = useCallback(() => {
       if (isChildPress && isAdultPress) {
         dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir + 1));
         navigation.navigate('RecognitionDoubleInteractionSuccess');
@@ -79,30 +89,34 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
       <ImageBackground
         source={CHARMS_BACKGROUNDS.ALTERNATIVE_GARDEN_BACKGROUND}
         style={generalStyles.flex}>
+        <Lottie
+          ref={animationRef}
+          source={POTION_FILL_ANIMATIONS.OneToTwo}
+          onAnimationFinish={onSubmit}
+          loop={false}
+          style={LottieAbsoluteStyles(-30)}
+        />
         <SafeAreaView style={styles.container}>
           <ExtendedText style={styles.title}>
             {t('screens.recognition.double_interaction.title')}
           </ExtendedText>
-          {/* // TODO: change to animation */}
-          <View style={generalStyles.aiCenter}>
-            <ElixirThreeIcon />
-          </View>
+
           <ExtendedText style={styles.subtitle}>
             {t('screens.recognition.double_interaction.description')}
           </ExtendedText>
-          <GestureHandlerRootView style={styles.buttonsContainer}>
-            <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
-              <View>
-                <ParentAvatarIcon width={90} height={90} />
-              </View>
-            </PanGestureHandler>
-            <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
-              <View>
-                <ChildAvatarIcon width={90} height={90} />
-              </View>
-            </PanGestureHandler>
-          </GestureHandlerRootView>
         </SafeAreaView>
+        <GestureHandlerRootView style={styles.buttonsContainer}>
+          <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
+            <View>
+              <ParentAvatarIcon width={90} height={90} reduceSize={false} />
+            </View>
+          </PanGestureHandler>
+          <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
+            <View>
+              <ChildAvatarIcon width={90} height={90} reduceSize={false} />
+            </View>
+          </PanGestureHandler>
+        </GestureHandlerRootView>
       </ImageBackground>
     );
   };

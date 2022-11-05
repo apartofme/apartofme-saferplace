@@ -64,6 +64,16 @@ export enum ElixirKeysType {
   ElixirThree = 'ElixirThreeIcon',
 }
 
+export enum ElixirNumbers {
+  Zero = 'Zero',
+  ZeroHalf = 'ZeroHalf',
+  One = 'One',
+  OneHalf = 'OneHalf',
+  Two = 'Two',
+  TwoHalf = 'TwoHalf',
+  Three = 'Three',
+}
+
 export type ElixirKeys = keyof typeof ELIXIR_SVG;
 export type AvatarsKeys = keyof typeof AVATARS_SVG;
 export type ImagesKeys = keyof typeof IMAGES;
@@ -100,4 +110,5 @@ export interface ISvgProps {
   height?: number;
   width?: number;
   color?: string;
+  reduceSize?: boolean;
 }

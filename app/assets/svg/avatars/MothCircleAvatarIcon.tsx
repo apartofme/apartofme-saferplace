@@ -7,11 +7,12 @@ import { ISvgProps } from '../../../utils/types';
 export const MothCircleAvatarIcon = ({
   width = 225,
   height = 231,
+  reduceSize = true,
 }: ISvgProps) => {
   return (
     <Svg
-      width={width * WINDOW_COEFFICIENT}
-      height={height * WINDOW_COEFFICIENT}
+      width={reduceSize ? width * WINDOW_COEFFICIENT : width}
+      height={reduceSize ? height * WINDOW_COEFFICIENT : height}
       viewBox="0 0 225 231"
       fill="none">
       <G clipPath="url(#clip0_2928_348698)">

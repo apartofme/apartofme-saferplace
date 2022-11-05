@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import Lottie from 'lottie-react-native';
@@ -6,7 +6,6 @@ import Lottie from 'lottie-react-native';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { ANIMATIONS } from '../../../assets/animations';
 import { BottomButtonView, ExtendedText } from '../../../components';
-import { useMount } from '../../../hooks';
 import { LottieAbsoluteStyles } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { MixingElixirPhaseType } from '../../../utils/types';
@@ -17,27 +16,32 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
   ({ navigation, route }) => {
     const { phase, selectedPlantArea, isFirstTimeGarden } = route.params;
 
-    const [titleKey, setTitleKey] = useState('');
-    const [buttonTitleKey, setButtonTitleKey] = useState('');
-
     const { t } = useTranslation();
+    navigation.goBack();
 
-    useMount(() => {
+    const titleKey = useMemo(() => {
       switch (phase) {
         case MixingElixirPhaseType.Mix:
-          setTitleKey('screens.mixing_exixir.elixir_instruction.mix');
-          setButtonTitleKey('buttons.tap_to_mix');
-          break;
+          return 'screens.mixing_exixir.elixir_instruction.mix';
         case MixingElixirPhaseType.Open:
-          setTitleKey('screens.mixing_exixir.elixir_instruction.open');
-          setButtonTitleKey('buttons.tap_to_open');
-          break;
+          return 'screens.mixing_exixir.elixir_instruction.open';
         default:
-          setTitleKey('screens.mixing_exixir.elixir_instruction.pour');
-          setButtonTitleKey('buttons.tap_to_pour');
+          return 'screens.mixing_exixir.elixir_instruction.pour';
           break;
       }
-    });
+    }, [phase]);
+
+    const buttonTitleKey = useMemo(() => {
+      switch (phase) {
+        case MixingElixirPhaseType.Mix:
+          return 'buttons.tap_to_mix';
+        case MixingElixirPhaseType.Open:
+          return 'buttons.tap_to_open';
+        default:
+          return 'buttons.tap_to_pour';
+          break;
+      }
+    }, [phase]);
 
     const onSubmit = useCallback(() => {
       navigation.push('ElixirAnimation', {
@@ -53,7 +57,7 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
           return (
             <Lottie
               source={ANIMATIONS.POTION_MIX}
-              progress={1}
+              progress={0}
               loop={false}
               style={LottieAbsoluteStyles(-15)}
             />
@@ -61,8 +65,8 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
         case MixingElixirPhaseType.Open:
           return (
             <Lottie
-              source={ANIMATIONS.POTION_MIX}
-              progress={1}
+              source={ANIMATIONS.POTION_OPEN_BOTTLE}
+              progress={0}
               loop={false}
               style={LottieAbsoluteStyles(-15)}
             />
