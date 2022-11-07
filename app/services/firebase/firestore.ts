@@ -1,5 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import moment from 'moment';
+import _ from 'lodash';
 
 import {
   INITIAL_ELIXIR,
@@ -7,40 +8,68 @@ import {
   INITIAL_PLANT_AREA,
   INITIAL_QUESTS,
 } from '../../constants/progress';
-import { IShortSignUpData, ISignUpData } from '../../redux/types';
 import {
   IElixirProgress,
   IPlantProgress,
   IQuestProgress,
 } from '../../utils/types';
-
 import { getCurrentUser } from './auth';
-import { getDeviceToken } from './notifications';
-import { IFirebaseUpdateUserResponse } from './types';
+import {
+  FirestoreCollections,
+  IFirestoreChild,
+  IFirestoreChildrenData,
+} from './types';
 import { IFirestoreErrorResponse } from './types';
+import { IChild } from '../../models/IChild';
+import { IParent } from '../../models/IParent';
+import { getDeviceToken } from './notifications';
 
-export const firestoreCreateUser = async () => {
+export const firestoreSaveDeviceToken = async () => {
   const userId = getCurrentUser();
   const token = await getDeviceToken();
 
   await firestore()
-    .collection('users')
+    .collection(FirestoreCollections.Parents)
     .doc(userId)
-    .set({
+    .update({
       tokens: firestore.FieldValue.arrayUnion(token),
     });
 };
 
-export const firestoreCreateUserProgress = async () => {
+export const firestoreCreateParent = async (parent: IParent) => {
+  const token = await getDeviceToken();
+
+  await firestore()
+    .collection(FirestoreCollections.Parents)
+    .doc(parent.uid)
+    .set({ ...parent, tokens: firestore.FieldValue.arrayUnion(token) });
+};
+
+export const firestoreCreateChild = async (child: IChild) => {
+  const FirestoreCreateChildResponse: IFirestoreErrorResponse = {
+    error: null,
+  };
+  try {
+    await firestore()
+      .collection(FirestoreCollections.Children)
+      .doc(child.uid)
+      .set(child);
+  } catch {
+    FirestoreCreateChildResponse.error = 'Create child error';
+  }
+  return FirestoreCreateChildResponse;
+};
+
+export const firestoreCreateChildProgress = async (childId: string) => {
   const FirestoreCreateUserProgressResponse: IFirestoreErrorResponse = {
     error: null,
   };
-  const userId = getCurrentUser();
+
   const nowSeconds = moment().format('X');
   try {
     await firestore()
-      .collection('progress')
-      .doc(userId)
+      .collection(FirestoreCollections.NewProgress)
+      .doc(childId)
       .set({
         quests: { ...INITIAL_QUESTS, lastDayUpdate: nowSeconds },
         plants: {
@@ -56,66 +85,86 @@ export const firestoreCreateUserProgress = async () => {
   return FirestoreCreateUserProgressResponse;
 };
 
-export const firestoreUpdateUserProgress = async (
+export const firestoreUpdateChildProgress = async (
+  childId: string,
   directory: string,
   values: IElixirProgress | IQuestProgress | IPlantProgress,
 ) => {
-  const FirestoreUpdateUserProgressResponse: IFirestoreErrorResponse = {
+  const FirestoreUpdateChildProgressResponse: IFirestoreErrorResponse = {
     error: null,
   };
-  const userId = getCurrentUser();
-  const userDocument = firestore().collection('progress').doc(userId);
+
+  const childDocument = await firestore()
+    .collection(FirestoreCollections.NewProgress)
+    .doc(childId);
 
   try {
-    userDocument.update({ [directory]: values });
-  } catch (e) {
-    FirestoreUpdateUserProgressResponse.error = 'firestoreUpdateUserProgress';
+    childDocument.update({ [directory]: values });
+  } catch {
+    FirestoreUpdateChildProgressResponse.error = 'firestoreUpdateChildProgress';
   }
-  return FirestoreUpdateUserProgressResponse;
+  return FirestoreUpdateChildProgressResponse;
 };
 
-export const firestoreGetUserProgress = async () => {
-  const userId = getCurrentUser();
-  return await firestore().collection('progress').doc(userId).get();
-};
-
-export const firestoreUpdateUser = async (data: {
-  parent?: Partial<ISignUpData>;
-  child?: Partial<IShortSignUpData>;
-}) => {
-  const updateUserResponse: IFirebaseUpdateUserResponse = {
+export const firestoreGetChildProgress = async (childId: string) => {
+  const FirestoreGetChildProgressResponse: IFirestoreErrorResponse = {
     error: null,
   };
-  const userId = getCurrentUser();
-  const userDocument = firestore().collection('users').doc(userId);
-
-  if (data.child) {
-    userDocument
-      .update({ child: data.child })
-      .catch(error => (updateUserResponse.error = error));
+  try {
+    return await firestore()
+      .collection(FirestoreCollections.NewProgress)
+      .doc(childId)
+      .get();
+  } catch {
+    FirestoreGetChildProgressResponse.error = 'firestoreGetChildProgress';
   }
+  return FirestoreGetChildProgressResponse;
+};
 
-  if (data.parent) {
-    userDocument
-      .update({ parent: data.parent })
-      .catch(error => (updateUserResponse.error = error));
-  }
+export const firestoreUpdateUser = async (
+  collection: FirestoreCollections.Children | FirestoreCollections.Parents,
+  data: IParent | IChild,
+) => {
+  const updateUserResponse: IFirestoreErrorResponse = {
+    error: null,
+  };
+
+  await firestore()
+    .collection(collection)
+    .doc(data.uid)
+    .update(data)
+    .catch(error => (updateUserResponse.error = error));
+
   return updateUserResponse;
 };
 
-export const firestoreGetUser = async () => {
-  const userId = getCurrentUser();
-  return await firestore().collection('users').doc(userId).get();
+export const firestoreGetParent = async () => {
+  const parentId = getCurrentUser();
+  return await firestore()
+    .collection(FirestoreCollections.Parents)
+    .doc(parentId)
+    .get();
 };
 
-export const firestoreSaveDeviceToken = async () => {
-  const userId = getCurrentUser();
-  const token = await getDeviceToken();
+export const firestoreGetParentChildren = async () => {
+  const parentId = getCurrentUser();
 
-  await firestore()
-    .collection('users')
-    .doc(userId)
-    .update({
-      tokens: firestore.FieldValue.arrayUnion(token),
-    });
+  const childrenData: IFirestoreChildrenData = await firestore()
+    .collection(FirestoreCollections.Children)
+    .where('parentId', '==', parentId)
+    .get();
+
+  const children = _.map(
+    childrenData._docs,
+    (item: IFirestoreChild) => item._data,
+  );
+
+  return children;
+};
+
+export const firestoreGetChildByUid = async (childId: string) => {
+  return await firestore()
+    .collection(FirestoreCollections.Children)
+    .doc(childId)
+    .get();
 };

@@ -23,7 +23,6 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   } = useAppSelector(state => state.quest);
   const isCurrentDayQuestsStackEmpty = !currentDayQuestsStack;
   const user = useAppSelector(state => state.user);
-  const cacheUser = useAppSelector(state => state.cache.auth);
   const [isStartLoading, setIsStartLoading] = useState(false);
 
   const { isSaveAllQuests, isSaveTranslations } = useAppSelector(
@@ -55,8 +54,10 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
         navigation.replace('GardenStack');
         return;
       }
-      if (cacheUser.parent?.avatar && !cacheUser.child?.avatar) {
-        navigation.replace('JointOnboardingStack');
+      if (user.parent && !user.child) {
+        navigation.replace('ParentsOnboardingStack', {
+          screen: 'CharmsIntroducing',
+        });
         return;
       }
       navigation.replace('ParentsOnboardingStack');

@@ -13,6 +13,7 @@ export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
   isDisabledButton,
   isArrow,
   style,
+  preset = 'default',
 }) => {
   return (
     <View style={styles.container}>
@@ -23,6 +24,7 @@ export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
         disabled={isDisabledButton}
         isArrow={isArrow}
         style={styles.button}
+        preset={preset}
       />
     </View>
   );

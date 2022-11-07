@@ -16,11 +16,11 @@ const INITIAL_STATE: IAppState = {
     isRegisterUser: false,
     isSaveAllQuests: false,
     isSaveTranslations: false,
-    isUpdateChild: false,
-    isUpdateParent: false,
+    isEditChild: false,
+    isEditParent: false,
     isDeleteAccount: false,
     isChangePassword: false,
-    isSaveChild: false,
+    isCreateChild: false,
   },
   errors: {
     getUser: null,
@@ -28,11 +28,11 @@ const INITIAL_STATE: IAppState = {
     registerUser: null,
     saveAllQuests: null,
     saveTranslations: null,
-    updateChild: null,
-    updateParent: null,
+    editChild: null,
+    editParent: null,
     deleteAccount: null,
     changePassword: null,
-    saveChild: null,
+    createChild: null,
   },
 };
 
@@ -92,43 +92,43 @@ export const appSlice = createSlice({
       state.errors[ErrorType.saveAllQuests] = action.payload;
     });
 
-    // Update child
-    builder.addCase(userSlice.actions.updateChild, state => {
-      state.loading[LoadingType.isUpdateChild] = true;
-      state.errors[ErrorType.updateChild] = null;
+    // Edit child
+    builder.addCase(userSlice.actions.editChild, state => {
+      state.loading[LoadingType.isEditChild] = true;
+      state.errors[ErrorType.editChild] = null;
     });
-    builder.addCase(userSlice.actions.updateChildSuccess, state => {
-      state.loading[LoadingType.isUpdateChild] = false;
+    builder.addCase(userSlice.actions.editChildSuccess, state => {
+      state.loading[LoadingType.isEditChild] = false;
     });
-    builder.addCase(userSlice.actions.updateChildError, (state, action) => {
-      state.loading[LoadingType.isUpdateChild] = false;
-      state.errors[ErrorType.updateChild] = action.payload;
-    });
-
-    // Update parent
-    builder.addCase(userSlice.actions.updateParent, state => {
-      state.loading[LoadingType.isUpdateParent] = true;
-      state.errors[ErrorType.updateParent] = null;
-    });
-    builder.addCase(userSlice.actions.updateParentSuccess, state => {
-      state.loading[LoadingType.isUpdateParent] = false;
-    });
-    builder.addCase(userSlice.actions.updateParentError, (state, action) => {
-      state.loading[LoadingType.isUpdateParent] = false;
-      state.errors[ErrorType.updateParent] = action.payload;
+    builder.addCase(userSlice.actions.editChildError, (state, action) => {
+      state.loading[LoadingType.isEditChild] = false;
+      state.errors[ErrorType.editChild] = action.payload;
     });
 
-    // Save child
-    builder.addCase(userSlice.actions.saveChild, state => {
-      state.loading[LoadingType.isSaveChild] = true;
-      state.errors[ErrorType.saveChild] = null;
+    // Edit parent
+    builder.addCase(userSlice.actions.editParent, state => {
+      state.loading[LoadingType.isEditParent] = true;
+      state.errors[ErrorType.editParent] = null;
     });
-    builder.addCase(userSlice.actions.saveChildSuccess, state => {
-      state.loading[LoadingType.isSaveChild] = false;
+    builder.addCase(userSlice.actions.editParentSuccess, state => {
+      state.loading[LoadingType.isEditParent] = false;
     });
-    builder.addCase(userSlice.actions.saveChildError, (state, action) => {
-      state.loading[LoadingType.isSaveChild] = false;
-      state.errors[ErrorType.saveChild] = action.payload;
+    builder.addCase(userSlice.actions.editParentError, (state, action) => {
+      state.loading[LoadingType.isEditParent] = false;
+      state.errors[ErrorType.editParent] = action.payload;
+    });
+
+    // Create child
+    builder.addCase(userSlice.actions.createChild, state => {
+      state.loading[LoadingType.isCreateChild] = true;
+      state.errors[ErrorType.createChild] = null;
+    });
+    builder.addCase(userSlice.actions.createChildSuccess, state => {
+      state.loading[LoadingType.isCreateChild] = false;
+    });
+    builder.addCase(userSlice.actions.createChildError, (state, action) => {
+      state.loading[LoadingType.isCreateChild] = false;
+      state.errors[ErrorType.createChild] = action.payload;
     });
 
     // Delete account

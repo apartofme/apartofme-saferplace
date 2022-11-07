@@ -1,5 +1,6 @@
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../constants/window';
 import { COLORS } from '../../themes/colors';
 import { hexTransparency } from '../../utils';
 
@@ -15,8 +16,8 @@ export const styles = StyleSheet.create<ICheckBoxStyles>({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 24,
-    marginBottom: 24,
+    padding: 24 * WINDOW_COEFFICIENT,
+    marginBottom: 24 * WINDOW_COEFFICIENT,
     borderRadius: 24,
     backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
     borderWidth: 1,
@@ -24,7 +25,7 @@ export const styles = StyleSheet.create<ICheckBoxStyles>({
   },
   title: {
     flex: 1,
-    marginRight: 32,
+    marginRight: 32 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
   },
 

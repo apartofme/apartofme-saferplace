@@ -54,7 +54,7 @@ export const styles = StyleSheet.create<IMainMenuStyles>({
     borderBottomColor: COLORS.LIGHT_GREY,
   },
   menuItemsContainer: {
-    marginTop: 52 * WINDOW_COEFFICIENT,
+    paddingTop: 52 * WINDOW_COEFFICIENT,
   },
   logOutContainer: {
     alignItems: 'center',

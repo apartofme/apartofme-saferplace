@@ -1,11 +1,12 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { firestoreUpdateUserProgress } from '../services/firebase';
 import { plantSlice } from '../redux/slices';
 import { IPlantArea } from '../redux/types';
 import { IPlant } from '../models/IPlant';
 import { PlantsType } from '../utils/types';
+import { firestoreUpdateChildProgress } from '../services/firebase';
+import { IChild } from '../models/IChild';
 
 function* watchUpdatePlantArea({ payload }: PayloadAction<IPlant>) {
   const plantArea: IPlantArea = yield select(state => state.plant.plantArea);
@@ -20,9 +21,11 @@ function* watchUpdatePlantArea({ payload }: PayloadAction<IPlant>) {
     [payload.plantArea]: { ...payload },
   };
 
+  const currentChild: IChild = yield select(state => state.user.child);
+
   // TODO: change to if
   try {
-    yield call(firestoreUpdateUserProgress, 'plants', {
+    yield call(firestoreUpdateChildProgress, currentChild.uid, 'plants', {
       plantArea: newPlantArea,
       plantsStack: newPlantsStack,
     });

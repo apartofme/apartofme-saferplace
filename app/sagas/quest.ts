@@ -7,11 +7,12 @@ import {
   ALL_QUESTS_STACK,
   IInterruptedQuestLine,
 } from '../redux/types/questTypes';
-import { firestoreUpdateUserProgress } from '../services/firebase';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
 import { IQuestProgress } from '../utils/types';
 import { RootState } from '../redux';
+import { firestoreUpdateChildProgress } from '../services/firebase';
+import { IChild } from '../models/IChild';
 
 const questStateSelector = (state: RootState) => {
   return {
@@ -25,10 +26,11 @@ const questStateSelector = (state: RootState) => {
 
 function* watchUpdateCurrentDay({ payload }: PayloadAction<number>) {
   const currentQuestState: IQuestProgress = yield select(questStateSelector);
+  const curentChild: IChild = yield select(state => state.user.child);
 
   // TODO: change to if
   try {
-    yield call(firestoreUpdateUserProgress, 'quests', {
+    yield call(firestoreUpdateChildProgress, curentChild.uid, 'quests', {
       ...currentQuestState,
       currentDay: payload,
     });
@@ -45,7 +47,7 @@ function* watchSaveCompletedQuestsId({ payload }: PayloadAction<number>) {
   const currentQuestState: IQuestProgress = yield select(state =>
     questStateSelector(state),
   );
-
+  const curentChild: IChild = yield select(state => state.user.child);
   const newCompletedQuestsId = [...currentQuestState.completedQuestsId];
 
   if (_.findIndex(currentQuestState.completedQuestsId, payload) === -1) {
@@ -54,7 +56,7 @@ function* watchSaveCompletedQuestsId({ payload }: PayloadAction<number>) {
 
   // TODO: change to if
   try {
-    yield call(firestoreUpdateUserProgress, 'quests', {
+    yield call(firestoreUpdateChildProgress, curentChild.uid, 'quests', {
       ...currentQuestState,
       completedQuestsId: newCompletedQuestsId,
     });
@@ -75,10 +77,11 @@ function* watchUpdateInterruptedQuestLine({
   const currentQuestState: IQuestProgress = yield select(state =>
     questStateSelector(state),
   );
+  const curentChild: IChild = yield select(state => state.user.child);
 
   // TODO: change to if
   try {
-    yield call(firestoreUpdateUserProgress, 'quests', {
+    yield call(firestoreUpdateChildProgress, curentChild.uid, 'quests', {
       ...currentQuestState,
       interruptedQuestLine: payload,
     });
@@ -97,10 +100,11 @@ function* watchSetCurrentDayQuestsStack() {
   const currentQuestState: IQuestProgress = yield select(state =>
     questStateSelector(state),
   );
+  const curentChild: IChild = yield select(state => state.user.child);
 
   // TODO: change to if
   try {
-    yield call(firestoreUpdateUserProgress, 'quests', {
+    yield call(firestoreUpdateChildProgress, curentChild.uid, 'quests', {
       ...currentQuestState,
       currentDayQuestsStack: ALL_QUESTS_STACK[currentQuestState.currentDay],
     });
@@ -123,10 +127,11 @@ function* watchUpdateCurrentDayQuestsStack() {
     ...currentQuestState.currentDayQuestsStack,
   ];
   newcCurrentDayQuestsStack.pop();
+  const curentChild: IChild = yield select(state => state.user.child);
 
   // TODO: change to if
   try {
-    yield call(firestoreUpdateUserProgress, 'quests', {
+    yield call(firestoreUpdateChildProgress, curentChild.uid, 'quests', {
       ...currentQuestState,
       currentDayQuestsStack: newcCurrentDayQuestsStack,
     });
@@ -147,10 +152,11 @@ function* watchSetLastDayUpdate() {
   );
 
   const nowSeconds = +moment().format('X');
+  const curentChild: IChild = yield select(state => state.user.child);
 
   // TODO: change to if
   try {
-    yield call(firestoreUpdateUserProgress, 'quests', {
+    yield call(firestoreUpdateChildProgress, curentChild.uid, 'quests', {
       ...currentQuestState,
       lastDayUpdate: nowSeconds,
     });
@@ -159,6 +165,27 @@ function* watchSetLastDayUpdate() {
   } catch {
     yield put(
       questSlice.actions.setLastDayUpdateError('setLastDayUpdateError'),
+    );
+  }
+}
+
+function* watchSaveProgress() {
+  const currentQuestState: IQuestProgress = yield select(state =>
+    questStateSelector(state),
+  );
+  const curentChild: IChild = yield select(state => state.user.child);
+
+  try {
+    yield call(firestoreUpdateChildProgress, curentChild.uid, 'quests', {
+      ...currentQuestState,
+    });
+
+    yield put(questSlice.actions.updateCurrentDayQuestsStackSuccess());
+  } catch {
+    yield put(
+      questSlice.actions.updateCurrentDayQuestsStackError(
+        'updateCurrentDayQuestsStackError',
+      ),
     );
   }
 }
@@ -181,5 +208,6 @@ export function* questSaga() {
     questSlice.actions.setCurrentDayQuestsStack,
     watchSetCurrentDayQuestsStack,
   );
+  yield takeLatest(questSlice.actions.saveProgress, watchSaveProgress);
   yield takeLatest(questSlice.actions.setLastDayUpdate, watchSetLastDayUpdate);
 }

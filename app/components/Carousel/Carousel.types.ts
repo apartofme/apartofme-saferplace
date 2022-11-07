@@ -1,5 +1,7 @@
+import { RefObject } from 'react';
 import { ViewProps, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
+import { ICarouselInstance } from 'react-native-reanimated-carousel';
 
 import {
   AvatarsNameType,
@@ -17,6 +19,7 @@ export interface ICarouselProps extends ViewProps {
   data: ReadonlyArray<ICarouselItem>;
   preset: CarouselType;
   defaultIndex?: number;
+  carouselRef?: RefObject<ICarouselInstance>;
   setIndex?: (index: number) => void;
   carouselStyle?: ViewStyle;
   carouselItemStyle?: ViewStyle;

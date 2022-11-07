@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -7,15 +6,14 @@ import { IManageProfilesScreenProps } from './ManageProfiles.types';
 import { styles } from './ManageProfiles.styles';
 import { generalStyles } from '../../../utils/styles';
 import {
+  AvatarList,
   BottomButtonView,
   ExtendedText,
   MainHeader,
 } from '../../../components';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
-import { UserImageTitle } from './components';
 import { SVG } from '../../../assets/svg';
-import { UserType } from '../../../utils/types';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -24,14 +22,8 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { parent, child } = useAppSelector(state => state.user);
-
-  const goToEditProfile = useCallback(
-    (type: UserType) => {
-      navigation.navigate('EditProfile', { data: { type } });
-    },
-    [navigation],
-  );
+  const parentData = useAppSelector(state => state.user.parent);
+  const children = useAppSelector(state => state.user.children);
 
   return (
     <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
@@ -40,23 +32,14 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
-        <BottomButtonView buttonTitle={t('buttons.done')} onSubmit={_.noop}>
+        <BottomButtonView
+          buttonTitle={t('buttons.done')}
+          onSubmit={navigation.goBack}>
           <View style={styles.container}>
             <ExtendedText preset="large-title" style={styles.title}>
               {t('screens.menu.manage_profiles.title')}
             </ExtendedText>
-            <View style={styles.imageContainer}>
-              <UserImageTitle
-                title={parent?.nickname ?? ''}
-                image={parent?.avatar ?? 'CircleRabbitIcon'}
-                onPress={() => goToEditProfile(UserType.Parent)}
-              />
-              <UserImageTitle
-                title={child?.nickname ?? ''}
-                image={child?.avatar ?? 'CircleBearIcon'}
-                onPress={() => goToEditProfile(UserType.Child)}
-              />
-            </View>
+            <AvatarList data={children} parent={parentData} />
           </View>
         </BottomButtonView>
       </SafeAreaView>

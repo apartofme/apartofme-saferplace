@@ -38,7 +38,7 @@ import { WhiteBackArrowIcon } from './WhiteBackArrowIcon';
 import { WhiteBinIcon } from './WhiteBinIcon';
 import { WhiteCrossIcon } from './WhiteCrossIcon';
 import { WhiteGearIcon } from './WhiteGearIcon';
-import { WhitePencilIcon } from './WhitePencilIcon';
+import { PencilIcon } from './PencilIcon';
 import { WhiteRightArrowIcon } from './WhiteRightArrowIcon';
 import {
   BirdOnBranchesIcon,
@@ -228,6 +228,7 @@ import { DancingCharmIcon } from './favoriteCharms/DancingCharmIcon';
 import { TheCharmOfGroundingIcon } from './favoriteCharms/TheCharmOfGroundingIcon';
 import { TheCharmOfSanctuaryIcon } from './favoriteCharms/TheCharmOfSanctuaryIcon';
 import { TruthCards } from './TruthCards';
+import { RoundPlussIcon } from './RoundPlussIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -263,6 +264,7 @@ export const SVG = {
   PainedBirdTreeIcon: PainedBirdTreeIcon,
   RoundPauseButtonIcon: RoundPauseButtonIcon,
   RoundTriangleButtonIcon: RoundTriangleButtonIcon,
+  RoundPlussIcon: RoundPlussIcon,
   SkipNextIcon: SkipNextIcon,
   SkipPreviousIcon: SkipPreviousIcon,
   StandingUpIcon: StandingUpIcon,
@@ -271,7 +273,7 @@ export const SVG = {
   WhiteBottomArrowIcon: WhiteBottomArrowIcon,
   WhiteCrossIcon: WhiteCrossIcon,
   WhiteGearIcon: WhiteGearIcon,
-  WhitePencilIcon: WhitePencilIcon,
+  PencilIcon: PencilIcon,
   WhiteRightArrowIcon: WhiteRightArrowIcon,
   WhiteTopArrowIcon: WhiteTopArrowIcon,
   WiseGuideIcon: WiseGuideIcon,
