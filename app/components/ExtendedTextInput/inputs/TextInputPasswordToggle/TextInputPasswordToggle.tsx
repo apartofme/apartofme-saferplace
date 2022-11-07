@@ -25,7 +25,7 @@ export const TextInputPasswordToggle: React.FC<TextInputProps> = ({
   const Icon = isPasswordHidden ? OpenedEyeIcon : CrossedOutEyeIcon;
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[style, styles.container]}>
       <TextInput
         {...rest}
         secureTextEntry={isPasswordHidden}

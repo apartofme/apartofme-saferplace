@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, ScrollView, View } from 'react-native';
 import { Formik } from 'formik';
@@ -30,6 +30,8 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
 
   const dispatch = useAppDispatch();
 
+  const [isActive, setIsActive] = useState(false);
+
   const onSubmit = useCallback(
     (currentPassword, newPassword) => {
       dispatch(
@@ -55,7 +57,15 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
           }}
           validationSchema={ChangePasswordValidationSchema}
           onSubmit={onSubmit}>
-          {({ values, handleChange, isValid, dirty, errors }) => (
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            isValid,
+            dirty,
+            errors,
+            touched,
+          }) => (
             <ExtendedKeyboardAvoidingView>
               <BottomButtonView
                 buttonTitle={t('buttons.reset_password')}
@@ -63,7 +73,9 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                 onSubmit={() =>
                   onSubmit(values.currentPassword, values.newPassword)
                 }>
-                <ScrollView>
+                <ScrollView
+                  showsVerticalScrollIndicator={false}
+                  scrollEnabled={isActive}>
                   <MainHeader
                     leftIcon={<WhiteBackArrowIcon />}
                     onLeftIconPress={navigation.goBack}
@@ -78,33 +90,55 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                       {t('screens.menu.change_password.description')}
                     </ExtendedText>
 
-                    <View style={styles.inputContainer}>
+                    <View style={styles.mt4}>
                       <ExtendedTextInput
-                        error={errors.currentPassword}
+                        maxLength={30}
                         type={ExtendedTextInputType.Password}
-                        style={styles.input}
+                        style={styles.mt16}
                         placeholder={t('placeholders.enter_current_password')}
                         onChangeText={handleChange('currentPassword')}
+                        onBlur={handleBlur('currentPassword')}
                         placeholderTextColor={COLORS.LIGHT_GREY}
+                        setIsActive={setIsActive}
                         value={values.currentPassword}
+                        error={
+                          errors.currentPassword ?? touched.currentPassword
+                            ? errors.currentPassword
+                            : ''
+                        }
                       />
                       <ExtendedTextInput
-                        error={errors.newPassword}
+                        maxLength={30}
                         type={ExtendedTextInputType.Password}
-                        style={styles.input}
+                        style={styles.mt16}
                         placeholder={t('placeholders.enter_new_password')}
                         onChangeText={handleChange('newPassword')}
+                        onBlur={handleBlur('newPassword')}
                         placeholderTextColor={COLORS.LIGHT_GREY}
+                        setIsActive={setIsActive}
                         value={values.newPassword}
+                        error={
+                          errors.newPassword && touched.newPassword
+                            ? errors.newPassword
+                            : ''
+                        }
                       />
                       <ExtendedTextInput
-                        error={errors.confirmNewPassword}
+                        maxLength={30}
                         type={ExtendedTextInputType.Password}
-                        style={styles.input}
+                        style={styles.mt16}
                         placeholder={t('placeholders.confirm_new_password')}
                         onChangeText={handleChange('confirmNewPassword')}
+                        onBlur={handleBlur('confirmNewPassword')}
                         placeholderTextColor={COLORS.LIGHT_GREY}
+                        setIsActive={setIsActive}
                         value={values.confirmNewPassword}
+                        error={
+                          errors.confirmNewPassword &&
+                          touched.confirmNewPassword
+                            ? errors.confirmNewPassword
+                            : ''
+                        }
                       />
                     </View>
                   </View>
