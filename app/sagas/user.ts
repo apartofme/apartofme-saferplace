@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import moment from 'moment';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
@@ -35,7 +37,6 @@ import {
 import { StaticNavigator } from '../services/navigator';
 import { IParent } from '../models/IParent';
 import { IChild } from '../models/IChild';
-import moment from 'moment';
 import { ONE_DAY_SECONDS } from '../constants/time';
 
 function* watchLoginUser({
@@ -140,9 +141,26 @@ function* watchEditParent({ payload: { nickname } }: PayloadAction<IEditUser>) {
   }
 }
 
-function* watchEditChild({ payload: { nickname } }: PayloadAction<IEditUser>) {
+function* watchEditChild({
+  payload: { nickname, userId },
+}: PayloadAction<IEditUser>) {
   const child: IChild = yield select(state => state.user.child);
-  const newChild: IChild = { ...child, nickname };
+  const children: IChild[] = yield select(state => state.user.children);
+
+  let newChild = child;
+
+  if (child.uid !== userId) {
+    const editedChildIdx = _.findIndex(
+      children,
+      (item: IChild) => item.uid === userId,
+    );
+    if (editedChildIdx !== -1) {
+      newChild = { ...children[editedChildIdx], nickname };
+    }
+  } else {
+    newChild = { ...child, nickname };
+  }
+
   const EditChildResponse: IFirestoreErrorResponse = yield call(
     firestoreUpdateUser,
     FirestoreCollections.Children,
