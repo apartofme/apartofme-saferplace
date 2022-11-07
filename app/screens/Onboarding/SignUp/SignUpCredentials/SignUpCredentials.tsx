@@ -122,7 +122,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         onBlur={handleBlur('email')}
                         placeholder={t('placeholders.enter_email')}
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
-                        maxLength={39}
+                        maxLength={30}
                         error={
                           errors.email && touched.email ? errors.email : ''
                         }
@@ -136,6 +136,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         placeholder={t('placeholders.create_password')}
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
                         style={styles.mt16}
+                        maxLength={30}
                         error={
                           errors.password && touched.password
                             ? errors.password

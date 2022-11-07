@@ -126,7 +126,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       placeholderTextColor={COLORS.BRILLIANT_WHITE}
                       type={ExtendedTextInputType.Email}
                       setIsActive={setIsActive}
-                      maxLength={39}
+                      maxLength={30}
                       error={errors.email && touched.email ? errors.email : ''}
                     />
                     <ExtendedTextInput
@@ -138,6 +138,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       placeholder={t('placeholders.enter_password')}
                       placeholderTextColor={COLORS.BRILLIANT_WHITE}
                       setIsActive={setIsActive}
+                      maxLength={30}
                       error={
                         errors.password && touched.password
                           ? errors.password

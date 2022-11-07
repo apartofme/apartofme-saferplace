@@ -77,7 +77,7 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
                     onBlur={handleBlur('email')}
                     placeholder={t('placeholders.enter_email')}
                     placeholderTextColor={COLORS.BRILLIANT_WHITE}
-                    maxLength={39}
+                    maxLength={30}
                     error={errors.email && touched.email ? errors.email : ''}
                   />
                 </BottomButtonView>

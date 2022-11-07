@@ -92,6 +92,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
 
                     <View style={styles.mt4}>
                       <ExtendedTextInput
+                        maxLength={30}
                         type={ExtendedTextInputType.Password}
                         style={styles.mt16}
                         placeholder={t('placeholders.enter_current_password')}
@@ -107,6 +108,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                         }
                       />
                       <ExtendedTextInput
+                        maxLength={30}
                         type={ExtendedTextInputType.Password}
                         style={styles.mt16}
                         placeholder={t('placeholders.enter_new_password')}
@@ -122,6 +124,7 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
                         }
                       />
                       <ExtendedTextInput
+                        maxLength={30}
                         type={ExtendedTextInputType.Password}
                         style={styles.mt16}
                         placeholder={t('placeholders.confirm_new_password')}
