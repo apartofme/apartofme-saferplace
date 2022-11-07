@@ -7,6 +7,7 @@ import { CHARMS_BACKGROUNDS } from '../../../assets';
 import {
   useAppSelector,
   useAppState,
+  useMount,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
 } from '../../../hooks';
@@ -18,6 +19,10 @@ import { useIsFocused } from '@react-navigation/native';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { CHARMS_SVG } from '../../../assets/svg';
+import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
+import { trackEvent } from '../../../services/firebase/analytics';
+import moment from 'moment';
+import { CHARM_ENDED, ILLUSTRATION_ICON } from '../../../constants/quest';
 
 export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   route,
@@ -54,6 +59,16 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   const isSoundFXEnabled = useAppSelector(
     state => state.settings.settings.audioSettings?.isSoundFXEnabled,
   );
+
+  const email = useAppSelector(state => state.user.parent?.email);
+
+  useMount(() => {
+    trackEvent(FirebaseAnalyticsEventsType.CharmEnded, {
+      name: image?.split(ILLUSTRATION_ICON)[0] ?? CHARM_ENDED,
+      email: email ?? '',
+      datetime: moment().format('d-m-Y H:i:s'),
+    });
+  });
 
   useEffect(() => {
     if (isFocused && appStatus === 'active' && isSoundFXEnabled) {

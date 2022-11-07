@@ -30,8 +30,14 @@ export interface IFirebaseAuthError {
 }
 
 export enum FirebaseAnalyticsEventsType {
-  ButtonPress = 'buttonPress',
+  ButtonPress = 'button_press',
+  CharmStarted = 'charm_started',
+  CharmEnded = 'charm_ended',
+  PreCharmDailyCheckIn = 'pre_charm_daily_check_in',
+  PostCharmDailyCheckIn = 'post_charm_check_in',
+  Feedback = 'feedback',
 }
+
 export interface IFirestoreParent {
   _data: IParent;
 }

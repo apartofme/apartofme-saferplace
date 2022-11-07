@@ -17,9 +17,17 @@ import { ExtendedButton, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
-import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
+import {
+  useAppSelector,
+  useMount,
+  useNavigateNextQuest,
+  useRenderQuestHeader,
+} from '../../../hooks';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { CHARMS_SVG, SVG } from '../../../assets/svg';
+import { trackEvent } from '../../../services/firebase/analytics';
+import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
+import moment from 'moment';
 
 const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
 const WhiteTopArrowIcon = SVG.WhiteTopArrowIcon;
@@ -45,6 +53,16 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
 
   const [isTopPosition, setIsTopPosition] = useState(true);
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
+
+  const email = useAppSelector(state => state.user.parent?.email);
+
+  useMount(() => {
+    trackEvent(FirebaseAnalyticsEventsType.CharmStarted, {
+      name: title,
+      email: email ?? '',
+      datetime: moment().format('d-m-Y H:i:s'),
+    });
+  });
 
   const onSubmit = useNavigateNextQuest();
 

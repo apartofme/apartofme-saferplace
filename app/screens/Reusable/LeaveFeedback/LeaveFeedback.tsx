@@ -6,6 +6,8 @@ import { ILeaveFeedbackScreenProps } from './LeaveFeedback.types';
 import { styles } from './LeaveFeedback.styles';
 import { generalStyles } from '../../../utils/styles';
 import {
+  useAppSelector,
+  useMount,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
@@ -17,6 +19,12 @@ import {
   ExtendedText,
   MultilineTextInput,
 } from '../../../components';
+import {
+  FirebaseAnalyticsEventsType,
+  trackEvent,
+} from '../../../services/firebase';
+import moment from 'moment';
+import { APP_FEEDBACK } from '../../../constants/quest';
 
 export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
   route,
@@ -48,12 +56,23 @@ export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   });
 
+  const email = useAppSelector(state => state.user.parent?.email ?? '');
+
   const [isInputFocus, setInputIsFocus] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     scrollViewRef.current?.scrollToEnd();
   }, [isInputFocus]);
+
+  useMount(() => {
+    trackEvent(FirebaseAnalyticsEventsType.Feedback, {
+      datetime: moment().format('d-m-Y H:i:s'),
+      email: email,
+      data: inputText,
+      type: APP_FEEDBACK,
+    });
+  });
 
   return (
     <View>

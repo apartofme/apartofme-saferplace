@@ -6,6 +6,8 @@ import moment from 'moment';
 import { EmojiButtons } from '../../../components';
 import {
   useAppDispatch,
+  useAppSelector,
+  useMount,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
@@ -15,6 +17,14 @@ import { IEmojiSelectionScreenProps } from './EmojiSelection.types';
 import { styles } from './EmojiSelection.styles';
 import { questSlice } from '../../../redux/slices';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
+import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
+import { trackEvent } from '../../../services/firebase/analytics';
+import {
+  OPEN_DIALOG_IDS,
+  POST_CHARM_CHECK_IN,
+  PRE_CHARM_DAILY_CHECK_IN,
+} from '../../../constants/quest';
+import _ from 'lodash';
 
 export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   route,
@@ -57,6 +67,32 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
   const Header = useRenderQuestHeader({
     crossHeader: crossHeader ?? false,
     escapeMenuAlternativeNavigateTo,
+  });
+
+  const email = useAppSelector(state => state.user.parent?.email);
+  const currentQuestLineId = useAppSelector(
+    state => state.quest.currentQuestLine?.id ?? 0,
+  );
+
+  useMount(() => {
+    if (
+      _.findIndex(OPEN_DIALOG_IDS, item => item === +currentQuestLineId) !== -1
+    ) {
+      trackEvent(FirebaseAnalyticsEventsType.PreCharmDailyCheckIn, {
+        name: PRE_CHARM_DAILY_CHECK_IN,
+        result: emoji,
+        email: email ?? '',
+        datetime: moment().format('d-m-Y H:i:s'),
+      });
+      return;
+    }
+
+    trackEvent(FirebaseAnalyticsEventsType.PostCharmDailyCheckIn, {
+      name: POST_CHARM_CHECK_IN,
+      result: emoji,
+      email: email ?? '',
+      datetime: moment().format('d-m-Y H:i:s'),
+    });
   });
 
   return (

@@ -23,6 +23,13 @@ export const PLANTS_CHARM_NEXT_QUEST_LINE_IDS = [
   '55602834', // The Charm of Discovery Part One
 ];
 
+export const PRE_CHARM_DAILY_CHECK_IN = 'Pre Charm Daily Check In';
+export const POST_CHARM_CHECK_IN = 'Post Charm Check In';
+export const CHARM_ENDED = 'Charm Ended';
+export const ILLUSTRATION_ICON = 'IllustrationIcon';
+export const APP_FEEDBACK = 'App Feedback';
+export const SKIP_CHARM_FEEDBACK = 'Skip Charm Feedback';
+
 export const OPEN_DIALOG_IDS = [
   55785563, // Introduction to the Garden Narrative
   55602818, // Day 2 - Opening Dialogue

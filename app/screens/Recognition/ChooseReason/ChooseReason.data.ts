@@ -1,7 +1,6 @@
 import { IRadioButtonListItem } from '../../../components';
 import { RecognitionAcknowledgementType } from '../RecognitionAcknowledgement/RecognitionAcknowledgement.data';
 
-// TODO: change to correct id
 export const CHOOSE_REASON_DATA: ReadonlyArray<IRadioButtonListItem> = [
   {
     id: RecognitionAcknowledgementType.SomeoneDied,

@@ -12,6 +12,7 @@ export interface IGeneralStyles {
   jcCenter: ViewStyle;
   jcEnd: ViewStyle;
   jcSpaceBtw: ViewStyle;
+  jcSpaceA: ViewStyle;
 
   aiCenter: ViewStyle;
   aiEnd: ViewStyle;
@@ -53,6 +54,9 @@ export const generalStyles = StyleSheet.create<IGeneralStyles>({
   },
   jcSpaceBtw: {
     justifyContent: 'space-between',
+  },
+  jcSpaceA: {
+    justifyContent: 'space-around',
   },
 
   aiCenter: {

@@ -14,6 +14,11 @@ import { IFeedbackScreenProps } from './Feedback.types';
 import { styles } from './Feedback.styles';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { useAppSelector, useMount } from '../../../hooks';
+import { trackEvent } from '../../../services/firebase';
+import { FirebaseAnalyticsEventsType } from '../../../services/firebase';
+import moment from 'moment';
+import { APP_FEEDBACK } from '../../../constants/quest';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -22,6 +27,8 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const [feedback, setFeedback] = useState('');
+
+  const email = useAppSelector(state => state.user.parent?.email ?? '');
 
   const onSubmit = useCallback(() => {
     navigation.navigate('FeedbackSuccess');
@@ -33,6 +40,15 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
   useEffect(() => {
     scrollViewRef.current?.scrollToEnd();
   }, [isInputFocus]);
+
+  useMount(() => {
+    trackEvent(FirebaseAnalyticsEventsType.Feedback, {
+      datetime: moment().format('d-m-Y H:i:s'),
+      email: email,
+      data: feedback,
+      type: APP_FEEDBACK,
+    });
+  });
 
   return (
     <View style={generalStyles.flex}>

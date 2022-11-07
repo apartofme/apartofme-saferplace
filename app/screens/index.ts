@@ -4,6 +4,7 @@ export * from './Initial';
 export * from './DummyQuests';
 export * from './EditProfile';
 export * from './Garden';
+export * from './NotificationAlert';
 export * from './ParentGrounding';
 export * from './Menu';
 export * from './MixingElixir';

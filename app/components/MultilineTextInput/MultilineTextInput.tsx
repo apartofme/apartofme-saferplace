@@ -11,7 +11,7 @@ import { styles } from './MultilineTextInput.styles';
 import { COLORS } from '../../themes/colors';
 import { SVG } from '../../assets/svg';
 
-const WhitePencil = SVG.WhitePencilIcon;
+const WhitePencil = SVG.PencilIcon;
 
 export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
   style,

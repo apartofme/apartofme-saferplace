@@ -20,7 +20,6 @@ export * from './LeaveFeedback';
 export * from './NadiyaEmotionCarousel';
 export * from './Question';
 export * from './RadioButton';
-export * from './ReadOutLoud';
 export * from './SelectDrawBuild';
 export * from './SelectPlayer';
 export * from './SelectPlayerSupport';

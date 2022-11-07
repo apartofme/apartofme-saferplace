@@ -169,6 +169,27 @@ function* watchSetLastDayUpdate() {
   }
 }
 
+function* watchSaveProgress() {
+  const currentQuestState: IQuestProgress = yield select(state =>
+    questStateSelector(state),
+  );
+  const curentChild: IChild = yield select(state => state.user.child);
+
+  try {
+    yield call(firestoreUpdateChildProgress, curentChild.uid, 'quests', {
+      ...currentQuestState,
+    });
+
+    yield put(questSlice.actions.updateCurrentDayQuestsStackSuccess());
+  } catch {
+    yield put(
+      questSlice.actions.updateCurrentDayQuestsStackError(
+        'updateCurrentDayQuestsStackError',
+      ),
+    );
+  }
+}
+
 export function* questSaga() {
   yield takeLatest(questSlice.actions.updateCurrentDay, watchUpdateCurrentDay);
   yield takeLatest(
@@ -187,5 +208,6 @@ export function* questSaga() {
     questSlice.actions.setCurrentDayQuestsStack,
     watchSetCurrentDayQuestsStack,
   );
+  yield takeLatest(questSlice.actions.saveProgress, watchSaveProgress);
   yield takeLatest(questSlice.actions.setLastDayUpdate, watchSetLastDayUpdate);
 }

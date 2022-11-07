@@ -13,13 +13,15 @@ import { BACKGROUND_IMAGES } from '../../../assets';
 import { ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { NavigationRouteNames } from '../../../navigation/stacks/mergedParams';
-import { userSlice } from '../../../redux/slices';
+import { questSlice, userSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { MenuButton } from '../components';
 import { MAIN_MENU_ITEMS } from './MainMenu.data';
 import { IMainMenuScreenProps } from './MainMenu.types';
 import { styles } from './MainMenu.styles';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
+import { SaveIcon } from '../../../assets/svg/SaveIcon';
+import { SwitchUserIcon } from '../../../assets/svg/SwitchUserIcon';
 
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
 const LogOutIcon = SVG.ExitIcon;
@@ -30,7 +32,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const { parent, child } = useAppSelector(state => state.user);
+  const { parent, child, children } = useAppSelector(state => state.user);
 
   const AvatarIcon = parent?.avatar && AVATARS_SVG[parent.avatar];
 
@@ -44,6 +46,14 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const onLogoutPress = useCallback(() => {
     dispatch(userSlice.actions.logout());
   }, [dispatch]);
+
+  const onSaveProgressPress = useCallback(() => {
+    dispatch(questSlice.actions.saveProgress());
+  }, [dispatch]);
+
+  const onSwitchUserPress = useCallback(() => {
+    navigation.navigate('SelectUser');
+  }, [navigation]);
 
   return (
     <ImageBackground source={BACKGROUND_IMAGES.MENU} style={generalStyles.flex}>
@@ -75,6 +85,21 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
               </ExtendedText>
             </View>
             <View style={styles.line} />
+            <View
+              style={[
+                generalStyles.row,
+                generalStyles.jcSpaceBtw,
+                generalStyles.aiCenter,
+              ]}>
+              <ExtendedText
+                preset="body-bold"
+                style={generalStyles.primaryOrange}>
+                {t('screens.menu.main_menu.save_progress')}
+              </ExtendedText>
+              <TouchableOpacity onPress={onSaveProgressPress}>
+                <SaveIcon />
+              </TouchableOpacity>
+            </View>
           </View>
         </SafeAreaView>
       </View>
@@ -100,14 +125,36 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
             ))}
           </ScrollView>
 
-          <TouchableOpacity
-            style={styles.logOutContainer}
-            onPress={onLogoutPress}>
-            <LogOutIcon />
-            <ExtendedText preset="body-bold" style={styles.logOutTitle}>
-              {t('screens.menu.main_menu.log_out')}
-            </ExtendedText>
-          </TouchableOpacity>
+          {children.length ? (
+            <View style={[generalStyles.row, generalStyles.jcSpaceA]}>
+              <TouchableOpacity
+                style={styles.logOutContainer}
+                onPress={onLogoutPress}>
+                <LogOutIcon />
+                <ExtendedText preset="body-bold" style={styles.logOutTitle}>
+                  {t('screens.menu.main_menu.log_out')}
+                </ExtendedText>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.logOutContainer}
+                onPress={onSwitchUserPress}>
+                <SwitchUserIcon />
+                <ExtendedText preset="body-bold" style={styles.logOutTitle}>
+                  {t('screens.menu.main_menu.switch_user')}
+                </ExtendedText>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <TouchableOpacity
+              style={styles.logOutContainer}
+              onPress={onLogoutPress}>
+              <LogOutIcon />
+              <ExtendedText preset="body-bold" style={styles.logOutTitle}>
+                {t('screens.menu.main_menu.log_out')}
+              </ExtendedText>
+            </TouchableOpacity>
+          )}
         </View>
       </SafeAreaView>
     </ImageBackground>
