@@ -15,7 +15,6 @@ import {
   AlertScreen,
   CharmCompletedScreen,
   CharmTimerButtonScreen,
-  CharmTimerTitleScreen,
   DancingTimerScreen,
   DialogScreen,
   DummyQuestsScreen,
@@ -33,7 +32,6 @@ import {
   NadiyaEmotionCarouselScreen,
   EscapeMenuScreen,
   RadioButtonScreen,
-  ReadOutLoudScreen,
   SelectDrawBuildScreen,
   SelectPlayerScreen,
   SelectPlayerSupportScreen,
@@ -77,7 +75,6 @@ export type QuestStackParams = {
   AnimationTitle: { data: IQuest };
   CharmCompleted: { data: IQuest };
   CharmTimerButton: { data: IQuest };
-  CharmTimerTitle: { data: IQuest };
   DancingTimer: { data: IQuest };
   Dialog: { data: IQuest };
   ElixirDoubleInteraction: { data: IQuest };
@@ -97,7 +94,6 @@ export type QuestStackParams = {
   TimerTitleButton: { data: IQuest };
   VerticalSwipe: { data: IQuest };
   Instruction: { data: IQuest };
-  ReadOutLoud: { data: IQuest };
   EscapeMenu: { data: IEscapeMenuRoute };
   EmotionCarouselChoice: { data: IQuest };
   TrySomethingNewCarousel: { data: IQuest };
@@ -163,7 +159,6 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="AnimationTitle" component={AnimationTitleScreen} />
     <Stack.Screen name="CharmCompleted" component={CharmCompletedScreen} />
     <Stack.Screen name="CharmTimerButton" component={CharmTimerButtonScreen} />
-    <Stack.Screen name="CharmTimerTitle" component={CharmTimerTitleScreen} />
     <Stack.Screen name="DancingTimer" component={DancingTimerScreen} />
     <Stack.Screen name="Dialog" component={DialogScreen} />
     <Stack.Screen
@@ -198,7 +193,6 @@ export const QuestStackNavigator = () => (
     <Stack.Screen name="TimerTitleButton" component={TimerTitleButtonScreen} />
     <Stack.Screen name="VerticalSwipe" component={VerticalSwipeScreen} />
     <Stack.Screen name="Instruction" component={InstructionScreen} />
-    <Stack.Screen name="ReadOutLoud" component={ReadOutLoudScreen} />
     <Stack.Screen
       options={TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS}
       name="EscapeMenu"

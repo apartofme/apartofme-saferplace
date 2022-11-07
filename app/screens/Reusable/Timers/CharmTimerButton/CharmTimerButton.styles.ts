@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
@@ -6,6 +6,7 @@ import { hexTransparency } from '../../../../utils';
 
 interface ICharmTimerButtonScreenStyles {
   container: ViewStyle;
+  title: TextStyle;
   readLoudContainer: ViewStyle;
   animation: ViewStyle;
   headerContainer: ViewStyle;
@@ -14,18 +15,24 @@ interface ICharmTimerButtonScreenStyles {
 export const styles = StyleSheet.create<ICharmTimerButtonScreenStyles>({
   container: {
     paddingTop: 16 * WINDOW_COEFFICIENT,
-    paddingBottom: 40 * WINDOW_COEFFICIENT,
+    paddingBottom: 20 * WINDOW_COEFFICIENT,
     paddingHorizontal: 40,
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  title: {
+    color: COLORS.LIGHT_GREY,
+    textAlign: 'center',
+    flex: 1,
+    maxHeight: 120,
   },
   headerContainer: {
     zIndex: 10,
   },
   animation: {
-    width: WINDOW_WIDTH,
+    width: WINDOW_WIDTH * WINDOW_COEFFICIENT,
     position: 'absolute',
-    top: WINDOW_COEFFICIENT * 75 - 100,
+    top: WINDOW_COEFFICIENT * 80 - 40,
   },
   readLoudContainer: {
     backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 70),

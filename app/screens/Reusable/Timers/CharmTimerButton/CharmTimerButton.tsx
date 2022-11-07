@@ -62,9 +62,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
               {t('Read out loud')}
             </ExtendedText>
           </View>
-          <ExtendedText
-            preset="secondary-text"
-            style={generalStyles.greyCenter}>
+          <ExtendedText preset="secondary-text" style={styles.title}>
             {title}
           </ExtendedText>
         </BottomButtonView>
