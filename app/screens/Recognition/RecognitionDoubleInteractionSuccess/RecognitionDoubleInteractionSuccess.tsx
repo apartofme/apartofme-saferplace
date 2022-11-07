@@ -35,7 +35,7 @@ export const RecognitionDoubleInteractionSuccessScreen: React.FC<IRecognitionDou
           style={LottieAbsoluteStyles(-30)}
         />
         <Lottie
-          source={POTION_FILL_ANIMATIONS.OneToTwo}
+          source={POTION_FILL_ANIMATIONS.ElixirOneToElixirTwo}
           loop={false}
           progress={1}
           style={LottieAbsoluteStyles(-30)}

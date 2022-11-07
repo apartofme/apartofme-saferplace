@@ -380,6 +380,9 @@ export const useParsedJSXTextNickname = ({
     .replace(DatoCMSTextVariables.PlayerEmotion, playerEmotion)
     .split('|')
     .map(value => {
+      if (!value) {
+        return;
+      }
       if (_.includes(value, DatoCMSTextVariables.TrySomethingFirstTitle)) {
         return renderTrySomethingFirstTitle();
       }
@@ -412,6 +415,7 @@ export const useParsedJSXTextNickname = ({
         </ExtendedText>
       );
     });
+
   return () => (
     <ExtendedText key={text} preset={preset} style={style}>
       {textArray}

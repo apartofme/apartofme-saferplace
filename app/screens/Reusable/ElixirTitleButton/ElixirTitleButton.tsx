@@ -7,7 +7,7 @@ import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import {
-  convertElixirNumberToString,
+  getElixirAnimationKeyByRange,
   LottieAbsoluteStyles,
 } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
@@ -16,6 +16,7 @@ import { elixirSlice, questSlice } from '../../../redux/slices';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { ANIMATIONS, POTION_FILL_ANIMATIONS } from '../../../assets/animations';
+import { PotionFillKeys } from '../../../utils/types';
 
 export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
@@ -28,12 +29,16 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     );
 
     const animation = useMemo(() => {
-      const from = convertElixirNumberToString(fullnessElixir - 1);
-      const to = convertElixirNumberToString(fullnessElixir);
+      const from = getElixirAnimationKeyByRange(fullnessElixir - 0.5).replace(
+        'Icon',
+        '',
+      );
+      const to = getElixirAnimationKeyByRange(fullnessElixir).replace(
+        'Icon',
+        '',
+      );
 
-      return POTION_FILL_ANIMATIONS[
-        `${from}To${to}` as keyof typeof POTION_FILL_ANIMATIONS
-      ];
+      return POTION_FILL_ANIMATIONS[`${from}To${to}` as PotionFillKeys];
     }, [fullnessElixir]);
 
     const buttonTitle = useMemo(() => {

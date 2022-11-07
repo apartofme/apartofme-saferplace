@@ -88,7 +88,7 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
         style={generalStyles.flex}>
         <Lottie
           ref={animationRef}
-          source={POTION_FILL_ANIMATIONS.OneToTwo}
+          source={POTION_FILL_ANIMATIONS.ElixirOneToElixirTwo}
           onAnimationFinish={onSubmit}
           loop={false}
           style={LottieAbsoluteStyles(-30)}

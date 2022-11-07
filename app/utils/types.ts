@@ -1,5 +1,5 @@
-import { CHARMS_BACKGROUNDS, IMAGES } from '../assets';
-import { ANIMATIONS } from '../assets/animations';
+import { CHARMS_BACKGROUNDS } from '../assets';
+import { ANIMATIONS, POTION_FILL_ANIMATIONS } from '../assets/animations';
 import {
   AVATARS_SVG,
   CHARMS_SVG,
@@ -64,19 +64,8 @@ export enum ElixirKeysType {
   ElixirThree = 'ElixirThreeIcon',
 }
 
-export enum ElixirNumbers {
-  Zero = 'Zero',
-  ZeroHalf = 'ZeroHalf',
-  One = 'One',
-  OneHalf = 'OneHalf',
-  Two = 'Two',
-  TwoHalf = 'TwoHalf',
-  Three = 'Three',
-}
-
 export type ElixirKeys = keyof typeof ELIXIR_SVG;
 export type AvatarsKeys = keyof typeof AVATARS_SVG;
-export type ImagesKeys = keyof typeof IMAGES;
 export type SvgKeys = keyof typeof SVG;
 export type CharmsBackgroundsKeys = keyof typeof CHARMS_BACKGROUNDS;
 export type CharmsSvgKeys = keyof typeof CHARMS_SVG;
@@ -89,6 +78,7 @@ export type CharmIllustrationsSvgKeys = keyof typeof SVG_CHARM_ILLUSTRATIONS;
 export type SvgComponentType = (props: ISvgProps) => JSX.Element;
 
 export type AnimationsKeys = keyof typeof ANIMATIONS;
+export type PotionFillKeys = keyof typeof POTION_FILL_ANIMATIONS;
 
 export interface IElixirProgress {
   fullnessElixir: number;

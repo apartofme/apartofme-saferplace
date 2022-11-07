@@ -29,10 +29,11 @@ import { generalStyles } from '../../../utils/styles';
 import { styles } from './ElixirDoubleInteraction.styles';
 import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.types';
 import {
-  convertElixirNumberToString,
+  getElixirAnimationKeyByRange,
   LottieAbsoluteStyles,
 } from '../../../utils';
 import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
+import { PotionFillKeys } from '../../../utils/types';
 
 export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScreenProps> =
   ({ navigation, route }) => {
@@ -152,14 +153,15 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     }, [isChildPress, isAdultPress]);
 
     const animation = useMemo(() => {
-      const from = convertElixirNumberToString(fullnessElixir);
-      const to = convertElixirNumberToString(
-        fullnessElixir + (elixirReward ?? 1),
+      const from = getElixirAnimationKeyByRange(fullnessElixir).replace(
+        'Icon',
+        '',
       );
+      const to = getElixirAnimationKeyByRange(
+        fullnessElixir + (elixirReward ?? 1),
+      ).replace('Icon', '');
 
-      return POTION_FILL_ANIMATIONS[
-        `${from}To${to}` as keyof typeof POTION_FILL_ANIMATIONS
-      ];
+      return POTION_FILL_ANIMATIONS[`${from}To${to}` as PotionFillKeys];
     }, [elixirReward, fullnessElixir]);
 
     return (

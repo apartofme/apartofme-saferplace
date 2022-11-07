@@ -28,15 +28,16 @@ export const ANIMATIONS = {
 };
 
 export const POTION_FILL_ANIMATIONS = {
-  OneHalfToTwo: require('./potionFill/potionFill1.5-2.json'),
-  OneHalfToTwoHalf: require('./potionFill/potionFill1.5-2.5.json'),
-  OneToOneHalf: require('./potionFill/potionFill1-1.5.json'),
-  OneToTwo: require('./potionFill/potionFill1-2.json'),
-  TwoHalfToThree: require('./potionFill/potionFill2.5-3.json'),
-  TwoToThree: require('./potionFill/potionFill2-3.json'),
-  TwoToTwoHalf: require('./potionFill/potionFill2-2.5.json'),
-  ZeroHalfToOne: require('./potionFill/potionFill0.5-1.json'),
-  ZeroHalfToOneHalf: require('./potionFill/potionFill0.5-1.5.json'),
-  ZeroToOne: require('./potionFill/potionFill0-1.json'),
-  ZeroToThree: require('./potionFill/potionFill0-3.json'),
+  ElixirOneHalfToElixirTwoHalf: require('./potionFill/potionFill1.5-2.5.json'),
+  ElixirOneHalfToElixirTwo: require('./potionFill/potionFill1.5-2.json'),
+  ElixirOneToElixirOneHalf: require('./potionFill/potionFill1-1.5.json'),
+  ElixirOneToElixirTwo: require('./potionFill/potionFill1-2.json'),
+  ElixirTwoHalfToElixirThree: require('./potionFill/potionFill2.5-3.json'),
+  ElixirTwoToElixirThree: require('./potionFill/potionFill2-3.json'),
+  ElixirTwoToElixirTwoHalf: require('./potionFill/potionFill2-2.5.json'),
+  ElixirZeroHalfToElixirOne: require('./potionFill/potionFill0.5-1.json'),
+  ElixirZeroHalfToElixirOneHalf: require('./potionFill/potionFill0.5-1.5.json'),
+  ElixirZeroToElixirOne: require('./potionFill/potionFill0-1.json'),
+  ElixirZeroToElixirThree: require('./potionFill/potionFill0-3.json'),
+  ElixirZeroToElixirZeroHalf: require('./potionFill/potionFill0-0.5.json'),
 };
