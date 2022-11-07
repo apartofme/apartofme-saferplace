@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, View } from 'react-native';
+import { Formik } from 'formik';
 
 import {
   BottomButtonView,
@@ -16,7 +17,6 @@ import { styles } from './ForgotPasswordEmailScreen.styles';
 import { SVG } from '../../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { COLORS } from '../../../../themes/colors';
-import { Formik } from 'formik';
 import { ForgotPasswordValidationSchema } from './ForgotPasswordEmailScreen.validation';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
