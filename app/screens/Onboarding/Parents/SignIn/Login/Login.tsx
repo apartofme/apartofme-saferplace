@@ -126,6 +126,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       placeholderTextColor={COLORS.BRILLIANT_WHITE}
                       type={ExtendedTextInputType.Email}
                       setIsActive={setIsActive}
+                      maxLength={39}
                       error={errors.email && touched.email ? errors.email : ''}
                     />
                     <ExtendedTextInput

@@ -62,6 +62,7 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
                 onChangeText={setEmail}
                 placeholder={t('placeholders.enter_email')}
                 placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                maxLength={39}
               />
             </BottomButtonView>
           </ExtendedKeyboardAvoidingView>
