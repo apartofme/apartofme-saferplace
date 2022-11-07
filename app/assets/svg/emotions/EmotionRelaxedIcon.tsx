@@ -1,11 +1,16 @@
 import * as React from 'react';
 import Svg, { G, Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const EmotionRelaxedIcon = ({ width = 48, height = 48 }: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 48 48" fill="none">
+    <Svg
+      width={width * WINDOW_COEFFICIENT}
+      height={height * WINDOW_COEFFICIENT}
+      viewBox="0 0 48 48"
+      fill="none">
       <G>
         <Path
           d="M24 48c13.255 0 24-10.745 24-24S37.255 0 24 0 0 10.745 0 24s10.745 24 24 24z"
