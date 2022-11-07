@@ -19,7 +19,7 @@ export const HappySmokeSidekickGuideIcon = ({
     <Svg
       width={width * WINDOW_COEFFICIENT}
       height={height * WINDOW_COEFFICIENT}
-      viewBox="0 0 319 362"
+      viewBox="0 0 329 362"
       fill="none">
       <Path
         d="M296.357 167.57s-3.699 10.245-.569 21.343c3.131 11.099 8.252 20.774 12.806 31.588 4.554 10.815.569 18.212-1.707 20.49-2.276 2.276-1.422-.284-.853-3.699.57-3.415-2.845-16.22-6.26-23.335-3.415-7.114-13.66-27.034-7.969-43.823l4.554-2.562-.002-.002z"
