@@ -19,11 +19,11 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
   mainContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingBottom: 24,
+    paddingBottom: 24 * WINDOW_COEFFICIENT,
   },
   blobIcon: {
     position: 'absolute',
-    bottom: WINDOW_COEFFICIENT * 350 - 350,
+    bottom: WINDOW_COEFFICIENT * 400 - 400,
     left: 0,
     zIndex: 0,
   },
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
   container: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: 27,
+    paddingBottom: 27 * WINDOW_COEFFICIENT,
   },
   emojiButton: {
     marginVertical: 12,
@@ -62,7 +62,6 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
   },
   emojiButtons: {
     flexGrow: 0,
-    // paddingVertical: 12,
     paddingHorizontal: 4,
     backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
     borderWidth: 1,
