@@ -1,8 +1,5 @@
 export const ANIMATIONS = {
-  CALM_PLANT_GROWING: require('./calmPlantGrowing.json'),
   CARD_SHUFFLE: require('./cardShuffle.json'),
-  COMPASSION_PLANT_GROWING: require('./compassionPlantGrowing.json'),
-  COURAGE_PLANT_GROWING: require('./couragePlantGrowing.json'),
   DANCING_MOTH: require('./dancingMoth.json'),
   FINDING_RIGHT_CHARM: require('./findingRightCharm.json'),
   GROWING_CALM_PLANT: require('./growingCalmPlant.json'),

@@ -31,7 +31,7 @@ export const GardenTutorialDialogScreen: React.FC<IGardenTutorialDialogScreenPro
         navigateBetween={
           isStart
             ? {
-                index: 6,
+                index: 7,
                 onPress: goToGarden,
               }
             : null

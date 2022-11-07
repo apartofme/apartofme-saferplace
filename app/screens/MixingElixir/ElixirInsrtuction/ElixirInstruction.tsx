@@ -17,7 +17,6 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
     const { phase, selectedPlantArea, isFirstTimeGarden } = route.params;
 
     const { t } = useTranslation();
-    navigation.goBack();
 
     const titleKey = useMemo(() => {
       switch (phase) {
