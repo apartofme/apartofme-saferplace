@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, ScrollView, View } from 'react-native';
@@ -11,6 +12,10 @@ import {
   MainHeader,
   MultilineTextInput,
 } from '../../../../../components';
+import { SKIP_CHARM_FEEDBACK } from '../../../../../constants/quest';
+import { useAppSelector, useMount } from '../../../../../hooks';
+import { trackEvent } from '../../../../../services/firebase/analytics';
+import { FirebaseAnalyticsEventsType } from '../../../../../services/firebase/types';
 import { generalStyles } from '../../../../../utils/styles';
 import { styles } from './SkipCharmJournal.styles';
 import { ISkipCharmJournalScreenProps } from './SkipCharmJournal.types';
@@ -22,6 +27,8 @@ export const SkipCharmJournalScreen: React.FC<ISkipCharmJournalScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const [text, setText] = useState('');
+
+  const email = useAppSelector(state => state.user.parent?.email ?? '');
 
   const onSubmit = useCallback(() => {
     navigation.push('SkipCharmAcknowledgement', {
@@ -35,6 +42,15 @@ export const SkipCharmJournalScreen: React.FC<ISkipCharmJournalScreenProps> = ({
   useEffect(() => {
     scrollViewRef.current?.scrollToEnd();
   }, [isInputFocus]);
+
+  useMount(() => {
+    trackEvent(FirebaseAnalyticsEventsType.Feedback, {
+      datetime: moment().format('d-m-Y H:i:s'),
+      email: email,
+      data: text,
+      type: SKIP_CHARM_FEEDBACK,
+    });
+  });
 
   return (
     <View style={generalStyles.flex}>
