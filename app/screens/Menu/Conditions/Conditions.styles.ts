@@ -17,10 +17,10 @@ export const styles = StyleSheet.create<IConditionsScreenStyles>({
   title: {
     color: COLORS.BRILLIANT_WHITE,
     marginTop: 48 * WINDOW_COEFFICIENT,
+    marginBottom: 20 * WINDOW_COEFFICIENT,
   },
   subtitle: {
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 20 * WINDOW_COEFFICIENT,
     marginBottom: 40 * WINDOW_COEFFICIENT,
   },
 });
