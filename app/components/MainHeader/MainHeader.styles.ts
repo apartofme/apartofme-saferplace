@@ -13,7 +13,6 @@ export const styles = StyleSheet.create<IMainHeaderStyles>({
     marginTop: 24,
     paddingHorizontal: 15,
   },
-  // TODO: change for correct styles
   emptyContainer: {
     width: 32,
     height: 32,
