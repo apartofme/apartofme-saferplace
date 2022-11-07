@@ -1,8 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View, SafeAreaView, Image } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+  Image,
+  ScrollView,
+} from 'react-native';
 import { Formik } from 'formik';
-import moment from 'moment';
 
 import {
   BottomButtonView,
@@ -30,18 +35,12 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     const dispatch = useAppDispatch();
     const [isFocus, setIsFocus] = useState(false);
 
-    const setFocused = useCallback(() => {
-      setIsFocus(!isFocus);
-    }, [isFocus]);
-
     const onSignUpPress = useCallback(
       ({ email, password }) => {
-        const createdAt = moment().format('L');
         dispatch(
           cacheSlice.actions.saveSignUpDataParent({
             email,
             password,
-            createdAt,
           }),
         );
         navigation.navigate('SignUpNickname');
@@ -73,16 +72,21 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                 values,
                 handleChange,
                 handleSubmit,
+                handleBlur,
                 isValid,
                 dirty,
                 errors,
+                touched,
               }) => (
                 <BottomButtonView
                   buttonTitle={t('buttons.signup')}
                   onSubmit={handleSubmit}
                   isDisabledButton={dirty ? !isValid : true}
                   style={styles.container}>
-                  <View style={generalStyles.flex}>
+                  <ScrollView
+                    scrollEnabled={isFocus}
+                    showsVerticalScrollIndicator={false}
+                    style={generalStyles.flex}>
                     <ExtendedText
                       preset="large-title"
                       style={styles.whiteColor}>
@@ -109,64 +113,71 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                       </TouchableOpacity>
                     </View>
 
-                    <View>
+                    <View style={styles.mb24}>
                       <ExtendedTextInput
                         type={ExtendedTextInputType.Email}
                         value={values.email}
                         onChangeText={handleChange('email')}
-                        onFocus={setFocused}
-                        onBlur={setFocused}
+                        setIsActive={setIsFocus}
+                        onBlur={handleBlur('email')}
                         placeholder={t('placeholders.enter_email')}
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
-                        style={styles.input}
                         maxLength={30}
-                        error={errors.email}
+                        error={
+                          errors.email && touched.email ? errors.email : ''
+                        }
                       />
                       <ExtendedTextInput
                         type={ExtendedTextInputType.PasswordToggle}
                         value={values.password}
                         onChangeText={handleChange('password')}
-                        onFocus={setFocused}
-                        onBlur={setFocused}
+                        setIsActive={setIsFocus}
+                        onBlur={handleBlur('password')}
                         placeholder={t('placeholders.create_password')}
                         placeholderTextColor={COLORS.BRILLIANT_WHITE}
-                        style={styles.input}
+                        style={styles.mt16}
                         maxLength={30}
-                        error={errors.password}
+                        error={
+                          errors.password && touched.password
+                            ? errors.password
+                            : ''
+                        }
                       />
                     </View>
-                  </View>
+                  </ScrollView>
                 </BottomButtonView>
               )}
             </Formik>
           </ExtendedKeyboardAvoidingView>
 
-          <View style={[styles.bottomConatainer, isFocus && styles.focused]}>
-            <ExtendedText
-              preset="tertiary-text-regular"
-              style={styles.whiteColor}>
-              {t('screens.onboarding.sign_up_credentials.footer')}
-            </ExtendedText>
-            <TouchableOpacity>
+          {isFocus && (
+            <View style={styles.bottomConatainer}>
               <ExtendedText
                 preset="tertiary-text-regular"
-                style={[generalStyles.boldText, generalStyles.primaryOrange]}>
-                {t('buttons.terms_conditions')}
+                style={styles.whiteColor}>
+                {t('screens.onboarding.sign_up_credentials.footer')}
               </ExtendedText>
-            </TouchableOpacity>
-            <ExtendedText
-              preset="tertiary-text-regular"
-              style={styles.whiteColor}>
-              {` ${t('labels.and')} `}
-            </ExtendedText>
-            <TouchableOpacity>
+              <TouchableOpacity>
+                <ExtendedText
+                  preset="tertiary-text-regular"
+                  style={[generalStyles.boldText, generalStyles.primaryOrange]}>
+                  {t('buttons.terms_conditions')}
+                </ExtendedText>
+              </TouchableOpacity>
               <ExtendedText
                 preset="tertiary-text-regular"
-                style={[generalStyles.boldText, generalStyles.primaryOrange]}>
-                {t('buttons.privacy_policy')}
+                style={styles.whiteColor}>
+                {` ${t('labels.and')} `}
               </ExtendedText>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity>
+                <ExtendedText
+                  preset="tertiary-text-regular"
+                  style={[generalStyles.boldText, generalStyles.primaryOrange]}>
+                  {t('buttons.privacy_policy')}
+                </ExtendedText>
+              </TouchableOpacity>
+            </View>
+          )}
         </SafeAreaView>
       </View>
     );

@@ -1,6 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../../../themes/colors';
+import { isIOS } from '../../../../utils';
 
 interface ITextInputPasswordToggleStyles {
   container: ViewStyle;
@@ -14,16 +15,18 @@ export const styles = StyleSheet.create<ITextInputPasswordToggleStyles>({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingVertical: 0,
+    paddingHorizontal: 0,
   },
 
   input: {
     flex: 1,
-    //* fix Android indents
-    padding: 0,
+    paddingLeft: 24,
     color: COLORS.BRILLIANT_WHITE,
+    paddingVertical: isIOS ? 20 : 16,
   },
 
   iconContainer: {
-    paddingLeft: 24,
+    paddingHorizontal: 24,
   },
 });

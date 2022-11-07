@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, View } from 'react-native';
+import { Formik } from 'formik';
 
 import {
   BottomButtonView,
@@ -16,14 +17,13 @@ import { styles } from './ForgotPasswordEmailScreen.styles';
 import { SVG } from '../../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { COLORS } from '../../../../themes/colors';
+import { ForgotPasswordValidationSchema } from './ForgotPasswordEmailScreen.validation';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
-
-    const [email, setEmail] = useState('');
 
     const onSubmit = useCallback(() => {
       navigation.navigate('ForgotPasswordSuccess');
@@ -41,29 +41,48 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
             onLeftIconPress={navigation.goBack}
           />
           <ExtendedKeyboardAvoidingView>
-            <BottomButtonView
-              buttonTitle={t('buttons.reset_password')}
-              onSubmit={onSubmit}
-              isDisabledButton={!email}
-              style={styles.container}>
-              <ExtendedText
-                preset="large-title"
-                style={generalStyles.brilliantWhite}>
-                {t('screens.onboarding.forgot_password.email.title')}
-              </ExtendedText>
+            <Formik
+              initialValues={{
+                email: '',
+              }}
+              validationSchema={ForgotPasswordValidationSchema}
+              onSubmit={onSubmit}>
+              {({
+                values,
+                handleChange,
+                handleSubmit,
+                handleBlur,
+                isValid,
+                errors,
+                touched,
+              }) => (
+                <BottomButtonView
+                  buttonTitle={t('buttons.reset_password')}
+                  onSubmit={handleSubmit}
+                  isDisabledButton={!isValid}
+                  style={styles.container}>
+                  <ExtendedText
+                    preset="large-title"
+                    style={generalStyles.brilliantWhite}>
+                    {t('screens.onboarding.forgot_password.email.title')}
+                  </ExtendedText>
 
-              <ExtendedText preset="secondary-text" style={styles.subtitle}>
-                {t('screens.onboarding.forgot_password.email.description')}
-              </ExtendedText>
-
-              <ExtendedTextInput
-                type={ExtendedTextInputType.Email}
-                value={email}
-                onChangeText={setEmail}
-                placeholder={t('placeholders.enter_email')}
-                placeholderTextColor={COLORS.BRILLIANT_WHITE}
-              />
-            </BottomButtonView>
+                  <ExtendedText preset="secondary-text" style={styles.subtitle}>
+                    {t('screens.onboarding.forgot_password.email.description')}
+                  </ExtendedText>
+                  <ExtendedTextInput
+                    type={ExtendedTextInputType.Email}
+                    value={values.email}
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                    placeholder={t('placeholders.enter_email')}
+                    placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                    maxLength={30}
+                    error={errors.email && touched.email ? errors.email : ''}
+                  />
+                </BottomButtonView>
+              )}
+            </Formik>
           </ExtendedKeyboardAvoidingView>
         </SafeAreaView>
       </View>
