@@ -108,12 +108,12 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
         <GestureHandlerRootView style={styles.buttonsContainer}>
           <PanGestureHandler onBegan={setChildPress} onEnded={setChildPress}>
             <View>
-              <ParentAvatarIcon width={90} height={90} reduceSize={false} />
+              <ParentAvatarIcon width={110} height={110} reduceSize={false} />
             </View>
           </PanGestureHandler>
           <PanGestureHandler onBegan={setAdultPress} onEnded={setAdultPress}>
             <View>
-              <ChildAvatarIcon width={90} height={90} reduceSize={false} />
+              <ChildAvatarIcon width={110} height={110} reduceSize={false} />
             </View>
           </PanGestureHandler>
         </GestureHandlerRootView>

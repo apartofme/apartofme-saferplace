@@ -38,6 +38,7 @@ export const styles = StyleSheet.create<IMainMenuStyles>({
   avatar: {
     height: 80,
     width: 80,
+    marginLeft: 8,
     marginTop: -40,
     borderRadius: 99,
   },

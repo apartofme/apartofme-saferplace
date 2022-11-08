@@ -15,7 +15,6 @@ export const styles = StyleSheet.create<IUserImageTitleStyles>({
     justifyContent: 'center',
   },
   userName: {
-    marginTop: 10,
     textAlign: 'center',
     color: COLORS.BRILLIANT_WHITE,
   },
