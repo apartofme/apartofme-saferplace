@@ -45,18 +45,14 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
       switch (description) {
         case ELIXIR_ANIMATION_TYPE.Mix:
           return AUDIO.MIXING_ELIXIR_ANIMATION;
-
         case ELIXIR_ANIMATION_TYPE.Open:
           return AUDIO.OPENING_ELIXIR_ANIMATION;
-
-        default:
-          return AUDIO.POURING_ELIXIR_ANIMATION;
       }
     }
   }, [description]);
 
   useMount(() => {
-    if (description) {
+    if (description === ELIXIR_ANIMATION_TYPE.Pour) {
       setTimeout(() => onSubmit(), 3000);
     }
 
@@ -83,7 +79,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_MIX}
               autoPlay
               loop={false}
-              style={LottieAbsoluteStyles(0)}
+              style={LottieAbsoluteStyles(-15)}
             />
           );
         case ELIXIR_ANIMATION_TYPE.Open:
@@ -93,7 +89,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               autoPlay
               loop={false}
-              style={LottieAbsoluteStyles(0)}
+              style={LottieAbsoluteStyles(-15)}
             />
           );
         default:
@@ -103,7 +99,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               progress={1}
               loop={false}
-              style={LottieAbsoluteStyles(0)}
+              style={LottieAbsoluteStyles(-15)}
             />
           );
       }
@@ -114,7 +110,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
         source={ANIMATIONS.FINDING_RIGHT_CHARM}
         autoPlay
         loop={false}
-        style={LottieAbsoluteStyles(-15)}
+        style={LottieAbsoluteStyles(-30)}
       />
     );
   }, [description, onSubmit]);
@@ -123,29 +119,23 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
     <ImageBackground
       source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
       style={generalStyles.flex}>
-      {description === ELIXIR_ANIMATION_TYPE.Pour ? (
-        <View style={styles.elixirContainer}>
-          {animation}
-          <ExtendedText style={styles.title}>
-            {t('labels.wait').toUpperCase()}
+      {description === ELIXIR_ANIMATION_TYPE.Pour && (
+        <View style={styles.waitContainer}>
+          <ExtendedText
+            preset="large-title"
+            style={[generalStyles.boldText, generalStyles.brilliantWhite]}>
+            {t('labels.wait')}
           </ExtendedText>
         </View>
-      ) : (
-        <>
-          {animation}
-          <SafeAreaView style={generalStyles.flex}>
-            <View
-              style={[
-                styles.container,
-                !!description && styles.elixirContainer,
-              ]}>
-              <ExtendedText preset="large-title" style={styles.title}>
-                {title}
-              </ExtendedText>
-            </View>
-          </SafeAreaView>
-        </>
       )}
+      <SafeAreaView style={styles.container}>
+        {animation}
+        <ExtendedText
+          preset={description ? 'title' : 'large-title'}
+          style={styles.title}>
+          {title && t(title)}
+        </ExtendedText>
+      </SafeAreaView>
     </ImageBackground>
   );
 };

@@ -4,7 +4,7 @@
 export const COLORS = {
   PRIMARY: '#004B8F',
   WHITE: 'white',
-  BLACK: '#333',
+  BLACK: '#1A1A1A',
   BORDER: '#e2e2e2',
   BLACK_TRANSPARENT_95: 'rgba(26, 26, 26, 0.95)',
   MENU_BACKGROUND: 'rgba(34,10,64, 0.4)',
