@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementSuccessivelyScreenStyles {
@@ -13,18 +14,17 @@ export const styles =
     container: {
       alignItems: 'center',
       justifyContent: 'flex-end',
-      paddingBottom: 60,
+      paddingBottom: 60 * WINDOW_COEFFICIENT,
       paddingHorizontal: 40,
     },
     title: {
-      marginTop: 43,
-      marginBottom: 24,
+      marginTop: 43 * WINDOW_COEFFICIENT,
+      marginBottom: 24 * WINDOW_COEFFICIENT,
       color: COLORS.BRILLIANT_WHITE,
       textAlign: 'center',
     },
     description: {
-      flex: 1,
-      maxHeight: 120,
+      minHeight: 120,
       color: COLORS.LIGHT_GREY,
       textAlign: 'center',
     },
