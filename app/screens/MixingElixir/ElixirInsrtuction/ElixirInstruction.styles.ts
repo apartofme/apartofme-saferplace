@@ -10,7 +10,6 @@ export const styles = StyleSheet.create<IElixirInstructionStyles>({
     flex: 1,
     alignItems: 'center',
   },
-
   title: {
     marginTop: 95,
     marginBottom: 48,

@@ -1,28 +1,38 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
-import { WINDOW_COEFFICIENT } from '../../../constants/window';
+import {
+  WINDOW_COEFFICIENT,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
+} from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
+import { hexTransparency } from '../../../utils';
 
 interface IAnimationTitleStyles {
   container: ViewStyle;
+  waitContainer: ViewStyle;
   title: TextStyle;
-  elixirContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IAnimationTitleStyles>({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingHorizontal: 40,
-    paddingBottom: 120 * WINDOW_COEFFICIENT,
+    justifyContent: 'flex-end',
   },
-  elixirContainer: {
-    marginBottom: -142,
+  waitContainer: {
+    position: 'absolute',
+    zIndex: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: WINDOW_WIDTH,
+    height: WINDOW_HEIGHT,
+    backgroundColor: hexTransparency(COLORS.BLACK, 75),
   },
   title: {
+    paddingHorizontal: 24,
+    marginBottom: 175 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
-    marginTop: 134,
     textAlign: 'center',
   },
 });

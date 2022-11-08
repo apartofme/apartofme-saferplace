@@ -166,9 +166,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={styles.container}>
         {animation}
-        <ExtendedText
-          preset="title"
-          style={[generalStyles.brilliantWhiteCenter, styles.title]}>
+        <ExtendedText preset="title" style={styles.title}>
           {title && t(title)}
         </ExtendedText>
       </SafeAreaView>
