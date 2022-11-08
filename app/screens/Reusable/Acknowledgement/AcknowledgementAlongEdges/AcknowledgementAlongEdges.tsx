@@ -18,7 +18,7 @@ import { styles } from './AcknowledgementAlongEdges.styles';
 import { AVATARS_SVG, CHARMS_SVG } from '../../../../assets/svg';
 import {
   DatoCMSTextVariables,
-  THE_CHARM_OF_ACCEPTANCE_ID,
+  THE_CHARM_OF_ACCEPTANCE_PART_TWO_ID,
 } from '../../../../constants/quest';
 
 export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdgesScreenProps> =
@@ -68,7 +68,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
         return CHARMS_SVG[image];
       }
       if (
-        currentQuestLineId === THE_CHARM_OF_ACCEPTANCE_ID &&
+        currentQuestLineId === THE_CHARM_OF_ACCEPTANCE_PART_TWO_ID &&
         _.includes(t(title), DatoCMSTextVariables.TroublesomeSpiritQuestion) &&
         troublesomeItem
       ) {

@@ -76,7 +76,7 @@ export const EmojiSelectionScreen: React.FC<IEmojiSelectionScreenProps> = ({
 
   useMount(() => {
     if (
-      _.findIndex(OPEN_DIALOG_IDS, item => item === +currentQuestLineId) !== -1
+      _.findIndex(OPEN_DIALOG_IDS, item => item === currentQuestLineId) !== -1
     ) {
       trackEvent(FirebaseAnalyticsEventsType.PreCharmDailyCheckIn, {
         name: PRE_CHARM_DAILY_CHECK_IN,

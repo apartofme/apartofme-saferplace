@@ -91,7 +91,7 @@ export interface IPlantProgress {
 export interface IQuestProgress {
   currentDay: number;
   lastDayUpdate: number;
-  currentDayQuestsStack: number[];
+  currentDayQuestsStack: string[];
   interruptedQuestLine: Nullable<IInterruptedQuestLine>;
   completedQuestsId: number[];
 }

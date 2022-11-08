@@ -111,7 +111,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       const charmPartTwoIdx = _.findIndex(
         CHARMS_PART_TWO_IDS,
         item =>
-          currentDayQuestsStack[currentDayQuestsStack.length - 1] === +item,
+          currentDayQuestsStack[currentDayQuestsStack.length - 1] === item,
       );
       if (charmPartTwoIdx !== -1) {
         dispatch(
@@ -202,7 +202,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   }, [isModal]);
 
   const showDayOpenDialog = useCallback(() => {
-    if (!interruptedQuestLine) {
+    if (!interruptedQuestLine && !isPlanting) {
       const dayOpenDialogIdx = _.findIndex(
         OPEN_DIALOG_IDS,
         item =>
@@ -228,7 +228,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
               data: { ...newQuests[0] },
             },
           });
-        }, 50);
+        }, 2000);
       }
     }
   }, [
@@ -237,6 +237,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     dispatch,
     interruptedQuestLine,
     navigation,
+    isPlanting,
   ]);
 
   return (
