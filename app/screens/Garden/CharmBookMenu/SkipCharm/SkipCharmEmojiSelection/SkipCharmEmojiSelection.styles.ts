@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../../constants/window';
 import { COLORS } from '../../../../../themes/colors';
 
 interface ISkipCharmEmojiSelectionStyles {
@@ -12,9 +13,9 @@ export const styles = StyleSheet.create<ISkipCharmEmojiSelectionStyles>({
     zIndex: 10,
   },
   title: {
-    paddingTop: 40,
+    paddingTop: 40 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
-    paddingBottom: 24,
+    paddingBottom: 24 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
   },

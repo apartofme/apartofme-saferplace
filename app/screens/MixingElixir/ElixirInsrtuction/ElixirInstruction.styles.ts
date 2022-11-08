@@ -8,11 +8,11 @@ export interface IElixirInstructionStyles {
 export const styles = StyleSheet.create<IElixirInstructionStyles>({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
   },
 
   title: {
+    marginTop: 95,
     marginBottom: 48,
     width: 320,
     height: 75,

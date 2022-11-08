@@ -1,11 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  ImageBackground,
-  SafeAreaView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ImageBackground, SafeAreaView, TouchableOpacity } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -81,16 +76,11 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            <View>
-              {AvatarsIcon && (
-                <View style={styles.iconContainer}>
-                  <AvatarsIcon />
-                </View>
-              )}
-              <ExtendedText preset="secondary-text" style={styles.description}>
-                {description}
-              </ExtendedText>
-            </View>
+            {AvatarsIcon && <AvatarsIcon />}
+            <DOUBLE_AVATARS_SVG.FoxBear />
+            <ExtendedText preset="secondary-text" style={styles.description}>
+              {description}
+            </ExtendedText>
           </BottomButtonView>
           <TouchableOpacity
             style={styles.bottomButton}

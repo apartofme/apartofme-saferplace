@@ -14,24 +14,23 @@ export interface IDialogViewStyles {
 
 export const styles = StyleSheet.create<IDialogViewStyles>({
   container: {
-    marginTop: 88,
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'flex-end',
     paddingHorizontal: 40,
   },
   iconContainer: {
-    position: 'absolute',
     alignSelf: 'center',
-    top: -30,
+    position: 'absolute',
+    top: WINDOW_COEFFICIENT * 400 - 330,
   },
   dialogContainer: {
-    flex: 1,
-    maxHeight: 304 * WINDOW_COEFFICIENT,
+    height: 304,
     paddingVertical: 40,
     paddingHorizontal: 24,
     borderRadius: 24,
     borderWidth: 4,
+    width: 295,
+    alignSelf: 'center',
     borderColor: COLORS.PRIMARY_ORANGE,
     backgroundColor: COLORS.PRIMARY_PURPLE,
   },

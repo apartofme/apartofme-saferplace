@@ -10,9 +10,9 @@ interface IElixirTitleButtonScreenStyles {
 
 export const styles = StyleSheet.create<IElixirTitleButtonScreenStyles>({
   container: {
-    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 24,
+    paddingTop: 80,
   },
   title: {
     paddingBottom: 77 * WINDOW_COEFFICIENT,

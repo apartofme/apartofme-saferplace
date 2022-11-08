@@ -96,7 +96,7 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      {error && (
+      {!!error && (
         <View style={styles.errorContainer}>
           <CircleExclamationMarkIcon />
           <ExtendedText

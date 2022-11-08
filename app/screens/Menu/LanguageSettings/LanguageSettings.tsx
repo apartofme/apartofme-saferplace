@@ -65,6 +65,7 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
         <View style={styles.buttonContainer}>
           <ExtendedButton title={t('buttons.save')} onPress={onSubmit} />
           <ExtendedButton
+            preset="border"
             style={styles.cancelButton}
             title={t('buttons.cancel')}
             onPress={navigation.goBack}

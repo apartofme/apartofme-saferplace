@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import Lottie from 'lottie-react-native';
 import _ from 'lodash';
 
 import { BACKGROUND_IMAGES } from '../../../../assets';
@@ -11,6 +12,8 @@ import { generalStyles } from '../../../../utils/styles';
 import { ISignUpSuccessScreenProps } from './SignUpSuccess.types';
 import { styles } from './SignUpSuccess.styles';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
+import { ANIMATIONS } from '../../../../assets/animations';
+import { LottieAbsoluteStyles } from '../../../../utils';
 
 export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
   navigation,
@@ -71,17 +74,15 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
 
   return (
     <ImageBackground source={background} style={generalStyles.flex}>
-      {
-        // TODO: uncomment
-        /* <ImageBackground
-        source={IMAGES.CONFETTI}
-        style={generalStyles.flex}
-        imageStyle={styles.background}> */
-      }
+      <Lottie
+        source={ANIMATIONS.LEAF_CONFETTI}
+        autoPlay
+        loop={false}
+        style={LottieAbsoluteStyles(-30)}
+      />
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView
           buttonTitle={t('buttons.next')}
-          isArrow={true}
           onSubmit={onSubmit}
           style={styles.container}>
           <AvatarIcon />
@@ -93,7 +94,6 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
           </ExtendedText>
         </BottomButtonView>
       </SafeAreaView>
-      {/* </ImageBackground> */}
     </ImageBackground>
   );
 };

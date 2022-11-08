@@ -142,7 +142,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   const onTilePress = useCallback(() => {
     if (activePlantArea) {
-      navigation.navigate('MixingElixirStack', {
+      navigation.push('MixingElixirStack', {
         screen: 'ElixirInstruction',
         params: {
           phase: MixingElixirPhaseType.Mix,

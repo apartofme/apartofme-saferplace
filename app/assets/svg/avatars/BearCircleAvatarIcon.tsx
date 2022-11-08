@@ -7,11 +7,12 @@ import { ISvgProps } from '../../../utils/types';
 export const BearCircleAvatarIcon = ({
   width = 225,
   height = 243,
+  reduceSize = true,
 }: ISvgProps) => {
   return (
     <Svg
-      width={width * WINDOW_COEFFICIENT}
-      height={height * WINDOW_COEFFICIENT}
+      width={reduceSize ? width * WINDOW_COEFFICIENT : width}
+      height={reduceSize ? height * WINDOW_COEFFICIENT : height}
       viewBox="0 0 225 243"
       fill="none">
       <G clipPath="url(#clip0_2928_348437)">

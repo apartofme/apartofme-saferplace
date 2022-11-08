@@ -21,13 +21,12 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
     paddingHorizontal: 40,
   },
   iconContainer: {
-    position: 'absolute',
     alignSelf: 'center',
-    top: -30,
+    position: 'absolute',
+    top: WINDOW_COEFFICIENT * 300 - 325,
   },
   dialogContainer: {
-    flex: 1,
-    maxHeight: 304 * WINDOW_COEFFICIENT,
+    height: 304,
     paddingVertical: 40,
     paddingHorizontal: 24,
     borderRadius: 24,

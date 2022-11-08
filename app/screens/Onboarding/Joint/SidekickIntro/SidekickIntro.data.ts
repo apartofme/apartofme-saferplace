@@ -3,35 +3,35 @@ import { ISpeech } from '../../../../utils/types';
 export const INTRO_DIALOG: ReadonlyArray<ISpeech> = [
   {
     textKey: 'screens.onboarding.sidekick_intro.first',
-    iconKey: 'HappyGuideIcon',
+    iconKey: 'HappySidekickGuideIcon',
     isBlur: true,
   },
   {
     textKey: 'screens.onboarding.sidekick_intro.second',
-    iconKey: 'HappyGuideIcon',
+    iconKey: 'HappySidekickGuideIcon',
     isBlur: true,
   },
   {
     textKey: 'screens.onboarding.sidekick_intro.third',
-    iconKey: 'HappyGuideIcon',
+    iconKey: 'HappySidekickGuideIcon',
     isBlur: true,
   },
   {
     textKey: 'screens.onboarding.sidekick_intro.fourth',
-    iconKey: 'HappyGuideIcon',
+    iconKey: 'HappySidekickGuideIcon',
     isBlur: true,
   },
   {
     textKey: 'screens.onboarding.sidekick_intro.fifth',
-    iconKey: 'HappyGuideIcon',
+    iconKey: 'HappySidekickGuideIcon',
     isBlur: true,
   },
   {
     textKey: 'screens.onboarding.sidekick_intro.sixth',
-    iconKey: 'HappyGuideIcon',
+    iconKey: 'HappySidekickGuideIcon',
   },
   {
     textKey: 'screens.onboarding.sidekick_intro.seventh',
-    iconKey: 'HappyGuideIcon',
+    iconKey: 'HappySidekickGuideIcon',
   },
 ];

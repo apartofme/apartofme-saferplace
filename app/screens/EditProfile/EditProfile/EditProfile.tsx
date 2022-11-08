@@ -79,6 +79,7 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
                 value={nickname}
                 onChangeText={setNickname}
                 setIsActive={setIsActive}
+                maxLength={12}
               />
             </View>
           </BottomButtonView>

@@ -75,7 +75,7 @@ export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
   });
 
   return (
-    <View>
+    <View style={generalStyles.flex}>
       <Image
         source={
           CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
@@ -87,8 +87,7 @@ export const LeaveFeedbackScreen: React.FC<ILeaveFeedbackScreenProps> = ({
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
             isArrow={!buttonTitle}
-            onSubmit={onSubmit}
-            isDisabledButton={!inputText}>
+            onSubmit={onSubmit}>
             <ScrollView
               ref={scrollViewRef}
               showsVerticalScrollIndicator={false}>

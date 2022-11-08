@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Platform } from 'react-native';
+import { Platform, ViewStyle } from 'react-native';
 
 import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
@@ -9,8 +9,10 @@ import {
   ITranslations,
   CharmsBackgroundsKeys,
   CharmsSvgKeys,
+  AnimationsKeys,
 } from './types';
 import { REGEXPS } from './regexps';
+import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../constants/window';
 
 export const isAndroid = Platform.OS === 'android';
 
@@ -87,7 +89,7 @@ export const questsToDictionary = (
       description: quest.description,
       backgroundImage:
         (quest.backgroundimage?.path as CharmsBackgroundsKeys) ?? null,
-      image: (quest.image?.path as CharmsSvgKeys) ?? null,
+      image: (quest.image?.path as CharmsSvgKeys | AnimationsKeys) ?? null,
       tellMoreTitle: quest.tellmoretitle ?? null,
       tellMoreDescription: quest.tellmoredescription ?? null,
       tellMoreBackground:
@@ -113,7 +115,6 @@ export const questsToDictionary = (
   return result;
 };
 
-// TODO: change string to animation
 export const getElixirAnimationKeyByRange = (currentPosition: number) => {
   if (currentPosition === 0) {
     return ElixirKeysType.ElixirZero;
@@ -150,4 +151,20 @@ export const hexTransparency = (color: string, transparency: number) => {
   const intValue = Math.round((percent / 100) * 255);
   const hexValue = intValue.toString(16);
   return `${color}${hexValue.padStart(2, '0').toUpperCase()}`;
+};
+
+export const LottieAbsoluteStyles = (
+  verticalShift = 0,
+  styles?: ViewStyle,
+): ViewStyle => {
+  const shift =
+    WINDOW_COEFFICIENT === 1
+      ? verticalShift
+      : verticalShift / (WINDOW_COEFFICIENT - 1);
+  return {
+    width: WINDOW_WIDTH,
+    position: 'absolute',
+    top: WINDOW_COEFFICIENT * shift - shift,
+    ...styles,
+  };
 };

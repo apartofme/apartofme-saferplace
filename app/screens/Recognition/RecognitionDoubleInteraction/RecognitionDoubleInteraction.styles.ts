@@ -7,8 +7,6 @@ export interface IElixirDoubleInteractionSubtitleStyles {
   buttonsContainer: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
-  square: ViewStyle;
-  redBackground: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
@@ -23,7 +21,6 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
       paddingHorizontal: 60,
       paddingBottom: 24,
     },
-    // TODO: change to cerrect styles
     title: {
       textAlign: 'center',
       marginTop: 70,
@@ -36,16 +33,6 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
       marginTop: 40,
       marginHorizontal: 40,
       color: COLORS.BRILLIANT_WHITE,
-    },
-    // TODO: remove when add animation
-    square: {
-      backgroundColor: 'gray',
-      height: 200,
-      width: 200,
-      alignSelf: 'center',
-    },
-    redBackground: {
-      backgroundColor: 'red',
     },
   },
 );

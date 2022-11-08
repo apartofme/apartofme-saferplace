@@ -5,8 +5,9 @@ import { COLORS } from '../../../../themes/colors';
 interface ISignUpCredentialsScreenStyles {
   container: ViewStyle;
   subtitle: ViewStyle;
-  input: ViewStyle;
+  mt16: ViewStyle;
   bottomConatainer: ViewStyle;
+  mb24: ViewStyle;
   focused: ViewStyle;
   whiteColor: TextStyle;
   greyColor: TextStyle;
@@ -23,14 +24,17 @@ export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
     paddingTop: 16,
     paddingBottom: 32,
   },
-  input: {
-    marginBottom: 16,
+  mt16: {
+    marginTop: 16,
   },
   bottomConatainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     paddingHorizontal: 40,
+    marginBottom: 24,
+  },
+  mb24: {
     marginBottom: 24,
   },
   focused: {
