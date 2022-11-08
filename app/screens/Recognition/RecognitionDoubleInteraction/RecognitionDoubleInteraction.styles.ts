@@ -18,7 +18,7 @@ export const styles = StyleSheet.create<IElixirDoubleInteractionSubtitleStyles>(
     buttonsContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      paddingHorizontal: 60,
+      paddingHorizontal: 44,
       paddingBottom: 24,
     },
     title: {

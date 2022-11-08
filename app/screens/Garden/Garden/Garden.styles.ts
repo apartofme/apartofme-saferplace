@@ -18,7 +18,7 @@ export interface IGardenScreenStyles {
 export const styles = StyleSheet.create<IGardenScreenStyles>({
   avatarContainer: {
     position: 'absolute',
-    right: 20,
+    right: 8,
     top: 40,
     zIndex: 100,
     borderRadius: 100,

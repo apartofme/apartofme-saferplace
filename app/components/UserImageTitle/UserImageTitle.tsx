@@ -27,7 +27,7 @@ export const UserImageTitle: React.FC<IUserImageTitleProps> = ({
       {AvatarIcon ? (
         <View style={[generalStyles.aiCenter, generalStyles.jcCenter]}>
           <View style={isEdit && [styles.opacity]}>
-            <AvatarIcon width={120} height={120} />
+            <AvatarIcon width={175} height={175} />
           </View>
 
           {isEdit && (

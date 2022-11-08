@@ -103,10 +103,10 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
         </SafeAreaView>
         <View style={styles.buttonsContainer}>
           <View onTouchStart={setChildPress} onTouchEnd={setChildPress}>
-            <ParentAvatarIcon width={90} height={90} reduceSize={false} />
+            <ParentAvatarIcon width={110} height={110} reduceSize={false} />
           </View>
           <View onTouchStart={setAdultPress} onTouchEnd={setAdultPress}>
-            <ChildAvatarIcon width={90} height={90} reduceSize={false} />
+            <ChildAvatarIcon width={110} height={110} reduceSize={false} />
           </View>
         </View>
       </ImageBackground>

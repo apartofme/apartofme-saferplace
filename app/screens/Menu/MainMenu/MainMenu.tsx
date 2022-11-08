@@ -63,11 +63,10 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
             rightIcon={<WhiteCrossIcon />}
             onRightIconPress={navigation.goBack}
           />
+          <View style={styles.avatar}>
+            {AvatarIcon && <AvatarIcon width={80} height={80} />}
+          </View>
           <View style={styles.topContentContainer}>
-            <View style={styles.avatar}>
-              {AvatarIcon && <AvatarIcon width={80} height={80} />}
-            </View>
-
             <View style={generalStyles.row}>
               <ExtendedText preset="title" style={styles.title}>
                 {t('screens.menu.main_menu.title')}
