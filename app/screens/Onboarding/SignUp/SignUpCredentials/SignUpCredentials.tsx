@@ -89,7 +89,6 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
               validationSchema={SignUpCredentioalsValidationSchema}
               onSubmit={onSignUpPress}>
               {({
-                values,
                 handleChange,
                 handleSubmit,
                 handleBlur,
