@@ -1,13 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
-import { BottomButtonView, ExtendedText, Timer } from '../../../../components';
+import { ANIMATIONS } from '../../../../assets/animations';
+import { BottomButtonView, ExtendedText } from '../../../../components';
 import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './CharmTimerButton.styles';
 import { ICharmTimerButtonScreenProps } from './CharmTimerButton.types';
+import { AnimationsKeys } from '../../../../utils/types';
 
 export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
   route,
@@ -19,7 +22,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
     title,
     buttonTitle,
     crossHeader,
-    duration,
+    image,
     escapeMenuAlternativeNavigateTo,
     backgroundImage,
   } = route.params.data;
@@ -36,12 +39,22 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        <Header />
+        <View style={styles.headerContainer}>
+          <Header />
+        </View>
         <BottomButtonView
           buttonTitle={buttonTitle || t('buttons.next')}
           onSubmit={onSubmit}
           isArrow
           style={styles.container}>
+          {image && (
+            <Lottie
+              source={ANIMATIONS[image as AnimationsKeys]}
+              autoPlay
+              loop
+              style={styles.animation}
+            />
+          )}
           <View style={styles.readLoudContainer}>
             <ExtendedText
               preset="tertiary-text-medium"
@@ -49,14 +62,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
               {t('Read out loud')}
             </ExtendedText>
           </View>
-          <Timer
-            duration={duration ?? 10}
-            isStart={true}
-            style={styles.timer}
-          />
-          <ExtendedText
-            preset="secondary-text"
-            style={generalStyles.greyCenter}>
+          <ExtendedText preset="secondary-text" style={styles.title}>
             {title}
           </ExtendedText>
         </BottomButtonView>

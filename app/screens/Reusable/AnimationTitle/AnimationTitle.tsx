@@ -1,8 +1,10 @@
 import { useIsFocused } from '@react-navigation/native';
 import React, { useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import Lottie from 'lottie-react-native';
+import { useTranslation } from 'react-i18next';
 
-import { ExtendedText, Timer } from '../../../components';
+import { ExtendedText } from '../../../components';
 import { IAnimationTitleScreenProps } from './AnimationTitle.types';
 import { styles } from './AnimationTitle.styles';
 import { generalStyles } from '../../../utils/styles';
@@ -13,16 +15,16 @@ import {
   useMount,
   useNavigateNextQuest,
 } from '../../../hooks';
-import { ElixirThreeIcon } from '../../../assets/svg/garden';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { ELIXIR_ANIMATION_TYPE } from '../../../constants/elixir';
-import { useTranslation } from 'react-i18next';
+import { LottieAbsoluteStyles } from '../../../utils';
+import { ANIMATIONS } from '../../../assets/animations';
 
 export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
   route,
 }) => {
-  const { description, duration, title } = route.params.data;
+  const { description, title } = route.params.data;
 
   const isFocused = useIsFocused();
   const { t } = useTranslation();
@@ -75,22 +77,47 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
     if (description) {
       switch (description) {
         case ELIXIR_ANIMATION_TYPE.Mix:
-          return <ElixirThreeIcon />;
+          return (
+            <Lottie
+              onAnimationFinish={onSubmit}
+              source={ANIMATIONS.POTION_MIX}
+              autoPlay
+              loop={false}
+              style={LottieAbsoluteStyles(0)}
+            />
+          );
         case ELIXIR_ANIMATION_TYPE.Open:
-          return <ElixirThreeIcon />;
+          return (
+            <Lottie
+              onAnimationFinish={onSubmit}
+              source={ANIMATIONS.POTION_OPEN_BOTTLE}
+              autoPlay
+              loop={false}
+              style={LottieAbsoluteStyles(0)}
+            />
+          );
         default:
-          return <ElixirThreeIcon />;
+          return (
+            <Lottie
+              onAnimationFinish={onSubmit}
+              source={ANIMATIONS.POTION_OPEN_BOTTLE}
+              progress={1}
+              loop={false}
+              style={LottieAbsoluteStyles(0)}
+            />
+          );
       }
     }
-
     return (
-      <Timer
-        duration={duration ?? 5}
-        isStart={true}
-        onAnimationComplete={onSubmit}
+      <Lottie
+        onAnimationFinish={onSubmit}
+        source={ANIMATIONS.FINDING_RIGHT_CHARM}
+        autoPlay
+        loop={false}
+        style={LottieAbsoluteStyles(-15)}
       />
     );
-  }, [description, duration, onSubmit]);
+  }, [description, onSubmit]);
 
   return (
     <ImageBackground
@@ -104,15 +131,20 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
           </ExtendedText>
         </View>
       ) : (
-        <SafeAreaView style={generalStyles.flex}>
-          <View
-            style={[styles.container, !!description && styles.elixirContainer]}>
-            {animation}
-            <ExtendedText preset="large-title" style={styles.title}>
-              {title}
-            </ExtendedText>
-          </View>
-        </SafeAreaView>
+        <>
+          {animation}
+          <SafeAreaView style={generalStyles.flex}>
+            <View
+              style={[
+                styles.container,
+                !!description && styles.elixirContainer,
+              ]}>
+              <ExtendedText preset="large-title" style={styles.title}>
+                {title}
+              </ExtendedText>
+            </View>
+          </SafeAreaView>
+        </>
       )}
     </ImageBackground>
   );

@@ -116,7 +116,6 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                     <View style={styles.mb24}>
                       <ExtendedTextInput
                         type={ExtendedTextInputType.Email}
-                        value={values.email}
                         onChangeText={handleChange('email')}
                         setIsActive={setIsFocus}
                         onBlur={handleBlur('email')}
@@ -129,7 +128,6 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                       />
                       <ExtendedTextInput
                         type={ExtendedTextInputType.PasswordToggle}
-                        value={values.password}
                         onChangeText={handleChange('password')}
                         setIsActive={setIsFocus}
                         onBlur={handleBlur('password')}

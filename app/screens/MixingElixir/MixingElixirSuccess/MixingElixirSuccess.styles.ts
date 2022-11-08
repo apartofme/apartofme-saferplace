@@ -1,23 +1,22 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 
 export interface IMixingElixirSuccessStyles {
   container: ViewStyle;
-  image: ImageStyle;
   title: TextStyle;
 }
 
 export const styles = StyleSheet.create<IMixingElixirSuccessStyles>({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingHorizontal: 24,
+    paddingBottom: 40 * WINDOW_COEFFICIENT,
   },
-  image: {
-    height: 264,
-    width: 200,
-  },
+
   title: {
-    marginVertical: 24,
+    marginVertical: 24 * WINDOW_COEFFICIENT,
   },
 });

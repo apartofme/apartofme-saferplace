@@ -78,8 +78,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
             isArrow={!buttonTitle}
-            onSubmit={onSubmit}
-            isDisabledButton={!inputText}>
+            onSubmit={onSubmit}>
             <ScrollView
               ref={scrollViewRef}
               showsVerticalScrollIndicator={false}>
