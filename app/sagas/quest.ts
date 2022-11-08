@@ -3,16 +3,14 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import moment from 'moment';
 import _ from 'lodash';
 
-import {
-  ALL_QUESTS_STACK,
-  IInterruptedQuestLine,
-} from '../redux/types/questTypes';
+import { IInterruptedQuestLine } from '../redux/types/questTypes';
 import { questSlice } from '../redux/slices';
 import { Nullable } from '../utils';
 import { IQuestProgress } from '../utils/types';
 import { RootState } from '../redux';
 import { firestoreUpdateChildProgress } from '../services/firebase';
 import { IChild } from '../models/IChild';
+import { ALL_QUESTS_STACK } from '../constants/quest';
 
 const questStateSelector = (state: RootState) => {
   return {

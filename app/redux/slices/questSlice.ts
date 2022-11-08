@@ -4,7 +4,6 @@ import _ from 'lodash';
 import { Nullable } from '../../utils';
 import { IQuestLine } from '../../models/IQuestLine';
 import {
-  ALL_QUESTS_STACK,
   IDailyCheck,
   IInterruptedQuestLine,
   ISaveAllQuestsPayload,
@@ -12,13 +11,14 @@ import {
 } from '../types/questTypes';
 import { IQuest } from '../../models/IQuest';
 import { IQuestProgress } from '../../utils/types';
+import { ALL_QUESTS_STACK } from '../../constants/quest';
 
 interface IQuestState {
   currentDay: number;
   lastDayUpdate: number;
-  currentDayQuestsStack: number[];
+  currentDayQuestsStack: string[];
   allQuests: Nullable<Record<string, Record<string, IQuestLine>>>;
-  allQuestsStack: number[][];
+  allQuestsStack: string[][];
   interruptedQuestLine: Nullable<IInterruptedQuestLine>;
   currentQuestIdx: number;
   currentQuestLine: Nullable<{ id: string; quests: IQuest[] }>;

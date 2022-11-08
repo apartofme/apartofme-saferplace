@@ -32,7 +32,7 @@ export const SkipCharmAlertScreen: React.FC<ISkipCharmAlertScreenProps> = ({
   }, [navigation]);
 
   const goToGarden = useCallback(() => {
-    navigation.push('GardenStack', {
+    navigation.replace('GardenStack', {
       screen: 'Garden',
       params: {
         isFirstTime: false,

@@ -21,7 +21,7 @@ import {
 } from '../../../hooks';
 import { cacheSlice } from '../../../redux/slices';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
-import { THE_CHARM_OF_KINDNESS_ID } from '../../../constants/quest';
+import { THE_CHARM_OF_KINDNESS_PART_ONE_ID } from '../../../constants/quest';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
   const {
@@ -45,7 +45,7 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
   const positiveNavigate = usePositiveNavigateTo(positiveNavigatesTo);
 
   const onSubmit = useCallback(() => {
-    if (currentQuestLineId === THE_CHARM_OF_KINDNESS_ID) {
+    if (currentQuestLineId === THE_CHARM_OF_KINDNESS_PART_ONE_ID) {
       if (isChild) {
         dispatch(cacheSlice.actions.saveChildKindnessItem(inputText));
       } else {

@@ -31,7 +31,7 @@ export const CompletedCharmEndScreen: React.FC<ICompletedCharmEndScreenProps> =
     });
 
     const onSabmit = useCallback(() => {
-      navigation.push('GardenStack', {
+      navigation.replace('GardenStack', {
         screen: 'Garden',
         params: {
           isFirstTime: false,

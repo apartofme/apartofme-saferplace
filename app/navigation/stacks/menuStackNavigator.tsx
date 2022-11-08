@@ -24,6 +24,7 @@ import {
   DeleteAccountAcknowledgementScreen,
   DeleteAccountSuccessScreen,
   SelectUserScreen,
+  SelectUserAcknowledgementScreen,
 } from '../../screens';
 import { AboutCharmsMenuItem } from '../../screens/Menu/AboutCharm/AboutCharm.types';
 import { ConditionsScreenData } from '../../screens/Menu/Conditions/Conditions.types';
@@ -51,6 +52,7 @@ export type MenuStackParams = {
   DeleteAccount: undefined;
   DeleteAccountAcknowledgement: undefined;
   DeleteAccountSuccess: undefined;
+  SelectUserAcknowledgement: undefined;
   SelectUser: undefined;
 };
 
@@ -97,6 +99,10 @@ export const MenuStackNavigator = () => (
     <Stack.Screen
       name="DeleteAccountSuccess"
       component={DeleteAccountSuccessScreen}
+    />
+    <Stack.Screen
+      name="SelectUserAcknowledgement"
+      component={SelectUserAcknowledgementScreen}
     />
     <Stack.Screen name="SelectUser" component={SelectUserScreen} />
   </Stack.Navigator>

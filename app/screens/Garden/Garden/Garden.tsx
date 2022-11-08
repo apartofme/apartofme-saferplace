@@ -26,7 +26,7 @@ import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { CharmBookMenuScreen, CharmBookMenuType } from '../CharmBookMenu';
-import { OPEN_DIALOG_IDS } from '../../../constants/quest';
+import { CHARMS_PART_TWO_IDS, OPEN_DIALOG_IDS } from '../../../constants/quest';
 
 export const GardenScreen: React.FC<IGardenScreenProps> = ({
   navigation,
@@ -46,7 +46,6 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);
   const [activePlantArea, setActivePlantArea] =
     useState<Nullable<PlantAreaType>>(null);
-
   const isBackgroundMusicEnabled = useAppSelector(
     state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
   );
@@ -56,7 +55,6 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     currentDay,
     lastDayUpdate,
   } = useAppSelector(state => state.quest);
-  const isInterruptedQuestLineEmpty = !interruptedQuestLine;
   const parentdAvatar = useAppSelector(state => state.user.parent?.avatar);
   const currentLanguage = useAppSelector(
     state => state.settings.settings.language ?? 'en',
@@ -65,17 +63,19 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     state => state.quest.allQuests?.[currentLanguage],
   );
 
+  const isInterruptedQuestLineEmpty = useMemo(
+    () => !interruptedQuestLine,
+    [interruptedQuestLine],
+  );
   const AvatarIcon = AVATARS_SVG[parentdAvatar ?? 'CircleRabbitIcon'];
 
   useEffect(() => {
     if (isFocused && appStatus === 'active' && isBackgroundMusicEnabled) {
       AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
-      showDayOpenDialog();
     } else {
       AudioPlayerHelper.stop();
     }
     // intentionally
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatus, isFocused, isBackgroundMusicEnabled]);
 
   useEffect(() => {
@@ -84,25 +84,48 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       return;
     }
 
-    if (appStatus === 'active' && isPrevStatusBackground) {
-      const nowSeconds = +moment().format('X');
+    if (appStatus === 'active') {
+      if (isPrevStatusBackground) {
+        const nowSeconds = +moment().format('X');
 
-      if (
-        nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
-        !interruptedQuestLine &&
-        !currentDayQuestsStack.length
-      ) {
-        dispatch(questSlice.actions.setLastDayUpdate());
-        dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
-        dispatch(questSlice.actions.setCurrentDayQuestsStack());
-        showDayOpenDialog();
+        if (
+          nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
+          !interruptedQuestLine &&
+          !currentDayQuestsStack.length
+        ) {
+          dispatch(questSlice.actions.setLastDayUpdate());
+          dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
+          dispatch(questSlice.actions.setCurrentDayQuestsStack());
+        }
       }
-      setIsPrevStatusBackground(false);
       return;
     }
     // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appStatus]);
+
+  useEffect(() => {
+    if (isFocused) {
+      showDayOpenDialog();
+
+      const charmPartTwoIdx = _.findIndex(
+        CHARMS_PART_TWO_IDS,
+        item =>
+          currentDayQuestsStack[currentDayQuestsStack.length - 1] === item,
+      );
+      if (charmPartTwoIdx !== -1) {
+        dispatch(
+          questSlice.actions.updateInterruptedQuestLine({
+            day: currentDay,
+            id: CHARMS_PART_TWO_IDS[charmPartTwoIdx],
+            interruptedQuestInx: 0,
+          }),
+        );
+      }
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFocused, currentDayQuestsStack]);
 
   useMount(() => {
     if (isFirstTime) {
@@ -138,11 +161,23 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePlantArea]);
 
+  const isOpeningDialog = useMemo(() => {
+    if (currentDayQuestsStack.length > 0) {
+      return !!_.find(
+        OPEN_DIALOG_IDS,
+        item =>
+          currentDayQuestsStack[currentDayQuestsStack.length - 1] === item,
+      );
+    }
+    return false;
+  }, [currentDayQuestsStack]);
+
   const title = useMemo(() => {
     const isDisplayNone =
       !currentDayQuestsStack.length &&
       isInterruptedQuestLineEmpty &&
-      !isPlanting;
+      !isPlanting &&
+      isOpeningDialog;
 
     return (
       <View
@@ -154,40 +189,56 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         </ExtendedText>
       </View>
     );
-  }, [currentDayQuestsStack, isInterruptedQuestLineEmpty, isPlanting, t]);
+  }, [
+    currentDayQuestsStack.length,
+    isInterruptedQuestLineEmpty,
+    isOpeningDialog,
+    isPlanting,
+    t,
+  ]);
 
   const setModalStatus = useCallback(() => {
     setIsModal(!isModal);
   }, [isModal]);
 
   const showDayOpenDialog = useCallback(() => {
-    const dayOpenDialogIdx = _.findIndex(
-      OPEN_DIALOG_IDS,
-      item => item === currentDayQuestsStack[currentDayQuestsStack.length - 1],
-    );
-
-    if (dayOpenDialogIdx !== -1) {
-      const newQuestLineId = OPEN_DIALOG_IDS[dayOpenDialogIdx];
-      const newQuests = _.values(allQuests?.[newQuestLineId].quests);
-
-      dispatch(
-        questSlice.actions.saveCurrentQuestLine({
-          id: newQuests[0].questLineId,
-          quests: newQuests,
-        }),
+    if (!interruptedQuestLine && !isPlanting) {
+      const dayOpenDialogIdx = _.findIndex(
+        OPEN_DIALOG_IDS,
+        item =>
+          item === currentDayQuestsStack[currentDayQuestsStack.length - 1],
       );
 
-      dispatch(questSlice.actions.saveCurrentQuestIdx(0));
-      setTimeout(() => {
-        navigation.push('QuestStack', {
-          screen: newQuests[0].type,
-          params: {
-            data: { ...newQuests[0] },
-          },
-        });
-      }, 50);
+      if (dayOpenDialogIdx !== -1) {
+        const newQuestLineId = OPEN_DIALOG_IDS[dayOpenDialogIdx];
+        const newQuests = _.values(allQuests?.[newQuestLineId].quests);
+
+        dispatch(
+          questSlice.actions.saveCurrentQuestLine({
+            id: newQuests[0].questLineId,
+            quests: newQuests,
+          }),
+        );
+
+        dispatch(questSlice.actions.saveCurrentQuestIdx(0));
+        setTimeout(() => {
+          navigation.push('QuestStack', {
+            screen: newQuests[0].type,
+            params: {
+              data: { ...newQuests[0] },
+            },
+          });
+        }, 2000);
+      }
     }
-  }, [allQuests, currentDayQuestsStack, dispatch, navigation]);
+  }, [
+    allQuests,
+    currentDayQuestsStack,
+    dispatch,
+    interruptedQuestLine,
+    navigation,
+    isPlanting,
+  ]);
 
   return (
     <ImageBackground

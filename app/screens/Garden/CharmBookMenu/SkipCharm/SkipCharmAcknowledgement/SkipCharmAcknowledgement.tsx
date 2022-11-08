@@ -52,7 +52,6 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
         const interruptedQuests = values(
           allQuests?.[+interruptedQuestLine.id].quests,
         );
-
         dispatch(questSlice.actions.updateCurrentDayQuestsStack());
         dispatch(questSlice.actions.updateInterruptedQuestLine(null));
 
