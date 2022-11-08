@@ -8,16 +8,11 @@ import Svg, {
   ClipPath,
 } from 'react-native-svg';
 
-import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
 export const ElixirThreeIcon = ({ width = 200, height = 263 }: ISvgProps) => {
   return (
-    <Svg
-      width={width * WINDOW_COEFFICIENT}
-      height={height * WINDOW_COEFFICIENT}
-      viewBox="0 0 200 263"
-      fill="none">
+    <Svg width={width} height={height} viewBox="0 0 200 263" fill="none">
       <G clipPath="url(#clip0_1881_263934)">
         <Path
           d="M120.24 45.208c7.515 1.28 15.517-.533 21.739-4.95.578-.411 1.141-.838 1.521-1.432.837-1.31.548-3.107-.304-4.417-.852-1.31-2.145-2.254-3.377-3.199-9.295-7.052-14.969-17.303-23.306-25.483-4.275-4.189-10.466-6.306-16.399-5.605-4.184.487-8.093 2.285-11.79 4.295a89.41 89.41 0 00-12.49 8.24c-2.707 2.133-5.324 4.433-8.412 5.956-4.746 2.361-9.766 3.123-14.239 5.987-1.004.64-1.415 1.934-1.308 3.122.106 1.188.654 2.27 1.232 3.305 2.358 4.204 5.507 8.058 9.553 10.678 4.047 2.62 9.037 3.945 13.768 3.092 6.115-1.112 11.972 1.051 18.179 1.432 9.143.548 16.734 1.066 25.648-1.02h-.015z"
