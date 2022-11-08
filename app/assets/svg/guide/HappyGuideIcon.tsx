@@ -16,7 +16,7 @@ export const HappyGuideIcon = ({ width = 319, height = 362 }: ISvgProps) => {
     <Svg
       width={width * WINDOW_COEFFICIENT}
       height={height * WINDOW_COEFFICIENT}
-      viewBox="0 0 319 362"
+      viewBox="0 0 329 362"
       fill="none">
       <G clipPath="url(#clip0_2916_376219)">
         <Path

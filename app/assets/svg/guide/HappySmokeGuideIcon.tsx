@@ -19,7 +19,7 @@ export const HappySmokeGuideIcon = ({
     <Svg
       width={width * WINDOW_COEFFICIENT}
       height={height * WINDOW_COEFFICIENT}
-      viewBox="0 0 319 362"
+      viewBox="0 0 329 362"
       fill="none">
       <G clipPath="url(#clip0_2916_374256)">
         <Path

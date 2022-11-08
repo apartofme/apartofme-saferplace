@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import { Formik } from 'formik';
 
@@ -26,6 +27,7 @@ import { styles } from './SignUpCredentials.styles';
 import { SignUpCredentioalsValidationSchema } from './SignUpCredentials.validation';
 import { COLORS } from '../../../../themes/colors';
 import { SVG } from '../../../../assets/svg';
+import { SETTINGS_PRIVACY_MENU } from '../../../Menu/SettingsPrivacy/SettingsPrivacy.data';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -50,6 +52,24 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
 
     const onSignInPress = useCallback(() => {
       navigation.navigate('Login');
+    }, [navigation]);
+
+    const onConditionPress = useCallback(() => {
+      if (SETTINGS_PRIVACY_MENU[3].data) {
+        navigation.navigate('MenuStack', {
+          screen: 'Conditions',
+          params: { data: SETTINGS_PRIVACY_MENU[3].data },
+        });
+      }
+    }, [navigation]);
+
+    const onPrivacyPress = useCallback(() => {
+      if (SETTINGS_PRIVACY_MENU[4].data) {
+        navigation.navigate('MenuStack', {
+          screen: 'Conditions',
+          params: { data: SETTINGS_PRIVACY_MENU[4].data },
+        });
+      }
     }, [navigation]);
 
     return (
@@ -148,32 +168,32 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             </Formik>
           </ExtendedKeyboardAvoidingView>
 
-          {isFocus && (
+          {!isFocus && (
             <View style={styles.bottomConatainer}>
               <ExtendedText
                 preset="tertiary-text-regular"
                 style={styles.whiteColor}>
                 {t('screens.onboarding.sign_up_credentials.footer')}
               </ExtendedText>
-              <TouchableOpacity>
+              <Pressable onPress={onConditionPress}>
                 <ExtendedText
                   preset="tertiary-text-regular"
                   style={[generalStyles.boldText, generalStyles.primaryOrange]}>
                   {t('buttons.terms_conditions')}
                 </ExtendedText>
-              </TouchableOpacity>
+              </Pressable>
               <ExtendedText
                 preset="tertiary-text-regular"
                 style={styles.whiteColor}>
                 {` ${t('labels.and')} `}
               </ExtendedText>
-              <TouchableOpacity>
+              <Pressable onPress={onPrivacyPress}>
                 <ExtendedText
                   preset="tertiary-text-regular"
                   style={[generalStyles.boldText, generalStyles.primaryOrange]}>
                   {t('buttons.privacy_policy')}
                 </ExtendedText>
-              </TouchableOpacity>
+              </Pressable>
             </View>
           )}
         </SafeAreaView>

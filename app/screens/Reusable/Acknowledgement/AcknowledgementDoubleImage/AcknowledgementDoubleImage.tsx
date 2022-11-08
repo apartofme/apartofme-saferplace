@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../../assets';
@@ -70,11 +70,7 @@ export const AcknowledgementDoubleImageScreen: React.FC<IAcknowledgementDoubleIm
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            {AvatarsIcon && (
-              <View style={styles.iconContainer}>
-                <AvatarsIcon />
-              </View>
-            )}
+            {AvatarsIcon && <AvatarsIcon />}
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>

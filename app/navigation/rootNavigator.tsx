@@ -26,6 +26,7 @@ import {
   BefriendingStackNavigator,
   EditProfileStackParams,
   EditProfileStackNavigator,
+  MenuStackParams,
 } from './stacks';
 import { InitialScreen } from '../screens';
 import { navigationRef } from '../services/navigator';
@@ -40,7 +41,7 @@ export type RootParams = {
   JointOnboardingStack:
     | NavigatorScreenParams<JointOnboardingStackParams>
     | undefined;
-  MenuStack: undefined;
+  MenuStack: NavigatorScreenParams<MenuStackParams> | undefined;
   RecognitionStack: NavigatorScreenParams<RecognitionStackParams> | undefined;
   QuestStack: NavigatorScreenParams<QuestStackParams> | undefined;
   MixingElixirStack: NavigatorScreenParams<MixingElixirStackParams> | undefined;
