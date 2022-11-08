@@ -1,1 +1,0 @@
-export { ElixirDoubleInteractionSubtitleScreen } from './ElixirDoubleInteractionSubtitle';

@@ -129,10 +129,6 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
   <View
     style={
       Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-        },
         Array [
           Object {
             "backgroundColor": "#3F1670E6",
@@ -151,6 +147,12 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
             "borderColor": "#EA0000",
           },
         ],
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "paddingHorizontal": 0,
+          "paddingVertical": 0,
+        },
       ]
     }
   >
@@ -164,7 +166,8 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
         Object {
           "color": "#FFFFFF",
           "flex": 1,
-          "padding": 0,
+          "paddingLeft": 24,
+          "paddingVertical": 16,
         }
       }
       value="test input"
@@ -184,7 +187,7 @@ exports[`UI: ExtendedTextInput should match snapshot 2`] = `
       style={
         Object {
           "opacity": 1,
-          "paddingLeft": 24,
+          "paddingHorizontal": 24,
         }
       }
     >

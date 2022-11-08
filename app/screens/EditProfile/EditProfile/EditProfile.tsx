@@ -49,12 +49,14 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   const onSubmit = useCallback(() => {
     if (type === UserType.Parent) {
       dispatch(userSlice.actions.editParent({ nickname }));
+      navigation.goBack();
       return;
     }
     if (user?.uid) {
       dispatch(userSlice.actions.editChild({ nickname, userId: user?.uid }));
     }
-  }, [dispatch, nickname, type, user?.uid]);
+    navigation.goBack();
+  }, [dispatch, navigation, nickname, type, user?.uid]);
 
   return (
     <View style={generalStyles.flex}>

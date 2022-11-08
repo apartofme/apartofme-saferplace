@@ -51,7 +51,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   useEffect(() => {
     if (!isSaveAllQuests && !isSaveTranslations && isStartLoading) {
       if (user.parent && user.child) {
-        navigation.replace('GardenStack');
+        navigation.replace('QuestStack');
         return;
       }
       if (user.parent && !user.child) {

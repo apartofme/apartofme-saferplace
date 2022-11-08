@@ -110,7 +110,7 @@ export const SelectDrawBuildScreen: React.FC<ISelectDrawBuildScreenProps> = ({
           <ExtendedText
             preset="secondary-text"
             style={generalStyles.brilliantWhite}>
-            {t('buttons.not_now')}
+            {t('buttons.not_now').toUpperCase()}
           </ExtendedText>
         </Pressable>
       </SafeAreaView>

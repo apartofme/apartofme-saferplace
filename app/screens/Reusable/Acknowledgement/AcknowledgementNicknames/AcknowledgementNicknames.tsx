@@ -45,7 +45,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
       text: description ?? '',
       textHasNickname: titleHasNickname ?? true,
       isChild,
-      preset: 'secondary-text',
+      preset: 'tertiary-text-regular',
       style: styles.description,
     });
 
@@ -71,7 +71,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
             style={styles.container}>
             {Icon && <Icon />}
 
-            <View>
+            <View style={generalStyles.aiCenter}>
               <Title />
               <Description />
             </View>

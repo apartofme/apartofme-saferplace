@@ -5,12 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { IManageProfilesScreenProps } from './ManageProfiles.types';
 import { styles } from './ManageProfiles.styles';
 import { generalStyles } from '../../../utils/styles';
-import {
-  AvatarList,
-  BottomButtonView,
-  ExtendedText,
-  MainHeader,
-} from '../../../components';
+import { AvatarList, ExtendedText, MainHeader } from '../../../components';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { useAppSelector } from '../../../hooks';
 import { SVG } from '../../../assets/svg';
@@ -32,16 +27,12 @@ export const ManageProfilesScreen: React.FC<IManageProfilesScreenProps> = ({
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
-        <BottomButtonView
-          buttonTitle={t('buttons.done')}
-          onSubmit={navigation.goBack}>
-          <View style={styles.container}>
-            <ExtendedText preset="large-title" style={styles.title}>
-              {t('screens.menu.manage_profiles.title')}
-            </ExtendedText>
-            <AvatarList data={children} parent={parentData} />
-          </View>
-        </BottomButtonView>
+        <View style={styles.container}>
+          <ExtendedText preset="large-title" style={styles.title}>
+            {t('screens.menu.manage_profiles.title')}
+          </ExtendedText>
+          <AvatarList data={children} parent={parentData} />
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
