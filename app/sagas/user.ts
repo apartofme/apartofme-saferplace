@@ -175,18 +175,16 @@ function* watchEditChild({
 }
 
 function* watchCreateChild({ payload: child }: PayloadAction<IChild>) {
-  const isFirstChild: boolean = yield select(state => !state.user.child);
   const CreateChildResponse: IFirestoreErrorResponse = yield call(
     firestoreCreateChild,
     child,
   );
 
   if (!CreateChildResponse.error) {
-    if (isFirstChild) {
-      yield call(StaticNavigator.navigateTo, 'SignUpSuccess', {
-        isChild: true,
-      });
-    }
+    yield call(StaticNavigator.navigateTo, 'SignUpSuccess', {
+      isChild: true,
+    });
+
     const FirestoreCreateChildProgressResponse: IFirestoreErrorResponse =
       yield call(firestoreCreateChildProgress, child.uid);
     if (!FirestoreCreateChildProgressResponse.error) {
@@ -194,6 +192,8 @@ function* watchCreateChild({ payload: child }: PayloadAction<IChild>) {
       yield put(questSlice.actions.updateCurrentDay(1));
       yield put(questSlice.actions.setCurrentDayQuestsStack());
       yield put(questSlice.actions.setLastDayUpdate());
+      yield put(elixirSlice.actions.getInitialState());
+      yield put(plantSlice.actions.getInitialState());
     }
   } else {
     yield put(userSlice.actions.createChildError('Create child error'));

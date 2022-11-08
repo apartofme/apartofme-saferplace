@@ -11,6 +11,12 @@ export const THE_CHARM_OF_WEAVING_ID = '55602886';
 export const THE_CHARM_OF_ACCEPTANCE_ID = '55602851';
 export const THE_CHARM_OF_KINDNESS_ID = '55602844';
 
+export const CHARMS_PART_TWO_IDS = [
+  '55602837', // The Charm of Discovery Part 2
+  '55602848', // The Charm of Kindness Part 2
+  '55602867', // The Charm of Discovery 2 Part 2
+];
+
 export const PLANTS_CHARM_IDS = [
   '55602820', // FTUE - Compassion Exercises
   '55712796', // FTUE Calm Charms

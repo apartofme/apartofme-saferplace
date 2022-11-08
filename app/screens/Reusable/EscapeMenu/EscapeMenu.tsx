@@ -86,7 +86,7 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
 
     dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
     navigation.goBack();
-    navigation.push('GardenStack', {
+    navigation.replace('GardenStack', {
       screen: 'Garden',
       params: {
         isFirstTime: false,

@@ -52,7 +52,7 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
         }),
       );
 
-      navigation.push('GardenStack', {
+      navigation.replace('GardenStack', {
         screen: 'Garden',
         params: {
           isFirstTime: isFirstTimeGarden,

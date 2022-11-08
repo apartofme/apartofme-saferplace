@@ -60,7 +60,7 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
         dispatch(questSlice.actions.updateCurrentDayQuestsStack());
 
         if (!currentQuestLine?.quests[nextQuestIdx - 1].elixirReward) {
-          navigation.push('GardenStack', {
+          navigation.replace('GardenStack', {
             screen: 'Garden',
             params: {
               isPlanting: false,
@@ -161,7 +161,7 @@ export const useNavigateNextQuest = () => {
         // *** Flow for default charms
         if (!currentQuestLine?.quests[nextQuestIdx - 1].elixirReward) {
           setTimeout(() => {
-            navigation.push('GardenStack', {
+            navigation.replace('GardenStack', {
               screen: 'Garden',
               params: {
                 isPlanting: false,

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import _ from 'lodash';
 
-import { BACKGROUND_IMAGES, IMAGES } from '../../../../assets';
+import { BACKGROUND_IMAGES } from '../../../../assets';
 import { AVATARS_SVG } from '../../../../assets/svg';
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { useAppSelector } from '../../../../hooks';
@@ -71,26 +71,29 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
 
   return (
     <ImageBackground source={background} style={generalStyles.flex}>
-      <ImageBackground
+      {
+        // TODO: uncomment
+        /* <ImageBackground
         source={IMAGES.CONFETTI}
         style={generalStyles.flex}
-        imageStyle={styles.background}>
-        <SafeAreaView style={generalStyles.flex}>
-          <BottomButtonView
-            buttonTitle={t('buttons.next')}
-            isArrow={true}
-            onSubmit={onSubmit}
-            style={styles.container}>
-            <AvatarIcon />
-            <ExtendedText preset="large-title" style={styles.title}>
-              {titleArray}
-            </ExtendedText>
-            <ExtendedText preset="secondary-text" style={styles.subtitle}>
-              {t(`${correctLocalizationPath}.description`)}
-            </ExtendedText>
-          </BottomButtonView>
-        </SafeAreaView>
-      </ImageBackground>
+        imageStyle={styles.background}> */
+      }
+      <SafeAreaView style={generalStyles.flex}>
+        <BottomButtonView
+          buttonTitle={t('buttons.next')}
+          isArrow={true}
+          onSubmit={onSubmit}
+          style={styles.container}>
+          <AvatarIcon />
+          <ExtendedText preset="large-title" style={styles.title}>
+            {titleArray}
+          </ExtendedText>
+          <ExtendedText preset="secondary-text" style={styles.subtitle}>
+            {t(`${correctLocalizationPath}.description`)}
+          </ExtendedText>
+        </BottomButtonView>
+      </SafeAreaView>
+      {/* </ImageBackground> */}
     </ImageBackground>
   );
 };

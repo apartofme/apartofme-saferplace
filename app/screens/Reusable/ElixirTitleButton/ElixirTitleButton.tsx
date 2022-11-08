@@ -46,8 +46,6 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       if (interruptedQuestLine?.id === currentQuestLine?.id) {
         dispatch(questSlice.actions.updateInterruptedQuestLine(null));
       }
-      dispatch(questSlice.actions.updateCurrentDayQuestsStack());
-
       if (currentQuestLine?.id) {
         dispatch(
           questSlice.actions.saveCompletedQuestsId(+currentQuestLine?.id),
