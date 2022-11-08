@@ -25,11 +25,11 @@ export const styles = StyleSheet.create<ICharmBookMenuScreenStyles>({
     justifyContent: 'space-between',
     paddingTop: 78 * WINDOW_COEFFICIENT,
     paddingBottom: 24 * WINDOW_COEFFICIENT,
-    paddingHorizontal: 24,
   },
   dialogueContainer: {
     paddingTop: 60 * WINDOW_COEFFICIENT,
     paddingHorizontal: 16,
+    marginHorizontal: 24,
     paddingBottom: 48 * WINDOW_COEFFICIENT,
     backgroundColor: COLORS.PRIMARY_PURPLE,
     borderRadius: 24,

@@ -216,6 +216,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
           preset="border"
           title={t('buttons.completed_charms')}
           onPress={onCompletedPress}
+          style={styles.buttonCompleted}
         />
       );
     }
