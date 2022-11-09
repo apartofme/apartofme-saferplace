@@ -13,6 +13,7 @@ interface IVerticalSwipeScreenStyles {
   backArrow: ViewStyle;
   bottomTitle: TextStyle;
   bottomContentContainer: ViewStyle;
+  emptyView: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IVerticalSwipeScreenStyles>({
@@ -53,5 +54,8 @@ export const styles = StyleSheet.create<IVerticalSwipeScreenStyles>({
   bottomContentContainer: {
     paddingHorizontal: 24,
     paddingBottom: 24,
+  },
+  emptyView: {
+    height: 40,
   },
 });

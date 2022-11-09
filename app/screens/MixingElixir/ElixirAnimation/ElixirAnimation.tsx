@@ -51,6 +51,9 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
 
     // *** Flow for static navigation day 13 closing dialog ***
     if (currentQuestLine?.id === THE_CHARM_OF_BEFRIENDING_ID) {
+      dispatch(
+        questSlice.actions.saveCompletedQuestsId(+THE_CHARM_OF_BEFRIENDING_ID),
+      );
       const newQuestLineId = DAY_13_CLOSING_DIALOGUE_ID;
       const newQuests = values(quests?.[newQuestLineId].quests);
 

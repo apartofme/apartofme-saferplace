@@ -24,9 +24,8 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
     const dispatch = useAppDispatch();
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
-    const { interruptedQuestLine, currentQuestLine } = useAppSelector(
-      state => state.quest,
-    );
+    const { interruptedQuestLine, currentQuestLine, isFirstTimeGrounding } =
+      useAppSelector(state => state.quest);
 
     const animation = useMemo(() => {
       const from = getElixirAnimationKeyByRange(fullnessElixir - 0.5).replace(
@@ -68,6 +67,18 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
         dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir - 3));
 
         if (currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID) {
+          if (!isFirstTimeGrounding) {
+            navigation.replace('GardenStack', {
+              screen: 'Garden',
+              params: {
+                isFirstTime: false,
+                isPlanting: false,
+                isFirstTimeGarden: false,
+              },
+            });
+            return;
+          }
+
           navigation.push('GardenStack', {
             screen: 'GardenTutorialDialog',
             params: { isStart: true },
@@ -75,7 +86,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
           return;
         }
 
-        navigation.push('GardenStack', {
+        navigation.replace('GardenStack', {
           screen: 'Garden',
           params: {
             isFirstTime: false,
@@ -86,7 +97,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
         return;
       }
 
-      navigation.push('GardenStack', {
+      navigation.replace('GardenStack', {
         screen: 'Garden',
         params: {
           isFirstTime: false,
@@ -99,6 +110,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       dispatch,
       fullnessElixir,
       interruptedQuestLine?.id,
+      isFirstTimeGrounding,
       navigation,
     ]);
 

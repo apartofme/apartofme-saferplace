@@ -87,7 +87,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
     if (isBefriending) {
       return <AnnoyedAngrySmokeGuideIcon />;
     }
-    if (currentDay >= 14) {
+    if (currentDay >= 13) {
       return <HappyTreeRootIcon />;
     }
     return <SadTreeRootIcon />;
@@ -101,36 +101,38 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
         style={styles.tree}>
         {treeIcon}
       </TouchableOpacity>
-      <View style={styles.plantingPlaсe}>
-        <View style={generalStyles.row}>
-          {/* //* TopLeft plant area */}
-          {renderPlantArea(PlantAreaType.TopLeft, plantArea?.TopLeft)}
+      {!isBefriending && (
+        <View style={styles.plantingPlaсe}>
+          <View style={generalStyles.row}>
+            {/* //* TopLeft plant area */}
+            {renderPlantArea(PlantAreaType.TopLeft, plantArea?.TopLeft)}
 
-          <View style={styles.emptyPlantArea} />
+            <View style={styles.emptyPlantArea} />
 
-          {/* //* TopRight plant area */}
-          {renderPlantArea(PlantAreaType.TopRight, plantArea?.TopRight)}
+            {/* //* TopRight plant area */}
+            {renderPlantArea(PlantAreaType.TopRight, plantArea?.TopRight)}
+          </View>
+
+          <View style={[generalStyles.row, generalStyles.jcCenter]}>
+            {/* //* Center plant area */}
+            {renderPlantArea(
+              PlantAreaType.Center,
+              plantArea?.Center,
+              styles.plantAreaCenter,
+            )}
+          </View>
+
+          <View style={generalStyles.row}>
+            {/* //* BottomLeft plant area */}
+            {renderPlantArea(PlantAreaType.BottomLeft, plantArea?.BottomLeft)}
+
+            <View style={styles.emptyPlantArea} />
+
+            {/* //* BottomRight plant area */}
+            {renderPlantArea(PlantAreaType.BottomRight, plantArea?.BottomRight)}
+          </View>
         </View>
-
-        <View style={[generalStyles.row, generalStyles.jcCenter]}>
-          {/* //* Center plant area */}
-          {renderPlantArea(
-            PlantAreaType.Center,
-            plantArea?.Center,
-            styles.plantAreaCenter,
-          )}
-        </View>
-
-        <View style={generalStyles.row}>
-          {/* //* BottomLeft plant area */}
-          {renderPlantArea(PlantAreaType.BottomLeft, plantArea?.BottomLeft)}
-
-          <View style={styles.emptyPlantArea} />
-
-          {/* //* BottomRight plant area */}
-          {renderPlantArea(PlantAreaType.BottomRight, plantArea?.BottomRight)}
-        </View>
-      </View>
+      )}
     </View>
   );
 };

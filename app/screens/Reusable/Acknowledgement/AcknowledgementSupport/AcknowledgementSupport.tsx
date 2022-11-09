@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ImageBackground,
@@ -12,10 +12,16 @@ import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './AcknowledgementSupport.styles';
 import { IAcknowledgementSupportScreenProps } from './AcknowledgementSupport.types';
-import { useNavigateNextQuest, useRenderQuestHeader } from '../../../../hooks';
+import {
+  useAppSelector,
+  useNavigateNextQuest,
+  useRenderQuestHeader,
+} from '../../../../hooks';
 import { CHARMS_SVG, SVG } from '../../../../assets/svg';
+import { THE_CHARM_OF_SANCTUARY_ID } from '../../../../constants/quest';
 
 const OrangeQuestionMarkIcon = SVG.OrangeQuestionMarkIcon;
+const InfoIcon = SVG.InfoIcon;
 
 export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScreenProps> =
   ({ navigation, route }) => {
@@ -29,9 +35,13 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
       backgroundImage,
     } = route.params.data;
 
-    const onSubmit = useNavigateNextQuest();
-
     const { t } = useTranslation();
+
+    const currentQuestLine = useAppSelector(
+      state => state.quest.currentQuestLine,
+    );
+
+    const onSubmit = useNavigateNextQuest();
 
     const goToAlert = useCallback(() => {
       navigation.navigate('Alert');
@@ -41,6 +51,11 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
       crossHeader: crossHeader ?? false,
       escapeMenuAlternativeNavigateTo,
     });
+
+    const isCharmOfSanctuary = useMemo(
+      () => currentQuestLine?.id === THE_CHARM_OF_SANCTUARY_ID,
+      [currentQuestLine?.id],
+    );
 
     const Icon = image && CHARMS_SVG[image];
 
@@ -65,8 +80,8 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
                 <Icon width={280} height={300} />
               </View>
             )}
-            <TouchableOpacity onPress={goToAlert}>
-              <OrangeQuestionMarkIcon />
+            <TouchableOpacity onPress={goToAlert} disabled={isCharmOfSanctuary}>
+              {isCharmOfSanctuary ? <InfoIcon /> : <OrangeQuestionMarkIcon />}
             </TouchableOpacity>
             <ExtendedText preset="secondary-text" style={styles.subtitle}>
               {description}

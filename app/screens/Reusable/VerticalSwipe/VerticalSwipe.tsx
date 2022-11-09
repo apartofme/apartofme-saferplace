@@ -12,6 +12,7 @@ import {
   GestureHandlerRootView,
   ScrollView,
 } from 'react-native-gesture-handler';
+import moment from 'moment';
 
 import { ExtendedButton, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
@@ -27,7 +28,7 @@ import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { CHARMS_SVG, SVG } from '../../../assets/svg';
 import { trackEvent } from '../../../services/firebase/analytics';
 import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
-import moment from 'moment';
+import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 
 const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
 const WhiteTopArrowIcon = SVG.WhiteTopArrowIcon;
@@ -55,6 +56,17 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
 
   const email = useAppSelector(state => state.user.parent?.email);
+  const { isFirstTimeGrounding, currentQuestLine } = useAppSelector(
+    state => state.quest,
+  );
+
+  const isFirstGrounding = useMemo(
+    () =>
+      currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID &&
+      isFirstTimeGrounding,
+
+    [currentQuestLine?.id, isFirstTimeGrounding],
+  );
 
   useMount(() => {
     trackEvent(FirebaseAnalyticsEventsType.CharmStarted, {
@@ -118,7 +130,11 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                     generalStyles.jcSpaceBtw,
                     { height: scrollViewHeight },
                   ]}>
-                  <Header />
+                  {isFirstGrounding ? (
+                    <Header />
+                  ) : (
+                    <View style={styles.emptyView} />
+                  )}
                   <View style={styles.topContentContainer}>
                     <View style={styles.iconContainer}>
                       {image && <Icon />}

@@ -21,7 +21,7 @@ export const DeleteAccountSuccessScreen: React.FC<IDeleteAccountSuccessScreenPro
     const { t } = useTranslation();
 
     const onSubmit = useCallback(() => {
-      navigation.push('ParentsOnboardingStack');
+      navigation.replace('ParentsOnboardingStack');
     }, [navigation]);
 
     return (

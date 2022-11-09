@@ -59,19 +59,19 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
           screen: 'ElixirDoubleInteraction',
           params: {
             data: {
-              title: 'screens.recognition.double_interaction.title',
+              title: t('screens.recognition.double_interaction.title'),
               elixirReward:
                 interruptedQuests[interruptedQuests.length - 1].elixirReward,
             } as IQuest,
           },
         });
-        navigation.push('Garden', {
+        navigation.replace('Garden', {
           isFirstTime: false,
           isFirstTimeGarden: false,
           isPlanting: false,
         });
       }
-    }, [allQuests, dispatch, interruptedQuestLine, isFirst, navigation]);
+    }, [allQuests, dispatch, interruptedQuestLine, isFirst, navigation, t]);
 
     const Title = useParsedJSXTextNickname({
       text: t(

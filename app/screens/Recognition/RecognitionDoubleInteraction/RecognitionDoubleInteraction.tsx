@@ -77,7 +77,7 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     const onSubmit = useCallback(() => {
       if (isChildPress && isAdultPress) {
         dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir + 1));
-        navigation.navigate('RecognitionDoubleInteractionSuccess');
+        navigation.replace('RecognitionDoubleInteractionSuccess');
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAdultPress, isChildPress]);

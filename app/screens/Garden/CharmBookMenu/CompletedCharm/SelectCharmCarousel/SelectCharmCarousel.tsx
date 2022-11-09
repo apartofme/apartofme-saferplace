@@ -79,6 +79,11 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
       style: generalStyles.brilliantWhite,
     });
 
+    const onArrowPress = useCallback(() => {
+      dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+      navigation.goBack();
+    }, [dispatch, navigation]);
+
     return (
       <ImageBackground
         source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
@@ -86,7 +91,7 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
         <SafeAreaView style={generalStyles.flex}>
           <MainHeader
             leftIcon={<WhiteBackArrowIcon />}
-            onLeftIconPress={navigation.goBack}
+            onLeftIconPress={onArrowPress}
           />
           <BottomButtonView
             buttonTitle={t('buttons.select')}

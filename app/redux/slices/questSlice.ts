@@ -26,6 +26,7 @@ interface IQuestState {
   dailyChecks: Nullable<Record<string, string>>;
   completedQuestsId: number[];
   isCurrentQuestCompleted: boolean;
+  isFirstTimeGrounding: boolean;
 }
 
 const INITIAL_STATE: IQuestState = {
@@ -41,6 +42,7 @@ const INITIAL_STATE: IQuestState = {
   dailyChecks: null,
   completedQuestsId: [],
   isCurrentQuestCompleted: false,
+  isFirstTimeGrounding: true,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -130,6 +132,10 @@ export const questSlice = createSlice({
 
     setIsCurrentQuestCompleted(state, { payload }: PayloadAction<boolean>) {
       state.isCurrentQuestCompleted = payload;
+    },
+
+    setIsFirstTimeGrounding(state, { payload }: PayloadAction<boolean>) {
+      state.isFirstTimeGrounding = payload;
     },
 
     getInitialState(state) {
