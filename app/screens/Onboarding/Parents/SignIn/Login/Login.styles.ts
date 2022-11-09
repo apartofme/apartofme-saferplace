@@ -13,6 +13,7 @@ interface ILoginScreenStyles {
   button: ViewStyle;
   errorTitle: TextStyle;
   mb50: TextStyle;
+  scrollView: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ILoginScreenStyles>({
@@ -51,5 +52,8 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
   errorTitle: {
     color: COLORS.ERROR,
     paddingBottom: 30,
+  },
+  scrollView: {
+    maxHeight: 354,
   },
 });

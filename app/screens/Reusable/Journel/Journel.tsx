@@ -22,6 +22,7 @@ import {
 import { cacheSlice } from '../../../redux/slices';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { THE_CHARM_OF_KINDNESS_PART_ONE_ID } from '../../../constants/quest';
+import { SCROLL_DELAY } from '../../../constants/time';
 
 export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
   const {
@@ -71,7 +72,11 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
-    scrollViewRef.current?.scrollToEnd();
+    if (isInputFocus) {
+      setTimeout(() => {
+        scrollViewRef.current?.scrollToEnd();
+      }, SCROLL_DELAY);
+    }
   }, [isInputFocus]);
 
   return (

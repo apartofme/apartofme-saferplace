@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   TouchableOpacity,
@@ -28,6 +28,7 @@ import { SignUpCredentioalsValidationSchema } from './SignUpCredentials.validati
 import { COLORS } from '../../../../themes/colors';
 import { SVG } from '../../../../assets/svg';
 import { SETTINGS_PRIVACY_MENU } from '../../../Menu/SettingsPrivacy/SettingsPrivacy.data';
+import { SCROLL_DELAY } from '../../../../constants/time';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -36,6 +37,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const [isFocus, setIsFocus] = useState(false);
+    const scrollViewRef = useRef<ScrollView>(null);
 
     const onSignUpPress = useCallback(
       ({ email, password }) => {
@@ -72,6 +74,14 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
       }
     }, [navigation]);
 
+    useEffect(() => {
+      if (isFocus) {
+        setTimeout(() => {
+          scrollViewRef.current?.scrollToEnd();
+        }, SCROLL_DELAY);
+      }
+    }, [isFocus]);
+
     return (
       <View style={generalStyles.flex}>
         <Image
@@ -103,19 +113,20 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                   isDisabledButton={dirty ? !isValid : true}
                   style={styles.container}>
                   <ScrollView
+                    ref={scrollViewRef}
                     scrollEnabled={isFocus}
                     showsVerticalScrollIndicator={false}
                     style={generalStyles.flex}>
                     <ExtendedText
                       preset="large-title"
-                      style={styles.whiteColor}>
+                      style={generalStyles.brilliantWhite}>
                       {t('screens.onboarding.sign_up_credentials.title')}
                     </ExtendedText>
 
                     <View style={styles.subtitle}>
                       <ExtendedText
                         preset="secondary-text"
-                        style={styles.greyColor}>
+                        style={generalStyles.grey}>
                         {t(
                           'screens.onboarding.sign_up_credentials.description',
                         )}
@@ -171,7 +182,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             <View style={styles.bottomConatainer}>
               <ExtendedText
                 preset="tertiary-text-regular"
-                style={styles.whiteColor}>
+                style={generalStyles.brilliantWhite}>
                 {t('screens.onboarding.sign_up_credentials.footer')}
               </ExtendedText>
               <Pressable onPress={onConditionPress}>
@@ -183,7 +194,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
               </Pressable>
               <ExtendedText
                 preset="tertiary-text-regular"
-                style={styles.whiteColor}>
+                style={generalStyles.brilliantWhite}>
                 {` ${t('labels.and')} `}
               </ExtendedText>
               <Pressable onPress={onPrivacyPress}>

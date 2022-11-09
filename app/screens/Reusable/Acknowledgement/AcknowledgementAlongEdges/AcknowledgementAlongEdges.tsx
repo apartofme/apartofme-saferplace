@@ -20,6 +20,7 @@ import {
   DatoCMSTextVariables,
   THE_CHARM_OF_ACCEPTANCE_PART_TWO_ID,
 } from '../../../../constants/quest';
+import { CharmsSvgKeys } from '../../../../utils/types';
 
 export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdgesScreenProps> =
   ({ route }) => {
@@ -65,7 +66,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
 
     const Icon = useMemo(() => {
       if (image) {
-        return CHARMS_SVG[image];
+        return CHARMS_SVG[image as CharmsSvgKeys];
       }
       if (
         currentQuestLineId === THE_CHARM_OF_ACCEPTANCE_PART_TWO_ID &&
@@ -104,7 +105,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            {Icon && <Icon />}
+            {Icon && <Icon reduceSize={!!image} />}
             <Description />
           </BottomButtonView>
         </SafeAreaView>

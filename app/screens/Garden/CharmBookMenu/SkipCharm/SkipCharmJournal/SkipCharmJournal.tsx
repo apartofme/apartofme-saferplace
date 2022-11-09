@@ -13,6 +13,7 @@ import {
   MultilineTextInput,
 } from '../../../../../components';
 import { SKIP_CHARM_FEEDBACK } from '../../../../../constants/quest';
+import { SCROLL_DELAY } from '../../../../../constants/time';
 import { useAppSelector, useMount } from '../../../../../hooks';
 import { trackEvent } from '../../../../../services/firebase/analytics';
 import { FirebaseAnalyticsEventsType } from '../../../../../services/firebase/types';
@@ -40,7 +41,11 @@ export const SkipCharmJournalScreen: React.FC<ISkipCharmJournalScreenProps> = ({
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
-    scrollViewRef.current?.scrollToEnd();
+    if (isInputFocus) {
+      setTimeout(() => {
+        scrollViewRef.current?.scrollToEnd();
+      }, SCROLL_DELAY);
+    }
   }, [isInputFocus]);
 
   useMount(() => {
