@@ -2,7 +2,6 @@ import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
 
 import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
 import { CharmIllustrationsSvgKeys } from '../../../utils/types';
-import { AboutCharmsMenuType } from './AboutCharm.data';
 
 type NavigationProps = StackNavigationProp<MergedStackParams, 'AboutCharm'>;
 type RouteProps = StackScreenProps<MergedStackParams, 'AboutCharm'>;
@@ -14,5 +13,4 @@ export interface AboutCharmsMenuItem {
   titleAddition?: string;
   subtitle: string;
   iconKey: CharmIllustrationsSvgKeys;
-  type: AboutCharmsMenuType;
 }

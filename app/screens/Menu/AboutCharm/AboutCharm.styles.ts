@@ -23,7 +23,7 @@ export const styles = StyleSheet.create<IAboutCharmScreenStyles>({
   },
   subtitle: {
     marginBottom: 40 * WINDOW_COEFFICIENT,
-    color: COLORS.BRILLIANT_WHITE,
+    color: COLORS.LIGHT_GREY,
   },
   imageContainer: {
     alignSelf: 'center',
