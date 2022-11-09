@@ -36,6 +36,7 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
     currentQuestIdx,
     currentQuestLine,
     isCurrentQuestCompleted,
+    isFirstTimeGrounding,
     allQuests,
   } = useAppSelector(state => state.quest);
   const allLocalizedQuests = allQuests?.[currentLanguage];
@@ -48,10 +49,13 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
     navigateTo();
   }, [navigateTo, navigation]);
 
-  const goToTheCharmofGrounding = useCallback(() => {
+  const goToTheCharmOfGrounding = useCallback(() => {
     if (isCurrentQuestCompleted) {
       dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
     }
+
+    dispatch(questSlice.actions.setIsFirstTimeGrounding(false));
+
     const quests: IQuest[] = values(
       allLocalizedQuests &&
         allLocalizedQuests[JOINT_GROUNDING_EXERCISE_ID].quests,
@@ -66,7 +70,7 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
 
     dispatch(questSlice.actions.saveCurrentQuestIdx(0));
     navigation.popToTop();
-    navigation.navigate(quests[0].type, {
+    navigation.replace(quests[0].type, {
       data: { ...quests[0] },
     });
 
@@ -74,17 +78,30 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
   }, [allLocalizedQuests, dispatch, isCurrentQuestCompleted, navigation]);
 
   const goToGarden = useCallback(() => {
-    if (!isCurrentQuestCompleted) {
-      dispatch(
-        questSlice.actions.updateInterruptedQuestLine({
-          id: currentQuestLine?.id as string,
-          day: currentDay,
-          interruptedQuestInx: currentQuestIdx,
-        }),
-      );
+    if (isCurrentQuestCompleted || !isFirstTimeGrounding) {
+      dispatch(questSlice.actions.setIsFirstTimeGrounding(true));
+      dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+
+      navigation.goBack();
+      navigation.replace('GardenStack', {
+        screen: 'Garden',
+        params: {
+          isFirstTime: false,
+          isPlanting: false,
+          isFirstTimeGarden: false,
+        },
+      });
+      return;
     }
 
-    dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
+    dispatch(
+      questSlice.actions.updateInterruptedQuestLine({
+        id: currentQuestLine?.id as string,
+        day: currentDay,
+        interruptedQuestInx: currentQuestIdx,
+      }),
+    );
+
     navigation.goBack();
     navigation.replace('GardenStack', {
       screen: 'Garden',
@@ -100,14 +117,18 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
     currentQuestLine?.id,
     dispatch,
     isCurrentQuestCompleted,
+    isFirstTimeGrounding,
     navigation,
   ]);
 
+  const onArrowPress = useCallback(() => {
+    dispatch(questSlice.actions.setIsFirstTimeGrounding(true));
+    navigation.goBack();
+  }, [dispatch, navigation]);
+
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity
-        onPress={navigation.goBack}
-        style={styles.backArrowImage}>
+      <TouchableOpacity onPress={onArrowPress} style={styles.backArrowImage}>
         <WhiteBackArrowIcon />
       </TouchableOpacity>
       <View style={[generalStyles.flex, generalStyles.jcCenter]}>
@@ -122,7 +143,7 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
             {t('screens.escape_menu.description')}
           </ExtendedText>
           <ExtendedButton
-            onPress={goToTheCharmofGrounding}
+            onPress={goToTheCharmOfGrounding}
             title={t('buttons.the_charm_of_grounding')}
             style={styles.button}
           />

@@ -128,7 +128,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
         ) {
           const newQuestLineId = DAY_14_CLOSING_DIALOGUE_ID;
           const newQuests = values(quests?.[newQuestLineId].quests);
-
+          dispatch(
+            questSlice.actions.saveCompletedQuestsId(+THE_CHARM_OF_WEAVING_ID),
+          );
           dispatch(
             questSlice.actions.saveCurrentQuestLine({
               id: newQuests[0].questLineId,
@@ -147,7 +149,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           });
           return;
         }
-        navigation.navigate('ElixirTitleButton');
+        navigation.replace('ElixirTitleButton');
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isChildPress, isAdultPress]);

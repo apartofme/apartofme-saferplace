@@ -225,10 +225,11 @@ import { CharmOfKindnessIcon } from './favoriteCharms/CharmOfKindnessIcon';
 import { CharmOfOpenHandIcon } from './favoriteCharms/CharmOfOpenHandIcon';
 import { CharmOfTruthIcon } from './favoriteCharms/CharmOfTruthIcon';
 import { DancingCharmIcon } from './favoriteCharms/DancingCharmIcon';
-import { TheCharmOfGroundingIcon } from './favoriteCharms/TheCharmOfGroundingIcon';
-import { TheCharmOfSanctuaryIcon } from './favoriteCharms/TheCharmOfSanctuaryIcon';
+import { CharmOfGroundingIcon } from './favoriteCharms/CharmOfGroundingIcon';
+import { CharmOfSanctuaryIcon } from './favoriteCharms/CharmOfSanctuaryIcon';
 import { TruthCards } from './TruthCards';
 import { RoundPlussIcon } from './RoundPlussIcon';
+import { InfoIcon } from './InfoIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -252,6 +253,7 @@ export const SVG = {
   HappyGuideIcon: HappyGuideIcon,
   HappySidekickGuideIcon: HappySidekickGuideIcon,
   HappySmokeSidekickGuideIcon: HappySmokeSidekickGuideIcon,
+  InfoIcon: InfoIcon,
   NadiyaTextIcon: NadiyaTextIcon,
   OpenBookIcon: OpenBookIcon,
   OpenedEyeIcon: OpenedEyeIcon,
@@ -514,6 +516,6 @@ export const SVG_FAVORITE_CHARM = {
   CharmOfSlowWindIcon: CharmOfSlowWindIcon,
   CharmOfTruthIcon: CharmOfTruthIcon,
   DancingCharmIcon: DancingCharmIcon,
-  TheCharmOfGroundingIcon: TheCharmOfGroundingIcon,
-  TheCharmOfSanctuaryIcon: TheCharmOfSanctuaryIcon,
+  CharmOfGroundingIcon: CharmOfGroundingIcon,
+  CharmOfSanctuaryIcon: CharmOfSanctuaryIcon,
 };

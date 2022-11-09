@@ -3,7 +3,7 @@ import Svg, { G, Path } from 'react-native-svg';
 
 import { ISvgProps } from '../../../utils/types';
 
-export const TheCharmOfSanctuaryIcon = ({
+export const CharmOfSanctuaryIcon = ({
   width = 96,
   height = 96,
 }: ISvgProps) => {

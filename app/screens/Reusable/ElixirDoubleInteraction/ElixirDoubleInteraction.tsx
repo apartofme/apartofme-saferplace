@@ -37,8 +37,12 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const dispatch = useAppDispatch();
     const animationRef = useRef<Lottie>(null);
 
-    const { currentQuestLine, isCurrentQuestCompleted, allQuests } =
-      useAppSelector(state => state.quest);
+    const {
+      currentQuestLine,
+      isCurrentQuestCompleted,
+      allQuests,
+      isFirstTimeGrounding,
+    } = useAppSelector(state => state.quest);
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
     const { settings } = useAppSelector(state => state.settings);
     const currentLanguage = settings.language ?? 'en';
@@ -102,11 +106,18 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           return;
         }
 
-        dispatch(
-          elixirSlice.actions.updateFullnessElixir(
-            fullnessElixir + (elixirReward ?? 1),
-          ),
-        );
+        // *** Flow for graunded charms from menu ***
+        if (!isFirstTimeGrounding) {
+          navigation.replace('GardenStack', {
+            screen: 'Garden',
+            params: {
+              isPlanting: false,
+              isFirstTime: false,
+              isFirstTimeGarden: false,
+            },
+          });
+          return;
+        }
 
         // *** Flow for static navigation charm og befriending ***
         if (
@@ -142,7 +153,14 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           });
           return;
         }
-        navigation.navigate('ElixirTitleButton');
+
+        dispatch(
+          elixirSlice.actions.updateFullnessElixir(
+            fullnessElixir + (elixirReward ?? 1),
+          ),
+        );
+
+        navigation.replace('ElixirTitleButton');
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isChildPress, isAdultPress]);

@@ -10,7 +10,7 @@ import Svg, {
 
 import { ISvgProps } from '../../../utils/types';
 
-export const TheCharmOfGroundingIcon = ({
+export const CharmOfGroundingIcon = ({
   width = 96,
   height = 96,
 }: ISvgProps) => {
