@@ -7,6 +7,7 @@ import { IFAQListItemProps } from './FAQListItem.types';
 import { ExtendedText } from '../../../../../components';
 import { SVG } from '../../../../../assets/svg';
 import { generalStyles } from '../../../../../utils/styles';
+import { parseText } from '../../../../../utils/parsers';
 
 const OrangeCirclePlussIcon = SVG.OrangeCirclePlussIcon;
 const OrangeCircleCrossIcon = SVG.OrangeCircleCrossIcon;
@@ -27,6 +28,11 @@ export const FAQListItem: React.FC<IFAQListItemProps> = ({ data }) => {
     setIsActive(!isActive);
   }, [isActive]);
 
+  const Subtitle = parseText({
+    text: t(data.subtitleKey),
+    style: styles.subtitle,
+  });
+
   return (
     <View style={styles.container}>
       <View style={generalStyles.row}>
@@ -40,11 +46,7 @@ export const FAQListItem: React.FC<IFAQListItemProps> = ({ data }) => {
         </TouchableOpacity>
       </View>
 
-      {isActive && (
-        <ExtendedText style={styles.subtitle} preset="secondary-text">
-          {t(data.subtitleKey)}
-        </ExtendedText>
-      )}
+      {isActive && <Subtitle />}
     </View>
   );
 };
