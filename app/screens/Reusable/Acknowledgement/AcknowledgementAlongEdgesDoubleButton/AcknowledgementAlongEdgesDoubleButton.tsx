@@ -1,10 +1,5 @@
 import React, { useMemo } from 'react';
-import {
-  ImageBackground,
-  SafeAreaView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ImageBackground, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { IAcknowledgementAlongEdgesDoubleButtonScreenProps } from './AcknowledgementAlongEdgesDoubleButton.types';
@@ -90,10 +85,8 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
             onSubmit={positiveNavigate}
             style={styles.container}>
             <Title />
-            <View style={generalStyles.aiCenter}>
-              {Icon && <Icon />}
-              <Description />
-            </View>
+            {Icon && <Icon />}
+            <Description />
           </BottomButtonView>
           <TouchableOpacity
             onPress={negativeNavigate}

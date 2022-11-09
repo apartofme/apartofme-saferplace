@@ -24,5 +24,6 @@ export const styles = StyleSheet.create<IAcknowledgementNicknamesScreenStyles>({
   description: {
     color: COLORS.LIGHT_GREY,
     textAlign: 'center',
+    marginHorizontal: 16,
   },
 });

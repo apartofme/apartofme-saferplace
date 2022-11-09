@@ -41,7 +41,7 @@ export const UserImageTitle: React.FC<IUserImageTitleProps> = ({
           )}
         </View>
       ) : (
-        <RoundPlussIcon />
+        <RoundPlussIcon width={175} height={175} />
       )}
       <ExtendedText style={styles.userName} preset="heading">
         {title ?? t('screens.sign_in.select_user')}

@@ -34,7 +34,7 @@ export const styles = StyleSheet.create<IAlertStyles>({
     textAlign: 'center',
     maxWidth: 279,
     marginBottom: 32,
-    color: COLORS.BRILLIANT_WHITE,
+    color: COLORS.LIGHT_GREY,
   },
   imageContainer: {
     zIndex: 10,

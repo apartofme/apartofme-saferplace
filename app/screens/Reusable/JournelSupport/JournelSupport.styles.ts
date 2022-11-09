@@ -21,6 +21,7 @@ export const styles = StyleSheet.create<IJournelSupportScreenStyles>({
     marginBottom: 24,
   },
   description: {
+    maxWidth: 295,
     marginTop: 20,
     color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',

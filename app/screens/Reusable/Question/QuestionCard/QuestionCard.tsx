@@ -74,7 +74,7 @@ export const QuestionCardScreen: React.FC<IQuestionCardScreenProps> = ({
           buttonTitle={t('buttons.we_are_finished')}
           onSubmit={onSubmit}
           style={styles.container}>
-          <ExtendedText preset="body-regular" style={styles.title}>
+          <ExtendedText preset="title" style={styles.title}>
             {t('screens.question_card.title')}
           </ExtendedText>
           <QuestionView title={QUESTION_CARD[currentQuestionIndex].titleKey} />

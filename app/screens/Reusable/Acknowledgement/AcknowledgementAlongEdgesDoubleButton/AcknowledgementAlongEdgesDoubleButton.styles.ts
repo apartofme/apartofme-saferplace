@@ -14,19 +14,18 @@ export const styles =
     container: {
       paddingTop: 40,
       paddingHorizontal: 24,
-      paddingBottom: 50 * WINDOW_COEFFICIENT,
+      paddingBottom: 20 * WINDOW_COEFFICIENT,
       alignItems: 'center',
       justifyContent: 'space-between',
     },
     description: {
       flex: 1,
       maxHeight: 100,
-      marginTop: 58 * WINDOW_COEFFICIENT,
       color: COLORS.LIGHT_GREY,
       textAlign: 'center',
     },
     bottomButton: {
       alignSelf: 'center',
-      marginBottom: 24,
+      marginVertical: 12,
     },
   });

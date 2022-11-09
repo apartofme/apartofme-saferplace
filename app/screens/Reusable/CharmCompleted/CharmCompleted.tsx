@@ -9,7 +9,6 @@ import {
   useAppState,
   useMount,
   useParsedJSXTextNickname,
-  useRenderQuestHeader,
 } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { ICharmCompletedScreenProps } from './CharmCompleted.types';
@@ -33,9 +32,7 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     buttonTitle,
     image,
     backgroundImage,
-    crossHeader,
     titleHasNickname,
-    escapeMenuAlternativeNavigateTo,
   } = route.params.data;
 
   const { t } = useTranslation();
@@ -49,11 +46,6 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     textHasNickname: titleHasNickname ?? true,
     preset: 'large-title',
     style: styles.title,
-  });
-
-  const Header = useRenderQuestHeader({
-    crossHeader: crossHeader ?? false,
-    escapeMenuAlternativeNavigateTo,
   });
 
   const isSoundFXEnabled = useAppSelector(
@@ -93,7 +85,6 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        <Header />
         <BottomButtonView
           buttonTitle={buttonTitle || t('buttons.next')}
           isArrow={!buttonTitle}

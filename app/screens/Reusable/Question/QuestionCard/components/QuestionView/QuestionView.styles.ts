@@ -14,6 +14,7 @@ export const styles = StyleSheet.create<IQuestionViewStyles>({
     paddingHorizontal: 16,
     borderWidth: 4,
     borderRadius: 16,
+    justifyContent: 'center',
     borderColor: COLORS.LIGHT_ORANGE,
     backgroundColor: COLORS.PRIMARY_PURPLE,
   },
