@@ -59,7 +59,7 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
           screen: 'ElixirDoubleInteraction',
           params: {
             data: {
-              title: t('screens.recognition.double_interaction.title'),
+              title: t('screens.skip_charm.double_interaction'),
               elixirReward:
                 interruptedQuests[interruptedQuests.length - 1].elixirReward,
             } as IQuest,
