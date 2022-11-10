@@ -7,6 +7,7 @@ import { IEmotionButton, IEmotionButtonProps } from './EmotionButton.types';
 import { styles } from './EmotionButton.styles';
 import { Nullable } from '../../utils';
 import { EMOTION_BUTTON_SVG } from '../../assets/svg';
+import { generalStyles } from '../../utils/styles';
 
 export const EmotionButton: React.FC<IEmotionButtonProps> = ({
   data,
@@ -45,8 +46,15 @@ export const EmotionButton: React.FC<IEmotionButtonProps> = ({
             styles.buttonContainer,
             item.type === selectedItem && styles.activeButton,
           ]}>
-          <Icon />
-          <ExtendedText preset="heading" style={styles.title}>
+          <View style={item.type !== selectedItem && styles.image}>
+            <Icon />
+          </View>
+          <ExtendedText
+            preset="heading"
+            style={[
+              styles.title,
+              item.type === selectedItem && generalStyles.grey,
+            ]}>
             {item.title}
           </ExtendedText>
         </TouchableOpacity>
