@@ -155,6 +155,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
               quests: newQuests,
             }),
           );
+          dispatch(
+            questSlice.actions.saveCompletedQuestsId(+THE_CHARM_OF_WEAVING_ID),
+          );
           dispatch(questSlice.actions.updateCurrentDayQuestsStack());
           dispatch(questSlice.actions.saveCurrentQuestIdx(0));
 

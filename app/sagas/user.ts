@@ -59,7 +59,6 @@ function* watchLoginUser({
       }),
     );
 
-    // TODO: change to real stack
     yield call(StaticNavigator.navigateTo, 'SelectUser');
     yield call(firestoreSaveDeviceToken);
   } else {

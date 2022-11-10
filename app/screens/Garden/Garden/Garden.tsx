@@ -105,20 +105,21 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   useEffect(() => {
     if (isFocused) {
       showDayOpenDialog();
-
-      const charmPartTwoIdx = _.findIndex(
-        CHARMS_PART_TWO_IDS,
-        item =>
-          currentDayQuestsStack[currentDayQuestsStack.length - 1] === item,
-      );
-      if (charmPartTwoIdx !== -1) {
-        dispatch(
-          questSlice.actions.updateInterruptedQuestLine({
-            day: currentDay,
-            id: CHARMS_PART_TWO_IDS[charmPartTwoIdx],
-            interruptedQuestInx: 0,
-          }),
+      if (currentDayQuestsStack) {
+        const charmPartTwoIdx = _.findIndex(
+          CHARMS_PART_TWO_IDS,
+          item =>
+            currentDayQuestsStack[currentDayQuestsStack.length - 1] === item,
         );
+        if (charmPartTwoIdx !== -1) {
+          dispatch(
+            questSlice.actions.updateInterruptedQuestLine({
+              day: currentDay,
+              id: CHARMS_PART_TWO_IDS[charmPartTwoIdx],
+              interruptedQuestInx: 0,
+            }),
+          );
+        }
       }
     }
     // intentionally
@@ -160,7 +161,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   }, [activePlantArea]);
 
   const isOpeningDialog = useMemo(() => {
-    if (currentDayQuestsStack.length > 0) {
+    if (currentDayQuestsStack?.length > 0) {
       return !!_.find(
         OPEN_DIALOG_IDS,
         item =>
@@ -172,7 +173,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   const title = useMemo(() => {
     const isDisplayNone =
-      (!currentDayQuestsStack.length &&
+      (!currentDayQuestsStack?.length &&
         isInterruptedQuestLineEmpty &&
         !isPlanting) ||
       isOpeningDialog;
@@ -188,7 +189,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       </View>
     );
   }, [
-    currentDayQuestsStack.length,
+    currentDayQuestsStack,
     isInterruptedQuestLineEmpty,
     isOpeningDialog,
     isPlanting,
@@ -200,11 +201,11 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   }, [isModal]);
 
   const showDayOpenDialog = useCallback(() => {
-    if (!interruptedQuestLine && !isPlanting) {
+    if (!interruptedQuestLine && !isPlanting && currentDayQuestsStack) {
       const dayOpenDialogIdx = _.findIndex(
         OPEN_DIALOG_IDS,
         item =>
-          item === currentDayQuestsStack[currentDayQuestsStack.length - 1],
+          item === currentDayQuestsStack[currentDayQuestsStack?.length - 1],
       );
 
       if (dayOpenDialogIdx !== -1) {

@@ -24,16 +24,16 @@ export const Book: React.FC<IBookProps> = ({
     state => state.quest,
   );
   const isCompletedAllCurrentDayQuests = useMemo(
-    () => !currentDayQuestsStack.length,
-    [currentDayQuestsStack.length],
+    () => !currentDayQuestsStack?.length,
+    [currentDayQuestsStack?.length],
   );
 
   const isOpeningDialog = useMemo(() => {
-    if (currentDayQuestsStack.length > 0) {
+    if (currentDayQuestsStack?.length > 0) {
       return !!_.find(
         OPEN_DIALOG_IDS,
         item =>
-          currentDayQuestsStack[currentDayQuestsStack.length - 1] === item,
+          currentDayQuestsStack[currentDayQuestsStack?.length - 1] === item,
       );
     }
     return false;

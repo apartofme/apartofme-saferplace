@@ -125,7 +125,6 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         return (
           <View>
             <View style={styles.icon}>
-              {/*// TODO: change to correct icon*/}
               <OpenBookIcon width={204} height={160} />
             </View>
             <View style={styles.dialogueContainer}>
@@ -154,7 +153,6 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         return (
           <View>
             <View style={styles.icon}>
-              {/*// TODO: change to correct icon*/}
               <OpenBookIcon width={204} height={160} />
             </View>
             <View style={styles.dialogueContainer}>
@@ -176,7 +174,6 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         return (
           <View>
             <View style={styles.icon}>
-              {/*// TODO: change to correct icon*/}
               <OpenBookIcon width={204} height={160} />
             </View>
             <View style={styles.dialogueContainer}>

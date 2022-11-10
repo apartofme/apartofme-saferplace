@@ -107,7 +107,7 @@ export const TROUBLESOME_SPIRIT_QUESTIONS: ReadonlyArray<ITroublesomeItem> = [
 export const FAVOURITE_CHARM: ReadonlyArray<ICharmItem> = [
   {
     id: '1',
-    iconKey: 'TheCharmOfGroundingIcon',
+    iconKey: 'CharmOfGroundingIcon',
     titleKey: 'screens.favourite_charm_carousel.first',
   },
   {
@@ -132,7 +132,7 @@ export const FAVOURITE_CHARM: ReadonlyArray<ICharmItem> = [
   },
   {
     id: '6',
-    iconKey: 'TheCharmOfSanctuaryIcon',
+    iconKey: 'CharmOfSanctuaryIcon',
     titleKey: 'screens.favourite_charm_carousel.sixth',
   },
   {

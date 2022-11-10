@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 
@@ -21,6 +20,10 @@ export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenP
   ({ navigation }) => {
     const { t } = useTranslation();
 
+    const onSabmit = useCallback(() => {
+      navigation.navigate('Login');
+    }, [navigation]);
+
     return (
       <ImageBackground
         source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
@@ -32,8 +35,7 @@ export const ForgotPasswordSuccessScreen: React.FC<IForgotPasswordSuccessScreenP
           />
           <BottomButtonView
             buttonTitle={t('buttons.open_email')}
-            // TODO: change to correct function
-            onSubmit={_.noop}
+            onSubmit={onSabmit}
             style={styles.container}>
             <CheckYourEmailIcon />
             <ExtendedText preset="large-title" style={styles.title}>

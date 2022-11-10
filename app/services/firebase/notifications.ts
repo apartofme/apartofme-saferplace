@@ -54,8 +54,6 @@ export const getDeviceToken = async () => {
     const token = await messaging().getToken();
     return token;
   } catch (e) {
-    // TODO: set error
-    // console.error(e);
     return null;
   }
 };

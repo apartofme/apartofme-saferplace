@@ -17,7 +17,6 @@ import {
   CharmTimerButtonScreen,
   DancingTimerScreen,
   DialogScreen,
-  DummyQuestsScreen,
   ElixirDoubleInteractionScreen,
   ElixirTitleButtonScreen,
   EmojiSelectionScreen,
@@ -59,7 +58,6 @@ import {
 export type QuestStackParams = {
   QuestionChoice: { data: IQuest };
   QuestionCard: { data: IQuestionCardRoute };
-  DummyQuests: undefined;
   AcknowledgementAlongEdges: { data: IQuest };
   AcknowledgementAlongEdgesDoubleButton: { data: IQuest };
   AcknowledgementDoubleImage: { data: IQuest };
@@ -109,8 +107,6 @@ const Stack = createNativeStackNavigator<QuestStackParams>();
 
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
-    {/* // TODO: remove */}
-    <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
       name="AcknowledgementAlongEdges"
       component={AcknowledgementAlongEdgesScreen}
