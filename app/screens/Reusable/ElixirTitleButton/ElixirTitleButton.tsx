@@ -4,7 +4,11 @@ import { ImageBackground, SafeAreaView } from 'react-native';
 import Lottie from 'lottie-react-native';
 
 import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useInternetCheck,
+} from '../../../hooks';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import {
   getElixirAnimationKeyByRange,
@@ -22,6 +26,11 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+
+    useInternetCheck(
+      'errors.network_progress.title',
+      'errors.network_progress.description',
+    );
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
     const { interruptedQuestLine, currentQuestLine, isFirstTimeGrounding } =

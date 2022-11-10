@@ -1,5 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AppState, AppStateStatus } from 'react-native';
+import { showInternetErrorAlert } from '../utils';
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
 export const useMount = (func: () => void) => useEffect(func, []);
@@ -45,4 +48,17 @@ export const useAppState = () => {
   }, []);
 
   return appState;
+};
+
+export const useInternetCheck = (title: string, description: string) => {
+  const { isConnected } = useNetInfo();
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    if (isConnected === false) {
+      showInternetErrorAlert(t(title), t(description));
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected]);
 };

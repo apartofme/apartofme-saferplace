@@ -47,6 +47,7 @@ function* watchLoginUser({
     email,
     password,
   );
+
   if (!loginUserResponse.error) {
     const parent: IFirestoreParent = yield call(firestoreGetParent);
     const children: IChild[] = yield call(firestoreGetParentChildren);

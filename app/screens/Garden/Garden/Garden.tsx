@@ -10,6 +10,7 @@ import {
   useAppDispatch,
   useAppSelector,
   useAppState,
+  useInternetCheck,
   useMount,
 } from '../../../hooks';
 import { BACKGROUND_IMAGES } from '../../../assets';
@@ -38,6 +39,11 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const appStatus = useAppState();
   const dispatch = useAppDispatch();
   const isFocused = useIsFocused();
+
+  useInternetCheck(
+    'errors.network_progress.title',
+    'errors.network_progress.description',
+  );
 
   const [isModal, setIsModal] = useState(false);
   const [charmBookType, setCharmBookType] = useState(

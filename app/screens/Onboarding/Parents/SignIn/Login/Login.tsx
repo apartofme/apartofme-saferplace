@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 import {
   Image,
@@ -20,7 +21,11 @@ import {
 import { styles } from './Login.styles';
 import { ILoginScreenProps } from './Login.types';
 import { generalStyles } from '../../../../../utils/styles';
-import { useAppDispatch, useAppSelector } from '../../../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useInternetCheck,
+} from '../../../../../hooks';
 import { userSlice } from '../../../../../redux/slices';
 import { SignInValidationSchema } from './Login.validation';
 import { SVG } from '../../../../../assets/svg';
@@ -33,12 +38,17 @@ const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { isConnected } = useNetInfo();
+
+  useInternetCheck('errors.network.title', 'errors.network.description');
 
   const onLoginPress = useCallback(
     ({ email, password }) => {
-      dispatch(userSlice.actions.loginUser({ email, password }));
+      if (isConnected) {
+        dispatch(userSlice.actions.loginUser({ email, password }));
+      }
     },
-    [dispatch],
+    [dispatch, isConnected],
   );
 
   const onForgotPusswordPress = useCallback(() => {

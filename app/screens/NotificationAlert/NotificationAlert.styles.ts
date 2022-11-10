@@ -11,13 +11,13 @@ interface IErrorAlertStyles {
 export const styles = StyleSheet.create<IErrorAlertStyles>({
   container: {
     backgroundColor: COLORS.MEDIUM_GREY,
-    paddingBottom: 0,
+    paddingBottom: 16,
   },
   title: {
-    paddingLeft: 13,
-    paddingVertical: 16,
+    paddingBottom: 12,
   },
   icon: {
     paddingVertical: 16,
+    paddingRight: 13,
   },
 });

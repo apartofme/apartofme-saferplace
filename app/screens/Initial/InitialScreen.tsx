@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
 import notifee from '@notifee/react-native';
 import moment from 'moment';
 
@@ -11,11 +12,14 @@ import { ONE_DAY_SECONDS } from '../../constants/time';
 import { BACKGROUND_IMAGES } from '../../assets';
 import { generalStyles } from '../../utils/styles';
 import { NadiyaTextIcon } from '../../assets/svg/onboarding';
+import { showInternetErrorAlert } from '../../utils';
 
 export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,
 }) => {
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
+
   const {
     currentDay,
     lastDayUpdate,
@@ -24,11 +28,17 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   } = useAppSelector(state => state.quest);
   const isCurrentDayQuestsStackEmpty = !currentDayQuestsStack;
   const user = useAppSelector(state => state.user);
-  const [isStartLoading, setIsStartLoading] = useState(false);
-
   const { isSaveAllQuests, isSaveTranslations } = useAppSelector(
     state => state.app.loading,
   );
+
+  const [isStartLoading, setIsStartLoading] = useState(false);
+
+  useEffect(() => {
+    if (netInfo.isConnected === false) {
+      showInternetErrorAlert();
+    }
+  }, [netInfo.isConnected]);
 
   useMount(() => {
     dispatch(questSlice.actions.saveAllQuests());
@@ -64,6 +74,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
       }
       navigation.replace('ParentsOnboardingStack');
     }
+    // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSaveAllQuests, isSaveTranslations]);
 

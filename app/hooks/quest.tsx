@@ -1,9 +1,9 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TextStyle } from 'react-native';
 import _ from 'lodash';
-import { useTranslation } from 'react-i18next';
 
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
@@ -16,6 +16,7 @@ import {
   PLANTS_CHARM_NEXT_QUEST_LINE_IDS,
 } from '../constants/quest';
 import { SVG } from '../assets/svg';
+import { useInternetCheck } from './general';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
@@ -27,6 +28,11 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
     currentQuestLine,
     isCurrentQuestCompleted,
   } = useAppSelector(state => state.quest);
+
+  useInternetCheck(
+    'errors.network_progress.title',
+    'errors.network_progress.description',
+  );
 
   const navigateNextQuest = useCallback(() => {
     if (currentQuestLine) {
@@ -99,6 +105,11 @@ export const useNavigateNextQuest = () => {
   );
   const allQuests = useAppSelector(
     state => state.quest.allQuests?.[currentLanguage ?? 'en'],
+  );
+
+  useInternetCheck(
+    'errors.network_progress.title',
+    'errors.network_progress.description',
   );
 
   const navigateNextQuest = useCallback(() => {

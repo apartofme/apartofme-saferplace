@@ -12,7 +12,12 @@ import { MixingElixirPhaseType, PlantsType } from '../../../utils/types';
 import { generalStyles } from '../../../utils/styles';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
-import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAppState,
+  useInternetCheck,
+} from '../../../hooks';
 import {
   DAY_13_CLOSING_DIALOGUE_ID,
   THE_CHARM_OF_BEFRIENDING_ID,
@@ -26,9 +31,15 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   route,
 }) => {
   const { phase, selectedPlantArea, isFirstTimeGarden } = route.params;
-  const { t } = useTranslation();
 
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
+
+  useInternetCheck(
+    'errors.network_progress.title',
+    'errors.network_progress.description',
+  );
+
   const { currentQuestLine, allQuests } = useAppSelector(state => state.quest);
   const settings = useAppSelector(state => state.settings.settings);
   const currentLanguage = settings.language ?? 'en';
@@ -54,6 +65,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       dispatch(
         questSlice.actions.saveCompletedQuestsId(+THE_CHARM_OF_BEFRIENDING_ID),
       );
+
       const newQuestLineId = DAY_13_CLOSING_DIALOGUE_ID;
       const newQuests = values(quests?.[newQuestLineId].quests);
 

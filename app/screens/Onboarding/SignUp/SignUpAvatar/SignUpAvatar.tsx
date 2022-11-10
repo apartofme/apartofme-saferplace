@@ -1,6 +1,7 @@
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
 import uuid from 'react-native-uuid';
 import _ from 'lodash';
 
@@ -21,6 +22,7 @@ import { styles } from './SignUpAvatar.styles';
 import { SVG } from '../../../../assets/svg';
 import { DatoCMSTextVariables } from '../../../../constants/quest';
 import { IParent } from '../../../../models/IParent';
+import { showInternetErrorAlert } from '../../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -32,10 +34,11 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { isConnected } = useNetInfo();
+
   const { isRegisterUser, isCreateChild } = useAppSelector(
     state => state.app.loading,
   );
-
   const parent = useAppSelector(
     state => state.user.parent ?? state.cache.auth.parent,
   ) as IParent;
@@ -65,12 +68,21 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
   }, [avatarsData, currentIndex]);
 
   const onSubmitButtonPress = useCallback(() => {
+    if (isConnected === false) {
+      showInternetErrorAlert(
+        t('errors.network.title'),
+        t('errors.network.description'),
+      );
+      return;
+    }
+
     if (isChild && child && !isCreateChild) {
       dispatch(
         cacheSlice.actions.saveSignUpDataChild({
           avatar: `Circle${avatar}`,
         }),
       );
+
       dispatch(
         userSlice.actions.createChild({
           ...child,
@@ -95,9 +107,11 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     child,
     dispatch,
     isChild,
+    isConnected,
     isCreateChild,
     isRegisterUser,
     parent.uid,
+    t,
   ]);
 
   const title = t(

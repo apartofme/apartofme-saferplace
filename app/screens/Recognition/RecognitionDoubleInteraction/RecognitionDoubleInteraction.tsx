@@ -8,7 +8,12 @@ import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
-import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAppState,
+  useInternetCheck,
+} from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { LottieAbsoluteStyles } from '../../../utils';
@@ -23,17 +28,22 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     const appStatus = useAppState();
     const animationRef = useRef<Lottie>(null);
 
+    useInternetCheck(
+      'errors.network_progress.title',
+      'errors.network_progress.description',
+    );
+
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
+    const { parent, child } = useAppSelector(state => state.user);
+    const isSoundFXEnabled = useAppSelector(
+      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+    );
 
     const [isChildPress, setIsСhildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
-
     const [isSoundStart, setIsSoundStart] = useState(false);
 
-    const { parent, child } = useAppSelector(state => state.user);
-
     const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
-
     const ChildAvatarIcon = AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'];
 
     const setChildPress = useCallback(() => {
@@ -43,10 +53,6 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     const setAdultPress = useCallback(() => {
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
-
-    const isSoundFXEnabled = useAppSelector(
-      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
-    );
 
     useEffect(() => {
       if (isChildPress && isAdultPress && !isSoundStart && isSoundFXEnabled) {

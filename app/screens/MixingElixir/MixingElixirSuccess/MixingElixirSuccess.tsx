@@ -12,6 +12,7 @@ import {
   useAppDispatch,
   useAppSelector,
   useAppState,
+  useInternetCheck,
   useMount,
 } from '../../../hooks';
 import { plantSlice } from '../../../redux/slices/plantSlice';
@@ -31,6 +32,11 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
     const dispatch = useAppDispatch();
     const isFocused = useIsFocused();
     const appStatus = useAppState();
+
+    useInternetCheck(
+      'errors.network_progress.title',
+      'errors.network_progress.description',
+    );
 
     const [titleKey, setTitleKey] = useState('');
     const [descriptionKey, setDescriptionKey] = useState('');
@@ -62,11 +68,11 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
         },
       });
     }, [
-      dispatch,
-      isFirstTimeGarden,
       navigation,
-      currentPlant,
+      isFirstTimeGarden,
+      dispatch,
       selectedPlantArea,
+      currentPlant,
     ]);
 
     useMount(() => {

@@ -18,7 +18,12 @@ import {
   THE_CHARM_OF_BEFRIENDING_ID,
   THE_CHARM_OF_WEAVING_ID,
 } from '../../../constants/quest';
-import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAppState,
+  useInternetCheck,
+} from '../../../hooks';
 import { elixirSlice, questSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
@@ -35,7 +40,13 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
   ({ route, navigation }) => {
     const { title, elixirReward, backgroundImage } = route.params.data;
     const dispatch = useAppDispatch();
+    const appStatus = useAppState();
     const animationRef = useRef<Lottie>(null);
+
+    useInternetCheck(
+      'errors.network_progress.title',
+      'errors.network_progress.description',
+    );
 
     const {
       currentQuestLine,
@@ -49,11 +60,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const isSoundFXEnabled = settings.audioSettings?.isSoundFXEnabled;
     const quests = allQuests?.[currentLanguage];
     const { parent, child } = useAppSelector(state => state.user);
-    const appStatus = useAppState();
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
-
     const [isSoundStart, setIsSoundStart] = useState(false);
 
     const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
