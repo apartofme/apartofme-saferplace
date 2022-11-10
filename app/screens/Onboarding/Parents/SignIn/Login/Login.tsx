@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 import {
   Image,
@@ -27,18 +28,35 @@ import { SVG } from '../../../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../../../assets';
 import { HIT_SLOP } from '../../../../../constants/hitSlop';
 import { COLORS } from '../../../../../themes/colors';
+import { showInternetErrorAlert } from '../../../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
+
+  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
+
+  useEffect(() => {
+    if (isConnected === false) {
+      showInternetErrorAlert(
+        t('errors.network.title'),
+        t('errors.network.description'),
+      );
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected]);
 
   const onLoginPress = useCallback(
     ({ email, password }) => {
-      dispatch(userSlice.actions.loginUser({ email, password }));
+      if (isConnected) {
+        dispatch(userSlice.actions.loginUser({ email, password }));
+      }
     },
-    [dispatch],
+    [dispatch, isConnected],
   );
 
   const onForgotPusswordPress = useCallback(() => {

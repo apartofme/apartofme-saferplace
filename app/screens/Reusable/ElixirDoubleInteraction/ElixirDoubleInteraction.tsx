@@ -7,6 +7,8 @@ import React, {
   useRef,
 } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useNetInfo } from '@react-native-community/netinfo';
 import Lottie from 'lottie-react-native';
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
@@ -27,6 +29,7 @@ import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.t
 import {
   getElixirAnimationKeyByRange,
   LottieAbsoluteStyles,
+  showInternetErrorAlert,
 } from '../../../utils';
 import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
 import { PotionFillKeys } from '../../../utils/types';
@@ -35,7 +38,26 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
   ({ route, navigation }) => {
     const { title, elixirReward, backgroundImage } = route.params.data;
     const dispatch = useAppDispatch();
+    const appStatus = useAppState();
     const animationRef = useRef<Lottie>(null);
+    const { t } = useTranslation();
+    const netInfo = useNetInfo();
+
+    const isConnected = useMemo(
+      () => netInfo.isConnected,
+      [netInfo.isConnected],
+    );
+
+    useEffect(() => {
+      if (isConnected === false) {
+        showInternetErrorAlert(
+          t('errors.network_progress.title'),
+          t('errors.network_progress.description'),
+        );
+      }
+      // intentionally
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isConnected]);
 
     const {
       currentQuestLine,
@@ -49,11 +71,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const isSoundFXEnabled = settings.audioSettings?.isSoundFXEnabled;
     const quests = allQuests?.[currentLanguage];
     const { parent, child } = useAppSelector(state => state.user);
-    const appStatus = useAppState();
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
-
     const [isSoundStart, setIsSoundStart] = useState(false);
 
     const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];

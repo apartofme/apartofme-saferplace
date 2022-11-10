@@ -12,6 +12,8 @@ import {
   PanGestureHandler,
 } from 'react-native-gesture-handler';
 import Lottie from 'lottie-react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { useTranslation } from 'react-i18next';
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { AVATARS_SVG } from '../../../assets/svg';
@@ -31,6 +33,7 @@ import { IElixirDoubleInteractionScreenProps } from './ElixirDoubleInteraction.t
 import {
   getElixirAnimationKeyByRange,
   LottieAbsoluteStyles,
+  showInternetErrorAlert,
 } from '../../../utils';
 import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
 import { PotionFillKeys } from '../../../utils/types';
@@ -41,6 +44,24 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     const dispatch = useAppDispatch();
     const animationRef = useRef<Lottie>(null);
     const appStatus = useAppState();
+    const { t } = useTranslation();
+    const netInfo = useNetInfo();
+
+    const isConnected = useMemo(
+      () => netInfo.isConnected,
+      [netInfo.isConnected],
+    );
+
+    useEffect(() => {
+      if (isConnected === false) {
+        showInternetErrorAlert(
+          t('errors.network_progress.title'),
+          t('errors.network_progress.description'),
+        );
+      }
+      // intentionally
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isConnected]);
 
     const { currentQuestLine, isCurrentQuestCompleted, allQuests } =
       useAppSelector(state => state.quest);
@@ -53,7 +74,6 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
-
     const [isSoundStart, setIsSoundStart] = useState(false);
 
     const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];

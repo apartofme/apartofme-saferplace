@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { useCallback } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ImageBackground,
@@ -22,6 +23,7 @@ import { styles } from './MainMenu.styles';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
 import { SaveIcon } from '../../../assets/svg/SaveIcon';
 import { SwitchUserIcon } from '../../../assets/svg/SwitchUserIcon';
+import { showInternetErrorAlert } from '../../../utils';
 
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
 const LogOutIcon = SVG.ExitIcon;
@@ -31,6 +33,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
+
+  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
 
   const { parent, child, children } = useAppSelector(state => state.user);
 
@@ -48,8 +53,15 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   }, [dispatch]);
 
   const onSaveProgressPress = useCallback(() => {
-    dispatch(questSlice.actions.saveProgress());
-  }, [dispatch]);
+    if (isConnected) {
+      dispatch(questSlice.actions.saveProgress());
+      return;
+    }
+    showInternetErrorAlert(
+      t('errors.network.title'),
+      t('errors.network.description'),
+    );
+  }, [dispatch, isConnected, t]);
 
   const onSwitchUserPress = useCallback(() => {
     navigation.navigate('SelectUser');

@@ -1,11 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { useTranslation } from 'react-i18next';
+import Lottie from 'lottie-react-native';
 import {
   GestureHandlerRootView,
   PanGestureHandler,
 } from 'react-native-gesture-handler';
-import Lottie from 'lottie-react-native';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { AVATARS_SVG } from '../../../assets/svg';
@@ -18,7 +25,7 @@ import { generalStyles } from '../../../utils/styles';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
 import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
-import { LottieAbsoluteStyles } from '../../../utils';
+import { LottieAbsoluteStyles, showInternetErrorAlert } from '../../../utils';
 
 export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInteractionScreenProps> =
   ({ navigation }) => {
@@ -26,18 +33,35 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     const dispatch = useAppDispatch();
     const appStatus = useAppState();
     const animationRef = useRef<Lottie>(null);
+    const netInfo = useNetInfo();
+
+    const isConnected = useMemo(
+      () => netInfo.isConnected,
+      [netInfo.isConnected],
+    );
+
+    useEffect(() => {
+      if (isConnected === false) {
+        showInternetErrorAlert(
+          t('errors.network_progress.title'),
+          t('errors.network_progress.description'),
+        );
+      }
+      // intentionally
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isConnected]);
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
+    const { parent, child } = useAppSelector(state => state.user);
+    const isSoundFXEnabled = useAppSelector(
+      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
+    );
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
-
     const [isSoundStart, setIsSoundStart] = useState(false);
 
-    const { parent, child } = useAppSelector(state => state.user);
-
     const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
-
     const ChildAvatarIcon = AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'];
 
     const setChildPress = useCallback(() => {
@@ -47,10 +71,6 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     const setAdultPress = useCallback(() => {
       setIsAdultPress(!isAdultPress);
     }, [isAdultPress]);
-
-    const isSoundFXEnabled = useAppSelector(
-      state => state.settings.settings.audioSettings?.isSoundFXEnabled,
-    );
 
     useEffect(() => {
       if (isChildPress && isAdultPress && !isSoundStart && isSoundFXEnabled) {

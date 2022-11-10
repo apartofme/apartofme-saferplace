@@ -2,6 +2,7 @@ import { useIsFocused } from '@react-navigation/native';
 import moment from 'moment';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import Lottie from 'lottie-react-native';
 
@@ -21,7 +22,7 @@ import { PlantsType } from '../../../utils/types';
 import { styles } from './MixingElixirSuccess.styles';
 import { IMixingElixirSuccessScreenProps } from './MixingElixirSuccess.types';
 import { ANIMATIONS } from '../../../assets/animations';
-import { LottieAbsoluteStyles } from '../../../utils';
+import { LottieAbsoluteStyles, showInternetErrorAlert } from '../../../utils';
 
 export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps> =
   ({ navigation, route }) => {
@@ -31,6 +32,23 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
     const dispatch = useAppDispatch();
     const isFocused = useIsFocused();
     const appStatus = useAppState();
+    const netInfo = useNetInfo();
+
+    const isConnected = useMemo(
+      () => netInfo.isConnected,
+      [netInfo.isConnected],
+    );
+
+    useEffect(() => {
+      if (isConnected === false) {
+        showInternetErrorAlert(
+          t('errors.network_progress.title'),
+          t('errors.network_progress.description'),
+        );
+      }
+      // intentionally
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isConnected]);
 
     const [titleKey, setTitleKey] = useState('');
     const [descriptionKey, setDescriptionKey] = useState('');
@@ -62,11 +80,11 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
         },
       });
     }, [
-      dispatch,
-      isFirstTimeGarden,
       navigation,
-      currentPlant,
+      isFirstTimeGarden,
+      dispatch,
       selectedPlantArea,
+      currentPlant,
     ]);
 
     useMount(() => {

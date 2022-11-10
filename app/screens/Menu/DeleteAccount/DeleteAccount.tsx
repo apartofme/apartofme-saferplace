@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { Image, Pressable, SafeAreaView, View } from 'react-native';
 import { Formik } from 'formik';
 
@@ -20,6 +21,7 @@ import { DeleteAccountValidationSchema } from './DeleteAccount.validation';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { COLORS } from '../../../themes/colors';
+import { showInternetErrorAlert } from '../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -29,14 +31,24 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
+
+  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
 
   const [isActive, setIsActive] = useState(false);
 
   const onSubmit = useCallback(
     password => {
-      dispatch(userSlice.actions.deleteAccount(password));
+      if (isConnected) {
+        dispatch(userSlice.actions.deleteAccount(password));
+        return;
+      }
+      showInternetErrorAlert(
+        t('errors.network.title'),
+        t('errors.network.description'),
+      );
     },
-    [dispatch],
+    [dispatch, isConnected, t],
   );
 
   return (

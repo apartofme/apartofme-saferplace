@@ -1,6 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { useNetInfo } from '@react-native-community/netinfo';
 import _ from 'lodash';
 
 import { IAvatarListProps } from './AvatarList.types';
@@ -10,10 +12,15 @@ import { UserType } from '../../utils/types';
 import { userSlice } from '../../redux/slices';
 import { useAppDispatch } from '../../hooks';
 import { AvatarListType, IAvatarListItem } from './AvatarList.data';
+import { showInternetErrorAlert } from '../../utils';
 
 export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
+  const { t } = useTranslation();
+
+  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
 
   const listData = useMemo(() => {
     const resultList: IAvatarListItem[] = [];
@@ -42,9 +49,17 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
     ({ item }: { item: IAvatarListItem }) => {
       const onPress = () => {
         if (!parent && item.user) {
-          dispatch(userSlice.actions.setChild(item.user));
-          navigation.navigate('GardenStack');
-          return;
+          if (isConnected) {
+            dispatch(userSlice.actions.setChild(item.user));
+            navigation.navigate('GardenStack');
+            return;
+          } else {
+            showInternetErrorAlert(
+              t('errors.network.title'),
+              t('errors.network.description'),
+            );
+            return;
+          }
         }
         navigation.navigate('EditProfile', {
           data: { type: UserType.Child, userId: item.user?.uid },
@@ -84,7 +99,15 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
           return <View style={styles.childContainer} />;
       }
     },
-    [dispatch, navigation, onAddChildPress, onParentPress, parent],
+    [
+      dispatch,
+      navigation,
+      isConnected,
+      onAddChildPress,
+      onParentPress,
+      parent,
+      t,
+    ],
   );
 
   return (

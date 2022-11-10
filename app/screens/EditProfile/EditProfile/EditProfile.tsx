@@ -1,3 +1,4 @@
+import { useNetInfo } from '@react-native-community/netinfo';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, View } from 'react-native';
@@ -18,6 +19,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { userSlice } from '../../../redux/slices';
 import { UserType } from '../../../utils/types';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
+import { showInternetErrorAlert } from '../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -25,14 +27,16 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { t } = useTranslation();
-
   const { type, userId } = route.params?.data;
 
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
 
   const parentData = useAppSelector(state => state.user.parent);
   const children = useAppSelector(state => state.user.children);
+
+  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
 
   const user = useMemo(() => {
     if (type === UserType.Child) {
@@ -47,6 +51,13 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
   const Icon = user && AVATARS_SVG[user?.avatar];
 
   const onSubmit = useCallback(() => {
+    if (isConnected === false) {
+      showInternetErrorAlert(
+        t('errors.network.title'),
+        t('errors.network.description'),
+      );
+      return;
+    }
     if (type === UserType.Parent) {
       dispatch(userSlice.actions.editParent({ nickname }));
       navigation.goBack();
@@ -56,7 +67,7 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
       dispatch(userSlice.actions.editChild({ nickname, userId: user?.uid }));
     }
     navigation.goBack();
-  }, [dispatch, navigation, nickname, type, user?.uid]);
+  }, [dispatch, isConnected, navigation, nickname, t, type, user?.uid]);
 
   return (
     <View style={generalStyles.flex}>

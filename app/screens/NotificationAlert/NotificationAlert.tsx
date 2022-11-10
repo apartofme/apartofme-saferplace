@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import _ from 'lodash';
 
@@ -12,6 +13,7 @@ import { ErrorInfoIcon } from '../../assets/svg/ErrorInfoIcon';
 export const NotificationAlert: React.FC = ({}) => {
   const dispatch = useAppDispatch();
   const statusBarHeight = useSafeAreaInsets();
+  const { t } = useTranslation();
 
   const errors = useAppSelector(state => state.app.errors);
   const currentError = useMemo(
@@ -22,11 +24,11 @@ export const NotificationAlert: React.FC = ({}) => {
   useEffect(() => {
     if (currentError) {
       showMessage({
-        message: currentError,
+        message: t(currentError),
         style: {
           ...styles.container,
           marginTop: statusBarHeight.top,
-          paddingTop: -statusBarHeight.top,
+          paddingTop: -statusBarHeight.top + 16,
         },
         titleStyle: styles.title,
         // TODO: types
@@ -38,7 +40,9 @@ export const NotificationAlert: React.FC = ({}) => {
       });
       dispatch(appSlice.actions.resetErrors());
     }
-  }, [currentError, dispatch, statusBarHeight.top]);
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentError]);
 
-  return <FlashMessage position="top" icon="info" />;
+  return <FlashMessage position="top" />;
 };

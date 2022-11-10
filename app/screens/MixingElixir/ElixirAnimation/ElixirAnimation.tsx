@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 import Lottie from 'lottie-react-native';
 import { values } from 'lodash';
@@ -19,16 +20,31 @@ import {
 } from '../../../constants/quest';
 import { questSlice } from '../../../redux/slices';
 import { ANIMATIONS } from '../../../assets/animations';
-import { LottieAbsoluteStyles } from '../../../utils';
+import { LottieAbsoluteStyles, showInternetErrorAlert } from '../../../utils';
 
 export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,
   route,
 }) => {
   const { phase, selectedPlantArea, isFirstTimeGarden } = route.params;
-  const { t } = useTranslation();
 
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
+
+  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
+
+  useEffect(() => {
+    if (isConnected === false) {
+      showInternetErrorAlert(
+        t('errors.network_progress.title'),
+        t('errors.network_progress.description'),
+      );
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected]);
+
   const { currentQuestLine, allQuests } = useAppSelector(state => state.quest);
   const settings = useAppSelector(state => state.settings.settings);
   const currentLanguage = settings.language ?? 'en';
@@ -54,6 +70,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       dispatch(
         questSlice.actions.saveCompletedQuestsId(+THE_CHARM_OF_BEFRIENDING_ID),
       );
+
       const newQuestLineId = DAY_13_CLOSING_DIALOGUE_ID;
       const newQuests = values(quests?.[newQuestLineId].quests);
 

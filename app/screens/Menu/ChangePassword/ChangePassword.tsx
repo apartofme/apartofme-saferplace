@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, ScrollView, View } from 'react-native';
 import { Formik } from 'formik';
@@ -20,6 +21,7 @@ import { ChangePasswordValidationSchema } from './ChangePassword.validation';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { COLORS } from '../../../themes/colors';
+import { showInternetErrorAlert } from '../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -27,18 +29,27 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
   const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
+
+  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
 
   const [isActive, setIsActive] = useState(false);
 
   const onSubmit = useCallback(
     (currentPassword, newPassword) => {
-      dispatch(
-        userSlice.actions.changePassword({ newPassword, currentPassword }),
+      if (isConnected) {
+        dispatch(
+          userSlice.actions.changePassword({ newPassword, currentPassword }),
+        );
+        return;
+      }
+      showInternetErrorAlert(
+        t('errors.network.title'),
+        t('errors.network.description'),
       );
     },
-    [dispatch],
+    [dispatch, isConnected, t],
   );
 
   return (

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { useIsFocused } from '@react-navigation/native';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
 import Modal from 'react-native-modal';
 import _ from 'lodash';
 
@@ -13,7 +14,7 @@ import {
   useMount,
 } from '../../../hooks';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { Nullable } from '../../../utils';
+import { Nullable, showInternetErrorAlert } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { Book, Elixir, PlantArea, PlantAreaType } from '../components';
@@ -38,6 +39,18 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const appStatus = useAppState();
   const dispatch = useAppDispatch();
   const isFocused = useIsFocused();
+  const netInfo = useNetInfo();
+
+  useEffect(() => {
+    if (netInfo.isConnected === false) {
+      showInternetErrorAlert(
+        t('errors.network.title'),
+        t('errors.network.description'),
+      );
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [netInfo.isConnected]);
 
   const [isModal, setIsModal] = useState(false);
   const [charmBookType, setCharmBookType] = useState(

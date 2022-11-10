@@ -1,5 +1,7 @@
 import _ from 'lodash';
-import { Platform, ViewStyle } from 'react-native';
+import { NativeModules, Platform, ViewStyle } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
+import { showMessage } from 'react-native-flash-message';
 
 import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
@@ -13,12 +15,19 @@ import {
 } from './types';
 import { REGEXPS } from './regexps';
 import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../constants/window';
+import { COLORS } from '../themes/colors';
+import {
+  NETWORK_ERROR_DESCRIPTION,
+  NETWORK_ERROR_TITLE,
+} from '../constants/error';
 
 export const isAndroid = Platform.OS === 'android';
 
 export const isIOS = Platform.OS === 'ios';
 
 export type Nullable<T> = T | null;
+
+const { StatusBarManager } = NativeModules;
 
 /*
  Parse firebase error for example: auth/email-already-exists
@@ -168,3 +177,23 @@ export const LottieAbsoluteStyles = (
     ...styles,
   };
 };
+
+export const getIsConnected = async () =>
+  await NetInfo.fetch().then(state => state.isConnected);
+
+export const showInternetErrorAlert = (title?: string, description?: string) =>
+  showMessage({
+    message: title ?? NETWORK_ERROR_TITLE,
+    description: description ?? NETWORK_ERROR_DESCRIPTION,
+    style: {
+      backgroundColor: COLORS.MEDIUM_GREY,
+      paddingBottom: 16,
+      justifyContent: 'center',
+      marginTop: StatusBarManager.HEIGHT,
+      paddingTop: -StatusBarManager.HEIGHT + 16,
+    },
+    titleStyle: {
+      paddingBottom: 12,
+    },
+    icon: 'none',
+  });
