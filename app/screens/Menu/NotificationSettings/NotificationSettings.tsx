@@ -12,7 +12,6 @@ import { styles } from './NotificationSettings.styles';
 import { openDeviceNotificationSettings } from '../../../services/firebase';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { HIT_SLOP } from '../../../constants/hitSlop';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -62,20 +61,13 @@ export const NotificationSettingsScreen: React.FC<INotificationSettingsScreenPro
                 setIsEnabled={setNotificationEnabled}
               />
               <ExtendedText style={styles.subtitle} preset="secondary-text">
-                {t('screens.menu.notification_settings.description')}
-                <Pressable
+                {`${t('screens.menu.notification_settings.description')}`}
+                <ExtendedText
                   onPress={openDeviceNotificationSettings}
-                  style={styles.systemSettingsContainer}
-                  hitSlop={HIT_SLOP}>
-                  <ExtendedText
-                    preset="secondary-text"
-                    style={[
-                      generalStyles.boldText,
-                      generalStyles.primaryOrange,
-                    ]}>
-                    {t('labels.system_settings')}
-                  </ExtendedText>
-                </Pressable>
+                  preset="secondary-text"
+                  style={[generalStyles.boldText, generalStyles.primaryOrange]}>
+                  {t('labels.system_settings')}
+                </ExtendedText>
               </ExtendedText>
               <Pressable />
             </View>
