@@ -1,16 +1,18 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNetInfo } from '@react-native-community/netinfo';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import Lottie from 'lottie-react-native';
 
 import { IElixirTitleButtonScreenProps } from './ElixirTitleButton.types';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useInternetCheck,
+} from '../../../hooks';
 import { BottomButtonView, ExtendedText } from '../../../components';
 import {
   getElixirAnimationKeyByRange,
   LottieAbsoluteStyles,
-  showInternetErrorAlert,
 } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './ElixirTitleButton.styles';
@@ -24,23 +26,11 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const netInfo = useNetInfo();
 
-    const isConnected = useMemo(
-      () => netInfo.isConnected,
-      [netInfo.isConnected],
+    useInternetCheck(
+      'errors.network_progress.title',
+      'errors.network_progress.description',
     );
-
-    useEffect(() => {
-      if (isConnected === false) {
-        showInternetErrorAlert(
-          t('errors.network_progress.title'),
-          t('errors.network_progress.description'),
-        );
-      }
-      // intentionally
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isConnected]);
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
     const { interruptedQuestLine, currentQuestLine, isFirstTimeGrounding } =

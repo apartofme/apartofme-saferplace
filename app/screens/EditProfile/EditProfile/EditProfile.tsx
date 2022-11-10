@@ -31,12 +31,10 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const netInfo = useNetInfo();
+  const { isConnected } = useNetInfo();
 
   const parentData = useAppSelector(state => state.user.parent);
   const children = useAppSelector(state => state.user.children);
-
-  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
 
   const user = useMemo(() => {
     if (type === UserType.Child) {

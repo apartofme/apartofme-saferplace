@@ -1,5 +1,5 @@
 import { useNetInfo } from '@react-native-community/netinfo';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, ScrollView, View } from 'react-native';
 import { Formik } from 'formik';
@@ -30,9 +30,8 @@ export const ChangePasswordScreen: React.FC<IChangePasswordScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const netInfo = useNetInfo();
 
-  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
+  const { isConnected } = useNetInfo();
 
   const [isActive, setIsActive] = useState(false);
 

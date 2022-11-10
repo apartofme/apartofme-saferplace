@@ -178,8 +178,10 @@ export const LottieAbsoluteStyles = (
   };
 };
 
-export const getIsConnected = async () =>
-  await NetInfo.fetch().then(state => state.isConnected);
+export const getIsConnected = async () => {
+  const netInfo = await NetInfo.fetch();
+  return netInfo.isConnected;
+};
 
 export const showInternetErrorAlert = (title?: string, description?: string) =>
   showMessage({

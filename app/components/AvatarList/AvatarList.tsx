@@ -17,10 +17,8 @@ import { showInternetErrorAlert } from '../../utils';
 export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
-  const netInfo = useNetInfo();
   const { t } = useTranslation();
-
-  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
+  const { isConnected } = useNetInfo();
 
   const listData = useMemo(() => {
     const resultList: IAvatarListItem[] = [];

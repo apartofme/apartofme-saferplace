@@ -34,9 +34,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const netInfo = useNetInfo();
-
-  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
+  const { isConnected } = useNetInfo();
 
   const { isRegisterUser, isCreateChild } = useAppSelector(
     state => state.app.loading,

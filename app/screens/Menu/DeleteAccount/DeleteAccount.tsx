@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { Image, Pressable, SafeAreaView, View } from 'react-native';
@@ -29,11 +29,8 @@ export const DeleteAccountScreen: React.FC<IDeleteAccountScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
   const dispatch = useAppDispatch();
-  const netInfo = useNetInfo();
-
-  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
+  const { isConnected } = useNetInfo();
 
   const [isActive, setIsActive] = useState(false);
 

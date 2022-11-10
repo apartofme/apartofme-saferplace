@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { useNetInfo } from '@react-native-community/netinfo';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ImageBackground,
@@ -33,9 +33,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const netInfo = useNetInfo();
-
-  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
+  const { isConnected } = useNetInfo();
 
   const { parent, child, children } = useAppSelector(state => state.user);
 

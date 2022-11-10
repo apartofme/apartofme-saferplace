@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
-import { useNetInfo } from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 import Lottie from 'lottie-react-native';
 import { values } from 'lodash';
@@ -13,14 +12,19 @@ import { MixingElixirPhaseType, PlantsType } from '../../../utils/types';
 import { generalStyles } from '../../../utils/styles';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
-import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAppState,
+  useInternetCheck,
+} from '../../../hooks';
 import {
   DAY_13_CLOSING_DIALOGUE_ID,
   THE_CHARM_OF_BEFRIENDING_ID,
 } from '../../../constants/quest';
 import { questSlice } from '../../../redux/slices';
 import { ANIMATIONS } from '../../../assets/animations';
-import { LottieAbsoluteStyles, showInternetErrorAlert } from '../../../utils';
+import { LottieAbsoluteStyles } from '../../../utils';
 
 export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   navigation,
@@ -30,20 +34,11 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const netInfo = useNetInfo();
 
-  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
-
-  useEffect(() => {
-    if (isConnected === false) {
-      showInternetErrorAlert(
-        t('errors.network_progress.title'),
-        t('errors.network_progress.description'),
-      );
-    }
-    // intentionally
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected]);
+  useInternetCheck(
+    'errors.network_progress.title',
+    'errors.network_progress.description',
+  );
 
   const { currentQuestLine, allQuests } = useAppSelector(state => state.quest);
   const settings = useAppSelector(state => state.settings.settings);

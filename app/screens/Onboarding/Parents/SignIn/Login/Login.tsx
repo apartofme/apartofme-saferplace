@@ -21,34 +21,26 @@ import {
 import { styles } from './Login.styles';
 import { ILoginScreenProps } from './Login.types';
 import { generalStyles } from '../../../../../utils/styles';
-import { useAppDispatch, useAppSelector } from '../../../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useInternetCheck,
+} from '../../../../../hooks';
 import { userSlice } from '../../../../../redux/slices';
 import { SignInValidationSchema } from './Login.validation';
 import { SVG } from '../../../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../../../assets';
 import { HIT_SLOP } from '../../../../../constants/hitSlop';
 import { COLORS } from '../../../../../themes/colors';
-import { showInternetErrorAlert } from '../../../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const netInfo = useNetInfo();
+  const { isConnected } = useNetInfo();
 
-  const isConnected = useMemo(() => netInfo.isConnected, [netInfo.isConnected]);
-
-  useEffect(() => {
-    if (isConnected === false) {
-      showInternetErrorAlert(
-        t('errors.network.title'),
-        t('errors.network.description'),
-      );
-    }
-    // intentionally
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected]);
+  useInternetCheck('errors.network.title', 'errors.network.description');
 
   const onLoginPress = useCallback(
     ({ email, password }) => {

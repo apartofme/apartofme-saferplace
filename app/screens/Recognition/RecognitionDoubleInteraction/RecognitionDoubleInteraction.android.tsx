@@ -1,31 +1,29 @@
 import { ImageBackground, SafeAreaView, View } from 'react-native';
-import { useNetInfo } from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 import Lottie from 'lottie-react-native';
 import {
   GestureHandlerRootView,
   PanGestureHandler,
 } from 'react-native-gesture-handler';
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { ExtendedText } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
-import { useAppDispatch, useAppSelector, useAppState } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAppState,
+  useInternetCheck,
+} from '../../../hooks';
 import { elixirSlice } from '../../../redux/slices';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
 import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
-import { LottieAbsoluteStyles, showInternetErrorAlert } from '../../../utils';
+import { LottieAbsoluteStyles } from '../../../utils';
 
 export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInteractionScreenProps> =
   ({ navigation }) => {
@@ -33,23 +31,11 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     const dispatch = useAppDispatch();
     const appStatus = useAppState();
     const animationRef = useRef<Lottie>(null);
-    const netInfo = useNetInfo();
 
-    const isConnected = useMemo(
-      () => netInfo.isConnected,
-      [netInfo.isConnected],
+    useInternetCheck(
+      'errors.network_progress.title',
+      'errors.network_progress.description',
     );
-
-    useEffect(() => {
-      if (isConnected === false) {
-        showInternetErrorAlert(
-          t('errors.network_progress.title'),
-          t('errors.network_progress.description'),
-        );
-      }
-      // intentionally
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isConnected]);
 
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
     const { parent, child } = useAppSelector(state => state.user);

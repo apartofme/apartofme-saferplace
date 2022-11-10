@@ -1,19 +1,13 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useCallback, useEffect } from 'react';
-import { useNetInfo } from '@react-native-community/netinfo';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TextStyle } from 'react-native';
 import _ from 'lodash';
 
 import { ExtendedText, ExtendedTextPresets, MainHeader } from '../components';
 import { questSlice } from '../redux/slices';
-import {
-  containsFirstPlayer,
-  containsSecondPlayer,
-  Nullable,
-  showInternetErrorAlert,
-} from '../utils';
+import { containsFirstPlayer, containsSecondPlayer, Nullable } from '../utils';
 import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
 import {
@@ -22,12 +16,11 @@ import {
   PLANTS_CHARM_NEXT_QUEST_LINE_IDS,
 } from '../constants/quest';
 import { SVG } from '../assets/svg';
+import { useInternetCheck } from './general';
 
 export const useNavigateNextQuestById = (questId: Nullable<string>) => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const netInfo = useNetInfo();
-  const { t } = useTranslation();
 
   const {
     currentQuestIdx,
@@ -36,16 +29,10 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
     isCurrentQuestCompleted,
   } = useAppSelector(state => state.quest);
 
-  useEffect(() => {
-    if (netInfo.isConnected === false) {
-      showInternetErrorAlert(
-        t('errors.network_progress.title'),
-        t('errors.network_progress.description'),
-      );
-    }
-    // intentionally
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [netInfo.isConnected]);
+  useInternetCheck(
+    'errors.network_progress.title',
+    'errors.network_progress.description',
+  );
 
   const navigateNextQuest = useCallback(() => {
     if (currentQuestLine) {
@@ -106,8 +93,6 @@ export const useNavigateNextQuestById = (questId: Nullable<string>) => {
 export const useNavigateNextQuest = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const netInfo = useNetInfo();
-  const { t } = useTranslation();
   const {
     currentQuestIdx,
     currentQuestLine,
@@ -122,16 +107,10 @@ export const useNavigateNextQuest = () => {
     state => state.quest.allQuests?.[currentLanguage ?? 'en'],
   );
 
-  useEffect(() => {
-    if (netInfo.isConnected === false) {
-      showInternetErrorAlert(
-        t('errors.network_progress.title'),
-        t('errors.network_progress.description'),
-      );
-    }
-    // intentionally
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [netInfo.isConnected]);
+  useInternetCheck(
+    'errors.network_progress.title',
+    'errors.network_progress.description',
+  );
 
   const navigateNextQuest = useCallback(() => {
     if (currentQuestLine) {
