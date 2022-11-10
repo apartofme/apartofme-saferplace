@@ -20,6 +20,7 @@ import {
 import { SVG } from '../../../assets/svg';
 import { COLORS } from '../../../themes/colors';
 import { ScrollView } from 'react-native-gesture-handler';
+import { SCROLL_DELAY } from '../../../constants/time';
 
 const CircleExclamationMarkIcon = SVG.CircleExclamationMarkIcon;
 
@@ -62,7 +63,11 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
-    scrollViewRef.current?.scrollToEnd();
+    if (isInputFocus) {
+      setTimeout(() => {
+        scrollViewRef.current?.scrollToEnd();
+      }, SCROLL_DELAY);
+    }
   }, [isInputFocus]);
 
   return (

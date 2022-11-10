@@ -65,11 +65,6 @@ export const SkipCharmAcknowledgementScreen: React.FC<ISkipCharmAcknowledgementS
             } as IQuest,
           },
         });
-        navigation.replace('Garden', {
-          isFirstTime: false,
-          isFirstTimeGarden: false,
-          isPlanting: false,
-        });
       }
     }, [allQuests, dispatch, interruptedQuestLine, isFirst, navigation, t]);
 

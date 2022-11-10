@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, TouchableOpacity } from 'react-native';
 
@@ -9,11 +9,13 @@ import {
   useParsedJSXTextNickname,
   useRenderQuestHeader,
   useNegativeNavigateTo,
+  useAppDispatch,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementSuccessivelyDoubleButtonScreenProps } from './AcknowledgementSuccessivelyDoubleButton.types';
 import { styles } from './AcknowledgementSuccessivelyDoubleButton.styles';
 import { CHARMS_SVG } from '../../../../assets/svg';
+import { cacheSlice } from '../../../../redux/slices';
 
 export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledgementSuccessivelyDoubleButtonScreenProps> =
   ({ route }) => {
@@ -32,6 +34,7 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
     } = route.params.data;
 
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
     const negativeNavigate = useNegativeNavigateTo(negativeNavigatesTo, true);
     const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
 
@@ -48,6 +51,11 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
     });
 
     const Icon = image && CHARMS_SVG[image];
+
+    const onBottomButtonPress = useCallback(() => {
+      dispatch(cacheSlice.actions.clearEmotions());
+      negativeNavigate();
+    }, [dispatch, negativeNavigate]);
 
     return (
       <ImageBackground
@@ -69,7 +77,7 @@ export const AcknowledgementSuccessivelyDoubleButtonScreen: React.FC<IAcknowledg
             </ExtendedText>
           </BottomButtonView>
           <TouchableOpacity
-            onPress={negativeNavigate}
+            onPress={onBottomButtonPress}
             style={styles.bottomButton}>
             <ExtendedText preset="secondary-text" style={styles.bottomButton}>
               {tellMoreTitle}

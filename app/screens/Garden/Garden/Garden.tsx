@@ -49,7 +49,6 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const [charmBookType, setCharmBookType] = useState(
     CharmBookMenuType.NoneCharm,
   );
-  const [isPrevStatusBackground, setIsPrevStatusBackground] = useState(false);
   const [activePlantArea, setActivePlantArea] =
     useState<Nullable<PlantAreaType>>(null);
   const isBackgroundMusicEnabled = useAppSelector(
@@ -85,24 +84,17 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   }, [appStatus, isFocused, isBackgroundMusicEnabled]);
 
   useEffect(() => {
-    if (appStatus === 'background') {
-      setIsPrevStatusBackground(true);
-      return;
-    }
+    if (appStatus === 'active' && !isPlanting && !isFirstTimeGarden) {
+      const nowSeconds = +moment().format('X');
 
-    if (appStatus === 'active') {
-      if (isPrevStatusBackground) {
-        const nowSeconds = +moment().format('X');
-
-        if (
-          nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
-          !interruptedQuestLine &&
-          !currentDayQuestsStack.length
-        ) {
-          dispatch(questSlice.actions.setLastDayUpdate());
-          dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
-          dispatch(questSlice.actions.setCurrentDayQuestsStack());
-        }
+      if (
+        nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
+        !interruptedQuestLine &&
+        !currentDayQuestsStack.length
+      ) {
+        dispatch(questSlice.actions.setLastDayUpdate());
+        dispatch(questSlice.actions.updateCurrentDay(currentDay + 1));
+        dispatch(questSlice.actions.setCurrentDayQuestsStack());
       }
       return;
     }
@@ -180,9 +172,9 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
   const title = useMemo(() => {
     const isDisplayNone =
-      !currentDayQuestsStack.length &&
-      isInterruptedQuestLineEmpty &&
-      !isPlanting &&
+      (!currentDayQuestsStack.length &&
+        isInterruptedQuestLineEmpty &&
+        !isPlanting) ||
       isOpeningDialog;
 
     return (
@@ -279,7 +271,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       <View>
         {title}
         <Book
-          isDisabled={isPlanting || isFirstTimeGarden}
+          isDisabled={isPlanting || isFirstTimeGarden || isOpeningDialog}
           setModalStatus={setModalStatus}
           setType={setCharmBookType}
         />

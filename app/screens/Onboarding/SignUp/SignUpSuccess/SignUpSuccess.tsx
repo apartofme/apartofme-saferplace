@@ -85,7 +85,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
           style={styles.container}>
-          <AvatarIcon />
+          <AvatarIcon reduceSize={false} />
           <ExtendedText preset="large-title" style={styles.title}>
             {titleArray}
           </ExtendedText>

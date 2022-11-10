@@ -77,7 +77,6 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
             style={styles.container}>
             <Title />
             {AvatarsIcon && <AvatarsIcon />}
-            <DOUBLE_AVATARS_SVG.FoxBear />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>
