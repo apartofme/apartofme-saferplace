@@ -74,6 +74,9 @@ function* watchSetChild({ payload: child }: PayloadAction<IChild>) {
   );
   if (childProgress._data) {
     yield put(userSlice.actions.setChildSuccess(child));
+    yield put(plantSlice.actions.setPlantState(childProgress._data.plants));
+    yield put(questSlice.actions.setQuestState(childProgress._data.quests));
+    yield put(elixirSlice.actions.setElixirState(childProgress._data.elixir));
 
     const nowSeconds = +moment().format('X');
     if (
@@ -89,10 +92,6 @@ function* watchSetChild({ payload: child }: PayloadAction<IChild>) {
         ),
       );
       yield put(questSlice.actions.setCurrentDayQuestsStack());
-    } else {
-      yield put(plantSlice.actions.setPlantState(childProgress._data.plants));
-      yield put(questSlice.actions.setQuestState(childProgress._data.quests));
-      yield put(elixirSlice.actions.setElixirState(childProgress._data.elixir));
     }
   } else {
     yield put(userSlice.actions.setChildError('Set child error'));

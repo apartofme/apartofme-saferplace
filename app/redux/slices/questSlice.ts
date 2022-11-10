@@ -57,7 +57,8 @@ export const questSlice = createSlice({
     saveAllQuestsError(state, action: PayloadAction<string>) {},
 
     setQuestState(state, { payload }: PayloadAction<IQuestProgress>) {
-      _.merge(state, payload);
+      state = _.merge(state, payload);
+      state.completedQuestsId = payload.completedQuestsId;
     },
 
     saveCurrentQuestLine(

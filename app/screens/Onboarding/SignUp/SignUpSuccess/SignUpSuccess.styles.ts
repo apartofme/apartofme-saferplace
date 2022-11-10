@@ -1,20 +1,14 @@
-import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../../../themes/colors';
 
 interface ISignUpSuccessScreenStyles {
-  background: ImageStyle;
   container: ViewStyle;
   title: ViewStyle;
   subtitle: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ISignUpSuccessScreenStyles>({
-  background: {
-    resizeMode: 'contain',
-    // TODO: remove when background is done
-    marginBottom: '50%',
-  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -23,7 +17,6 @@ export const styles = StyleSheet.create<ISignUpSuccessScreenStyles>({
     paddingBottom: 80,
   },
   title: {
-    paddingTop: 35,
     paddingBottom: 24,
     textAlign: 'center',
     color: COLORS.BRILLIANT_WHITE,

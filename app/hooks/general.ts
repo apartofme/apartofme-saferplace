@@ -1,7 +1,8 @@
 import { useNetInfo } from '@react-native-community/netinfo';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppState, AppStateStatus } from 'react-native';
+
 import { showInternetErrorAlert } from '../utils';
 
 // eslint-disable-next-line react-hooks/exhaustive-deps

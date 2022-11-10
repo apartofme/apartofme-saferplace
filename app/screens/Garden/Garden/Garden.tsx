@@ -257,7 +257,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
           onPress={onAvatarPress}
           style={styles.avatarContainer}
           disabled={isFirstTime}>
-          <AvatarIcon width={80} height={80} reduceSize={false} />
+          <AvatarIcon width={100} height={100} reduceSize={false} />
         </TouchableOpacity>
         <Elixir />
         <View style={styles.plantArea}>
