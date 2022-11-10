@@ -55,19 +55,19 @@ export const styles = StyleSheet.create<IMainMenuStyles>({
     borderBottomColor: COLORS.LIGHT_GREY,
   },
   menuItemsContainer: {
-    paddingTop: 52 * WINDOW_COEFFICIENT,
+    paddingTop: 45 * WINDOW_COEFFICIENT,
   },
   logOutContainer: {
     alignItems: 'center',
-    paddingTop: 20 * WINDOW_COEFFICIENT,
-    marginBottom: 34 * WINDOW_COEFFICIENT,
+    paddingTop: 10 * WINDOW_COEFFICIENT,
+    marginBottom: 15 * WINDOW_COEFFICIENT,
   },
   logOutTitle: {
     color: COLORS.PRIMARY_ORANGE,
     marginTop: 11 * WINDOW_COEFFICIENT,
   },
   topContainer: {
-    paddingBottom: 34 * WINDOW_COEFFICIENT,
+    paddingBottom: 15 * WINDOW_COEFFICIENT,
     backgroundColor: COLORS.MENU_BACKGROUND,
   },
   topContentContainer: {
