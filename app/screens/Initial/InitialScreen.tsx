@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import notifee from '@notifee/react-native';
 import moment from 'moment';
 
 import { IInitialScreenProps } from './InitialScreen.types';
@@ -49,6 +50,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   });
 
   useEffect(() => {
+    notifee.requestPermission();
     if (!isSaveAllQuests && !isSaveTranslations && isStartLoading) {
       if (user.parent && user.child) {
         navigation.replace('GardenStack');
