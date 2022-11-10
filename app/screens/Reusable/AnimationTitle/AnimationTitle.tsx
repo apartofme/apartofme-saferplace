@@ -49,6 +49,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
           return AUDIO.OPENING_ELIXIR_ANIMATION;
       }
     }
+    return AUDIO.OPENING_CHARMS_BOOK;
   }, [description]);
 
   useMount(() => {
