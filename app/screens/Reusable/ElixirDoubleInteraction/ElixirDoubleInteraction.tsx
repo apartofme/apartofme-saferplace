@@ -197,7 +197,6 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           ref={animationRef}
           source={animation}
           onAnimationFinish={onSubmit}
-          autoPlay
           loop={false}
           style={LottieAbsoluteStyles()}
         />

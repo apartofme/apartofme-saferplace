@@ -129,14 +129,16 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
           </ExtendedText>
         </View>
       )}
-      <SafeAreaView style={styles.container}>
+      <>
         {animation}
-        <ExtendedText
-          preset={description ? 'title' : 'large-title'}
-          style={styles.title}>
-          {title && t(title)}
-        </ExtendedText>
-      </SafeAreaView>
+        <SafeAreaView style={styles.container}>
+          <ExtendedText
+            preset={description ? 'title' : 'large-title'}
+            style={styles.title}>
+            {title && t(title)}
+          </ExtendedText>
+        </SafeAreaView>
+      </>
     </ImageBackground>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -15,6 +15,7 @@ import { generalStyles } from '../../../utils/styles';
 import {
   useNegativeNavigateTo,
   useParsedJSXTextNickname,
+  usePositiveNavigateTo,
   useRenderQuestHeader,
 } from '../../../hooks';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
@@ -29,6 +30,7 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
     backgroundImage,
     crossHeader,
     titleHasNickname,
+    positiveNavigatesTo,
     negativeNavigatesTo,
     escapeMenuAlternativeNavigateTo,
   } = route.params.data;
@@ -38,7 +40,11 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
 
   const isNoSelected = selectedAnswer[0] === RadioButtonType.No;
 
-  const onSubmit = useNegativeNavigateTo(negativeNavigatesTo, isNoSelected);
+  const negativeNavigateTo = useNegativeNavigateTo(
+    negativeNavigatesTo,
+    isNoSelected,
+  );
+  const positiveNavigateTo = usePositiveNavigateTo(positiveNavigatesTo);
 
   const Title = useParsedJSXTextNickname({
     text: title,
@@ -51,6 +57,14 @@ export const RadioButtonScreen: React.FC<IRadioButtonScreenProps> = ({
     crossHeader: crossHeader ?? false,
     escapeMenuAlternativeNavigateTo,
   });
+
+  const onSubmit = useCallback(() => {
+    if (isNoSelected) {
+      negativeNavigateTo();
+      return;
+    }
+    positiveNavigateTo();
+  }, [isNoSelected, negativeNavigateTo, positiveNavigateTo]);
 
   return (
     <ImageBackground
