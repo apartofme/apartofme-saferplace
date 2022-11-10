@@ -9,7 +9,7 @@ export const GardenTutorialDialogScreen: React.FC<IGardenTutorialDialogScreenPro
     const { isStart } = route.params;
 
     const onSabmit = useCallback(() => {
-      navigation.navigate('Garden', {
+      navigation.replace('Garden', {
         isFirstTime: false,
         isPlanting: false,
         isFirstTimeGarden: false,

@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 import {
@@ -41,6 +47,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   const { isConnected } = useNetInfo();
 
   useInternetCheck('errors.network.title', 'errors.network.description');
+  const scrollViewRef = useRef<ScrollView>(null);
 
   const onLoginPress = useCallback(
     ({ email, password }) => {
@@ -81,6 +88,12 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
     return 'screens.onboarding.login.title';
   }, [isOnLoginPress, loginUserError]);
 
+  useEffect(() => {
+    if (isActive) {
+      scrollViewRef.current?.scrollToEnd();
+    }
+  }, [isActive]);
+
   return (
     <View style={generalStyles.flex}>
       <Image
@@ -94,40 +107,40 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
         />
         <View style={styles.container}>
           <ExtendedKeyboardAvoidingView>
-            <ScrollView
-              scrollEnabled={isActive}
-              showsVerticalScrollIndicator={false}
-              style={generalStyles.flex}>
-              {!isActive && (
-                <ExtendedText
-                  preset="large-title"
-                  style={[styles.title, !isErrorShow && styles.mb50]}>
-                  {t(title)}
-                </ExtendedText>
-              )}
-              {isErrorShow && (
-                <ExtendedText preset="secondary-text" style={styles.errorTitle}>
-                  {t('screens.onboarding.login.error')}
-                </ExtendedText>
-              )}
-
-              <Formik
-                initialValues={{
-                  email: __DEV__ ? 'emberglazer@gmail.com' : '',
-                  password: __DEV__ ? 'Test1111' : '',
-                }}
-                validationSchema={SignInValidationSchema}
-                onSubmit={onLoginPress}>
-                {({
-                  values,
-                  handleChange,
-                  handleSubmit,
-                  handleBlur,
-                  isValid,
-                  errors,
-                  touched,
-                }) => (
-                  <View>
+            <Formik
+              initialValues={{
+                email: __DEV__ ? 'emberglazer@gmail.com' : '',
+                password: __DEV__ ? 'Test1111' : '',
+              }}
+              validationSchema={SignInValidationSchema}
+              onSubmit={onLoginPress}>
+              {({
+                values,
+                handleChange,
+                handleSubmit,
+                handleBlur,
+                isValid,
+                errors,
+                touched,
+              }) => (
+                <View>
+                  <ScrollView
+                    ref={scrollViewRef}
+                    scrollEnabled={isActive}
+                    showsVerticalScrollIndicator={false}
+                    style={styles.scrollView}>
+                    <ExtendedText
+                      preset="large-title"
+                      style={[styles.title, !isErrorShow && styles.mb50]}>
+                      {t(title)}
+                    </ExtendedText>
+                    {isErrorShow && (
+                      <ExtendedText
+                        preset="secondary-text"
+                        style={styles.errorTitle}>
+                        {t('screens.onboarding.login.error')}
+                      </ExtendedText>
+                    )}
                     <ExtendedTextInput
                       value={values.email}
                       onChangeText={handleChange('email')}
@@ -161,23 +174,23 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       onPress={handleSubmit}
                       disabled={!isValid}
                     />
-                  </View>
-                )}
-              </Formik>
-            </ScrollView>
+                  </ScrollView>
+                </View>
+              )}
+            </Formik>
+            {!isActive && (
+              <TouchableOpacity
+                onPress={onForgotPusswordPress}
+                style={styles.forgotButton}
+                hitSlop={HIT_SLOP}>
+                <ExtendedText
+                  preset="body-bold"
+                  style={generalStyles.primaryOrange}>
+                  {t('buttons.forgot_password')}
+                </ExtendedText>
+              </TouchableOpacity>
+            )}
           </ExtendedKeyboardAvoidingView>
-          {!isActive && (
-            <TouchableOpacity
-              onPress={onForgotPusswordPress}
-              style={styles.forgotButton}
-              hitSlop={HIT_SLOP}>
-              <ExtendedText
-                preset="body-bold"
-                style={generalStyles.primaryOrange}>
-                {t('buttons.forgot_password')}
-              </ExtendedText>
-            </TouchableOpacity>
-          )}
         </View>
 
         {!isActive && (

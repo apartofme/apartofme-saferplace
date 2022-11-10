@@ -1,6 +1,6 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 
-import { COLORS } from '../../../../themes/colors';
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
 
 interface ISignUpCredentialsScreenStyles {
   container: ViewStyle;
@@ -8,24 +8,20 @@ interface ISignUpCredentialsScreenStyles {
   mt16: ViewStyle;
   bottomConatainer: ViewStyle;
   mb24: ViewStyle;
-  focused: ViewStyle;
-  whiteColor: TextStyle;
-  greyColor: TextStyle;
-  error: TextStyle;
 }
 
 export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
   container: {
-    paddingTop: 40,
+    paddingTop: 40 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
   },
   subtitle: {
     flexDirection: 'row',
     paddingTop: 16,
-    paddingBottom: 32,
+    paddingBottom: 32 * WINDOW_COEFFICIENT,
   },
   mt16: {
-    marginTop: 16,
+    marginTop: 16 * WINDOW_COEFFICIENT,
   },
   bottomConatainer: {
     flexDirection: 'row',
@@ -35,19 +31,6 @@ export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
     marginBottom: 24,
   },
   mb24: {
-    marginBottom: 24,
-  },
-  focused: {
-    display: 'none',
-  },
-  whiteColor: {
-    color: COLORS.BRILLIANT_WHITE,
-  },
-  greyColor: {
-    color: COLORS.LIGHT_GREY,
-  },
-  error: {
-    color: COLORS.ERROR,
-    paddingTop: 24,
+    marginBottom: 24 * WINDOW_COEFFICIENT,
   },
 });

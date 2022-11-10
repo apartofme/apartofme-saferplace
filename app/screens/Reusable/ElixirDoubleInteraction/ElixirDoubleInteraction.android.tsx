@@ -52,8 +52,12 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
       'errors.network_progress.description',
     );
 
-    const { currentQuestLine, isCurrentQuestCompleted, allQuests } =
-      useAppSelector(state => state.quest);
+    const {
+      currentQuestLine,
+      isCurrentQuestCompleted,
+      allQuests,
+      isFirstTimeGrounding,
+    } = useAppSelector(state => state.quest);
     const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
     const { settings } = useAppSelector(state => state.settings);
     const currentLanguage = settings.language ?? 'en';
@@ -115,11 +119,18 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           return;
         }
 
-        dispatch(
-          elixirSlice.actions.updateFullnessElixir(
-            fullnessElixir + (elixirReward ?? 1),
-          ),
-        );
+        // *** Flow for graunded charms from menu ***
+        if (!isFirstTimeGrounding) {
+          navigation.replace('GardenStack', {
+            screen: 'Garden',
+            params: {
+              isPlanting: false,
+              isFirstTime: false,
+              isFirstTimeGarden: false,
+            },
+          });
+          return;
+        }
 
         // *** Flow for static navigation charm og befriending ***
         if (
@@ -137,16 +148,13 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
         ) {
           const newQuestLineId = DAY_14_CLOSING_DIALOGUE_ID;
           const newQuests = values(quests?.[newQuestLineId].quests);
-          dispatch(
-            questSlice.actions.saveCompletedQuestsId(+THE_CHARM_OF_WEAVING_ID),
-          );
+
           dispatch(
             questSlice.actions.saveCurrentQuestLine({
               id: newQuests[0].questLineId,
               quests: newQuests,
             }),
           );
-
           dispatch(questSlice.actions.updateCurrentDayQuestsStack());
           dispatch(questSlice.actions.saveCurrentQuestIdx(0));
 
@@ -158,6 +166,14 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           });
           return;
         }
+
+        dispatch(
+          elixirSlice.actions.updateFullnessElixir(
+            fullnessElixir + (elixirReward ?? 1),
+          ),
+        );
+        dispatch(questSlice.actions.updateCurrentDayQuestsStack());
+
         navigation.replace('ElixirTitleButton');
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create<IExrendedButtonStyles>({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    maxHeight: 66,
+    minHeight: 58,
   },
   imageContainer: {
     marginLeft: 20,

@@ -168,6 +168,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
             fullnessElixir + (elixirReward ?? 1),
           ),
         );
+        dispatch(questSlice.actions.updateCurrentDayQuestsStack());
 
         navigation.replace('ElixirTitleButton');
       }
