@@ -8,6 +8,7 @@ interface ISignUpCredentialsScreenStyles {
   mt16: ViewStyle;
   bottomConatainer: ViewStyle;
   mb24: ViewStyle;
+  footerTitle: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
@@ -32,5 +33,8 @@ export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
   },
   mb24: {
     marginBottom: 24 * WINDOW_COEFFICIENT,
+  },
+  footerTitle: {
+    textAlign: 'center',
   },
 });

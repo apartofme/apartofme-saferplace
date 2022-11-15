@@ -6,7 +6,6 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
-  Pressable,
 } from 'react-native';
 import { Formik } from 'formik';
 
@@ -180,30 +179,32 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
 
           {!isFocus && (
             <View style={styles.bottomConatainer}>
-              <ExtendedText
-                preset="tertiary-text-regular"
-                style={generalStyles.brilliantWhite}>
-                {t('screens.onboarding.sign_up_credentials.footer')}
-              </ExtendedText>
-              <Pressable onPress={onConditionPress}>
+              <ExtendedText style={styles.footerTitle}>
                 <ExtendedText
                   preset="tertiary-text-regular"
-                  style={[generalStyles.boldText, generalStyles.primaryOrange]}>
+                  style={generalStyles.brilliantWhite}>
+                  {t('screens.onboarding.sign_up_credentials.first_footer')}
+                </ExtendedText>
+                <ExtendedText
+                  preset="tertiary-text-regular"
+                  style={[generalStyles.boldText, generalStyles.primaryOrange]}
+                  onPress={onConditionPress}>
                   {t('buttons.terms_conditions')}
                 </ExtendedText>
-              </Pressable>
-              <ExtendedText
-                preset="tertiary-text-regular"
-                style={generalStyles.brilliantWhite}>
-                {` ${t('labels.and')} `}
-              </ExtendedText>
-              <Pressable onPress={onPrivacyPress}>
                 <ExtendedText
                   preset="tertiary-text-regular"
-                  style={[generalStyles.boldText, generalStyles.primaryOrange]}>
-                  {t('buttons.privacy_policy')}
+                  style={generalStyles.brilliantWhite}>
+                  {` ${t(
+                    'screens.onboarding.sign_up_credentials.second_footer',
+                  )} `}
                 </ExtendedText>
-              </Pressable>
+                <ExtendedText
+                  preset="tertiary-text-regular"
+                  style={[generalStyles.boldText, generalStyles.primaryOrange]}
+                  onPress={onPrivacyPress}>
+                  {t('buttons.privacy_policy')}.
+                </ExtendedText>
+              </ExtendedText>
             </View>
           )}
         </SafeAreaView>
