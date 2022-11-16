@@ -1,11 +1,20 @@
 import * as React from 'react';
 import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
-export const CompassionIcon = ({ width = 300, height = 300 }: ISvgProps) => {
+export const CompassionIcon = ({
+  width = 300,
+  height = 300,
+  reduceSize = false,
+}: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 120 120" fill="none">
+    <Svg
+      width={reduceSize ? width * WINDOW_COEFFICIENT : width}
+      height={reduceSize ? height * WINDOW_COEFFICIENT : height}
+      viewBox="0 0 120 120"
+      fill="none">
       <G clipPath="url(#clip0_2934_413854)">
         <Path
           d="M40.724 106.114c-6.294-1.176-12.875-.148-18.685 2.919 3.023 4.468 9.6-.15 13.925 2.463 5.994-1.457 8.891-1.367 14.917-.103-2.222-.076-1.094 4.153 3.499 8.524 4.256.723 5.977-3.542 10.278-3.496.893.009-.792-.155-.473-1.131.51-1.559-1.481-2.491-2.907-2.527a11.467 11.467 0 016.623-.084c1.408.405 2.934 1.071 4.242.338 1.308-.731 1.331-3.689-.118-3.658l20.168-.638c1.378-.044 3.265-.785 2.973-2.362-.187-1.012-1.207-1.427-2.072-1.635a41.935 41.935 0 00-16.537-.642c-.293-.815-.154-1.82.345-2.484-1.028-2.215-3.64-2.385-5.79-2.27l-22.052 1.19"

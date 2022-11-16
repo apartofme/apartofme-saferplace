@@ -16,7 +16,7 @@ import {
 } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './ElixirTitleButton.styles';
-import { elixirSlice, questSlice } from '../../../redux/slices';
+import { questSlice } from '../../../redux/slices';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { ANIMATIONS, POTION_FILL_ANIMATIONS } from '../../../assets/animations';
@@ -32,7 +32,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
       'errors.network_progress.description',
     );
 
-    const fullnessElixir = useAppSelector(state => state.elixir.fullnessElixir);
+    const { fullnessElixir } = useAppSelector(state => state.elixir);
     const { interruptedQuestLine, currentQuestLine, isFirstTimeGrounding } =
       useAppSelector(state => state.quest);
 
@@ -73,8 +73,6 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
         );
       }
       if (fullnessElixir && fullnessElixir >= 3) {
-        dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir - 3));
-
         if (currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID) {
           if (!isFirstTimeGrounding) {
             navigation.replace('GardenStack', {
@@ -137,7 +135,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
           source={animation}
           progress={1}
           loop={false}
-          style={LottieAbsoluteStyles()}
+          style={LottieAbsoluteStyles(-20)}
         />
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView

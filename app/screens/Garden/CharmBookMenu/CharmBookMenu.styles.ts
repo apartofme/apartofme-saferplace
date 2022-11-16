@@ -6,25 +6,20 @@ import { hexTransparency } from '../../../utils';
 
 interface ICharmBookMenuScreenStyles {
   mainContainer: ViewStyle;
-  contentContainer: ViewStyle;
   dialogueContainer: ViewStyle;
   icon: ViewStyle;
   title: TextStyle;
   description: TextStyle;
   skipButton: ViewStyle;
   buttonCompleted: ViewStyle;
+  empty: ViewStyle;
 }
 
 export const styles = StyleSheet.create<ICharmBookMenuScreenStyles>({
   mainContainer: {
     flex: 1,
     backgroundColor: hexTransparency(COLORS.DARK_PURPLE, 80),
-  },
-  contentContainer: {
-    flex: 1,
     justifyContent: 'space-between',
-    paddingTop: 78 * WINDOW_COEFFICIENT,
-    paddingBottom: 24 * WINDOW_COEFFICIENT,
   },
   dialogueContainer: {
     paddingTop: 60 * WINDOW_COEFFICIENT,
@@ -57,5 +52,9 @@ export const styles = StyleSheet.create<ICharmBookMenuScreenStyles>({
   },
   buttonCompleted: {
     marginHorizontal: 40,
+    marginBottom: 24 * WINDOW_COEFFICIENT,
+  },
+  empty: {
+    height: 56,
   },
 });

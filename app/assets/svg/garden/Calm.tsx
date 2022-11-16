@@ -1,11 +1,20 @@
 import * as React from 'react';
 import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { ISvgProps } from '../../../utils/types';
 
-export const CalmIcon = ({ width = 300, height = 300 }: ISvgProps) => {
+export const CalmIcon = ({
+  width = 300,
+  height = 300,
+  reduceSize = false,
+}: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 120 120" fill="none">
+    <Svg
+      width={reduceSize ? width * WINDOW_COEFFICIENT : width}
+      height={reduceSize ? height * WINDOW_COEFFICIENT : height}
+      viewBox="0 0 120 120"
+      fill="none">
       <G clipPath="url(#clip0_2934_414252)">
         <G clipPath="url(#clip1_2934_414252)">
           <Path

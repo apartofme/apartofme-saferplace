@@ -23,10 +23,12 @@ import { styles } from './MixingElixirSuccess.styles';
 import { IMixingElixirSuccessScreenProps } from './MixingElixirSuccess.types';
 import { ANIMATIONS } from '../../../assets/animations';
 import { LottieAbsoluteStyles } from '../../../utils';
+import { elixirSlice } from '../../../redux/slices';
 
 export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps> =
   ({ navigation, route }) => {
     const { selectedPlantArea, isFirstTimeGarden } = route.params;
+    const { fullnessElixir } = useAppSelector(state => state.elixir);
 
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
@@ -58,6 +60,9 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
           plantedAt: nowSeconds,
         }),
       );
+      if (fullnessElixir && fullnessElixir >= 3) {
+        dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir - 3));
+      }
 
       navigation.replace('GardenStack', {
         screen: 'Garden',
@@ -68,11 +73,12 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
         },
       });
     }, [
-      navigation,
-      isFirstTimeGarden,
       dispatch,
       selectedPlantArea,
       currentPlant,
+      fullnessElixir,
+      navigation,
+      isFirstTimeGarden,
     ]);
 
     useMount(() => {
@@ -106,32 +112,11 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
     const animation = useMemo(() => {
       switch (currentPlant) {
         case PlantsType.Compassion:
-          return (
-            <Lottie
-              source={ANIMATIONS.GROWING_COMPASSION_PLANT}
-              autoPlay
-              loop={false}
-              style={LottieAbsoluteStyles(-15)}
-            />
-          );
+          return ANIMATIONS.GROWING_COMPASSION_PLANT;
         case PlantsType.Calm:
-          return (
-            <Lottie
-              source={ANIMATIONS.GROWING_CALM_PLANT}
-              autoPlay
-              loop={false}
-              style={LottieAbsoluteStyles(-15)}
-            />
-          );
+          return ANIMATIONS.GROWING_CALM_PLANT;
         default:
-          return (
-            <Lottie
-              source={ANIMATIONS.GROWING_COURAGE_PLANT}
-              autoPlay
-              loop={false}
-              style={LottieAbsoluteStyles(-15)}
-            />
-          );
+          return ANIMATIONS.GROWING_COURAGE_PLANT;
       }
     }, [currentPlant]);
 
@@ -139,7 +124,12 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
       <ImageBackground
         source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
         style={generalStyles.flex}>
-        {animation}
+        <Lottie
+          source={animation}
+          autoPlay
+          loop={false}
+          style={LottieAbsoluteStyles(-20)}
+        />
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView
             buttonTitle={t('buttons.back_to_clearing')}

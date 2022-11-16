@@ -18,6 +18,7 @@ import { CHARMS_SVG } from '../../../../assets/svg';
 import { ANIMATIONS } from '../../../../assets/animations';
 import { LottieAbsoluteStyles } from '../../../../utils';
 import { DAY_14_CLOSING_DIALOGUE_ID } from '../../../../constants/quest';
+import { CharmsSvgKeys } from '../../../../utils/types';
 
 export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccessivelyScreenProps> =
   ({ route }) => {
@@ -51,7 +52,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
       escapeMenuAlternativeNavigateTo,
     });
 
-    const Icon = image && CHARMS_SVG[image];
+    const Icon = image && CHARMS_SVG[image as CharmsSvgKeys];
 
     return (
       <ImageBackground
@@ -74,7 +75,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
             isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
-            {Icon && <Icon />}
+            {Icon && <Icon reduceSize={true} />}
             <Title />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}

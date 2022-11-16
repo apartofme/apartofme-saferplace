@@ -12,9 +12,9 @@ interface IAcknowledgementAlongEdgesDoubleButtonScreenStyles {
 export const styles =
   StyleSheet.create<IAcknowledgementAlongEdgesDoubleButtonScreenStyles>({
     container: {
-      paddingTop: 40,
+      paddingTop: 40 * WINDOW_COEFFICIENT,
       paddingHorizontal: 24,
-      paddingBottom: 20 * WINDOW_COEFFICIENT,
+      paddingBottom: 10 * WINDOW_COEFFICIENT,
       alignItems: 'center',
       justifyContent: 'space-between',
     },
@@ -26,6 +26,7 @@ export const styles =
     },
     bottomButton: {
       alignSelf: 'center',
-      marginVertical: 12,
+      marginTop: 12 * WINDOW_COEFFICIENT,
+      marginBottom: 24 * WINDOW_COEFFICIENT,
     },
   });

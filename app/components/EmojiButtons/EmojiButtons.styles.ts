@@ -19,7 +19,6 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
   mainContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingBottom: 24 * WINDOW_COEFFICIENT,
   },
   blobIcon: {
     position: 'absolute',
@@ -43,7 +42,7 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
     paddingBottom: 27 * WINDOW_COEFFICIENT,
   },
   emojiButton: {
-    marginVertical: 12 * WINDOW_COEFFICIENT,
+    marginVertical: 12,
     marginHorizontal: 8,
     opacity: 0.75,
   },

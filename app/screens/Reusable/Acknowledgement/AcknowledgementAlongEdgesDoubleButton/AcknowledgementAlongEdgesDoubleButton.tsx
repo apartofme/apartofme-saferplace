@@ -16,6 +16,7 @@ import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { generalStyles } from '../../../../utils/styles';
 import { BottomButtonView, ExtendedText } from '../../../../components';
 import { AVATARS_SVG, CHARMS_SVG } from '../../../../assets/svg';
+import { CharmsSvgKeys } from '../../../../utils/types';
 
 export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgementAlongEdgesDoubleButtonScreenProps> =
   ({ route }) => {
@@ -61,7 +62,7 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
 
     const Icon = useMemo(() => {
       if (image) {
-        return CHARMS_SVG[image];
+        return CHARMS_SVG[image as CharmsSvgKeys];
       }
 
       if (isChild) {

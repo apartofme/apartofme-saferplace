@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Lottie from 'lottie-react-native';
 
@@ -10,6 +10,7 @@ import { styles } from './LoadingScreen.styles';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { ANIMATIONS } from '../../../../assets/animations';
 import { LottieAbsoluteStyles } from '../../../../utils';
+import { JewelIcon } from '../../../../assets/svg/JewelIcon';
 
 export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   navigation,
@@ -31,6 +32,9 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
         style={LottieAbsoluteStyles(-30)}
       />
       <SafeAreaView style={generalStyles.flex}>
+        <View style={styles.icon}>
+          <JewelIcon />
+        </View>
         <BottomButtonView
           style={styles.container}
           buttonTitle={t('buttons.we_ready')}

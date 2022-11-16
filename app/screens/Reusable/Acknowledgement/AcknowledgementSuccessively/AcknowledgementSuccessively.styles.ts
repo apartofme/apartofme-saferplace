@@ -14,12 +14,11 @@ export const styles =
     container: {
       alignItems: 'center',
       justifyContent: 'flex-end',
-      paddingBottom: 60 * WINDOW_COEFFICIENT,
+      paddingBottom: 40 * WINDOW_COEFFICIENT,
       paddingHorizontal: 40,
     },
     title: {
-      marginTop: 43 * WINDOW_COEFFICIENT,
-      marginBottom: 24 * WINDOW_COEFFICIENT,
+      marginVertical: 24 * WINDOW_COEFFICIENT,
       color: COLORS.BRILLIANT_WHITE,
       textAlign: 'center',
     },

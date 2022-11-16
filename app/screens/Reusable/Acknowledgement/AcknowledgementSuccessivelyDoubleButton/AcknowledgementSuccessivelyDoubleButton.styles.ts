@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
 
 interface IAcknowledgementSuccessivelyDoubleButtonScreenStyles {
@@ -14,12 +15,12 @@ export const styles =
     container: {
       alignItems: 'center',
       justifyContent: 'flex-end',
-      paddingBottom: 30,
+      paddingBottom: 30 * WINDOW_COEFFICIENT,
       paddingHorizontal: 40,
     },
     title: {
-      marginTop: 43,
-      marginBottom: 24,
+      marginTop: 30 * WINDOW_COEFFICIENT,
+      marginBottom: 24 * WINDOW_COEFFICIENT,
       color: COLORS.BRILLIANT_WHITE,
       textAlign: 'center',
     },
@@ -31,7 +32,8 @@ export const styles =
     },
     bottomButton: {
       alignSelf: 'center',
-      marginVertical: 10,
+      marginTop: 12 * WINDOW_COEFFICIENT,
+      marginBottom: 16 * WINDOW_COEFFICIENT,
       color: COLORS.BRILLIANT_WHITE,
     },
   });

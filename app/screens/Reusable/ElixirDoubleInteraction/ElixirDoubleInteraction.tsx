@@ -198,11 +198,13 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           source={animation}
           onAnimationFinish={onSubmit}
           loop={false}
-          style={LottieAbsoluteStyles()}
+          style={LottieAbsoluteStyles(-20)}
         />
         <SafeAreaView style={styles.container}>
           <View style={generalStyles.aiCenter}>
-            <ExtendedText style={styles.title}>{title}</ExtendedText>
+            <ExtendedText style={styles.title} preset="title">
+              {title}
+            </ExtendedText>
           </View>
 
           <View style={styles.buttonsContainer}>
