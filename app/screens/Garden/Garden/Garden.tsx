@@ -201,35 +201,35 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   }, [isModal]);
 
   const showDayOpenDialog = useCallback(() => {
-    if (!interruptedQuestLine && !isPlanting && currentDayQuestsStack) {
-      const dayOpenDialogIdx = _.findIndex(
-        OPEN_DIALOG_IDS,
-        item =>
-          item === currentDayQuestsStack[currentDayQuestsStack?.length - 1],
-      );
-
-      if (dayOpenDialogIdx !== -1) {
-        const newQuestLineId = OPEN_DIALOG_IDS[dayOpenDialogIdx];
-        const newQuests = _.values(allQuests?.[newQuestLineId].quests);
-
-        dispatch(
-          questSlice.actions.saveCurrentQuestLine({
-            id: newQuests[0].questLineId,
-            quests: newQuests,
-          }),
+    setTimeout(() => {
+      if (!interruptedQuestLine && !isPlanting && currentDayQuestsStack) {
+        const dayOpenDialogIdx = _.findIndex(
+          OPEN_DIALOG_IDS,
+          item =>
+            item === currentDayQuestsStack[currentDayQuestsStack?.length - 1],
         );
 
-        dispatch(questSlice.actions.saveCurrentQuestIdx(0));
-        setTimeout(() => {
+        if (dayOpenDialogIdx !== -1) {
+          const newQuestLineId = OPEN_DIALOG_IDS[dayOpenDialogIdx];
+          const newQuests = _.values(allQuests?.[newQuestLineId].quests);
+
+          dispatch(
+            questSlice.actions.saveCurrentQuestLine({
+              id: newQuests[0].questLineId,
+              quests: newQuests,
+            }),
+          );
+
+          dispatch(questSlice.actions.saveCurrentQuestIdx(0));
           navigation.push('QuestStack', {
             screen: newQuests[0].type,
             params: {
               data: { ...newQuests[0] },
             },
           });
-        }, 2000);
+        }
       }
-    }
+    }, 2000);
   }, [
     allQuests,
     currentDayQuestsStack,

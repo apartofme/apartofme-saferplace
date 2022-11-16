@@ -26,7 +26,8 @@ export const styles =
       textAlign: 'center',
     },
     bottomButton: {
-      marginVertical: 12 * WINDOW_COEFFICIENT,
+      marginTop: 12 * WINDOW_COEFFICIENT,
+      marginBottom: 24 * WINDOW_COEFFICIENT,
       alignSelf: 'center',
     },
   });

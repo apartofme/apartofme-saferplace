@@ -11,9 +11,7 @@ export const styles = StyleSheet.create<IElixirInstructionStyles>({
     alignItems: 'center',
   },
   title: {
-    marginTop: 95,
-    marginBottom: 48,
-    width: 320,
-    height: 75,
+    marginTop: 80,
+    paddingHorizontal: 24,
   },
 });

@@ -135,37 +135,13 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
   const animation = useMemo(() => {
     switch (phase) {
       case MixingElixirPhaseType.Mix:
-        return (
-          <Lottie
-            onAnimationFinish={onAnimationFinish}
-            source={ANIMATIONS.POTION_MIX}
-            autoPlay
-            loop={false}
-            style={LottieAbsoluteStyles(-15)}
-          />
-        );
+        return ANIMATIONS.POTION_MIX;
       case MixingElixirPhaseType.Open:
-        return (
-          <Lottie
-            onAnimationFinish={onAnimationFinish}
-            source={ANIMATIONS.POTION_OPEN_BOTTLE}
-            autoPlay
-            loop={false}
-            style={LottieAbsoluteStyles(-15)}
-          />
-        );
+        return ANIMATIONS.POTION_OPEN_BOTTLE;
       default:
-        return (
-          <Lottie
-            onAnimationFinish={onAnimationFinish}
-            source={pourAnimation}
-            autoPlay
-            loop={false}
-            style={LottieAbsoluteStyles(-15)}
-          />
-        );
+        return pourAnimation;
     }
-  }, [onAnimationFinish, phase, pourAnimation]);
+  }, [phase, pourAnimation]);
 
   const appStatus = useAppState();
 
@@ -179,8 +155,14 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
     <ImageBackground
       source={BACKGROUND_IMAGES.ALTERNATIVE_GARDEN}
       style={generalStyles.flex}>
+      <Lottie
+        onAnimationFinish={onAnimationFinish}
+        source={animation}
+        autoPlay
+        loop={false}
+        style={LottieAbsoluteStyles(-20)}
+      />
       <SafeAreaView style={styles.container}>
-        {animation}
         <ExtendedText preset="title" style={styles.title}>
           {title && t(title)}
         </ExtendedText>

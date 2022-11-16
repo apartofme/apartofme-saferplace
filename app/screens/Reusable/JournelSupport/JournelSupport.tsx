@@ -82,6 +82,7 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
+            isDisabledButton={!inputText}
             isArrow={!buttonTitle}
             onSubmit={onSubmit}>
             <ScrollView

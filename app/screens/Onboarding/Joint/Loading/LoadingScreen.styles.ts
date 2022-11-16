@@ -4,6 +4,7 @@ import { COLORS } from '../../../../themes/colors';
 
 interface ILoadingScreenStyles {
   container: ViewStyle;
+  icon: ViewStyle;
   timer: ViewStyle;
   title: TextStyle;
   subtitle: TextStyle;
@@ -16,6 +17,10 @@ export const styles = StyleSheet.create<ILoadingScreenStyles>({
     justifyContent: 'flex-end',
     paddingHorizontal: 40,
     paddingBottom: 60,
+  },
+  icon: {
+    marginTop: 24,
+    alignSelf: 'center',
   },
   timer: {
     marginBottom: 74,

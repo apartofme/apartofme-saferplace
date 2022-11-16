@@ -92,6 +92,7 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
+            isDisabledButton={!inputText}
             isArrow={!buttonTitle}
             onSubmit={onSubmit}>
             <ScrollView

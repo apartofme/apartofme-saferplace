@@ -218,7 +218,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
       );
     }
 
-    return null;
+    return <View style={styles.empty} />;
   }, [completedQuestsId.length, onCompletedPress, t, type]);
 
   return (
@@ -227,10 +227,8 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         leftIcon={<WhiteBackArrowIcon />}
         onLeftIconPress={setModalStatus}
       />
-      <View style={styles.contentContainer}>
-        {menuContent}
-        {button && button}
-      </View>
+      {menuContent}
+      {button && button}
     </SafeAreaView>
   );
 };
