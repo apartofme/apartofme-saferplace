@@ -1,5 +1,7 @@
 import Sound from 'react-native-sound';
 
+Sound.setCategory('Playback');
+
 export class AudioPlayerHelper {
   private static currentAudio: Sound | null;
   public static filepath: string;
