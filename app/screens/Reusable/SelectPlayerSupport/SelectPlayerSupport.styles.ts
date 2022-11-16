@@ -29,7 +29,7 @@ export const styles = StyleSheet.create<ISelectPlayerSupportScreenStyles>({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 20 * WINDOW_COEFFICIENT,
+    paddingVertical: 10 * WINDOW_COEFFICIENT,
     paddingHorizontal: 24,
     marginBottom: 24 * WINDOW_COEFFICIENT,
     backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 80),
