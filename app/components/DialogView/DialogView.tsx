@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
-  ScrollView,
 } from 'react-native';
 
 import { getKeyFromLocalizationString } from '../../utils';
@@ -78,14 +77,12 @@ export const DialogView: React.FC<IDialogViewProps> = ({
         )}
 
         <View style={styles.dialogContainer}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <ExtendedText
-              key={getKeyFromLocalizationString(currentSpeech.textKey)}
-              preset="heading"
-              style={styles.title}>
-              {t(currentSpeech.textKey)}
-            </ExtendedText>
-          </ScrollView>
+          <ExtendedText
+            key={getKeyFromLocalizationString(currentSpeech.textKey)}
+            preset="heading"
+            style={styles.title}>
+            {t(currentSpeech.textKey)}
+          </ExtendedText>
         </View>
         <TouchableOpacity
           onPress={getCorrectOnPress}

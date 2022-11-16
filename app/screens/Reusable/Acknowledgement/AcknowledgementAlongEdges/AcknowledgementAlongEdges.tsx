@@ -63,16 +63,18 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
     });
 
     const isChild = useIsChildMove(title);
+    const isTroublesomeSpirit = useMemo(
+      () =>
+        currentQuestLineId === THE_CHARM_OF_ACCEPTANCE_PART_TWO_ID &&
+        _.includes(t(title), DatoCMSTextVariables.TroublesomeSpiritQuestion),
+      [currentQuestLineId, t, title],
+    );
 
     const Icon = useMemo(() => {
       if (image) {
         return CHARMS_SVG[image as CharmsSvgKeys];
       }
-      if (
-        currentQuestLineId === THE_CHARM_OF_ACCEPTANCE_PART_TWO_ID &&
-        _.includes(t(title), DatoCMSTextVariables.TroublesomeSpiritQuestion) &&
-        troublesomeItem
-      ) {
+      if (isTroublesomeSpirit && troublesomeItem) {
         return CHARMS_SVG[troublesomeItem.iconKey];
       }
       if (isChild) {
@@ -82,12 +84,10 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
       return AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
     }, [
       child?.avatar,
-      currentQuestLineId,
       image,
       isChild,
+      isTroublesomeSpirit,
       parent?.avatar,
-      t,
-      title,
       troublesomeItem,
     ]);
 
@@ -106,7 +106,10 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
             style={styles.container}>
             <Title />
             {Icon && (
-              <Icon height={image ? 240 : 325} width={image ? 240 : 325} />
+              <Icon
+                height={image || isTroublesomeSpirit ? 240 : 325}
+                width={image || isTroublesomeSpirit ? 240 : 325}
+              />
             )}
             <Description />
           </BottomButtonView>

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ImageBackground,
   SafeAreaView,
-  ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -15,6 +14,7 @@ import {
   useRenderQuestHeader,
 } from '../../../hooks/quest';
 import { generalStyles } from '../../../utils/styles';
+import { CharmsSvgKeys } from '../../../utils/types';
 import { styles } from './Dialog.styles';
 import { IDialogScreenProps } from './Dialog.types';
 
@@ -44,7 +44,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
     style: generalStyles.brilliantWhite,
   });
 
-  const Icon = CHARMS_SVG[image ?? 'HappySidekickGuideIcon'];
+  const Icon = CHARMS_SVG[(image ?? 'HappySidekickGuideIcon') as CharmsSvgKeys];
 
   return (
     <ImageBackground
@@ -59,9 +59,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
         <View style={styles.container}>
           <View style={styles.iconContainer}>{Icon && <Icon />}</View>
           <View style={styles.dialogContainer}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <Title />
-            </ScrollView>
+            <Title />
           </View>
           <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
             <RoundTriangleButtonIcon />

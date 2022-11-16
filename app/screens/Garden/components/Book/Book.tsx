@@ -46,7 +46,7 @@ export const Book: React.FC<IBookProps> = ({
     ) {
       return <ClosedBookIcon />;
     }
-    return <OpenBookIcon />;
+    return <OpenBookIcon reduceSize={false} />;
   }, [interruptedQuestLine, isCompletedAllCurrentDayQuests, isOpeningDialog]);
 
   const isFocused = useIsFocused();

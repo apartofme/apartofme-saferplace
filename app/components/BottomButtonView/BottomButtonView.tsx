@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 
 import { generalStyles } from '../../utils/styles';
@@ -16,18 +16,30 @@ export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
   preset = 'default',
 }) => {
   const [isDisabled, setIsDisabled] = useState(!!isDisabledButton);
+  const timeout = useRef<NodeJS.Timeout>();
+
+  useEffect(
+    () => () => {
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     setIsDisabled(!!isDisabledButton);
   }, [isDisabledButton]);
-
   const onSubmitPress = useCallback(() => {
     onSubmit();
     setIsDisabled(true);
 
-    setTimeout(() => {
+    timeout.current = setTimeout(() => {
       setIsDisabled(false);
-    }, 100);
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
+    }, 1);
   }, [onSubmit]);
 
   return (

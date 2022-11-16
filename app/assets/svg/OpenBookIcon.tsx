@@ -1,11 +1,20 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
+import { WINDOW_COEFFICIENT } from '../../constants/window';
 import { ISvgProps } from '../../utils/types';
 
-export const OpenBookIcon = ({ width = 111, height = 80 }: ISvgProps) => {
+export const OpenBookIcon = ({
+  width = 111,
+  height = 80,
+  reduceSize = true,
+}: ISvgProps) => {
   return (
-    <Svg width={width} height={height} viewBox="0 0 111 80" fill="none">
+    <Svg
+      width={reduceSize ? width * WINDOW_COEFFICIENT : width}
+      height={reduceSize ? height * WINDOW_COEFFICIENT : height}
+      viewBox="0 0 111 80"
+      fill="none">
       <Path
         d="M11.327 5.668s-.943.342-1.803 5.147C8.664 15.621-.548 62.612.026 64.747c.573 2.136 32.342 9.511 39.14 11.417 6.528 1.83 12.333 4.271 14.054 3.203s1.673-2.098 2.232-1.976c.926.203 3.246.113 3.246.113s-.314.262 1.693 1.063c2.008.8 3.442.534 3.442.534s25.816-8.009 28.684-9.077c2.869-1.068 18.358-4.538 17.784-5.072-.573-.534-11.76-35.237-14.342-42.178-2.581-6.94-5.163-15.483-6.023-16.017-.86-.534-3.73 3.47-3.73 3.47L55.802 32.651 31.42 26.244 11.327 5.668z"
         fill="#26F7F1"
