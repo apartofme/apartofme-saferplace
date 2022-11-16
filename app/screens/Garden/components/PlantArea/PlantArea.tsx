@@ -20,7 +20,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
   isPlanting,
   isBefriending,
 }) => {
-  const { plantArea } = useAppSelector(state => state.plant);
+  const { plantArea, plantsStack } = useAppSelector(state => state.plant);
   const { currentDay } = useAppSelector(state => state.quest);
   const navigation = useNavigation();
 
@@ -87,11 +87,11 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
     if (isBefriending) {
       return <AnnoyedAngrySmokeGuideIcon />;
     }
-    if (currentDay >= 13) {
+    if (!plantsStack?.length) {
       return <HappyTreeRootIcon />;
     }
     return <SadTreeRootIcon />;
-  }, [currentDay, isBefriending]);
+  }, [isBefriending, plantsStack?.length]);
 
   return (
     <View style={styles.container}>
