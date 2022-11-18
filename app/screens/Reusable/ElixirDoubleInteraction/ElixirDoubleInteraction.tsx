@@ -63,7 +63,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
-    const [isSoundStart, setIsSoundStart] = useState(false);
+    const [isOnDoublePress, setOnDoublePress] = useState(false);
 
     const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
     const ChildAvatarIcon = AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'];
@@ -77,25 +77,27 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     }, [isAdultPress]);
 
     useEffect(() => {
-      if (isChildPress && isAdultPress && !isSoundStart && isSoundFXEnabled) {
+      if (isChildPress && isAdultPress) {
+        setOnDoublePress(true);
+      }
+    }, [isChildPress, isAdultPress]);
+
+    useEffect(() => {
+      if (isOnDoublePress && isSoundFXEnabled) {
         AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
-        setIsSoundStart(true);
         return;
       }
-      if (isChildPress && isAdultPress && isSoundFXEnabled) {
+      if (isOnDoublePress && isSoundFXEnabled) {
         AudioPlayerHelper.start();
         return;
       }
-      AudioPlayerHelper.pause();
-    }, [isAdultPress, isChildPress, isSoundFXEnabled, isSoundStart]);
+    }, [isOnDoublePress, isSoundFXEnabled]);
 
     useEffect(() => {
-      if (isChildPress && isAdultPress) {
+      if (isOnDoublePress) {
         animationRef.current?.play();
-        return;
       }
-      animationRef.current?.pause();
-    }, [isAdultPress, isChildPress]);
+    }, [isOnDoublePress]);
 
     useEffect(() => {
       if (appStatus !== 'active') {
@@ -105,7 +107,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     }, [appStatus]);
 
     const onSubmit = useCallback(() => {
-      if (isChildPress && isAdultPress) {
+      if (isOnDoublePress) {
         // *** Flow for complited charms ***
         if (isCurrentQuestCompleted) {
           dispatch(questSlice.actions.setIsCurrentQuestCompleted(false));
@@ -172,8 +174,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
         navigation.replace('ElixirTitleButton');
       }
+      // intentionally
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isChildPress, isAdultPress]);
+    }, [isOnDoublePress]);
 
     const animation = useMemo(() => {
       const from = getElixirAnimationKeyByRange(fullnessElixir).replace(

@@ -80,7 +80,6 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     } else {
       AudioPlayerHelper.stop();
     }
-    // intentionally
   }, [appStatus, isFocused, isBackgroundMusicEnabled]);
 
   useEffect(() => {

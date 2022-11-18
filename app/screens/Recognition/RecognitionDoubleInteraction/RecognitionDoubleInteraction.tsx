@@ -41,7 +41,7 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
 
     const [isChildPress, setIsСhildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
-    const [isSoundStart, setIsSoundStart] = useState(false);
+    const [isOnDoublePress, setOnDoublePress] = useState(false);
 
     const ParentAvatarIcon = AVATARS_SVG[parent?.avatar ?? 'CircleRabbitIcon'];
     const ChildAvatarIcon = AVATARS_SVG[child?.avatar ?? 'CircleBearIcon'];
@@ -55,23 +55,27 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     }, [isAdultPress]);
 
     useEffect(() => {
-      if (isChildPress && isAdultPress && !isSoundStart && isSoundFXEnabled) {
-        AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
-        setIsSoundStart(true);
-      } else if (isChildPress && isAdultPress && isSoundFXEnabled) {
-        AudioPlayerHelper.start();
-      } else {
-        AudioPlayerHelper.pause();
+      if (isChildPress && isAdultPress) {
+        setOnDoublePress(true);
       }
-    }, [isAdultPress, isChildPress, isSoundFXEnabled, isSoundStart]);
+    }, [isChildPress, isAdultPress]);
 
     useEffect(() => {
-      if (isChildPress && isAdultPress) {
+      if (isOnDoublePress && isSoundFXEnabled) {
+        AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
+        return;
+      }
+      if (isOnDoublePress && isSoundFXEnabled) {
+        AudioPlayerHelper.start();
+      }
+    }, [isOnDoublePress, isSoundFXEnabled]);
+
+    useEffect(() => {
+      if (isOnDoublePress) {
         animationRef.current?.play();
         return;
       }
-      animationRef.current?.pause();
-    }, [isAdultPress, isChildPress]);
+    }, [isOnDoublePress]);
 
     useEffect(() => {
       if (appStatus !== 'active') {
@@ -81,12 +85,13 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     }, [appStatus]);
 
     const onSubmit = useCallback(() => {
-      if (isChildPress && isAdultPress) {
+      if (isOnDoublePress) {
         dispatch(elixirSlice.actions.updateFullnessElixir(fullnessElixir + 1));
         navigation.replace('RecognitionDoubleInteractionSuccess');
       }
+      // intentionally
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isAdultPress, isChildPress]);
+    }, [isOnDoublePress]);
 
     return (
       <ImageBackground
