@@ -16,10 +16,9 @@ export const styles = StyleSheet.create<IDialogViewStyles>({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingHorizontal: 40,
+    alignItems: 'center',
   },
   iconContainer: {
-    alignSelf: 'center',
     position: 'absolute',
     top: WINDOW_COEFFICIENT * 400 - 330,
   },
@@ -29,17 +28,14 @@ export const styles = StyleSheet.create<IDialogViewStyles>({
     paddingHorizontal: 24,
     borderRadius: 24,
     borderWidth: 4,
-    width: 295,
-    alignSelf: 'center',
+    width: 303,
     borderColor: COLORS.PRIMARY_ORANGE,
     backgroundColor: COLORS.PRIMARY_PURPLE,
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    width: 240,
   },
   roundButton: {
-    alignSelf: 'center',
     marginTop: -40,
     marginBottom: 16,
   },
