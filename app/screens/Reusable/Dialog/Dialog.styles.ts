@@ -18,10 +18,9 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingHorizontal: 40,
+    alignItems: 'center',
   },
   iconContainer: {
-    alignSelf: 'center',
     position: 'absolute',
     top: WINDOW_COEFFICIENT * 300 - 325,
   },
@@ -31,11 +30,11 @@ export const styles = StyleSheet.create<IDialogscreenStyles>({
     paddingHorizontal: 24,
     borderRadius: 24,
     borderWidth: 4,
+    width: 303,
     borderColor: COLORS.PRIMARY_ORANGE,
     backgroundColor: COLORS.PRIMARY_PURPLE,
   },
   roundButton: {
-    alignSelf: 'center',
     marginTop: -40,
     marginBottom: 16,
   },
