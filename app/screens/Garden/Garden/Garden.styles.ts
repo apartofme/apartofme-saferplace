@@ -56,7 +56,7 @@ export const styles = StyleSheet.create<IGardenScreenStyles>({
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    paddingVertical: 20,
+    paddingVertical: 16,
   },
   displayNone: {
     display: 'none',

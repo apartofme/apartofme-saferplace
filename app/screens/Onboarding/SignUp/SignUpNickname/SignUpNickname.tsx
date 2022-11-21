@@ -43,12 +43,10 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
     [dispatch, isChild, navigation],
   );
 
-  const correctDescription = useMemo(() => {
-    if (isChild) {
-      return t('screens.onboarding.sign_up_nickname.child.description');
-    }
-    return t('screens.onboarding.sign_up_nickname.parent.description');
-  }, [isChild, t]);
+  const translationKeyPath = useMemo(
+    () => `screens.onboarding.sign_up_nickname.${isChild ? 'child' : 'parent'}`,
+    [isChild],
+  );
 
   const background = useMemo(() => {
     if (isChild) {
@@ -78,10 +76,10 @@ export const SignUpNicknameScreen: React.FC<ISignUpNicknameScreenProps> = ({
                 isArrow={true}
                 style={styles.container}>
                 <ExtendedText preset="large-title" style={styles.whiteColor}>
-                  {t('screens.onboarding.sign_up_nickname.title')}
+                  {t(`${translationKeyPath}.title`)}
                 </ExtendedText>
                 <ExtendedText preset="secondary-text" style={styles.subtitle}>
-                  {correctDescription}
+                  {t(`${translationKeyPath}.description`)}
                 </ExtendedText>
                 <ExtendedTextInput
                   value={values.nickname}

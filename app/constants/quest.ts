@@ -133,6 +133,7 @@ export const CHARM_ENDED = 'Charm Ended';
 export const ILLUSTRATION_ICON = 'IllustrationIcon';
 export const APP_FEEDBACK = 'App Feedback';
 export const SKIP_CHARM_FEEDBACK = 'Skip Charm Feedback';
+export const GO_TO_GARDEN = '|go_to_garden|';
 
 export const OPEN_DIALOG_IDS = [
   DAY_1_OPENING_DIALOG_ID,

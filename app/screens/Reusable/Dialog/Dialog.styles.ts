@@ -14,15 +14,15 @@ export interface IDialogscreenStyles {
 export const styles = StyleSheet.create<IDialogscreenStyles>({
   header: {
     zIndex: 100,
+    alignSelf: 'stretch',
   },
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   iconContainer: {
     position: 'absolute',
-    top: WINDOW_COEFFICIENT * 300 - 325,
+    top: WINDOW_COEFFICIENT * 250 - 230,
   },
   dialogContainer: {
     height: 304,

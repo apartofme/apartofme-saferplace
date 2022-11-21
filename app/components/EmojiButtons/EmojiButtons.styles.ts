@@ -18,7 +18,7 @@ export interface IEmojiButtonsStyles {
 export const styles = StyleSheet.create<IEmojiButtonsStyles>({
   mainContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
+    paddingBottom: 16 * WINDOW_COEFFICIENT,
   },
   blobIcon: {
     position: 'absolute',
