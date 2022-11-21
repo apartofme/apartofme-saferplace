@@ -28,14 +28,16 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
     );
   }
   const cacheParent = store.getState().cache.auth.parent;
+  if (!registerUserResponse.error) {
+    await firestoreCreateParent({
+      email: email,
+      uid: registerUserResponse.user?.uid as string,
+      nickname: cacheParent?.nickname as string,
+      avatar: cacheParent?.avatar as AvatarsKeys,
+      emailVerified: !!registerUserResponse.user?.emailVerified,
+    });
+  }
 
-  await firestoreCreateParent({
-    email: email,
-    uid: registerUserResponse.user?.uid as string,
-    nickname: cacheParent?.nickname as string,
-    avatar: cacheParent?.avatar as AvatarsKeys,
-    emailVerified: !!registerUserResponse.user?.emailVerified,
-  });
   return registerUserResponse;
 };
 
