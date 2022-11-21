@@ -55,20 +55,22 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
       navigation.navigate('Login');
     }, [navigation]);
 
+    // TODO: change to SETTINGS_PRIVACY_MENU[3] when Language selection add
     const onConditionPress = useCallback(() => {
-      if (SETTINGS_PRIVACY_MENU[3].data) {
+      if (SETTINGS_PRIVACY_MENU[2].data) {
         navigation.navigate('MenuStack', {
           screen: 'Conditions',
-          params: { data: SETTINGS_PRIVACY_MENU[3].data },
+          params: { data: SETTINGS_PRIVACY_MENU[2].data },
         });
       }
     }, [navigation]);
 
+    // TODO: change to SETTINGS_PRIVACY_MENU[4] when Language selection add
     const onPrivacyPress = useCallback(() => {
-      if (SETTINGS_PRIVACY_MENU[4].data) {
+      if (SETTINGS_PRIVACY_MENU[3].data) {
         navigation.navigate('MenuStack', {
           screen: 'Conditions',
-          params: { data: SETTINGS_PRIVACY_MENU[4].data },
+          params: { data: SETTINGS_PRIVACY_MENU[3].data },
         });
       }
     }, [navigation]);
@@ -183,7 +185,9 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                 <ExtendedText
                   preset="tertiary-text-regular"
                   style={generalStyles.brilliantWhite}>
-                  {t('screens.onboarding.sign_up_credentials.first_footer')}
+                  {`${t(
+                    'screens.onboarding.sign_up_credentials.first_footer',
+                  )} `}
                 </ExtendedText>
                 <ExtendedText
                   preset="tertiary-text-regular"
