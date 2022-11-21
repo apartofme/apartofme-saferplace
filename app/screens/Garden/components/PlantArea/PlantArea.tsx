@@ -21,7 +21,6 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
   isBefriending,
 }) => {
   const { plantArea, plantsStack } = useAppSelector(state => state.plant);
-  const { currentDay } = useAppSelector(state => state.quest);
   const navigation = useNavigation();
 
   const selectPlantArea = useCallback(
