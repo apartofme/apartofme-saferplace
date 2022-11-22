@@ -92,6 +92,19 @@ export const appSlice = createSlice({
       state.errors[ErrorType.saveAllQuests] = action.payload;
     });
 
+    // Reset password
+    builder.addCase(userSlice.actions.resetPassword, state => {
+      state.loading[LoadingType.isResetPassword] = true;
+      state.errors[ErrorType.resetPassword] = null;
+    });
+    builder.addCase(userSlice.actions.resetPasswordSuccess, state => {
+      state.loading[LoadingType.isResetPassword] = false;
+    });
+    builder.addCase(userSlice.actions.resetPasswordError, (state, action) => {
+      state.loading[LoadingType.isResetPassword] = false;
+      state.errors[ErrorType.resetPassword] = action.payload;
+    });
+
     // Edit child
     builder.addCase(userSlice.actions.editChild, state => {
       state.loading[LoadingType.isEditChild] = true;

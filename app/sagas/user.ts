@@ -8,6 +8,7 @@ import {
   firebaseDeleteAccount,
   firebaseLoginUser,
   firebaseLogout,
+  firebasePasswordReset,
   firebaseRegisterUser,
   FirestoreCollections,
   firestoreCreateChild,
@@ -32,6 +33,7 @@ import {
   IAuthUserActionPayload,
   IChangePasswordActionPayload,
   IEditUser,
+  IResetPasswordActionPayload,
   ISignUpData,
 } from '../redux/types';
 import { StaticNavigator } from '../services/navigator';
@@ -216,6 +218,23 @@ function* watchChangePassword({
   }
 }
 
+function* watchResetPassword({
+  payload: { email },
+}: IResetPasswordActionPayload) {
+  const ResetPasswordResponse: IFirestoreErrorResponse = yield call(
+    firebasePasswordReset,
+    email,
+  );
+
+  if (!ResetPasswordResponse.error) {
+    yield call(StaticNavigator.navigateTo, 'ForgotPasswordSuccess');
+  } else {
+    yield put(
+      userSlice.actions.resetPasswordError(ResetPasswordResponse.error),
+    );
+  }
+}
+
 function* watchDeleteAccount({ payload: password }: PayloadAction<string>) {
   const ChangePasswordResponse: IFirestoreErrorResponse = yield call(
     firebaseDeleteAccount,
@@ -246,6 +265,7 @@ export function* userSaga() {
   yield takeLatest(userSlice.actions.registerParent, watchRegisterParent);
   yield takeLatest(userSlice.actions.createChild, watchCreateChild);
   yield takeLatest(userSlice.actions.changePassword, watchChangePassword);
+  yield takeLatest(userSlice.actions.resetPassword, watchResetPassword);
   yield takeLatest(userSlice.actions.editParent, watchEditParent);
   yield takeLatest(userSlice.actions.editChild, watchEditChild);
   yield takeLatest(userSlice.actions.deleteAccount, watchDeleteAccount);

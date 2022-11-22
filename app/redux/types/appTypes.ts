@@ -9,6 +9,7 @@ export enum ErrorType {
   deleteAccount = 'deleteAccount',
   changePassword = 'changePassword',
   createChild = 'createChild',
+  resetPassword = 'resetPassword',
 }
 
 export enum LoadingType {
@@ -22,4 +23,5 @@ export enum LoadingType {
   isDeleteAccount = 'isDeleteAccount',
   isChangePassword = 'isChangePassword',
   isCreateChild = 'isCreateChild',
+  isResetPassword = 'isResetPassword',
 }
