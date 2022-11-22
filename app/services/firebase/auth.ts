@@ -71,7 +71,7 @@ export const firebaseChangePassword = async (
   currentPassword: string,
   newPassword: string,
 ) => {
-  const changePasswordResponse: IFirestoreErrorResponse = {
+  const ChangePasswordResponse: IFirestoreErrorResponse = {
     error: null,
   };
 
@@ -85,12 +85,14 @@ export const firebaseChangePassword = async (
     .then(() => {
       return auth()
         .currentUser?.updatePassword(newPassword)
-        .catch(error => (changePasswordResponse.error = error));
+        .catch(error => {
+          ChangePasswordResponse.error = parseFirebaseError(error.code);
+        });
     })
     .catch(error => {
-      return error;
+      ChangePasswordResponse.error = parseFirebaseError(error.code);
     });
-  return changePasswordResponse;
+  return ChangePasswordResponse;
 };
 
 export const firebaseDeleteAccount = async (password: string) => {
