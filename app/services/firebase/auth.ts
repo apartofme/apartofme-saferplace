@@ -85,7 +85,6 @@ export const firebaseChangePassword = async (
     currentPassword,
   );
 
-  // if (emeilCred) {...}
   await auth()
     .currentUser?.reauthenticateWithCredential(emailCred)
     .then(() => {
