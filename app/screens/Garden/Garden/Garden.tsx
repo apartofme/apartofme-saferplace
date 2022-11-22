@@ -88,7 +88,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
 
       if (
         nowSeconds - lastDayUpdate >= ONE_DAY_SECONDS &&
-        !interruptedQuestLine &&
+        isInterruptedQuestLineEmpty &&
         !currentDayQuestsStack.length
       ) {
         dispatch(questSlice.actions.setLastDayUpdate());
@@ -99,11 +99,10 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     }
     // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appStatus]);
+  }, [appStatus, isInterruptedQuestLineEmpty]);
 
   useEffect(() => {
     if (isFocused) {
-      showDayOpenDialog();
       if (currentDayQuestsStack) {
         const charmPartTwoIdx = _.findIndex(
           CHARMS_PART_TWO_IDS,
@@ -175,7 +174,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       (!currentDayQuestsStack?.length &&
         isInterruptedQuestLineEmpty &&
         !isPlanting) ||
-      isOpeningDialog;
+      (isOpeningDialog && !isPlanting);
 
     return (
       <View
@@ -199,44 +198,59 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     setIsModal(!isModal);
   }, [isModal]);
 
-  const showDayOpenDialog = useCallback(() => {
-    setTimeout(() => {
-      if (!interruptedQuestLine && !isPlanting && currentDayQuestsStack) {
-        const dayOpenDialogIdx = _.findIndex(
-          OPEN_DIALOG_IDS,
-          item =>
-            item === currentDayQuestsStack[currentDayQuestsStack?.length - 1],
-        );
-
-        if (dayOpenDialogIdx !== -1) {
-          const newQuestLineId = OPEN_DIALOG_IDS[dayOpenDialogIdx];
-          const newQuests = _.values(allQuests?.[newQuestLineId].quests);
-
-          dispatch(
-            questSlice.actions.saveCurrentQuestLine({
-              id: newQuests[0].questLineId,
-              quests: newQuests,
-            }),
+  useEffect(() => {
+    if (isFocused) {
+      setTimeout(() => {
+        if (
+          isInterruptedQuestLineEmpty &&
+          !isPlanting &&
+          currentDayQuestsStack
+        ) {
+          const dayOpenDialogIdx = _.findIndex(
+            OPEN_DIALOG_IDS,
+            item =>
+              item === currentDayQuestsStack[currentDayQuestsStack?.length - 1],
           );
 
-          dispatch(questSlice.actions.saveCurrentQuestIdx(0));
-          navigation.push('QuestStack', {
-            screen: newQuests[0].type,
-            params: {
-              data: { ...newQuests[0] },
-            },
-          });
+          if (dayOpenDialogIdx !== -1) {
+            const newQuestLineId = OPEN_DIALOG_IDS[dayOpenDialogIdx];
+            const newQuests = _.values(allQuests?.[newQuestLineId].quests);
+
+            dispatch(
+              questSlice.actions.saveCurrentQuestLine({
+                id: newQuests[0].questLineId,
+                quests: newQuests,
+              }),
+            );
+            dispatch(questSlice.actions.saveCurrentQuestIdx(0));
+
+            navigation.reset({
+              index: 1,
+              routes: [
+                {
+                  name: 'GardenStack',
+                  params: {
+                    screen: 'Garden',
+                  },
+                },
+                {
+                  name: 'QuestStack',
+                  params: {
+                    screen: newQuests[0].type,
+                    params: {
+                      data: { ...newQuests[0] },
+                    },
+                  },
+                },
+              ],
+            });
+          }
         }
-      }
-    }, 2000);
-  }, [
-    allQuests,
-    currentDayQuestsStack,
-    dispatch,
-    interruptedQuestLine,
-    navigation,
-    isPlanting,
-  ]);
+      }, 2000);
+    }
+    // intentionally
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentDayQuestsStack, isInterruptedQuestLineEmpty, isFocused]);
 
   return (
     <ImageBackground
@@ -256,7 +270,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
         <TouchableOpacity
           onPress={onAvatarPress}
           style={styles.avatarContainer}
-          disabled={isFirstTime}>
+          disabled={isFirstTime || isPlanting}>
           <AvatarIcon width={100} height={100} reduceSize={false} />
         </TouchableOpacity>
         <Elixir />

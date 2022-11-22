@@ -18,12 +18,13 @@ export const styles =
       paddingHorizontal: 40,
     },
     title: {
-      marginVertical: 24 * WINDOW_COEFFICIENT,
+      paddingTop: 43 * WINDOW_COEFFICIENT,
+      paddingBottom: 24 * WINDOW_COEFFICIENT,
       color: COLORS.BRILLIANT_WHITE,
       textAlign: 'center',
     },
     description: {
-      minHeight: 120,
+      minHeight: 140,
       color: COLORS.LIGHT_GREY,
       textAlign: 'center',
     },

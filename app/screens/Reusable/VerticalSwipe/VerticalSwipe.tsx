@@ -29,6 +29,7 @@ import { CHARMS_SVG, SVG } from '../../../assets/svg';
 import { trackEvent } from '../../../services/firebase/analytics';
 import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
+import { CharmsSvgKeys } from '../../../utils/types';
 
 const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
 const WhiteTopArrowIcon = SVG.WhiteTopArrowIcon;
@@ -109,7 +110,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     escapeMenuAlternativeNavigateTo,
   });
 
-  const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
+  const Icon = CHARMS_SVG[image as CharmsSvgKeys];
 
   return (
     <GestureHandlerRootView style={generalStyles.flex}>
@@ -130,7 +131,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                     generalStyles.jcSpaceBtw,
                     { height: scrollViewHeight },
                   ]}>
-                  {isFirstGrounding ? (
+                  {isFirstGrounding || crossHeader ? (
                     <Header />
                   ) : (
                     <View style={styles.emptyView} />

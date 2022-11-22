@@ -1,4 +1,5 @@
-import React from 'react';
+import _ from 'lodash';
+import React, { useMemo } from 'react';
 import {
   ImageBackground,
   SafeAreaView,
@@ -8,6 +9,8 @@ import {
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { CHARMS_SVG, SVG } from '../../../assets/svg';
+import { OPEN_DIALOG_IDS } from '../../../constants/quest';
+import { useAppSelector } from '../../../hooks';
 import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
@@ -30,6 +33,8 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
     backgroundImage,
   } = route.params.data;
 
+  const { currentDayQuestsStack } = useAppSelector(state => state.quest);
+
   const onSubmit = useNavigateNextQuest();
 
   const Header = useRenderQuestHeader({
@@ -44,6 +49,17 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
     style: generalStyles.brilliantWhite,
   });
 
+  const isOpeningDialog = useMemo(() => {
+    if (currentDayQuestsStack?.length > 0) {
+      return !!_.find(
+        OPEN_DIALOG_IDS,
+        item =>
+          currentDayQuestsStack[currentDayQuestsStack.length - 1] === item,
+      );
+    }
+    return false;
+  }, [currentDayQuestsStack]);
+
   const Icon = CHARMS_SVG[(image ?? 'HappySidekickGuideIcon') as CharmsSvgKeys];
 
   return (
@@ -53,17 +69,22 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
       }
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
-        <View style={styles.header}>
-          <Header />
-        </View>
         <View style={styles.container}>
+          {!isOpeningDialog && (
+            <View style={styles.header}>
+              <Header />
+            </View>
+          )}
           <View style={styles.iconContainer}>{Icon && <Icon />}</View>
-          <View style={styles.dialogContainer}>
-            <Title />
+          <View style={generalStyles.flex} />
+          <View style={generalStyles.aiCenter}>
+            <View style={styles.dialogContainer}>
+              <Title />
+            </View>
+            <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
+              <RoundTriangleButtonIcon />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
-            <RoundTriangleButtonIcon />
-          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </ImageBackground>

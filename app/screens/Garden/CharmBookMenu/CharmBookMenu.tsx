@@ -1,4 +1,4 @@
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { values } from 'lodash';
 import React, { useCallback, useMemo } from 'react';
@@ -8,6 +8,7 @@ import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 import { SVG } from '../../../assets/svg';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
+import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
 import { cacheSlice, questSlice } from '../../../redux/slices';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './CharmBookMenu.styles';
@@ -25,7 +26,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  const navigation = useNavigation<StackNavigationProp<MergedStackParams>>();
 
   const currentLanguage = useAppSelector(
     state => state.settings.settings.language ?? 'en',
@@ -64,11 +65,25 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         }),
       );
       dispatch(questSlice.actions.saveCurrentQuestIdx(0));
-      navigation.push('QuestStack', {
-        screen: newQuests[0].type,
-        params: {
-          data: { ...newQuests[0] },
-        },
+      navigation.reset({
+        index: 1,
+        routes: [
+          {
+            name: 'GardenStack',
+            params: {
+              screen: 'Garden',
+            },
+          },
+          {
+            name: 'QuestStack',
+            params: {
+              screen: newQuests[0].type,
+              params: {
+                data: { ...newQuests[0] },
+              },
+            },
+          },
+        ],
       });
       setModalStatus();
     }
@@ -88,14 +103,31 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
           interruptedQuestLine.interruptedQuestInx,
         ),
       );
-      navigation.push('QuestStack', {
-        screen:
-          interruptedQuests[interruptedQuestLine.interruptedQuestInx].type,
-        params: {
-          data: {
-            ...interruptedQuests[interruptedQuestLine.interruptedQuestInx],
+      navigation.reset({
+        index: 1,
+        routes: [
+          {
+            name: 'GardenStack',
+            params: {
+              screen: 'Garden',
+            },
           },
-        },
+          {
+            name: 'QuestStack',
+            params: {
+              screen:
+                interruptedQuests[interruptedQuestLine.interruptedQuestInx]
+                  .type,
+              params: {
+                data: {
+                  ...interruptedQuests[
+                    interruptedQuestLine.interruptedQuestInx
+                  ],
+                },
+              },
+            },
+          },
+        ],
       });
       setModalStatus();
     }
