@@ -42,12 +42,17 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
 };
 
 export const firebasePasswordReset = async (email: string) => {
+  const PasswordResetResponse: IFirestoreErrorResponse = {
+    error: null,
+  };
   try {
     await auth().sendPasswordResetEmail(email);
-    return null;
   } catch (error) {
-    return parseFirebaseError((error as IFirebaseAuthError).code);
+    PasswordResetResponse.error = parseFirebaseError(
+      (error as IFirebaseAuthError).code,
+    );
   }
+  return PasswordResetResponse;
 };
 
 export const firebaseLoginUser = async (email: string, password: string) => {

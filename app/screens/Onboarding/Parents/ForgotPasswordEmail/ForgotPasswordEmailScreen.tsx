@@ -18,16 +18,22 @@ import { SVG } from '../../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { COLORS } from '../../../../themes/colors';
 import { ForgotPasswordValidationSchema } from './ForgotPasswordEmailScreen.validation';
+import { useAppDispatch } from '../../../../hooks';
+import { userSlice } from '../../../../redux/slices';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
 
-    const onSubmit = useCallback(() => {
-      navigation.navigate('ForgotPasswordSuccess');
-    }, [navigation]);
+    const onSubmit = useCallback(
+      ({ email }) => {
+        dispatch(userSlice.actions.resetPassword({ email }));
+      },
+      [dispatch],
+    );
 
     return (
       <View style={generalStyles.flex}>
