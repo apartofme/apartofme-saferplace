@@ -1,6 +1,7 @@
 export * from './Acknowledgement';
 export * from './Alert';
 export * from './AnimationTitle';
+export * from './SpiritGarden';
 export * from './CharmCompleted';
 export * from './Conversations';
 export * from './Dialog';

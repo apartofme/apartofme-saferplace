@@ -7,19 +7,18 @@ import {
 } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
-export interface IBefriendingGardenScreenStyles {
+export interface ISpiritGardenScreenStyles {
   avatarContainer: ViewStyle;
   avatar: ImageStyle;
   bookContainer: ViewStyle;
   book: ImageStyle;
   plantArea: ViewStyle;
-  onPressView: ViewStyle;
   title: TextStyle;
   titleContainer: ViewStyle;
-  zIndex10: ViewStyle;
+  onPressView: ViewStyle;
 }
 
-export const styles = StyleSheet.create<IBefriendingGardenScreenStyles>({
+export const styles = StyleSheet.create<ISpiritGardenScreenStyles>({
   avatarContainer: {
     position: 'absolute',
     right: 20,
@@ -30,9 +29,6 @@ export const styles = StyleSheet.create<IBefriendingGardenScreenStyles>({
     height: 80,
     width: 80,
     borderRadius: 100,
-  },
-  zIndex10: {
-    zIndex: 10,
   },
   plantArea: {
     top: (WINDOW_HEIGHT - 100) / (WINDOW_HEIGHT < 600 ? 7 : 6),
