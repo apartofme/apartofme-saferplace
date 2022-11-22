@@ -212,7 +212,9 @@ function* watchChangePassword({
   if (!ChangePasswordResponse.error) {
     yield call(StaticNavigator.navigateTo, 'ChangePasswordSuccess');
   } else {
-    yield put(userSlice.actions.changePasswordError('Change password error'));
+    yield put(
+      userSlice.actions.changePasswordError(ChangePasswordResponse.error),
+    );
   }
 }
 
