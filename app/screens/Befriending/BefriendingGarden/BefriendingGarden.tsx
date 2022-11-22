@@ -1,23 +1,21 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useIsFocused } from '@react-navigation/native';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import { useAppSelector, useAppState } from '../../../hooks';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { Nullable } from '../../../utils';
+import { LottieAbsoluteStyles } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { IBefriendingGardenScreenProps } from './BefriendingGarden.types';
-import {
-  Book,
-  Elixir,
-  PlantArea,
-  PlantAreaType,
-} from '../../Garden/components';
+import { Book, Elixir, PlantAreaType } from '../../Garden/components';
 import { styles } from './BefriendingGarden.styles';
 import { AVATARS_SVG } from '../../../assets/svg';
+import { MixingElixirPhaseType } from '../../../utils/types';
+import { ANIMATIONS } from '../../../assets/animations';
 
 export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
   ({ navigation }) => {
@@ -37,11 +35,19 @@ export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
 
     const Avatar = AVATARS_SVG[avatar ?? 'CircleRabbitIcon'];
 
-    const [activePlantArea, setActivePlantArea] =
-      useState<Nullable<PlantAreaType>>(null);
-
     const onAvatarPress = useCallback(() => {
       navigation.navigate('MenuStack');
+    }, [navigation]);
+
+    const onSpiritPress = useCallback(() => {
+      navigation.navigate('MixingElixirStack', {
+        screen: 'ElixirInstruction',
+        params: {
+          phase: MixingElixirPhaseType.Mix,
+          isFirstTimeGarden: false,
+          selectedPlantArea: PlantAreaType.Center,
+        },
+      });
     }, [navigation]);
 
     return (
@@ -59,11 +65,15 @@ export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
           </TouchableOpacity>
           <Elixir />
           <View style={styles.plantArea}>
-            <PlantArea
-              isBefriending={true}
-              isPlanting={false}
-              activePlantArea={activePlantArea}
-              setActivePlantArea={setActivePlantArea}
+            <TouchableOpacity
+              style={styles.onPressView}
+              onPress={onSpiritPress}
+            />
+            <Lottie
+              source={ANIMATIONS.TROUBLE_SOME_SPIRIT_ENTERS}
+              autoPlay
+              loop={false}
+              style={LottieAbsoluteStyles(-10)}
             />
           </View>
         </View>

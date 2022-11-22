@@ -20,7 +20,7 @@ export const styles = StyleSheet.create<IFeedbackScreenStyles>({
   },
   subtitle: {
     marginTop: 27 * WINDOW_COEFFICIENT,
-    color: COLORS.BRILLIANT_WHITE,
+    color: COLORS.LIGHT_GREY,
   },
   inputContainer: {
     marginTop: 30 * WINDOW_COEFFICIENT,

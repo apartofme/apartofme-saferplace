@@ -71,10 +71,10 @@ export const FeedbackScreen: React.FC<IFeedbackScreenProps> = ({
                 onLeftIconPress={navigation.goBack}
               />
               <View style={styles.container}>
-                <ExtendedText style={styles.title}>
+                <ExtendedText style={styles.title} preset="large-title">
                   {t('screens.menu.feedback.title')}
                 </ExtendedText>
-                <ExtendedText style={styles.subtitle}>
+                <ExtendedText style={styles.subtitle} preset="secondary-text">
                   {t('screens.menu.feedback.description')}
                 </ExtendedText>
                 <View style={styles.inputContainer}>

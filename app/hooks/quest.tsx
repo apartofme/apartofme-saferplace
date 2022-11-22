@@ -12,7 +12,9 @@ import { generalStyles } from '../utils/styles';
 import { useAppDispatch, useAppSelector } from './redux';
 import {
   DatoCMSTextVariables,
+  DAY_13_OPENING_DIALOG_ID,
   PLANTS_CHARM_IDS,
+  THE_CHARM_OF_BEFRIENDING_ID,
   PLANTS_CHARM_NEXT_QUEST_LINE_IDS,
 } from '../constants/quest';
 import { SVG } from '../assets/svg';
@@ -131,6 +133,28 @@ export const useNavigateNextQuest = () => {
           navigation.push('GardenStack', {
             screen: 'CompletedCharmEnd',
           });
+        }
+
+        // *** Flow for 13 opening dialog charms ***
+        if (currentQuestLine.id === DAY_13_OPENING_DIALOG_ID) {
+          const newQuests = _.values(
+            allQuests?.[THE_CHARM_OF_BEFRIENDING_ID].quests,
+          );
+
+          dispatch(
+            questSlice.actions.saveCurrentQuestLine({
+              id: newQuests[0].questLineId,
+              quests: newQuests,
+            }),
+          );
+          dispatch(questSlice.actions.saveCurrentQuestIdx(0));
+          navigation.push('QuestStack', {
+            screen: newQuests[0].type,
+            params: {
+              data: { ...newQuests[0] },
+            },
+          });
+          return;
         }
 
         // *** Flow for interrupted charms ***

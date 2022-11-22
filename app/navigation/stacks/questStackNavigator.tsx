@@ -49,7 +49,12 @@ import {
   ReusableElixirInstructionScreen,
   AcknowledgementReadLoudScreen,
   AcknowledgementStopShakingScreen,
+  SpiritGardenScreen,
 } from '../../screens';
+
+// TODO: remove
+import { DummyQuestsScreen } from '../../screens/DummyQuests/DummyQuests';
+
 import {
   DEFAULT_STACK_OPTIONS,
   TRANSPARENT_MODAL_WITH_FADE_ANIM_OPTIONS,
@@ -101,12 +106,17 @@ export type QuestStackParams = {
   LeaveFeedback: { data: IQuest };
   ReusableElixirInstruction: { data: IQuest };
   AcknowledgementReadLoud: { data: IQuest };
+  SpiritGarden: { data: IQuest };
+  // TODO: remove
+  DummyQuests: undefined;
 };
 
 const Stack = createNativeStackNavigator<QuestStackParams>();
 
 export const QuestStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
+    {/* // TODO: remove */}
+    <Stack.Screen name="DummyQuests" component={DummyQuestsScreen} />
     <Stack.Screen
       name="AcknowledgementAlongEdges"
       component={AcknowledgementAlongEdgesScreen}
@@ -218,6 +228,7 @@ export const QuestStackNavigator = () => (
       name="ReusableElixirInstruction"
       component={ReusableElixirInstructionScreen}
     />
+    <Stack.Screen name="SpiritGarden" component={SpiritGardenScreen} />
     <Stack.Screen
       name="AcknowledgementReadLoud"
       component={AcknowledgementReadLoudScreen}
