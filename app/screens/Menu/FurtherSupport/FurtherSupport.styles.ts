@@ -7,6 +7,7 @@ interface IFurtherSupportScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   list: ViewStyle;
+  sectionTitle: TextStyle;
   menuButtonContainer: ViewStyle;
 }
 
@@ -20,8 +21,12 @@ export const styles = StyleSheet.create<IFurtherSupportScreenStyles>({
     marginTop: 48 * WINDOW_COEFFICIENT,
   },
   list: {
-    marginTop: 50 * WINDOW_COEFFICIENT,
+    marginTop: 26 * WINDOW_COEFFICIENT,
     flex: 1,
+  },
+  sectionTitle: {
+    color: COLORS.PRIMARY_ORANGE,
+    marginVertical: 24 * WINDOW_COEFFICIENT,
   },
   menuButtonContainer: {
     borderBottomWidth: 1,

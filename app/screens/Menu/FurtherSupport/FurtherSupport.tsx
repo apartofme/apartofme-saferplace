@@ -1,20 +1,25 @@
-import _ from 'lodash';
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View, FlatList, ImageBackground } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  ImageBackground,
+  SectionList,
+  SectionListData,
+  SectionListRenderItem,
+} from 'react-native';
 
 import { ExtendedText, MainHeader } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { MenuButton } from '../components';
 import { IFurtherSupportScreenProps } from './FurtherSupport.types';
 import { styles } from './FurtherSupport.styles';
-import { useSpecificKeyExtractor } from '../../../hooks';
 import {
   FURTHER_SUPPORT_MENU_ITEMS,
   IFurtherSupportMenuItem,
 } from './FurtherSupport.data';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { FAQListItem, IMenuItem } from '../FrequentlyAskedQuestions';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -23,20 +28,24 @@ export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const renderItem = useCallback(
-    ({ item }: { item: IFurtherSupportMenuItem }) => {
+  const renderItem: SectionListRenderItem<IMenuItem, IFurtherSupportMenuItem> =
+    useCallback(({ item }) => {
+      return <FAQListItem data={item} />;
+    }, []);
+
+  const renderSectionHeader = useCallback(
+    ({
+      section,
+    }: {
+      section: SectionListData<IMenuItem, IFurtherSupportMenuItem>;
+    }) => {
       return (
-        <View style={styles.menuButtonContainer}>
-          <MenuButton title={item.titleKey} onPress={_.noop} />
-        </View>
+        <ExtendedText preset="body-bold" style={styles.sectionTitle}>
+          {section.titleKey}
+        </ExtendedText>
       );
     },
     [],
-  );
-
-  const keyExtractor = useSpecificKeyExtractor<IFurtherSupportMenuItem>(
-    'post-thread-list-child-key',
-    'titleKey',
   );
 
   return (
@@ -51,11 +60,12 @@ export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
             {t('screens.menu.further_support.title')}
           </ExtendedText>
 
-          <FlatList
-            style={styles.list}
-            data={FURTHER_SUPPORT_MENU_ITEMS}
+          <SectionList
+            sections={FURTHER_SUPPORT_MENU_ITEMS}
+            renderSectionHeader={renderSectionHeader}
             renderItem={renderItem}
-            keyExtractor={keyExtractor}
+            style={styles.list}
+            stickySectionHeadersEnabled={false}
             showsVerticalScrollIndicator={false}
           />
         </View>
