@@ -171,7 +171,7 @@ export const LottieAbsoluteStyles = (
       ? verticalShift
       : verticalShift / (WINDOW_COEFFICIENT - 1);
   return {
-    width: WINDOW_WIDTH,
+    width: WINDOW_WIDTH + 10,
     position: 'absolute',
     top: WINDOW_COEFFICIENT * shift - shift,
     ...styles,
@@ -197,5 +197,19 @@ export const showInternetErrorAlert = (title?: string, description?: string) =>
     titleStyle: {
       paddingBottom: 12,
     },
+    icon: 'none',
+  });
+
+export const showProgressAlert = (title: string) =>
+  showMessage({
+    message: title ?? NETWORK_ERROR_TITLE,
+    style: {
+      backgroundColor: COLORS.MEDIUM_GREY,
+      paddingBottom: 16,
+      justifyContent: 'center',
+      marginTop: StatusBarManager.HEIGHT,
+      paddingTop: -StatusBarManager.HEIGHT + 16,
+    },
+
     icon: 'none',
   });

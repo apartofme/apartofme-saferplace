@@ -23,7 +23,7 @@ import { styles } from './MainMenu.styles';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
 import { SaveIcon } from '../../../assets/svg/SaveIcon';
 import { SwitchUserIcon } from '../../../assets/svg/SwitchUserIcon';
-import { showInternetErrorAlert } from '../../../utils';
+import { showInternetErrorAlert, showProgressAlert } from '../../../utils';
 
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
 const LogOutIcon = SVG.ExitIcon;
@@ -53,6 +53,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const onSaveProgressPress = useCallback(() => {
     if (isConnected) {
       dispatch(questSlice.actions.saveProgress());
+      showProgressAlert(t('alert.save_progress.title'));
       return;
     }
     showInternetErrorAlert(
