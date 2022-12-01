@@ -21,8 +21,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   const { t } = useTranslation();
 
   const onSignUpPress = useCallback(() => {
-    // TODO: change to LanguageSelection
-    navigation.navigate('Acknowledgement');
+    navigation.navigate('LanguageSelection');
   }, [navigation]);
 
   const onLoginPress = useCallback(() => {
