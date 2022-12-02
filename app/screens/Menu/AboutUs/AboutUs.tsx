@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, ScrollView } from 'react-native';
 
 import { SVG } from '../../../assets/svg';
 import { ExtendedText, MainHeader } from '../../../components';
@@ -8,7 +8,6 @@ import { generalStyles } from '../../../utils/styles';
 import { IAboutUsScreenProps } from './AboutUs.types';
 import { styles } from './AboutUs.styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
