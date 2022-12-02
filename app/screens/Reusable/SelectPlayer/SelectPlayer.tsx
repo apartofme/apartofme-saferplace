@@ -82,7 +82,7 @@ export const SelectPlayerScreen: React.FC<ISelectPlayerScreenProps> = ({
           <ExtendedText preset="title" style={generalStyles.brilliantWhite}>
             {item.title}
           </ExtendedText>
-          <item.icon width={80} height={80} />
+          <item.icon width={100} height={100} />
         </Pressable>
       );
     },

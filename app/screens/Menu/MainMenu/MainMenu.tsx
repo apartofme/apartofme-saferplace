@@ -95,7 +95,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
               </ExtendedText>
             </View>
             <View style={styles.line} />
-            <View
+
+            <TouchableOpacity
+              onPress={onSaveProgressPress}
               style={[
                 generalStyles.row,
                 generalStyles.jcSpaceBtw,
@@ -106,10 +108,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
                 style={generalStyles.primaryOrange}>
                 {t('screens.menu.main_menu.save_progress')}
               </ExtendedText>
-              <TouchableOpacity onPress={onSaveProgressPress}>
-                <SaveIcon />
-              </TouchableOpacity>
-            </View>
+
+              <SaveIcon />
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </View>
@@ -135,7 +136,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
             ))}
           </ScrollView>
 
-          {children.length ? (
+          {children.length > 1 ? (
             <View style={[generalStyles.row, generalStyles.jcSpaceA]}>
               <TouchableOpacity
                 style={styles.logOutContainer}

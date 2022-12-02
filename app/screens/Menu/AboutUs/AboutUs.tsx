@@ -8,6 +8,7 @@ import { generalStyles } from '../../../utils/styles';
 import { IAboutUsScreenProps } from './AboutUs.types';
 import { styles } from './AboutUs.styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -23,14 +24,16 @@ export const AboutUsScreen: React.FC<IAboutUsScreenProps> = ({
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
-        <View style={styles.container}>
+        <ScrollView
+          style={styles.container}
+          showsVerticalScrollIndicator={false}>
           <ExtendedText style={styles.title} preset="large-title">
             {t('screens.menu.about_us.title')}
           </ExtendedText>
           <ExtendedText style={styles.subtitle} preset="secondary-text">
             {t('screens.menu.about_us.description')}
           </ExtendedText>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     </ImageBackground>
   );

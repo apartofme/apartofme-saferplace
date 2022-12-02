@@ -169,6 +169,10 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
     return false;
   }, [currentDayQuestsStack]);
 
+  const onTitlePress = useCallback(() => {
+    setIsModal(true);
+  }, []);
+
   const title = useMemo(() => {
     const isDisplayNone =
       (!currentDayQuestsStack?.length &&
@@ -177,20 +181,23 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       (isOpeningDialog && !isPlanting);
 
     return (
-      <View
+      <TouchableOpacity
+        disabled={isPlanting}
+        onPress={onTitlePress}
         style={[styles.titleContainer, isDisplayNone && styles.displayNone]}>
         <ExtendedText preset="tertiary-text-medium" style={styles.title}>
           {isPlanting
             ? t('screens.garden.tapTitle')
             : t('screens.garden.tapBook')}
         </ExtendedText>
-      </View>
+      </TouchableOpacity>
     );
   }, [
-    currentDayQuestsStack,
+    currentDayQuestsStack?.length,
     isInterruptedQuestLineEmpty,
     isOpeningDialog,
     isPlanting,
+    onTitlePress,
     t,
   ]);
 
