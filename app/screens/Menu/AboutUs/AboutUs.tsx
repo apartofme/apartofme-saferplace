@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView, View } from 'react-native';
+import { ImageBackground, SafeAreaView, ScrollView } from 'react-native';
 
 import { SVG } from '../../../assets/svg';
 import { ExtendedText, MainHeader } from '../../../components';
@@ -23,14 +23,16 @@ export const AboutUsScreen: React.FC<IAboutUsScreenProps> = ({
           leftIcon={<WhiteBackArrowIcon />}
           onLeftIconPress={navigation.goBack}
         />
-        <View style={styles.container}>
+        <ScrollView
+          style={styles.container}
+          showsVerticalScrollIndicator={false}>
           <ExtendedText style={styles.title} preset="large-title">
             {t('screens.menu.about_us.title')}
           </ExtendedText>
           <ExtendedText style={styles.subtitle} preset="secondary-text">
             {t('screens.menu.about_us.description')}
           </ExtendedText>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     </ImageBackground>
   );

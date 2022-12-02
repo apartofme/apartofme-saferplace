@@ -27,8 +27,8 @@ export const styles = StyleSheet.create<IBefriendingGardenScreenStyles>({
     zIndex: 100,
   },
   avatar: {
-    height: 80,
-    width: 80,
+    height: 100,
+    width: 100,
     borderRadius: 100,
   },
   zIndex10: {

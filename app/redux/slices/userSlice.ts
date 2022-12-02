@@ -74,14 +74,13 @@ export const userSlice = createSlice({
     editChildSuccess(state, { payload }: PayloadAction<IChild>) {
       if (state.child?.uid === payload.uid) {
         state.child = payload;
-      } else {
-        const editedChildIdx = _.findIndex(
-          state.children,
-          (item: IChild) => item.uid === payload.uid,
-        );
-        if (editedChildIdx !== -1) {
-          state.children[editedChildIdx] = payload;
-        }
+      }
+      const editedChildIdx = _.findIndex(
+        state.children,
+        (item: IChild) => item.uid === payload.uid,
+      );
+      if (editedChildIdx !== -1) {
+        state.children[editedChildIdx] = payload;
       }
     },
 

@@ -23,7 +23,7 @@ import { styles } from './MainMenu.styles';
 import { AVATARS_SVG, SVG } from '../../../assets/svg';
 import { SaveIcon } from '../../../assets/svg/SaveIcon';
 import { SwitchUserIcon } from '../../../assets/svg/SwitchUserIcon';
-import { showInternetErrorAlert } from '../../../utils';
+import { showInternetErrorAlert, showProgressAlert } from '../../../utils';
 
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
 const LogOutIcon = SVG.ExitIcon;
@@ -53,6 +53,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
   const onSaveProgressPress = useCallback(() => {
     if (isConnected) {
       dispatch(questSlice.actions.saveProgress());
+      showProgressAlert(t('alert.save_progress.title'));
       return;
     }
     showInternetErrorAlert(
@@ -94,7 +95,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
               </ExtendedText>
             </View>
             <View style={styles.line} />
-            <View
+
+            <TouchableOpacity
+              onPress={onSaveProgressPress}
               style={[
                 generalStyles.row,
                 generalStyles.jcSpaceBtw,
@@ -105,10 +108,9 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
                 style={generalStyles.primaryOrange}>
                 {t('screens.menu.main_menu.save_progress')}
               </ExtendedText>
-              <TouchableOpacity onPress={onSaveProgressPress}>
-                <SaveIcon />
-              </TouchableOpacity>
-            </View>
+
+              <SaveIcon />
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </View>
@@ -134,7 +136,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
             ))}
           </ScrollView>
 
-          {children.length ? (
+          {children.length > 1 ? (
             <View style={[generalStyles.row, generalStyles.jcSpaceA]}>
               <TouchableOpacity
                 style={styles.logOutContainer}

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { FlatList, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/core';
 import { useTranslation } from 'react-i18next';
 import { useNetInfo } from '@react-native-community/netinfo';
 import _ from 'lodash';
@@ -49,7 +49,14 @@ export const AvatarList: React.FC<IAvatarListProps> = ({ data, parent }) => {
         if (!parent && item.user) {
           if (isConnected) {
             dispatch(userSlice.actions.setChild(item.user));
-            navigation.navigate('GardenStack');
+            navigation.replace('GardenStack', {
+              screen: 'Garden',
+              params: {
+                isPlanting: false,
+                isFirstTime: false,
+                isFirstTimeGarden: false,
+              },
+            });
             return;
           } else {
             showInternetErrorAlert(

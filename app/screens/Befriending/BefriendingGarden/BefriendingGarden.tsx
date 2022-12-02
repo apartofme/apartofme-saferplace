@@ -60,7 +60,7 @@ export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
             style={styles.avatarContainer}
             disabled={true}>
             <View style={styles.avatar}>
-              <Avatar width={80} height={80} />
+              <Avatar width={100} height={100} />
             </View>
           </TouchableOpacity>
           <Elixir />
