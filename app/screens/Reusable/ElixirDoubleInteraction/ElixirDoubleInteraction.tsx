@@ -187,7 +187,10 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
         fullnessElixir + (elixirReward ?? 1),
       ).replace('Icon', '');
 
-      return POTION_FILL_ANIMATIONS[`${from}To${to}` as PotionFillKeys];
+      return (
+        POTION_FILL_ANIMATIONS[`${from}To${to}` as PotionFillKeys] ??
+        POTION_FILL_ANIMATIONS.ElixirZeroToElixirThree
+      );
     }, [elixirReward, fullnessElixir]);
 
     return (

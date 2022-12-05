@@ -25,7 +25,7 @@ export const Book: React.FC<IBookProps> = ({
   );
   const isCompletedAllCurrentDayQuests = useMemo(
     () => !currentDayQuestsStack?.length,
-    [currentDayQuestsStack?.length],
+    [currentDayQuestsStack],
   );
 
   const isOpeningDialog = useMemo(() => {

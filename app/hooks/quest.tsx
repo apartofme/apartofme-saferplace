@@ -137,6 +137,7 @@ export const useNavigateNextQuest = () => {
 
         // *** Flow for 13 opening dialog charms ***
         if (currentQuestLine.id === DAY_13_OPENING_DIALOG_ID) {
+          dispatch(questSlice.actions.updateCurrentDayQuestsStack());
           const newQuests = _.values(
             allQuests?.[THE_CHARM_OF_BEFRIENDING_ID].quests,
           );

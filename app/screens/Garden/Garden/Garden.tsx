@@ -193,7 +193,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
       </TouchableOpacity>
     );
   }, [
-    currentDayQuestsStack?.length,
+    currentDayQuestsStack,
     isInterruptedQuestLineEmpty,
     isOpeningDialog,
     isPlanting,
