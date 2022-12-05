@@ -170,8 +170,13 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   }, [currentDayQuestsStack]);
 
   const onTitlePress = useCallback(() => {
+    setCharmBookType(
+      interruptedQuestLine
+        ? CharmBookMenuType.InterruptedCharm
+        : CharmBookMenuType.NewCharm,
+    );
     setIsModal(true);
-  }, []);
+  }, [interruptedQuestLine]);
 
   const title = useMemo(() => {
     const isDisplayNone =

@@ -41,11 +41,11 @@ export const FurtherSupportScreen: React.FC<IFurtherSupportScreenProps> = ({
     }) => {
       return (
         <ExtendedText preset="body-bold" style={styles.sectionTitle}>
-          {section.titleKey}
+          {t(section.titleKey)}
         </ExtendedText>
       );
     },
-    [],
+    [t],
   );
 
   return (
