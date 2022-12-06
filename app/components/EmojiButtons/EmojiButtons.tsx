@@ -86,14 +86,12 @@ export const EmojiButtons: React.FC<IEmojiButtons> = ({
         onSubmit={onSubmit}
         isDisabledButton={selectedEmoji === EmojiType.NO}
         style={styles.container}>
-        <View style={generalStyles.row}>
-          <View style={styles.indicator}>
-            <ExtendedText
-              preset="tertiary-text-medium"
-              style={generalStyles.brilliantWhiteCenter}>
-              {t(emojiTextKey)}
-            </ExtendedText>
-          </View>
+        <View style={styles.indicator}>
+          <ExtendedText
+            preset="tertiary-text-medium"
+            style={generalStyles.brilliantWhiteCenter}>
+            {t(emojiTextKey)}
+          </ExtendedText>
         </View>
         <FlatList
           data={EMOJI_BUTTONS_LIST}

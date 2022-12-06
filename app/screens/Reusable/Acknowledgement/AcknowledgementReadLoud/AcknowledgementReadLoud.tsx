@@ -58,7 +58,7 @@ export const AcknowledgementReadLoudScreen: React.FC<IAcknowledgementReadLoudScr
               <ExtendedText
                 preset="tertiary-text-medium"
                 style={generalStyles.brilliantWhite}>
-                {t('Read out loud')}
+                {t('labels.read_out_loud')}
               </ExtendedText>
             </View>
 

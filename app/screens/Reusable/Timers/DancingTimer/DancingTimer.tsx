@@ -13,6 +13,7 @@ import {
   View,
 } from 'react-native';
 import Lottie from 'lottie-react-native';
+import { useKeepAwake } from '@sayem314/react-native-keep-awake';
 
 import { IDancingTimerScreenProps } from './DancingTimer.types';
 import { styles } from './DancingTimer.styles';
@@ -50,8 +51,8 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
     backgroundImage,
   } = route.params.data;
 
+  useKeepAwake();
   const lottieRef = useRef<Lottie>(null);
-
   const selectedSong = useAppSelector(state => state.cache.selectedSong);
 
   const navigateNextQuest = useNavigateNextQuest();

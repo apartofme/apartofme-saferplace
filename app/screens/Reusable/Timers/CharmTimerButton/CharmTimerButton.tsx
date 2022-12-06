@@ -59,7 +59,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
             <ExtendedText
               preset="tertiary-text-medium"
               style={generalStyles.brilliantWhite}>
-              {t('Read out loud')}
+              {t('labels.read_out_loud')}
             </ExtendedText>
           </View>
           <ExtendedText preset="secondary-text" style={styles.title}>

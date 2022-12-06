@@ -27,8 +27,8 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
     zIndex: 0,
   },
   indicator: {
-    flex: 1,
-    maxWidth: 170,
+    minWidth: 160,
+    maxWidth: 220,
     paddingVertical: 16 * WINDOW_COEFFICIENT,
     paddingHorizontal: 32,
     backgroundColor: COLORS.PRIMARY_PURPLE,

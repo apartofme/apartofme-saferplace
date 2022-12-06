@@ -30,8 +30,7 @@ export const styles = StyleSheet.create<ITimerTitleButtonScreenStyles>({
     textAlign: 'center',
   },
   description: {
-    flex: 1,
-    maxHeight: 80,
+    maxHeight: 100,
     marginBottom: 66 * WINDOW_COEFFICIENT,
     color: COLORS.LIGHT_GREY,
     textAlign: 'center',

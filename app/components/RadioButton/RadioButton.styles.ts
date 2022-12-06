@@ -23,6 +23,7 @@ export const styles = StyleSheet.create<IRadioButtonStyles>({
     borderColor: COLORS.PRIMARY_ORANGE,
   },
   title: {
+    maxWidth: 285,
     color: COLORS.BRILLIANT_WHITE,
   },
 
