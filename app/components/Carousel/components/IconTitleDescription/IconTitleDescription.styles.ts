@@ -5,7 +5,6 @@ import { COLORS } from '../../../../themes/colors';
 
 interface IIconTitleDescriptionStyles {
   container: ViewStyle;
-
   title: ViewStyle;
   subtitle: ViewStyle;
 }
@@ -18,9 +17,8 @@ export const styles = StyleSheet.create<IIconTitleDescriptionStyles>({
     paddingHorizontal: 24 * WINDOW_COEFFICIENT,
     paddingBottom: 55 * WINDOW_COEFFICIENT,
   },
-
   title: {
-    paddingBottom: 24 * WINDOW_COEFFICIENT,
+    paddingBottom: 5 * WINDOW_COEFFICIENT,
     textAlign: 'center',
     color: COLORS.BRILLIANT_WHITE,
   },

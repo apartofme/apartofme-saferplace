@@ -28,7 +28,7 @@ export const AcknowledgementScreen: React.FC<IAcknowledgementScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
+      source={BACKGROUND_IMAGES.GENERIC_ONBOARDING}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader

@@ -8,7 +8,7 @@ export const EarthConnectionScreen: React.FC<IEarthConnectionScreenProps> = ({
   navigation,
 }) => {
   const onSubmit = useCallback(() => {
-    navigation.push('GroundingTimer', { nextRouteName: 'ImagineTreeRoot' });
+    navigation.push('BringingRoots');
   }, [navigation]);
 
   return (
@@ -17,6 +17,9 @@ export const EarthConnectionScreen: React.FC<IEarthConnectionScreenProps> = ({
       buttonTitle={'buttons.start_timer'}
       backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_EARTH_CONNECTION}
       onSubmit={onSubmit}
+      subtitle={
+        'screens.parent_grounding_exercise.earth_connection.description'
+      }
     />
   );
 };

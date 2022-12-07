@@ -33,6 +33,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
   aboutSubtitleKey,
   topBackground,
   bottomBackground,
+  isHeader = true,
   onSubmit,
 }) => {
   const [isTopPosition, setIsTopPosition] = useState(true);
@@ -78,10 +79,14 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
                     generalStyles.jcSpaceBtw,
                     { height: scrollViewHeight },
                   ]}>
-                  <MainHeader
-                    leftIcon={<WhiteBackArrowIcon />}
-                    onLeftIconPress={navigation.goBack}
-                  />
+                  {isHeader ? (
+                    <MainHeader
+                      leftIcon={isHeader && <WhiteBackArrowIcon />}
+                      onLeftIconPress={isHeader && navigation.goBack}
+                    />
+                  ) : (
+                    <View />
+                  )}
                   <View style={styles.topContentContainer}>
                     <ExtendedText
                       preset="large-title"

@@ -8,13 +8,15 @@ export const CloseEyesScreen: React.FC<ICloseEyesScreenProps> = ({
   navigation,
 }) => {
   const onSubmit = useCallback(() => {
-    navigation.push('GroundingTimer', { nextRouteName: 'GroundingInput' });
+    navigation.push('StampFeet');
   }, [navigation]);
 
   return (
     <GroundingAcknowledgement
+      isButtonArrow
       title={'screens.parent_grounding_exercise.close_eyes.title'}
-      buttonTitle={'buttons.start_timer'}
+      subtitle={'screens.parent_grounding_exercise.close_eyes.description'}
+      buttonTitle={'buttons.next'}
       backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_CLOSE_EYES}
       onSubmit={onSubmit}
     />

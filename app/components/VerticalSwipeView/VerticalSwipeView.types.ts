@@ -8,5 +8,6 @@ export interface IVerticalSwipeViewProps {
   image?: ImageSourcePropType;
   topBackground: ImageSourcePropType;
   bottomBackground: ImageSourcePropType;
+  isHeader?: boolean;
   onSubmit: () => void;
 }

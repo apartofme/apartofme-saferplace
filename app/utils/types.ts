@@ -1,4 +1,4 @@
-import { CHARMS_BACKGROUNDS } from '../assets';
+import { BACKGROUND_IMAGES, CHARMS_BACKGROUNDS } from '../assets';
 import { ANIMATIONS, POTION_FILL_ANIMATIONS } from '../assets/animations';
 import {
   AVATARS_SVG,
@@ -75,6 +75,8 @@ export type TryNewSVG = keyof typeof SVG_TRY_NEW;
 export type EmotionsButtonSvgKeys = keyof typeof EMOTION_BUTTON_SVG;
 export type FavoriteCharmSvgKeys = keyof typeof SVG_FAVORITE_CHARM;
 export type CharmIllustrationsSvgKeys = keyof typeof SVG_CHARM_ILLUSTRATIONS;
+export type BackgroundImagesKeys = keyof typeof BACKGROUND_IMAGES;
+
 export type SvgComponentType = (props: ISvgProps) => JSX.Element;
 
 export type AnimationsKeys = keyof typeof ANIMATIONS;

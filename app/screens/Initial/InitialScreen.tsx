@@ -11,8 +11,8 @@ import { cacheSlice, questSlice } from '../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../constants/time';
 import { BACKGROUND_IMAGES } from '../../assets';
 import { generalStyles } from '../../utils/styles';
-import { NadiyaTextIcon } from '../../assets/svg/onboarding';
 import { showInternetErrorAlert } from '../../utils';
+import { NadiyaTextIcon } from '../../assets/svg/NadiyaTextIcon';
 
 export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,

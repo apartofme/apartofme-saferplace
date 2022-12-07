@@ -141,7 +141,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     if (isChild) {
       return BACKGROUND_IMAGES.ALTERNATIVE_GARDEN;
     }
-    return BACKGROUND_IMAGES.ONBOARDING_DEFAULT;
+    return BACKGROUND_IMAGES.GENERIC_ONBOARDING;
   }, [isChild]);
 
   return (

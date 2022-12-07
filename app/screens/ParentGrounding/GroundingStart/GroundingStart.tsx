@@ -14,15 +14,18 @@ export const GroundingStartScreen: React.FC<IGroundingStartScreenProps> = ({
   return (
     <VerticalSwipeView
       titleKey={'screens.parent_grounding_exercise.grounding_start.title'}
-      subtitleKey={'screens.parent_grounding_exercise.grounding_start.subtitle'}
+      subtitleKey={
+        'screens.parent_grounding_exercise.grounding_start.description'
+      }
       aboutTitleKey={
         'screens.parent_grounding_exercise.grounding_start.about_title'
       }
       aboutSubtitleKey={
-        'screens.parent_grounding_exercise.grounding_start.about_subtitle'
+        'screens.parent_grounding_exercise.grounding_start.about_description'
       }
       topBackground={BACKGROUND_IMAGES.PARENT_GROUNDING_WELCOME}
-      bottomBackground={BACKGROUND_IMAGES.MENU}
+      bottomBackground={BACKGROUND_IMAGES.PARENT_GROUNDING_WELCOME_BOTTOM}
+      isHeader={false}
       onSubmit={onSubmit}
     />
   );

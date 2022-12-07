@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, TouchableOpacity } from 'react-native';
 import { ICarouselInstance } from 'react-native-reanimated-carousel';
 
 import {
@@ -13,6 +13,9 @@ import { CHARMS_CAROUSEL } from './CharmsIntroducing.data';
 import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.types';
 import { styles } from './CharmsIntroducing.styles';
 import { BACKGROUND_IMAGES } from '../../../../assets';
+import { SVG } from '../../../../assets/svg';
+
+const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
   ({ navigation }) => {
@@ -27,11 +30,23 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
       carouselRef.current?.next();
     }, [index, navigation]);
 
+    const onBackArrowPress = useCallback(() => {
+      carouselRef.current?.prev();
+    }, []);
+
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
+        source={BACKGROUND_IMAGES.GARDEN}
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
+          {index > 0 && (
+            <TouchableOpacity
+              style={styles.backArrowContainer}
+              onPress={onBackArrowPress}>
+              <WhiteBackArrowIcon />
+            </TouchableOpacity>
+          )}
+
           <BottomButtonView
             buttonTitle={t('buttons.next')}
             isArrow={true}
@@ -43,6 +58,7 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
               setIndex={setIndex}
               carouselRef={carouselRef}
               carouselItemStyle={styles.carousel}
+              isProgressBar={false}
             />
           </BottomButtonView>
         </SafeAreaView>

@@ -36,6 +36,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   style,
   carouselStyle,
   carouselItemStyle,
+  isProgressBar = true,
 }) => {
   const progressValue = useSharedValue<number>(0);
 
@@ -143,7 +144,9 @@ export const Carousel: React.FC<ICarouselProps> = ({
         onProgressChange={onProgressChange}
         style={[generalStyles.flex, carouselStyle]}
       />
-      <View style={styles.progressBar}>{renderProgressBar()}</View>
+      {isProgressBar && (
+        <View style={styles.progressBar}>{renderProgressBar()}</View>
+      )}
     </GestureHandlerRootView>
   );
 };

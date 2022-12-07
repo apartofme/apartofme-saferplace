@@ -23,6 +23,7 @@ export interface ICarouselProps extends ViewProps {
   setIndex?: (index: number) => void;
   carouselStyle?: ViewStyle;
   carouselItemStyle?: ViewStyle;
+  isProgressBar?: boolean;
 }
 
 type CarouselImageType =
