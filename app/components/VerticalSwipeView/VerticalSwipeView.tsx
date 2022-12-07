@@ -93,7 +93,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
                       style={generalStyles.brilliantWhiteCenter}>
                       {t(titleKey)}
                     </ExtendedText>
-                    {subtitleKey && (
+                    {!!subtitleKey && (
                       <ExtendedText
                         preset="secondary-text"
                         style={[generalStyles.greyCenter, styles.topSubtitle]}>
@@ -137,7 +137,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
                     </ExtendedText>
                   </TouchableOpacity>
 
-                  {aboutTitleKey && (
+                  {!!aboutTitleKey && (
                     <ExtendedText
                       preset="large-title"
                       style={styles.bottomTitle}>
@@ -145,7 +145,7 @@ export const VerticalSwipeView: React.FC<IVerticalSwipeViewProps> = ({
                     </ExtendedText>
                   )}
                   <ScrollView showsVerticalScrollIndicator={false}>
-                    {aboutSubtitleKey && (
+                    {!!aboutSubtitleKey && (
                       <ExtendedText
                         preset="body-regular"
                         style={generalStyles.brilliantWhite}>

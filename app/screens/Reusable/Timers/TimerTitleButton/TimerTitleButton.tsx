@@ -102,8 +102,8 @@ export const TimerTitleButtonScreen: React.FC<ITimerTitleButtonScreenProps> = ({
       <SafeAreaView style={generalStyles.flex}>
         <Header />
         <View style={styles.container}>
-          {title && <Title />}
-          {description && (
+          {!!title && <Title />}
+          {!!description && (
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>

@@ -1,14 +1,16 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { WINDOW_COEFFICIENT } from '../../../../constants/window';
+import { COLORS } from '../../../../themes/colors';
 
 interface ISignUpCredentialsScreenStyles {
   container: ViewStyle;
   subtitle: ViewStyle;
   mt16: ViewStyle;
   bottomConatainer: ViewStyle;
-  mb24: ViewStyle;
+  mb16: ViewStyle;
   footerTitle: ViewStyle;
+  checkBoxTitle: TextStyle;
 }
 
 export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
@@ -31,10 +33,15 @@ export const styles = StyleSheet.create<ISignUpCredentialsScreenStyles>({
     paddingHorizontal: 40,
     marginBottom: 24,
   },
-  mb24: {
-    marginBottom: 24 * WINDOW_COEFFICIENT,
+  mb16: {
+    marginBottom: 16 * WINDOW_COEFFICIENT,
   },
   footerTitle: {
     textAlign: 'center',
+  },
+  checkBoxTitle: {
+    paddingLeft: 12,
+    maxWidth: 290,
+    color: COLORS.BRILLIANT_WHITE,
   },
 });

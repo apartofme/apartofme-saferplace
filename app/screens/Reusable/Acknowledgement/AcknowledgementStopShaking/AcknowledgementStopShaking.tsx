@@ -82,7 +82,7 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
             isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
-            {Icon && <Icon />}
+            {!!Icon && <Icon />}
             <Title />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}

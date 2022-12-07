@@ -32,16 +32,16 @@ export const IconTitleDescription: React.FC<ICarouselItemProps<ICarouselItem>> =
 
     return (
       <View style={[styles.container, style]}>
-        {Icon && <Icon />}
+        {!!Icon && <Icon />}
         <View>
-          {data.titleKey && (
+          {!!data.titleKey && (
             <ExtendedText
               preset="large-title"
               style={[styles.title, titleIndent]}>
               {t(data.titleKey)}
             </ExtendedText>
           )}
-          {data.descriptionKey && (
+          {!!data.descriptionKey && (
             <ExtendedText preset="secondary-text" style={styles.subtitle}>
               {t(data.descriptionKey)}
             </ExtendedText>

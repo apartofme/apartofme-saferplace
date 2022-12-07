@@ -86,7 +86,7 @@ export const AcknowledgementAlongEdgesDoubleButtonScreen: React.FC<IAcknowledgem
             onSubmit={positiveNavigate}
             style={styles.container}>
             <Title />
-            {Icon && (
+            {!!Icon && (
               <Icon height={image ? 240 : 325} width={image ? 240 : 325} />
             )}
             <Description />

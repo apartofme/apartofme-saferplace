@@ -14,8 +14,8 @@ export const IconDescription: React.FC<ICarouselItemProps<IIconDescription>> =
 
     return (
       <View style={[styles.container, style]}>
-        {Icon && <Icon />}
-        {data.descriptionKey && (
+        {!!Icon && <Icon />}
+        {!!data.descriptionKey && (
           <ExtendedText preset="secondary-text" style={styles.subtitle}>
             {t(data.descriptionKey)}
           </ExtendedText>

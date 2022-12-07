@@ -75,7 +75,7 @@ export const AcknowledgementSupportScreen: React.FC<IAcknowledgementSupportScree
             <ExtendedText preset="body-regular" style={styles.title}>
               {title}
             </ExtendedText>
-            {Icon && (
+            {!!Icon && (
               <View style={styles.imageContainer}>
                 <Icon width={280} height={300} />
               </View>

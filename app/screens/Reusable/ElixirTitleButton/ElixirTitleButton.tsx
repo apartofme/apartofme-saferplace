@@ -142,7 +142,7 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
             buttonTitle={buttonTitle}
             onSubmit={onSabmit}
             style={styles.container}>
-            {title && (
+            {!!title && (
               <ExtendedText preset="title" style={styles.title}>
                 {title}
               </ExtendedText>

@@ -83,13 +83,13 @@ export const Card: React.FC<ICarouselItemProps<ICarouselItem>> = ({
     <GestureHandlerRootView style={generalStyles.flex}>
       <Animated.View
         style={[styles.contentContainer, cardHeight, style, animationStyle]}>
-        {Icon && <Icon width={96} height={96} />}
-        {data.titleKey && (
+        {!!Icon && <Icon width={96} height={96} />}
+        {!!data.titleKey && (
           <ExtendedText preset="heading" style={styles.title}>
             {t(data.titleKey)}
           </ExtendedText>
         )}
-        {data.descriptionKey && (
+        {!!data.descriptionKey && (
           <ExtendedText
             preset="tertiary-text-regular"
             style={styles.description}>

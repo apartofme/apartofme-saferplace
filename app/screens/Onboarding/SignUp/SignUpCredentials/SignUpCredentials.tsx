@@ -28,6 +28,8 @@ import { COLORS } from '../../../../themes/colors';
 import { SVG } from '../../../../assets/svg';
 import { SETTINGS_PRIVACY_MENU } from '../../../Menu/SettingsPrivacy/SettingsPrivacy.data';
 import { SCROLL_DELAY } from '../../../../constants/time';
+import { Square } from '../../../../components/CheckBox/components';
+import { parseText } from '../../../../utils/parsers';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -37,6 +39,8 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     const dispatch = useAppDispatch();
     const [isFocus, setIsFocus] = useState(false);
     const scrollViewRef = useRef<ScrollView>(null);
+
+    const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
     const onSignUpPress = useCallback(
       ({ email, password }) => {
@@ -55,22 +59,20 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
       navigation.navigate('Login');
     }, [navigation]);
 
-    // TODO: change to SETTINGS_PRIVACY_MENU[3] when Language selection add
     const onConditionPress = useCallback(() => {
-      if (SETTINGS_PRIVACY_MENU[2].data) {
-        navigation.navigate('MenuStack', {
-          screen: 'Conditions',
-          params: { data: SETTINGS_PRIVACY_MENU[2].data },
-        });
-      }
-    }, [navigation]);
-
-    // TODO: change to SETTINGS_PRIVACY_MENU[4] when Language selection add
-    const onPrivacyPress = useCallback(() => {
       if (SETTINGS_PRIVACY_MENU[3].data) {
         navigation.navigate('MenuStack', {
           screen: 'Conditions',
           params: { data: SETTINGS_PRIVACY_MENU[3].data },
+        });
+      }
+    }, [navigation]);
+
+    const onPrivacyPress = useCallback(() => {
+      if (SETTINGS_PRIVACY_MENU[4].data) {
+        navigation.navigate('MenuStack', {
+          screen: 'Conditions',
+          params: { data: SETTINGS_PRIVACY_MENU[4].data },
         });
       }
     }, [navigation]);
@@ -82,6 +84,16 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
         }, SCROLL_DELAY);
       }
     }, [isFocus]);
+
+    const onCheckBoxPress = useCallback(() => {
+      setToggleCheckBox(!toggleCheckBox);
+    }, [toggleCheckBox]);
+
+    const CheckBoxTitle = parseText({
+      text: t('screens.onboarding.sign_up_credentials.receive_information'),
+      preset: 'tertiary-text-regular',
+      style: styles.checkBoxTitle,
+    });
 
     return (
       <View style={generalStyles.flex}>
@@ -144,7 +156,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                       </TouchableOpacity>
                     </View>
 
-                    <View style={styles.mb24}>
+                    <View style={styles.mb16}>
                       <ExtendedTextInput
                         type={ExtendedTextInputType.Email}
                         onChangeText={handleChange('email')}
@@ -173,6 +185,16 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                         }
                       />
                     </View>
+                    <TouchableOpacity
+                      onPress={onCheckBoxPress}
+                      style={[
+                        generalStyles.row,
+                        generalStyles.aiCenter,
+                        styles.mb16,
+                      ]}>
+                      <Square isActive={toggleCheckBox} />
+                      <CheckBoxTitle />
+                    </TouchableOpacity>
                   </ScrollView>
                 </BottomButtonView>
               )}
