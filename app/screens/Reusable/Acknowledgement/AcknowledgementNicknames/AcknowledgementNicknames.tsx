@@ -69,7 +69,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
             onSubmit={onSubmit}
             isArrow
             style={styles.container}>
-            {Icon && <Icon />}
+            {!!Icon && <Icon />}
 
             <View style={generalStyles.aiCenter}>
               <Title />

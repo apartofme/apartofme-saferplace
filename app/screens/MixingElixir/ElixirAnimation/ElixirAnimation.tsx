@@ -164,7 +164,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       />
       <SafeAreaView style={styles.container}>
         <ExtendedText preset="title" style={styles.title}>
-          {title && t(title)}
+          {!!title && t(title)}
         </ExtendedText>
       </SafeAreaView>
     </ImageBackground>

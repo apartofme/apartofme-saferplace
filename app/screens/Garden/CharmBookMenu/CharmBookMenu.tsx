@@ -260,7 +260,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         onLeftIconPress={setModalStatus}
       />
       {menuContent}
-      {button && button}
+      {!!button && button}
     </SafeAreaView>
   );
 };

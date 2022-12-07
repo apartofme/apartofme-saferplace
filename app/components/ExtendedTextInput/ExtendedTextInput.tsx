@@ -80,7 +80,7 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
 
   return (
     <View>
-      {label && (
+      {!!label && (
         <ExtendedText style={[styles.label, labelStyle]}>{label}</ExtendedText>
       )}
       <InputComponent

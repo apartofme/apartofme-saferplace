@@ -47,7 +47,7 @@ export const CharmTimerButtonScreen: React.FC<ICharmTimerButtonScreenProps> = ({
           onSubmit={onSubmit}
           isArrow
           style={styles.container}>
-          {image && (
+          {!!image && (
             <Lottie
               source={ANIMATIONS[image as AnimationsKeys]}
               autoPlay

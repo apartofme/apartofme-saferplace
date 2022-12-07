@@ -164,12 +164,12 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
       <SafeAreaView style={generalStyles.flex}>
         {renderHeader()}
         <View style={styles.container}>
-          {title && (
+          {!!title && (
             <ExtendedText preset="large-title" style={styles.title}>
               {title}
             </ExtendedText>
           )}
-          {description && (
+          {!!description && (
             <ExtendedText
               preset="secondary-text"
               style={generalStyles.greyCenter}>

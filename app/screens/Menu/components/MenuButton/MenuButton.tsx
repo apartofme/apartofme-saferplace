@@ -20,7 +20,7 @@ export const MenuButton: React.FC<IMenuButtonProps> = ({
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={[generalStyles.row, generalStyles.aiCenter]}>
-        {IconSvgComponent && (
+        {!!IconSvgComponent && (
           <View style={styles.imageContainer}>
             <IconSvgComponent />
           </View>

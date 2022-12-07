@@ -21,7 +21,7 @@ export const MainHeader: React.FC<IMainHeaderProps> = ({
       ) : (
         <View style={styles.emptyContainer} />
       )}
-      {title && <ExtendedText>{title}</ExtendedText>}
+      {!!title && <ExtendedText>{title}</ExtendedText>}
       {rightIcon ? (
         <TouchableOpacity onPress={onRightIconPress}>
           {rightIcon}

@@ -38,7 +38,7 @@ export const Avatar: React.FC<ICarouselItemProps<IAvatarItem>> = ({
   return (
     <GestureHandlerRootView style={[generalStyles.flex]}>
       <Animated.View style={[styles.container, style, animationStyle]}>
-        {Icon && <Icon />}
+        {!!Icon && <Icon />}
       </Animated.View>
     </GestureHandlerRootView>
   );

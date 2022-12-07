@@ -75,7 +75,7 @@ export const MainMenuScreen: React.FC<IMainMenuScreenProps> = ({
             onRightIconPress={navigation.goBack}
           />
           <View style={styles.avatar}>
-            {AvatarIcon && <AvatarIcon width={100} height={100} />}
+            {!!AvatarIcon && <AvatarIcon width={100} height={100} />}
           </View>
           <View style={styles.topContentContainer}>
             <View style={generalStyles.row}>

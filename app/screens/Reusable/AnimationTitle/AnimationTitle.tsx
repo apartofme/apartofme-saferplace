@@ -135,7 +135,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
           <ExtendedText
             preset={description ? 'title' : 'large-title'}
             style={styles.title}>
-            {title && t(title)}
+            {!!title && t(title)}
           </ExtendedText>
         </SafeAreaView>
       </>

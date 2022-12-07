@@ -105,7 +105,7 @@ export const AcknowledgementAlongEdgesScreen: React.FC<IAcknowledgementAlongEdge
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            {Icon && (
+            {!!Icon && (
               <Icon
                 height={image || isTroublesomeSpirit ? 240 : 325}
                 width={image || isTroublesomeSpirit ? 240 : 325}

@@ -136,7 +136,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
             isArrow={!buttonTitle}
             onSubmit={onSubmit}
             style={styles.container}>
-            {Icon && <Icon reduceSize={true} />}
+            {!!Icon && <Icon reduceSize={true} />}
             <Title />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}

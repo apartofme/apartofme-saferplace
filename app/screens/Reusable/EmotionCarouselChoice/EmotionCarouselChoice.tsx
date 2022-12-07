@@ -85,9 +85,9 @@ export const EmotionCarouselChoiceScreen: React.FC<IEmotionCarouselChoiceScreenP
             style={styles.container}>
             <Title />
             <View style={styles.card}>
-              {Icon && <Icon />}
+              {!!Icon && <Icon />}
               <ExtendedText preset="heading" style={styles.cardTitle}>
-                {emotionItem && t(emotionItem.titleKey)}
+                {!!emotionItem && t(emotionItem.titleKey)}
               </ExtendedText>
             </View>
             <ExtendedText preset="secondary-text" style={styles.subtitle}>

@@ -52,7 +52,7 @@ export const GroundingAcknowledgementTitle: React.FC<IGroundingAcknowledgementTi
             isArrow={true}
             onSubmit={onSubmit}
             style={styles.container}>
-            {Icon && <Icon />}
+            {!!Icon && <Icon />}
             <Title />
             <ExtendedText preset="secondary-text" style={styles.description}>
               {t(subtitle)}

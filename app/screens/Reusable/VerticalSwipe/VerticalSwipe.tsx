@@ -138,7 +138,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                   )}
                   <View style={styles.topContentContainer}>
                     <View style={styles.iconContainer}>
-                      {image && <Icon />}
+                      {!!image && <Icon />}
                     </View>
                     <ExtendedText
                       preset="large-title"

@@ -67,7 +67,7 @@ export const DialogView: React.FC<IDialogViewProps> = ({
       source={BACKGROUND_IMAGES.GARDEN}
       style={generalStyles.flex}>
       <SafeAreaView style={styles.container}>
-        {Icon && (
+        {!!Icon && (
           <View
             style={[
               styles.iconContainer,

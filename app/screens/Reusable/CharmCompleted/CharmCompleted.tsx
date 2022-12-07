@@ -90,7 +90,7 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
           isArrow={!buttonTitle}
           onSubmit={onSubmit}
           style={styles.container}>
-          {image && <Icon />}
+          {!!image && <Icon />}
           <Title />
           <ExtendedText preset="secondary-text" style={styles.description}>
             {description}

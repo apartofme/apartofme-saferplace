@@ -63,7 +63,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
                 : HIT_SLOP
             }
             onPress={() => selectPlantArea(currentPlantArea)}>
-            {currentPlant && <Plant plant={currentPlant} />}
+            {!!currentPlant && <Plant plant={currentPlant} />}
           </Pressable>
         );
       }
@@ -75,7 +75,7 @@ export const PlantArea: React.FC<IPlantAreaProps> = ({
             styles.borderTransparent,
             additionalStyles,
           ]}>
-          {currentPlant && <Plant plant={currentPlant} />}
+          {!!currentPlant && <Plant plant={currentPlant} />}
         </View>
       );
     },

@@ -147,7 +147,7 @@ export const EscapeMenuScreen: React.FC<IEscapeMenuScreenProps> = ({
             title={t('buttons.the_charm_of_grounding')}
             style={styles.button}
           />
-          {escapeMenuAlternativeNavigateTo && (
+          {!!escapeMenuAlternativeNavigateTo && (
             <ExtendedButton
               title={t('buttons.try_an_alternative')}
               style={styles.button}

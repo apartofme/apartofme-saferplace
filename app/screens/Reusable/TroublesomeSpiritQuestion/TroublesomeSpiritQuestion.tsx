@@ -60,7 +60,7 @@ export const TroublesomeSpiritQuestionScreen: React.FC<ITroublesomeSpiritQuestio
             <Title />
             <View style={styles.cardContainer}>
               <View style={styles.card}>
-                {Icon && <Icon width={96} height={96} />}
+                {!!Icon && <Icon width={96} height={96} />}
                 <ExtendedText preset="heading" style={styles.subtitle}>
                   {description}
                 </ExtendedText>

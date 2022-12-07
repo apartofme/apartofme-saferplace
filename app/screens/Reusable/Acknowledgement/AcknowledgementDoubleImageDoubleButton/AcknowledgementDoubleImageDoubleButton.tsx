@@ -76,7 +76,7 @@ export const AcknowledgementDoubleImageDoubleButtonScreen: React.FC<IAcknowledge
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
-            {AvatarsIcon && <AvatarsIcon />}
+            {!!AvatarsIcon && <AvatarsIcon />}
             <ExtendedText preset="secondary-text" style={styles.description}>
               {description}
             </ExtendedText>

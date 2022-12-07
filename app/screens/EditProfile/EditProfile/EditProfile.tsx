@@ -80,7 +80,7 @@ export const EditProfileScreen: React.FC<IEditProfileScreenProps> = ({
         />
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView buttonTitle={t('buttons.save')} onSubmit={onSubmit}>
-            {Icon && !active && (
+            {!!Icon && !active && (
               <View style={generalStyles.aiCenter}>
                 <Icon />
               </View>
