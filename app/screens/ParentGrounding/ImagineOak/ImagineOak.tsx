@@ -8,12 +8,13 @@ export const ImagineOakScreen: React.FC<IImagineOakScreenProps> = ({
   navigation,
 }) => {
   const onSubmit = useCallback(() => {
-    navigation.push('EarthConnection');
+    navigation.push('ImagineTreeRoot');
   }, [navigation]);
 
   return (
     <GroundingAcknowledgement
       title={'screens.parent_grounding_exercise.imagine_oak.title'}
+      subtitle={'screens.parent_grounding_exercise.imagine_oak.description'}
       buttonTitle={'buttons.next'}
       isButtonArrow={true}
       backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_IMAGINE_OAK}

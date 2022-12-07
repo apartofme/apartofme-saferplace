@@ -1,1 +1,0 @@
-export { WellDoneScreen } from './WellDone';

@@ -1,22 +1,30 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../../constants/window';
 import { COLORS } from '../../../../themes/colors';
 
 interface IGroundingAcknowledgementStyles {
   container: ViewStyle;
   title: TextStyle;
+  subtitle: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IGroundingAcknowledgementStyles>({
   container: {
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     paddingHorizontal: 40,
-    paddingBottom: 60,
+    marginTop: 350 * WINDOW_COEFFICIENT,
+    alignItems: 'center',
   },
   title: {
-    flex: 1,
-    maxHeight: 132,
+    maxWidth: 295,
     color: COLORS.BRILLIANT_WHITE,
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  subtitle: {
+    maxWidth: 295,
+    color: COLORS.LIGHT_GREY,
     textAlign: 'center',
   },
 });

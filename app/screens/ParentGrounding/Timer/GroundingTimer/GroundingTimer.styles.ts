@@ -1,7 +1,7 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
-import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../../../constants/window';
-import { COLORS } from '../../../themes/colors';
+import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../../../../constants/window';
+import { COLORS } from '../../../../themes/colors';
 
 interface IGroundingTimerScreenStyles {
   container: ViewStyle;

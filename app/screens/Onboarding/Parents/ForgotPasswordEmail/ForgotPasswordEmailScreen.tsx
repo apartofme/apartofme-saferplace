@@ -38,7 +38,7 @@ export const ForgotPasswordEmailScreen: React.FC<IForgotPasswordEmailScreenProps
     return (
       <View style={generalStyles.flex}>
         <Image
-          source={BACKGROUND_IMAGES.ONBOARDING_DEFAULT}
+          source={BACKGROUND_IMAGES.GENERIC_ONBOARDING}
           style={generalStyles.backgroundImage}
         />
         <SafeAreaView style={generalStyles.flex}>

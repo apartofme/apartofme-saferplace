@@ -42,7 +42,7 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
 
   return (
     <ImageBackground
-      source={BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT}
+      source={BACKGROUND_IMAGES.PARENT_GROUNDING_WELCOME_BOTTOM}
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <MainHeader
@@ -50,7 +50,8 @@ export const GroundingInstructionScreen: React.FC<IInstructionScreenProps> = ({
           onLeftIconPress={navigation.goBack}
         />
         <BottomButtonView
-          buttonTitle={t('buttons.ready')}
+          isArrow
+          buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
           style={styles.container}>
           <ExtendedText preset="title" style={styles.title}>

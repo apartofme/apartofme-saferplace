@@ -1,8 +1,9 @@
 import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
-import { ImageSourcePropType } from 'react-native';
 
-import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
-import { SvgKeys } from '../../../utils/types';
+import {
+  MergedStackParams,
+  NavigationRouteNames,
+} from '../../../../navigation/stacks/mergedParams';
 
 type NavigationProps = StackNavigationProp<
   MergedStackParams,
@@ -18,9 +19,7 @@ export interface IGroundingAcknowledgementTitleScreenProps
     RouteProps {}
 
 export interface IGroundingAcknowledgementTitleRoute {
-  title: string;
-  subtitle: string;
-  buttonTitle: string;
-  iconKey: SvgKeys;
-  backgroundImage: ImageSourcePropType;
+  titleKey: string;
+  subtitleKey: string;
+  nextRouteName: NavigationRouteNames;
 }

@@ -13,7 +13,7 @@ export const GroundingCompletedScreen: React.FC<IGroundingCompletedScreenProps> 
           'screens.parent_grounding_exercise.grounding_completed.description'
         }
         buttonTitle={'buttons.next'}
-        backgroundImage={BACKGROUND_IMAGES.PARENT_GROUDING_BRINGING_ROOTS}
+        backgroundImage={BACKGROUND_IMAGES.PARENT_GROUNDING_EARTH_STRESS}
         onNextRouteName={'JointOnboardingStack'}
       />
     );

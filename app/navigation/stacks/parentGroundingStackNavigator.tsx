@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import {
   GroundingStartScreen,
-  GroundingInputScreen,
   GroundingInstructionScreen,
   GroundingTimerScreen,
   GroundingAcknowledgementTitleScreen,
@@ -15,19 +14,20 @@ import {
   EarthConnectionScreen,
   EarthStressScreen,
   BringingRootsScreen,
-  WellDoneScreen,
   GroundingCompletedScreen,
+  GroundingTimerInstructionScreen,
+  IGroundingTimerInstructionItem,
+  IGroundingTimerRoute,
+  MinuteTimerInstructionScreen,
 } from '../../screens';
 
 import { DEFAULT_STACK_OPTIONS } from '../options';
-import { NavigationRouteNames } from './mergedParams';
 
 export type ParentGroundingStackParams = {
   GroundingStart: undefined;
-
   GroundingInstruction: undefined;
   GroundingAcknowledgementTitle: { data: IGroundingAcknowledgementTitleRoute };
-  GroundingTimer: { nextRouteName: NavigationRouteNames };
+  GroundingTimer: { data: IGroundingTimerRoute };
   GroundingInput: undefined;
   CloseEyes: undefined;
   StampFeet: undefined;
@@ -38,6 +38,8 @@ export type ParentGroundingStackParams = {
   BringingRoots: undefined;
   WellDone: undefined;
   GroundingCompleted: undefined;
+  GroundingTimerInstruction: { data: IGroundingTimerInstructionItem };
+  MinuteTimerInstruction: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParentGroundingStackParams>();
@@ -45,8 +47,6 @@ const Stack = createNativeStackNavigator<ParentGroundingStackParams>();
 export const ParentGroundingStackNavigator = () => (
   <Stack.Navigator screenOptions={DEFAULT_STACK_OPTIONS}>
     <Stack.Screen name="GroundingStart" component={GroundingStartScreen} />
-    <Stack.Screen name="GroundingInput" component={GroundingInputScreen} />
-
     <Stack.Screen
       name="GroundingInstruction"
       component={GroundingInstructionScreen}
@@ -63,10 +63,17 @@ export const ParentGroundingStackNavigator = () => (
     <Stack.Screen name="EarthConnection" component={EarthConnectionScreen} />
     <Stack.Screen name="EarthStress" component={EarthStressScreen} />
     <Stack.Screen name="BringingRoots" component={BringingRootsScreen} />
-    <Stack.Screen name="WellDone" component={WellDoneScreen} />
     <Stack.Screen
       name="GroundingCompleted"
       component={GroundingCompletedScreen}
+    />
+    <Stack.Screen
+      name="GroundingTimerInstruction"
+      component={GroundingTimerInstructionScreen}
+    />
+    <Stack.Screen
+      name="MinuteTimerInstruction"
+      component={MinuteTimerInstructionScreen}
     />
   </Stack.Navigator>
 );

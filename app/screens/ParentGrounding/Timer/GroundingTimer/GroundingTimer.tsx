@@ -14,15 +14,15 @@ import {
 } from 'react-native';
 import Lottie from 'lottie-react-native';
 
-import { BACKGROUND_IMAGES } from '../../../assets';
-import { ANIMATIONS } from '../../../assets/animations';
-import { SVG } from '../../../assets/svg';
-import { ExtendedText, MainHeader } from '../../../components';
-import { TEN_SECONDS } from '../../../constants/time';
-import { generalStyles } from '../../../utils/styles';
+import { BACKGROUND_IMAGES } from '../../../../assets';
+import { ANIMATIONS } from '../../../../assets/animations';
+import { SVG } from '../../../../assets/svg';
+import { ExtendedText, MainHeader } from '../../../../components';
+import { TEN_SECONDS } from '../../../../constants/time';
+import { generalStyles } from '../../../../utils/styles';
 import { styles } from './GroundingTimer.styles';
 import { IGroundingTimerScreenProps } from './GroundingTimer.types';
-import { LottieAbsoluteStyles } from '../../../utils';
+import { LottieAbsoluteStyles } from '../../../../utils';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
@@ -32,11 +32,18 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { nextRouteName } = route.params;
+  const {
+    nextRouteName,
+    acknowledgementTitleKey,
+    acknowledgementSubtitleKey,
+    duration,
+  } = route.params.data;
 
   const lottieRef = useRef<Lottie>(null);
 
-  const [timerValue, setTimerValue] = useState(TEN_SECONDS);
+  const [timerValue, setTimerValue] = useState(
+    duration ? duration : TEN_SECONDS,
+  );
   const [isTimerPause, setIsTimerPause] = useState(false);
   const isFocused = useIsFocused();
 
@@ -54,7 +61,13 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
           clearInterval(timer);
         };
       }
-      navigation.push(nextRouteName);
+      navigation.push('GroundingAcknowledgementTitle', {
+        data: {
+          titleKey: acknowledgementTitleKey,
+          subtitleKey: acknowledgementSubtitleKey,
+          nextRouteName,
+        },
+      });
     }
     // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -8,7 +8,7 @@ export const BringingRootsScreen: React.FC<IBringingRootsScreenProps> = ({
   navigation,
 }) => {
   const onSubmit = useCallback(() => {
-    navigation.push('WellDone');
+    navigation.push('EarthStress');
   }, [navigation]);
 
   return (
@@ -18,6 +18,7 @@ export const BringingRootsScreen: React.FC<IBringingRootsScreenProps> = ({
       isButtonArrow={true}
       backgroundImage={BACKGROUND_IMAGES.PARENT_GROUDING_BRINGING_ROOTS}
       onSubmit={onSubmit}
+      subtitle={'screens.parent_grounding_exercise.bringing_roots.description'}
     />
   );
 };

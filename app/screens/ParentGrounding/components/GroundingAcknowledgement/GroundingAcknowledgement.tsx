@@ -13,15 +13,28 @@ import { useParsedJSXTextNickname } from '../../../../hooks';
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const GroundingAcknowledgement: React.FC<IGroundingAcknowledgementProps> =
-  ({ title, buttonTitle, isButtonArrow, backgroundImage, onSubmit }) => {
+  ({
+    title,
+    subtitle,
+    buttonTitle,
+    isButtonArrow,
+    backgroundImage,
+    onSubmit,
+  }) => {
     const navigation = useNavigation();
     const { t } = useTranslation();
 
     const Title = useParsedJSXTextNickname({
       text: t(title),
       textHasNickname: true,
-      preset: 'body-regular',
+      preset: 'title',
       style: styles.title,
+    });
+
+    const SubTitle = useParsedJSXTextNickname({
+      text: t(subtitle),
+      textHasNickname: true,
+      style: styles.subtitle,
     });
 
     return (
@@ -37,6 +50,7 @@ export const GroundingAcknowledgement: React.FC<IGroundingAcknowledgementProps> 
             onSubmit={onSubmit}
             style={styles.container}>
             <Title />
+            <SubTitle />
           </BottomButtonView>
         </SafeAreaView>
       </ImageBackground>
