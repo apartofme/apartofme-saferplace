@@ -223,6 +223,7 @@ import { CharmOfSanctuaryIcon } from './favoriteCharms/CharmOfSanctuaryIcon';
 import { TruthCards } from './TruthCards';
 import { RoundPlussIcon } from './RoundPlussIcon';
 import { InfoIcon } from './InfoIcon';
+import { NadiyaTextIcon } from './NadiyaTextIcon';
 
 export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
@@ -243,6 +244,7 @@ export const SVG = {
   HappySidekickGuideIcon: HappySidekickGuideIcon,
   HappySmokeSidekickGuideIcon: HappySmokeSidekickGuideIcon,
   InfoIcon: InfoIcon,
+  NadiyaTextIcon: NadiyaTextIcon,
   OpenBookIcon: OpenBookIcon,
   OpenedEyeIcon: OpenedEyeIcon,
   OrangeCircleCrossIcon: OrangeCircleCrossIcon,
