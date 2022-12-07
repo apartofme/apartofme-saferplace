@@ -41,15 +41,13 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
 
   const lottieRef = useRef<Lottie>(null);
 
-  const [timerValue, setTimerValue] = useState(
-    duration ? duration : TEN_SECONDS,
-  );
+  const [timerValue, setTimerValue] = useState(duration ?? TEN_SECONDS);
   const [isTimerPause, setIsTimerPause] = useState(false);
   const isFocused = useIsFocused();
 
   useEffect(() => {
     if (isFocused) {
-      setTimerValue(duration ? duration : TEN_SECONDS);
+      setTimerValue(duration ?? TEN_SECONDS);
     }
   }, [duration, isFocused]);
 
