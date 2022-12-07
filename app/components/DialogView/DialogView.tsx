@@ -7,7 +7,6 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import { getKeyFromLocalizationString } from '../../utils';
 import { ExtendedText } from '../ExtendedText';
@@ -29,7 +28,7 @@ export const DialogView: React.FC<IDialogViewProps> = ({
 }) => {
   const { t } = useTranslation();
   const [currentSpeechIdx, setCurrentSpeechIdx] = useState(initialIdx);
-  const navigation = useNavigation();
+
   useEffect(() => {
     setCurrentSpeechIdx(initialIdx);
   }, [initialIdx]);

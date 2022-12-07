@@ -18,7 +18,6 @@ import { SPIRIT_INTRO_DIALOG } from '../RecognitionDialog/RecognitionDialog.data
 import { SVG } from '../../../assets/svg';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
-const WhiteCrossIcon = SVG.WhiteCrossIcon;
 const CompassionateGuideIcon = SVG.CompassionateGuideIcon;
 
 export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgementScreenProps> =

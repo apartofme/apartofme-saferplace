@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { useMemo } from 'react';
 import {
   ImageBackground,
@@ -9,11 +8,8 @@ import {
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { CHARMS_SVG, SVG } from '../../../assets/svg';
-import {
-  DAY_14_CLOSING_DIALOGUE_ID,
-  OPEN_DIALOG_IDS,
-} from '../../../constants/quest';
-import { useAppSelector, useMount } from '../../../hooks';
+import { DAY_14_CLOSING_DIALOGUE_ID } from '../../../constants/quest';
+import { useAppSelector } from '../../../hooks';
 import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
