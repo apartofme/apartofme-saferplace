@@ -49,9 +49,9 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
 
   useEffect(() => {
     if (isFocused) {
-      setTimerValue(TEN_SECONDS);
+      setTimerValue(duration ? duration : TEN_SECONDS);
     }
-  }, [isFocused]);
+  }, [duration, isFocused]);
 
   useEffect(() => {
     if (!isTimerPause) {
