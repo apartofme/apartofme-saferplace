@@ -10,7 +10,7 @@ interface IEmotionSelectionScreenStyles {
 
 export const styles = StyleSheet.create<IEmotionSelectionScreenStyles>({
   container: {
-    paddingLeft: 24,
+    paddingHorizontal: 24,
   },
   title: {
     color: COLORS.LIGHT_GREY,

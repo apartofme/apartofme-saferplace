@@ -20,25 +20,13 @@ export const EmotionButton: React.FC<IEmotionButtonProps> = ({
     setSelected(selectedItem);
   }, [selectedItem, setSelected]);
 
-  const [emotions, setEmotions] = useState(
-    data.length % 2 === 0 ? data : [...data, data[0]],
-  );
-
-  useEffect(() => {
-    setEmotions(data.length % 2 === 0 ? data : [...data, data[0]]);
-  }, [data]);
-
   const renderItem = useCallback(
-    ({ item, index }: { item: IEmotionButton; index: number }) => {
+    ({ item }: { item: IEmotionButton; index: number }) => {
       const Icon = EMOTION_BUTTON_SVG[item.iconKey];
 
       const onSelectedPress = () => {
         setSelectedItem(item.type);
       };
-
-      if (data.length % 2 !== 0 && index === emotions.length - 1) {
-        return <View style={styles.emptyContainer} />;
-      }
       return (
         <TouchableOpacity
           onPress={onSelectedPress}
@@ -60,15 +48,13 @@ export const EmotionButton: React.FC<IEmotionButtonProps> = ({
         </TouchableOpacity>
       );
     },
-    [data.length, emotions, selectedItem],
+    [selectedItem],
   );
 
   return (
     <FlatList
-      data={emotions}
+      data={data}
       renderItem={renderItem}
-      numColumns={2}
-      columnWrapperStyle={styles.row}
       showsVerticalScrollIndicator={false}
     />
   );

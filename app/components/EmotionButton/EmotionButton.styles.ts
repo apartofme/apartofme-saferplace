@@ -1,13 +1,11 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
 import { COLORS } from '../../themes/colors';
-import { hexTransparency } from '../../utils';
 
 interface IEmojiButtonsStyles {
   row: ViewStyle;
   buttonContainer: ViewStyle;
   buttonImage: ImageStyle;
-  emptyContainer: ViewStyle;
   activeButton: ViewStyle;
   title: TextStyle;
   image: ImageStyle;
@@ -19,25 +17,20 @@ export const styles = StyleSheet.create<IEmojiButtonsStyles>({
     marginBottom: 24,
   },
   title: {
-    color: hexTransparency(COLORS.LIGHT_GREY, 90),
+    color: COLORS.LIGHT_GREY,
     textAlign: 'center',
-    marginTop: 12,
-  },
-  emptyContainer: {
-    flex: 1,
-    alignItems: 'center',
-    paddingHorizontal: 27,
-    marginRight: 25,
+    marginLeft: 16,
   },
   buttonContainer: {
     flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 24,
-    paddingHorizontal: 27,
-    marginRight: 24,
-    backgroundColor: hexTransparency(COLORS.PRIMARY_PURPLE, 90),
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    backgroundColor: COLORS.PRIMARY_PURPLE,
     borderRadius: 24,
-    borderColor: hexTransparency(COLORS.PRIMARY_ORANGE, 90),
+    marginBottom: 16,
+    borderColor: COLORS.PRIMARY_ORANGE,
     borderWidth: 1,
   },
   buttonImage: {
