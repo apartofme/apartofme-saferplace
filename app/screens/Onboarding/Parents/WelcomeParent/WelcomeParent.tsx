@@ -34,7 +34,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView
-          buttonTitle={t('buttons.signup')}
+          buttonTitle={t('buttons.start')}
           onSubmit={onSignUpPress}
           style={styles.container}>
           <ExtendedText
