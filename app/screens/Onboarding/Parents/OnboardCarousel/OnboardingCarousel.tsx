@@ -1,63 +1,76 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageBackground, TouchableOpacity } from 'react-native';
+import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ICarouselInstance } from 'react-native-reanimated-carousel';
 
-import { Carousel, CarouselType, ExtendedButton } from '../../../../components';
+import { ExtendedButton } from '../../../../components';
 import { generalStyles } from '../../../../utils/styles';
 import { CHARMS_CAROUSEL } from './OnboardingCarousel.data';
 import { IOnboardingCarouselScreenProps } from './OnboardingCarousel.types';
 import { styles } from './OnboardingCarousel.styles';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { SVG } from '../../../../assets/svg';
+import { useParsedJSXTextNickname } from '../../../../hooks';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
-    const [index, setIndex] = useState(0);
-    const carouselRef = useRef<ICarouselInstance>(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const onSubmit = useCallback(() => {
-      if (index >= CHARMS_CAROUSEL.length - 1) {
-        navigation.navigate('SignUpCredentials');
-        return;
+    const onSubmitPress = useCallback(() => {
+      if (currentIndex < 3) {
+        return setCurrentIndex(() => currentIndex + 1);
       }
-      carouselRef.current?.next();
-    }, [index, navigation]);
+      navigation.push('SignUpCredentials');
+    }, [currentIndex, navigation]);
 
     const onBackArrowPress = useCallback(() => {
-      if (index < 1) {
-        navigation.goBack();
-        return;
+      if (currentIndex > 0) {
+        return setCurrentIndex(() => currentIndex - 1);
       }
-      carouselRef.current?.prev();
-    }, [index, navigation]);
+      navigation.goBack();
+    }, [currentIndex, navigation]);
+
+    const data = useMemo(() => CHARMS_CAROUSEL[currentIndex], [currentIndex]);
+
+    const Title = useParsedJSXTextNickname({
+      text: t(data.titleKey ? data.titleKey : ''),
+      textHasNickname: true,
+      preset: 'large-title',
+      style: styles.title,
+    });
+
+    const SubTitle = useParsedJSXTextNickname({
+      text: t(data.descriptionKey ? data.descriptionKey : ''),
+      textHasNickname: true,
+      style: styles.subtitle,
+    });
 
     return (
       <ImageBackground
-        source={BACKGROUND_IMAGES.GENERIC_ONBOARDING}
+        source={
+          data
+            ? BACKGROUND_IMAGES[data.backgrountKey]
+            : BACKGROUND_IMAGES.CALM_DEFAULT
+        }
         style={generalStyles.flex}>
         <SafeAreaView edges={['bottom']} style={generalStyles.flex}>
-          <TouchableOpacity
-            style={styles.backArrowContainer}
-            onPress={onBackArrowPress}>
-            <WhiteBackArrowIcon />
-          </TouchableOpacity>
-          <Carousel
-            data={CHARMS_CAROUSEL}
-            preset={CarouselType.IconTitleDescription}
-            setIndex={setIndex}
-            carouselRef={carouselRef}
-            isProgressBar={false}
-          />
+          <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.backArrowContainer}
+              onPress={onBackArrowPress}>
+              <WhiteBackArrowIcon />
+            </TouchableOpacity>
+            <Title />
+            <SubTitle />
+          </View>
           <ExtendedButton
             title={t('buttons.next')}
             isArrow
             style={styles.button}
-            onPress={onSubmit}
+            onPress={onSubmitPress}
           />
         </SafeAreaView>
       </ImageBackground>

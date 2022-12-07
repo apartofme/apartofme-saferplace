@@ -21,6 +21,10 @@ export const BACKGROUND_IMAGES = {
   PARENT_GROUNDING_CONNECT_FEET: require('./backgrounds/parentGroundingConnectFeetBackground.png'),
   PARENT_GROUNDING_WELCOME: require('./backgrounds/parentGroundingWelcomeBackground.png'),
   PARENT_GROUNDING_WELCOME_BOTTOM: require('./backgrounds/parentGroundingWelcomeBottomBackground.png'),
+  ONBOARDING_CAROUSEL_GUIDE_IN_TREES: require('./backgrounds/onboardingCarouselGuideInTrees.png'),
+  ONBOARDING_CAROUSEL_BIRD_ON_BRANCHES: require('./backgrounds/onboardingCarouselBirdOnBranches.png'),
+  ONBOARDING_CAROUSEL_HAPPY_NADIYA_TREE: require('./backgrounds/onboardingCarouselHappyNadiya_tree.png'),
+  ONBOARDING_CAROUSEL_BOOK_ON_LEAVES: require('./backgrounds/onboardingCarouselBookOnLeaves.png'),
 };
 
 export const CHARMS_BACKGROUNDS = {

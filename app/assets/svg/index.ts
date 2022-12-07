@@ -40,13 +40,6 @@ import { WhiteCrossIcon } from './WhiteCrossIcon';
 import { WhiteGearIcon } from './WhiteGearIcon';
 import { PencilIcon } from './PencilIcon';
 import { WhiteRightArrowIcon } from './WhiteRightArrowIcon';
-import {
-  BirdOnBranchesIcon,
-  BookOnLeavesIcon,
-  GuideInTreesIcon,
-  HappyNadiyaTreeIcon,
-  NadiyaTextIcon,
-} from './onboarding';
 import { BrownTriangleIcon } from './BrownTriangleIcon';
 import { PurpleCheckMarkIcon } from './PurpleCheckMarkIcon';
 import { CrossedOutEyeIcon } from './CrossedOutEyeIcon';
@@ -235,8 +228,6 @@ export const SVG = {
   AlertGuideIcon: AlertGuideIcon,
   AnnoyedGuideIcon: AnnoyedGuideIcon,
   BarefootIcon: BarefootIcon,
-  BirdOnBranchesIcon: BirdOnBranchesIcon,
-  BookOnLeavesIcon: BookOnLeavesIcon,
   BrownTriangleIcon: BrownTriangleIcon,
   CelebrationGuideIcon: CelebrationGuideIcon,
   CheckYourEmailIcon: CheckYourEmailIcon,
@@ -248,13 +239,10 @@ export const SVG = {
   CrossedOutEyeIcon: CrossedOutEyeIcon,
   ExitIcon: ExitIcon,
   GearManIcon: GearManIcon,
-  GuideInTreesIcon: GuideInTreesIcon,
-  HappyNadiyaTreeIcon: HappyNadiyaTreeIcon,
   HappyGuideIcon: HappyGuideIcon,
   HappySidekickGuideIcon: HappySidekickGuideIcon,
   HappySmokeSidekickGuideIcon: HappySmokeSidekickGuideIcon,
   InfoIcon: InfoIcon,
-  NadiyaTextIcon: NadiyaTextIcon,
   OpenBookIcon: OpenBookIcon,
   OpenedEyeIcon: OpenedEyeIcon,
   OrangeCircleCrossIcon: OrangeCircleCrossIcon,
