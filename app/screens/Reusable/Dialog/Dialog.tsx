@@ -9,8 +9,11 @@ import {
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { CHARMS_SVG, SVG } from '../../../assets/svg';
-import { OPEN_DIALOG_IDS } from '../../../constants/quest';
-import { useAppSelector } from '../../../hooks';
+import {
+  DAY_14_CLOSING_DIALOGUE_ID,
+  OPEN_DIALOG_IDS,
+} from '../../../constants/quest';
+import { useAppSelector, useMount } from '../../../hooks';
 import {
   useNavigateNextQuest,
   useParsedJSXTextNickname,
@@ -33,7 +36,9 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
     backgroundImage,
   } = route.params.data;
 
-  const { currentDayQuestsStack } = useAppSelector(state => state.quest);
+  const { currentQuestIdx, currentQuestLine } = useAppSelector(
+    state => state.quest,
+  );
 
   const onSubmit = useNavigateNextQuest();
 
@@ -49,16 +54,12 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
     style: generalStyles.brilliantWhite,
   });
 
-  const isOpeningDialog = useMemo(() => {
-    if (currentDayQuestsStack?.length > 0) {
-      return !!_.find(
-        OPEN_DIALOG_IDS,
-        item =>
-          currentDayQuestsStack[currentDayQuestsStack.length - 1] === item,
-      );
+  const isShowHeader = useMemo(() => {
+    if (currentQuestLine?.id === DAY_14_CLOSING_DIALOGUE_ID) {
+      return currentQuestIdx !== 9;
     }
-    return false;
-  }, [currentDayQuestsStack]);
+    return currentQuestIdx > 0;
+  }, [currentQuestIdx, currentQuestLine]);
 
   const Icon = CHARMS_SVG[(image ?? 'HappySidekickGuideIcon') as CharmsSvgKeys];
 
@@ -70,7 +71,7 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
       style={generalStyles.flex}>
       <SafeAreaView style={generalStyles.flex}>
         <View style={styles.container}>
-          {!isOpeningDialog && (
+          {isShowHeader && (
             <View style={styles.header}>
               <Header />
             </View>

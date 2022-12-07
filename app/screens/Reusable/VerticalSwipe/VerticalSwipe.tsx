@@ -18,17 +18,11 @@ import { ExtendedButton, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
-import {
-  useAppSelector,
-  useMount,
-  useNavigateNextQuest,
-  useRenderQuestHeader,
-} from '../../../hooks';
+import { useAppSelector, useMount, useNavigateNextQuest } from '../../../hooks';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { CHARMS_SVG, SVG } from '../../../assets/svg';
 import { trackEvent } from '../../../services/firebase/analytics';
 import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
-import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
 import { CharmsSvgKeys } from '../../../utils/types';
 
 const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
@@ -46,8 +40,6 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     tellMoreTitle,
     tellMoreDescription,
     tellMoreBackground,
-    crossHeader,
-    escapeMenuAlternativeNavigateTo,
   } = route.params.data;
 
   const { t } = useTranslation();
@@ -57,17 +49,6 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
 
   const email = useAppSelector(state => state.user.parent?.email);
-  const { isFirstTimeGrounding, currentQuestLine } = useAppSelector(
-    state => state.quest,
-  );
-
-  const isFirstGrounding = useMemo(
-    () =>
-      currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID &&
-      isFirstTimeGrounding,
-
-    [currentQuestLine?.id, isFirstTimeGrounding],
-  );
 
   useMount(() => {
     trackEvent(FirebaseAnalyticsEventsType.CharmStarted, {
@@ -105,11 +86,6 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
     return CHARMS_BACKGROUNDS.GUIDE_ROOTS_STARS_BACKGROUND;
   }, [backgroundImage, isTopPosition, tellMoreBackground]);
 
-  const Header = useRenderQuestHeader({
-    crossHeader: crossHeader ?? false,
-    escapeMenuAlternativeNavigateTo,
-  });
-
   const Icon = CHARMS_SVG[image as CharmsSvgKeys];
 
   return (
@@ -127,15 +103,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
                 ref={scrollViewRef}
                 showsVerticalScrollIndicator={false}>
                 <View
-                  style={[
-                    generalStyles.jcSpaceBtw,
-                    { height: scrollViewHeight },
-                  ]}>
-                  {isFirstGrounding || crossHeader ? (
-                    <Header />
-                  ) : (
-                    <View style={styles.emptyView} />
-                  )}
+                  style={[generalStyles.jcEnd, { height: scrollViewHeight }]}>
                   <View style={styles.topContentContainer}>
                     <View style={styles.iconContainer}>
                       {!!image && <Icon />}

@@ -130,7 +130,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
           />
         )}
         <SafeAreaView style={generalStyles.flex}>
-          <Header />
+          {currentQuestIdx > 0 && <Header />}
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
             isArrow={!buttonTitle}

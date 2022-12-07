@@ -7,7 +7,6 @@ import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import {
   usePositiveNavigateTo,
   useParsedJSXTextNickname,
-  useRenderQuestHeader,
   useAppSelector,
   useAppState,
   useMount,
@@ -27,10 +26,8 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
       buttonTitle,
       image,
       backgroundImage,
-      crossHeader,
       positiveNavigatesTo,
       titleHasNickname,
-      escapeMenuAlternativeNavigateTo,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -62,11 +59,6 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
       style: styles.title,
     });
 
-    const Header = useRenderQuestHeader({
-      crossHeader: crossHeader ?? false,
-      escapeMenuAlternativeNavigateTo,
-    });
-
     const Icon = image && CHARMS_SVG[image];
 
     return (
@@ -76,7 +68,6 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
-          <Header />
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
             isArrow={!buttonTitle}

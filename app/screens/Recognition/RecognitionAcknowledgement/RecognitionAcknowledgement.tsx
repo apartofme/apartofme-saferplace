@@ -55,7 +55,6 @@ export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgem
           <MainHeader
             leftIcon={<WhiteBackArrowIcon />}
             onLeftIconPress={navigation.goBack}
-            rightIcon={<WhiteCrossIcon />}
           />
           <BottomButtonView
             buttonTitle={t('buttons.next')}

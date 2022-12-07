@@ -11,6 +11,7 @@ interface ISkipCharmEmojiSelectionStyles {
 export const styles = StyleSheet.create<ISkipCharmEmojiSelectionStyles>({
   topContainer: {
     zIndex: 10,
+    paddingLeft: 16,
   },
   title: {
     paddingTop: 40 * WINDOW_COEFFICIENT,

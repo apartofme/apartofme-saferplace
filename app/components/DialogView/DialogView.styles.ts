@@ -4,6 +4,7 @@ import { WINDOW_COEFFICIENT } from '../../constants/window';
 import { COLORS } from '../../themes/colors';
 
 export interface IDialogViewStyles {
+  header: ViewStyle;
   container: ViewStyle;
   dialogContainer: ViewStyle;
   roundButton: ViewStyle;
@@ -13,6 +14,12 @@ export interface IDialogViewStyles {
 }
 
 export const styles = StyleSheet.create<IDialogViewStyles>({
+  header: {
+    position: 'absolute',
+    top: 40,
+    left: 8,
+    zIndex: 100,
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-end',

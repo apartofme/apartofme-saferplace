@@ -4,9 +4,10 @@ import {
   ImageBackground,
   TouchableOpacity,
   View,
-  SafeAreaView,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { getKeyFromLocalizationString } from '../../utils';
 import { ExtendedText } from '../ExtendedText';
@@ -15,6 +16,8 @@ import { styles } from './DialogView.styles';
 import { SVG } from '../../assets/svg';
 import { generalStyles } from '../../utils/styles';
 import { BACKGROUND_IMAGES } from '../../assets';
+import { WhiteBackArrowIcon } from '../../assets/svg/WhiteBackArrowIcon';
+import { MainHeader } from '../MainHeader';
 
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 
@@ -26,7 +29,7 @@ export const DialogView: React.FC<IDialogViewProps> = ({
 }) => {
   const { t } = useTranslation();
   const [currentSpeechIdx, setCurrentSpeechIdx] = useState(initialIdx);
-
+  const navigation = useNavigation();
   useEffect(() => {
     setCurrentSpeechIdx(initialIdx);
   }, [initialIdx]);
@@ -61,11 +64,23 @@ export const DialogView: React.FC<IDialogViewProps> = ({
     navigateBetween,
     onSubmit,
   ]);
+  const onBackPress = useCallback(() => {
+    setCurrentSpeechIdx(currentSpeechIdx - 1);
+  }, [currentSpeechIdx]);
 
   return (
     <ImageBackground
       source={BACKGROUND_IMAGES.GARDEN}
       style={generalStyles.flex}>
+      {currentSpeechIdx > 0 && (
+        <View style={styles.header}>
+          <MainHeader
+            leftIcon={<WhiteBackArrowIcon />}
+            onLeftIconPress={onBackPress}
+          />
+        </View>
+      )}
+
       <SafeAreaView style={styles.container}>
         {!!Icon && (
           <View

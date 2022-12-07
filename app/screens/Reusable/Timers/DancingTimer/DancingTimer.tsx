@@ -22,10 +22,9 @@ import {
   useAppState,
   useMount,
   useNavigateNextQuest,
-  useNavigatePrevQuest,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
-import { ExtendedText, MainHeader } from '../../../../components';
+import { ExtendedText } from '../../../../components';
 import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
 import { SOUND_CAROUSEL } from '../../SelectSound/SelectSong.data';
 import { SVG } from '../../../../assets/svg';
@@ -33,30 +32,19 @@ import { CHARMS_BACKGROUNDS } from '../../../../assets';
 import { ANIMATIONS } from '../../../../assets/animations';
 import { LottieAbsoluteStyles } from '../../../../utils';
 
-const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
-const WhiteCrossIcon = SVG.WhiteCrossIcon;
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 const RoundPauseButtonIcon = SVG.RoundPauseButtonIcon;
 
 export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
-  navigation,
   route,
 }) => {
-  const {
-    title,
-    description,
-    duration,
-    crossHeader,
-    escapeMenuAlternativeNavigateTo,
-    backgroundImage,
-  } = route.params.data;
+  const { title, description, duration, backgroundImage } = route.params.data;
 
   useKeepAwake();
   const lottieRef = useRef<Lottie>(null);
   const selectedSong = useAppSelector(state => state.cache.selectedSong);
 
   const navigateNextQuest = useNavigateNextQuest();
-  const navigatePrevQuest = useNavigatePrevQuest();
 
   const [timerValue, setTimerValue] = useState(duration ?? 10);
   const [isTimerPause, setIsTimerPause] = useState(false);
@@ -65,38 +53,6 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   useMount(() => {
     AudioPlayerHelper.play(selectedSong ?? SOUND_CAROUSEL[0].id);
   });
-
-  const onBackArrowPress = useCallback(() => {
-    AudioPlayerHelper.stop();
-    navigatePrevQuest();
-  }, [navigatePrevQuest]);
-
-  const onCrossPress = useCallback(() => {
-    navigation.navigate('EscapeMenu', {
-      data: {
-        escapeMenuAlternativeNavigateTo: escapeMenuAlternativeNavigateTo,
-      },
-    });
-  }, [escapeMenuAlternativeNavigateTo, navigation]);
-
-  const renderHeader = useCallback(() => {
-    if (crossHeader) {
-      return (
-        <MainHeader
-          leftIcon={<WhiteBackArrowIcon />}
-          onLeftIconPress={onBackArrowPress}
-          rightIcon={<WhiteCrossIcon />}
-          onRightIconPress={onCrossPress}
-        />
-      );
-    }
-    return (
-      <MainHeader
-        leftIcon={<WhiteBackArrowIcon />}
-        onLeftIconPress={onBackArrowPress}
-      />
-    );
-  }, [crossHeader, onBackArrowPress, onCrossPress]);
 
   useEffect(() => {
     if (isFocused) {
@@ -162,7 +118,6 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
         style={LottieAbsoluteStyles(-30)}
       />
       <SafeAreaView style={generalStyles.flex}>
-        {renderHeader()}
         <View style={styles.container}>
           {!!title && (
             <ExtendedText preset="large-title" style={styles.title}>
