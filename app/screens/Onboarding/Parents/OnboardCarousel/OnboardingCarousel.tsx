@@ -23,7 +23,7 @@ export const OnboardingCarouselScreen: React.FC<IOnboardingCarouselScreenProps> 
       if (currentIndex < 3) {
         return setCurrentIndex(() => currentIndex + 1);
       }
-      navigation.push('SignUpCredentials');
+      navigation.push('SignUpNickname');
     }, [currentIndex, navigation]);
 
     const onBackArrowPress = useCallback(() => {

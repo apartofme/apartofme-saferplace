@@ -19,7 +19,7 @@ import {
 } from '../../../../components';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { useAppDispatch } from '../../../../hooks';
-import { cacheSlice } from '../../../../redux/slices';
+import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpCredentialsScreenProps } from './SignUpCredentials.types';
 import { styles } from './SignUpCredentials.styles';
@@ -50,9 +50,9 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
             password,
           }),
         );
-        navigation.navigate('SignUpNickname');
+        dispatch(userSlice.actions.registerParent());
       },
-      [dispatch, navigation],
+      [dispatch],
     );
 
     const onSignInPress = useCallback(() => {

@@ -12,12 +12,13 @@ import {
 import { LANGUAGES } from '../../../constants/languages';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { settingsSlice } from '../../../redux/slices';
-import i18n from '../../../services/localization';
+import { changeLanguage } from '../../../services/localization';
 import { ILanguageSettingsScreenProps } from './LanguageSettings.types';
 import { styles } from './LanguageSettings.styles';
 import { generalStyles } from '../../../utils/styles';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import CONFIG from '../../../config/env';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -25,15 +26,15 @@ export const LanguageSettingsScreen: React.FC<ILanguageSettingsScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
   const disptach = useAppDispatch();
+  const language = useAppSelector(
+    state => state.settings.settings.language ?? CONFIG.FALLBACK_LANGUAGE,
+  );
 
-  const [selectedLanguage, setSelectedLanguage] = useState([
-    useAppSelector(state => state.settings.settings.language),
-  ]);
+  const [selectedLanguage, setSelectedLanguage] = useState([language]);
 
   const onSubmit = useCallback(() => {
-    i18n.changeLanguage(selectedLanguage[0]);
+    changeLanguage(selectedLanguage[0]);
     disptach(
       settingsSlice.actions.setSettings({ language: selectedLanguage[0] }),
     );

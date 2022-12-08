@@ -100,7 +100,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
           avatar: `Circle${avatar}`,
         }),
       );
-      dispatch(userSlice.actions.registerParent());
+      navigation.navigate('SignUpCredentials');
     }
   }, [
     avatar,
@@ -110,6 +110,7 @@ export const SignUpAvatarScreen: React.FC<ISignUpAvatarScreenProps> = ({
     isConnected,
     isCreateChild,
     isRegisterUser,
+    navigation,
     parent.uid,
     t,
   ]);

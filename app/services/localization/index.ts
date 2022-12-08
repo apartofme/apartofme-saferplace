@@ -25,4 +25,7 @@ export const setLocalizationBundle = (
   i18n.addResourceBundle(locale, 'translation', translations, true, true);
 };
 
+export const changeLanguage = async (language: string) => {
+  await i18n.changeLanguage(language);
+};
 export default i18n;

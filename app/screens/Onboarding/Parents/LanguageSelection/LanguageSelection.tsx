@@ -10,27 +10,31 @@ import {
   RadioButtonList,
   RadioButtonListType,
 } from '../../../../components';
-import { useAppDispatch } from '../../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { settingsSlice } from '../../../../redux/slices/settingsSlice';
 import { generalStyles } from '../../../../utils/styles';
-import i18n from '../../../../services/localization';
+import { changeLanguage } from '../../../../services/localization';
 import { ILanguageSelectionScreenProps } from './LanguageSelection.types';
 import { LANGUAGES } from '../../../../constants/languages';
 import { styles } from './LanguageSelection.styles';
 import { SVG } from '../../../../assets/svg';
+import CONFIG from '../../../../config/env';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const LanguageSelectionScreen: React.FC<ILanguageSelectionScreenProps> =
   ({ navigation }) => {
     const disptach = useAppDispatch();
-
-    const [selectedLanguage, setSelectedLanguage] = useState<string[]>(['']);
-
     const { t } = useTranslation();
 
+    const language = useAppSelector(
+      state => state.settings.settings.language ?? CONFIG.FALLBACK_LANGUAGE,
+    );
+
+    const [selectedLanguage, setSelectedLanguage] = useState([language]);
+
     const onSubmit = useCallback(() => {
-      i18n.changeLanguage(selectedLanguage[0]);
+      changeLanguage(selectedLanguage[0]);
       disptach(
         settingsSlice.actions.setSettings({
           language: selectedLanguage[0],

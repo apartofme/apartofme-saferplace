@@ -5,6 +5,7 @@ import { cacheSlice } from '../redux/slices';
 import {
   setLocalizationBundle,
   getTranslations,
+  changeLanguage,
 } from '../services/localization';
 import { getIsConnected } from '../utils';
 
@@ -32,11 +33,7 @@ export function* initLocalizationSaga() {
             [language]: { translations },
           }),
         );
-
-        const currentLanguageTranslation: Record<string, string> = yield select(
-          state => state.cache.translations[settingsLanguage].translations,
-        );
-        yield call(setLocalizationBundle, language, currentLanguageTranslation);
+        changeLanguage(settingsLanguage);
       } else {
         const reduxTranslations: Record<string, string> = yield select(
           state => state.cache.translations[language].translations,
