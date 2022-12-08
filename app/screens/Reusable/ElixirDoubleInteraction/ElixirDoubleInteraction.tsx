@@ -33,7 +33,7 @@ import {
   getElixirAnimationKeyByRange,
   LottieAbsoluteStyles,
 } from '../../../utils';
-import { POTION_FILL_ANIMATIONS } from '../../../assets/animations';
+import { ANIMATIONS, POTION_FILL_ANIMATIONS } from '../../../assets/animations';
 import { PotionFillKeys } from '../../../utils/types';
 
 export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScreenProps> =
@@ -179,6 +179,9 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
     }, [isOnDoublePress]);
 
     const animation = useMemo(() => {
+      if (isCurrentQuestCompleted) {
+        return ANIMATIONS.DANCING_MONTH_CONMPLETED;
+      }
       const from = getElixirAnimationKeyByRange(fullnessElixir).replace(
         'Icon',
         '',
@@ -191,7 +194,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
         POTION_FILL_ANIMATIONS[`${from}To${to}` as PotionFillKeys] ??
         POTION_FILL_ANIMATIONS.ElixirZeroToElixirThree
       );
-    }, [elixirReward, fullnessElixir]);
+    }, [elixirReward, fullnessElixir, isCurrentQuestCompleted]);
 
     return (
       <ImageBackground
@@ -204,7 +207,11 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           source={animation}
           onAnimationFinish={onSubmit}
           loop={false}
-          style={LottieAbsoluteStyles(-20)}
+          style={
+            isCurrentQuestCompleted
+              ? styles.animation
+              : LottieAbsoluteStyles(-20)
+          }
         />
         <SafeAreaView style={styles.container}>
           <View style={generalStyles.aiCenter}>

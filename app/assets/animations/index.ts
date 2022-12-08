@@ -14,7 +14,6 @@ export const ANIMATIONS = {
   POTION_POUR_CALM: require('./potionPourCalm.json'),
   POTION_POUR_COMPASSION: require('./potionPourCompassion.json'),
   POTION_POUR_COURAGE: require('./potionPourCourage.json'),
-  TIMER: require('./timer.json'),
 
   TROUBLE_SOME_SPIRIT_ENDING: require('./troubleSomeSpiritEnding.json'),
   TROUBLE_SOME_SPIRIT_ENTERS: require('./troubleSomeSpiritEnters.json'),
@@ -25,6 +24,13 @@ export const ANIMATIONS = {
   OPEN_HAND_STEP_FOURTH: require('./openHand/openHandStepFourth.json'),
   OPEN_HAND_STEP_FIFTH: require('./openHand/openHandStepFifth.json'),
   OPEN_HAND_STEP_SIXTH: require('./openHand/openHandStepSixth.json'),
+  DANCING_MONTH_CONMPLETED: require('./dancingMonthConmpleted.json'),
+
+  TIMER: require('./timers/timer.json'),
+  ONE_MINUTE_TIMER: require('./timers/oneMinuteTimer.json'),
+  TEN_SECOND_TIMER: require('./timers/tenSecondTimer.json'),
+  THIRTY_SECOND_TIMER: require('./timers/thirtySecondTimer.json'),
+  TWENTY_SECOND_TIMER: require('./timers/twentySecondTimer.json'),
 };
 
 export const POTION_FILL_ANIMATIONS = {

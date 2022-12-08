@@ -31,6 +31,9 @@ export const CHARMS_BACKGROUNDS = {
   ALTERNATIVE_GARDEN_BACKGROUND: require('./backgrounds/alternativeGardenBackground.png'),
   GARDEN_BACKGROUND: require('./backgrounds/gardenBackground.png'),
 
+  PARENT_GROUNDING_WELCOME: require('./backgrounds/parentGroundingWelcomeBackground.png'),
+  PARENT_GROUNDING_WELCOME_BOTTOM: require('./backgrounds/parentGroundingWelcomeBottomBackground.png'),
+
   GUIDE_ROOTS_STARS_BACKGROUND: require('./charmBackgrounds/guideRootsStarsBackground.png'),
   GREETING_GUIDE_TREE_BACKGROUND: require('./charmBackgrounds/greetingGuideTreeBackground.png'),
   DEFAULT_ROOTS_BACKGROUND: require('./charmBackgrounds/defaultRootsBackground.png'),
