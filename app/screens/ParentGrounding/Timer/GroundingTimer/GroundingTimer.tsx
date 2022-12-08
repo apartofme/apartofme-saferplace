@@ -18,7 +18,12 @@ import { BACKGROUND_IMAGES } from '../../../../assets';
 import { ANIMATIONS } from '../../../../assets/animations';
 import { SVG } from '../../../../assets/svg';
 import { ExtendedText, MainHeader } from '../../../../components';
-import { TEN_SECONDS } from '../../../../constants/time';
+import {
+  ONE_MINUTE,
+  TEN_SECONDS,
+  THIRTY_SECONDS,
+  TWENTY_SECONDS,
+} from '../../../../constants/time';
 import { generalStyles } from '../../../../utils/styles';
 import { styles } from './GroundingTimer.styles';
 import { IGroundingTimerScreenProps } from './GroundingTimer.types';
@@ -84,12 +89,27 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
     return RoundPauseButtonIcon;
   }, [isTimerPause]);
 
+  const animation = useMemo(() => {
+    switch (duration) {
+      case TEN_SECONDS:
+        return ANIMATIONS.TEN_SECOND_TIMER;
+      case TWENTY_SECONDS:
+        return ANIMATIONS.TWENTY_SECOND_TIMER;
+      case THIRTY_SECONDS:
+        return ANIMATIONS.THIRTY_SECOND_TIMER;
+      case ONE_MINUTE:
+        return ANIMATIONS.ONE_MINUTE_TIMER;
+      default:
+        return ANIMATIONS.TIMER;
+    }
+  }, [duration]);
+
   return (
     <ImageBackground
       source={BACKGROUND_IMAGES.PARENT_GROUNDING_DEFAULT}
       style={generalStyles.flex}>
       <Lottie
-        source={ANIMATIONS.TIMER}
+        source={animation}
         loop={false}
         autoPlay
         style={LottieAbsoluteStyles(-30)}

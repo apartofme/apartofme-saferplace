@@ -130,7 +130,8 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       default:
         return ANIMATIONS.POTION_POUR_COURAGE;
     }
-  }, [currentPlant, currentQuestLine?.id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentQuestLine?.id]);
 
   const animation = useMemo(() => {
     switch (phase) {
@@ -141,7 +142,8 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
       default:
         return pourAnimation;
     }
-  }, [phase, pourAnimation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
 
   const appStatus = useAppState();
 
