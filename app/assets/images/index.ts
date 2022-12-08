@@ -34,6 +34,15 @@ export const CHARMS_BACKGROUNDS = {
   PARENT_GROUNDING_WELCOME: require('./backgrounds/parentGroundingWelcomeBackground.png'),
   PARENT_GROUNDING_WELCOME_BOTTOM: require('./backgrounds/parentGroundingWelcomeBottomBackground.png'),
 
+  PARENT_GROUNDING_IMAGINE_TREE_ROOT: require('./backgrounds/parentGroundingImagineTreeRootBackground.png'),
+  PARENT_GROUNDING_STAMP_FEET: require('./backgrounds/parentGroundingStampFeetBackground.png'),
+  PARENT_GROUNDING_PLANT_FEET: require('./backgrounds/parentGroundingPlantFeetBackground.png'),
+  PARENT_GROUNDING_CONNECT_FEET: require('./backgrounds/parentGroundingConnectFeetBackground.png'),
+  PARENT_GROUNDING_IMAGINE_OAK: require('./backgrounds/parentGroundingImagineOakBackground.png'),
+  PARENT_GROUDING_BRINGING_ROOTS: require('./backgrounds/parentGroudingBringingRootsBackground.png'),
+  PARENT_GROUNDING_CLOSE_EYES: require('./backgrounds/parentGroundingCloseEyesBackground.png'),
+  GROUNDING_BACKGROUND_TIMER: require('./backgrounds/groundingBackgroundTimer.png'),
+
   GUIDE_ROOTS_STARS_BACKGROUND: require('./charmBackgrounds/guideRootsStarsBackground.png'),
   GREETING_GUIDE_TREE_BACKGROUND: require('./charmBackgrounds/greetingGuideTreeBackground.png'),
   DEFAULT_ROOTS_BACKGROUND: require('./charmBackgrounds/defaultRootsBackground.png'),

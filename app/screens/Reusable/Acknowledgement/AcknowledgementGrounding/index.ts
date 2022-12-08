@@ -1,0 +1,1 @@
+export { AcknowledgementGroundingScreen } from './AcknowledgementGrounding';

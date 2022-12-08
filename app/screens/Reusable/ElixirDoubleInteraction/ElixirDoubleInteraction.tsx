@@ -84,13 +84,18 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
     useEffect(() => {
       if (isOnDoublePress && isSoundFXEnabled) {
-        AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
+        AudioPlayerHelper.play(
+          isCurrentQuestCompleted
+            ? AUDIO.BOTTLE_FILLING
+            : AUDIO.PERCUSSION_SHORTER_FADE_IN_OUT,
+        );
         return;
       }
       if (isOnDoublePress && isSoundFXEnabled) {
         AudioPlayerHelper.start();
         return;
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOnDoublePress, isSoundFXEnabled]);
 
     useEffect(() => {

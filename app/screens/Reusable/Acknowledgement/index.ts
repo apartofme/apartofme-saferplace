@@ -2,6 +2,7 @@ export * from './AcknowledgementAlongEdges';
 export * from './AcknowledgementAlongEdgesDoubleButton';
 export * from './AcknowledgementDoubleImage';
 export * from './AcknowledgementDoubleImageDoubleButton';
+export * from './AcknowledgementGrounding';
 export * from './AcknowledgementStopShaking';
 export * from './AcknowledgementNicknames';
 export * from './AcknowledgementReadLoud';

@@ -50,6 +50,8 @@ import {
   AcknowledgementReadLoudScreen,
   AcknowledgementStopShakingScreen,
   SpiritGardenScreen,
+  AcknowledgementGroundingScreen,
+  JointGroundingTimerScreen,
 } from '../../screens';
 
 // TODO: remove
@@ -107,6 +109,8 @@ export type QuestStackParams = {
   ReusableElixirInstruction: { data: IQuest };
   AcknowledgementReadLoud: { data: IQuest };
   SpiritGarden: { data: IQuest };
+  AcknowledgementGrounding: { data: IQuest };
+  JointGroundingTimer: { data: IQuest };
   // TODO: remove
   DummyQuests: undefined;
 };
@@ -232,6 +236,14 @@ export const QuestStackNavigator = () => (
     <Stack.Screen
       name="AcknowledgementReadLoud"
       component={AcknowledgementReadLoudScreen}
+    />
+    <Stack.Screen
+      name="AcknowledgementGrounding"
+      component={AcknowledgementGroundingScreen}
+    />
+    <Stack.Screen
+      name="JointGroundingTimer"
+      component={JointGroundingTimerScreen}
     />
   </Stack.Navigator>
 );
