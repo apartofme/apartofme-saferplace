@@ -28,6 +28,8 @@ import { generalStyles } from '../../../../utils/styles';
 import { styles } from './GroundingTimer.styles';
 import { IGroundingTimerScreenProps } from './GroundingTimer.types';
 import { LottieAbsoluteStyles } from '../../../../utils';
+import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../../constants/audio';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
@@ -64,6 +66,7 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
           clearInterval(timer);
         };
       }
+      AudioPlayerHelper.play(AUDIO.TIMER_SOUND_MAGIC);
       navigation.push('GroundingAcknowledgementTitle', {
         data: {
           titleKey: acknowledgementTitleKey,

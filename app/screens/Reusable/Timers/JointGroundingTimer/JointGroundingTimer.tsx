@@ -30,6 +30,8 @@ import {
   THIRTY_SECONDS,
   TWENTY_SECONDS,
 } from '../../../../constants/time';
+import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../../constants/audio';
 
 const RoundTriangleButtonIcon = SVG.RoundTriangleButtonIcon;
 const RoundPauseButtonIcon = SVG.RoundPauseButtonIcon;
@@ -62,6 +64,7 @@ export const JointGroundingTimerScreen: React.FC<IJointGroundingTimerScreenProps
             clearInterval(timer);
           };
         }
+        AudioPlayerHelper.play(AUDIO.TIMER_SOUND_MAGIC);
         navigateNextQuest();
       }
       // intentionally
