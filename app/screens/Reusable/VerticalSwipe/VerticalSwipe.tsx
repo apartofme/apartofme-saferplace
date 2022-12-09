@@ -24,6 +24,9 @@ import { CHARMS_SVG, SVG } from '../../../assets/svg';
 import { trackEvent } from '../../../services/firebase/analytics';
 import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
 import { CharmsSvgKeys } from '../../../utils/types';
+import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../constants/audio';
 
 const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
 const WhiteTopArrowIcon = SVG.WhiteTopArrowIcon;
@@ -49,6 +52,12 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
 
   const email = useAppSelector(state => state.user.parent?.email);
+  const currentQuestLine = useAppSelector(
+    state => state.quest.currentQuestLine,
+  );
+  const isBackgroundMusicEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
+  );
 
   useMount(() => {
     trackEvent(FirebaseAnalyticsEventsType.CharmStarted, {
@@ -56,6 +65,13 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
       email: email ?? '',
       datetime: moment().format('d-m-Y H:i:s'),
     });
+    if (
+      currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID &&
+      isBackgroundMusicEnabled
+    ) {
+      AudioPlayerHelper.stop();
+      AudioPlayerHelper.setInfiniteLoop(AUDIO.GROUNDING_BACKGROUND);
+    }
   });
 
   const onSubmit = useNavigateNextQuest();

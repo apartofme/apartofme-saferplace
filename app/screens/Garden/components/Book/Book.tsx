@@ -1,15 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
 import _ from 'lodash';
 
-import { useAppSelector, useAppState, useMount } from '../../../../hooks';
+import { useAppSelector } from '../../../../hooks';
 import { IBookProps } from './Book.types';
 import { styles } from './Book.styles';
 import { CharmBookMenuType } from '../../CharmBookMenu';
 import { SVG } from '../../../../assets/svg';
-import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
-import { AUDIO } from '../../../../constants/audio';
 import { OPEN_DIALOG_IDS } from '../../../../constants/quest';
 
 const ClosedBookIcon = SVG.ClosedBookIcon;
@@ -48,24 +45,6 @@ export const Book: React.FC<IBookProps> = ({
     }
     return <OpenBookIcon reduceSize={false} />;
   }, [interruptedQuestLine, isCompletedAllCurrentDayQuests, isOpeningDialog]);
-
-  const isFocused = useIsFocused();
-  const appStatus = useAppState();
-  const isSoundFXEnabled = useAppSelector(
-    state => state.settings.settings.audioSettings?.isSoundFXEnabled,
-  );
-
-  useMount(() => {
-    if (
-      !isCompletedAllCurrentDayQuests &&
-      !interruptedQuestLine &&
-      isFocused &&
-      appStatus === 'active' &&
-      isSoundFXEnabled
-    ) {
-      AudioPlayerHelper.play(AUDIO.OPENING_CHARMS_BOOK);
-    }
-  });
 
   const onBookPress = useCallback(() => {
     if (setType && setModalStatus) {

@@ -12,5 +12,9 @@ export const AUDIO = {
   OPENING_ELIXIR_ANIMATION: 'cork_popping_sfx_1_021.wav',
   POURING_ELIXIR_ANIMATION: 'healing_potion_pouring_yes_017.wav',
   BOTTLE_FILLING: 'healing_potion_bottle_filling_up_018.wav',
-  PERCUSSION_SHORTER_FADE_IN_OUT: 'percussion_shorter_fade_in_out.wav',
+  PERCUSSION_SHORTER_FADE_IN_OUT: 'percussion_shorter_fade_in_out_016.wav',
+  GROUNDING_BACKGROUND: 'grounding_background.mp3',
+  CALM_BACKGROUND: 'calm_background_023.mp3',
+  COMPASSION_BACKGROUND: 'compassion_background_024.mp3',
+  COURAGE_BACKGROUND: 'courage_background_025.mp3',
 };

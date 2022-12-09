@@ -7,9 +7,17 @@ import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 
 import { SVG } from '../../../assets/svg';
 import { ExtendedButton, ExtendedText, MainHeader } from '../../../components';
+import { AUDIO } from '../../../constants/audio';
+import {
+  CALM_EXERCISES_ID,
+  COMPASSION_EXERCISES_ID,
+  COURAGE_EXERCISES_ID,
+  JOINT_GROUNDING_EXERCISE_ID,
+} from '../../../constants/quest';
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
 import { cacheSlice, questSlice } from '../../../redux/slices';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './CharmBookMenu.styles';
 import {
@@ -37,7 +45,9 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   const { currentDayQuestsStack, interruptedQuestLine, completedQuestsId } =
     useAppSelector(state => state.quest);
   const { parent, child } = useAppSelector(state => state.user);
-
+  const isBackgroundMusicEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
+  );
   useMount(() => {
     dispatch(
       cacheSlice.actions.saveNicknames({
@@ -52,6 +62,33 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
     setModalStatus();
   }, [navigation, setModalStatus]);
 
+  const setAudio = useCallback(
+    (questLineId: string) => {
+      let audioPath: string;
+      switch (questLineId) {
+        case JOINT_GROUNDING_EXERCISE_ID:
+          audioPath = AUDIO.GROUNDING_BACKGROUND;
+          break;
+        case CALM_EXERCISES_ID:
+          audioPath = AUDIO.CALM_BACKGROUND;
+          break;
+        case COMPASSION_EXERCISES_ID:
+          audioPath = AUDIO.COMPASSION_BACKGROUND;
+          break;
+        case COURAGE_EXERCISES_ID:
+          audioPath = AUDIO.COURAGE_BACKGROUND;
+          break;
+        default:
+          audioPath = AUDIO.FOREST_AMBIENCE_LOOP;
+      }
+      if (isBackgroundMusicEnabled) {
+        AudioPlayerHelper.stop();
+        AudioPlayerHelper.setInfiniteLoop(audioPath);
+      }
+    },
+    [isBackgroundMusicEnabled],
+  );
+
   const onPlayPress = useCallback(() => {
     if (type === CharmBookMenuType.NewCharm) {
       const newQuestLineId =
@@ -65,15 +102,10 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         }),
       );
       dispatch(questSlice.actions.saveCurrentQuestIdx(0));
+      setAudio(newQuestLineId);
       navigation.reset({
         index: 1,
         routes: [
-          {
-            name: 'GardenStack',
-            params: {
-              screen: 'Garden',
-            },
-          },
           {
             name: 'QuestStack',
             params: {
@@ -103,15 +135,10 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
           interruptedQuestLine.interruptedQuestInx,
         ),
       );
+      setAudio(interruptedQuestId);
       navigation.reset({
         index: 1,
         routes: [
-          {
-            name: 'GardenStack',
-            params: {
-              screen: 'Garden',
-            },
-          },
           {
             name: 'QuestStack',
             params: {
@@ -140,6 +167,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
     dispatch,
     interruptedQuestLine,
     navigation,
+    setAudio,
     setModalStatus,
     type,
   ]);

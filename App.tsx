@@ -12,6 +12,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { initPushNotifications } from './app/services/firebase';
 import i18n from './app/services/localization';
 
+import { BackgroundAudioPlayer } from './app/components';
 import { NotificationAlert } from './app/screens';
 
 enableScreens();
@@ -24,6 +25,7 @@ const App: React.FC = () => (
         <SafeAreaProvider>
           <StatusBar barStyle="light-content" />
           <NotificationAlert />
+          <BackgroundAudioPlayer />
           <RootNavigator />
         </SafeAreaProvider>
       </PersistGate>

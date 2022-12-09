@@ -42,6 +42,9 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
     const isSoundFXEnabled = useAppSelector(
       state => state.settings.settings.audioSettings?.isSoundFXEnabled,
     );
+    const isCurrentQuestCompleted = useAppSelector(
+      state => state.quest.isCurrentQuestCompleted,
+    );
 
     const [isChildPress, setIsChildPress] = useState(false);
     const [isAdultPress, setIsAdultPress] = useState(false);
@@ -66,12 +69,17 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
 
     useEffect(() => {
       if (isOnDoublePress && isSoundFXEnabled) {
-        AudioPlayerHelper.play(AUDIO.BOTTLE_FILLING);
+        AudioPlayerHelper.play(
+          !isCurrentQuestCompleted
+            ? AUDIO.BOTTLE_FILLING
+            : AUDIO.PERCUSSION_SHORTER_FADE_IN_OUT,
+        );
+        return;
       }
       if (isOnDoublePress && isSoundFXEnabled) {
         AudioPlayerHelper.start();
       }
-    }, [isOnDoublePress, isSoundFXEnabled]);
+    }, [isCurrentQuestCompleted, isOnDoublePress, isSoundFXEnabled]);
 
     useEffect(() => {
       if (isOnDoublePress) {

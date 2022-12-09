@@ -55,6 +55,7 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   const email = useAppSelector(state => state.user.parent?.email);
 
   useMount(() => {
+    AudioPlayerHelper.stop();
     trackEvent(FirebaseAnalyticsEventsType.CharmEnded, {
       name: image?.split(ILLUSTRATION_ICON)[0] ?? CHARM_ENDED,
       email: email ?? '',

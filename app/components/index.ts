@@ -1,4 +1,5 @@
 export * from './BottomButtonView';
+export * from './BackgroundAudioPlayer';
 export * from './Carousel';
 export * from './DialogView';
 export * from './EmojiButtons';

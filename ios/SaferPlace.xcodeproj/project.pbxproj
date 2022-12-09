@@ -31,6 +31,10 @@
 		86DA93CC28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */; };
 		86FC7A6D29002C5000B3B754 /* plant_planting_1_005.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86FC7A6B29002C5000B3B754 /* plant_planting_1_005.wav */; };
 		86FC7A6E29002C5000B3B754 /* after_completing_exercise_012.wav in Resources */ = {isa = PBXBuildFile; fileRef = 86FC7A6C29002C5000B3B754 /* after_completing_exercise_012.wav */; };
+		953E53CA29435D9B0043E337 /* grounding_background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 953E53C929435D9B0043E337 /* grounding_background.mp3 */; };
+		953E53CC29435DA30043E337 /* courage_background_025.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 953E53CB29435DA30043E337 /* courage_background_025.mp3 */; };
+		953E53CE29435DAC0043E337 /* compassion_background_024.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 953E53CD29435DAC0043E337 /* compassion_background_024.mp3 */; };
+		953E53D029435DB30043E337 /* calm_background_023.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 953E53CF29435DB30043E337 /* calm_background_023.mp3 */; };
 		9547DB2928B7B01A00C6720C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9547DB2828B7B01A00C6720C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +80,10 @@
 		86DA93CB28FDD104001B616D /* forest_ambience_sfx_loop_2_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest_ambience_sfx_loop_2_001.mp3; sourceTree = "<group>"; };
 		86FC7A6B29002C5000B3B754 /* plant_planting_1_005.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = plant_planting_1_005.wav; sourceTree = "<group>"; };
 		86FC7A6C29002C5000B3B754 /* after_completing_exercise_012.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = after_completing_exercise_012.wav; sourceTree = "<group>"; };
+		953E53C929435D9B0043E337 /* grounding_background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grounding_background.mp3; sourceTree = "<group>"; };
+		953E53CB29435DA30043E337 /* courage_background_025.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = courage_background_025.mp3; sourceTree = "<group>"; };
+		953E53CD29435DAC0043E337 /* compassion_background_024.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = compassion_background_024.mp3; sourceTree = "<group>"; };
+		953E53CF29435DB30043E337 /* calm_background_023.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calm_background_023.mp3; sourceTree = "<group>"; };
 		9547DB2828B7B01A00C6720C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		958C5DB428BE26C000AB565A /* SaferPlace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SaferPlace.entitlements; path = SaferPlace/SaferPlace.entitlements; sourceTree = "<group>"; };
 		CDC7A639BC8B55576F10ADEA /* Pods-SaferPlace-SaferPlaceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaferPlace-SaferPlaceTests.debug.xcconfig"; path = "Target Support Files/Pods-SaferPlace-SaferPlaceTests/Pods-SaferPlace-SaferPlaceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,12 +157,16 @@
 			isa = PBXGroup;
 			children = (
 				86DA93BE28FD82CF001B616D /* dancing_track_first_dance_016.mp3 */,
+				953E53C929435D9B0043E337 /* grounding_background.mp3 */,
 				86DA93BD28FD82CF001B616D /* dancing_track_happy_dance_016.mp3 */,
 				86FC7A6C29002C5000B3B754 /* after_completing_exercise_012.wav */,
 				86FC7A6B29002C5000B3B754 /* plant_planting_1_005.wav */,
 				860D91302909D369003F22C6 /* cork_popping_sfx_1_021.wav */,
 				860D91312909D369003F22C6 /* healing_potion_mixing_liquid_shaking_020.wav */,
+				953E53CF29435DB30043E337 /* calm_background_023.mp3 */,
 				86DA93C028FD82CF001B616D /* dancing_track_percussion_016.mp3 */,
+				953E53CD29435DAC0043E337 /* compassion_background_024.mp3 */,
+				953E53CB29435DA30043E337 /* courage_background_025.mp3 */,
 				86B90FF129427E1600731ADE /* percussion_shorter_fade_in_out_016.wav */,
 				860D91362909EA16003F22C6 /* healing_potion_bottle_filling_up_018.wav */,
 				860D91342909D477003F22C6 /* healing_potion_pouring_yes_017.wav */,
@@ -326,11 +338,15 @@
 				4330647528C7B57900BF4095 /* Poppins-Medium.ttf in Resources */,
 				86FC7A6E29002C5000B3B754 /* after_completing_exercise_012.wav in Resources */,
 				4330647328C7B57900BF4095 /* Poppins-Bold.ttf in Resources */,
+				953E53D029435DB30043E337 /* calm_background_023.mp3 in Resources */,
+				953E53CA29435D9B0043E337 /* grounding_background.mp3 in Resources */,
 				86B90FF229427E1600731ADE /* percussion_shorter_fade_in_out_016.wav in Resources */,
 				4330647428C7B57900BF4095 /* Poppins-Regular.ttf in Resources */,
 				860D91352909D477003F22C6 /* healing_potion_pouring_yes_017.wav in Resources */,
 				860D912F2909CB03003F22C6 /* opening_book_of_charms_011.wav in Resources */,
+				953E53CE29435DAC0043E337 /* compassion_background_024.mp3 in Resources */,
 				86FC7A6D29002C5000B3B754 /* plant_planting_1_005.wav in Resources */,
+				953E53CC29435DA30043E337 /* courage_background_025.mp3 in Resources */,
 				860D91322909D36A003F22C6 /* cork_popping_sfx_1_021.wav in Resources */,
 				860D91332909D36A003F22C6 /* healing_potion_mixing_liquid_shaking_020.wav in Resources */,
 			);

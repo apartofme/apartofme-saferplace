@@ -12,6 +12,9 @@ import { IWelcomeParentScreenProps } from './WelcomeParent.types';
 import { styles } from './WelcomeParent.styles';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { SVG } from '../../../../assets/svg';
+import { useMount } from '../../../../hooks';
+import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
+import { AUDIO } from '../../../../constants/audio';
 
 const LogoIcon = SVG.NadiyaTextIcon;
 
@@ -27,6 +30,10 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   const onLoginPress = useCallback(() => {
     navigation.navigate('Login');
   }, [navigation]);
+
+  useMount(() => {
+    AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
+  });
 
   return (
     <ImageBackground

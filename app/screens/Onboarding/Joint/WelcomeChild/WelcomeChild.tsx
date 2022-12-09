@@ -9,6 +9,9 @@ import { styles } from './WelcomeChild.styles';
 import { ImageBackground, View } from 'react-native';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { SVG } from '../../../../assets/svg';
+import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
+import { useAppSelector, useMount } from '../../../../hooks';
+import { AUDIO } from '../../../../constants/audio';
 
 const NadiyaTextIcon = SVG.NadiyaTextIcon;
 
@@ -16,6 +19,17 @@ export const WelcomeChildScreen: React.FC<IWelcomeChildScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
+
+  const isBackgroundMusicEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
+  );
+
+  useMount(() => {
+    if (isBackgroundMusicEnabled) {
+      AudioPlayerHelper.stop();
+      AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
+    }
+  });
 
   const goToSidekickIntro = useCallback(() => {
     navigation.navigate('SidekickIntro');

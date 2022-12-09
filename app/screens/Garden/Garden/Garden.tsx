@@ -75,7 +75,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   const AvatarIcon = AVATARS_SVG[parentdAvatar ?? 'CircleRabbitIcon'];
 
   useEffect(() => {
-    if (isFocused && appStatus === 'active' && isBackgroundMusicEnabled) {
+    if (isBackgroundMusicEnabled && appStatus === 'active') {
       AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
     } else {
       AudioPlayerHelper.stop();
