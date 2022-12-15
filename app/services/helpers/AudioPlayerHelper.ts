@@ -36,21 +36,10 @@ export class AudioPlayerHelper {
 
       this.filepath = filepath;
     });
-    // console.log('prevAudio?.currentAudio', prevAudio?.currentAudio);
-    // setTimeout(() => {
-    //   this.currentAudio = prevAudio?.currentAudio ?? null;
-    //   this.filepath = prevAudio?.filepath ?? null;
-    //   this.start();
-    // }, this.currentAudio?.getDuration());
   }
 
   public static setInfiniteLoop(filepath: string) {
-    // console.log(12);
-    // console.log(this.filepath);
-    // console.log(this.currentAudio);
     if (this.currentBackgrounAudio?.isPlaying()) {
-      // console.log('this.currentAudio?.isPlaying');
-      // console.log(this.currentAudio);
       this.stop();
     }
 
