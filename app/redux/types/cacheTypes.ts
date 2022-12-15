@@ -7,6 +7,7 @@ export interface ISignUpData {
   password: string;
   nickname: string;
   avatar: AvatarsKeys;
+  isReceiveInformationEnabled: boolean;
 }
 
 export interface IShortSignUpData {

@@ -35,6 +35,8 @@ export const firebaseRegisterUser = async (email: string, password: string) => {
       nickname: cacheParent?.nickname as string,
       avatar: cacheParent?.avatar as AvatarsKeys,
       emailVerified: !!registerUserResponse.user?.emailVerified,
+      isReceiveInformationEnabled:
+        cacheParent?.isReceiveInformationEnabled as boolean,
     });
   }
 

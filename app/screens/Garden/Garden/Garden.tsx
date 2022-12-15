@@ -19,11 +19,10 @@ import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { Book, Elixir, PlantArea, PlantAreaType } from '../components';
 import { MixingElixirPhaseType } from '../../../utils/types';
-import { questSlice } from '../../../redux/slices';
+import { cacheSlice, questSlice } from '../../../redux/slices';
 import { ONE_DAY_SECONDS } from '../../../constants/time';
 import { IGardenScreenProps } from './Garden.types';
 import { styles } from './Garden.styles';
-import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { CharmBookMenuScreen, CharmBookMenuType } from '../CharmBookMenu';
@@ -51,9 +50,7 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   );
   const [activePlantArea, setActivePlantArea] =
     useState<Nullable<PlantAreaType>>(null);
-  const isBackgroundMusicEnabled = useAppSelector(
-    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
-  );
+
   const {
     currentDayQuestsStack,
     interruptedQuestLine,
@@ -74,13 +71,9 @@ export const GardenScreen: React.FC<IGardenScreenProps> = ({
   );
   const AvatarIcon = AVATARS_SVG[parentdAvatar ?? 'CircleRabbitIcon'];
 
-  useEffect(() => {
-    if (isBackgroundMusicEnabled && appStatus === 'active') {
-      AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
-    } else {
-      AudioPlayerHelper.stop();
-    }
-  }, [appStatus, isFocused, isBackgroundMusicEnabled]);
+  useMount(() => {
+    dispatch(cacheSlice.actions.setBackgroundAudio(AUDIO.FOREST_AMBIENCE_LOOP));
+  });
 
   useEffect(() => {
     if (appStatus === 'active' && !isPlanting && !isFirstTimeGarden) {

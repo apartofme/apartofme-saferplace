@@ -6,4 +6,5 @@ export interface IParent {
   nickname: string;
   uid: string;
   emailVerified: boolean;
+  isReceiveInformationEnabled: boolean;
 }

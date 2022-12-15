@@ -1,35 +1,33 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useIsFocused } from '@react-navigation/native';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import Lottie from 'lottie-react-native';
 
 import {
+  useAppDispatch,
   useAppSelector,
-  useAppState,
+  useMount,
   useNavigateNextQuest,
 } from '../../../hooks';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { ISpiritGardenScreenProps } from './SpiritGarden.types';
 import { Book, Elixir } from '../../Garden/components';
 import { styles } from './SpiritGarden.styles';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { ANIMATIONS } from '../../../assets/animations';
 import { LottieAbsoluteStyles } from '../../../utils';
+import { cacheSlice } from '../../../redux/slices';
+import { AUDIO } from '../../../constants/audio';
 
 export const SpiritGardenScreen: React.FC<ISpiritGardenScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
+  const dispatch = useAppDispatch();
   const avatar = useAppSelector(state => state.user.parent?.avatar);
   const Avatar = AVATARS_SVG[avatar ?? 'CircleRabbitIcon'];
-
-  const appStatus = useAppState();
-  const isFocused = useIsFocused();
 
   const onSpiritPress = useNavigateNextQuest();
 
@@ -37,13 +35,9 @@ export const SpiritGardenScreen: React.FC<ISpiritGardenScreenProps> = ({
     navigation.navigate('MenuStack');
   }, [navigation]);
 
-  useEffect(() => {
-    if (isFocused && appStatus === 'active') {
-      AudioPlayerHelper.setInfiniteLoop('forest_ambience_sfx_loop_2_001.mp3');
-    } else {
-      AudioPlayerHelper.stop();
-    }
-  }, [appStatus, isFocused]);
+  useMount(() => {
+    dispatch(cacheSlice.actions.setBackgroundAudio(AUDIO.FOREST_AMBIENCE_LOOP));
+  });
 
   return (
     <ImageBackground

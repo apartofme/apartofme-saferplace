@@ -51,6 +51,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   const isFocused = useIsFocused();
 
   useMount(() => {
+    AudioPlayerHelper.pauseInfiniteLoop();
     AudioPlayerHelper.play(selectedSong ?? SOUND_CAROUSEL[0].id);
   });
 
@@ -92,6 +93,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
       AudioPlayerHelper.pause();
       lottieRef.current?.pause();
     } else {
+      AudioPlayerHelper.pauseInfiniteLoop();
       AudioPlayerHelper.start();
       lottieRef.current?.play();
     }

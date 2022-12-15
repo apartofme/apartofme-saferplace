@@ -14,6 +14,9 @@ import { ICharmsIntroducingScreenProps } from './CharmsIntroducing.types';
 import { styles } from './CharmsIntroducing.styles';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { SVG } from '../../../../assets/svg';
+import { useAppDispatch, useMount } from '../../../../hooks';
+import { cacheSlice } from '../../../../redux/slices';
+import { AUDIO } from '../../../../constants/audio';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
@@ -22,6 +25,13 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
     const { t } = useTranslation();
     const [index, setIndex] = useState(0);
     const carouselRef = useRef<ICarouselInstance>(null);
+    const dispatch = useAppDispatch();
+
+    useMount(() => {
+      dispatch(
+        cacheSlice.actions.setBackgroundAudio(AUDIO.FOREST_AMBIENCE_LOOP),
+      );
+    });
 
     const onSubmit = useCallback(() => {
       if (index >= CHARMS_CAROUSEL.length - 1) {

@@ -18,15 +18,20 @@ import { ExtendedButton, ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { IVerticalSwipeScreenProps } from './VerticalSwipe.types';
 import { styles } from './VerticalSwipe.styles';
-import { useAppSelector, useMount, useNavigateNextQuest } from '../../../hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useMount,
+  useNavigateNextQuest,
+} from '../../../hooks';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { CHARMS_SVG, SVG } from '../../../assets/svg';
 import { trackEvent } from '../../../services/firebase/analytics';
 import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
 import { CharmsSvgKeys } from '../../../utils/types';
 import { JOINT_GROUNDING_EXERCISE_ID } from '../../../constants/quest';
-import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { AUDIO } from '../../../constants/audio';
+import { cacheSlice } from '../../../redux/slices';
 
 const WhiteBottomArrowIcon = SVG.WhiteBottomArrowIcon;
 const WhiteTopArrowIcon = SVG.WhiteTopArrowIcon;
@@ -47,6 +52,7 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
 
   const { t } = useTranslation();
   const scrollViewRef = useRef<ScrollView>(null);
+  const dispatch = useAppDispatch();
 
   const [isTopPosition, setIsTopPosition] = useState(true);
   const [scrollViewHeight, setScrollViewHeight] = useState(0);
@@ -55,9 +61,6 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
   const currentQuestLine = useAppSelector(
     state => state.quest.currentQuestLine,
   );
-  const isBackgroundMusicEnabled = useAppSelector(
-    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
-  );
 
   useMount(() => {
     trackEvent(FirebaseAnalyticsEventsType.CharmStarted, {
@@ -65,12 +68,10 @@ export const VerticalSwipeScreen: React.FC<IVerticalSwipeScreenProps> = ({
       email: email ?? '',
       datetime: moment().format('d-m-Y H:i:s'),
     });
-    if (
-      currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID &&
-      isBackgroundMusicEnabled
-    ) {
-      AudioPlayerHelper.stop();
-      AudioPlayerHelper.setInfiniteLoop(AUDIO.GROUNDING_BACKGROUND);
+    if (currentQuestLine?.id === JOINT_GROUNDING_EXERCISE_ID) {
+      dispatch(
+        cacheSlice.actions.setBackgroundAudio(AUDIO.GROUNDING_BACKGROUND),
+      );
     }
   });
 

@@ -31,6 +31,7 @@ interface ICacheState {
   emotionItem: Nullable<IEmotionItem>;
   troublesomeItem: Nullable<ITroublesomeItem>;
   selectedSong: Nullable<string>;
+  backgroundAudio: Nullable<string>;
 }
 
 const INITIAL_STATE: ICacheState = {
@@ -61,6 +62,7 @@ const INITIAL_STATE: ICacheState = {
   emotionItem: null,
   troublesomeItem: null,
   selectedSong: null,
+  backgroundAudio: null,
 };
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -68,6 +70,9 @@ export const cacheSlice = createSlice({
   name: 'cache',
   initialState: INITIAL_STATE,
   reducers: {
+    setBackgroundAudio(state, { payload }: PayloadAction<Nullable<string>>) {
+      state.backgroundAudio = payload;
+    },
     saveSignUpDataParent(
       state,
       { payload }: PayloadAction<Partial<ISignUpData>>,

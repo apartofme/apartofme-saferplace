@@ -41,6 +41,7 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
     useMount(() => {
       if (isSoundFXEnabled) {
         AudioPlayerHelper.play(AUDIO.TIMER_SOUND_MAGIC);
+        setTimeout(() => AudioPlayerHelper.startInfiniteLoop(), 3000);
       }
     });
 

@@ -11,15 +11,23 @@ import { BACKGROUND_IMAGES } from '../../../../assets';
 import { ANIMATIONS } from '../../../../assets/animations';
 import { LottieAbsoluteStyles } from '../../../../utils';
 import { JewelIcon } from '../../../../assets/svg/JewelIcon';
+import { useAppDispatch, useMount } from '../../../../hooks';
+import { cacheSlice } from '../../../../redux/slices';
+import { AUDIO } from '../../../../constants/audio';
 
 export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   const onSubmit = useCallback(() => {
     navigation.navigate('WelcomeChild');
   }, [navigation]);
+
+  useMount(() => {
+    dispatch(cacheSlice.actions.setBackgroundAudio(AUDIO.FOREST_AMBIENCE_LOOP));
+  });
 
   return (
     <ImageBackground

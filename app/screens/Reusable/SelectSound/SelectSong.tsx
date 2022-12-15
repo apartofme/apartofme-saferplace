@@ -28,6 +28,7 @@ import { ISelectSoundScreenProps } from './SelectSong.types';
 import {
   useAppDispatch,
   useAppState,
+  useMount,
   useNavigateNextQuest,
   useNavigatePrevQuest,
 } from '../../../hooks';
@@ -58,6 +59,7 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   const carouselRef = useRef<ICarouselInstance>(null);
 
   const dispatch = useAppDispatch();
+  const navigatePrevQuest = useNavigatePrevQuest();
 
   const [isPause, setIsPause] = useState(true);
   const [currentAudioName, setCurrentAudioName] = useState(
@@ -65,10 +67,13 @@ export const SelectSoundScreen: React.FC<ISelectSoundScreenProps> = ({
   );
   const [isFinished, setIsFished] = useState(false);
 
-  const navigatePrevQuest = useNavigatePrevQuest();
+  useMount(() => {
+    AudioPlayerHelper.pauseInfiniteLoop();
+  });
 
   const onBackArrowPress = useCallback(() => {
     AudioPlayerHelper.stop();
+    AudioPlayerHelper.startInfiniteLoop();
     navigatePrevQuest();
   }, [navigatePrevQuest]);
 

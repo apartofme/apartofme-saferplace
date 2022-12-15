@@ -66,6 +66,7 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
           clearInterval(timer);
         };
       }
+
       AudioPlayerHelper.play(AUDIO.TIMER_SOUND_MAGIC);
       navigation.push('GroundingAcknowledgementTitle', {
         data: {

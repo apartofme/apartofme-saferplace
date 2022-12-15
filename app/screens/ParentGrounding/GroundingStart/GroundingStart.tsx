@@ -3,26 +3,21 @@ import React, { useCallback } from 'react';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { VerticalSwipeView } from '../../../components';
 import { AUDIO } from '../../../constants/audio';
-import { useAppSelector, useMount } from '../../../hooks';
-import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
+import { useAppDispatch, useMount } from '../../../hooks';
+import { cacheSlice } from '../../../redux/slices';
 import { IGroundingStartScreenProps } from './GroundingStart.types';
 
 export const GroundingStartScreen: React.FC<IGroundingStartScreenProps> = ({
   navigation,
 }) => {
-  const isBackgroundMusicEnabled = useAppSelector(
-    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
-  );
+  const dispatch = useAppDispatch();
 
   const onSubmit = useCallback(() => {
     navigation.push('GroundingInstruction');
   }, [navigation]);
 
   useMount(() => {
-    if (isBackgroundMusicEnabled) {
-      AudioPlayerHelper.stop();
-      AudioPlayerHelper.setInfiniteLoop(AUDIO.GROUNDING_BACKGROUND);
-    }
+    dispatch(cacheSlice.actions.setBackgroundAudio(AUDIO.GROUNDING_BACKGROUND));
   });
 
   return (

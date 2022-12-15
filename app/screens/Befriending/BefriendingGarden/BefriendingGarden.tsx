@@ -1,35 +1,32 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useIsFocused } from '@react-navigation/native';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import Lottie from 'lottie-react-native';
 
-import { useAppSelector, useAppState } from '../../../hooks';
+import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { BACKGROUND_IMAGES } from '../../../assets';
 import { LottieAbsoluteStyles } from '../../../utils';
 import { ExtendedText } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
-import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { IBefriendingGardenScreenProps } from './BefriendingGarden.types';
 import { Book, Elixir, PlantAreaType } from '../../Garden/components';
 import { styles } from './BefriendingGarden.styles';
 import { AVATARS_SVG } from '../../../assets/svg';
 import { MixingElixirPhaseType } from '../../../utils/types';
 import { ANIMATIONS } from '../../../assets/animations';
+import { cacheSlice } from '../../../redux/slices';
+import { AUDIO } from '../../../constants/audio';
 
 export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
   ({ navigation }) => {
     const { t } = useTranslation();
-    const appStatus = useAppState();
-    const isFocused = useIsFocused();
+    const dispatch = useAppDispatch();
 
-    useEffect(() => {
-      if (isFocused && appStatus === 'active') {
-        AudioPlayerHelper.setInfiniteLoop('forest_ambience_sfx_loop_2_001.mp3');
-      } else {
-        AudioPlayerHelper.stop();
-      }
-    }, [appStatus, isFocused]);
+    useMount(() => {
+      dispatch(
+        cacheSlice.actions.setBackgroundAudio(AUDIO.FOREST_AMBIENCE_LOOP),
+      );
+    });
 
     const avatar = useAppSelector(state => state.user.parent?.avatar);
 

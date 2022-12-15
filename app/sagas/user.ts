@@ -114,6 +114,7 @@ function* watchRegisterParent() {
       avatar: parent.avatar,
       nickname: parent.nickname,
       emailVerified: registerUserResponse.user?.emailVerified,
+      isReceiveInformationEnabled: parent.isReceiveInformationEnabled,
     } as IParent;
 
     yield put(userSlice.actions.registerParentSuccess(user));

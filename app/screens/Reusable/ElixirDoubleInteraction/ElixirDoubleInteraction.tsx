@@ -84,8 +84,6 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
 
     useEffect(() => {
       if (isOnDoublePress && isSoundFXEnabled) {
-        // AudioPlayerHelper.stop();
-
         AudioPlayerHelper.play(
           !isCurrentQuestCompleted
             ? AUDIO.BOTTLE_FILLING

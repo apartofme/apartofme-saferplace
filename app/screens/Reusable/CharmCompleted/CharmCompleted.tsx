@@ -55,7 +55,8 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   const email = useAppSelector(state => state.user.parent?.email);
 
   useMount(() => {
-    AudioPlayerHelper.stop();
+    AudioPlayerHelper.pauseInfiniteLoop();
+    setTimeout(() => AudioPlayerHelper.startInfiniteLoop(), 3000);
     trackEvent(FirebaseAnalyticsEventsType.CharmEnded, {
       name: image?.split(ILLUSTRATION_ICON)[0] ?? CHARM_ENDED,
       email: email ?? '',
@@ -70,12 +71,6 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
       AudioPlayerHelper.stop();
     }
   }, [appStatus, isFocused, isSoundFXEnabled]);
-
-  useEffect(() => {
-    if (appStatus !== 'active') {
-      AudioPlayerHelper.stop();
-    }
-  }, [appStatus]);
 
   const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
 

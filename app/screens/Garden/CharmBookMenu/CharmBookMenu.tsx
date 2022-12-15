@@ -17,7 +17,6 @@ import {
 import { useAppDispatch, useAppSelector, useMount } from '../../../hooks';
 import { MergedStackParams } from '../../../navigation/stacks/mergedParams';
 import { cacheSlice, questSlice } from '../../../redux/slices';
-import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './CharmBookMenu.styles';
 import {
@@ -45,9 +44,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   const { currentDayQuestsStack, interruptedQuestLine, completedQuestsId } =
     useAppSelector(state => state.quest);
   const { parent, child } = useAppSelector(state => state.user);
-  const isBackgroundMusicEnabled = useAppSelector(
-    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
-  );
+
   useMount(() => {
     dispatch(
       cacheSlice.actions.saveNicknames({
@@ -81,12 +78,9 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         default:
           audioPath = AUDIO.FOREST_AMBIENCE_LOOP;
       }
-      if (isBackgroundMusicEnabled) {
-        AudioPlayerHelper.stop();
-        AudioPlayerHelper.setInfiniteLoop(audioPath);
-      }
+      dispatch(cacheSlice.actions.setBackgroundAudio(audioPath));
     },
-    [isBackgroundMusicEnabled],
+    [dispatch],
   );
 
   const onPlayPress = useCallback(() => {

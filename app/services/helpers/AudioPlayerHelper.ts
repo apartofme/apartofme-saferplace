@@ -5,6 +5,8 @@ Sound.setCategory('Playback');
 export class AudioPlayerHelper {
   private static currentAudio: Sound | null;
   public static filepath: string;
+  public static currentBackgrounAudio: Sound | null;
+  public static backgroundFilepath: string;
 
   public static play(
     filepath: string,
@@ -34,19 +36,21 @@ export class AudioPlayerHelper {
 
       this.filepath = filepath;
     });
-  }
-
-  public static stop() {
-    this.currentAudio?.stop();
-    this.currentAudio = null;
-  }
-
-  public static pause() {
-    this.currentAudio?.pause();
+    // console.log('prevAudio?.currentAudio', prevAudio?.currentAudio);
+    // setTimeout(() => {
+    //   this.currentAudio = prevAudio?.currentAudio ?? null;
+    //   this.filepath = prevAudio?.filepath ?? null;
+    //   this.start();
+    // }, this.currentAudio?.getDuration());
   }
 
   public static setInfiniteLoop(filepath: string) {
-    if (this.currentAudio?.isPlaying()) {
+    // console.log(12);
+    // console.log(this.filepath);
+    // console.log(this.currentAudio);
+    if (this.currentBackgrounAudio?.isPlaying()) {
+      // console.log('this.currentAudio?.isPlaying');
+      // console.log(this.currentAudio);
       this.stop();
     }
 
@@ -62,13 +66,32 @@ export class AudioPlayerHelper {
 
       newAudioInstance.setNumberOfLoops(-1);
 
-      this.currentAudio = newAudioInstance;
-
-      this.filepath = filepath;
+      this.currentBackgrounAudio = newAudioInstance;
+      this.backgroundFilepath = filepath;
     });
+  }
+
+  public static stop() {
+    this.currentAudio?.stop();
+    this.currentAudio = null;
+  }
+
+  public static stopInfiniteLoop() {
+    this.currentBackgrounAudio?.stop();
+    this.currentBackgrounAudio = null;
+  }
+
+  public static pause() {
+    this.currentAudio?.pause();
+  }
+  public static pauseInfiniteLoop() {
+    this.currentBackgrounAudio?.pause();
   }
 
   public static start() {
     this.currentAudio?.play();
+  }
+  public static startInfiniteLoop() {
+    this.currentBackgrounAudio?.play();
   }
 }

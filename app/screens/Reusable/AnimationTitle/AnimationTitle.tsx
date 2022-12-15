@@ -58,6 +58,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
     }
 
     if (audio && isSoundFXEnabled) {
+      AudioPlayerHelper.pauseInfiniteLoop();
       AudioPlayerHelper.play(audio);
     }
   });

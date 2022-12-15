@@ -12,9 +12,9 @@ import { IWelcomeParentScreenProps } from './WelcomeParent.types';
 import { styles } from './WelcomeParent.styles';
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { SVG } from '../../../../assets/svg';
-import { useMount } from '../../../../hooks';
-import { AudioPlayerHelper } from '../../../../services/helpers/AudioPlayerHelper';
+import { useAppDispatch, useMount } from '../../../../hooks';
 import { AUDIO } from '../../../../constants/audio';
+import { cacheSlice } from '../../../../redux/slices';
 
 const LogoIcon = SVG.NadiyaTextIcon;
 
@@ -22,6 +22,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   const onSignUpPress = useCallback(() => {
     navigation.navigate('LanguageSelection');
@@ -32,7 +33,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   }, [navigation]);
 
   useMount(() => {
-    AudioPlayerHelper.setInfiniteLoop(AUDIO.FOREST_AMBIENCE_LOOP);
+    dispatch(cacheSlice.actions.setBackgroundAudio(AUDIO.FOREST_AMBIENCE_LOOP));
   });
 
   return (

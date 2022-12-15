@@ -9,14 +9,28 @@ export const BackgroundAudioPlayer: React.FC = () => {
   const isBackgroundMusicEnabled = useAppSelector(
     state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
   );
+  const backgroundAudio = useAppSelector(
+    state => state.cache.backgroundAudio ?? null,
+  );
+
+  useEffect(() => {
+    if (backgroundAudio) {
+      if (isBackgroundMusicEnabled) {
+        AudioPlayerHelper.stopInfiniteLoop();
+        AudioPlayerHelper.setInfiniteLoop(backgroundAudio);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [backgroundAudio]);
+
   useEffect(() => {
     if (appState === 'active' && prevAppState !== 'active') {
       if (isBackgroundMusicEnabled) {
-        AudioPlayerHelper.start();
+        AudioPlayerHelper.startInfiniteLoop();
       }
     }
     if (appState !== 'active' && prevAppState === 'active') {
-      AudioPlayerHelper.pause();
+      AudioPlayerHelper.pauseInfiniteLoop();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appState, prevAppState]);

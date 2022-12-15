@@ -48,11 +48,12 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
           cacheSlice.actions.saveSignUpDataParent({
             email,
             password,
+            isReceiveInformationEnabled: !toggleCheckBox,
           }),
         );
         dispatch(userSlice.actions.registerParent());
       },
-      [dispatch],
+      [dispatch, toggleCheckBox],
     );
 
     const onSignInPress = useCallback(() => {
