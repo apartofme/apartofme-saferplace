@@ -22,6 +22,7 @@ import {
   useParsedJSXTextNickname,
 } from '../../../../../hooks';
 import { SVG } from '../../../../../assets/svg';
+import { COLORS } from '../../../../../themes/colors';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const WhiteCrossIcon = SVG.WhiteCrossIcon;
@@ -94,7 +95,12 @@ export const TrySomethingModal: React.FC<ITrySomethingModalProps> = ({
             <View style={styles.container}>
               <Title />
               <ExtendedText style={styles.subtitle}>{t(subtitle)}</ExtendedText>
-              <ExtendedTextInput onChangeText={setInputValue} maxLength={30} />
+              <ExtendedTextInput
+                onChangeText={setInputValue}
+                maxLength={30}
+                placeholderTextColor={COLORS.BRILLIANT_WHITE}
+                placeholder={t('placeholders.enter_text')}
+              />
               <ExtendedText
                 preset="tertiary-text-regular"
                 style={styles.maxCharacters}>

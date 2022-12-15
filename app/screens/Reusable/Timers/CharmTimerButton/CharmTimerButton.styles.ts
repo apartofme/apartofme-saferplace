@@ -16,7 +16,7 @@ export const styles = StyleSheet.create<ICharmTimerButtonScreenStyles>({
   container: {
     paddingTop: 16 * WINDOW_COEFFICIENT,
     paddingBottom: 20 * WINDOW_COEFFICIENT,
-    paddingHorizontal: 40,
+    paddingHorizontal: 24,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -24,13 +24,13 @@ export const styles = StyleSheet.create<ICharmTimerButtonScreenStyles>({
     color: COLORS.LIGHT_GREY,
     textAlign: 'center',
     flex: 1,
-    maxHeight: 120,
+    maxHeight: 140,
   },
   headerContainer: {
     zIndex: 10,
   },
   animation: {
-    width: WINDOW_WIDTH * WINDOW_COEFFICIENT,
+    width: WINDOW_WIDTH * WINDOW_COEFFICIENT - 40,
     position: 'absolute',
     top: WINDOW_COEFFICIENT * 80 - 40,
   },

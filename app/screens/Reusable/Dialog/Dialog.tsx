@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import {
   ImageBackground,
   SafeAreaView,
+  ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -76,7 +77,11 @@ export const DialogScreen: React.FC<IDialogScreenProps> = ({ route }) => {
           <View style={generalStyles.flex} />
           <View style={generalStyles.aiCenter}>
             <View style={styles.dialogContainer}>
-              <Title />
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={generalStyles.flex}>
+                <Title />
+              </ScrollView>
             </View>
             <TouchableOpacity onPress={onSubmit} style={styles.roundButton}>
               <RoundTriangleButtonIcon />
