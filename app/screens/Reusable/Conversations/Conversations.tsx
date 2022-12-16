@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView, ScrollView, View } from 'react-native';
 
 import { CHARMS_BACKGROUNDS } from '../../../assets';
-import { ExtendedButton, ExtendedText, RadioButton } from '../../../components';
+import { ExtendedButton, ExtendedText } from '../../../components';
+import { CheckBox } from '../../../components/CheckBox';
 import { useNavigateNextQuest, useRenderQuestHeader } from '../../../hooks';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './Conversations.styles';
@@ -53,7 +54,7 @@ export const ConversationsScreen: React.FC<IConversationsScreenProps> = ({
             <ExtendedText style={styles.subtitle} preset="body-regular">
               {description}
             </ExtendedText>
-            <RadioButton
+            <CheckBox
               title={t('buttons.confirm_read_guidance')}
               isActive={isConfirm}
               onPress={onConfirmPress}

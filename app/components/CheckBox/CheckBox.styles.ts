@@ -28,9 +28,8 @@ export const styles = StyleSheet.create<ICheckBoxStyles>({
     marginRight: 32 * WINDOW_COEFFICIENT,
     color: COLORS.BRILLIANT_WHITE,
   },
-
   activeBackground: {
     backgroundColor: COLORS.PRIMARY_PURPLE,
-    borderWidth: 2,
+    borderWidth: 1,
   },
 });
