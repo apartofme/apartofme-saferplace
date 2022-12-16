@@ -14,7 +14,7 @@ import {
   AnimationsKeys,
 } from './types';
 import { REGEXPS } from './regexps';
-import { WINDOW_COEFFICIENT, WINDOW_WIDTH } from '../constants/window';
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../constants/window';
 import { COLORS } from '../themes/colors';
 import {
   NETWORK_ERROR_DESCRIPTION,
@@ -162,18 +162,11 @@ export const hexTransparency = (color: string, transparency: number) => {
   return `${color}${hexValue.padStart(2, '0').toUpperCase()}`;
 };
 
-export const LottieAbsoluteStyles = (
-  verticalShift = 0,
-  styles?: ViewStyle,
-): ViewStyle => {
-  const shift =
-    WINDOW_COEFFICIENT === 1
-      ? verticalShift
-      : verticalShift / (WINDOW_COEFFICIENT - 1);
+export const LottieAbsoluteStyles = (styles?: ViewStyle): ViewStyle => {
   return {
-    width: WINDOW_WIDTH + 10,
     position: 'absolute',
-    top: WINDOW_COEFFICIENT * shift - shift,
+    width: WINDOW_WIDTH + 10,
+    height: WINDOW_HEIGHT,
     ...styles,
   };
 };

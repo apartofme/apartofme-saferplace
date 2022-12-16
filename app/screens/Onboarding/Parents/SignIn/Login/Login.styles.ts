@@ -38,11 +38,14 @@ export const styles = StyleSheet.create<ILoginScreenStyles>({
   footer: {
     flexDirection: 'row',
     alignSelf: 'center',
+    flexWrap: 'wrap',
     paddingHorizontal: 24,
     paddingBottom: 24,
+    justifyContent: 'center',
   },
   signupButton: {
     color: COLORS.PRIMARY_ORANGE,
+    textAlign: 'center',
     marginLeft: 4,
   },
   button: {

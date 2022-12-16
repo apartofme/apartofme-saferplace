@@ -218,9 +218,7 @@ export const ElixirDoubleInteractionScreen: React.FC<IElixirDoubleInteractionScr
           onAnimationFinish={onSubmit}
           loop={false}
           style={
-            isCurrentQuestCompleted
-              ? styles.animation
-              : LottieAbsoluteStyles(-20)
+            isCurrentQuestCompleted ? styles.animation : LottieAbsoluteStyles()
           }
         />
         <SafeAreaView style={styles.container}>

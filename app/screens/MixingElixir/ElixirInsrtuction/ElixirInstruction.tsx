@@ -58,7 +58,7 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
               source={ANIMATIONS.POTION_MIX}
               progress={0}
               loop={false}
-              style={LottieAbsoluteStyles(-20)}
+              style={LottieAbsoluteStyles()}
             />
           );
         case MixingElixirPhaseType.Open:
@@ -67,7 +67,7 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               progress={0}
               loop={false}
-              style={LottieAbsoluteStyles(-20)}
+              style={LottieAbsoluteStyles()}
             />
           );
         default:
@@ -76,7 +76,7 @@ export const ElixirInstructionScreen: React.FC<IElixirInstructionScreenProps> =
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               progress={1}
               loop={false}
-              style={LottieAbsoluteStyles(-20)}
+              style={LottieAbsoluteStyles()}
             />
           );
       }

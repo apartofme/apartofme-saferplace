@@ -37,6 +37,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   carouselStyle,
   carouselItemStyle,
   isProgressBar = true,
+  scrollAnimationDuration,
 }) => {
   const progressValue = useSharedValue<number>(0);
 
@@ -143,6 +144,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
         onSnapToItem={setIndex && _.flow(Math.floor, setIndex)}
         onProgressChange={onProgressChange}
         style={[generalStyles.flex, carouselStyle]}
+        scrollAnimationDuration={scrollAnimationDuration}
       />
       {isProgressBar && (
         <View style={styles.progressBar}>{renderProgressBar()}</View>

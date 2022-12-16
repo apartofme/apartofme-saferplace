@@ -81,7 +81,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_MIX}
               autoPlay
               loop={false}
-              style={LottieAbsoluteStyles(-15)}
+              style={LottieAbsoluteStyles()}
             />
           );
         case ELIXIR_ANIMATION_TYPE.Open:
@@ -91,7 +91,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               autoPlay
               loop={false}
-              style={LottieAbsoluteStyles(-15)}
+              style={LottieAbsoluteStyles()}
             />
           );
         default:
@@ -101,7 +101,7 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               progress={1}
               loop={false}
-              style={LottieAbsoluteStyles(-15)}
+              style={LottieAbsoluteStyles()}
             />
           );
       }
@@ -112,7 +112,8 @@ export const AnimationTitleScreen: React.FC<IAnimationTitleScreenProps> = ({
         source={ANIMATIONS.FINDING_RIGHT_CHARM}
         autoPlay
         loop={false}
-        style={LottieAbsoluteStyles(-30)}
+        resizeMode="cover"
+        style={LottieAbsoluteStyles()}
       />
     );
   }, [description, onSubmit]);

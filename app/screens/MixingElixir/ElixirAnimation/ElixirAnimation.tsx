@@ -162,7 +162,7 @@ export const ElixirAnimationScreen: React.FC<IElixirAnimationScreenProps> = ({
         source={animation}
         autoPlay
         loop={false}
-        style={LottieAbsoluteStyles(-20)}
+        style={LottieAbsoluteStyles()}
       />
       <SafeAreaView style={styles.container}>
         <ExtendedText preset="title" style={styles.title}>

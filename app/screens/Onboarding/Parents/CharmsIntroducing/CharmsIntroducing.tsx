@@ -38,6 +38,7 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
         navigation.navigate('ParentGroundingStack');
       }
       carouselRef.current?.next();
+      setIndex(index + 1);
     }, [index, navigation]);
 
     const onBackArrowPress = useCallback(() => {
@@ -65,10 +66,10 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
             <Carousel
               data={CHARMS_CAROUSEL}
               preset={CarouselType.IconTitleDescription}
-              setIndex={setIndex}
               carouselRef={carouselRef}
               carouselItemStyle={styles.carousel}
               isProgressBar={false}
+              scrollAnimationDuration={0}
             />
           </BottomButtonView>
         </SafeAreaView>

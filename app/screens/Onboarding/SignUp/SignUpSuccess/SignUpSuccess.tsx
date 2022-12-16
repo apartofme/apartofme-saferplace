@@ -78,12 +78,13 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
         source={ANIMATIONS.LEAF_CONFETTI}
         autoPlay
         loop={false}
-        style={LottieAbsoluteStyles(-30)}
+        style={LottieAbsoluteStyles()}
       />
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView
           buttonTitle={t('buttons.next')}
           onSubmit={onSubmit}
+          isArrow={true}
           style={styles.container}>
           <AvatarIcon height={325} width={325} />
           <ExtendedText preset="large-title" style={styles.title}>

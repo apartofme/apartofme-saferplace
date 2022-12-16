@@ -18,10 +18,11 @@ export const BackgroundAudioPlayer: React.FC = () => {
       if (isBackgroundMusicEnabled) {
         AudioPlayerHelper.stopInfiniteLoop();
         AudioPlayerHelper.setInfiniteLoop(backgroundAudio);
+      } else {
+        AudioPlayerHelper.stopInfiniteLoop();
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [backgroundAudio]);
+  }, [backgroundAudio, isBackgroundMusicEnabled]);
 
   useEffect(() => {
     if (appState === 'active' && prevAppState !== 'active') {

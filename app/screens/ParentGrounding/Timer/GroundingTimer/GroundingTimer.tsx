@@ -116,7 +116,7 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
         source={animation}
         loop={false}
         autoPlay
-        style={LottieAbsoluteStyles(-30)}
+        style={LottieAbsoluteStyles()}
         ref={lottieRef}
       />
       <SafeAreaView style={generalStyles.flex}>

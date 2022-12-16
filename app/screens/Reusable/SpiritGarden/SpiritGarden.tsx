@@ -62,7 +62,7 @@ export const SpiritGardenScreen: React.FC<ISpiritGardenScreenProps> = ({
             source={ANIMATIONS.TROUBLE_SOME_SPIRIT_ENTERS}
             autoPlay
             loop={false}
-            style={LottieAbsoluteStyles(-10)}
+            style={LottieAbsoluteStyles()}
           />
         </View>
       </View>

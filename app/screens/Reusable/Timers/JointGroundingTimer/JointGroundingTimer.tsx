@@ -107,7 +107,7 @@ export const JointGroundingTimerScreen: React.FC<IJointGroundingTimerScreenProps
           source={animation}
           loop={false}
           autoPlay
-          style={LottieAbsoluteStyles(-30)}
+          style={LottieAbsoluteStyles()}
           ref={lottieRef}
         />
         <SafeAreaView style={generalStyles.flex}>

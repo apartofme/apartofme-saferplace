@@ -128,7 +128,7 @@ export const MixingElixirSuccessScreen: React.FC<IMixingElixirSuccessScreenProps
           source={animation}
           autoPlay
           loop={false}
-          style={LottieAbsoluteStyles(-20)}
+          style={LottieAbsoluteStyles()}
         />
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView

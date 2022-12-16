@@ -117,7 +117,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
         autoPlay
         loop
         ref={lottieRef}
-        style={LottieAbsoluteStyles(-30)}
+        style={LottieAbsoluteStyles()}
       />
       <SafeAreaView style={generalStyles.flex}>
         <View style={styles.container}>

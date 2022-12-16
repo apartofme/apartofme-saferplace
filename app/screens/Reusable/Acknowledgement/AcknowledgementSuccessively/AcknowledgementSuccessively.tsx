@@ -126,7 +126,7 @@ export const AcknowledgementSuccessivelyScreen: React.FC<IAcknowledgementSuccess
             source={ANIMATIONS.LEAF_CONFETTI}
             autoPlay
             loop={false}
-            style={LottieAbsoluteStyles(-30)}
+            style={LottieAbsoluteStyles()}
           />
         )}
         <SafeAreaView style={generalStyles.flex}>
