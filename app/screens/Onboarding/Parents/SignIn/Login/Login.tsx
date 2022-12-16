@@ -110,7 +110,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
             <Formik
               initialValues={{
                 email: __DEV__ ? 'emberglazer@gmail.com' : '',
-                password: __DEV__ ? 'Test1111' : '',
+                password: __DEV__ ? 'Test2222' : '',
               }}
               validationSchema={SignInValidationSchema}
               onSubmit={onLoginPress}>

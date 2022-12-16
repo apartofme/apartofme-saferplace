@@ -1,5 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
+import { WINDOW_COEFFICIENT } from '../../../constants/window';
 import { COLORS } from '../../../themes/colors';
 
 interface ICharmCompletedScreenStyles {
@@ -13,17 +14,17 @@ export const styles = StyleSheet.create<ICharmCompletedScreenStyles>({
     alignItems: 'center',
     justifyContent: 'flex-end',
     paddingHorizontal: 40,
-    paddingBottom: 73,
+    paddingBottom: 73 * WINDOW_COEFFICIENT,
   },
   title: {
-    marginTop: 32,
+    marginTop: 32 * WINDOW_COEFFICIENT,
     marginBottom: 24,
     color: COLORS.BRILLIANT_WHITE,
     textAlign: 'center',
   },
   description: {
     flex: 1,
-    maxHeight: 120,
+    maxHeight: 140,
     color: COLORS.LIGHT_GREY,
     textAlign: 'center',
   },

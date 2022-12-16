@@ -14,6 +14,7 @@ import {
 } from '../../../../hooks';
 import { styles } from './AcknowledgementNicknames.styles';
 import { CHARMS_SVG } from '../../../../assets/svg';
+import { CharmsSvgKeys } from '../../../../utils/types';
 
 export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesScreenProps> =
   ({ route }) => {
@@ -54,7 +55,7 @@ export const AcknowledgementNicknamesScreen: React.FC<IAcknowledgementNicknamesS
       escapeMenuAlternativeNavigateTo,
     });
 
-    const Icon = image && CHARMS_SVG[image];
+    const Icon = image && CHARMS_SVG[image as CharmsSvgKeys];
 
     return (
       <ImageBackground

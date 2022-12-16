@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
+import moment from 'moment';
 
 import { BottomButtonView, ExtendedText } from '../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
@@ -20,8 +21,8 @@ import { AUDIO } from '../../../constants/audio';
 import { CHARMS_SVG } from '../../../assets/svg';
 import { FirebaseAnalyticsEventsType } from '../../../services/firebase/types';
 import { trackEvent } from '../../../services/firebase/analytics';
-import moment from 'moment';
 import { CHARM_ENDED, ILLUSTRATION_ICON } from '../../../constants/quest';
+import { CharmsSvgKeys } from '../../../utils/types';
 
 export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
   route,
@@ -72,7 +73,13 @@ export const CharmCompletedScreen: React.FC<ICharmCompletedScreenProps> = ({
     }
   }, [appStatus, isFocused, isSoundFXEnabled]);
 
-  const Icon = CHARMS_SVG[image ?? 'CelebrationGuideIcon'];
+  useEffect(() => {
+    if (appStatus !== 'active') {
+      AudioPlayerHelper.stop();
+    }
+  }, [appStatus]);
+
+  const Icon = CHARMS_SVG[(image as CharmsSvgKeys) ?? 'CelebrationGuideIcon'];
 
   return (
     <ImageBackground
