@@ -78,7 +78,7 @@ export const SignUpSuccessScreen: React.FC<ISignUpSuccessScreenProps> = ({
         source={ANIMATIONS.LEAF_CONFETTI}
         autoPlay
         loop={false}
-        style={LottieAbsoluteStyles()}
+        style={LottieAbsoluteStyles(-30)}
       />
       <SafeAreaView style={generalStyles.flex}>
         <BottomButtonView

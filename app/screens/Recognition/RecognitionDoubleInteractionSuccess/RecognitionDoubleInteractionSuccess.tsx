@@ -32,13 +32,13 @@ export const RecognitionDoubleInteractionSuccessScreen: React.FC<IRecognitionDou
           source={ANIMATIONS.LEAF_CONFETTI}
           autoPlay
           loop={false}
-          style={LottieAbsoluteStyles()}
+          style={LottieAbsoluteStyles(-30)}
         />
         <Lottie
           source={POTION_FILL_ANIMATIONS.ElixirOneToElixirTwo}
           loop={false}
           progress={1}
-          style={LottieAbsoluteStyles()}
+          style={LottieAbsoluteStyles(-30)}
         />
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView

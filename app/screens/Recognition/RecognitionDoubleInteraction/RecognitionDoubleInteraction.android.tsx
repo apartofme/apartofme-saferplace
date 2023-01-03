@@ -112,7 +112,7 @@ export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInte
           source={POTION_FILL_ANIMATIONS.ElixirOneToElixirTwo}
           onAnimationFinish={onSubmit}
           loop={false}
-          style={LottieAbsoluteStyles()}
+          style={LottieAbsoluteStyles(-30)}
         />
         <SafeAreaView style={styles.container}>
           <ExtendedText style={styles.title}>

@@ -37,7 +37,7 @@ export const LoadingScreen: React.FC<ILoadingScreenProps> = ({
         source={ANIMATIONS.LOADING_FOREST}
         autoPlay
         loop
-        style={LottieAbsoluteStyles()}
+        style={LottieAbsoluteStyles(-30)}
       />
       <SafeAreaView style={generalStyles.flex}>
         <View style={styles.icon}>

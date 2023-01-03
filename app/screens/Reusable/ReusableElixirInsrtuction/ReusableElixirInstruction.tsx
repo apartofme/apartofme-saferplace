@@ -27,7 +27,7 @@ export const ReusableElixirInstructionScreen: React.FC<IReusableElixirInstructio
               source={ANIMATIONS.POTION_MIX}
               progress={0}
               loop={false}
-              style={LottieAbsoluteStyles()}
+              style={LottieAbsoluteStyles(-15)}
             />
           );
         case ELIXIR_ANIMATION_TYPE.Open:
@@ -36,7 +36,7 @@ export const ReusableElixirInstructionScreen: React.FC<IReusableElixirInstructio
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               progress={0}
               loop={false}
-              style={LottieAbsoluteStyles()}
+              style={LottieAbsoluteStyles(-15)}
             />
           );
         default:
@@ -45,7 +45,7 @@ export const ReusableElixirInstructionScreen: React.FC<IReusableElixirInstructio
               source={ANIMATIONS.POTION_OPEN_BOTTLE}
               progress={1}
               loop={false}
-              style={LottieAbsoluteStyles()}
+              style={LottieAbsoluteStyles(-15)}
             />
           );
       }

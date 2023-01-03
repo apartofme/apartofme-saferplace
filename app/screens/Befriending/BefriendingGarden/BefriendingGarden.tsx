@@ -70,7 +70,7 @@ export const BefriendingGardenScreen: React.FC<IBefriendingGardenScreenProps> =
               source={ANIMATIONS.TROUBLE_SOME_SPIRIT_ENTERS}
               autoPlay
               loop={false}
-              style={LottieAbsoluteStyles()}
+              style={LottieAbsoluteStyles(-10)}
             />
           </View>
         </View>

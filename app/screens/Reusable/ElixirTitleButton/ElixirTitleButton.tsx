@@ -129,13 +129,13 @@ export const ElixirTitleButtonScreen: React.FC<IElixirTitleButtonScreenProps> =
           source={ANIMATIONS.LEAF_CONFETTI}
           autoPlay
           loop={false}
-          style={LottieAbsoluteStyles()}
+          style={LottieAbsoluteStyles(-30)}
         />
         <Lottie
           source={animation}
           progress={1}
           loop={false}
-          style={LottieAbsoluteStyles()}
+          style={LottieAbsoluteStyles(-20)}
         />
         <SafeAreaView style={generalStyles.flex}>
           <BottomButtonView
