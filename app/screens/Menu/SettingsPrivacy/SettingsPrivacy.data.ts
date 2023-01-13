@@ -14,11 +14,11 @@ export interface ISettingsPrivacyMenuItem {
 }
 
 export const SETTINGS_PRIVACY_MENU: ReadonlyArray<ISettingsPrivacyMenuItem> = [
-  {
-    titleKey: 'screens.menu.settings_privacy.first_item',
-    type: SettingsPrivacyRouteType.OnOtherScreens,
-    route: 'LanguageSettings',
-  },
+  // {
+  //   titleKey: 'screens.menu.settings_privacy.first_item',
+  //   type: SettingsPrivacyRouteType.OnOtherScreens,
+  //   route: 'LanguageSettings',
+  // },
   {
     titleKey: 'screens.menu.settings_privacy.second_item',
     type: SettingsPrivacyRouteType.OnOtherScreens,
