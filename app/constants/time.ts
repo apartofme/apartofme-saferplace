@@ -1,5 +1,4 @@
-export const ONE_DAY_SECONDS = 60;
-// export const ONE_DAY_SECONDS = 43200000;
+export const ONE_DAY_SECONDS = 43200;
 export const TWO_DAY_SECONDS = ONE_DAY_SECONDS * 2;
 export const TEN_SECONDS = 10;
 export const TWENTY_SECONDS = TEN_SECONDS * 2;
