@@ -60,6 +60,7 @@ export const MultilineTextInput: React.FC<IMultilineTextInputProps> = ({
         onFocus={onFocus}
         onBlur={onBlur}
         {...rest}
+        allowFontScaling={false}
       />
       <View style={styles.imageContainer}>
         <WhitePencil />

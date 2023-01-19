@@ -11,5 +11,5 @@ export const ExtendedText: React.FC<IExtendedTextProps> = ({
 }) => {
   const styles = [presets[preset], style];
 
-  return <ReactNativeText {...rest} style={styles} />;
+  return <ReactNativeText {...rest} style={styles} allowFontScaling={false} />;
 };

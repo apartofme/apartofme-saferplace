@@ -95,6 +95,7 @@ export const ExtendedTextInput: React.FC<IExtendedTextInputProps> = ({
         selectionColor={COLORS.PRIMARY_ORANGE}
         onFocus={onFocus}
         onBlur={onBlur}
+        allowFontScaling={false}
       />
       {!!error && (
         <View style={styles.errorContainer}>
