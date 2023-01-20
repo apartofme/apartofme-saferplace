@@ -28,6 +28,8 @@ interface IExtendedButtonAdditionalStyles {
   destructiveTitle: TextStyle;
   destructiveDisabled: ViewStyle;
   destructiveDisabledTitle: TextStyle;
+
+  activityIndicator: ViewStyle;
 }
 
 export type ExtendedButtonPresets = keyof IExtendedButtonStyles;
@@ -86,6 +88,10 @@ export const additionalStyles =
       },
     },
     destructiveDisabledTitle: {},
+    activityIndicator: {
+      width: 24,
+      height: 24,
+    },
   });
 
 export default StyleSheet.create<IExtendedButtonStyles>({

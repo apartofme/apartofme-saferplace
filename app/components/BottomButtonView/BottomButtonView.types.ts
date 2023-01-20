@@ -8,4 +8,5 @@ export interface IBottomButtonViewProps extends ViewProps {
   isDisabledButton?: boolean;
   isArrow?: boolean;
   preset?: ExtendedButtonPresets;
+  isLoading?: boolean;
 }

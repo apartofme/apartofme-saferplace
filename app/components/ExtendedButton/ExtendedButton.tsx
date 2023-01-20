@@ -1,5 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
-import { GestureResponderEvent, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  GestureResponderEvent,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import { SVG } from '../../assets/svg';
 import { trackButtonPress } from '../../services/firebase';
@@ -18,6 +23,7 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
   isArrow,
   disabled,
   onPress,
+  isLoading,
   ...rest
 }) => {
   const containerStyles = useMemo(
@@ -53,18 +59,26 @@ export const ExtendedButton: React.FC<IExtendedButtonProps> = ({
     <TouchableOpacity
       {...rest}
       style={containerStyles}
-      disabled={disabled}
+      disabled={disabled || isLoading}
       onPress={onButtonPress}>
-      <ExtendedText style={titleStyles}>{title}</ExtendedText>
-      {isArrow && (
-        <View style={styles.imageContainer}>
-          <ArrowIcon />
-        </View>
-      )}
-      {preset === 'destructive' && (
-        <View style={styles.imageContainer}>
-          <WhiteBinIcon />
-        </View>
+      {isLoading ? (
+        <ActivityIndicator style={additionalStyles.activityIndicator} />
+      ) : (
+        <>
+          <ExtendedText style={titleStyles}>{title}</ExtendedText>
+
+          {isArrow && (
+            <View style={styles.imageContainer}>
+              <ArrowIcon />
+            </View>
+          )}
+
+          {preset === 'destructive' && (
+            <View style={styles.imageContainer}>
+              <WhiteBinIcon />
+            </View>
+          )}
+        </>
       )}
     </TouchableOpacity>
   );

@@ -6,4 +6,5 @@ export interface IExtendedButtonProps extends TouchableOpacityProps {
   titleStyle?: TextStyle;
   preset?: ExtendedButtonPresets;
   isArrow?: boolean;
+  isLoading?: boolean;
 }

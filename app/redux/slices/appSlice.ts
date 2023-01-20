@@ -13,7 +13,7 @@ const INITIAL_STATE: IAppState = {
   loading: {
     isGetUser: false,
     isLoginUser: false,
-    isRegisterUser: false,
+    isRegisterParent: false,
     isSaveAllQuests: false,
     isSaveTranslations: false,
     isEditChild: false,
@@ -21,11 +21,12 @@ const INITIAL_STATE: IAppState = {
     isDeleteAccount: false,
     isChangePassword: false,
     isCreateChild: false,
+    isResetPassword: false,
   },
   errors: {
     getUser: null,
     loginUser: null,
-    registerUser: null,
+    registerParent: null,
     saveAllQuests: null,
     saveTranslations: null,
     editChild: null,
@@ -33,6 +34,7 @@ const INITIAL_STATE: IAppState = {
     deleteAccount: null,
     changePassword: null,
     createChild: null,
+    resetPassword: null,
   },
 };
 
@@ -68,15 +70,15 @@ export const appSlice = createSlice({
 
     // Register actions
     builder.addCase(userSlice.actions.registerParent, state => {
-      state.loading[LoadingType.isRegisterUser] = true;
-      state.errors[ErrorType.registerUser] = null;
+      state.loading[LoadingType.isRegisterParent] = true;
+      state.errors[ErrorType.registerParent] = null;
     });
     builder.addCase(userSlice.actions.registerParentSuccess, state => {
-      state.loading[LoadingType.isRegisterUser] = false;
+      state.loading[LoadingType.isRegisterParent] = false;
     });
     builder.addCase(userSlice.actions.registerParentError, (state, action) => {
-      state.loading[LoadingType.isRegisterUser] = false;
-      state.errors[ErrorType.registerUser] = action.payload;
+      state.loading[LoadingType.isRegisterParent] = false;
+      state.errors[ErrorType.registerParent] = action.payload;
     });
 
     // Save all quests

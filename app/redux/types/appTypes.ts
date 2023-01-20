@@ -1,5 +1,5 @@
 export enum ErrorType {
-  registerUser = 'registerUser',
+  registerParent = 'registerParent',
   loginUser = 'loginUser',
   getUser = 'getUser',
   saveAllQuests = 'saveAllQuests',
@@ -14,7 +14,7 @@ export enum ErrorType {
 
 export enum LoadingType {
   isLoginUser = 'isLoginUser',
-  isRegisterUser = 'isRegisterUser',
+  isRegisterParent = 'isRegisterParent',
   isGetUser = 'isGetUser',
   isSaveAllQuests = 'isSaveAllQuests',
   isSaveTranslations = 'isSaveTranslations',

@@ -234,7 +234,7 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
               <ExtendedText preset="heading" style={styles.title}>
                 {t('screens.garden.charm_book_menu.none.title')}
               </ExtendedText>
-              {completedQuestsId.length >= 5 && (
+              {completedQuestsId.length >= 1 && (
                 <>
                   <ExtendedText
                     preset="secondary-text"

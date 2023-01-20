@@ -18,7 +18,7 @@ import {
   MainHeader,
 } from '../../../../components';
 import { BACKGROUND_IMAGES } from '../../../../assets';
-import { useAppDispatch } from '../../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { cacheSlice, userSlice } from '../../../../redux/slices';
 import { generalStyles } from '../../../../utils/styles';
 import { ISignUpCredentialsScreenProps } from './SignUpCredentials.types';
@@ -39,6 +39,9 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
     const dispatch = useAppDispatch();
     const [isFocus, setIsFocus] = useState(false);
     const scrollViewRef = useRef<ScrollView>(null);
+    const isRegisterParent = useAppSelector(
+      state => state.app.loading.isRegisterParent,
+    );
 
     const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
@@ -125,6 +128,7 @@ export const SignUpCredentialsScreen: React.FC<ISignUpCredentialsScreenProps> =
                   buttonTitle={t('buttons.signup')}
                   onSubmit={handleSubmit}
                   isDisabledButton={dirty ? !isValid : true}
+                  isLoading={isRegisterParent}
                   style={styles.container}>
                   <ScrollView
                     ref={scrollViewRef}

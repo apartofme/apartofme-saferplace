@@ -174,6 +174,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
                       style={styles.button}
                       onPress={handleSubmit}
                       disabled={!isValid}
+                      isLoading={isLoginUser}
                     />
                   </ScrollView>
                 </View>

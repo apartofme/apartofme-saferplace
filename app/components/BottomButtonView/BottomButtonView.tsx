@@ -12,6 +12,7 @@ export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
   buttonTitle,
   isDisabledButton,
   isArrow,
+  isLoading,
   style,
   preset = 'default',
 }) => {
@@ -52,6 +53,7 @@ export const BottomButtonView: React.FC<IBottomButtonViewProps> = ({
         isArrow={isArrow}
         style={styles.button}
         preset={preset}
+        isLoading={isLoading}
       />
     </View>
   );
