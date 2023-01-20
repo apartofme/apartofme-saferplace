@@ -25,8 +25,7 @@ export const WelcomeParentScreen: React.FC<IWelcomeParentScreenProps> = ({
   const dispatch = useAppDispatch();
 
   const onSignUpPress = useCallback(() => {
-    navigation.navigate('Acknowledgement');
-    // navigation.navigate('LanguageSelection');
+    navigation.navigate('LanguageSelection');
   }, [navigation]);
 
   const onLoginPress = useCallback(() => {

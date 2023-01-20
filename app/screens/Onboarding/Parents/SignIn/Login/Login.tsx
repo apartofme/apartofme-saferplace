@@ -63,8 +63,7 @@ export const LoginScreen: React.FC<ILoginScreenProps> = ({ navigation }) => {
   }, [navigation]);
 
   const onSignUpPress = useCallback(() => {
-    // navigation.navigate('LanguageSelection');
-    navigation.navigate('Acknowledgement');
+    navigation.navigate('LanguageSelection');
   }, [navigation]);
 
   const app = useAppSelector(state => state.app);
