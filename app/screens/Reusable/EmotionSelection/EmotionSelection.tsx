@@ -69,7 +69,6 @@ export const EmotionSelectionScreen: React.FC<IEmotionSelectionScreenProps> = ({
     dispatch(cacheSlice.actions.saveSelectedEmotion(selectedEmotion));
     navigateToNextQuest();
   }, [dispatch, navigateToNextQuest, selectedEmotion]);
-
   useMount(() => {
     const tempEmotions = _.filter(
       emotions,

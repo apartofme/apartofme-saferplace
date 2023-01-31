@@ -45,9 +45,12 @@ export const EmotionCarouselScreen: React.FC<IEmotionCarouselScreenProps> = ({
   const [activeItem, setActiveItem] = useState(emotionData[0]);
   const [isModal, setIsModal] = useState(false);
   const dispatch = useAppDispatch();
-  const playerEmotion =
-    useAppSelector(state => state.cache.emotions.selected) ?? '';
-
+  const playerEmotion = useAppSelector(state => {
+    const emotion = state.cache.emotions.selected;
+    if (emotion) {
+      return t(`labels.${emotion}`).toLocaleLowerCase();
+    }
+  });
   const navigateToNextQuest = useNavigateNextQuest();
 
   const Title = useParsedJSXTextNickname({

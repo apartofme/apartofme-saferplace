@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ExtendedText } from '../ExtendedText';
 import { EmotionButtonType } from './EmotionButton.data';
@@ -13,6 +14,7 @@ export const EmotionButton: React.FC<IEmotionButtonProps> = ({
   data,
   setSelected,
 }) => {
+  const { t } = useTranslation();
   const [selectedItem, setSelectedItem] =
     useState<Nullable<EmotionButtonType>>(null);
 
@@ -43,12 +45,12 @@ export const EmotionButton: React.FC<IEmotionButtonProps> = ({
               styles.title,
               item.type === selectedItem && generalStyles.grey,
             ]}>
-            {item.title}
+            {t(item.title)}
           </ExtendedText>
         </TouchableOpacity>
       );
     },
-    [selectedItem],
+    [selectedItem, t],
   );
 
   return (

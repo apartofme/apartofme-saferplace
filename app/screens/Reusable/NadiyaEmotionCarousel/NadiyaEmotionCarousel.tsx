@@ -1,11 +1,10 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
 import { styles } from './NadiyaEmotionCarousel.styles';
 import {
-  useMount,
   useNavigateNextQuest,
   useParsedJSXTextNickname,
   useRenderQuestHeader,
@@ -37,9 +36,7 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
     const [nadiyaEmotionData, setNadiyaEmotionData] = useState(
       _.cloneDeep(EMOTION_CAROUSEL),
     );
-
     const navigateToNextQuest = useNavigateNextQuest();
-
     const Title = useParsedJSXTextNickname({
       text: title,
       textHasNickname: titleHasNickname ?? true,
@@ -56,19 +53,24 @@ export const NadiyaEmotionCarouselScreen: React.FC<INadiyaEmotionCarouselScreenP
       navigateToNextQuest();
     }, [navigateToNextQuest]);
 
-    const nadiyaEmotion = useMemo(() => {
-      return title.split(' ').pop()?.replace(/\W/g, '') ?? '';
-    }, [title]);
+    const nadiyaEmotion = useMemo(
+      () => title.split(' ').pop()?.replace(/\|/g, '').replace(/\*/g, ''),
 
-    useMount(() => {
-      setNadiyaEmotionData(prev =>
-        _.map(prev, item =>
-          _.merge(item, {
-            titleKey: t(item.titleKey).replace('|emotion|', nadiyaEmotion),
-          }),
-        ),
-      );
-    });
+      [title],
+    );
+
+    useEffect(() => {
+      if (nadiyaEmotion) {
+        setNadiyaEmotionData(prev =>
+          _.map(prev, item =>
+            _.merge(item, {
+              titleKey: t(item.titleKey).replace('|emotion|', nadiyaEmotion),
+            }),
+          ),
+        );
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [nadiyaEmotion]);
 
     return (
       <ImageBackground

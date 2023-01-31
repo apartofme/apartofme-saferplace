@@ -403,7 +403,6 @@ export const useParsedJSXTextNickname = ({
       </ExtendedText>
     );
   };
-
   const textArray = _(text)
     .replace(DatoCMSTextVariables.FirstPlayer, `$${firstPlayer}`)
     .replace(DatoCMSTextVariables.SecondPlayer, `$${secondPlayer}`)
@@ -413,7 +412,10 @@ export const useParsedJSXTextNickname = ({
       DatoCMSTextVariables.TroublesomeSpiritQuestion,
       `$${troublesomeSpiritQuestion}`,
     )
-    .replace(DatoCMSTextVariables.PlayerEmotion, playerEmotion)
+    .replace(
+      DatoCMSTextVariables.PlayerEmotion,
+      t(`labels.${playerEmotion}`).toLocaleLowerCase(),
+    )
     .split('|')
     .map(value => {
       if (!value) {
