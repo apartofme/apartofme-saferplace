@@ -13,6 +13,7 @@ import {
   View,
 } from 'react-native';
 import Lottie from 'lottie-react-native';
+import { useKeepAwake } from '@sayem314/react-native-keep-awake';
 
 import { BACKGROUND_IMAGES } from '../../../../assets';
 import { ANIMATIONS } from '../../../../assets/animations';
@@ -45,6 +46,8 @@ export const GroundingTimerScreen: React.FC<IGroundingTimerScreenProps> = ({
     acknowledgementSubtitleKey,
     duration,
   } = route.params.data;
+
+  useKeepAwake();
 
   const lottieRef = useRef<Lottie>(null);
 
