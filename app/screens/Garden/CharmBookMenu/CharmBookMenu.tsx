@@ -23,6 +23,7 @@ import {
   CharmBookMenuType,
   ICharmBookMenuScreenProps,
 } from './CharmBookMenu.types';
+import { AudioPlayerHelper } from '../../../services/helpers/AudioPlayerHelper';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const OpenBookIcon = SVG.OpenBookIcon;
@@ -31,6 +32,13 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
   type,
   setModalStatus,
 }) => {
+  const isBackgroundMusicEnabled = useAppSelector(
+    state => state.settings.settings.audioSettings?.isBackgroundMusicEnabled,
+  );
+  const backgroundAudio = useAppSelector(
+    state => state.cache.backgroundAudio ?? null,
+  );
+
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const navigation = useNavigation<StackNavigationProp<MergedStackParams>>();
@@ -78,9 +86,16 @@ export const CharmBookMenuScreen: React.FC<ICharmBookMenuScreenProps> = ({
         default:
           audioPath = AUDIO.FOREST_AMBIENCE_LOOP;
       }
-      dispatch(cacheSlice.actions.setBackgroundAudio(audioPath));
+
+      if (isBackgroundMusicEnabled) {
+        if (backgroundAudio !== audioPath) {
+          dispatch(cacheSlice.actions.setBackgroundAudio(audioPath));
+        } else {
+          AudioPlayerHelper.startInfiniteLoop();
+        }
+      }
     },
-    [dispatch],
+    [dispatch, isBackgroundMusicEnabled, backgroundAudio],
   );
 
   const onPlayPress = useCallback(() => {
