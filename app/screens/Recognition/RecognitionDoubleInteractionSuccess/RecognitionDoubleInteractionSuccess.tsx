@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import Lottie from 'lottie-react-native';
@@ -10,10 +10,19 @@ import { LottieAbsoluteStyles } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { GARDEN_TRANSSITION_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
 import { IRecognitionDoubleInteractionSuccessScreenProps } from './RecognitionDoubleInteractionSuccess.types';
+import { SaveRecognitionStackScreenName } from '../../../navigation/navigationAsyncStorage';
 
 export const RecognitionDoubleInteractionSuccessScreen: React.FC<IRecognitionDoubleInteractionSuccessScreenProps> =
-  ({ navigation }) => {
+  ({ navigation, route }) => {
     const { t } = useTranslation();
+
+    useEffect(() => {
+      const saveStackScreenName = async () => {
+        await SaveRecognitionStackScreenName(route.name);
+      };
+      saveStackScreenName();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const onSubmitPress = useCallback(() => {
       navigation.push('RecognitionDialog', {
