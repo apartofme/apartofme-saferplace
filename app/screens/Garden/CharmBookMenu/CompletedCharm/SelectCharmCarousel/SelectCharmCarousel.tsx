@@ -39,15 +39,16 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
       state => state.quest.completedQuestsId,
     );
 
-    const [currentPossition, setCurrentPossition] = useState<number>(0);
+    const [currentPosition, setCurrentPosition] = useState<number>(0);
 
     const onSubmitPress = useCallback(() => {
       dispatch(questSlice.actions.setIsCurrentQuestCompleted(true));
 
       const completedQuestLineId =
-        COMPLETED_CHARMS_CAROUSEL[currentPossition].id;
+        COMPLETED_CHARMS_CAROUSEL[currentPosition + 1].id;
       const completedQuests = values(allQuests?.[completedQuestLineId].quests);
 
+      console.log(completedQuests[0].title);
       dispatch(
         questSlice.actions.saveCurrentQuestLine({
           id: completedQuests[0].questLineId,
@@ -62,7 +63,7 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
           data: { ...completedQuests[0] },
         },
       });
-    }, [allQuests, currentPossition, dispatch, navigation]);
+    }, [allQuests, currentPosition, dispatch, navigation]);
 
     const filteredCarouselData = useMemo(
       () =>
@@ -101,7 +102,7 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
             <Carousel
               data={[...filteredCarouselData]}
               preset={CarouselType.Card}
-              setIndex={setCurrentPossition}
+              setIndex={setCurrentPosition}
               style={styles.carousel}
             />
           </BottomButtonView>
