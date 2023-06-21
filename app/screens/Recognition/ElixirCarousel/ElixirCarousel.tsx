@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ICarouselInstance } from 'react-native-reanimated-carousel';
@@ -9,13 +9,23 @@ import { styles } from './ElixirCarousel.styles';
 import { BottomButtonView, Carousel, CarouselType } from '../../../components';
 import { generalStyles } from '../../../utils/styles';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { SaveRecognitionStackScreenName } from '../../../navigation/navigationAsyncStorage';
 
 export const ElixirCarouselScreen: React.FC<IElixirCarouselScreenProps> = ({
   navigation,
+  route,
 }) => {
   const { t } = useTranslation();
   const [index, setIndex] = useState(0);
   const carouselRef = useRef<ICarouselInstance>(null);
+
+  useEffect(() => {
+    const saveStackScreenName = async () => {
+      await SaveRecognitionStackScreenName(route.name);
+    };
+    saveStackScreenName();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSubmitPress = useCallback(() => {
     if (index >= ELIXIR_CAROUSEL.length - 1) {

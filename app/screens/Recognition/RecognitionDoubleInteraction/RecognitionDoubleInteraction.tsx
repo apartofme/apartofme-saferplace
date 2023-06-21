@@ -20,13 +20,22 @@ import { LottieAbsoluteStyles } from '../../../utils';
 import { generalStyles } from '../../../utils/styles';
 import { styles } from './RecognitionDoubleInteraction.styles';
 import { IRecognitionDoubleInteractionScreenProps } from './RecognitionDoubleInteraction.types';
+import { SaveRecognitionStackScreenName } from '../../../navigation/navigationAsyncStorage';
 
 export const RecognitionDoubleInteractionScreen: React.FC<IRecognitionDoubleInteractionScreenProps> =
-  ({ navigation }) => {
+  ({ navigation, route }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const appStatus = useAppState();
     const animationRef = useRef<Lottie>(null);
+
+    useEffect(() => {
+      const saveStackScreenName = async () => {
+        await SaveRecognitionStackScreenName(route.name);
+      };
+      saveStackScreenName();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useInternetCheck(
       'errors.network_progress.title',

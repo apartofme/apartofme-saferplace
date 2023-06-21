@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { ImageBackground, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -16,6 +16,7 @@ import { RECOGNITION_ACKNOWLEDGEMENT_DATA } from './RecognitionAcknowledgement.d
 import { useParsedJSXTextNickname } from '../../../hooks';
 import { SPIRIT_INTRO_DIALOG } from '../RecognitionDialog/RecognitionDialog.data';
 import { SVG } from '../../../assets/svg';
+import { SaveRecognitionStackScreenName } from '../../../navigation/navigationAsyncStorage';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 const CompassionateGuideIcon = SVG.CompassionateGuideIcon;
@@ -23,6 +24,14 @@ const CompassionateGuideIcon = SVG.CompassionateGuideIcon;
 export const RecognitionAcknowledgementScreen: React.FC<IRecognitionAcknowledgementScreenProps> =
   ({ navigation, route }) => {
     const { type } = route.params.data;
+
+    useEffect(() => {
+      const saveStackScreenName = async () => {
+        await SaveRecognitionStackScreenName(route.name);
+      };
+      saveStackScreenName();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const { t } = useTranslation();
 
