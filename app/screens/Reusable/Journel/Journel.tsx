@@ -93,6 +93,10 @@ export const JournelScreen: React.FC<IJournelScreenProps> = ({ route }) => {
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
             isArrow={!buttonTitle}
+            isDisabledButton={
+              !inputText &&
+              currentQuestLineId === THE_CHARM_OF_KINDNESS_PART_ONE_ID
+            }
             onSubmit={onSubmit}>
             <ScrollView
               ref={scrollViewRef}
