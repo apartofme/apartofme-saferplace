@@ -27,11 +27,8 @@ or
 - IOS
 
 To install all Pods run the command in root direcroty:
-`cd ios`
 
-further
-
-`pod install`
+`yarn pods`
 
 To start the application on IOS run the command in root directory:
 

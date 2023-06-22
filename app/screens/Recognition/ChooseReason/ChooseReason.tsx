@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ImageBackground, Pressable, SafeAreaView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -16,13 +16,23 @@ import { CHOOSE_REASON_DATA } from './ChooseReason.data';
 import { RecognitionAcknowledgementType } from '../RecognitionAcknowledgement/RecognitionAcknowledgement.data';
 import { SVG } from '../../../assets/svg';
 import { BACKGROUND_IMAGES } from '../../../assets';
+import { SaveRecognitionStackScreenName } from '../../../navigation/navigationAsyncStorage';
 
 const WhiteBackArrowIcon = SVG.WhiteBackArrowIcon;
 
 export const ChooseReasonScreen: React.FC<IChooseReasonScreenProps> = ({
   navigation,
+  route,
 }) => {
   const [selected, setSelected] = useState<string[]>([]);
+
+  useEffect(() => {
+    const saveStackScreenName = async () => {
+      await SaveRecognitionStackScreenName(route.name);
+    };
+    saveStackScreenName();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { t } = useTranslation();
 

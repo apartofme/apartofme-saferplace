@@ -43,7 +43,8 @@ export const CharmsIntroducingScreen: React.FC<ICharmsIntroducingScreenProps> =
 
     const onBackArrowPress = useCallback(() => {
       carouselRef.current?.prev();
-    }, []);
+      setIndex(index - 1);
+    }, [index]);
 
     return (
       <ImageBackground

@@ -12,10 +12,12 @@ import {
 } from '../../../components';
 import { CHARMS_BACKGROUNDS } from '../../../assets';
 import { generalStyles } from '../../../utils/styles';
+import { THE_CHARM_OF_ACCEPTANCE_PART_TWO_ID } from '../../../constants/quest';
 import {
   useParsedJSXTextNickname,
   usePositiveNavigateTo,
   useRenderQuestHeader,
+  useAppSelector,
 } from '../../../hooks';
 import { SVG } from '../../../assets/svg';
 import { COLORS } from '../../../themes/colors';
@@ -42,6 +44,9 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
   const [isFocus, setIsFocus] = useState(false);
   const { t } = useTranslation();
   const onSubmit = usePositiveNavigateTo(positiveNavigatesTo);
+  const currentQuestLineId = useAppSelector(
+    state => state.quest.currentQuestLine?.id,
+  );
 
   const Title = useParsedJSXTextNickname({
     text: title,
@@ -82,7 +87,10 @@ export const JournelSupportScreen: React.FC<IJournelSupportScreenProps> = ({
         <ExtendedKeyboardAvoidingView>
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
-            isDisabledButton={!inputText}
+            isDisabledButton={
+              !inputText &&
+              currentQuestLineId !== THE_CHARM_OF_ACCEPTANCE_PART_TWO_ID
+            }
             isArrow={!buttonTitle}
             onSubmit={onSubmit}>
             <ScrollView
