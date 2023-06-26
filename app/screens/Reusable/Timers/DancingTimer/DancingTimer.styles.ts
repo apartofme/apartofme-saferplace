@@ -6,6 +6,7 @@ interface IDancingTimerScreenStyles {
   container: ViewStyle;
   title: TextStyle;
   button: ViewStyle;
+  seconds: TextStyle;
 }
 
 export const styles = StyleSheet.create<IDancingTimerScreenStyles>({
@@ -15,14 +16,17 @@ export const styles = StyleSheet.create<IDancingTimerScreenStyles>({
     paddingHorizontal: 40,
     paddingBottom: 20,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
-    paddingBottom: 24,
+    marginTop: 30,
+    marginBottom: 24,
     textAlign: 'center',
   },
-  button: {
-    marginTop: 122,
+  button: { marginBottom: 30 },
+  seconds: {
+    color: COLORS.PRIMARY_ORANGE,
+    marginBottom: 30,
   },
 });
