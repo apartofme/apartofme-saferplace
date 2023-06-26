@@ -5,7 +5,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useIsFocused } from '@react-navigation/native';
 import {
   ImageBackground,
   SafeAreaView,
@@ -54,7 +53,6 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
 
   const [timerValue, setTimerValue] = useState(duration ?? 10);
   const [isTimerPause, setIsTimerPause] = useState(false);
-  const isFocused = useIsFocused();
   const timer = useRef<NodeJS.Timer>();
 
   const Header = useRenderQuestHeader(
@@ -67,7 +65,8 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
 
   useEffect(() => {
     return () => {
-      AudioPlayerHelper.pause();
+      AudioPlayerHelper.stop();
+      AudioPlayerHelper.startInfiniteLoop();
     };
   }, []);
 
@@ -78,12 +77,6 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // useEffect(() => {
-  //   if (isFocused) {
-  //     setTimerValue(duration ?? 10);
-  //   }
-  // }, [duration, isFocused]);
 
   useEffect(() => {
     if (!isTimerPause) {
