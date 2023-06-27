@@ -10,6 +10,7 @@ import {
   useAppSelector,
   useAppState,
   useMount,
+  useRenderQuestHeader,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { IAcknowledgementStopShakingScreenProps } from './AcknowledgementStopShaking.types';
@@ -28,6 +29,8 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
       backgroundImage,
       positiveNavigatesTo,
       titleHasNickname,
+      escapeMenuAlternativeNavigateTo,
+      crossHeader,
     } = route.params.data;
 
     const { t } = useTranslation();
@@ -62,6 +65,14 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
 
     const Icon = image && CHARMS_SVG[image];
 
+    const Header = useRenderQuestHeader(
+      {
+        crossHeader: crossHeader ?? false,
+        escapeMenuAlternativeNavigateTo,
+      },
+      true,
+    );
+
     return (
       <ImageBackground
         source={
@@ -69,6 +80,7 @@ export const AcknowledgementStopShakingScreen: React.FC<IAcknowledgementStopShak
         }
         style={generalStyles.flex}>
         <SafeAreaView style={generalStyles.flex}>
+          <Header />
           <BottomButtonView
             buttonTitle={buttonTitle || t('buttons.next')}
             isArrow={!buttonTitle}

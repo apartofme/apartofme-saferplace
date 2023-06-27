@@ -461,10 +461,13 @@ export const useParsedJSXTextNickname = ({
   );
 };
 
-export const useRenderQuestHeader = (data: {
-  crossHeader: boolean;
-  escapeMenuAlternativeNavigateTo?: Nullable<string>;
-}): React.FC => {
+export const useRenderQuestHeader = (
+  data: {
+    crossHeader: boolean;
+    escapeMenuAlternativeNavigateTo?: Nullable<string>;
+  },
+  removeBackButton?: boolean,
+): React.FC => {
   const goBack = useNavigatePrevQuest();
 
   const navigation = useNavigation();
@@ -483,8 +486,8 @@ export const useRenderQuestHeader = (data: {
   if (data.crossHeader) {
     return () => (
       <MainHeader
-        leftIcon={<WhiteBackArrowIcon />}
-        onLeftIconPress={goBack}
+        leftIcon={removeBackButton ? undefined : <WhiteBackArrowIcon />}
+        onLeftIconPress={removeBackButton ? undefined : goBack}
         rightIcon={<WhiteCrossIcon />}
         onRightIconPress={onRightIconPress}
       />
