@@ -5,7 +5,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useIsFocused } from '@react-navigation/native';
 import {
   ImageBackground,
   SafeAreaView,
@@ -20,8 +19,8 @@ import { styles } from './DancingTimer.styles';
 import {
   useAppSelector,
   useAppState,
-  useMount,
   useNavigateNextQuest,
+  useRenderQuestHeader,
 } from '../../../../hooks';
 import { generalStyles } from '../../../../utils/styles';
 import { ExtendedText } from '../../../../components';
@@ -38,7 +37,13 @@ const RoundPauseButtonIcon = SVG.RoundPauseButtonIcon;
 export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
   route,
 }) => {
-  const { title, description, duration, backgroundImage } = route.params.data;
+  const {
+    title,
+    description,
+    duration,
+    backgroundImage,
+    escapeMenuAlternativeNavigateTo,
+  } = route.params.data;
 
   useKeepAwake();
   const lottieRef = useRef<Lottie>(null);
@@ -48,25 +53,39 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
 
   const [timerValue, setTimerValue] = useState(duration ?? 10);
   const [isTimerPause, setIsTimerPause] = useState(false);
-  const isFocused = useIsFocused();
+  const timer = useRef<NodeJS.Timer>();
 
-  useMount(() => {
-    AudioPlayerHelper.pauseInfiniteLoop();
-    AudioPlayerHelper.play(selectedSong ?? SOUND_CAROUSEL[0].id);
-  });
+  const Header = useRenderQuestHeader(
+    {
+      crossHeader: true,
+      escapeMenuAlternativeNavigateTo,
+    },
+    true,
+  );
 
   useEffect(() => {
-    if (isFocused) {
-      setTimerValue(duration ?? 10);
-    }
-  }, [duration, isFocused]);
+    return () => {
+      AudioPlayerHelper.stop();
+      AudioPlayerHelper.startInfiniteLoop();
+    };
+  }, []);
+
+  useEffect(() => {
+    setTimerValue(duration ?? 10);
+    AudioPlayerHelper.pauseInfiniteLoop();
+    AudioPlayerHelper.play(selectedSong ?? SOUND_CAROUSEL[0].id);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!isTimerPause) {
       if (timerValue > 0 && !isTimerPause) {
-        const timer = setInterval(() => setTimerValue(timerValue - 1), 1000);
+        timer.current = setInterval(() => setTimerValue(timerValue - 1), 1000);
         return () => {
-          clearInterval(timer);
+          if (timer.current) {
+            clearInterval(timer.current);
+          }
         };
       }
       navigateNextQuest();
@@ -112,30 +131,38 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
         CHARMS_BACKGROUNDS[backgroundImage ?? 'ALTERNATIVE_GARDEN_BACKGROUND']
       }
       style={generalStyles.flex}>
-      <Lottie
-        source={ANIMATIONS.DANCING_MOTH}
-        autoPlay
-        loop
-        ref={lottieRef}
-        style={LottieAbsoluteStyles(-30)}
-      />
       <SafeAreaView style={generalStyles.flex}>
+        <Header />
         <View style={styles.container}>
-          {!!title && (
-            <ExtendedText preset="large-title" style={styles.title}>
-              {title}
+          <View>
+            {!!title && (
+              <ExtendedText preset="large-title" style={styles.title}>
+                {title}
+              </ExtendedText>
+            )}
+            {!!description && (
+              <ExtendedText
+                preset="secondary-text"
+                style={generalStyles.greyCenter}>
+                {description}
+              </ExtendedText>
+            )}
+          </View>
+          <Lottie
+            source={ANIMATIONS.DANCING_MOTH}
+            autoPlay
+            loop
+            ref={lottieRef}
+            style={LottieAbsoluteStyles(0)}
+          />
+          <View>
+            <ExtendedText preset="large-title" style={styles.seconds}>
+              {(timerValue < 10 ? '00:0' : '00:') + timerValue}
             </ExtendedText>
-          )}
-          {!!description && (
-            <ExtendedText
-              preset="secondary-text"
-              style={generalStyles.greyCenter}>
-              {description}
-            </ExtendedText>
-          )}
-          <TouchableOpacity onPress={timerStatus} style={styles.button}>
-            <ButtonIcon />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={timerStatus} style={styles.button}>
+              <ButtonIcon />
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView>
     </ImageBackground>
