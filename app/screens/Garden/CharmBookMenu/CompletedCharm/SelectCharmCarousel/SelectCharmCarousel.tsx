@@ -48,7 +48,6 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
         COMPLETED_CHARMS_CAROUSEL[currentPosition + 1].id;
       const completedQuests = values(allQuests?.[completedQuestLineId].quests);
 
-      console.log(completedQuests[0].title);
       dispatch(
         questSlice.actions.saveCurrentQuestLine({
           id: completedQuests[0].questLineId,

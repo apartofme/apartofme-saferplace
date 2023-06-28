@@ -2,13 +2,12 @@ import React, { useEffect, useMemo } from 'react';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
 import _ from 'lodash';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { styles } from './NotificationAlert.styles';
 import { appSlice } from '../../redux/slices';
-import { ErrorInfoIcon } from '../../assets/svg/ErrorInfoIcon';
+import { ErrorInfoIcon } from '../../assets/svg/errorInfoIcon/ErrorInfoIcon';
 
 export const NotificationAlert: React.FC = ({}) => {
   const dispatch = useAppDispatch();
@@ -31,12 +30,9 @@ export const NotificationAlert: React.FC = ({}) => {
           paddingTop: -statusBarHeight.top + 16,
         },
         titleStyle: styles.title,
+        duration: 5000,
         // TODO: types
-        icon: () => (
-          <View style={styles.icon}>
-            <ErrorInfoIcon />
-          </View>
-        ),
+        icon: () => <ErrorInfoIcon />,
       });
       dispatch(appSlice.actions.resetErrors());
     }

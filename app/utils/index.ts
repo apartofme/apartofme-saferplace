@@ -1,7 +1,8 @@
 import _ from 'lodash';
-import { NativeModules, Platform, ViewStyle } from 'react-native';
+import { Platform, ViewStyle } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import { showMessage } from 'react-native-flash-message';
+import { ReactElement } from 'react';
 
 import { IQuest, IQuestDatoCms } from '../models/IQuest';
 import { IQuestLine, IQuestLineDatoCms } from '../models/IQuestLine';
@@ -26,8 +27,6 @@ export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';
 
 export type Nullable<T> = T | null;
-
-const { StatusBarManager } = NativeModules;
 
 /*
  Parse firebase error for example: auth/email-already-exists
@@ -183,7 +182,11 @@ export const getIsConnected = async () => {
   return netInfo.isConnected;
 };
 
-export const showInternetErrorAlert = (title?: string, description?: string) =>
+export const showInternetErrorAlert = (
+  title?: string,
+  description?: string,
+  icon?: ReactElement,
+) =>
   showMessage({
     message: title ?? NETWORK_ERROR_TITLE,
     description: description ?? NETWORK_ERROR_DESCRIPTION,
@@ -191,13 +194,13 @@ export const showInternetErrorAlert = (title?: string, description?: string) =>
       backgroundColor: COLORS.MEDIUM_GREY,
       paddingBottom: 16,
       justifyContent: 'center',
-      marginTop: StatusBarManager.HEIGHT,
-      paddingTop: -StatusBarManager.HEIGHT + 16,
+      paddingTop: 16,
     },
+    duration: 5000,
     titleStyle: {
       paddingBottom: 12,
     },
-    icon: 'none',
+    icon: icon ?? 'none',
   });
 
 export const showProgressAlert = (title: string) =>
@@ -207,8 +210,7 @@ export const showProgressAlert = (title: string) =>
       backgroundColor: COLORS.MEDIUM_GREY,
       paddingBottom: 16,
       justifyContent: 'center',
-      marginTop: StatusBarManager.HEIGHT,
-      paddingTop: -StatusBarManager.HEIGHT + 16,
+      paddingTop: 16,
     },
 
     icon: 'none',
