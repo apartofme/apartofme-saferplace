@@ -13,6 +13,7 @@ import { BACKGROUND_IMAGES } from '../../assets';
 import { generalStyles } from '../../utils/styles';
 import { showInternetErrorAlert } from '../../utils';
 import { NadiyaTextIcon } from '../../assets/svg/NadiyaTextIcon';
+import { ErrorInfoIcon } from '../../assets/svg/errorInfoIcon/ErrorInfoIcon';
 
 export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,
@@ -36,7 +37,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
 
   useEffect(() => {
     if (netInfo.isConnected === false) {
-      showInternetErrorAlert();
+      showInternetErrorAlert(undefined, undefined, () => <ErrorInfoIcon />);
     }
   }, [netInfo.isConnected]);
 

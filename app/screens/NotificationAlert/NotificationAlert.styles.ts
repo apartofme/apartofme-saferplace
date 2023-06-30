@@ -5,7 +5,6 @@ import { COLORS } from '../../themes/colors';
 interface IErrorAlertStyles {
   container: ViewStyle;
   title: TextStyle;
-  icon: ViewStyle;
 }
 
 export const styles = StyleSheet.create<IErrorAlertStyles>({
@@ -15,9 +14,5 @@ export const styles = StyleSheet.create<IErrorAlertStyles>({
   },
   title: {
     paddingBottom: 12,
-  },
-  icon: {
-    paddingVertical: 16,
-    paddingRight: 13,
   },
 });
