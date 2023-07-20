@@ -27,9 +27,10 @@ export const NotificationAlert: React.FC = ({}) => {
         style: {
           ...styles.container,
           marginTop: statusBarHeight.top,
-          paddingTop: -statusBarHeight.top + 16,
+          paddingTop: -statusBarHeight.top + 12,
         },
         titleStyle: styles.title,
+        textStyle: styles.message,
         duration: 5000,
         // TODO: types
         icon: () => <ErrorInfoIcon />,
