@@ -14,6 +14,8 @@ import { generalStyles } from '../../utils/styles';
 import { showInternetErrorAlert } from '../../utils';
 import { NadiyaTextIcon } from '../../assets/svg/NadiyaTextIcon';
 import { ErrorInfoIcon } from '../../assets/svg/errorInfoIcon/ErrorInfoIcon';
+import { GetMainStackName } from '../../navigation/navigationAsyncStorage';
+import { RootParams } from '../../navigation/rootNavigator';
 
 export const InitialScreen: React.FC<IInitialScreenProps> = ({
   navigation,
@@ -34,6 +36,7 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   );
 
   const [isStartLoading, setIsStartLoading] = useState(false);
+  const [mainStackScreen, setMainStackScreen] = useState<keyof RootParams>();
 
   useEffect(() => {
     if (netInfo.isConnected === false) {
@@ -61,24 +64,49 @@ export const InitialScreen: React.FC<IInitialScreenProps> = ({
   });
 
   useEffect(() => {
+    const getMainStack = async () => {
+      const mainNavigationStack =
+        (await GetMainStackName()) as keyof RootParams;
+      if (mainNavigationStack) {
+        setMainStackScreen(mainNavigationStack);
+      } else {
+        setMainStackScreen('Initial');
+      }
+    };
+
     notifee.requestPermission();
     if (!isSaveAllQuests && !isSaveTranslations && isStartLoading) {
-      if (user.parent && user.child) {
-        navigation.replace('GardenStack');
-        // navigation.replace('QuestStack');
-        return;
+      getMainStack();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSaveAllQuests, isSaveTranslations]);
+
+  useEffect(() => {
+    notifee.requestPermission();
+    if (!isSaveAllQuests && !isSaveTranslations && isStartLoading) {
+      if (mainStackScreen === 'Initial') {
+        if (user.parent && user.child) {
+          navigation.replace('GardenStack');
+          // navigation.replace('QuestStack');
+          return;
+        }
+        if (user.parent && !user.child) {
+          navigation.replace('ParentsOnboardingStack', {
+            screen: 'CharmsIntroducing',
+          });
+          return;
+        }
+        navigation.replace('ParentsOnboardingStack');
+      } else {
+        if (mainStackScreen !== undefined) {
+          navigation.replace(mainStackScreen);
+        }
       }
-      if (user.parent && !user.child) {
-        navigation.replace('ParentsOnboardingStack', {
-          screen: 'CharmsIntroducing',
-        });
-        return;
-      }
-      navigation.replace('ParentsOnboardingStack');
     }
     // intentionally
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSaveAllQuests, isSaveTranslations]);
+  }, [isSaveAllQuests, isSaveTranslations, mainStackScreen]);
 
   return (
     <ImageBackground
