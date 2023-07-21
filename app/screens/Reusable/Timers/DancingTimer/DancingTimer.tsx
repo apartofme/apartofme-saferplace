@@ -153,7 +153,7 @@ export const DancingTimerScreen: React.FC<IDancingTimerScreenProps> = ({
             autoPlay
             loop
             ref={lottieRef}
-            style={LottieAbsoluteStyles(0)}
+            style={LottieAbsoluteStyles(0, styles.illustration)}
           />
           <View>
             <ExtendedText preset="large-title" style={styles.seconds}>
