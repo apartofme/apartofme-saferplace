@@ -41,11 +41,18 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
 
     const [currentPosition, setCurrentPosition] = useState<number>(0);
 
+    const filteredCarouselData = useMemo(
+      () =>
+        _.filter(COMPLETED_CHARMS_CAROUSEL, item =>
+          completedQuestsId.includes(+item.id),
+        ),
+      [completedQuestsId],
+    );
+
     const onSubmitPress = useCallback(() => {
       dispatch(questSlice.actions.setIsCurrentQuestCompleted(true));
 
-      const completedQuestLineId =
-        COMPLETED_CHARMS_CAROUSEL[currentPosition + 1].id;
+      const completedQuestLineId = filteredCarouselData[currentPosition].id;
       const completedQuests = values(allQuests?.[completedQuestLineId].quests);
 
       dispatch(
@@ -62,15 +69,13 @@ export const SelectCharmCarouselScreen: React.FC<ISelectCharmCarouselScreenProps
           data: { ...completedQuests[0] },
         },
       });
-    }, [allQuests, currentPosition, dispatch, navigation]);
-
-    const filteredCarouselData = useMemo(
-      () =>
-        _.filter(COMPLETED_CHARMS_CAROUSEL, item =>
-          completedQuestsId.includes(+item.id),
-        ),
-      [completedQuestsId],
-    );
+    }, [
+      allQuests,
+      currentPosition,
+      dispatch,
+      filteredCarouselData,
+      navigation,
+    ]);
 
     const Title = useParsedJSXTextNickname({
       text: t('screens.completed_charm_carousel.title'),

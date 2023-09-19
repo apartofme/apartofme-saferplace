@@ -58,24 +58,6 @@ const Stack = createNativeStackNavigator<RootParams>();
 const RootNavigator = () => {
   const routeNameRef = useRef<string>();
 
-  const [initialRoute, setInitialRoute] = useState<
-    keyof RootParams | undefined
-  >();
-
-  useEffect(() => {
-    const getMainStack = async () => {
-      const mainNavigationStack =
-        (await GetMainStackName()) as keyof RootParams;
-      if (mainNavigationStack) {
-        setInitialRoute(mainNavigationStack);
-      } else {
-        setInitialRoute('Initial');
-      }
-    };
-    getMainStack();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <NavigationContainer
       ref={navigationRef}
@@ -91,44 +73,42 @@ const RootNavigator = () => {
           trackScreenView(currentRouteName, currentRouteName);
         }
       }}>
-      {initialRoute ? (
-        <Stack.Navigator
-          screenOptions={GLOBAL_NAVIGATION_STACK_OPTIONS}
-          initialRouteName={initialRoute}>
-          <Stack.Screen name="Initial" component={InitialScreen} />
-          <Stack.Screen
-            name="ParentsOnboardingStack"
-            component={ParentsOnboardingStackNavigator}
-          />
-          <Stack.Screen
-            name="JointOnboardingStack"
-            component={JointOnboardingStackNavigator}
-          />
-          <Stack.Screen
-            name="RecognitionStack"
-            component={RecognitionStackNavigator}
-          />
-          <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
-          <Stack.Screen name="QuestStack" component={QuestStackNavigator} />
-          <Stack.Screen
-            name="MixingElixirStack"
-            component={MixingElixirStackNavigator}
-          />
-          <Stack.Screen name="GardenStack" component={GardenStackNavigator} />
-          <Stack.Screen
-            name="ParentGroundingStack"
-            component={ParentGroundingStackNavigator}
-          />
-          <Stack.Screen
-            name="BefriendingStack"
-            component={BefriendingStackNavigator}
-          />
-          <Stack.Screen
-            name="EditProfileStack"
-            component={EditProfileStackNavigator}
-          />
-        </Stack.Navigator>
-      ) : null}
+      <Stack.Navigator
+        screenOptions={GLOBAL_NAVIGATION_STACK_OPTIONS}
+        initialRouteName={'Initial'}>
+        <Stack.Screen name="Initial" component={InitialScreen} />
+        <Stack.Screen
+          name="ParentsOnboardingStack"
+          component={ParentsOnboardingStackNavigator}
+        />
+        <Stack.Screen
+          name="JointOnboardingStack"
+          component={JointOnboardingStackNavigator}
+        />
+        <Stack.Screen
+          name="RecognitionStack"
+          component={RecognitionStackNavigator}
+        />
+        <Stack.Screen name="MenuStack" component={MenuStackNavigator} />
+        <Stack.Screen name="QuestStack" component={QuestStackNavigator} />
+        <Stack.Screen
+          name="MixingElixirStack"
+          component={MixingElixirStackNavigator}
+        />
+        <Stack.Screen name="GardenStack" component={GardenStackNavigator} />
+        <Stack.Screen
+          name="ParentGroundingStack"
+          component={ParentGroundingStackNavigator}
+        />
+        <Stack.Screen
+          name="BefriendingStack"
+          component={BefriendingStackNavigator}
+        />
+        <Stack.Screen
+          name="EditProfileStack"
+          component={EditProfileStackNavigator}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

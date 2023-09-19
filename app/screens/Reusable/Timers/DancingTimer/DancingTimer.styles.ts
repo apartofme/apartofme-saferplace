@@ -4,6 +4,7 @@ import { COLORS } from '../../../../themes/colors';
 
 interface IDancingTimerScreenStyles {
   container: ViewStyle;
+  illustration: ViewStyle;
   title: TextStyle;
   button: ViewStyle;
   seconds: TextStyle;
@@ -16,7 +17,11 @@ export const styles = StyleSheet.create<IDancingTimerScreenStyles>({
     paddingHorizontal: 40,
     paddingBottom: 20,
     alignItems: 'center',
+    alignContent: 'center',
     justifyContent: 'space-between',
+  },
+  illustration: {
+    marginLeft: 8,
   },
   title: {
     color: COLORS.BRILLIANT_WHITE,
@@ -28,5 +33,6 @@ export const styles = StyleSheet.create<IDancingTimerScreenStyles>({
   seconds: {
     color: COLORS.PRIMARY_ORANGE,
     marginBottom: 30,
+    textAlign: 'center',
   },
 });

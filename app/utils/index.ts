@@ -21,6 +21,7 @@ import {
   NETWORK_ERROR_DESCRIPTION,
   NETWORK_ERROR_TITLE,
 } from '../constants/error';
+import { ErrorInfoIcon } from '../assets/svg/errorInfoIcon/ErrorInfoIcon';
 
 export const isAndroid = Platform.OS === 'android';
 
@@ -182,25 +183,30 @@ export const getIsConnected = async () => {
   return netInfo.isConnected;
 };
 
+// Type any needed to add custom icon
 export const showInternetErrorAlert = (
   title?: string,
   description?: string,
-  icon?: ReactElement,
+  icon?: ReactElement | any,
 ) =>
   showMessage({
     message: title ?? NETWORK_ERROR_TITLE,
     description: description ?? NETWORK_ERROR_DESCRIPTION,
     style: {
       backgroundColor: COLORS.MEDIUM_GREY,
-      paddingBottom: 16,
-      justifyContent: 'center',
-      paddingTop: 16,
-    },
-    duration: 5000,
-    titleStyle: {
       paddingBottom: 12,
+      justifyContent: 'center',
+      paddingTop: 12,
     },
-    icon: icon ?? 'none',
+    duration: 50000,
+    titleStyle: {
+      paddingBottom: 6,
+      fontFamily: 'Poppins-Regular',
+    },
+    textStyle: {
+      fontFamily: 'Poppins-Regular',
+    },
+    icon: icon ?? ErrorInfoIcon,
   });
 
 export const showProgressAlert = (title: string) =>
@@ -208,10 +214,12 @@ export const showProgressAlert = (title: string) =>
     message: title ?? NETWORK_ERROR_TITLE,
     style: {
       backgroundColor: COLORS.MEDIUM_GREY,
-      paddingBottom: 16,
+      paddingBottom: 12,
       justifyContent: 'center',
-      paddingTop: 16,
+      paddingTop: 12,
     },
-
+    textStyle: {
+      fontFamily: 'Poppins-Regular',
+    },
     icon: 'none',
   });
